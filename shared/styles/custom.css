@@ -1,0 +1,14 @@
+main.content { max-width: 880px; }
+.sidebar nav[role="doc-toc"] ul, #TOC ul { line-height: 1.5; }
+.book-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+.book-card { border: 1px solid var(--bs-border-color); border-radius: 8px; padding: 1.1rem 1.2rem; background: var(--bs-body-bg); box-shadow: 0 1px 8px rgba(15, 23, 42, .06); }
+.book-card h3 { margin-top: 0; font-size: 1.15rem; }
+.book-card p { margin-bottom: .75rem; }
+img { max-width: 100%; height: auto; border-radius: 4px; }
+figure img { background: #fff; }
+.math.display, mjx-container[jax="CHTML"][display="true"] { overflow-x: auto; overflow-y: hidden; padding: .35rem 0; }
+blockquote { border-left: 4px solid #60a5fa; padding: .75rem 1rem; color: var(--bs-body-color); background: color-mix(in srgb, var(--bs-primary) 6%, transparent); }
+table { display: block; overflow-x: auto; white-space: normal; }
+pre code { white-space: pre-wrap; overflow-wrap: anywhere; }
+.navbar-title { font-weight: 650; }
+@media (max-width: 767px) { main.content { padding-left: 1rem; padding-right: 1rem; } .book-grid { grid-template-columns: 1fr; } h1 { font-size: 1.75rem; } }

@@ -1,0 +1,43 @@
+---
+title: "AI教科書ポータル"
+description: "個人用オンライン教科書ライブラリ"
+format:
+  html:
+    toc: true
+---
+# AI教科書ポータル
+
+数学・物理・セキュリティの教材をQuartoで公開する個人教科書ライブラリです。
+
+::: {.book-grid}
+::: {.book-card}
+### Navier-Stokes方程式を読む
+
+Navier-Stokes方程式の各項、具体解、渦度、臨界性、正則性問題を因果関係として読む講義ノート。
+
+- 分野: 数学 / 流体力学 / PDE
+
+[教科書を開く](navier-stokes/)
+:::
+
+::: {.book-card}
+### Buffer Overflow / ROP 入門
+
+Cの境界外書き込みがスタック、戻り先、RIP制御へつながる因果を層ごとに追う技術教材。
+
+- 分野: Security / C / Linux / x86-64
+
+[教科書を開く](buffer-overflow/)
+:::
+
+::: {.book-card}
+### 作用素環論から非可換幾何へ
+
+C*-環、von Neumann環、K理論、巡回コホモロジー、スペクトル三つ組を順に構成する大学院向け教材。
+
+- 分野: 数学 / 関数解析 / 作用素環 / 非可換幾何
+
+[教科書を開く](noncommutative-geometry/)
+:::
+
+:::

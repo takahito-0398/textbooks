@@ -1,0 +1,160 @@
+project:
+  type: website
+  output-dir: _site
+  render:
+    - "*.qmd"
+    - "navier-stokes/**/*.qmd"
+    - "buffer-overflow/**/*.qmd"
+    - "noncommutative-geometry/**/*.qmd"
+
+website:
+  title: "AI教科書ポータル"
+  site-url: "https://takahito-0398.github.io/textbooks/"
+  repo-url: "https://github.com/takahito-0398/textbooks"
+  search:
+    location: navbar
+    type: overlay
+  page-navigation: true
+  navbar:
+    background: primary
+    left:
+      - text: "Home"
+        href: index.qmd
+      - text: "Navier-Stokes"
+        href: navier-stokes/index.qmd
+      - text: "Buffer Overflow / ROP"
+        href: buffer-overflow/index.qmd
+      - text: "非可換幾何"
+        href: noncommutative-geometry/index.qmd
+    right:
+      - icon: github
+        href: "https://github.com/takahito-0398/textbooks"
+  sidebar:
+  - id: navier-stokes
+    title: "Navier-Stokes方程式を読む"
+    style: docked
+    collapse-level: 1
+    contents:
+      - navier-stokes/index.qmd
+      - text: "第I部　方程式を読む"
+        href: navier-stokes/chapters/01-equation-basics.qmd
+      - text: "第II部　一般形から具体解へ"
+        href: navier-stokes/chapters/02-explicit-solutions.qmd
+      - text: "第III部　非線形急峻化の最小模型"
+        href: navier-stokes/chapters/03-burgers-nonlinearity.qmd
+      - text: "第IV部　Reynolds数・無次元化・スケール"
+        href: navier-stokes/chapters/04-reynolds-scaling.qmd
+      - text: "第V部　エネルギー・Fourier相互作用・圧力"
+        href: navier-stokes/chapters/05-energy-fourier-pressure.qmd
+      - text: "第VI部　渦度と次元"
+        href: navier-stokes/chapters/06-vorticity-dimension.qmd
+      - text: "第VII部　渦を計算して見る"
+        href: navier-stokes/chapters/07-vortex-computation.qmd
+      - text: "第VIII部　解析の物差し"
+        href: navier-stokes/chapters/08-analysis-scales.qmd
+      - text: "第IX部　Navier-Stokes正則性問題"
+        href: navier-stokes/chapters/09-regularity-problem.qmd
+      - text: "第X部　発展トピック"
+        href: navier-stokes/chapters/10-advanced-topics.qmd
+      - text: "付録"
+        href: navier-stokes/chapters/11-appendices.qmd
+  - id: buffer-overflow
+    title: "Buffer Overflow / ROP 入門"
+    style: docked
+    collapse-level: 1
+    contents:
+      - buffer-overflow/index.qmd
+      - text: "0. まず、一つのプログラムと二つの結果を見る"
+        href: buffer-overflow/chapters/01-program-and-results.qmd
+      - text: "1. Cの文字列がCPUへ届くまで"
+        href: buffer-overflow/chapters/02-c-string-to-cpu.qmd
+      - text: "2. プロセスと仮想メモリ"
+        href: buffer-overflow/chapters/03-process-memory.qmd
+      - text: "3. CPUはどの命令を実行するのか"
+        href: buffer-overflow/chapters/04-instruction-execution.qmd
+      - text: "4. 関数呼び出しとスタック"
+        href: buffer-overflow/chapters/05-call-stack.qmd
+      - text: "5. 正常系を機械状態で追う"
+        href: buffer-overflow/chapters/06-normal-state-machine.qmd
+      - text: "6. 境界外書き込みは何を壊すのか"
+        href: buffer-overflow/chapters/07-out-of-bounds-write.qmd
+      - text: "7. 戻り先から`RIP`を取るまで"
+        href: buffer-overflow/chapters/08-return-address-to-rip.qmd
+      - text: "8. `RIP`制御の後に何が選べるのか"
+        href: buffer-overflow/chapters/09-after-rip-control.qmd
+      - text: "9. 現代の防御はどの因果を切るのか"
+        href: buffer-overflow/chapters/10-modern-defenses.qmd
+      - text: "10. まとめ：最初の異常系を自分の言葉で説明する"
+        href: buffer-overflow/chapters/11-summary.qmd
+      - text: "補遺A. 実際の逆アセンブリと呼び出し規約"
+        href: buffer-overflow/chapters/12-appendix-disassembly.qmd
+      - text: "補遺B. 古典的な命令配置の地図"
+        href: buffer-overflow/chapters/13-appendix-code-placement.qmd
+      - text: "補遺C. ROPを次に学ぶための地図"
+        href: buffer-overflow/chapters/14-appendix-rop-map.qmd
+      - text: "補遺D. 実験の安全境界と参考資料"
+        href: buffer-overflow/chapters/15-appendix-safety-references.qmd
+  - id: noncommutative-geometry
+    title: "作用素環論から非可換幾何へ"
+    style: docked
+    collapse-level: 1
+    contents:
+      - noncommutative-geometry/index.qmd
+      - text: "第0章　何を「空間」と呼び直すのか"
+        href: noncommutative-geometry/chapters/00-reading-guide.qmd
+      - text: "第1章　行列から作用素へ：無限次元で何が壊れるか"
+        href: noncommutative-geometry/chapters/01-matrices-to-operators.qmd
+      - text: "第2章　作用素を集める：Banach環からC*-環へ"
+        href: noncommutative-geometry/chapters/02-banach-and-cstar-algebras.qmd
+      - text: "第3章　可換C*-環は空間である：Gelfand双対"
+        href: noncommutative-geometry/chapters/03-commutative-cstar-and-spaces.qmd
+      - text: "第4章　状態からHilbert空間へ：表現とGNS構成"
+        href: noncommutative-geometry/chapters/04-states-representations-gns.qmd
+      - text: "第5章　von Neumann環：観測ごとの極限を閉じる"
+        href: noncommutative-geometry/chapters/05-von-neumann-algebras.qmd
+      - text: "第6章　因子と型：射影の「大きさ」を測り直す"
+        href: noncommutative-geometry/chapters/06-factors-and-modular-theory.qmd
+      - text: "第7章　K理論：変形で壊れない射影とユニタリ"
+        href: noncommutative-geometry/chapters/07-k-theory.qmd
+      - text: "第8章　Fredholm作用素とToeplitz拡大：整数が安定に残る理由"
+        href: noncommutative-geometry/chapters/08-fredholm-toeplitz-index.qmd
+      - text: "第9章　巡回コホモロジー：非可換代数で「微分して積分する」"
+        href: noncommutative-geometry/chapters/09-cyclic-cohomology.qmd
+      - text: "第10章　スペクトル三つ組：Dirac作用素から距離・次元・積分を読む"
+        href: noncommutative-geometry/chapters/10-spectral-triples.qmd
+      - text: "第11章　非可換トーラス：回転から生まれる座標環"
+        href: noncommutative-geometry/chapters/11-noncommutative-torus.qmd
+      - text: "第12章　悪い商、Morita同値、葉層：点集合を越えて軌道を記録する"
+        href: noncommutative-geometry/chapters/12-morita-foliations-quotients.qmd
+      - text: "第13章　指数定理への再接続：三種類の情報が一つの整数になる"
+        href: noncommutative-geometry/chapters/13-index-and-geometry.qmd
+      - text: "第14章　非可換幾何とは何をしている理論なのか"
+        href: noncommutative-geometry/chapters/14-what-noncommutative-geometry-is.qmd
+      - text: "付録A　必要な関数解析"
+        href: noncommutative-geometry/chapters/appendix-a-functional-analysis.qmd
+      - text: "付録B　位相的K理論を作用素環から読み直す"
+        href: noncommutative-geometry/chapters/appendix-b-topological-k-theory.qmd
+      - text: "付録C　Clifford代数・spinor・Dirac作用素"
+        href: noncommutative-geometry/chapters/appendix-c-clifford-spin.qmd
+      - text: "付録D　記号と用語"
+        href: noncommutative-geometry/chapters/appendix-d-notation.qmd
+      - text: "付録E　参考文献"
+        href: noncommutative-geometry/chapters/appendix-e-bibliography.qmd
+
+format:
+  html:
+    theme:
+      light: [cosmo, shared/styles/theme.scss]
+      dark: [darkly, shared/styles/theme.scss]
+    toc: true
+    toc-depth: 3
+    number-sections: false
+    code-copy: true
+    code-overflow: wrap
+    html-math-method: mathjax
+    link-external-icon: true
+    fig-responsive: true
+    css: shared/styles/custom.css
+
+execute:
+  freeze: auto
