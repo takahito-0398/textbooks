@@ -1,0 +1,75 @@
+---
+title: "0. まず、一つのプログラムと二つの結果を見る"
+sidebar: buffer-overflow
+format:
+  html:
+    toc: true
+---
+# 0. まず、一つのプログラムと二つの結果を見る
+
+## 0.1 最後まで使うCソース
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+void win(void) {
+    puts("YOU WIN");
+    exit(0);
+}
+
+void greet(const char *name) {
+    printf("Hello, %.15s\n", name);
+}
+
+void read_name(void) {
+    char name[16] = {0};
+
+    puts("Enter your name:");
+    read(STDIN_FILENO, name, 128);
+    greet(name);
+}
+
+int main(void) {
+    read_name();
+    puts("Goodbye");
+    return 0;
+}
+```
+
+ひと目で読むと、呼び出しは次の形である。
+
+```text
+main
+  └─ read_name
+       └─ greet
+
+win ← どこからも呼ばれていない
+```
+
+それなのに、正常実行では到達しない`win`が、入力によって実行される。これが今日の問いである。
+
+## 0.2 正常系の事前収録
+
+```text
+Enter your name:
+Alice
+Hello, Alice
+Goodbye
+```
+
+`read_name`が入力を受け、`greet`が表示し、`main`の続きへ戻る。収録では改行を含まない5バイトの`Alice`を入力する。
+
+## 0.3 異常系の事前収録
+
+```text
+Enter your name:
+AAAAAAAAAAAAAAAA...
+Hello, AAAAAAAAAAAAAAA
+YOU WIN
+```
+
+`main`に`win()`はない。分岐もない。しかしCPUは`win`の命令を実行する。この差は、Cの制御構造ではなく、メモリ上の戻り先が変わったことから生まれる。
+
+> 安全上の境界：デモは自作バイナリとローカルの隔離環境だけで行う。本資料は再利用可能な攻撃入力や自動化器を提供しない。

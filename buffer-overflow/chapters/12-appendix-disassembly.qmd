@@ -1,0 +1,77 @@
+---
+title: "補遺A. 実際の逆アセンブリと呼び出し規約"
+sidebar: buffer-overflow
+format:
+  html:
+    toc: true
+---
+# 補遺A. 実際の逆アセンブリと呼び出し規約
+
+## A.1 `read_name`の実命令
+
+次はGCCで上記フラグを使った実測例である。アドレスや細部はツールチェーンによって変わる。
+
+```asm
+00000000004011db <read_name>:
+  4011db: endbr64
+  4011df: push   rbp
+  4011e0: mov    rbp,rsp
+  4011e3: sub    rsp,0x10
+  4011e7: mov    QWORD PTR [rbp-0x10],0x0
+  4011ef: mov    QWORD PTR [rbp-0x8],0x0
+  4011f7: mov    edi,0x40201a
+  4011fc: call   puts@plt
+  401201: lea    rax,[rbp-0x10]
+  401205: mov    edx,0x80
+  40120a: mov    rsi,rax
+  40120d: mov    edi,0x0
+  401212: call   read@plt
+  401217: lea    rax,[rbp-0x10]
+  40121b: mov    rdi,rax
+  40121e: call   greet
+  401223: nop
+  401224: leave
+  401225: ret
+```
+
+`sub rsp,0x10`が16バイトの局所領域を作る。`lea rax,[rbp-0x10]`はその先頭アドレスを求める。`EDX=0x80`, `RSI=&name[0]`, `EDI=0`で`read`へ引数を渡す。`leave`は概念的に`RSP=RBP`と保存`RBP`の復帰を行い、直後の`ret`が戻り先を取り出せる状態にする。
+
+## A.2 `greet`と可変引数関数
+
+```asm
+00000000004011b2 <greet>:
+  4011b2: endbr64
+  4011b6: push   rbp
+  4011b7: mov    rbp,rsp
+  4011ba: sub    rsp,0x10
+  4011be: mov    QWORD PTR [rbp-0x8],rdi
+  4011c2: mov    rax,QWORD PTR [rbp-0x8]
+  4011c6: mov    rsi,rax
+  4011c9: mov    edi,0x40200c
+  4011ce: mov    eax,0x0
+  4011d3: call   printf@plt
+  4011d8: nop
+  4011d9: leave
+  4011da: ret
+```
+
+System V AMD64呼び出し規約では、整数やポインタの先頭引数は`RDI`, `RSI`, `RDX`, `RCX`, `R8`, `R9`の順に渡す。`printf`は引数個数が可変な関数なので、`EAX=0`は浮動小数点引数を運ぶベクタレジスタの使用数を示す規約に対応する。これは戻り先破壊の原因ではないため本編から外した。
+
+## A.3 `win`が戻らない理由
+
+```asm
+0000000000401196 <win>:
+  401196: endbr64
+  40119a: push   rbp
+  40119b: mov    rbp,rsp
+  40119e: mov    edi,0x402004
+  4011a3: call   puts@plt
+  4011a8: mov    edi,0x0
+  4011ad: call   exit@plt
+```
+
+`win`は`exit(0)`を呼び、呼び出し元へは戻らない。これにより、本来の`call win`なしに到達した後の不定な戻り動作をデモから切り離す。
+
+## A.4 呼び出し規約は何を約束するか
+
+呼び出し規約は、引数をどこへ置くか、戻り値をどこへ置くか、どのレジスタを呼び出し先が保存するか、関数呼び出し時のスタック整列をどうするかを定める。別々にコンパイルされた関数同士が呼び合えるのは、この共通契約があるからである。

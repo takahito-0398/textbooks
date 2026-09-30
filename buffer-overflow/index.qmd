@@ -1,0 +1,46 @@
+---
+title: "Buffer Overflow / ROP 入門"
+description: "Cの境界外書き込みがスタック、戻り先、RIP制御へつながる因果を層ごとに追う技術教材。"
+sidebar: buffer-overflow
+format:
+  html:
+    toc: true
+---
+# Buffer Overflow / ROP 入門
+
+文字列入力から命令位置が変わるまで
+
+## この資料で追う一本の因果
+
+```text
+Cソース
+  → コンパイルされた命令
+  → プロセスの仮想メモリ
+  → 関数呼び出しとスタック
+  → 戻り先アドレス
+  → 配列の境界を越えた書き込み
+  → retが壊れた戻り先をRIPへ入れる
+  → CPUが別の場所から命令を取得する
+```
+
+ゴールは攻撃手順の暗記ではない。Cの配列に対する書き込みが、なぜCPUの「次に実行する場所」まで変えられるのかを、各層を飛ばずに説明できることである。
+
+> 本編のモデルはLinux/x86-64の単一スレッドプロセスである。実際のCPUはキャッシュ、TLB、パイプライン、投機実行などを持つが、本編では可視な状態変化に絞る。
+
+## 章一覧
+
+- [0. まず、一つのプログラムと二つの結果を見る](chapters/01-program-and-results.qmd)
+- [1. Cの文字列がCPUへ届くまで](chapters/02-c-string-to-cpu.qmd)
+- [2. プロセスと仮想メモリ](chapters/03-process-memory.qmd)
+- [3. CPUはどの命令を実行するのか](chapters/04-instruction-execution.qmd)
+- [4. 関数呼び出しとスタック](chapters/05-call-stack.qmd)
+- [5. 正常系を機械状態で追う](chapters/06-normal-state-machine.qmd)
+- [6. 境界外書き込みは何を壊すのか](chapters/07-out-of-bounds-write.qmd)
+- [7. 戻り先から`RIP`を取るまで](chapters/08-return-address-to-rip.qmd)
+- [8. `RIP`制御の後に何が選べるのか](chapters/09-after-rip-control.qmd)
+- [9. 現代の防御はどの因果を切るのか](chapters/10-modern-defenses.qmd)
+- [10. まとめ：最初の異常系を自分の言葉で説明する](chapters/11-summary.qmd)
+- [補遺A. 実際の逆アセンブリと呼び出し規約](chapters/12-appendix-disassembly.qmd)
+- [補遺B. 古典的な命令配置の地図](chapters/13-appendix-code-placement.qmd)
+- [補遺C. ROPを次に学ぶための地図](chapters/14-appendix-rop-map.qmd)
+- [補遺D. 実験の安全境界と参考資料](chapters/15-appendix-safety-references.qmd)
