@@ -1,0 +1,662 @@
+---
+title: "第9章　巡回コホモロジー：非可換代数で「微分して積分する」"
+sidebar: noncommutative-geometry
+format:
+  html:
+    toc: true
+---
+> **Core + Advanced** — Hochschild境界と巡回性を具体計算し、K理論とのpairingが指数を生む仕組みを理解する。周期巡回理論とde Rham理論の対応範囲は正確に区別する。
+
+## 9.1 K理論だけでは何が足りないか
+
+第7章では、射影とユニタリの安定な変形類から $K_0(A)$ と $K_1(A)$ を作った。第8章では、Toeplitz拡大の境界写像が $K_1(C(S^1))$ の類をFredholm指数へ送った。
+
+しかしK群は「安定に残る位相的な類」を集めるだけで、その類から数を取り出す規則を単独では与えない。可換多様体なら、ベクトル束のChern characterを微分形式で表し、基本類と積分して特性数を得る。
+
+$$
+\operatorname{ch}(E)\in H_{\mathrm{dR}}^{\mathrm{even}}(M),
+\qquad
+\int_M \operatorname{ch}(E)\wedge\omega.
+$$
+
+非可換代数 $A$ には一般に点も接空間も微分形式もない。それでも、次の三つは代数的に意味を持つ。
+
+1. 積 $a_0a_1\cdots a_n$。
+2. 積の結合の仕方を比較する境界作用素。
+3. traceの性質 $\tau(ab)=\tau(ba)$。
+
+Hochschild理論は1と2を、巡回コホモロジーはさらに3を組み込む。目的はde Rham複体を字面どおり複製することではない。非可換代数上で、微分形式の積分が持っていた「境界で消える」「積を巡回させられる」という性質を抽出し、K理論の類に数値を対応させることである。
+
+## 9.2 universal differential forms：$da$ を先に形式化する
+
+単位的複素代数 $A$ を考える。記号 $da$ に
+
+$$
+d(a+b)=da+db,\qquad d(\lambda a)=\lambda\,da,
+\qquad d(ab)=(da)b+a\,db,\qquad d1=0
+$$
+
+だけを要求する。これらから作られる形式和
+
+$$
+a_0\,da_1\cdots da_n
+$$
+
+を普遍 $n$-形式と呼び、その空間を $\Omega^n_{\mathrm{univ}}(A)$ と書く。
+
+「普遍」とは、任意の導分 $\delta:A\to M$ が一意に
+
+$$
+A\xrightarrow{d}\Omega^1_{\mathrm{univ}}(A)
+\xrightarrow{\widetilde\delta}M
+$$
+
+と分解することをいう。したがって $d$ は特定の座標や多様体に依存しない、Leibniz則だけから強制される微分である。
+
+ただし可換代数でも、普遍形式は通常の微分形式より大きい。$A=C^\infty(M)$ なら
+
+$$
+a_0\,da_1\cdots da_n
+\longmapsto
+a_0\,da_1\wedge\cdots\wedge da_n
+$$
+
+という写像はあるが、左辺では $da\,db=-db\,da$ を最初から課していない。通常のde Rham形式を得るには、可換性から生じる余分な関係で割る必要がある。非可換の場合は、その余分な関係を機械的に課すと積の順序という本質的情報を失う。
+
+そこで「形式そのもの」だけでなく、「形式を積分して数にする汎関数」を調べる。
+
+## 9.3 Hochschild cochain と境界 $b$
+
+以下では、まず純代数的な定義を書く。Fréchet代数 $C^\infty(M)$ を扱うときは、テンソル積と多重線形写像に適切な完備化・連続性を課す。
+
+$n$-cochainを
+
+$$
+C^n(A)=\operatorname{Hom}_{\mathbb C}
+\bigl(A^{\otimes(n+1)},\mathbb C\bigr)
+$$
+
+の元、すなわち $(n+1)$-重線形写像
+
+$$
+\varphi(a_0,\ldots,a_n)
+$$
+
+とする。添字が $n$ なのに引数が $n+1$ 個なのは、微分形式の積分
+
+$$
+\int a_0\,da_1\cdots da_n
+$$
+
+を模型にしているからである。
+
+Hochschild coboundary
+
+$$
+b:C^n(A)\longrightarrow C^{n+1}(A)
+$$
+
+を
+
+$$
+\begin{aligned}
+(b\varphi)(a_0,\ldots,a_{n+1})
+={}&
+\sum_{j=0}^{n}(-1)^j
+\varphi(a_0,\ldots,a_ja_{j+1},\ldots,a_{n+1})\\
+&+(-1)^{n+1}
+\varphi(a_{n+1}a_0,a_1,\ldots,a_n)
+\end{aligned}
+$$
+
+で定める。最後の項だけ積が端をまたぐ。係数を双対加群 $A^*$ に取る通常のHochschild cochainを、多重線形汎関数として書いた形である。
+
+### 9.3.1 低次数で式を見る
+
+$0$-cochain $\tau:A\to\mathbb C$ に対して
+
+$$
+(b\tau)(a_0,a_1)=\tau(a_0a_1)-\tau(a_1a_0).
+$$
+
+したがって $b\tau=0$ とは、まさに
+
+$$
+\tau(ab)=\tau(ba)
+$$
+
+である。0次Hochschild cocycleはtraceである。
+
+$1$-cochain $\varphi$ に対しては
+
+$$
+(b\varphi)(a_0,a_1,a_2)
+=
+\varphi(a_0a_1,a_2)
+-\varphi(a_0,a_1a_2)
++\varphi(a_2a_0,a_1).
+$$
+
+三つの項は、積を隣り合わせでまとめる三通りの差を測っている。
+
+### 9.3.2 なぜ $b^2=0$ か
+
+**[証明の核心]** $b$ を、隣接項を掛ける写像
+
+$$
+d_j(a_0,\ldots,a_{n+1})
+$$
+
+の交代和と見る。$j\le k$ に対して
+
+$$
+d_kd_j=d_jd_{k+1}
+$$
+
+が成り立つ。これは三つの隣接元について
+
+$$
+(a_ja_{j+1})a_{j+2}=a_j(a_{j+1}a_{j+2})
+$$
+
+という結合則を使った式である。$b^2$ を展開すると、同じ積を作る項が符号を反転して二度ずつ現れ、すべて相殺する。端をまたぐ項も同じ規則に従う。よって
+
+$$
+b^2=0.
+$$
+
+したがって
+
+$$
+HH^n(A)=\ker(b:C^n\to C^{n+1})/
+\operatorname{im}(b:C^{n-1}\to C^n)
+$$
+
+を定義できる。
+
+Hochschild境界は、微分形式の外微分そのものではない。結合的な積に対し、多重線形汎関数が積のまとめ方と整合するかを測る作用素である。
+
+## 9.4 巡回性は積分の対称性である
+
+閉じた多様体上で、関数と微分形式の次数を考慮すると、積分の中で因子を端から端へ回せる。traceの
+
+$$
+\operatorname{Tr}(AB)=\operatorname{Tr}(BA)
+$$
+
+も同じ現象の0次版である。
+
+$n$-cochain $\varphi$ が巡回的であるとは
+
+$$
+\boxed{
+\varphi(a_0,a_1,\ldots,a_n)
+=(-1)^n\varphi(a_n,a_0,\ldots,a_{n-1})
+}
+$$
+
+を満たすことをいう。巡回 $n$-cochain全体を $C_\lambda^n(A)$ と書く。
+
+符号 $(-1)^n$ は装飾ではない。模型
+
+$$
+\varphi(a_0,\ldots,a_n)
+=\int_M a_0\,da_1\wedge\cdots\wedge da_n
+$$
+
+で $da_n$ を残りの $n-1$ 個の1-形式の前へ移すときに出るKoszul符号である。
+
+Hochschild coboundaryは巡回cochainを巡回cochainへ送る。そのため
+
+$$
+\bigl(C_\lambda^\bullet(A),b\bigr)
+$$
+
+はcochain complexになり、そのcohomologyを巡回コホモロジー $HC^\bullet(A)$ と呼ぶ。
+
+### 9.4.1 traceは最初の巡回cocycle
+
+$n=0$ では巡回条件は自明で、cocycle条件 $b\tau=0$ がtrace条件そのものである。したがってtraceは巡回0-cocycleである。
+
+これは第6章のtraceを別の方向から読み直している。von Neumann環ではtraceは射影の次元を測った。巡回コホモロジーではtraceは $K_0$ の射影類を数へ送る最初のcocycleになる。
+
+## 9.5 導分から作る巡回1-cocycle
+
+$A$ 上のtrace $\tau$ と導分
+
+$$
+\delta(ab)=\delta(a)b+a\delta(b)
+$$
+
+を取り、
+
+$$
+\tau(\delta(a))=0
+$$
+
+を仮定する。次で1-cochainを定める。
+
+$$
+\varphi(a_0,a_1)=\tau\bigl(a_0\delta(a_1)\bigr).
+$$
+
+これは「$a_0\,da_1$ を積分する」式である。
+
+まず巡回性を確かめる。仮定とLeibniz則から
+
+$$
+0=\tau(\delta(a_1a_0))
+=\tau(\delta(a_1)a_0)+\tau(a_1\delta(a_0)).
+$$
+
+trace性を使うと
+
+$$
+\varphi(a_0,a_1)
+=\tau(\delta(a_1)a_0)
+=-\tau(a_1\delta(a_0))
+=-\varphi(a_1,a_0).
+$$
+
+次にcocycle条件を計算する。
+
+$$
+\begin{aligned}
+(b\varphi)(a_0,a_1,a_2)
+={}&\tau(a_0a_1\delta(a_2))
+-\tau(a_0\delta(a_1a_2))
++\tau(a_2a_0\delta(a_1))\\
+={}&\tau(a_0a_1\delta(a_2))
+-\tau(a_0\delta(a_1)a_2)
+-\tau(a_0a_1\delta(a_2))\\
+&+\tau(a_2a_0\delta(a_1))\\
+={}&0.
+\end{aligned}
+$$
+
+最後の二項はtrace性で相殺した。よって $\varphi$ は巡回1-cocycleである。
+
+この例には三つの要素しかない。
+
+- $A$: 関数の代わり。
+- $\delta$: 微分の代わり。
+- $\tau$: 積分の代わり。
+
+非可換微分幾何の最小模型がすでに現れている。
+
+## 9.6 可換滑らかな場合：何がde Rham理論と対応するか
+
+ここは言い過ぎを避ける必要がある。
+
+### 9.6.1 Hochschild homology と微分形式
+
+コンパクト滑らかな多様体 $M$ に対し $A=C^\infty(M)$ を、その自然なFréchet位相を持つ位相代数として扱う。連続Hochschild homologyにはHochschild–Kostant–Rosenberg型の写像
+
+$$
+\begin{aligned}
+HH_n(C^\infty(M))
+&\longrightarrow \Omega^n(M),\\
+f_0\otimes f_1\otimes\cdots\otimes f_n
+&\longmapsto
+\frac{1}{n!}f_0\,df_1\wedge\cdots\wedge df_n
+\end{aligned}
+$$
+
+があり、適切な位相的定式化のもとで同型になる。
+
+これはHochschild **homology** と滑らかな微分形式の対応である。Hochschild cohomologyを係数や連続性を指定せずにde Rham cohomologyと同一視してはいけない。
+
+### 9.6.2 current から巡回cocycleへ
+
+$M$ 上の $n$-current $C$、すなわちcompactly supported $n$-形式に作用する連続線形汎関数を考える。これから
+
+$$
+\varphi_C(f_0,\ldots,f_n)
+=
+\left\langle C,\,
+f_0\,df_1\wedge\cdots\wedge df_n
+\right\rangle
+$$
+
+を作れる。
+
+$C$ が閉currentなら、Stokesの公式に当たる関係により $b\varphi_C=0$ となり、外積の反交換性により巡回条件が成り立つ。したがって閉currentは巡回cocycleを与える。
+
+特に $M$ が向き付けられた閉 $n$-次元多様体なら、基本current
+
+$$
+\langle[M],\omega\rangle=\int_M\omega
+$$
+
+から
+
+$$
+\varphi_M(f_0,\ldots,f_n)
+=
+\int_M f_0\,df_1\wedge\cdots\wedge df_n
+$$
+
+が得られる。
+
+### 9.6.3 周期化した理論
+
+巡回理論には次数を2だけ移すperiodicity operator
+
+$$
+S:HC^n(A)\longrightarrow HC^{n+2}(A)
+$$
+
+がある。これを反復した極限からperiodic cyclic cohomology $HP^{\mathrm{ev/odd}}(A)$ を作る。chain側ではHochschild境界 $b$ とConnes作用素 $B$ を合わせた $(b,B)$-bicomplexが、de Rham複体に近い役割を担う。
+
+滑らかな可換代数について正確に言えるのは、概略次の形である。
+
+- 連続periodic cyclic **homology** of $C^\infty(M)$ は、偶奇にまとめたde Rham cohomologyと対応する。
+- 連続periodic cyclic **cohomology** はde Rham current / homology側と対応する。
+- $M$ がコンパクトかつ向き付けられていれば、Poincaré双対性を介してcohomology側とも比較できる。
+
+したがって
+
+> 巡回コホモロジーは常にde Rhamコホモロジーそのものである
+
+とは言わない。正しい主張には、滑らかな代数、連続cochain、homologyかcohomologyか、周期化、compactness、orientationを指定する必要がある。[Connes 1985; Connes NCG; GBVF]
+
+また $C(M)$ と $C^\infty(M)$ も区別する。前者は位相を符号化する $C^*$-環、後者は微分を受け取れるdense subalgebraである。微分幾何に必要なのは後者である。
+
+## 9.7 $K_0$ と偶数cocycleのpairing
+
+まず0次から始める。単位的代数 $A$ 上のtrace $\tau$ を行列環へ
+
+$$
+\tau_N\bigl((a_{ij})\bigr)=\sum_{i=1}^N\tau(a_{ii})
+$$
+
+と拡張する。射影 $p,q\in M_N(A)$ に対し
+
+$$
+\boxed{
+\langle[p]-[q],[\tau]\rangle
+=\tau_N(p)-\tau_N(q)
+}
+$$
+
+と置く。
+
+この値は射影のMurray–von Neumann同値とhomotopyで変わらず、直和に関して加法的である。したがって $K_0(A)$ 上の準同型になる。
+
+### 9.7.1 行列環でrankを回収する
+
+$A=\mathbb C$、$\tau(z)=z$ とする。$p\in M_N(\mathbb C)$ は直交射影なので
+
+$$
+\tau_N(p)=\operatorname{Tr}(p)=\operatorname{rank}(p).
+$$
+
+したがってpairingは
+
+$$
+\langle[p]-[q],[\tau]\rangle
+=\operatorname{rank}p-\operatorname{rank}q
+$$
+
+である。抽象的な $K_0$ の形式差が、traceと組み合わせることで整数へ戻る。
+
+### 9.7.2 高次の偶数cocycle
+
+巡回 $2m$-cocycle $\varphi$ を行列成分にtraceを取って $\varphi_N$ へ拡張する。正規化されたcocycleとreduced complexの規約を固定すれば、
+
+$$
+\langle[p],[\varphi]\rangle
+=c_m\,\varphi_N(p,p,\ldots,p)
+$$
+
+と書ける。右辺には $2m+1$ 個の $p$ が入り、$c_m$ はChern characterの正規化に依存する普遍定数である。
+
+定数を曖昧にしたまま数値計算へ使ってはいけない。本書で具体計算するときは、使用する $(b,B)$-complex とChern characterの規約をその場で固定する。構造上重要なのは、cocycle条件がhomotopy不変性を、巡回性が行列安定性を保証することである。
+
+## 9.8 $K_1$ と奇数cocycleのpairing
+
+巡回 $1$-cocycle $\varphi$ と可逆元 $u$ に対する最初のpairingは
+
+$$
+\langle[u],[\varphi]\rangle
+=\varphi(u^{-1},u)
+$$
+
+である。正規化は $\varphi$ 側に含めた。この値は $u$ のhomotopy classだけに依存する。
+
+### 9.8.1 円周で巻き数を計算する
+
+$A=C^\infty(S^1)$ とし、
+
+$$
+\varphi(f_0,f_1)
+=\frac{1}{2\pi i}\int_{S^1}f_0\,df_1
+$$
+
+と置く。これは積分traceと円周方向の導分から作る巡回1-cocycleである。
+
+$u:S^1\to\mathbb C^\times$ に対して
+
+$$
+\begin{aligned}
+\langle[u],[\varphi]\rangle
+&=\varphi(u^{-1},u)\\
+&=\frac{1}{2\pi i}\int_{S^1}u^{-1}\,du\\
+&=\operatorname{wind}(u,0).
+\end{aligned}
+$$
+
+特に座標関数 $u(z)=z^k$ なら
+
+$$
+u^{-1}du=ik\,dt,
+\qquad
+\langle[z^k],[\varphi]\rangle=k.
+$$
+
+第8章のToeplitz指数定理
+
+$$
+\operatorname{ind}T_u=-\operatorname{wind}(u,0)
+$$
+
+と合わせると、
+
+$$
+\operatorname{ind}T_u
+=-\langle[u],[\varphi]\rangle.
+$$
+
+ここで一つの整数が三つの姿を持つ。
+
+$$
+\boxed{
+\text{Fredholm index}
+=
+\text{K}_1\text{ と巡回cocycleのpairing}
+=
+\text{巻き数}
+}
+$$
+
+符号はToeplitz作用素と境界写像の規約に依存するが、解析・代数・位相が同じ値を計算している事実は変わらない。
+
+## 9.9 非可換トーラスでの二次元cocycle
+
+非可換トーラスの滑らかな部分代数 $A_\theta^\infty$ は、急減少係数を持つFourier級数
+
+$$
+a=\sum_{m,n\in\mathbb Z}a_{mn}U^mV^n,
+\qquad UV=e^{2\pi i\theta}VU
+$$
+
+からなる。canonical traceを
+
+$$
+\tau(a)=a_{00}
+$$
+
+とし、二つの導分を
+
+$$
+\delta_1(U)=2\pi iU,\quad \delta_1(V)=0,
+\qquad
+\delta_2(U)=0,\quad \delta_2(V)=2\pi iV
+$$
+
+で定める。
+
+すると
+
+$$
+\varphi_2(a_0,a_1,a_2)
+=
+\frac{1}{2\pi i}
+\tau\!\left(
+a_0\bigl(
+\delta_1(a_1)\delta_2(a_2)
+-\delta_2(a_1)\delta_1(a_2)
+\bigr)
+\right)
+$$
+
+は、正規化の選択を除いて基本的な巡回2-cocycleを与える。反対称化は
+
+$$
+df_1\wedge df_2
+$$
+
+の代わりである。射影 $p\in M_N(A_\theta^\infty)$ とのpairing
+
+$$
+\varphi_{2,N}(p,p,p)
+$$
+
+は適切な正規化で整数になり、非可換ベクトル束の第一Chern数に当たる。
+
+通常のトーラスの座標関数は可換だが、ここでは $U,V$ が可換しない。それでもtrace、二方向の導分、巡回cocycle、K理論の射影が残り、Chern数を定義できる。これが「非可換代数を幾何と呼ぶ」ことの具体的な内容の一つである。
+
+## 9.10 Fredholm moduleからcocycleが生まれる
+
+K理論とのpairingが指数になる一般的な理由を述べる。
+
+偶Fredholm module $(H,\pi,F,\Gamma)$ は、概略として
+
+- $\pi:A\to B(H)$ は表現、
+- $F=F^*$、$F^2=1$ modulo compact operators、
+- $[F,\pi(a)]$ はcompact、
+- grading $\Gamma$ は $\pi(a)$ と可換し、$F$ と反可換
+
+というデータである。十分なsummability、たとえば $[F,a]$ の積がtrace classになる条件のもとで
+
+$$
+\operatorname{Ch}_{2m}(F)(a_0,\ldots,a_{2m})
+=c_m\operatorname{Tr}
+\left(
+\Gamma a_0[F,a_1]\cdots[F,a_{2m}]
+\right)
+$$
+
+は巡回cocycleを与える。定数 $c_m$ は規約で決まる。
+
+射影 $p$ に対するpairingは、graded Hilbert空間の間の圧縮
+
+$$
+pF^+p:pH^+\longrightarrow pH^-
+$$
+
+のFredholm指数に一致する。
+
+$$
+\boxed{
+\langle[p],\operatorname{Ch}(F)\rangle
+=\operatorname{ind}(pF^+p)
+}
+$$
+
+奇Fredholm moduleとunitaryにも対応する式がある。この等式が、K理論と巡回コホモロジーのpairingをindex theoremへ接続する。
+
+第10章では非有界作用素 $D$ から
+
+$$
+F=D(1+D^2)^{-1/2}
+$$
+
+という有界変換を作り、spectral tripleがFredholm moduleと巡回cocycleを生むことを見る。
+
+## 9.11 $(b,B)$-bicomplexは何を補うか [Advanced]
+
+巡回cochainだけを直接扱う定義は直観的だが、周期性やChern characterの自然性を調べるには $(b,B)$-bicomplexが有効である。
+
+- $b$ は代数の積と結合則を記録する。
+- $B$ は巡回置換と退化写像を組み合わせ、de Rham微分に対応する方向を記録する。
+- $b^2=B^2=bB+Bb=0$。
+
+したがって全微分 $b+B$ も二乗0になる。periodic complexでは偶数次数と奇数次数をまとめ、
+
+$$
+HP^{\mathrm{ev}}(A),\qquad HP^{\mathrm{odd}}(A)
+$$
+
+を得る。この2周期性は $K_0,K_1$ のBott周期性と整合し、Chern character
+
+$$
+\operatorname{ch}:K_0(A)\oplus K_1(A)
+\longrightarrow
+HP_{\mathrm{ev}}(A)\oplus HP_{\mathrm{odd}}(A)
+$$
+
+を通じてpairingを体系化する。
+
+ここでは $B$ の符号を含む完全な公式は固定しない。文献によってchain/cochain、normalized/unormalized complexの規約が異なるためである。後で公式を使うときは一つの規約を宣言し、異なる文献の式をそのまま混ぜない。[Connes 1985; GBVF]
+
+## 9.12 何が一般化され、何が追加されたか
+
+| 可換滑らかな幾何 | 代数側 | 注意 |
+|---|---|---|
+| $f_0\,df_1\wedge\cdots\wedge df_n$ | $(a_0,\ldots,a_n)$ 上のcochain | 普遍形式は最初から反交換しない |
+| Stokesの公式 | $b\varphi=0$ | 同一式ではなく、境界で消える性質の抽出 |
+| 積分のgraded cyclicity | 巡回条件 | traceは0次の場合 |
+| 閉current | 巡回cocycle | cohomologyとhomologyの向きを区別する |
+| de Rham cohomology | periodic cyclic homology | $C^\infty(M)$、連続性、周期化が必要 |
+| Chern数 | $K_*(A)$ と $HC^*(A)$ のpairing | 正規化規約を固定する |
+| 楕円作用素の指数 | Fredholm moduleのChern characterとのpairing | summabilityが必要 |
+
+巡回コホモロジーは、非可換代数から通常の空間を作り直す理論ではない。微分と積分のうち、代数の積・trace・境界作用素で表現できる部分を保ち、K理論を数値化する受け皿である。
+
+## 9.13 読者がしそうな質問
+
+### Hochschild cohomologyだけではなぜ足りないのか
+
+Hochschild理論は積の変形や導分を扱う広い理論だが、積分のtrace性に当たる巡回対称性を自動では持たない。K理論とのChern character pairingには、この巡回対称性が行列安定性とhomotopy不変性を実現する。
+
+### 巡回コホモロジーは $C^*$-環だけから決まるか
+
+純代数的には任意の代数に定義できる。しかし微分幾何との対応では、通常 $C^*$-completion $C(M)$ でなくsmooth dense subalgebra $C^\infty(M)$ を使う。非可換トーラスでも $A_\theta$ と $A_\theta^\infty$ を区別する。選ぶsmooth structureが重要である。
+
+### pairingは必ず整数か
+
+一般のtraceと $K_0$ のpairingは実数や複素数を取り得る。たとえば $II_1$ factorのtraceは射影に連続値を与える。指数問題から来る特別なcocycleとのpairingが整数になる。したがって「巡回cocycleとのpairingは常に整数」とは言えない。
+
+### de Rham cohomologyとの対応があるなら、非可換の場合も空間が隠れているのか
+
+その結論は出ない。巡回理論は代数から定義される不変量であり、可換滑らかな場合に既知の幾何を再現する。非可換の場合は、それ自体を微分位相的不変量として使う。背後に通常の点集合が存在することを主張しない。
+
+## 9.14 章末の確認
+
+1. $0$-cochain $\tau$ に対して $b\tau=0$ とtrace条件が同値であることを式で示せ。
+2. $\tau\circ\delta=0$ のとき $\varphi(a_0,a_1)=\tau(a_0\delta(a_1))$ が巡回1-cocycleになることを、巡回性と $b\varphi=0$ に分けて証明せよ。
+3. $A=C^\infty(S^1)$、$u(z)=z^k$ に対して $\frac{1}{2\pi i}\int_{S^1}u^{-1}\,du$ を計算し、第8章のToeplitz指数と符号を比較せよ。
+4. 「$HC^*(C^\infty(M))=H_{\mathrm{dR}}^*(M)$」という無条件の記述に不足している指定を四つ挙げよ。
+5. 一般のtraceと $K_0$ のpairingが整数とは限らない例として、$II_1$ factorの射影次元を説明せよ。
+6. 非可換トーラスの $\varphi_2$ で、二つの導分の反対称化がなぜ必要か説明せよ。
+
+## 9.15 本章の到達点
+
+- Hochschild境界 $b$ を低次数で計算できる。
+- 巡回条件がtraceと積分のgraded cyclicityを一般化することを説明できる。
+- 可換滑らかな場合の対応について、homology / cohomology、continuous theory、periodicity、Poincaré双対性を区別できる。
+- trace–$K_0$ pairingと、円周の巡回1-cocycle–$K_1$ pairingを計算できる。
+- Fredholm moduleのChern characterとのpairingがindexを生む構図を説明できる。
+
+これで「微分して積分する」のうち積分側が代数化された。次章では、微分・距離・次元・体積を一つの作用素 $D$ へ集約する。

@@ -1,0 +1,61 @@
+---
+title: "付録C　Clifford代数・spinor・Dirac作用素"
+sidebar: noncommutative-geometry
+format:
+  html:
+    toc: true
+---
+## C.1 微分形式だけではなくClifford作用を使う理由
+
+Riemann多様体 $(M,g)$ の余接ベクトル $\alpha$ に対し、Clifford作用 $c(\alpha)$ は
+
+$$
+c(\alpha)c(\beta)+c(\beta)c(\alpha)=-2g^{-1}(\alpha,\beta)
+
+$$
+
+を満たす。特に
+
+$$
+c(\alpha)^*c(\alpha)=\|\alpha\|^2
+
+$$
+
+となる符号規約を取れば、$\|c(\alpha)\|=\|\alpha\|$ である。この等長性がConnes距離公式で $\|[D,f]\|$ をLipschitz定数に変える。
+
+## C.2 spin構造の役割
+
+向き付けられたRiemann多様体の正規直交frame bundleの構造群 $SO(n)$ を二重被覆 $\operatorname{Spin}(n)\to SO(n)$ へ持ち上げられるときspin構造を持つ。spin表現に付随するベクトル束 $S\to M$ がspinor bundleである。
+
+すべての多様体がspinとは限らない。向き付け可能性に加え、第2 Stiefel–Whitney類 $w_2(M)$ の消滅が障害条件になる。したがって可換スペクトル三つ組の標準模型 $(C^\infty(M),L^2(M,S),D)$ では、コンパクトspin多様体などの仮定を明記する。
+
+## C.3 Dirac作用素
+
+Levi–Civita接続からspin接続 $\nabla^S$ を作り、局所正規直交frame $(e_j)$ に対し
+
+$$
+D=\sum_j c(e^j)\nabla^S_{e_j}
+
+$$
+
+と定める。関数 $f$ に対しLeibniz則を使うと
+
+$$
+D(f\psi)-fD\psi
+=\sum_j c(e^j)e_j(f)\psi
+=c(df)\psi.
+
+$$
+
+よって $[D,f]=c(df)$ である。接続の0階項は交換子で消え、主記号に含まれる計量が残る。
+
+## C.4 Lichnerowicz公式への入口
+
+spin Dirac作用素には
+
+$$
+D^2=\nabla^*\nabla+\frac14\operatorname{Scal}
+
+$$
+
+というLichnerowicz公式がある。左辺のスペクトルが接続Laplacianとscalar curvatureを含むため、Dirac作用素が計量だけでなく曲率情報を持つことが分かる。証明にはClifford接続の曲率計算が必要なため、本書では外部定理として用いる。

@@ -1,0 +1,579 @@
+---
+title: "第12章　悪い商、Morita同値、葉層：点集合を越えて軌道を記録する"
+sidebar: noncommutative-geometry
+format:
+  html:
+    toc: true
+---
+> **Core** — 商空間が軌道の情報を失う問題から出発し、交叉積、groupoid $C^*$-環、強Morita同値、葉層の非可換空間へ進む。
+
+## 12.1 商集合を作るだけでは何が失われるか
+
+空間 $X$ に群 $G$ が作用するとき、同じ軌道上の点を同一視して
+
+$$
+X/G=\{Gx:x\in X\}
+$$
+
+を作れる。作用が自由かつproperであれば、$X/G$ はしばしば良い位相空間になり、主束
+
+$$
+G\longrightarrow X\longrightarrow X/G
+$$
+
+として元の作用をかなり復元できる。
+
+しかし一般には、商集合と商位相だけでは次の情報が消える。
+
+- ある点を固定する stabilizer group。
+- 異なる軌道が互いにどう近づくか。
+- 軌道に沿う並進とholonomy。
+- 一つの軌道から別の軌道へ移る「矢」の合成。
+- 作用を使って作られる表現や指数。
+
+非可換幾何で交叉積やgroupoidを使う第一の理由は、存在しない「良い商空間」を無理に点集合として作ることではない。点だけでなく、点を同一視する過程そのものを保存するためである。
+
+## 12.2 最初の病理：irrational rotation の軌道空間
+
+$\theta\notin\mathbb Q$ とし、$\mathbb Z$ が円周 $\mathbb T$ に
+
+$$
+n\cdot z=e^{2\pi in\theta}z
+$$
+
+で作用するとする。各軌道は可算集合だが、$\mathbb T$ に稠密である。
+
+商写像 $q:\mathbb T\to\mathbb T/\mathbb Z$ を考える。商空間の開集合 $W$ の逆像 $q^{-1}(W)$ は、$\mathbb Z$-不変な円周の開集合でなければならない。作用がminimal、すなわち全軌道が稠密なので、非空の不変開集合は円周全体しかない。したがって商位相は
+
+$$
+\{\varnothing,\mathbb T/\mathbb Z\}
+$$
+
+というindiscrete topologyになる。
+
+軌道は無数にあるのに、連続関数はそれらを分離できない。実際、
+
+$$
+C(\mathbb T/\mathbb Z)\cong\mathbb C.
+$$
+
+商空間の関数環へ移ると、回転角 $\theta$、軌道の向き、反復回数はすべて消える。
+
+一方、作用を交叉積へ入れると
+
+$$
+C(\mathbb T)\rtimes_\alpha\mathbb Z\cong A_\theta
+$$
+
+を得る。前章で見たように、これは二つのK理論生成元、標準trace、二つの導分を持つ。商位相がほぼ何も見ないのに、交叉積は豊かな構造を保つ。
+
+この対比が
+
+$$
+\text{病的な軌道空間}
+\quad\rightsquigarrow\quad
+\text{非可換な商の代数}
+$$
+
+という考えの最小模型である。
+
+## 12.3 交叉積は何を保持したのか
+
+作用 $\alpha:G\curvearrowright A$ の交叉積は、$A$ と群の実装元 $u_g$ を
+
+$$
+u_gau_g^*=\alpha_g(a)
+$$
+
+で結ぶ。$A=C_0(X)$ なら、$a$ は位置を測り、$u_g$ は点を軌道に沿って動かす。
+
+通常の商 $X/G$ は「どの点が同じ軌道にあるか」だけを残す。交叉積はさらに「どの $g$ が移したか」と「移動をどう合成するか」を残す。stabilizerも消えない。極端な例として一つの点 $\{\ast\}$ に群 $G$ が自明に作用すると、
+
+$$
+\{\ast\}/G=\{\ast\}
+$$
+
+は群によらないが、
+
+$$
+C(\{\ast\})\rtimes G\cong C^*(G)
+$$
+
+は群のunitary representationを記録する。
+
+したがって交叉積を単純に $C_0(X/G)$ の代用品と呼ぶだけでは不十分である。交叉積が表すのは、商集合よりも作用groupoid $G\ltimes X$ である。
+
+ただし、この「残す」は、交叉積を抽象的な $C^*$-環として一個与えれば元の作用が常に一意に復元できる、という意味ではない。係数代数 $C_0(X)$ の埋め込み、標準的な実装元、離散可換群ならdual actionやcoactionといった追加データを含めて作用を読む。stabilizerも、抽象環の中に名前付きの部分群として残るのではなく、groupoidのisotropyとそれに由来する表現論として反映される。[Williams Crossed]
+
+## 12.4 groupoid：対象だけでなく矢を残す
+
+groupoid $\mathcal G$ は、すべての矢が逆を持つ圏である。単位の集合を $\mathcal G^{(0)}$、矢の集合を $\mathcal G$ と書き、
+
+$$
+s,r:\mathcal G\to\mathcal G^{(0)}
+$$
+
+をsourceとrangeとする。$s(\gamma)=r(\eta)$ のとき積 $\gamma\eta$ が定義される。
+
+### 主要な例
+
+1. **群**: 単位が一つだけのgroupoid。
+2. **pair groupoid** $X\times X$: $(x,y)$ を $y$ から $x$ への矢とし、$(x,y)(y,z)=(x,z)$。
+3. **作用groupoid** $G\ltimes X$: 矢 $(g,x)$ は $x$ から $gx$ へ向かう。
+4. **同値関係groupoid**: $x\sim y$ となる対 $(x,y)$ を矢とする。
+5. **holonomy groupoid**: 葉層の同じ葉に沿う道をholonomyで同一視した矢からなる。
+
+groupoidではorbit spaceだけでなく、各点のisotropy
+
+$$
+\mathcal G_x^x=\{\gamma:s(\gamma)=r(\gamma)=x\}
+$$
+
+も残る。orbifoldの局所対称性や葉層のholonomyを記述できるのはこのためである。
+
+## 12.5 groupoidのconvolution algebra
+
+$\mathcal G$ が離散的またはétaleである場合、compact supportを持つ関数 $f,g$ に
+
+$$
+(f*g)(\gamma)
+=\sum_{\gamma_1\gamma_2=\gamma}
+f(\gamma_1)g(\gamma_2),
+\qquad
+f^*(\gamma)=\overline{f(\gamma^{-1})}
+$$
+
+を入れる。この積は、一つの矢を二本の矢へ分解する全方法を足し合わせる。
+
+一般のlocally compact groupoidでは和の代わりにHaar systemに関する積分を使う。Lie groupoidやfoliation groupoidでは、座標に依存しない定式化のためhalf-densityを用いることも多い。したがって任意の位相groupoidから無条件に上の和で $C^*$-環が作れるわけではない。
+
+この *-代数を最大normでcompletionしてfull groupoid $C^*$-algebra $C^*(\mathcal G)$、正則表現から得るnormでcompletionしてreduced algebra $C_r^*(\mathcal G)$ を作る。群の場合と同じく標準的な全射
+
+$$
+C^*(\mathcal G)\twoheadrightarrow C_r^*(\mathcal G)
+$$
+
+がある。両者が一致するにはgroupoid amenabilityなどの条件が必要である。
+
+作用groupoidでは、適切な規約の下で
+
+$$
+C^*(G\ltimes X)\cong C_0(X)\rtimes_{\max}G,
+\qquad
+C_r^*(G\ltimes X)\cong C_0(X)\rtimes_rG.
+$$
+
+これにより交叉積はgroupoid代数の特別な場合になる。[Renault; Williams Crossed]
+
+## 12.6 良い商では何が起きるか
+
+交叉積は病的な場合だけの道具ではない。良い商の場合に通常の商空間へ戻れることが重要である。
+
+**定理（Green imprimitivityの自由proper作用の場合）.** locally compact group $G$ がlocally compact Hausdorff空間 $X$ に自由かつproperに作用するとき、
+
+$$
+C_0(X)\rtimes_rG
+$$
+
+は
+
+$$
+C_0(X/G)
+$$
+
+と強Morita同値である。標準的な仮定の下ではfull版についても対応する主張が成り立つ。
+
+ここで結論は一般に *-同型ではなく強Morita同値である。非可換な商代数は、良い商が存在するときにはその商の関数環と「同じ表現論」を持つ。この復元性が、交叉積を商の適切な一般化とみなす根拠になる。
+
+**[証明レベル]** 完全証明はHilbert $C^*$-module上のimprimitivity bimoduleを構成するGreen imprimitivity theoremに依存するため、本章では行わない。有限群の自由作用やcovering spaceでは、$C_c(X)$ を両側加群として内積を軌道上で足し合わせる模型が見える。[Williams Crossed; Raeburn–Williams]
+
+自由でない作用では、$X/G$ がHausdorffでも stabilizer の表現論が商空間から消える。したがって「properなら交叉積は常に $C_0(X/G)$ とMorita同値」と自由性を落として述べてはいけない。
+
+## 12.7 強Morita同値の定義
+
+環論でMorita同値な二つの環はmodule圏が同値である。$C^*$-環ではnorm、adjoint、positivityも保つため、Hilbert $C^*$-moduleを使う。
+
+$A$-$B$ imprimitivity bimodule $E$ とは、概略、次を満たす両側加群である。
+
+- $E$ はfullな右Hilbert $B$-module。
+- 左 $A$-値内積と右 $B$-値内積の値の線形包が、それぞれ $A$ と $B$ に稠密である。
+- $A$ は $E$ 上にadjointable operatorとして作用する。
+- 左 $A$-値内積と右 $B$-値内積が
+
+$$
+{}_A\langle \xi,\eta\rangle\zeta
+=\xi\langle\eta,\zeta\rangle_B
+$$
+
+で両立する。
+- 左作用が
+
+$$
+A\cong K_B(E)
+$$
+
+を与える。ここで $K_B(E)$ はrank-one operator
+
+$$
+\Theta_{\xi,\eta}(\zeta)=\xi\langle\eta,\zeta\rangle_B
+$$
+
+の閉線形包である。
+
+このような $E$ が存在するとき $A$ と $B$ はstrongly Morita equivalentといい、
+
+$$
+A\sim_M B
+$$
+
+と書く。
+
+imprimitivity bimodule $E$ は、$B$ の非退化表現を $A$ の表現へ送るRieffel inductionを与える。したがって強Morita同値は「元が同じ」という関係ではなく、「表現とmoduleの理論が同じ」という関係である。[Rieffel 1974]
+
+## 12.8 最小の例：$\mathbb C$ と行列環
+
+$E=\mathbb C^n$ を右 $\mathbb C$-Hilbert moduleとみなすと
+
+$$
+K_{\mathbb C}(E)\cong M_n(\mathbb C).
+$$
+
+したがって
+
+$$
+M_n(\mathbb C)\sim_M\mathbb C.
+$$
+
+両者は $n>1$ なら *-同型ではない。次元も元の個数も違う。それでも非退化表現の圏は対応し、K理論も
+
+$$
+K_0(M_n(\mathbb C))\cong K_0(\mathbb C)\cong\mathbb Z,
+\qquad
+K_1(M_n(\mathbb C))\cong0
+$$
+
+となる。
+
+同様に無限次元可分Hilbert空間 $H$ について
+
+$$
+K(H)\sim_M\mathbb C.
+$$
+
+これは安定化 $A\mapsto A\otimes K(H)$ がMorita理論で自然に現れる理由である。
+
+一般の $C^*$-環 $A$ については、標準右Hilbert $A$-module
+
+$$
+H_A=\ell^2(\mathbb N)\otimes A
+$$
+
+を使う。その「compact」adjointable operatorの環は
+
+$$
+K_A(H_A)\cong K\otimes A
+$$
+
+である。したがって $H_A$ 自身が $(A\otimes K)$-$A$ imprimitivity bimoduleとなり、
+
+$$
+A\otimes K\sim_M A
+$$
+
+を得る。この向きは任意の $A$ に成り立ち、次節のBrown–Green–Rieffel定理の「Morita同値なら安定同型」という逆向きにのみ $\sigma$-unital性が必要である。[Brown–Green–Rieffel]
+
+## 12.9 何が保存され、何が保存されないか
+
+強Morita同値で保存される代表的なものは次である。
+
+- 非退化 *-表現の圏。
+- 閉両側idealの束。
+- primitive ideal spaceのhomeomorphism。
+- $K_0,K_1$。
+- nuclearity、exactnessなど多くの $C^*$-的性質。
+
+$\sigma$-unital $C^*$-環では Brown–Green–Rieffel theorem により
+
+$$
+A\sim_M B
+\quad\Longleftrightarrow\quad
+A\otimes K\cong B\otimes K
+$$
+
+が成り立つ。仮定を落として任意の $C^*$-環に無条件で適用してはいけない。[Brown–Green–Rieffel]
+
+一方、強Morita同値が自動的に保存しないものもある。
+
+- *-同型としての元や積の具体式。
+- unitの存在と指定されたunit class。たとえば $K(H)\sim_M\mathbb C$ だが、前者は無限次元なら非単位的である。
+- 個々の元のspectrumやnorm。
+- traceの正規化。trace coneには対応があるが、$\tau(1)=1$ という正規化はunitを含む追加情報に依存する。
+- 指定されたsmooth subalgebra、微分計算、力学系。
+- spectral tripleとConnes距離。
+
+したがって「Morita同値なら同じ非可換空間」という表現は、どの幾何構造まで同一視するかを省略した標語である。位相的K理論や表現論には適切でも、距離・計量・微分構造まで自動的に同じとは言えない。
+
+距離が自動的に保存されないことは、最小例 $M_n(\mathbb C)\sim_M\mathbb C$ でも見える。$\mathbb C$ のstateは一つだが、$M_n(\mathbb C)$ には密度行列で表される多数のstateがある。したがって、state spaceの二点間距離をそのまま対応させることさえできない。spectral tripleやLipschitz半ノルムも別途移送する構成が必要である。
+
+逆に、K群が同型だからMorita同値とも限らない。K理論はMorita不変量だが完全不変量ではない。
+
+## 12.10 可換環ではMorita同値はどこまで弱いか
+
+可換 $C^*$-環 $C_0(X)$ と $C_0(Y)$ が強Morita同値なら、primitive ideal spaceの対応から
+
+$$
+X\cong Y
+$$
+
+が従う。さらに可換 $C^*$-環同士の強Morita同値は *-同型を導く。
+
+つまり可換世界ではMorita同値は空間のhomeomorphismより本質的に弱い同値関係ではない。非可換世界へ移ると $M_n(A)$、$A\otimes K$、異なる非可換トーラスなど、非同型だがMorita同値な代数が現れる。
+
+この点は「通常のhomeomorphismの非可換版」という説明を慎重にする理由である。*-isomorphismがhomeomorphismの直接の反変対応であり、Morita同値はvector bundleや表現論を同じとみなす、より粗い幾何的同値である。
+
+## 12.11 非可換トーラス間のMorita同値
+
+irrational $\theta$ に対して、整数行列
+
+$$
+g=
+\begin{pmatrix}
+a&b\\
+c&d
+\end{pmatrix}
+\in GL(2,\mathbb Z)
+$$
+
+が分母 $c\theta+d\ne0$ を満たすとき、
+
+$$
+g\cdot\theta=\frac{a\theta+b}{c\theta+d}
+$$
+
+という分数線形変換を考える。
+
+**定理（Rieffel）.** irrational $\theta,\theta'$ に対し、$A_\theta$ と $A_{\theta'}$ が強Morita同値であることと、$\theta'$ が $\theta$ の $GL(2,\mathbb Z)$-orbitに属することは同値である。
+
+文献によって $SL(2,\mathbb Z)$、符号反転、opposite algebraを分けて記述する。$A_{\theta+1}\cong A_\theta$、$A_{-\theta}$ との同型をどう組み込むかで表示が変わるため、使用する定理の規約を確認する。
+
+典型的な変換
+
+$$
+\theta\longmapsto-\frac1\theta
+$$
+
+に対応するimprimitivity moduleは、Schwartz空間上の平行移動と位相乗算から作られる Heisenberg module である。これは非可換トーラス上のvector bundleの役割を果たす。
+
+Morita同値な $A_\theta,A_{\theta'}$ は同じK群を持つ。しかしK群はそもそも全 $\theta$ で $\mathbb Z^2$ なので、K群の一致だけでは上の $GL(2,\mathbb Z)$-条件を導けない。ordered $K_0$、trace pairing、module構造が必要である。[Rieffel 1981; Rieffel 1974]
+
+この定理はまず $C^*$-環としての強Morita同値を述べる。標準の滑らかな部分代数、導分、flat Dirac作用素まで保つと言うには、Heisenberg module上の接続を用いた追加の互換性を示す必要がある。したがって「Morita同値な非可換トーラスは同じflat metricを持つ」とは、この定理だけからは結論できない。[Connes NCG]
+
+## 12.12 葉層とは何か
+
+滑らかな多様体 $M$ 上の $p$ 次元葉層 $\mathcal F$ は、各点の近くで
+
+$$
+\mathbb R^p\times\mathbb R^q
+$$
+
+の座標を取り、$\mathbb R^p\times\{y\}$ が局所的な葉になる構造である。接分布 $T\mathcal F\subset TM$ はLie bracketで閉じ、Frobenius theoremにより積分多様体である葉へ分解される。
+
+葉を一点へ潰した集合
+
+$$
+M/\mathcal F
+$$
+
+をleaf spaceと呼ぶ。葉が閉でなく稠密になる場合、leaf spaceはHausdorffですらない。そこで各葉を一点へ潰す代わりに、葉に沿う道を矢として残す。
+
+## 12.13 holonomy groupoid
+
+同じ葉の中を進むpiecewise smooth path $\gamma:x\to y$ は、$x$ の小さなtransversalから $y$ のtransversalへの局所微分同相を誘導する。このgermをholonomyという。
+
+二本のleafwise pathが同じ端点を持ち、同じholonomy germを誘導するとき同値とする。その同値類を矢とするgroupoidがholonomy groupoid
+
+$$
+\operatorname{Hol}(M,\mathcal F)
+$$
+
+である。
+
+- 単位は $M$ の点。
+- sourceとrangeはpathの始点と終点。
+- 積はpathの連結。
+- 逆はpathの向きの反転。
+
+holonomyは、葉を一周してtransversalへ戻ったとき近傍がどうずれるかを測る。leaf spaceだけではこのずれは消えるが、holonomy groupoidにはisotropyとして残る。
+
+一般のholonomy groupoidは非Hausdorffになり得る。groupoid $C^*$-環を構成するときは、局所コンパクト性、Haar system、非Hausdorffの場合のcompact supportの扱いを確認しなければならない。概念図だけから常に通常の $C_c(\mathcal G)$ を使えると仮定しない。[Connes 1982; Moerdijk–Mrčun]
+
+## 12.14 Kronecker葉層から非可換トーラスへ
+
+$\mathbb T^2=\mathbb R^2/\mathbb Z^2$ 上で、一定ベクトル場
+
+$$
+X=\frac{\partial}{\partial x}
++\theta\frac{\partial}{\partial y}
+$$
+
+の積分曲線が作る1次元葉層を考える。これをKronecker foliationと呼ぶ。
+
+$\theta\notin\mathbb Q$ なら各葉はトーラス内で稠密である。したがってleaf space $\mathbb T^2/\mathcal F_\theta$ の商位相は、irrational rotationの軌道空間と同様に点を分離できない。
+
+横断面
+
+$$
+T=\{x=0\}\cong\mathbb T
+$$
+
+を選ぶ。一つの葉に沿って $x$-方向に一周して $T$ へ戻ると、$y$ 座標は $\theta$ だけ回転する。したがってreturn mapは
+
+$$
+y\longmapsto y+\theta\pmod1
+$$
+
+である。transversal上へ制限したholonomy groupoidは、irrational rotationの作用groupoid
+
+$$
+\mathbb Z\ltimes_\theta\mathbb T
+$$
+
+になる。
+
+full holonomy groupoidとこのtransversal groupoidはgroupoidの意味でMorita equivalentであり、その $C^*$-環は強Morita同値になる。後者の $C^*$-環は
+
+$$
+C(\mathbb T)\rtimes_\theta\mathbb Z\cong A_\theta
+$$
+
+である。傾き、transversal、作用を関数側へ移す規約により $\theta$、$-\theta$、$1/\theta$ が現れることがあるため、具体式では規約を固定する。
+
+これにより $A_\theta$ は単なる二つの非可換座標の代数ではなく、Kronecker foliationの病的なleaf spaceを表す非可換代数として現れる。
+
+## 12.15 groupoid Morita同値と $C^*$-Morita同値
+
+二つのgroupoidがequivalentであるとは、概略、一方から他方へのprincipal bibundleがあり、軌道とisotropyを整合的に移すことをいう。同じorbifoldや同じ葉層を異なるatlas・transversalで表示すると、groupoid自体は同型でなくてもequivalentになる。
+
+適切なlocally compact groupoidとHaar systemの仮定の下で、
+
+$$
+\mathcal G\simeq\mathcal H
+\quad\Longrightarrow\quad
+C^*(\mathcal G)\sim_M C^*(\mathcal H)
+$$
+
+が成り立つ。ここの $C^*$ はfull completionを表す。さらに、同じgroupoid equivalenceから
+
+$$
+C_r^*(\mathcal G)\sim_M C_r^*(\mathcal H)
+$$
+
+も従う。このreduced版の帰結自体にamenabilityを追加仮定する必要はない。amenabilityが関与するのは、主に各groupoidでfullとreducedを同一視する場面である。[Muhly–Renault–Williams; Sims–Williams]
+
+逆向きは一般に成り立たない。二つのgroupoid $C^*$-環が強Morita同値だからといって、元のgroupoidが幾何的にequivalentとは限らない。$C^*$-completionはgroupoidのsmooth構造や一部の動力学情報を忘れ得る。
+
+したがって次の三段階を区別する。
+
+$$
+\text{groupoid equivalence}
+\Longrightarrow
+\text{C}^*\text{-algebraic Morita equivalence}
+\Longrightarrow
+\text{K群の同型}.
+$$
+
+一般に逆向きの含意はない。
+
+## 12.16 葉層の「幾何」はどこに入るか
+
+holonomy groupoid $C^*$-環だけでも、表現、K理論、ideal構造は得られる。しかし葉に沿う微分幾何を行うには追加構造が必要である。
+
+- groupoidのsmooth convolution algebra。
+- 葉方向の微分作用素。
+- 横断不変測度またはweight。
+- longitudinal elliptic operatorのsymbol class。
+- cyclic cocycleで表す横断基本類。
+
+葉方向の楕円作用素 $D_\mathcal F$ は解析的index
+
+$$
+\operatorname{Ind}(D_\mathcal F)\in
+K_*\bigl(C^*(\operatorname{Hol}(M,\mathcal F))\bigr)
+$$
+
+を持つ。通常の多様体の楕円作用素のindexが整数であるのに対し、葉層ではindexがgroupoid $C^*$-環のK類になる。このK類をtraceやcyclic cocycleとpairingすると数値的不変量を得る。
+
+この構図が
+
+$$
+\text{葉層}
+\longrightarrow
+\text{groupoid algebra}
+\longrightarrow
+\text{K理論}
+\longrightarrow
+\text{cyclic cohomologyとのpairing}
+$$
+
+という非可換index theoremへの道である。[Connes 1982; Connes NCG]
+
+本章ではindex theorem自体は証明しない。holonomy groupoidの解析的詳細、longitudinal pseudodifferential calculus、Chern characterが必要だからである。
+
+## 12.17 「悪い商を直す」という標語の限界
+
+非可換代数を使っても、病理が消えて通常の点集合が戻るわけではない。変わるのは問いである。
+
+- 「商の点は何か」から「作用groupoidの表現は何か」へ。
+- 「連続関数は点を分離するか」から「交叉積の状態・ideal・K類は何を検出するか」へ。
+- 「leaf spaceはHausdorffか」から「holonomy algebraのindex pairingは何か」へ。
+
+したがって非可換幾何は、悪い商を良いHausdorff空間へ修理する一般手続きではない。点集合では失われる情報を、代数・加群・表現・K理論へ移して扱えるようにする枠組みである。
+
+また同じ病的商にも複数の代数モデルがあり得る。fullかreducedか、どのgroupoid presentationを使うか、smooth algebraをどう選ぶかで得られる構造は変わる。目的に応じた選択と、選択間のMorita同値・KK同値を確認する必要がある。
+
+## 12.18 本章の論理をまとめる
+
+~~~mermaid
+flowchart TD
+  A[群作用・葉層] --> B[軌道・葉の同値関係]
+  B --> C[商位相が情報を失う]
+  A --> D[作用groupoid・holonomy groupoid]
+  D --> E[convolution algebra]
+  E --> F[full / reduced C*-completion]
+  F --> G[表現・ideal・K理論]
+  D --> H[groupoid equivalence]
+  H --> I[C*-強Morita同値]
+  I --> J[K群の同型]
+~~~
+
+重要なのは下向きの含意を逆に読まないことである。K群の一致はMorita同値を意味せず、$C^*$-Morita同値はgroupoid equivalenceを意味せず、groupoid algebraは選択なしに距離や滑らかさを決めない。
+
+## 12.19 章末の確認
+
+1. irrational rotation の軌道空間がindiscreteになることを、不変開集合を使って示せ。
+2. 一点への自明な群作用を使い、商空間がstabilizerを失うことを説明せよ。
+3. 作用groupoid $G\ltimes X$ のsource、range、積、逆元を書け。
+4. étale groupoidのconvolution積が矢の合成をどう記録するか説明せよ。
+5. full/reduced groupoid $C^*$-環を区別する必要があるのはなぜか。
+6. 自由proper作用で $C_0(X)\rtimes G$ と $C_0(X/G)$ の関係が *-同型ではなくMorita同値として現れる理由を述べよ。
+7. $M_n(\mathbb C)\sim_M\mathbb C$ をimprimitivity module $\mathbb C^n$ から説明せよ。
+8. 強Morita同値が保存する構造を三つ、保存しない構造を三つ挙げよ。
+9. 同型なK群だけからMorita同値を結論できない理由を、非可換トーラスを例に説明せよ。
+10. Kronecker foliationのtransversal return mapから $A_\theta$ が現れる手順を説明せよ。
+11. holonomy groupoidがleaf spaceより多く保持する情報は何か。
+12. groupoid equivalence、$C^*$-Morita同値、K群同型の含意の向きを書け。
+13. 標準Hilbert module $H_A$ を用い、$A\otimes K\sim_M A$ を説明せよ。
+14. 強Morita同値がなぜConnes距離を自動的に保存しないか、$M_n(\mathbb C)\sim_M\mathbb C$ のstate spaceを使って説明せよ。
+
+## 12.20 参考文献
+
+- Marc A. Rieffel, “Morita equivalence for C*-algebras and W*-algebras,” *Journal of Pure and Applied Algebra* 5 (1974), 51--96. [DOI: 10.1016/0022-4049(74)90003-6](https://doi.org/10.1016/0022-4049(74)90003-6)
+- Iain Raeburn and Dana P. Williams, *Morita Equivalence and Continuous-Trace C*-Algebras*, AMS, 1998. [DOI: 10.1090/surv/060](https://doi.org/10.1090/surv/060)
+- Jean Renault, *A Groupoid Approach to C*-Algebras*, Springer Lecture Notes in Mathematics 793, 1980. [DOI: 10.1007/BFb0091072](https://doi.org/10.1007/BFb0091072)
+- Paul S. Muhly, Jean N. Renault and Dana P. Williams, “Equivalence and isomorphism for groupoid C*-algebras,” *Journal of Operator Theory* 17 (1987), 3--22. [JSTOR](https://www.jstor.org/stable/24714593)
+- Aidan Sims and Dana P. Williams, “Renault’s equivalence theorem for reduced groupoid C*-algebras,” *Journal of Operator Theory* 68 (2012), 223--239. [Journal PDF](https://jot.theta.ro/jot/archive/2012-068-001/2012-068-001-012.pdf)
+- Lawrence G. Brown, Philip Green and Marc A. Rieffel, “Stable isomorphism and strong Morita equivalence of C*-algebras,” *Pacific Journal of Mathematics* 71 (1977), 349--363. [DOI: 10.2140/pjm.1977.71.349](https://doi.org/10.2140/pjm.1977.71.349)
+- Ieke Moerdijk and Janez Mrčun, *Introduction to Foliations and Lie Groupoids*, Cambridge University Press, 2003. [DOI: 10.1017/CBO9780511615450](https://doi.org/10.1017/CBO9780511615450)
+- Alain Connes, “A survey of foliations and operator algebras,” in *Operator Algebras and Applications, Part I*, Proceedings of Symposia in Pure Mathematics 38, AMS, 1982, 521--628. [著者公開PDF](https://alainconnes.org/wp-content/uploads/foliations_and_operator_algebras.pdf)
+- Alain Connes, *Noncommutative Geometry*, Academic Press, 1994. [著者公開PDF](https://alainconnes.org/wp-content/uploads/book94bigpdf.pdf)
+- Dana P. Williams, *Crossed Products of C*-Algebras*, AMS, 2007. [DOI: 10.1090/surv/134](https://doi.org/10.1090/surv/134)

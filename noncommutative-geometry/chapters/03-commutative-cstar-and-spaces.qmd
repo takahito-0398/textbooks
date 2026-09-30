@@ -1,0 +1,345 @@
+---
+title: "第3章　可換C*-環は空間である：Gelfand双対"
+sidebar: noncommutative-geometry
+format:
+  html:
+    toc: true
+---
+> **Core** — 点を「関数への代入」として代数内部から復元し、空間の写像が関数環の準同型を逆向きに生むことを理解する。
+
+## 3.1 関数を全部知れば点を取り戻せるか
+
+コンパクトHausdorff空間 $X$ を直接見る代わりに、連続関数全体
+
+$$
+C(X)=\{f:X\to\mathbb C:f\text{ は連続}\}
+$$
+
+だけを渡されたとする。点 $x\in X$ は見えないが、各点は評価写像
+
+$$
+\operatorname{ev}_x:C(X)\to\mathbb C,\qquad
+\operatorname{ev}_x(f)=f(x)
+$$
+
+を定める。この写像は線形で、積と随伴を保ち、$1$ を $1$ に送る。つまり
+
+$$
+\operatorname{ev}_x(fg)=\operatorname{ev}_x(f)\operatorname{ev}_x(g),\qquad
+\operatorname{ev}_x(f^*)=\overline{\operatorname{ev}_x(f)}
+$$
+
+である。重要なのは逆向きである。$C(X)$ から $\mathbb C$ への非零な乗法的線形汎関数は、必ずどこか一点での評価になる。したがって点は、外から付け加えた集合要素ではなく、関数環が複素数を観測する方法として特徴づけられる。
+
+この節の目的は、次の往復を厳密にすることである。
+
+$$
+X\longmapsto C(X),\qquad
+A\longmapsto \widehat A.
+$$
+
+ここで $\widehat A$ は $A$ のcharacter全体である。
+
+## 3.2 characterと極大イデアル
+
+単位的可換複素代数 $A$ の **character** とは、非零な乗法的線形写像
+
+$$
+\chi:A\to\mathbb C
+$$
+
+をいう。単位的なら自動的に $\chi(1)=1$ である。実際、ある $a$ で $\chi(a)\ne0$ だから
+
+$$
+\chi(a)=\chi(1a)=\chi(1)\chi(a)
+$$
+
+より従う。
+
+$C(X)$ では $\operatorname{ev}_x$ がcharacterである。その核は
+
+$$
+I_x=\{f\in C(X):f(x)=0\}
+$$
+
+であり、第一同型定理から $C(X)/I_x\cong\mathbb C$ となる。したがって $I_x$ は極大イデアルである。「点 $x$ で値が一致する関数を同一視すると、残る情報は複素数一個だけ」という意味である。
+
+逆に、character $\chi$ の核は極大イデアルである。商 $A/\ker\chi$ は $\chi(A)$ と同型であり、$\chi(1)=1$ と複素線形性から $\chi(A)=\mathbb C$ だからである。
+
+極大イデアルからcharacterへ戻るには完備性が効く。
+
+**補題（Gelfand–Mazur）.** 複素単位的Banach環 $D$ の非零元がすべて可逆なら、$D\cong\mathbb C$ である。
+
+**［完全証明］** 任意の $d\in D$ について、第1章のスペクトル非空性から $\lambda\in\sigma_D(d)$ が存在する。$d-\lambda1$ は可逆でないが、仮定より可逆でない元は0だけなので $d=\lambda1$ である。ゆえに $\lambda\mapsto\lambda1$ は $D$ への全単射な単位的代数準同型である。$C^*$-環の場合は等長でもある。 $\square$
+
+**命題.** 単位的可換Banach環 $A$ の極大イデアル $M$ は閉であり、商写像と $A/M\cong\mathbb C$ の合成からcharacterを定める。したがってcharacterの核と極大イデアルは一対一に対応する。
+
+**［完全証明］** $M$ の閉包 $\overline M$ もイデアルである。もし $\overline M=A$ なら $1\in\overline M$ なので、ある $m\in M$ が $\|1-m\|<1$ を満たす。Neumann級数により $m$ は可逆となり、$1\in M$ となって矛盾する。ゆえに $\overline M\ne A$ であり、極大性から $\overline M=M$ である。
+
+商 $A/M$ は複素単位的Banach環である。非零剰余類 $a+M$ が生成するイデアルは全体だから、ある $b\in A$ について $ab-1\in M$、すなわち $(a+M)(b+M)=1+M$ となる。したがって $A/M$ は可除Banach環であり、Gelfand–Mazur補題から $\mathbb C$ と同型である。得られた商写像はcharacterで、その核は $M$ である。逆向きは直前に示した。 $\square$
+
+ここで可換性は本質的である。非可換環では「極大左イデアル」「極大右イデアル」「極大両側イデアル」が別物になり、単純な商が $\mathbb C$ になるとは限らない。
+
+## 3.3 characterは自動的に連続である
+
+以後 $A$ を単位的可換 $C^*$-環とする。
+
+**命題.** character $\chi:A\to\mathbb C$ は連続で、$\|\chi\|=1$ である。また
+
+$$
+\chi(a^*)=\overline{\chi(a)}
+$$
+
+を満たす。
+
+**［完全証明］** 任意の $a\in A$ について $a-\chi(a)1$ が可逆だとすると、乗法性より
+
+$$
+0=\chi(a-\chi(a)1)
+$$
+
+だが、可逆元 $b$ には $1=\chi(bb^{-1})=\chi(b)\chi(b^{-1})$ だから $\chi(b)\ne0$ であり矛盾する。よって
+
+$$
+\chi(a)\in\sigma_A(a),\qquad |\chi(a)|\le r(a)\le\|a\|.
+$$
+
+したがって $\|\chi\|\le1$。一方 $\chi(1)=1$ かつ $\|1\|=1$ なので $\|\chi\|=1$ である。
+
+自己共役元 $h=h^*$ のスペクトルは実数に含まれるから $\chi(h)\in\mathbb R$。任意の $a$ を
+
+$$
+a=\frac{a+a^*}{2}+i\frac{a-a^*}{2i}
+$$
+
+と自己共役元二つで書けば、複素線形性から $\chi(a^*)=\overline{\chi(a)}$ が従う。 $\square$
+
+したがって $C^*$-環上では、characterの定義に連続性や $*$-保存性を別に加える必要はない。
+
+## 3.4 Gelfandスペクトルの位相
+
+$A$ のcharacter全体を
+
+$$
+\widehat A=\{\chi:A\to\mathbb C:\chi\text{ はcharacter}\}
+$$
+
+と書き、**Gelfandスペクトル**と呼ぶ。これは一つの元 $a$ のスペクトル $\sigma_A(a)$ とは別の対象である。
+
+$A^*$ に弱$^*$位相、すなわち各 $a\in A$ に対する座標写像
+
+$$
+\chi\longmapsto\chi(a)
+$$
+
+が連続になる最弱の位相を入れ、$\widehat A$ には部分空間位相を入れる。
+
+**命題.** $\widehat A$ は空でないコンパクトHausdorff空間である。
+
+**［完全証明］** 真のイデアルはZornの補題で極大イデアルに含まれ、前節によりcharacterを与えるから $\widehat A\ne\varnothing$ である。各characterはノルム1なので $\widehat A$ は $A^*$ の閉単位球に含まれる。この閉単位球はBanach–Alaoglu定理により弱$^*$コンパクトである。
+
+$\widehat A$ が弱$^*$閉であることを示す。characterのnet $(\chi_i)$ が閉単位球内で $\chi$ に弱$^*$収束したなら、各 $a,b\in A$ について
+
+$$
+\chi(ab)=\lim_i\chi_i(ab)
+=\lim_i\chi_i(a)\chi_i(b)=\chi(a)\chi(b),\qquad \chi(1)=1.
+$$
+
+よって $\chi$ もcharacterである。したがって $\widehat A$ はコンパクトである。弱$^*$位相は異なる汎関数をある $a\in A$ の値で分離するのでHausdorffである。 $\square$
+
+列でなくnetを用いたのは、一般の弱$^*$コンパクト集合が可算化可能とは限らないためである。
+
+## 3.5 Gelfand変換：代数の元を空間上の関数として読む
+
+各 $a\in A$ に対し
+
+$$
+\widehat a:\widehat A\to\mathbb C,\qquad
+\widehat a(\chi)=\chi(a)
+$$
+
+と定める。弱$^*$位相の定義から $\widehat a$ は連続である。写像
+
+$$
+\Gamma:A\to C(\widehat A),\qquad a\mapsto\widehat a
+$$
+
+をGelfand変換という。点が不明な状況でcharacterを点として採用すると、抽象元 $a$ は「点 $\chi$ で値 $\chi(a)$ を取る関数」になる。
+
+直ちに
+
+$$
+\widehat{a+b}=\widehat a+\widehat b,\quad
+\widehat{ab}=\widehat a\,\widehat b,\quad
+\widehat{a^*}=\overline{\widehat a},\quad
+\widehat1=1
+$$
+
+が成り立つ。したがって $\Gamma$ は単位的 $*$-準同型である。
+
+「Gelfandスペクトル」という名前は元のスペクトルとの次の関係で正当化される。
+
+**命題.** 可換単位的Banach環 $A$ では
+
+$$
+\sigma_A(a)=\{\chi(a):\chi\in\widehat A\}=\widehat a(\widehat A).
+$$
+
+**［完全証明］** すでに $\chi(a)\in\sigma_A(a)$ を示した。逆に $\lambda\in\sigma_A(a)$ とする。$a-\lambda1$ が生成するイデアルは真である。もし全体なら、ある $b$ について $b(a-\lambda1)=1$ となり、可換性により逆元が得られてしまうからである。このイデアルを含む極大イデアル $M$ を取り、対応するcharacterを $\chi$ とすれば
+
+$$
+0=\chi(a-\lambda1)=\chi(a)-\lambda.
+$$
+
+よって $\lambda=\chi(a)$ である。 $\square$
+
+## 3.6 可換Gelfand–Naimark定理
+
+**定理（単位的可換Gelfand–Naimark）.** 単位的可換 $C^*$-環 $A$ のGelfand変換
+
+$$
+\Gamma:A\longrightarrow C(\widehat A)
+$$
+
+は等長な単位的 $*$-同型である。
+
+**［完全証明］** $A$ は可換なので全要素が正規である。第2章の $C^*$-恒等式から正規元について $r(a)=\|a\|$ が成り立つ。前節の命題より
+
+$$
+\|\widehat a\|_\infty
+=\sup_{\chi\in\widehat A}|\chi(a)|
+=\sup_{\lambda\in\sigma_A(a)}|\lambda|
+=r(a)=\|a\|.
+$$
+
+したがって $\Gamma$ は等長、特に単射であり、像 $\Gamma(A)$ は $C(\widehat A)$ の閉部分代数である。像は定数関数を含み、随伴すなわち複素共役で閉じている。また異なる $\chi,\psi\in\widehat A$ は異なる線形汎関数なので、ある $a\in A$ について $\widehat a(\chi)\ne\widehat a(\psi)$ となる。ゆえに像は点を分離する。
+
+複素Stone–Weierstrass定理により、定数を含み、複素共役で閉じ、点を分離する部分代数 $\Gamma(A)$ は $C(\widehat A)$ に一様稠密である。すでに閉であるから $\Gamma(A)=C(\widehat A)$ である。 $\square$
+
+この定理には二段階がある。等長性は $C^*$-恒等式による解析的剛性、全射性はStone–Weierstrass定理による位相的近似である。単なる可換Banach環ではGelfand変換が単射とも等長とも限らない。
+
+## 3.7 $C(X)$ から $X$ を完全に復元する
+
+**定理.** コンパクトHausdorff空間 $X$ に対し
+
+$$
+\eta_X:X\to\widehat{C(X)},\qquad x\mapsto\operatorname{ev}_x
+$$
+
+は同相写像である。
+
+**［完全証明］** 連続性は、Gelfandスペクトルの位相が各 $f\in C(X)$ に対する $\chi\mapsto\chi(f)$ を連続にする最弱の位相であり、$(\eta_X(x))(f)=f(x)$ だから従う。$X$ がHausdorffなので連続関数は点を分離し、$x\ne y$ ならある $f$ で $f(x)\ne f(y)$。よって $\eta_X$ は単射である。
+
+全射性を直接示す。character $\chi$ の核 $M$ を取る。もしすべての $x\in X$ に対して $M$ のある $f_x$ が $f_x(x)\ne0$ を満たすなら、連続性により $f_x$ が消えない近傍 $U_x$ がある。コンパクト性から有限個 $U_{x_1},\ldots,U_{x_n}$ で $X$ を覆える。このとき
+
+$$
+g=\sum_{j=1}^n f_{x_j}^*f_{x_j}\in M
+$$
+
+は全点で正なので可逆である。すると $1\in M$ となり矛盾する。ゆえにある $x\in X$ で、すべての $f\in M$ が $f(x)=0$、すなわち $M\subset I_x$ となる。両者は極大イデアルだから $M=I_x$。したがって $\chi$ と $\operatorname{ev}_x$ は同じ核を持つ。任意の $f$ について $f-\chi(f)1\in\ker\chi=I_x$ なので $f(x)=\chi(f)$、よって $\chi=\operatorname{ev}_x$ である。
+
+$\eta_X$ はコンパクト空間からHausdorff空間への連続全単射なので同相写像である。 $\square$
+
+ここまでで「関数を全部知れば点だけでなく位相も戻る」が証明された。位相は、すべての関数 $x\mapsto f(x)$ を連続にする位相として復元される。
+
+## 3.8 なぜ矢印は逆向きになるのか
+
+連続写像 $f:X\to Y$ があると、関数は合成によって引き戻せる。
+
+$$
+f^*:C(Y)\to C(X),\qquad f^*(h)=h\circ f.
+$$
+
+$X\to Y$ なのに関数環の写像は $C(Y)\to C(X)$ である。さらに $g:Y\to Z$ も連続なら
+
+$$
+(g\circ f)^*=f^*\circ g^*,\qquad
+(\operatorname{id}_X)^*=\operatorname{id}_{C(X)}
+$$
+
+である。ここで左辺の最初の $*$ は写像の引き戻しを表しており、随伴ではない。混同を避けるため、必要なら $C(f)$ と書く。
+
+逆向きも成り立つ。単位的 $*$-準同型 $\Phi:C(Y)\to C(X)$ が与えられたとする。各 $x\in X$ について $\operatorname{ev}_x\circ\Phi$ は $C(Y)$ のcharacterだから、一意な $f(x)\in Y$ が存在して
+
+$$
+\Phi(g)(x)=g(f(x))\qquad(g\in C(Y))
+$$
+
+となる。この $f:X\to Y$ は連続である。実際、$Y\cong\widehat{C(Y)}$ の位相はすべての $g\in C(Y)$ の値で生成され、各 $g\circ f=\Phi(g)$ が連続だからである。よって $\Phi=f^*$ である。
+
+**定理（コンパクトGelfand双対）.** コンパクトHausdorff空間と連続写像の圏は、単位的可換 $C^*$-環と単位的 $*$-準同型の圏の反対圏に同値である。
+
+$$
+\boxed{
+\mathbf{CompHaus}\simeq(\mathbf{CommC^*Alg}_1)^{\mathrm{op}}
+}
+$$
+
+「対象が対応する」だけでは双対とはいわない。写像まで対応し、合成と恒等写像を保ち、しかも向きが逆になることが核心である。
+
+### 具体例：一点への包含と制限
+
+一点 $\{x\}\hookrightarrow X$ の引き戻しは
+
+$$
+C(X)\to C(\{x\})\cong\mathbb C,\qquad f\mapsto f(x)
+$$
+
+であり、まさにcharacterである。また閉部分集合 $F\hookrightarrow X$ は制限準同型 $C(X)\to C(F)$ を与える。空間側の包含が、代数側では通常全射になる。この逆転は商と部分空間の対応として後にも繰り返し現れる。
+
+## 3.9 局所コンパクト空間と非単位的環
+
+局所コンパクトHausdorff空間 $X$ がコンパクトでないとき、定数関数 $1$ は無限遠で消えないので $C_0(X)$ は単位元を持たない。そこで非単位的可換 $C^*$-環 $A$ のcharacterを、非零な $*$-準同型 $A\to\mathbb C$ と定める。
+
+**定理（局所コンパクト版Gelfand–Naimark）.** 任意の可換 $C^*$-環 $A$ に対し $\widehat A$ は局所コンパクトHausdorff空間であり、Gelfand変換は等長 $*$-同型
+
+$$
+A\cong C_0(\widehat A)
+$$
+
+を与える。任意の局所コンパクトHausdorff空間 $X$ について $X\cong\widehat{C_0(X)}$ である。
+
+**［証明概略］** 単位化 $A^+=A\oplus\mathbb C1$ を取る。$A^+$ には $A$ を0にするcharacter $\chi_\infty$ が一つ加わり、
+
+$$
+\widehat A\cong\widehat{A^+}\setminus\{\chi_\infty\}
+$$
+
+となる。右辺はコンパクトHausdorff空間から一点を除いた局所コンパクト空間である。単位的定理を $A^+$ に適用すると、$A$ は $\chi_\infty$ で0になる関数全体、すなわち $\widehat A$ 上で無限遠に消える関数全体に対応する。これで $A\cong C_0(\widehat A)$ を得る。$C_0(X)$ に適用したとき、$\chi_\infty$ は一点コンパクト化の無限遠点に対応し、残りのcharacterは各 $x\in X$ での評価になる。 $\square$
+
+射については注意が要る。properな連続写像 $f:X\to Y$ なら $g\circ f\in C_0(X)$ なので $f^*:C_0(Y)\to C_0(X)$ が定まる。代数側で一般の非退化 $*$-準同型まで扱うときはmultiplier algebraを使う。したがって、条件を書かずに「任意の連続写像が $C_0$ の準同型を作る」と言ってはいけない。
+
+## 3.10 非可換になると何が壊れるか
+
+可換Gelfand理論の証明で可換性を使った場所を確認しよう。
+
+1. $a-\lambda1$ が非可逆なら、それが生成する真の両側イデアルを極大イデアルに入れられた。
+2. 極大イデアルによる商が可除代数となり、$\mathbb C$ に落ちた。
+3. すべての元が正規なので、スペクトル半径とノルムが一致した。
+4. Gelfand変換の像が複素数値関数の可換な積を持った。
+
+$n>1$ の $M_n(\mathbb C)$ を考える。もしcharacter $\chi:M_n(\mathbb C)\to\mathbb C$ があれば、その核は両側イデアルである。行列環は単純なので核は0か全体だが、characterは非零だから核は0である。すると非可換な $M_n(\mathbb C)$ が可換な $\mathbb C$ に単射されることになり矛盾する。したがって
+
+$$
+\widehat{M_n(\mathbb C)}=\varnothing\qquad(n>1).
+$$
+
+characterだけを「点」とすると、非零の行列環に点が一つもない。極大両側イデアルも $M_n(\mathbb C)$ の内部構造を区別しない。だから非可換環を、ある未知の点集合上の複素数値関数環として復元しようとする計画は失敗する。
+
+しかし情報そのものが消えたわけではない。
+
+- characterを状態へ広げると、$M_n(\mathbb C)$ にも豊富に存在する。
+- 一次元表現をHilbert空間上の表現へ広げると、行列の自然な作用が現れる。
+- イデアルだけでなく射影、加群、K理論を見ると、位相的情報に相当するものが残る。
+- 微分や距離を得るには、後にDirac型作用素という追加データを入れる。
+
+したがって「非可換 $C^*$-環は非可換空間である」とは、隠れた通常空間が必ず存在するという主張ではない。空間を関数環から読んだときに現れた構造を、可換性を仮定せず代数側で保持・拡張する研究方針である。次章では最初の代替物として状態と表現を構成する。
+
+## 3.11 章末の確認
+
+1. 点 $x\in X$、評価写像 $\operatorname{ev}_x$、極大イデアル $I_x$ の三者の対応を説明せよ。
+2. character $\chi$ について $\chi(a)\in\sigma_A(a)$ を証明せよ。
+3. Gelfand変換の等長性に $C^*$-恒等式が、全射性にStone–Weierstrass定理がどう使われたか述べよ。
+4. 連続写像 $f:X\to Y$ から準同型 $C(Y)\to C(X)$ が生じる理由と、合成の順序を式で確認せよ。
+5. 非コンパクト空間で $C(X)$ でなく $C_0(X)$ を使う理由を述べよ。
+6. $M_n(\mathbb C)$（$n>1$）にcharacterが存在しないことを示し、それが「点による復元」に何を意味するか説明せよ。

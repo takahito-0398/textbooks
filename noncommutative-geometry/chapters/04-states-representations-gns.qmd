@@ -1,0 +1,625 @@
+---
+title: "第4章　状態からHilbert空間へ：表現とGNS構成"
+sidebar: noncommutative-geometry
+format:
+  html:
+    toc: true
+---
+> **Core** — 正値線形汎関数を期待値として読み、抽象 $C^*$-環と状態からHilbert空間・作用素・巡回ベクトルを構成する。
+
+## 4.1 点が消えた後に何を観測するか
+
+可換環 $C(X)$ の点 $x$ はcharacter $f\mapsto f(x)$ だった。しかし $M_n(\mathbb C)$（$n>1$）にはcharacterがない。それでも行列 $a$ に対し、単位ベクトル $\xi\in\mathbb C^n$ を用いて
+
+$$
+\langle a\xi,\xi\rangle
+$$
+
+という数を取り出せる。これは積を保たないが、$a=b^*b$ なら
+
+$$
+\langle b^*b\xi,\xi\rangle=\|b\xi\|^2\ge0
+$$
+
+であり、単位行列の値は1である。つまり「一点での値」の代わりに「ある準備のもとでの期待値」を考えれば、非可換環にも豊かな観測方法が残る。
+
+この一般化が状態である。characterは積を完全に保存する決定論的な点だが、状態は線形性・正値性・規格化だけを保存する。可換な場合には確率測度、非可換な場合には量子状態を同じ定義で扱える。
+
+## 4.2 正値線形汎関数と状態
+
+$C^*$-環 $A$ 上の線形汎関数 $\varphi:A\to\mathbb C$ が **正** であるとは
+
+$$
+\varphi(a^*a)\ge0\qquad(a\in A)
+$$
+
+を満たすことをいう。任意の正値元は $a^*a$ の形に書けるので、これは $\varphi(A_+)\subset[0,\infty)$ と同値である。単位的 $A$ では
+
+$$
+\varphi(1)=1
+$$
+
+を満たす正線形汎関数を **状態** という。
+
+なぜ正値性が必要なのか。$a^*a$ は複素数の $|z|^2$、関数の $|f|^2$、作用素の「測定値の二乗」を同時に一般化する。期待値がこれを負に送るなら、確率や長さの二乗として解釈できない。また正値性からCauchy–Schwarz不等式が導かれ、GNS構成の内積と有界作用素が生まれる。したがって正値性は物理的な要請であると同時に、構成を成立させる数学的条件である。
+
+## 4.3 正値汎関数のCauchy–Schwarz不等式
+
+本書ではHilbert空間の内積を第1変数について線形とする。その規約に合わせ、後で
+
+$$
+\langle a,b\rangle_\varphi=\varphi(b^*a)
+$$
+
+と置く。
+
+**命題（Cauchy–Schwarz）.** 正線形汎関数 $\varphi$ に対し
+
+$$
+|\varphi(b^*a)|^2
+\le \varphi(a^*a)\varphi(b^*b)
+\qquad(a,b\in A)
+$$
+
+が成り立つ。
+
+**［完全証明］** $\varphi(b^*b)=0$ の場合を先に扱う。任意の $\lambda\in\mathbb C$ について
+
+$$
+0\le\varphi((a+\lambda b)^*(a+\lambda b))
+=\varphi(a^*a)+\overline\lambda\varphi(b^*a)
++\lambda\varphi(a^*b)
+$$
+
+である。正値元の値は実数なので $\varphi(c^*)=\overline{\varphi(c)}$ が成り立つ。この事実は自己共役元 $h$ を
+
+$$
+h=(h+\|h\|1)-\|h\|1
+$$
+
+と正値元の差に書き、一般の $c$ を実部と虚部に分ければ従う。ここで $z=\varphi(b^*a)\ne0$ と仮定し、$\lambda=-tz$（$t>0$）と取ると右辺は
+
+$$
+\varphi(a^*a)-2t|z|^2
+$$
+
+となり、大きな $t$ で負になる。これは矛盾だから $z=0$ であり、不等式は成立する。
+
+$\varphi(b^*b)>0$ の場合は
+
+$$
+\lambda=-\frac{\varphi(b^*a)}{\varphi(b^*b)}
+$$
+
+を $a+\lambda b$ に代入する。展開して
+
+$$
+0\le\varphi(a^*a)-
+\frac{|\varphi(b^*a)|^2}{\varphi(b^*b)}
+$$
+
+を得る。両辺に $\varphi(b^*b)$ を掛ければよい。 $\square$
+
+単位的 $A$ で $b=1$ とすると
+
+$$
+|\varphi(a)|^2\le\varphi(a^*a)\varphi(1)
+$$
+
+を得る。さらに $0\le a^*a\le\|a\|^2 1$ だから、正値性より
+
+$$
+|\varphi(a)|\le\varphi(1)\|a\|.
+$$
+
+よって正線形汎関数は自動的に連続で、$\|\varphi\|=\varphi(1)$ である。特に状態のノルムは1である。
+
+## 4.4 可換例：状態は確率測度である
+
+コンパクトHausdorff空間 $X$ 上のBorel確率測度 $\mu$ は
+
+$$
+\varphi_\mu(f)=\int_X f\,d\mu
+$$
+
+により $C(X)$ 上の状態を定める。正値性は
+
+$$
+\varphi_\mu(f^*f)=\int_X|f|^2\,d\mu\ge0
+$$
+
+と計算できる。被積分関数 $|f|^2$ は各点で非負なので積分も非負であり、正値性が従う。Riesz–Markov表現定理は逆に、$C(X)$ 上のすべての状態が一意な正則Borel確率測度からこの形で得られることをいう。
+
+点 $x$ に対応するcharacterはDirac測度 $\delta_x$ による状態
+
+$$
+f\longmapsto\int_Xf\,d\delta_x=f(x)
+$$
+
+である。状態は点を捨てたのではなく、点を確率分布へ凸化したものだと分かる。
+
+## 4.5 行列例：密度行列
+
+$A=M_n(\mathbb C)$ の状態は、正行列 $\rho\ge0$ で $\operatorname{Tr}(\rho)=1$ を満たすものを用いて
+
+$$
+\varphi_\rho(a)=\operatorname{Tr}(\rho a)
+$$
+
+と一意に書ける。
+
+**［完全証明］** 行列単位を $e_{ij}$ とし、$\rho_{ij}=\varphi(e_{ji})$ と置く。すると任意の $a=(a_{ij})$ について
+
+$$
+\varphi(a)=\sum_{i,j}a_{ij}\varphi(e_{ij})
+=\sum_{i,j}\rho_{ji}a_{ij}=\operatorname{Tr}(\rho a).
+$$
+
+任意の列ベクトル $\xi$ に対し、階数一の正行列 $\xi\xi^*$ を用いると
+
+$$
+\xi^*\rho\xi=\operatorname{Tr}(\rho\xi\xi^*)
+=\varphi(\xi\xi^*)\ge0
+$$
+
+なので $\rho\ge0$。また $\operatorname{Tr}(\rho)=\varphi(I)=1$ である。逆にこの条件を満たす $\rho$ に対し、$a=b^*b$ なら
+
+$$
+\operatorname{Tr}(\rho b^*b)
+=\operatorname{Tr}((b\rho^{1/2})^*(b\rho^{1/2}))\ge0
+$$
+
+であり、単位行列の値は1だから状態になる。一意性は行列単位上の値から従う。 $\square$
+
+$\rho=|\xi\rangle\langle\xi|$ が階数一なら
+
+$$
+\varphi_\rho(a)=\langle a\xi,\xi\rangle.
+$$
+
+一方、固有値分解 $\rho=\sum_k p_k|\xi_k\rangle\langle\xi_k|$ は
+
+$$
+\varphi_\rho=\sum_kp_k\varphi_{\xi_k}
+$$
+
+という確率混合を表す。
+
+## 4.6 pure stateとmixed state
+
+状態全体 $S(A)$ は凸集合である。実際、$\varphi,\psi\in S(A)$、$0\le t\le1$ なら
+
+$$
+t\varphi+(1-t)\psi\in S(A).
+$$
+
+状態 $\varphi$ が **純粋** であるとは、$\varphi=t\psi+(1-t)\theta$、$0<t<1$ と書けたとき必ず $\psi=\theta=\varphi$ となること、すなわち $S(A)$ の端点であることをいう。純粋でない状態を混合状態という。
+
+$C(X)$ では純粋状態はちょうどDirac測度 $\delta_x$ である。
+
+**［完全証明］** $\delta_x=t\mu_1+(1-t)\mu_2$、$0<t<1$ とする。$X\setminus\{x\}$ の測度は0だから、正値性より $\mu_1,\mu_2$ もそこに質量を持たず、全質量が1なので両者とも $\delta_x$ である。したがって $\delta_x$ は端点である。
+
+逆に確率測度 $\mu$ が一点に集中しないとする。このときあるBorel集合 $E$ が $0<\mu(E)<1$ を満たす。実際、そのような集合がなければ全Borel集合の測度は0か1である。正則性から $\mu$ の台は空でなく、台に異なる二点があれば互いに素な正測度の近傍が得られて矛盾するので、台は一点となって仮定に反する。そこで
+
+$$
+\mu_1(B)=\frac{\mu(B\cap E)}{\mu(E)},\qquad
+\mu_2(B)=\frac{\mu(B\cap E^c)}{1-\mu(E)}
+$$
+
+と置けば、$\mu=\mu(E)\mu_1+(1-\mu(E))\mu_2$ は異なる確率測度の非自明な凸結合である。Riesz–Markov対応により元の状態も非自明に分解される。ゆえに純粋状態はDirac測度に限る。 $\square$
+
+したがって可換な場合、純粋状態は元の点を回復する。
+
+$M_n(\mathbb C)$ では純粋状態は階数一の密度行列に対応する。
+
+**［完全証明］** 密度行列 $\rho$ の階数が2以上なら、スペクトル分解 $\rho=\sum_kp_kP_k$ は少なくとも二つの正の固有値を持つ。項を二群に分けて各群をトレース1に規格化すれば、$\rho$ は異なる密度行列の非自明な凸結合になる。
+
+逆に $\rho=P_\xi=|\xi\rangle\langle\xi|$ が階数一で、
+
+$$
+P_\xi=t\sigma+(1-t)\tau,\qquad 0<t<1
+$$
+
+とする。$\eta\perp\xi$ なら
+
+$$
+0=\langle P_\xi\eta,\eta\rangle
+=t\langle\sigma\eta,\eta\rangle+(1-t)\langle\tau\eta,\eta\rangle.
+$$
+
+各項は非負なので両方0であり、正値行列について $\langle\sigma\eta,\eta\rangle=0$ は $\sigma^{1/2}\eta=0$ を意味する。よって $\sigma,\tau$ の像はともに $\mathbb C\xi$ に含まれる。トレースが1なので $\sigma=\tau=P_\xi$ である。したがって階数一状態は純粋である。 $\square$
+
+ただし非可換環で純粋状態を「点」と同一視してはいけない。同じ既約表現の中に多数のベクトル状態があり得て、純粋状態空間は通常の点集合より多くの内部自由度を持つ。純粋状態、既約表現、primitive idealは関連するが同じ集合ではない。
+
+## 4.7 表現：抽象元を作用素として実現する
+
+$C^*$-環 $A$ のHilbert空間 $H$ 上の **表現** とは $*$-準同型
+
+$$
+\pi:A\to B(H)
+$$
+
+をいう。単位的環では通常 $\pi(1)=I_H$ を要求する。表現が忠実とは $\ker\pi=0$、非退化とは $\overline{\pi(A)H}=H$ であることをいう。
+
+表現を考える理由は、抽象代数を再び行列・作用素として計算できるようにするためだけではない。Hilbert空間の内積、直交射影、閉部分空間、作用素位相が使えるようになり、代数の正値性をベクトルの長さとして実現できる。
+
+表現 $\pi$ と単位ベクトル $\Omega\in H$ から
+
+$$
+\varphi(a)=\langle\pi(a)\Omega,\Omega\rangle
+$$
+
+と置けば状態が得られる。GNS構成はこの向きを逆転し、任意の状態から $(H,\pi,\Omega)$ を作る。
+
+## 4.8 GNS構成I：半内積と零空間
+
+以下ではまず $A$ を単位的 $C^*$-環、$\varphi$ を状態とする。ベクトル空間としての $A$ 上に
+
+$$
+\langle a,b\rangle_\varphi=\varphi(b^*a)
+$$
+
+と定める。これは第1変数について線形、第2変数について共役線形で、$\langle a,a\rangle_\varphi=\varphi(a^*a)\ge0$ を満たす。しかし異なる $a\ne0$ でも $\varphi(a^*a)=0$ となり得るので、まだ内積ではなく半内積である。
+
+零ベクトル全体を
+
+$$
+N_\varphi=\{a\in A:\varphi(a^*a)=0\}
+$$
+
+と置く。
+
+**命題.** $N_\varphi$ は線形部分空間であり、さらに左イデアルである。
+
+**［完全証明］** $a\in N_\varphi$ ならCauchy–Schwarz不等式から任意の $b\in A$ に対し
+
+$$
+|\varphi(b^*a)|^2\le\varphi(a^*a)\varphi(b^*b)=0,
+$$
+
+したがって $\langle a,b\rangle_\varphi=0$ である。同様に $b\in N_\varphi$ でも $\langle a,b\rangle_\varphi=0$ である。
+
+$a,b\in N_\varphi$、$\lambda\in\mathbb C$ なら
+
+$$
+\|a+\lambda b\|_\varphi^2
+=\langle a+\lambda b,a+\lambda b\rangle_\varphi=0
+$$
+
+だから線形部分空間である。
+
+次に $c\in A$、$a\in N_\varphi$ とする。$0\le c^*c\le\|c\|^2 1$ なので
+
+$$
+0\le a^*c^*ca\le\|c\|^2a^*a.
+$$
+
+正線形汎関数は順序を保つから
+
+$$
+0\le\varphi((ca)^*(ca))
+\le\|c\|^2\varphi(a^*a)=0.
+$$
+
+ゆえに $ca\in N_\varphi$ である。したがって $N_\varphi$ は左イデアルである。 $\square$
+
+一般には右イデアルではない。GNS表現を左乗法で作るために必要なのが、まさに左イデアル性である。
+
+## 4.9 GNS構成II：商と完備化
+
+商ベクトル空間 $A/N_\varphi$ で $a$ の類を $[a]$ と書く。
+
+$$
+\langle[a],[b]\rangle=\varphi(b^*a)
+$$
+
+と置く。この定義が代表元によらないことを確認する。$a-a'\in N_\varphi$ なら、前節で示した直交性から
+
+$$
+\varphi(b^*(a-a'))=0.
+$$
+
+$b-b'\in N_\varphi$ の場合も同様である。さらに $\langle[a],[a]\rangle=0$ なら $a\in N_\varphi$、すなわち $[a]=0$ なので、これは真の内積である。
+
+$A/N_\varphi$ をこの内積ノルムで完備化したHilbert空間を $H_\varphi$ と書く。
+
+この商操作には明確な意味がある。状態 $\varphi$ から見て長さ0の元は、どの元とも内積0であり観測上区別できない。それらだけを同一視し、その後に極限を補ってHilbert空間を得る。
+
+## 4.10 GNS構成III：左乗法は有界作用素になる
+
+$c\in A$ に対し、まず稠密部分空間 $A/N_\varphi$ 上で
+
+$$
+\pi_\varphi(c)[a]=[ca]
+$$
+
+と定めたい。$a-a'\in N_\varphi$ なら左イデアル性により $c(a-a')\in N_\varphi$ だから、これは代表元によらない。
+
+さらに前節の評価から
+
+$$
+\begin{aligned}
+\|\pi_\varphi(c)[a]\|^2
+&=\varphi(a^*c^*ca)\\
+&\le\|c\|^2\varphi(a^*a)
+=\|c\|^2\|[a]\|^2.
+\end{aligned}
+$$
+
+したがって $\pi_\varphi(c)$ は有界で $\|\pi_\varphi(c)\|\le\|c\|$、よって完備化 $H_\varphi$ 全体へ一意に延長する。
+
+積と線形性は左乗法から直ちに従う。随伴については稠密部分空間上で
+
+$$
+\begin{aligned}
+\langle\pi_\varphi(c)[a],[b]\rangle
+&=\varphi(b^*ca)\\
+&=\varphi((c^*b)^*a)\\
+&=\langle[a],\pi_\varphi(c^*)[b]\rangle.
+\end{aligned}
+$$
+
+よって $\pi_\varphi(c)^*=\pi_\varphi(c^*)$ である。また $\pi_\varphi(1)=I$。したがって
+
+$$
+\pi_\varphi:A\to B(H_\varphi)
+$$
+
+は単位的 $*$-表現である。
+
+## 4.11 GNS構成IV：巡回ベクトルと状態の回復
+
+$$
+\Omega_\varphi=[1]\in H_\varphi
+$$
+
+と置く。状態の規格化から
+
+$$
+\|\Omega_\varphi\|^2=\varphi(1)=1.
+$$
+
+また
+
+$$
+\pi_\varphi(a)\Omega_\varphi=[a]
+$$
+
+だから、$\pi_\varphi(A)\Omega_\varphi$ は $A/N_\varphi$ そのものであり $H_\varphi$ に稠密である。このようなベクトルを **巡回ベクトル** という。最後に
+
+$$
+\langle\pi_\varphi(a)\Omega_\varphi,\Omega_\varphi\rangle
+=\langle[a],[1]\rangle
+=\varphi(a)
+$$
+
+である。元の状態はベクトル状態として完全に回復された。
+
+以上をまとめる。
+
+**定理（GNS構成）.** 単位的 $C^*$-環 $A$ の任意の状態 $\varphi$ に対し、Hilbert空間 $H_\varphi$、単位的 $*$-表現 $\pi_\varphi:A\to B(H_\varphi)$、巡回単位ベクトル $\Omega_\varphi$ が存在し、
+
+$$
+\varphi(a)=\langle\pi_\varphi(a)\Omega_\varphi,\Omega_\varphi\rangle
+$$
+
+を満たす。
+
+ここまでの証明で、半内積の退化、商のwell-defined性、左乗法のwell-defined性、有界性、随伴保存、巡回性のすべてを確認した。
+
+## 4.12 GNS表現の一意性
+
+GNS三つ組は文字どおり一意ではないが、巡回ベクトルを保つユニタリ同値を除いて一意である。
+
+**定理.** $(H,\pi,\Omega)$ が $\Omega$ を巡回ベクトルとし
+
+$$
+\varphi(a)=\langle\pi(a)\Omega,\Omega\rangle
+$$
+
+を満たすなら、一意なユニタリ $U:H_\varphi\to H$ が存在して
+
+$$
+U\Omega_\varphi=\Omega,\qquad
+U\pi_\varphi(a)=\pi(a)U
+$$
+
+を満たす。
+
+**［完全証明］** 稠密部分空間 $A/N_\varphi$ 上で
+
+$$
+U_0[a]=\pi(a)\Omega
+$$
+
+と置く。もし $[a]=0$ なら
+
+$$
+\|\pi(a)\Omega\|^2
+=\langle\pi(a^*a)\Omega,\Omega\rangle
+=\varphi(a^*a)=0
+$$
+
+なのでwell-definedである。さらに
+
+$$
+\langle U_0[a],U_0[b]\rangle
+=\langle\pi(a)\Omega,\pi(b)\Omega\rangle
+=\langle\pi(b^*a)\Omega,\Omega\rangle
+=\varphi(b^*a)
+=\langle[a],[b]\rangle.
+$$
+
+よって $U_0$ は等長で、$H_\varphi$ へ等長写像 $U$ として延長する。像は $\pi(A)\Omega$ を含み、巡回性により稠密である。一方、等長写像の像は閉なので全射、したがって $U$ はユニタリである。稠密部分空間上で
+
+$$
+U\pi_\varphi(c)[a]=U[ca]=\pi(ca)\Omega
+=\pi(c)U[a]
+$$
+
+だからintertwining関係が成り立ち、$U[1]=\Omega$ である。この二条件は稠密な $\pi_\varphi(A)\Omega_\varphi$ 上の $U$ の値を決めるので一意である。 $\square$
+
+## 4.13 GNSを具体例で計算する
+
+### 点評価状態
+
+$A=C(X)$、$\varphi=\operatorname{ev}_x$ とする。このとき
+
+$$
+N_\varphi=\{f:f(x)=0\}=I_x
+$$
+
+であり、$C(X)/I_x\cong\mathbb C$ だから $H_\varphi\cong\mathbb C$。表現は
+
+$$
+\pi_\varphi(f)z=f(x)z
+$$
+
+である。characterから一次元表現が得られる。
+
+### 確率測度
+
+$A=C(X)$、$\varphi(f)=\int f\,d\mu$ とする。半内積は
+
+$$
+\langle f,g\rangle=\int_X f\overline g\,d\mu
+$$
+
+であり、零空間は $\mu$-ほとんど至る所0の連続関数である。完備化は $L^2(X,\mu)$、表現は乗算作用素
+
+$$
+(\pi_\varphi(f)\xi)(x)=f(x)\xi(x),\qquad \Omega_\varphi=1
+$$
+
+となる。抽象的な商と完備化は、測度論で「ほとんど至る所等しい関数を同一視して $L^2$ 完備化する」操作そのものである。
+
+### 行列のベクトル状態
+
+$A=M_n(\mathbb C)$、$\varphi(a)=\langle a\xi,\xi\rangle$ とする。このとき
+
+$$
+N_\varphi=\{a:a\xi=0\}
+$$
+
+であり、$[a]\mapsto a\xi$ は $A/N_\varphi$ から $\mathbb C^n$ への等長写像になる。非零な $\xi$ は行列環の自然表現に対して巡回的なので、GNS表現は $M_n(\mathbb C)$ の $\mathbb C^n$ 上の自然表現とユニタリ同値である。
+
+### トレース状態
+
+$\varphi(a)=\frac1n\operatorname{Tr}(a)$ なら $N_\varphi=0$ で、$H_\varphi$ はベクトル空間 $M_n(\mathbb C)$ にHilbert–Schmidt内積
+
+$$
+\langle a,b\rangle=\frac1n\operatorname{Tr}(b^*a)
+$$
+
+を入れたものになる。表現は左乗法であり、Hilbert空間の次元は $n^2$ である。同じ代数でも状態が違えばGNS空間が変わる。
+
+## 4.14 純粋性と既約性
+
+表現 $\pi:A\to B(H)$ が **既約** であるとは、$\pi(A)$ で不変な閉部分空間が $0,H$ しかないことをいう。GNS構成は凸幾何と表現論を結ぶ。
+
+**定理.** 状態 $\varphi$ が純粋であることと、GNS表現 $\pi_\varphi$ が既約であることは同値である。
+
+**［証明概略］** $\pi_\varphi$ が可約なら、非自明な不変閉部分空間への直交射影 $P$ は $\pi_\varphi(A)$ と可換する。ベクトル $P\Omega_\varphi$ と $(I-P)\Omega_\varphi$ から二つの状態を作ると、$\varphi$ はそれらの非自明な凸結合になる。
+
+逆に $\varphi=t\psi+(1-t)\theta$ と非自明に分解されたとする。正汎関数 $t\psi\le\varphi$ に対するRadon–Nikodym型補題により、$\pi_\varphi(A)'$ 内の正作用素 $0\le T\le I$ が存在して
+
+$$
+t\psi(a)=\langle\pi_\varphi(a)T\Omega_\varphi,\Omega_\varphi\rangle
+$$
+
+となる。分解が非自明なら $T$ はスカラーでない。既約表現の可換子はSchurの補題により $\mathbb CI$ なので矛盾する。逆向きの完全証明には、この支配された正汎関数の補題を証明する必要があるため、ここでは構造だけを示した。第6章で可換子を扱った後に再訪できる。 $\square$
+
+この定理により、可換環では純粋状態のGNS表現が一次元になる。非可換環では既約表現が高次元になり得ることが、通常の点との違いである。
+
+## 4.15 非単位的環の場合
+
+非単位的 $C^*$-環 $A$ では、状態を正線形汎関数 $\varphi$ で $\|\varphi\|=1$ のものと定義する。GNS構成では同じ
+
+$$
+N_\varphi=\{a:\varphi(a^*a)=0\},\qquad
+H_\varphi=\overline{A/N_\varphi}
+$$
+
+と左乗法を使う。単位元がないので $[1]$ は書けないが、近似単位 $(e_i)$ に対する $[e_i]$ の極限として巡回ベクトルを得るか、$\varphi$ を単位化 $A^+$ の状態へ延長して単位的構成を適用できる。得られる表現は非退化である。
+
+$C_0(X)$ の状態は正則Borel確率測度に対応する。$X$ が非コンパクトでも規格化は全質量 $\mu(X)=1$ を意味する。
+
+## 4.16 すべての抽象 $C^*$-環は作用素環である
+
+第2章で予告した一般のGelfand–Naimark表現定理を述べる。
+
+**定理（Gelfand–Naimark）.** 任意の $C^*$-環 $A$ は、あるHilbert空間 $H$ 上のノルム閉な $*$-部分環と等長 $*$-同型である。
+
+**［証明概略］** 各状態 $\varphi$ のGNS表現を直和して
+
+$$
+H_u=\bigoplus_{\varphi\in S(A)}H_\varphi,\qquad
+\pi_u=\bigoplus_{\varphi\in S(A)}\pi_\varphi
+$$
+
+を作る。これを普遍表現という。非零の正値元 $b\in A_+$ に対して $\varphi(b)>0$ となる状態が存在する。より強く $\|b\|=1$ なら、可換部分環 $C^*(1,b)\cong C(\sigma(b))$ 上で最大スペクトル点を評価する状態を取り、正値Hahn–Banach拡張により $A$ の状態へ延長できる。したがって $a\ne0$ に対し $b=a^*a\ne0$ を取れば、ある $\varphi$ で
+
+$$
+\|\pi_\varphi(a)\Omega_\varphi\|^2=\varphi(a^*a)>0.
+$$
+
+よって $\pi_u(a)\ne0$、すなわち $\pi_u$ は忠実である。単射な $C^*$-準同型は等長なので像は閉であり、$A\cong\pi_u(A)\subset B(H_u)$ を得る。 $\square$
+
+可換版では一つの空間 $\widehat A$ 上の乗算関数として表した。一般版では、状態ごとに異なるHilbert空間上の観測を全部集めることで忠実な作用素表現を作る。
+
+## 4.17 非可換確率空間としての $(A,\varphi)$
+
+古典確率空間 $(X,\mu)$ では、確率変数は関数、期待値は積分である。
+
+$$
+\mathbb E[f]=\int_Xf\,d\mu.
+$$
+
+これを代数側だけで書けば、可換 $C^*$-環 $A=C(X)$ と状態 $\varphi$ の組になる。そこで一般の、必ずしも可換でない組
+
+$$
+(A,\varphi)
+$$
+
+を非可換確率空間と呼ぶ。自己共役元を実確率変数、$\varphi(a)$ を期待値、$\varphi(a^k)$ をモーメントと読む。
+
+非可換性は単なる記法の差ではない。一般に $ab\ne ba$ なので、$\varphi(ab)$ と $\varphi(ba)$ は一致せず、複数の量の同時分布を古典的な一点ごとの値で表せない。それでも正値性により
+
+$$
+\operatorname{Var}_\varphi(a)
+=\varphi((a-\varphi(a)1)^2)\ge0
+$$
+
+が自己共役 $a$ について成り立ち、GNS表現では期待値がベクトル状態として具体化される。
+
+## 4.18 GNS構成が意味すること
+
+GNSは形式的な表現存在証明以上の内容を持つ。
+
+$$
+\boxed{
+(\text{抽象代数 }A,\text{ 状態 }\varphi)
+\longmapsto
+(H_\varphi,\pi_\varphi,\Omega_\varphi)
+}
+$$
+
+- $A$ の元は $H_\varphi$ 上の作用素になる。
+- $\varphi$ が見分けない元は $N_\varphi$ で商を取る際に消える。
+- 正値性はHilbert空間の長さになる。
+- 規格化は $\Omega_\varphi$ を単位ベクトルにする。
+- 期待値は $\Omega_\varphi$ による行列要素になる。
+- 巡回性は、この一つのベクトルに代数を作用させれば表現空間全体を生成できることをいう。
+
+つまりHilbert空間は先に仮定される舞台ではなく、代数と状態から再構成できる。次章では一つの表現 $A\subset B(H)$ を固定し、ノルムより弱い作用素位相で閉包を取る。そこからvon Neumann環が現れる。
+
+## 4.19 章末の確認
+
+1. 正値性 $\varphi(a^*a)\ge0$ が確率的解釈とGNS構成の双方に必要な理由を述べよ。
+2. 正線形汎関数に対するCauchy–Schwarz不等式を、$\varphi(b^*b)=0$ の場合も含めて証明せよ。
+3. $M_n(\mathbb C)$ の状態と密度行列の対応を説明し、純粋状態を特徴づけよ。
+4. $N_\varphi$ が左イデアルであることを示し、なぜ右イデアル性はGNS構成に不要か説明せよ。
+5. $\pi_\varphi(c)[a]=[ca]$ がwell-definedかつ有界であることを証明せよ。
+6. GNS三つ組の巡回性と、ユニタリ同値を除く一意性を説明せよ。
+7. $C(X)$ 上の測度状態のGNS空間が $L^2(X,\mu)$ になる過程を説明せよ。
+8. 非可換環で純粋状態を通常の点と単純に同一視できない理由を述べよ。

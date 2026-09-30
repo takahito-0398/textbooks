@@ -1,0 +1,36 @@
+---
+title: "作用素環論から非可換幾何へ"
+description: "C*-環、von Neumann環、K理論、巡回コホモロジー、スペクトル三つ組を順に構成する大学院向け教材。"
+sidebar: noncommutative-geometry
+format:
+  html:
+    toc: true
+---
+# 作用素環論から非可換幾何へ
+
+有限次元線形代数からスペクトル三つ組まで
+
+C*-環、von Neumann環、K理論、巡回コホモロジー、スペクトル三つ組を順に構成する大学院向け教材。
+
+## 章一覧
+
+- [第0章　何を「空間」と呼び直すのか](chapters/00-reading-guide.qmd)
+- [第1章　行列から作用素へ：無限次元で何が壊れるか](chapters/01-matrices-to-operators.qmd)
+- [第2章　作用素を集める：Banach環からC*-環へ](chapters/02-banach-and-cstar-algebras.qmd)
+- [第3章　可換C*-環は空間である：Gelfand双対](chapters/03-commutative-cstar-and-spaces.qmd)
+- [第4章　状態からHilbert空間へ：表現とGNS構成](chapters/04-states-representations-gns.qmd)
+- [第5章　von Neumann環：観測ごとの極限を閉じる](chapters/05-von-neumann-algebras.qmd)
+- [第6章　因子と型：射影の「大きさ」を測り直す](chapters/06-factors-and-modular-theory.qmd)
+- [第7章　K理論：変形で壊れない射影とユニタリ](chapters/07-k-theory.qmd)
+- [第8章　Fredholm作用素とToeplitz拡大：整数が安定に残る理由](chapters/08-fredholm-toeplitz-index.qmd)
+- [第9章　巡回コホモロジー：非可換代数で「微分して積分する」](chapters/09-cyclic-cohomology.qmd)
+- [第10章　スペクトル三つ組：Dirac作用素から距離・次元・積分を読む](chapters/10-spectral-triples.qmd)
+- [第11章　非可換トーラス：回転から生まれる座標環](chapters/11-noncommutative-torus.qmd)
+- [第12章　悪い商、Morita同値、葉層：点集合を越えて軌道を記録する](chapters/12-morita-foliations-quotients.qmd)
+- [第13章　指数定理への再接続：三種類の情報が一つの整数になる](chapters/13-index-and-geometry.qmd)
+- [第14章　非可換幾何とは何をしている理論なのか](chapters/14-what-noncommutative-geometry-is.qmd)
+- [付録A　必要な関数解析](chapters/appendix-a-functional-analysis.qmd)
+- [付録B　位相的K理論を作用素環から読み直す](chapters/appendix-b-topological-k-theory.qmd)
+- [付録C　Clifford代数・spinor・Dirac作用素](chapters/appendix-c-clifford-spin.qmd)
+- [付録D　記号と用語](chapters/appendix-d-notation.qmd)
+- [付録E　参考文献](chapters/appendix-e-bibliography.qmd)

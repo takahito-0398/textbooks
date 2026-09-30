@@ -1,0 +1,1032 @@
+---
+title: "第10章　スペクトル三つ組：Dirac作用素から距離・次元・積分を読む"
+sidebar: noncommutative-geometry
+format:
+  html:
+    toc: true
+---
+> **Core + Advanced** — スペクトル三つ組の最小公理を理解し、閉Riemannian spin多様体で $[D,f]$ が微分を、$D$ の固有値が次元と体積を、Connesの公式が測地距離を回収することを示す。一般の三つ組に同じ幾何学的性質が自動で備わるとは仮定しない。
+
+## 10.1 $C^*$-環だけで距離は決まらない
+
+Gelfand双対により、可換 $C^*$-環 $C(X)$ はコンパクトHausdorff空間 $X$ の位相を記憶する。しかし同じ位相空間には多くの異なる距離を入れられる。
+
+たとえば円周 $S^1$ 上で、周長1のRiemann計量と周長2のRiemann計量は同じ連続関数環 $C(S^1)$ を持つ。したがって
+
+$$
+C(X)
+$$
+
+だけからRiemann距離を復元することはできない。
+
+微分についても同じである。$C(X)$ は連続性を記憶するが、「何回微分できるか」「勾配の長さはいくつか」を知らない。そこで二つの追加が必要になる。
+
+1. 連続関数の中から滑らかな関数のdense *-subalgebra $\mathcal A$ を選ぶ。
+2. 微分と計量を検出する非有界作用素 $D$ を与える。
+
+さらに $\mathcal A$ と $D$ が同じHilbert空間 $H$ 上で出会う必要がある。これが三つ組
+
+$$
+(\mathcal A,H,D)
+$$
+
+の出発点である。
+
+## 10.2 なぜ非有界作用素なのか
+
+第1章では、有界作用素全体 $B(H)$ が和・積・随伴に閉じた安全な環境を与えた。一方、微分作用素は高周波成分を大きく増幅するため、通常は非有界である。
+
+円周上で
+
+$$
+D=-i\frac{d}{dt}
+$$
+
+を考える。Fourier基底 $e_n(t)=e^{int}$ に対して
+
+$$
+De_n=ne_n.
+$$
+
+固有値 $n$ は無限に大きくなるので $D$ は有界でない。しかし関数 $f$ を掛ける作用素 $M_f$ との交換子は
+
+$$
+\begin{aligned}
+[D,M_f]\psi
+&=-i\frac{d}{dt}(f\psi)+if\frac{d\psi}{dt}\\
+&=-if'\psi
+\end{aligned}
+$$
+
+となり、$f'$ が有界なら有界な乗算作用素になる。
+
+重要なのは $D$ 自体を代数の元にすることでなく、
+
+$$
+[D,a]
+$$
+
+を有界作用素として読むことである。非有界性は無限小の変化を検出し、交換子を取ると一階微分だけが残る。
+
+## 10.3 非有界作用素の最小限の注意
+
+非有界作用素 $D$ には定義域 $\operatorname{Dom}D\subset H$ がある。自己共役とは、単に
+
+$$
+\langle D\xi,\eta\rangle=\langle\xi,D\eta\rangle
+$$
+
+が定義域上で成り立つ対称性だけでなく、随伴作用素と定義域まで一致することをいう。
+
+交換子 $[D,a]$ が有界という条件は、次をまとめた略記である。
+
+1. $a\operatorname{Dom}D\subset\operatorname{Dom}D$。
+2. $\operatorname{Dom}D$ 上で定義した $Da-aD$ が $H$ 全体の有界作用素へ延長する。
+
+compact resolventとは、たとえば
+
+$$
+(D-i)^{-1}
+$$
+
+がcompactであることをいう。自己共役性により $i$ はresolvent集合に入る。これは
+
+$$
+(1+D^2)^{-1/2}
+$$
+
+がcompactであることと同値である。
+
+compact resolventは、コンパクト多様体上の楕円作用素が離散固有値を持ち、有限次元行列の対角化に近いスペクトル分解を許すことの抽象化である。
+
+## 10.4 スペクトル三つ組の最小公理
+
+### 10.4.1 単位的な場合
+
+単位的スペクトル三つ組は、次のデータからなる。
+
+1. 単位的 *-代数 $\mathcal A$ と、そのHilbert空間 $H$ 上の忠実な有界 *-表現 $\pi:\mathcal A\to B(H)$。通常は $\pi(a)$ を $a$ と略記する。
+2. $H$ 上の稠密に定義された自己共役作用素 $D$。
+3. $D$ はcompact resolventを持つ。
+4. すべての $a\in\mathcal A$ について $[D,a]$ が有界に延長する。
+
+これが本章でいう**最小公理**である。
+
+定義に $C^*$-完備性は要求しない。むしろ $\mathcal A$ は、ある $C^*$-環 $A$ のsmooth dense *-subalgebraであることが多い。距離をstate spaceへ拡張するときは $A=\overline{\mathcal A}^{\|\cdot\|}$ を使う。
+
+### 10.4.2 非単位的な場合
+
+非コンパクト空間を扱う三つ組では、resolventそのものがcompactとは限らない。局所compactnessに対応して
+
+$$
+a(1+D^2)^{-1/2}\in K(H)
+\qquad(a\in\mathcal A)
+$$
+
+を要求する。距離やsummabilityにはさらに一様性条件が必要で、単位的定義をそのまま言い換えるだけでは不十分である。本章の距離公式とWeyl則は、まず閉多様体すなわちcompact・境界なしの場合に限定する。
+
+## 10.5 最小公理に含まれない追加構造
+
+文献で「spectral triple」と呼ばれる対象には、目的に応じて次が追加される。これらを最小公理と混同しない。
+
+### 偶性
+
+grading $\Gamma=\Gamma^*=\Gamma^{-1}$ があり、
+
+$$
+\Gamma a=a\Gamma,\qquad \Gamma D=-D\Gamma
+$$
+
+を満たすとき偶スペクトル三つ組という。偶数次元spin多様体では $\Gamma$ はchirality作用素である。奇数次元では通常gradingを置かない。
+
+### 実構造
+
+反線形等長作用素 $J:H\to H$ を加え、
+
+$$
+JaJ^{-1}
+$$
+
+で反対代数 $A^{\mathrm{op}}$ の作用を表す。$J^2$、$JD=\pm DJ$、$J\Gamma=\pm\Gamma J$ の符号はKO-dimensionで決まる。
+
+### 一階条件
+
+$$
+[[D,a],JbJ^{-1}]=0
+\qquad(a,b\in\mathcal A)
+$$
+
+を要求する。古典的な一階微分作用素が左からの関数と右からの関数の間で一階であることを抽象化する。
+
+### regularity
+
+$$
+\delta(T)=[|D|,T]
+$$
+
+と置き、$a$ と $[D,a]$ が $\delta$ のすべての冪の定義域に入ることを要求する。これは擬微分作用素計算を組み立てる滑らかさであり、単に $[D,a]$ が一度有界という条件より強い。
+
+### finite summability と dimension spectrum
+
+$$
+(1+D^2)^{-p/2}
+$$
+
+のtrace class性、またはweak Schatten class性でスペクトルの増え方を制御する。zeta関数
+
+$$
+\zeta_a(s)=\operatorname{Tr}\bigl(a|D|^{-s}\bigr)
+$$
+
+の極を調べるには、正則性とmeromorphic continuationに関する追加仮定が必要である。
+
+### finiteness
+
+滑らかなベクトル
+
+$$
+H_\infty=\bigcap_{k\ge1}\operatorname{Dom}|D|^k
+$$
+
+が $\mathcal A$ 上の有限生成射影加群になることを要求する。spinor bundleの滑らかな切断加群を抽象化する。
+
+### orientability
+
+あるHochschild $n$-cycle
+
+$$
+c=\sum_\alpha
+a_0^\alpha\otimes a_1^\alpha\otimes\cdots\otimes a_n^\alpha
+$$
+
+が存在し、その表現
+
+$$
+\pi_D(c)
+=
+\sum_\alpha
+a_0^\alpha[D,a_1^\alpha]\cdots[D,a_n^\alpha]
+$$
+
+が、偶次元では $\Gamma$、奇次元では単位作用素を与えることを要求する。
+
+### Poincaré duality
+
+三つ組が定めるK-homology類とのKasparov積により、K理論とK-homologyの間に非退化な双対性を要求する。
+
+これらをすべて満たす三つ組だけが「spectral triple」なのではない。最小公理は解析的な三つ組を定め、追加公理は「閉spin多様体らしさ」を一つずつ課す。
+
+## 10.6 閉Riemannian spin多様体の標準三つ組
+
+$M$ を $n$-次元の閉Riemannian spin多様体とする。spinor bundleを $S\to M$、その平方可積分切断のHilbert空間を
+
+$$
+H=L^2(M,S)
+$$
+
+とする。滑らかな関数はspinorへ点ごとに掛け算して作用する。
+
+$$
+\mathcal A=C^\infty(M),\qquad
+(f\psi)(x)=f(x)\psi(x).
+$$
+
+Levi-Civita接続から誘導されるspin接続を $\nabla^S$、Clifford multiplicationを $c$ とすると、Dirac作用素は局所正規直交frame $(e_j)$ を用いて
+
+$$
+D=-i\sum_{j=1}^{n}c(e^j)\nabla^S_{e_j}
+$$
+
+と書ける。符号と $i$ の配置はClifford作用の規約に依存する。
+
+閉多様体上で $D$ は適切な初期定義域からessentially self-adjointで、楕円性によりcompact resolventを持つ。したがって
+
+$$
+\boxed{
+\bigl(C^\infty(M),L^2(M,S),D\bigr)
+}
+$$
+
+はスペクトル三つ組である。
+
+この三要素の役割は次のとおりである。
+
+| 要素 | 古典側の意味 | 単独では足りない理由 |
+|---|---|---|
+| $\mathcal A$ | 滑らかな座標関数 | 距離尺度を持たない |
+| $H$ | spinorと代数が作用する場 | どの方向が微分かを決めない |
+| $D$ | 一階微分、計量、高周波 | 代数との交換子を見ないと関数の微分にならない |
+
+## 10.7 $[D,f]$ はなぜ微分なのか
+
+$f\in C^\infty(M)$、滑らかなspinor $\psi$ に対し計算する。接続のLeibniz則
+
+$$
+\nabla^S_X(f\psi)=X(f)\psi+f\nabla^S_X\psi
+$$
+
+を使うと
+
+$$
+\begin{aligned}
+D(f\psi)
+&=-i\sum_j c(e^j)
+\bigl(e_j(f)\psi+f\nabla^S_{e_j}\psi\bigr)\\
+&=-i\,c(df)\psi+fD\psi.
+\end{aligned}
+$$
+
+したがって
+
+$$
+\boxed{
+[D,f]=-i\,c(df)
+}
+$$
+
+である。別のDirac作用素規約では $-i$ が消えるが、作用素normには影響しない。
+
+Clifford関係から、実1-form $\alpha$ に対して点ごとの作用素normは
+
+$$
+\|c(\alpha_x)\|=|\alpha_x|_g
+$$
+
+となる。ゆえに乗算作用素として
+
+$$
+\boxed{
+\|[D,f]\|
+=\sup_{x\in M}|df_x|_g
+=\|\nabla f\|_\infty
+}
+$$
+
+である。
+
+この式が決定的である。交換子は単に微分らしいものではなく、関数のLipschitz定数を正確に測る。
+
+また交換子は
+
+$$
+[D,fg]=[D,f]g+f[D,g]
+$$
+
+を満たす。これは $d(fg)=df\,g+f\,dg$ の作用素版である。
+
+## 10.8 Connes距離公式
+
+点 $x\in M$ は評価状態
+
+$$
+\operatorname{ev}_x(f)=f(x)
+$$
+
+を定める。Dirac作用素から
+
+$$
+d_D(x,y)
+=
+\sup\left\{
+|f(x)-f(y)|:
+f\in C^\infty(M),\ \|[D,f]\|\le1
+\right\}
+$$
+
+を作る。
+
+**定理（Connes距離公式）.** 閉Riemannian spin多様体の標準スペクトル三つ組について
+
+$$
+\boxed{
+d_D(x,y)=d_g(x,y)
+}
+$$
+
+である。右辺はRiemannian測地距離である。
+
+### 10.8.1 上からの評価
+
+$\|[D,f]\|\le1$ とする。前節から
+
+$$
+|\nabla f|\le1
+$$
+
+である。$x$ から $y$ へ至る区分的滑らかな曲線 $\gamma:[0,1]\to M$ に沿って
+
+$$
+\begin{aligned}
+|f(x)-f(y)|
+&=
+\left|
+\int_0^1\frac{d}{dt}f(\gamma(t))\,dt
+\right|\\
+&=
+\left|
+\int_0^1df_{\gamma(t)}(\dot\gamma(t))\,dt
+\right|\\
+&\le
+\int_0^1|\nabla f(\gamma(t))|\,|\dot\gamma(t)|\,dt\\
+&\le
+\operatorname{Length}(\gamma).
+\end{aligned}
+$$
+
+すべての $\gamma$ について下限を取ると
+
+$$
+|f(x)-f(y)|\le d_g(x,y).
+$$
+
+さらにすべての許容 $f$ について上限を取って
+
+$$
+d_D(x,y)\le d_g(x,y)
+$$
+
+を得る。
+
+### 10.8.2 下からの評価
+
+点 $y$ を固定し、
+
+$$
+h_y(z)=d_g(z,y)
+$$
+
+と置く。三角不等式から
+
+$$
+|h_y(z)-h_y(w)|\le d_g(z,w)
+$$
+
+なので $h_y$ は1-Lipschitzである。また
+
+$$
+|h_y(x)-h_y(y)|=d_g(x,y).
+$$
+
+ただし $h_y$ はcut locusや $y$ で滑らかとは限らないため、そのまま $C^\infty(M)$ の元としてsupremumへ入れられない。ここを「明らか」で済ませてはいけない。
+
+閉Riemannian多様体では、任意のLipschitz関数 $h$ と任意の $\varepsilon>0$ に対し、滑らかな $h_\varepsilon$ を選んで
+
+$$
+\|h_\varepsilon-h\|_\infty<\varepsilon,
+\qquad
+\|\nabla h_\varepsilon\|_\infty\le
+\operatorname{Lip}(h)+\varepsilon
+$$
+
+とできる。これは局所mollifierと1の分割を、勾配評価を保つように組み合わせるsmooth approximation theoremである。
+
+$$
+f_\varepsilon=
+\frac{h_{y,\varepsilon}}{1+\varepsilon}
+$$
+
+と置けば
+
+$$
+\|[D,f_\varepsilon]\|
+=\|\nabla f_\varepsilon\|_\infty\le1.
+$$
+
+一方、
+
+$$
+\begin{aligned}
+|f_\varepsilon(x)-f_\varepsilon(y)|
+&\ge
+\frac{
+|h_y(x)-h_y(y)|-2\varepsilon
+}{1+\varepsilon}\\
+&=
+\frac{d_g(x,y)-2\varepsilon}{1+\varepsilon}.
+\end{aligned}
+$$
+
+したがって
+
+$$
+d_D(x,y)\ge
+\frac{d_g(x,y)-2\varepsilon}{1+\varepsilon}.
+$$
+
+$\varepsilon\downarrow0$ として
+
+$$
+d_D(x,y)\ge d_g(x,y).
+$$
+
+上からの評価と合わせて等号を得る。$\square$
+
+証明の本質は次の双対性である。
+
+$$
+\boxed{
+d_g(x,y)
+=
+\sup\{
+|f(x)-f(y)|:\operatorname{Lip}(f)\le1
+\}
+}
+$$
+
+曲線の長さのinfimumで定義した距離が、関数の変化量のsupremumとして書き直された。右辺だけが、点をstateに、勾配をcommutatorに置き換えて非可換化できる。
+
+## 10.9 state space上の距離
+
+$A=\overline{\mathcal A}^{\|\cdot\|}$ のstate $\varphi,\psi$ に対して
+
+$$
+d_D(\varphi,\psi)
+=
+\sup\left\{
+|\varphi(a)-\psi(a)|:
+a=a^*\in\mathcal A,\quad
+L_D(a)\le1
+\right\},
+\qquad
+L_D(a)=\|[D,a]\|
+$$
+
+と定める。
+
+可換の場合、stateは確率測度に対応する。標準Riemannian三つ組では、この距離は確率測度間のKantorovich–Rubinstein $W_1$ 距離へ拡張され、点mass $\delta_x,\delta_y$ に制限すると測地距離になる。
+
+### 10.9.1 一般にはextended pseudo-metricである
+
+上のsupremumが自動的に良いcompact metricを与えるとは限らない。
+
+- 許容元上でstateを分離できなければ、異なるstate間の距離が0になり得る。
+- $L_D(a)=0$ なのに $\varphi(a)\ne\psi(a)$ となる元があれば、$ta$ を任意に拡大できるため距離は $\infty$ になる。
+- $L_D(a)\le1$ の集合が定数を除いてnorm有界でなければ、距離が有限にならないことがある。
+- 距離が有限でも、state spaceのweak-* topologyを誘導するとは限らない。
+
+したがって一般の半ノルムから得る $d_D$ は**extended pseudo-metric**、すなわち値 $\infty$ を許し、場合によって点を分離しない距離として扱うのが安全である。
+
+忠実表現を持つ通常の単位的スペクトル三つ組で $\mathcal A$ が $A$ にnorm denseなら、異なるstateは $\mathcal A$ 上ですでに異なる。その場合、有限値とは限らないが、0距離による同一視の問題は消える。
+
+compact quantum metric spaceの理論では、概略
+
+$$
+\{a=a^*:L_D(a)\le1,\ \varphi_0(a)=0\}
+$$
+
+がnorm precompactになることが、$d_D$ がstate spaceのweak-* topologyを与えるための中心条件になる。これは最小公理からは従わない。
+
+### 10.9.2 disconnected spaceで無限距離が出る理由
+
+$M=M_1\sqcup M_2$ が非連結で、$D$ が各成分のDirac作用素の直和だとする。成分ごとに異なる定数を取る関数 $f$ は
+
+$$
+[D,f]=0
+$$
+
+だが、$x\in M_1$、$y\in M_2$ なら $f(x)\ne f(y)$ とできる。$tf$ を使えば
+
+$$
+d_D(x,y)=\infty.
+$$
+
+Riemannian距離でも異なる連結成分を曲線で結べないため、extended distanceを $\infty$ とするのは自然である。
+
+## 10.10 二点空間：$D$ が距離尺度を作る
+
+$$
+A=\mathbb C\oplus\mathbb C,\qquad H=\mathbb C^2
+$$
+
+とし、$(a,b)\in A$ を対角行列
+
+$$
+\begin{pmatrix}a&0\\0&b\end{pmatrix}
+$$
+
+で表現する。$m\ne0$ に対し
+
+$$
+D=
+\begin{pmatrix}
+0&m\\
+\overline m&0
+\end{pmatrix}
+$$
+
+と置く。
+
+計算すると
+
+$$
+[D,(a,b)]
+=
+\begin{pmatrix}
+0&m(b-a)\\
+\overline m(a-b)&0
+\end{pmatrix},
+$$
+
+したがって
+
+$$
+L_D(a,b)=|m|\,|a-b|.
+$$
+
+二つの評価状態 $\delta_1,\delta_2$ の距離は
+
+$$
+\begin{aligned}
+d_D(\delta_1,\delta_2)
+&=
+\sup\{|a-b|:|m||a-b|\le1\}\\
+&=\frac1{|m|}.
+\end{aligned}
+$$
+
+代数 $A$ とHilbert空間 $H$ を固定しても、$m$ を変えると距離が変わる。$D$ が位相には含まれないmetric scaleを担うことが、有限次元ですでに見える。
+
+$m=0$ なら $L_D=0$ で、二点間距離は $\infty$ になる。off-diagonal成分が二点を幾何学的に結んでいる。
+
+## 10.11 $D$ のスペクトルは次元を測る
+
+閉 $n$-次元Riemannian spin多様体のDirac作用素の固有値を絶対値順に並べる。固有値計数関数
+
+$$
+N_D(\Lambda)
+=
+\#\{\text{固有値 }\lambda\text{ of }|D|: \lambda\le\Lambda\}
+$$
+
+はWeyl則
+
+$$
+N_D(\Lambda)\sim C_M\Lambda^n
+\qquad(\Lambda\to\infty)
+$$
+
+を満たす。指数 $n$ が多様体の次元である。
+
+この増大度はtrace class条件へ翻訳できる。
+
+$$
+\operatorname{Tr}(1+D^2)^{-s/2}<\infty
+\quad\Longleftrightarrow\quad
+s>n
+$$
+
+である。そこで一般のスペクトル三つ組のmetric dimension候補を
+
+$$
+\dim_{\mathrm{spec}}
+=
+\inf\left\{
+s>0:
+\operatorname{Tr}(1+D^2)^{-s/2}<\infty
+\right\}
+$$
+
+と定める。
+
+注意すべき点がある。
+
+- infimumが整数とは限らない。
+- 臨界指数で単純なWeyl則があるとは限らない。
+- 固有値増大が不規則なら、一つの数だけで次元を記述できない。
+- dimension spectrumは、単なるmetric dimensionでなく、$\operatorname{Tr}(a|D|^{-s})$ 等のmeromorphic continuationの極の集合である。
+
+したがって「$D$ の固有値を数えれば常に通常の次元が出る」のではない。古典的Dirac作用素でそれが正しく、一般化ではスペクトル増大度を次元の定義として採用する。
+
+## 10.12 heat trace と短時間幾何
+
+同じ情報はheat operator
+
+$$
+e^{-tD^2}
+$$
+
+からも読める。閉多様体では $t\downarrow0$ のとき
+
+$$
+\operatorname{Tr}(ae^{-tD^2})
+\sim
+\sum_{k\ge0} t^{(k-n)/2}A_k(a,D^2).
+$$
+
+先頭係数は、規約依存の普遍定数 $c_n$ を用いて
+
+$$
+A_0(a,D^2)
+=c_n\int_M a(x)\,d\operatorname{vol}_g(x)
+$$
+
+となる。後続係数にはscalar curvatureやbundle curvatureが現れる。
+
+したがって $D$ の大きな固有値は単に次元だけでなく、局所的な曲率不変量を短時間漸近展開に記録する。spectral actionの発想も、このheat kernel / zeta functionの情報を利用する。
+
+## 10.13 通常のtraceが発散するところから積分を作る
+
+$n$-次元閉多様体では、臨界次数の作用素
+
+$$
+|D|^{-n}
+$$
+
+は一般にtrace classではない。Weyl則から特異値 $\mu_k$ は概略
+
+$$
+\mu_k(|D|^{-n})\sim \frac{C}{k}
+$$
+
+となり、
+
+$$
+\sum_{k=1}^\infty\mu_k
+$$
+
+は対数的に発散する。
+
+しかし平均
+
+$$
+\frac1{\log N}
+\sum_{k=1}^{N}\mu_k
+$$
+
+は有限極限を持つ場合がある。この対数発散の係数を取り出すのがDixmier trace $\operatorname{Tr}_\omega$ である。
+
+標準Dirac三つ組では、適切な定数 $c_n$ により
+
+$$
+\boxed{
+\int_M f\,d\operatorname{vol}_g
+=
+c_n\operatorname{Tr}_\omega
+\bigl(f|D|^{-n}\bigr)
+}
+$$
+
+となる。$D$ に核がある場合は $|D|^{-n}$ を核の直交補上で定義するか、$(1+D^2)^{-n/2}$ を使って低周波の差を除く。
+
+この等式には注意が必要である。
+
+- 一般のweak trace-class作用素ではDixmier traceがgeneralized limit $\omega$ に依存し得る。
+- 古典的擬微分作用素 $f|D|^{-n}$ はmeasurableで、値が $\omega$ に依存しない。
+- 通常のHilbert空間traceを単純に「正則化」しただけでなく、order $-n$ のprincipal symbolのresidueを測っている。
+
+同じ積分はzeta residue
+
+$$
+\operatorname*{Res}_{s=n}
+\operatorname{Tr}\bigl(f|D|^{-s}\bigr)
+$$
+
+またはWodzicki residueからも、定数倍を除いて得られる。
+
+非可換代数では $f$ を $a\in\mathcal A$ に置き換え、
+
+$$
+a\longmapsto
+\operatorname{Tr}_\omega(a|D|^{-n})
+$$
+
+を非可換積分として使う。ただしpositivity、trace性、measurabilityは三つ組の正則性・summabilityに依存し、最小公理だけでは保証されない。
+
+## 10.14 $D$ からFredholm moduleへ
+
+自己共役非有界作用素 $D$ のbounded transformを
+
+$$
+F=D(1+D^2)^{-1/2}
+$$
+
+とする。関数
+
+$$
+x\longmapsto \frac{x}{\sqrt{1+x^2}}
+$$
+
+は有界なので $F\in B(H)$ である。また
+
+$$
+1-F^2=(1+D^2)^{-1}
+$$
+
+はcompactである。
+
+適切なfunctional calculusの評価により、$[D,a]$ が有界でresolventがcompactなら
+
+$$
+[F,a]\in K(H).
+$$
+
+したがって $F$ は第9章のFredholm moduleを定める。偶三つ組ならgradingに関して
+
+$$
+F=
+\begin{pmatrix}
+0&F^-\\
+F^+&0
+\end{pmatrix}
+$$
+
+と書ける。射影 $p\in M_N(\mathcal A)$ に対して
+
+$$
+pF^+p:pH^+\otimes\mathbb C^N
+\longrightarrow
+pH^-\otimes\mathbb C^N
+$$
+
+はFredholmで、
+
+$$
+\langle[p],[D]\rangle
+=\operatorname{ind}(pF^+p)
+$$
+
+がK理論とK-homologyのindex pairingになる。
+
+十分なsummabilityとregularityのもとで、このK-homology類のChern characterは巡回コホモロジー類として表され、第9章のpairingと同じ指数を与える。
+
+$$
+\boxed{
+K\text{-theory}
+\ \times\
+\text{spectral triple / cyclic cocycle}
+\ \longrightarrow\
+\operatorname{index}\in\mathbb Z
+}
+$$
+
+これが、第7章から第10章を貫く一本の線である。
+
+## 10.15 Dirac作用素は幾何をどこまで符号化するか
+
+閉spin多様体の標準三つ組で、次を回収できる。
+
+| 幾何情報 | 作用素代数的データ | 必要な条件 |
+|---|---|---|
+| topology | $C^*$-completion $C(M)$ | 可換Gelfand双対 |
+| smooth structure | $\mathcal A=C^\infty(M)$ | regular smooth subalgebra |
+| cotangent norm | $L_D(f)=\|[D,f]\|$ | Dirac型一階作用素 |
+| geodesic distance | state間のsupremum公式 | connectedness / smooth近似 |
+| dimension | eigenvalue counting / summability | Weyl型漸近 |
+| volume integral | Dixmier trace / zeta residue | measurability、regularity |
+| orientation | Hochschild cycleの表現 | orientability axiom |
+| fundamental K-homology class | bounded transform $F$ | compact resolvent |
+| index pairing | $pF^+p$ 等のFredholm指数 | parity、summability |
+| spin / real structure | $J,\Gamma$ | KO-dimensionの符号規則 |
+
+表の各行は、最小公理から自動的に従うわけではない。最小公理はcompactnessと一階微分可能性を与え、通常の多様体を特徴づけるには追加公理が必要である。
+
+## 10.16 reconstruction theoremが主張すること [Deep Dive]
+
+Connesの可換reconstruction theoremは、概略次を述べる。
+
+> 単位的・可換なスペクトル三つ組が、有限次元性、regularity、finiteness、absolute continuity、first-order、orientability、Poincaré dualityなどの適切な公理を満たすなら、その三つ組はコンパクトな滑らかなspin$^c$多様体の標準的な幾何から生じる。
+
+これは
+
+> 可換な代数と任意の自己共役作用素を三つ並べれば多様体になる
+
+という主張ではない。追加公理の役割は次のとおりである。
+
+- algebraのspectrumを位相空間に戻す。
+- summabilityから有限次元性を得る。
+- regularityから滑らかな座標計算を作る。
+- finitenessから有限rank vector bundleを得る。
+- orientabilityから最高次微分形式に当たるcycleを得る。
+- first-order conditionから $D$ が一階であることを保証する。
+- Poincaré dualityからfundamental classの非退化性を得る。
+
+完全証明は本書の範囲を超える。[Nontrivial theorem] として扱い、使用時には採用する正確なversionと仮定を明記する。[Connes NCG; GBVF]
+
+## 10.17 例：円周の三つ組を最後まで計算する
+
+$$
+\mathcal A=C^\infty(S^1),\qquad
+H=L^2(S^1),\qquad
+D=-i\frac{d}{dt}
+$$
+
+とする。周期 $2\pi$ の座標を使う。
+
+### スペクトル
+
+$$
+e_n(t)=e^{int},\qquad De_n=ne_n,\qquad n\in\mathbb Z.
+$$
+
+$(1+D^2)^{-1/2}$ の固有値は $(1+n^2)^{-1/2}\to0$ なのでcompactである。
+
+### 交換子
+
+$$
+[D,f]=-if',
+\qquad
+\|[D,f]\|=\|f'\|_\infty.
+$$
+
+### 次元
+
+$$
+N_D(\Lambda)
+=\#\{n\in\mathbb Z:|n|\le\Lambda\}
+\sim2\Lambda.
+$$
+
+したがってspectral dimensionは1である。
+
+### 距離
+
+$$
+d_D(x,y)
+=\sup\{
+|f(x)-f(y)|:\|f'\|_\infty\le1
+\}
+$$
+
+は短い円弧の長さ
+
+$$
+\min\{|x-y|,2\pi-|x-y|\}
+$$
+
+に等しい。
+
+### 積分
+
+$|D|^{-1}$ の非零特異値は各 $n\ge1$ について $1/n$ が二回現れる。部分和は
+
+$$
+2\sum_{n=1}^{N}\frac1n
+\sim2\log N.
+$$
+
+したがってDixmier traceは通常のtraceが持つ対数発散の係数を抽出し、定数倍を除いて円周積分を与える。
+
+### $K_1$ pairing
+
+座標unitary $u(t)=e^{it}$ に対し、第9章のcocycle
+
+$$
+\varphi(f_0,f_1)
+=\frac1{2\pi i}\int f_0\,df_1
+$$
+
+とのpairingは1である。Hardy projectionを介したToeplitz作用素では、符号規約によりindexは $-1$ となる。
+
+同じ $D$ が微分、距離、次元、積分、index pairingを同時に組織している。
+
+## 10.18 例：非可換トーラスのflat spectral triple
+
+第9章のsmooth noncommutative torus $A_\theta^\infty$ とcanonical trace $\tau$ を用いる。GNS Hilbert空間を
+
+$$
+H_0=L^2(A_\theta,\tau)
+$$
+
+とし、spinor成分を加えて
+
+$$
+H=H_0\otimes\mathbb C^2
+$$
+
+とする。二つの導分 $\delta_1,\delta_2$ とPauli行列 $\sigma_1,\sigma_2$ を使い、
+
+$$
+D=-i(\delta_1\otimes\sigma_1+\delta_2\otimes\sigma_2)
+$$
+
+と置く。
+
+$a\in A_\theta^\infty$ に対して
+
+$$
+[D,a]
+=-i\bigl(
+\delta_1(a)\otimes\sigma_1
++\delta_2(a)\otimes\sigma_2
+\bigr)
+$$
+
+は有界である。$D$ のスペクトル増大は通常の二次元flat torusと同じ次数を持つため、spectral dimensionは2になる。
+
+ここでは点集合上の偏微分 $\partial/\partial x_j$ を使っていない。導分 $\delta_j$ が方向微分を、trace $\tau$ が面積積分を、$D$ がflat metricを担う。第9章の巡回2-cocycleはこの三つ組のChern characterと結びつく。
+
+ただし $A_\theta$ という $C^*$-completionだけから、このflat metricが一意に決まるわけではない。異なる $D$ を選べば異なるmetric dataになる。非可換空間でも、topologyに当たる代数とmetricに当たるDirac作用素は別のデータである。
+
+## 10.19 よくある誤解
+
+### $D$ はどんな自己共役作用素でもよい
+
+よくない。compact resolventとbounded commutatorが最低限必要である。幾何を復元するにはさらにregularity、summability、first-order、orientability等が必要になる。
+
+### $[D,a]$ が有界なら $D$ も有界である
+
+ならない。円周の $D=-i\,d/dt$ は非有界だが、滑らかな $f$ との交換子は有界な乗算作用素である。交換子は $D$ の一階部分だけを抽出する。
+
+### 距離公式は常に有限な距離を与える
+
+与えない。一般には $\infty$ を取り、弱-* topologyと一致しないこともある。最小公理だけではcompact quantum metric spaceにならない。
+
+### spectral dimensionは必ず整数である
+
+一般の三つ組では非整数や複数のscaling exponentが現れ得る。整数 $n$ を回収するのは滑らかな $n$-多様体のDirac三つ組の特別な性質である。
+
+### Dixmier traceはいつも通常の積分である
+
+一般には違う。作用素がweak trace classに入り、measurableであることが必要で、正規化も幾何と次元に依存する。
+
+### 非可換代数には隠れた普通の多様体がある
+
+一般にはない。spectral tripleは、通常の多様体で関数・spinor・Dirac作用素が果たす関係を、公理を保ったまま非可換代数へ移したデータである。通常の点集合へ戻せることは要件ではない。
+
+## 10.20 章末の確認
+
+1. スペクトル三つ組の最小公理を四項目で述べ、grading、real structure、orientabilityが追加公理である理由を説明せよ。
+2. 円周で $[ -i\,d/dt,f]=-if'$ を定義域に注意して計算せよ。
+3. 閉Riemannian spin多様体で $\|[D,f]\|=\|\nabla f\|_\infty$ となる理由をClifford関係から説明せよ。
+4. Connes距離公式の上からの評価で任意の曲線を使う箇所、下からの評価で距離関数のsmooth approximationを使う箇所を分けて再現せよ。
+5. $L_D(a)=0$ だが二つのstateが $a$ 上で異なるとき、距離が $\infty$ になることを示せ。
+6. 二点空間の例で $m$ を2倍にすると距離がどう変わるか計算せよ。
+7. Weyl則から $(1+D^2)^{-s/2}$ が $s>n$ でtrace classになる理由を級数比較で示せ。
+8. $|D|^{-n}$ に通常のtraceでなくDixmier traceを使う理由を、特異値の $1/k$ 型減衰から説明せよ。
+9. bounded transform $F=D(1+D^2)^{-1/2}$ がFredholm moduleを与える論理を述べ、$K_0$ pairingのFredholm作用素を書け。
+10. noncommutative torusで代数 $A_\theta^\infty$、導分 $\delta_1,\delta_2$、trace $\tau$、Dirac作用素 $D$ がそれぞれ担う幾何情報を説明せよ。
+
+## 10.21 本章の到達点
+
+- $C^*$-環が位相を記憶しても距離を決めない理由を説明できる。
+- スペクトル三つ組の最小公理と、多様体再構成に必要な追加公理を区別できる。
+- 可換spin多様体で $[D,f]=-ic(df)$ を導出できる。
+- Connes距離公式の二方向の証明を、非滑らかな距離関数の処理を含めて追える。
+- 一般のstate space上ではextended pseudo-metricであり、有限性やweak-* topologyとの一致が追加条件であると説明できる。
+- eigenvalue growth、heat trace、zeta residue、Dixmier traceが次元と体積をどう符号化するか説明できる。
+- bounded transformを介してspectral triple、K理論、巡回コホモロジー、Fredholm indexを一続きにできる。
+
+## 10.22 非可換幾何を比喩でなく言い直す
+
+通常の閉spin多様体では、
+
+$$
+\bigl(C^\infty(M),L^2(M,S),D\bigr)
+$$
+
+から次を回収できた。
+
+- $C^*$-completionからtopology。
+- smooth subalgebraから滑らかさ。
+- commutatorから微分とLipschitz半ノルム。
+- state間のsupremumから距離。
+- eigenvalue growthから次元。
+- spectral residueから積分。
+- Hochschild cycleからorientation。
+- bounded transformとK理論のpairingからindex。
+
+非可換幾何とは、この翻訳の右辺が可換性を必要としないことを利用し、非可換代数 $\mathcal A$ に対して同じ型のデータと公理を研究する理論である。
+
+すべての非可換代数に唯一の幾何が対応するわけではない。同じ代数に異なる $D$ を置けば異なるmetric geometryが生じる。すべてのスペクトル三つ組が通常の多様体と同じ正則性を持つわけでもない。
+
+それでもこれは単なる呼び換えではない。距離はsupremum公式として計算され、次元は固有値漸近として測られ、積分はspectral traceとして評価され、K理論類とのpairingはFredholm指数という整数になる。通常の幾何で成り立つ計算を、点を前提にせず実行できることが、「非可換幾何」という語の数学的内容である。

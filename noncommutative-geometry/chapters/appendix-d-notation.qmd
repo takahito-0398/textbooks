@@ -1,0 +1,24 @@
+---
+title: "付録D　記号と用語"
+sidebar: noncommutative-geometry
+format:
+  html:
+    toc: true
+---
+| 記号 | 意味 |
+|---|---|
+| $B(H)$ | Hilbert空間 $H$ 上の有界作用素 |
+| $K(H)$ | コンパクト作用素 |
+| $Q(H)$ | Calkin環 $B(H)/K(H)$ |
+| $\sigma_A(a)$ | $A$ の元 $a$ のスペクトル |
+| $\widehat A$ | 可換 $C^*$-環のcharacter空間 |
+| $A^+$ | 非単位的環 $A$ の単位化 |
+| $M'$, $M''$ | 可換子、二重可換子 |
+| $A_+$ | 正値元の錐 |
+| $V(A)$ | 安定射影同値類の可換モノイド |
+| $K_0(A),K_1(A)$ | 作用素環K群 |
+| $HC^*(A),HP^*(A)$ | 巡回、周期巡回コホモロジー |
+| $(A,H,D)$ | スペクトル三つ組 |
+| $[D,a]$ | $Da-aD$、定義域上で定め有界延長を要求 |
+
+内積は第1変数で線形とする。指数の符号は $\operatorname{ind}S=-1$ とする。Clifford作用の符号は $c(\alpha)^*c(\alpha)=\|\alpha\|^2$ となる規約を採用する。

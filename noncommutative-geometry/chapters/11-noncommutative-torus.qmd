@@ -1,0 +1,454 @@
+---
+title: "第11章　非可換トーラス：回転から生まれる座標環"
+sidebar: noncommutative-geometry
+format:
+  html:
+    toc: true
+---
+> **Core** — 円周の回転という具体的な力学系から、非可換トーラス、交叉積、群 $C^*$-環、trace、導分、K群を組み立てる。
+
+## 11.1 なぜ「トーラス」を非可換にするのか
+
+通常の2次元トーラスは
+
+$$
+\mathbb T^2=\mathbb T\times\mathbb T,\qquad
+\mathbb T=\{z\in\mathbb C:|z|=1\}
+$$
+
+である。二つの座標関数
+
+$$
+u(z,w)=z,\qquad v(z,w)=w
+$$
+
+は unitary であり、可換する。
+
+$$
+uv=vu.
+$$
+
+Stone--Weierstrass定理により、$u,v$ とその共役から作る三角多項式は $C(\mathbb T^2)$ に一様稠密である。したがって $C(\mathbb T^2)$ は「二つの可換する unitary が生成する普遍的 $C^*$-環」として記述できる。
+
+ここで可換関係だけを位相因子つきに変形する。
+
+$$
+UV=e^{2\pi i\theta}VU,\qquad \theta\in\mathbb R.
+$$
+
+この関係を満たす二つの unitary が生成する普遍的 $C^*$-環を $A_\theta$ と書く。本章の規約ではこれを rotation algebra、または2次元非可換トーラスと呼ぶ。
+
+この定義の意味は、単に積を「少し非可換」にしたというだけではない。関係式は円周上の回転、磁束をもつ並進、変形量子化という三つの像を同時に持つ。本章では最も作用素環的な、円周の回転から出発する。
+
+## 11.2 円周の回転から交換関係を導く
+
+$\mathbb Z$ が円周に角度 $2\pi\theta$ の回転で作用するとする。関数側の自己同型を
+
+$$
+\alpha(f)(z)=f(e^{2\pi i\theta}z)
+$$
+
+と定める。点への作用と関数への作用は反変なので、文献によって $\theta$ の符号が逆になる。本章は上の式を規約とする。
+
+この作用を実装する unitary $U$ を形式的に導入し、
+
+$$
+UfU^*=\alpha(f)\qquad(f\in C(\mathbb T))
+$$
+
+を要求する。座標関数 $V(z)=z$ に適用すると
+
+$$
+\alpha(V)(z)=e^{2\pi i\theta}z=e^{2\pi i\theta}V(z)
+$$
+
+だから
+
+$$
+UVU^*=e^{2\pi i\theta}V,
+\qquad
+UV=e^{2\pi i\theta}VU
+$$
+
+を得る。したがって
+
+$$
+A_\theta\cong C(\mathbb T)\rtimes_\alpha\mathbb Z.
+$$
+
+右辺は交叉積である。交叉積は、関数 $f$ だけでなく、その空間を動かす対称性 $n\in\mathbb Z$ と、両者の共変関係も一つの代数へ格納する。
+
+**[証明の概略]** 交叉積の普遍性により、$C(\mathbb T)$ の表現と $\alpha$ を実装する unitary の共変表現は、$C(\mathbb T)\rtimes_\alpha\mathbb Z$ の表現と一対一に対応する。一方、$A_\theta$ の表現は関係式を満たす unitary $U,V$ の組と一対一に対応する。$V$ の連続汎関数計算が $C(\mathbb T)$ の表現を与えるので、二つの普遍性は同じ表現問題を記述する。[Williams Crossed; Davidson]
+
+## 11.3 $\theta=0$：通常のトーラスへ戻る
+
+$\theta=0$ なら
+
+$$
+UV=VU.
+$$
+
+二つの可換 unitary の joint functional calculus により
+
+$$
+A_0\cong C(\mathbb T^2).
+$$
+
+これは「非可換トーラス」という名前の最初の根拠である。$A_\theta$ は $C(\mathbb T^2)$ の関係式を連続パラメータ $\theta$ で変形している。
+
+ただし、$\theta\to0$ と書いただけで $C^*$-norm の意味で $A_\theta$ の元が自動的に $C(\mathbb T^2)$ の元へ収束するわけではない。連続体としての変形や strict deformation quantization を述べるには、連続体構造と共通の滑らかな部分空間を別途構成する必要がある。[Rieffel 1981; Connes NCG]
+
+また
+
+$$
+e^{2\pi i(\theta+n)}=e^{2\pi i\theta}\qquad(n\in\mathbb Z)
+$$
+
+なので $A_{\theta+n}=A_\theta$ は同じ普遍関係を持つ。パラメータは少なくとも $\mathbb R/\mathbb Z$ で考えるべきである。
+
+## 11.4 具体的なHilbert空間表現
+
+$\ell^2(\mathbb Z)$ の標準基底を $(e_n)_{n\in\mathbb Z}$ とする。作用素
+
+$$
+Ue_n=e_{n+1},\qquad
+Ve_n=e^{-2\pi i n\theta}e_n
+$$
+
+を定めると、どちらも unitary であり、
+
+$$
+UV e_n=e^{-2\pi i n\theta}e_{n+1},
+$$
+
+$$
+VU e_n=e^{-2\pi i(n+1)\theta}e_{n+1}
+=e^{-2\pi i\theta}UV e_n.
+$$
+
+よって
+
+$$
+UV=e^{2\pi i\theta}VU.
+$$
+
+この表現は、$U$ が格子上のshift、$V$ が位置に依存する位相を掛ける作用素であることを示す。位置と運動量のWeyl交換関係の離散版と見ることもできる。
+
+普遍 $C^*$-norm の存在は、少なくともこの具体表現があるというだけでは終わらない。すべての関係式表現における作用素normの上限を取り、それが有限であることを確認して普遍completionを作る。unitary の語はすべてnorm $1$ なので、この場合は標準的な普遍 $C^*$-環の構成が適用できる。
+
+## 11.5 Fourier級数と滑らかな非可換トーラス
+
+形式的には $A_\theta$ の元を
+
+$$
+a\sim\sum_{m,n\in\mathbb Z}a_{m,n}U^mV^n
+$$
+
+と展開したくなる。有限和については、交換関係から
+
+$$
+(U^mV^n)(U^pV^q)
+=e^{-2\pi i\theta np}U^{m+p}V^{n+q}
+$$
+
+となる。本章の $UV=e^{2\pi i\theta}VU$ という規約から $VU=e^{-2\pi i\theta}UV$ が出るため、この符号になる。
+
+係数が急減少する級数全体
+
+$$
+\mathcal A_\theta=
+\left\{
+\sum_{m,n}a_{m,n}U^mV^n:
+(a_{m,n})\text{ は }\mathbb Z^2\text{ 上で急減少}
+\right\}
+$$
+
+は稠密な Fréchet *-部分代数をなし、smooth noncommutative torus と呼ばれる。微分、巡回コホモロジー、スペクトル三つ組を扱うのは通常 $C^*$-completion $A_\theta$ 全体ではなく $\mathcal A_\theta$ である。
+第9・10章で用いた記法 $A_\theta^\infty$ はこの $\mathcal A_\theta$ と同じ代数を指す。
+
+ここは重要な区別である。
+
+- $A_\theta$: norm と連続性を担う $C^*$-環。
+- $\mathcal A_\theta$: 導分を何度作用させても閉じている「滑らかな関数」の代数。
+
+可換な場合の $C(\mathbb T^2)$ と $C^\infty(\mathbb T^2)$ の違いが、そのまま非可換側にも残っている。
+
+## 11.6 標準trace
+
+有限Fourier和に対して
+
+$$
+\tau\left(\sum_{m,n}a_{m,n}U^mV^n\right)=a_{0,0}
+$$
+
+と置く。これは積の定数項を取り出す操作である。
+
+**命題.** $\tau$ は $A_\theta$ 上の faithful tracial state に延長する。さらに $\theta\notin\mathbb Q$ なら、$A_\theta$ の tracial state は $\tau$ だけである。
+
+**[証明の概略]** 交叉積表示で、標準条件付き期待値
+
+$$
+E:C(\mathbb T)\rtimes_\alpha\mathbb Z\to C(\mathbb T)
+$$
+
+は $\sum_n f_nU^n$ の $n=0$ 成分を取る。これと円周上のHaar積分を合成すると $\tau$ を得る。群 $\mathbb Z$ は amenable なので reduced と full の交叉積が一致し、標準期待値の faithful 性から $\tau$ の faithful 性が従う。irrational rotation は一意エルゴード的であり、trace を $C(\mathbb T)$ に制限すると $\alpha$-不変確率測度になる。さらに交叉積の係数に対するtrace条件を用いると非零次数成分は消え、一意性が従う。詳細は Rieffel (1981) または Davidson を参照する。
+
+$\theta\in\mathbb Q$ では一意性は失われる。したがって「非可換トーラスには常に一意のtraceがある」と書いてはいけない。
+
+## 11.7 二つの方向の微分
+
+$\mathbb T^2$ は $A_\theta$ に gauge action
+
+$$
+\beta_{(s,t)}(U)=e^{2\pi is}U,\qquad
+\beta_{(s,t)}(V)=e^{2\pi it}V
+$$
+
+で作用する。この作用について smooth な元がちょうど $\mathcal A_\theta$ である。二つの1パラメータ部分群を微分して
+
+$$
+\delta_1(U)=2\pi iU,\qquad \delta_1(V)=0,
+$$
+
+$$
+\delta_2(U)=0,\qquad \delta_2(V)=2\pi iV
+$$
+
+を得る。一般のFourier級数では
+
+$$
+\delta_1(a)=2\pi i\sum_{m,n}m\,a_{m,n}U^mV^n,
+\qquad
+\delta_2(a)=2\pi i\sum_{m,n}n\,a_{m,n}U^mV^n.
+$$
+
+これらは Leibniz 則
+
+$$
+\delta_j(ab)=\delta_j(a)b+a\delta_j(b)
+$$
+
+を満たす *-derivation である。可換トーラス上の $\partial/\partial x$、$\partial/\partial y$ に対応し、点を使わずに「二つの接方向」を復元している。
+
+$A_\theta$ 全体では $\delta_j$ は bounded ではなく、通常 unbounded derivation である。定義域を $\mathcal A_\theta$ などに指定せず「$A_\theta$ 上の有界作用素」と扱ってはいけない。
+
+trace と導分は
+
+$$
+\tau(\delta_j(a))=0
+$$
+
+を満たす。これは通常のトーラスで偏微分の積分が0になることの非可換版である。
+
+## 11.8 Dirac型作用素との接続
+
+Hilbert空間 $L^2(A_\theta,\tau)\otimes\mathbb C^2$ 上で、$\mathcal A_\theta$ を左乗法で表現する。Pauli行列 $\sigma_1,\sigma_2$ を用いて
+
+$$
+D=-i(\delta_1\otimes\sigma_1+\delta_2\otimes\sigma_2)
+$$
+
+と置くと、適切な共通稠密定義域上で
+
+$$
+[D,a]=-i\bigl(\delta_1(a)\otimes\sigma_1+\delta_2(a)\otimes\sigma_2\bigr)
+$$
+
+となる。$a\in\mathcal A_\theta$ なら右辺は bounded である。これは非可換トーラスの標準的な spectral triple の核である。
+
+完全なspectral tripleを主張するには、$D$ の自己共役閉包、compact resolvent、grading、実構造などを確認する必要がある。本節は交換子が微分を実装する仕組みだけを示した。[Connes NCG; GBVF]
+
+## 11.9 irrational rotation algebra
+
+$\theta\notin\mathbb Q$ のとき $A_\theta$ を特に irrational rotation algebra と呼ぶ。円周上の各軌道
+
+$$
+\{e^{2\pi in\theta}z:n\in\mathbb Z\}
+$$
+
+は稠密である。この極端な軌道構造が、次の性質につながる。
+
+**定理.** $\theta\notin\mathbb Q$ なら $A_\theta$ は simple であり、一意の tracial state を持つ。
+
+ここで simple とは閉両側idealが $0$ と $A_\theta$ だけという意味である。一つの稠密軌道しかないという意味ではない。実際には軌道は無数にあり、どれも稠密である。
+
+**[証明レベル]** 一意traceは11.6節で概略を示した。simplicity の完全証明は本章では行わない。自由かつ minimal な $\mathbb Z$-作用の交叉積の simplicity 定理、またはFourier係数を用いる rotation algebra 固有の証明に依存する。[Rieffel 1981; Davidson]
+
+$\theta=p/q\in\mathbb Q$ では $U^q,V^q$ が中心に入り、simple ではない。rational case は $C(\mathbb T^2)$ と強Morita同値な連続trace代数として理解できるが、一般に何の説明もなく $M_q(C(\mathbb T^2))$ と同一視してはいけない。
+
+## 11.10 K群は何を検出するか
+
+非可換関係は $\theta$ に依存するが、K群は
+
+$$
+K_0(A_\theta)\cong\mathbb Z^2,\qquad
+K_1(A_\theta)\cong\mathbb Z^2
+$$
+
+となる。これはすべての $\theta\in\mathbb R$ について成り立つ。
+
+### $K_1$
+
+$[U]$ と $[V]$ が二つの基本方向を与える。可換な $\theta=0$ では、これは $\mathbb T^2$ の二つの円周方向の winding class である。非可換化しても二方向のK類は残る。
+
+### $K_0$
+
+$[1]$ に加えて、irrational $\theta$ では Rieffel projection の類が第二の生成元を与える。標準traceが誘導する準同型
+
+$$
+\tau_*:K_0(A_\theta)\to\mathbb R
+$$
+
+の像は
+
+$$
+\tau_*(K_0(A_\theta))=\mathbb Z+\theta\mathbb Z
+$$
+
+である。生成元の選び方により $(m,n)\mapsto m+n\theta$ の符号は変わり得る。ordered $K_0$ まで述べるなら、irrational $\theta$ に対し正錐がこのtrace値の正性で記述されることを、規約とともに示す必要がある。
+
+**定理（K群の計算）.** $A_\theta=C(\mathbb T)\rtimes_\alpha\mathbb Z$ に Pimsner--Voiculescu 六項完全列を適用すると、$K_0(A_\theta)\cong K_1(A_\theta)\cong\mathbb Z^2$ を得る。
+
+**[証明の概略]** 回転 $\alpha$ は恒等写像にホモトピックなので
+
+$$
+\alpha_*=\mathrm{id}
+$$
+
+が $K_0(C(\mathbb T))\cong\mathbb Z$ と $K_1(C(\mathbb T))\cong\mathbb Z$ の両方で成り立つ。Pimsner--Voiculescu列の $1-\alpha_*$ は0になり、二つの短完全列
+
+$$
+0\to\mathbb Z\to K_i(A_\theta)\to\mathbb Z\to0
+$$
+
+を得る。右端の $\mathbb Z$ は自由群なので列は群として分裂し、$K_i(A_\theta)\cong\mathbb Z^2$ となる。
+
+これは六項完全列を既知として用いる**証明**である。一方、Rieffel projection の具体式、正錐、trace range の完全な導出はここでは行わず、専門文献に依存する。[Pimsner–Voiculescu; Rieffel 1981]
+
+K群だけなら全 $\theta$ で同じである。したがって K理論は強力だが、$A_\theta$ を単独で完全分類しない。順序、単位類、trace pairing などを加えることで $\theta$ の情報が見え始める。
+
+## 11.11 群 $C^*$-環：対称性を作用素にする
+
+離散群 $G$ の有限台複素関数全体 $\mathbb C[G]$ に
+
+$$
+(f*g)(x)=\sum_{y\in G}f(y)g(y^{-1}x),
+\qquad
+f^*(x)=\overline{f(x^{-1})}
+$$
+
+を入れる。これは群の積を線形化した *-代数である。
+
+### full group $C^*$-algebra
+
+すべての unitary representation $\pi:G\to U(H_\pi)$ にわたるnorm
+
+$$
+\|f\|_{\max}=\sup_\pi\|\pi(f)\|
+$$
+
+で $\mathbb C[G]$ をcompletionしたものを $C^*(G)$ と呼ぶ。
+
+### reduced group $C^*$-algebra
+
+$\ell^2(G)$ 上の左正則表現
+
+$$
+\lambda_g\delta_h=\delta_{gh}
+$$
+
+だけから得るnormでcompletionしたものを $C_r^*(G)$ と呼ぶ。常に標準的な全射
+
+$$
+C^*(G)\twoheadrightarrow C_r^*(G)
+$$
+
+がある。
+
+群 $G$ が amenable ならこの写像は同型である。逆も離散群について成り立つ。一方、非amenable群では一般に full と reduced は異なる。この区別は「表現を全部記録するか、正則表現から見える部分に絞るか」の違いである。
+
+たとえば
+
+$$
+C^*(\mathbb Z^2)\cong C(\widehat{\mathbb Z^2})\cong C(\mathbb T^2)
+$$
+
+である。ここでは $\mathbb Z^2$ が可換なので通常の群 $C^*$-環も可換である。非可換トーラス $A_\theta$ は、$\mathbb Z^2$ の通常の群 $C^*$-環ではなく、位相因子を組み込んだ twisted group $C^*$-algebra $C^*(\mathbb Z^2,\sigma_\theta)$ として記述される。このtwistを落とすと $\theta$ の情報も非可換性も消える。
+
+例えば基底元を $W_{m,n}=U^mV^n$ と取れば、
+
+$$
+W_{m,n}W_{p,q}
+=\sigma_\theta((m,n),(p,q))W_{m+p,n+q},
+\qquad
+\sigma_\theta((m,n),(p,q))=e^{-2\pi i\theta np}.
+$$
+
+結合法則は $\sigma_\theta$ の2-cocycle条件に対応する。これにより、関係式とtwisted convolutionの「位相因子」が同じデータであることが明示的に分かる。[Davidson; Connes NCG]
+
+## 11.12 交叉積：空間と運動を同時に記録する
+
+一般に locally compact group $G$ が $C^*$-環 $A$ に自己同型 $\alpha_g$ で作用するとき、交叉積 $A\rtimes_\alpha G$ は $A$ と $G$ の unitary representation を
+
+$$
+u_g a u_g^*=\alpha_g(a)
+$$
+
+で結びつける。
+
+この構成には full と reduced の二版がある。
+
+$$
+A\rtimes_{\alpha,\max}G,\qquad
+A\rtimes_{\alpha,r}G.
+$$
+
+amenable group、特に $G=\mathbb Z$ では両者は一致する。そのため $A_\theta$ では区別が表面化しないが、一般のgroup actionでは省略できない。
+
+交叉積が記録するものは次の三層である。
+
+1. $A$: 元の空間または非可換空間上の関数。
+2. $G$: 対称性、時間発展、軌道。
+3. 共変関係: 関数と運動がどう相互作用するか。
+
+次章では、軌道空間 $X/G$ が位相空間として情報を失う場合にも、$C_0(X)\rtimes G$ が作用の情報を保持することを見る。
+
+## 11.13 この例から何を一般化したのか
+
+非可換トーラスでは、古典幾何の各構造が次のように翻訳された。
+
+| 古典トーラス | 非可換トーラス |
+|---|---|
+| $C(\mathbb T^2)$ | $A_\theta$ |
+| $C^\infty(\mathbb T^2)$ | $\mathcal A_\theta$ |
+| Haar積分 | $\tau$ |
+| 二つの偏微分 | $\delta_1,\delta_2$ |
+| 二つの基本円周 | $[U],[V]\in K_1$ |
+| vector bundle | projection / finitely generated projective module |
+| Dirac作用素 | $\delta_1,\delta_2$ から作る $D$ |
+
+これは単なる類推表ではない。それぞれ trace、derivation、K-theory、spectral triple という代数的・解析的構造として定義され、$\theta=0$ で通常の幾何へ戻る。
+
+同時に、何でも一つの $C^*$-環から自動的に出るわけではない。滑らかな部分代数、trace、微分、Dirac作用素は追加データである。同じ $C^*$-環にも異なる幾何構造を載せ得る。
+
+## 11.14 章末の確認
+
+1. 円周回転の共変関係から $UV=e^{2\pi i\theta}VU$ を導け。点への作用と関数への作用で符号が変わる理由も説明せよ。
+2. $\theta=0$ で $A_0\cong C(\mathbb T^2)$ となる理由を普遍性から説明せよ。
+3. $A_\theta$ と $\mathcal A_\theta$ の役割の違いを述べよ。
+4. 標準traceがFourier係数 $a_{0,0}$ を取る理由を交叉積の条件付き期待値から説明せよ。
+5. $\delta_1,\delta_2$ が bounded とは限らないことは、なぜ定義域の指定を必要にするか。
+6. irrational $\theta$ のときの simplicity と unique trace は、それぞれ力学系のどの性質と関係するか。
+7. Pimsner--Voiculescu列で $1-\alpha_*=0$ となる理由を説明し、K群を計算せよ。
+8. $K_0(A_\theta)\cong K_1(A_\theta)\cong\mathbb Z^2$ だけでは $\theta$ を区別できない。どの追加不変量が必要か。
+9. full group $C^*$-algebra と reduced group $C^*$-algebra の定義の違いを述べよ。
+10. $A_\theta$ が $C^*(\mathbb Z^2)$ そのものではない理由を説明せよ。
+
+## 11.15 参考文献
+
+- Marc A. Rieffel, “C*-algebras associated with irrational rotations,” *Pacific Journal of Mathematics* 93 (1981), 415--429. [DOI: 10.2140/pjm.1981.93.415](https://doi.org/10.2140/pjm.1981.93.415)
+- M. Pimsner and D. Voiculescu, “Exact sequences for K-groups and Ext-groups of certain cross-product C*-algebras,” *Journal of Operator Theory* 4 (1980), 93--118. [EuDML](https://eudml.org/doc/217978)
+- Kenneth R. Davidson, *C*-Algebras by Example*, AMS, 1996. [DOI: 10.1090/gsm/006](https://doi.org/10.1090/gsm/006)
+- Dana P. Williams, *Crossed Products of C*-Algebras*, AMS, 2007. [DOI: 10.1090/surv/134](https://doi.org/10.1090/surv/134)
+- Alain Connes, *Noncommutative Geometry*, Academic Press, 1994. [著者公開PDF](https://alainconnes.org/wp-content/uploads/book94bigpdf.pdf)
+- José M. Gracia-Bondía, Joseph C. Várilly and Héctor Figueroa, *Elements of Noncommutative Geometry*, Birkhäuser, 2001. [DOI: 10.1007/978-1-4612-0005-5](https://doi.org/10.1007/978-1-4612-0005-5)

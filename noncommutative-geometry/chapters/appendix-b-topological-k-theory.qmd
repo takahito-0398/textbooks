@@ -1,0 +1,78 @@
+---
+title: "付録B　位相的K理論を作用素環から読み直す"
+sidebar: noncommutative-geometry
+format:
+  html:
+    toc: true
+---
+## B.1 安定同型を取る理由
+
+ベクトル束 $E,F$ が同型でなくても、同じ束 $G$ を足して
+
+$$
+E\oplus G\cong F\oplus G
+
+$$
+
+となることがある。K理論は直接和で消せる差を安定的に測る。Grothendieck群 $K^0(X)$ の元 $[E]-[F]$ は、対 $(E,F)$ を
+
+$$
+(E,F)\sim(E',F')
+$$
+
+iff ある $G$ について $E\oplus F'\oplus G\cong E'\oplus F\oplus G$ として作る。
+
+## B.2 reduced K理論
+
+基点付きコンパクト空間 $(X,x_0)$ ではrank写像
+
+$$
+K^0(X)\to K^0(\{x_0\})\cong\mathbb Z
+
+$$
+
+の核を $\widetilde K^0(X)$ とする。局所コンパクト $X$ のコンパクト台K理論は一点コンパクト化 $X^+$ により
+
+$$
+K_c^0(X)=\widetilde K^0(X^+)
+
+$$
+
+と定義できる。代数側の
+
+$$
+K_0(C_0(X))
+=\ker\bigl(K_0(C(X^+))\to K_0(\mathbb C)\bigr)
+
+$$
+
+は同じ構造を表す。
+
+## B.3 懸垂と奇K理論
+
+reduced suspension $\Sigma X$ によって
+
+$$
+K^{-1}(X)=\widetilde K^0(\Sigma X)
+
+$$
+
+と定義する。関数環では空間の懸垂に対応して
+
+$$
+SA=C_0(\mathbb R)\otimes A
+
+$$
+
+が現れ、$K_1(A)=K_0(SA)$ と整合する。
+
+## B.4 Bott元
+
+$S^2\cong\mathbb CP^1$ 上のtautological line bundle $L$ から
+
+$$
+\beta=[L]-[1]\in\widetilde K^0(S^2)
+
+$$
+
+を作る。Bott周期性は外積 $x\mapsto x\boxtimes\beta$ が二重懸垂との同型を与えることを主張する。周期2は記号上の偶然でなく、この幾何的生成元の可逆性から来る。

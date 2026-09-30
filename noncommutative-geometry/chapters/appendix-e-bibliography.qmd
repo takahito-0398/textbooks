@@ -1,0 +1,49 @@
+---
+title: "付録E　参考文献"
+sidebar: noncommutative-geometry
+format:
+  html:
+    toc: true
+---
+本文中の `[Murphy]` などはこの一覧を指す。本文は書名・論文名まで特定して参照し、版に依存するページ番号へは依存しない。
+
+## 関数解析・作用素環
+
+- [Conway] John B. Conway, *A Course in Functional Analysis*, 2nd ed., Springer, 1990.
+- [Murphy] Gerard J. Murphy, *C*-Algebras and Operator Theory*, Academic Press, 1990.
+- [Davidson] Kenneth R. Davidson, *C*-Algebras by Example*, AMS, 1996.
+- [Kadison–Ringrose I] Richard V. Kadison and John R. Ringrose, *Fundamentals of the Theory of Operator Algebras, Vol. I*, AMS, 1997 reprint.
+- [Kadison–Ringrose II] Richard V. Kadison and John R. Ringrose, *Fundamentals of the Theory of Operator Algebras, Vol. II*, AMS, 1997 reprint.
+- [Takesaki I] Masamichi Takesaki, *Theory of Operator Algebras I*, Springer, 2002.
+- [Williams C*] Dana P. Williams, *A (Very) Short Course on C*-Algebras*, lecture notes, 2024, <https://math.dartmouth.edu/~dana/bookspapers/cstar.pdf>.
+- [Williams Crossed] Dana P. Williams, *Crossed Products of C*-Algebras*, AMS, 2007, <https://doi.org/10.1090/surv/134>.
+- [Renault] Jean Renault, *A Groupoid Approach to C*-Algebras*, Springer LNM 793, 1980, <https://doi.org/10.1007/BFb0091072>.
+- [Raeburn–Williams] Iain Raeburn and Dana P. Williams, *Morita Equivalence and Continuous-Trace C*-Algebras*, AMS, 1998, <https://doi.org/10.1090/surv/060>.
+- [Rieffel 1974] Marc A. Rieffel, “Morita equivalence for C*-algebras and W*-algebras,” *J. Pure Appl. Algebra* 5 (1974), 51–96, <https://doi.org/10.1016/0022-4049(74)90003-6>.
+- [Brown–Green–Rieffel] Lawrence G. Brown, Philip Green, and Marc A. Rieffel, “Stable isomorphism and strong Morita equivalence of C*-algebras,” *Pacific J. Math.* 71 (1977), 349–363, <https://doi.org/10.2140/pjm.1977.71.349>.
+
+## K理論・指数
+
+- [Wegge-Olsen] N. E. Wegge-Olsen, *K-Theory and C*-Algebras*, Oxford University Press, 1993.
+- [Blackadar] Bruce Blackadar, *K-Theory for Operator Algebras*, 2nd ed., Cambridge University Press, 1998.
+- [Williams K] Dana P. Williams, *Lecture Notes on K-Theory*, <https://math.dartmouth.edu/~dana/bookspapers/k-thy.pdf>.
+- [Atiyah K] Michael Atiyah, *K-Theory*, Addison–Wesley, 1967.
+- [Pimsner–Voiculescu] Mihai Pimsner and Dan Voiculescu, “Exact sequences for K-groups and Ext-groups of certain cross-product C*-algebras,” *J. Operator Theory* 4 (1980), 93–118, <https://eudml.org/doc/217978>.
+- [Rieffel 1981] Marc A. Rieffel, “C*-algebras associated with irrational rotations,” *Pacific J. Math.* 93 (1981), 415–429, <https://doi.org/10.2140/pjm.1981.93.415>.
+
+## 非可換幾何
+
+- [Connes NCG] Alain Connes, *Noncommutative Geometry*, Academic Press, 1994, <https://alainconnes.org/wp-content/uploads/book94bigpdf.pdf>.
+- [Connes 1985] Alain Connes, “Noncommutative Differential Geometry,” *Publ. Math. IHÉS* 62 (1985), 257–360.
+- [GBVF] José M. Gracia-Bondía, Joseph C. Várilly, Héctor Figueroa, *Elements of Noncommutative Geometry*, Birkhäuser, 2001.
+- [Várilly] Joseph C. Várilly, “An Introduction to Noncommutative Geometry,” arXiv:physics/9709045, <https://arxiv.org/abs/physics/9709045>.
+- [Connes 1982] Alain Connes, “A survey of foliations and operator algebras,” in *Operator Algebras and Applications, Part I*, Proc. Symp. Pure Math. 38 (1982), 521–628, <https://alainconnes.org/wp-content/uploads/foliations_and_operator_algebras.pdf>.
+- [Moerdijk–Mrčun] Ieke Moerdijk and Janez Mrčun, *Introduction to Foliations and Lie Groupoids*, Cambridge University Press, 2003, <https://doi.org/10.1017/CBO9780511615450>.
+- [Muhly–Renault–Williams] Paul S. Muhly, Jean N. Renault, and Dana P. Williams, “Equivalence and isomorphism for groupoid C*-algebras,” *J. Operator Theory* 17 (1987), 3–22, <https://www.jstor.org/stable/24714593>.
+- [Sims–Williams] Aidan Sims and Dana P. Williams, “Renault’s equivalence theorem for reduced groupoid C*-algebras,” *J. Operator Theory* 68 (2012), 223–239, <https://jot.theta.ro/jot/archive/2012-068-001/2012-068-001-012.pdf>.
+
+## 物理との接続
+
+- [Haag] Rudolf Haag, *Local Quantum Physics*, 2nd ed., Springer, 1996.
+- [Summers] Stephen J. Summers, “Tomita–Takesaki Modular Theory,” arXiv:math-ph/0511034.
+- [Yngvason] Jakob Yngvason, “The role of type III factors in quantum field theory,” *Reports on Mathematical Physics* 55 (2005), 135–147, <https://doi.org/10.1016/S0034-4877(05)80009-6>.

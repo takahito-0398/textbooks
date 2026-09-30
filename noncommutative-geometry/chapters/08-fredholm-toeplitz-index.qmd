@@ -1,0 +1,189 @@
+---
+title: "第8章　Fredholm作用素とToeplitz拡大：整数が安定に残る理由"
+sidebar: noncommutative-geometry
+format:
+  html:
+    toc: true
+---
+> **Core** — rank-nullityからCalkin環、K理論の境界写像までを一つにつなぐ。
+
+## 8.1 無限次元でrank-nullityをどう救うか
+
+有限次元線形写像 $T:V\to W$ では
+
+$$
+\dim V=\dim\ker T+\dim\operatorname{im}T
+
+$$
+
+が成り立つ。無限次元では各次元が無限となり、差を取れない。しかし $T$ が「可逆から有限次元だけ外れる」なら、核と余核の差
+
+$$
+\operatorname{ind}T=\dim\ker T-\dim\operatorname{coker}T
+
+$$
+
+は有限整数として残る。
+
+有界作用素 $T:H_1\to H_2$ がFredholmであるとは、$\ker T$ と $\operatorname{coker}T=H_2/\operatorname{ran}T$ が有限次元で、像が閉であることをいう。像の閉性がないと余核のHilbert空間的取り扱いと安定性が壊れる。
+
+## 8.2 コンパクト作用素は「無限遠で消える誤差」
+
+有限rank作用素のノルム閉包が $K(H)$ である。コンパクト作用素は無限次元空間全体には作用するが、大きな基底方向に沿って一様な情報を保てない。この意味で、有限次元誤差を閉じたクラスである。
+
+$K(H)$ は $B(H)$ の閉両側イデアルなので、商
+
+$$
+Q(H)=B(H)/K(H)
+
+$$
+
+を作れる。これをCalkin環という。商写像を $q:B(H)\to Q(H)$ と書く。
+
+## 8.3 Atkinsonの定理
+
+**定理.** $T\in B(H)$ がFredholmであることと、$q(T)$ がCalkin環で可逆であることは同値である。
+
+**[証明]** $T$ がFredholmなら、$H=\ker T\oplus(\ker T)^\perp$、$H=\operatorname{ran}T\oplus(\operatorname{ran}T)^\perp$ と分解する。$(\ker T)^\perp$ から $\operatorname{ran}T$ への制限は有界逆を持つ。その逆を余核上で0として延長した $S$ を取ると、$ST-I$ と $TS-I$ は有限rank、したがってコンパクトである。ゆえに $q(S)q(T)=q(T)q(S)=1$。
+
+逆に $q(T)$ が可逆なら、ある $S$ とコンパクト $K_1,K_2$ が
+
+$$
+ST=I-K_1,\qquad TS=I-K_2
+
+$$
+
+を満たす。$x\in\ker T$ なら $(I-K_1)x=STx=0$ だから
+
+$$
+\ker T\subset\ker(I-K_1).
+$$
+
+コンパクト作用素の非零固有値の固有空間は有限次元なので、$\ker T$ は有限次元である。随伴を取ると $S^*T^*=I-K_2^*$ であり、同じ議論から $\ker T^*$ も有限次元になる。
+
+残るのは像の閉性である。もし $T$ が $(\ker T)^\perp$ 上で下から有界でなければ、$x_n\perp\ker T$、$\|x_n\|=1$、$Tx_n\to0$ となる列がある。ところが
+
+$$
+x_n-K_1x_n=STx_n\longrightarrow0.
+$$
+
+$K_1$ のコンパクト性により部分列 $K_1x_{n_j}$ は収束し、上式から $x_{n_j}$ もある $x$ へ収束する。すると $\|x\|=1$、$Tx=0$、かつ $x\perp\ker T$ となり矛盾する。したがってある $c>0$ が存在して
+
+$$
+\|Tx\|\ge c\|x\|\qquad(x\perp\ker T)
+$$
+
+となり、$\operatorname{ran}T$ は閉である。閉像定理と直交分解から $\operatorname{coker}T\cong\ker T^*$ なので余核も有限次元である。$\square$
+
+Fredholm性という解析条件が、商環での可逆性という代数条件に変わった。
+
+## 8.4 指数が摂動に安定な理由
+
+Fredholm作用素全体は $B(H_1,H_2)$ のノルム開集合であり、指数は局所一定である。この点を主張だけで済ませず確認する。分解
+
+$$
+H_1=\ker T\oplus X,\qquad
+H_2=\operatorname{coker}T\oplus\operatorname{ran}T
+$$
+
+を取り、$T|_X:X\to\operatorname{ran}T$ を $T_0$ と書く。$T_0$ は可逆である。$\|E\|$ が十分小さければ、$T_0$ に対応する $T+E$ の右下blockもNeumann級数で可逆である。可逆なblock行・列操作を行うと $T+E$ は
+
+$$
+F_E:\ker T\to\operatorname{coker}T
+$$
+
+という有限次元写像と、無限次元部分の可逆作用素との直和へ変形できる。したがって
+
+$$
+\operatorname{ind}(T+E)
+=\dim\ker F_E-\dim\operatorname{coker}F_E
+=\dim\ker T-\dim\operatorname{coker}T
+=\operatorname{ind}T.
+$$
+
+第2の等号は有限次元のrank-nullityによる。これで開性と局所一定性が同時に示された。
+
+さらに任意のコンパクト $K$ に対して
+
+$$
+\operatorname{ind}(T+K)=\operatorname{ind}T.
+
+$$
+
+Calkin環では $q(T+tK)=q(T)$ が全 $t\in[0,1]$ で成り立つので、Atkinsonの定理により経路全体がFredholmである。各点の近傍で指数は一定であり、連結な区間 $[0,1]$ を有限個の重なる近傍で覆えば、端点の指数は一致する。よって上の等式が従う。より概念的には、指数は $K_1(Q(H))\to K_0(K(H))\cong\mathbb Z$ という境界写像であり、商で同じ元なら同じ整数を持つ。
+
+## 8.5 shiftの指数
+
+unilateral shift $S$ は核が0、像の余次元が1なので
+
+$$
+\operatorname{ind}S=0-1=-1.
+
+$$
+
+一方 $S^*$ は核が $\mathbb Ce_0$、全射なので $\operatorname{ind}S^*=1$。第1章で有限次元直感を壊した同じ作用素が、今度は安定な整数不変量の生成元になる。
+
+## 8.6 Toeplitz作用素
+
+$L^2(S^1)$ の非負Fourierモードが張るHardy空間 $H^2(S^1)$ への直交射影を $P$ とする。$f\in C(S^1)$ に対し、乗算作用素 $M_f$ を圧縮して
+
+$$
+T_f=PM_f|_{H^2}
+
+$$
+
+をToeplitz作用素という。座標関数 $z(e^{it})=e^{it}$ に対する $T_z$ は標準基底 $1,z,z^2,\ldots$ 上のunilateral shiftである。
+
+一般に $T_fT_g=T_{fg}$ とは限らない。この積のずれは連続記号 $f,g$ に対してコンパクトになる。したがってToeplitz作用素とコンパクト作用素が生成する $C^*$-環 $\mathcal T$ から記号を取り出す写像があり、短完全列
+
+$$
+0\longrightarrow K(H^2)\longrightarrow\mathcal T
+\xrightarrow{\ \sigma\ }C(S^1)\longrightarrow0
+
+$$
+
+を得る。$\sigma(T_f)=f$ である。
+
+## 8.7 Toeplitz指数定理
+
+連続関数 $f:S^1\to\mathbb C^\times$ が零点を持たなければ、記号 $f$ は $C(S^1)$ で可逆なので、Atkinsonの定理により $T_f$ はFredholmである。そして
+
+$$
+\boxed{\operatorname{ind}T_f=-\operatorname{wind}(f,0)}.
+
+$$
+
+**[証明の概略]** 非消滅関数は $f(z)=z^n e^{g(z)}$ の形へホモトピーで変形でき、巻き数は $n$ である。指数はFredholm作用素の連続変形で不変、$T_{e^g}$ の指数は0、$T_{z^n}$ は $n>0$ なら $n$ 回shiftなので指数 $-n$ である。負の $n$ は随伴で処理する。積のコンパクト誤差により指数の加法性が保たれる。
+
+左辺は作用素の核と余核という解析、右辺は円周から原点を除いた平面への写像の巻き数という位相である。同じ整数がToeplitz拡大の境界写像として両者を結ぶ。
+
+## 8.8 六項完全列での計算
+
+Toeplitz拡大の境界写像は
+
+$$
+\partial:K_1(C(S^1))\longrightarrow K_0(K(H))
+
+$$
+
+である。両辺は $\mathbb Z$ と同型で、$[z]$ は左辺の生成元、rank-one projection $[P_{e_0}]$ は右辺の生成元になる。符号規約を $\operatorname{ind}S=-1$ に合わせると、$\partial[z]$ は $-[P_{e_0}]$ に対応する。
+
+この例は六項完全列が単なる計算装置でないことを示す。商にある位相的なユニタリを持ち上げたとき、持ち上げが真のユニタリになれない欠損が有限rank射影として残り、その差が指数である。
+
+## 8.9 Atiyah–Singerへの橋
+
+コンパクト多様体上の楕円微分作用素 $D$ は適切なSobolev空間の間でFredholmになる。その解析的指数は核と余核の差である。一方、主記号 $\sigma(D)$ は余接束上のK理論類を定め、その位相的指数を特性類の積分で計算できる。Atiyah–Singer指数定理は
+
+$$
+\operatorname{ind}_{\mathrm{an}}D=\operatorname{ind}_{\mathrm{top}}\sigma(D)
+
+$$
+
+を主張する。Toeplitz指数定理はこの大原理を一変数で目に見える形にした模型である。
+
+## 8.10 章末の確認
+
+1. Fredholmの定義で像の閉性が必要な理由を述べよ。
+2. Atkinsonの定理が解析条件をどの商環の可逆性へ翻訳するか答えよ。
+3. shiftとbackward shiftの指数を計算せよ。
+4. Toeplitz拡大の境界写像が持ち上げの欠損をどう測るか説明せよ。
