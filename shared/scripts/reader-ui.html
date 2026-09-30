@@ -37,6 +37,7 @@
     </div>
     <div class="reader-mobile-status__section">
       <span class="reader-current-section"></span>
+      <span class="reader-mobile-status__percent reader-mobile-status__percent--compact">0%</span>
     </div>
     <div class="reader-mobile-status__meter" aria-hidden="true"><span></span></div>
   `;
@@ -117,6 +118,21 @@
     });
   }
 
+  let ticking = false;
+  let lastScrollY = window.scrollY || document.documentElement.scrollTop;
+
+  function updateChromeState() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const isReading = scrollTop > 72;
+    const isScrollingDown = scrollTop > lastScrollY + 8;
+    const isNearBottom = window.innerHeight + scrollTop > document.documentElement.scrollHeight - 520;
+
+    document.body.classList.toggle("reader-reading", isReading);
+    document.body.classList.toggle("reader-scroll-down", isReading && isScrollingDown && !isNearBottom);
+    document.body.classList.toggle("reader-near-bottom", isNearBottom);
+    lastScrollY = scrollTop;
+  }
+
   function updateProgress() {
     const scrollTop = window.scrollY || document.documentElement.scrollTop;
     const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
@@ -134,6 +150,16 @@
     }
     setActiveHeading(current);
     updateProgress();
+    updateChromeState();
+  }
+
+  function requestReaderUpdate() {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(() => {
+      updateByScrollPosition();
+      ticking = false;
+    });
   }
 
   if ("IntersectionObserver" in window && sectionHeadings.length) {
@@ -149,6 +175,7 @@
   function openSheet() {
     sheet.classList.add("is-open");
     backdrop.classList.add("is-open");
+    document.body.classList.add("reader-toc-open");
     tocButton?.setAttribute("aria-expanded", "true");
     closeButton?.focus({ preventScroll: true });
   }
@@ -156,6 +183,7 @@
   function closeSheet() {
     sheet.classList.remove("is-open");
     backdrop.classList.remove("is-open");
+    document.body.classList.remove("reader-toc-open");
     tocButton?.setAttribute("aria-expanded", "false");
     tocButton?.focus({ preventScroll: true });
   }
@@ -178,8 +206,8 @@
     history.replaceState(null, "", link.hash);
   });
 
-  window.addEventListener("scroll", updateByScrollPosition, { passive: true });
-  window.addEventListener("resize", updateByScrollPosition);
+  window.addEventListener("scroll", requestReaderUpdate, { passive: true });
+  window.addEventListener("resize", requestReaderUpdate);
   setActiveHeading(activeHeading);
   updateByScrollPosition();
 })();
