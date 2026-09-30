@@ -1,0 +1,40 @@
+---
+title: '参考文献と確認方針'
+sidebar: complex-geometry
+format:
+  html:
+    toc: true
+---
+
+本文の定理・規約は、原論文と標準的な専門書・講義資料を照合して確認する。版によって章節番号が変わるため、最終稿では使用版を固定する。
+
+## 中核文献
+
+- Jean-Pierre Demailly, *Complex Analytic and Differential Geometry*. 著者公開の OpenContent 版。複素多様体、Hermitian・Kähler 幾何、正則ベクトル束、Chern 接続、正値性を横断して参照する。
+- Daniel Huybrechts, *Complex Geometry: An Introduction*, Springer. 複素構造、Dolbeault コホモロジー、Kähler 幾何、Hodge 理論、線束と射影性。
+- Raymond O. Wells, *Differential Analysis on Complex Manifolds*, Springer. Dolbeault 理論、楕円型作用素、Hodge 理論。
+- Claire Voisin, *Hodge Theory and Complex Algebraic Geometry I*, Cambridge University Press. Kähler 恒等式、Hodge 構造、代数幾何との接続。
+- Phillip Griffiths and Joseph Harris, *Principles of Algebraic Geometry*, Wiley. 複素多様体、線束、曲率、射影幾何。
+- Andrei Moroianu, *Lectures on Kähler Geometry*, Cambridge University Press. Hermitian 接続、Kähler 恒等式、Hodge 理論。
+- Robert Lazarsfeld, *Positivity in Algebraic Geometry I*, Springer. 正値線束、豊富性、射影埋め込み。
+- Christina Birkenhake and Herbert Lange, *Complex Abelian Varieties*, Springer. 複素トーラス、Riemann 形式、極性、アーベル多様体。
+- Robin Hartshorne, *Algebraic Geometry*, Springer. 射影多様体、連接層、層コホモロジー。解析的概念との比較では用語と代数側の主張を確認する。
+- Michael Atiyah, *K-Theory*, W. A. Benjamin. 位相的 K 理論、Chern 指標、有理コホモロジーとの比較。
+
+## 原論文・古典的結果
+
+- August Newlander and Louis Nirenberg, “Complex Analytic Coordinates in Almost Complex Manifolds,” *Annals of Mathematics* 65 (1957), 391–404. Newlander–Nirenberg 定理の原典。
+- Jean-Pierre Serre, “Géométrie algébrique et géométrie analytique,” *Annales de l'Institut Fourier* 6 (1956), 1–42. GAGA の原典。
+- Wei-Liang Chow, “On Compact Complex Analytic Varieties,” *American Journal of Mathematics* 71 (1949), 893–914. Chow の定理の原典。
+
+## 参照時の注意
+
+- Nijenhuis テンソル、基本二形式、曲率には符号規約の差がある。式を借りるときは零条件やコホモロジー類だけでなく、採用規約の下で係数まで再計算する。
+- Hodge 定理にはコンパクト性と境界の有無が関係する。本書の基本形では「コンパクト・向き付け可能・境界なしの Riemann 多様体」を明記する。
+- Kähler 多様体上の Hodge 分解では、複素係数 de Rham コホモロジーと Dolbeault コホモロジー、調和形式の各同型を区別する。
+- Kodaira 埋め込み定理では「正値線束の存在」「整な Kähler 類の存在」「射影的」の同値を、コンパクト複素多様体という仮定の下で述べる。
+- GAGA は任意の非コンパクト複素多様体と代数多様体の同値ではない。射影的な複素代数多様体上の連接層とその解析化に関する主張を正確に分ける。
+- 複素トーラスとアーベル多様体は区別する。射影性の判定では、格子上で整数値を取る正の Riemann 形式の存在を確認する。
+
+
+

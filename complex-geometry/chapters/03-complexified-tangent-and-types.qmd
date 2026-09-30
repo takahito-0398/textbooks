@@ -1,0 +1,235 @@
+---
+title: '3. 接束の複素化と型分解'
+sidebar: complex-geometry
+format:
+  html:
+    toc: true
+---
+
+## 3.1 実接束のままでは何が見えないのか
+
+$J^2=-I$ だから、$J$ の固有値は形式的には $\lambda^2=-1$、すなわち $\lambda=\pm i$ である。しかし $TM$ は実ベクトル束なので、実固有値しか使えず、$J$ は実固有ベクトルを持たない。複素構造の本質を固有空間として見るため、係数を複素数へ広げる。
+
+**定義（複素化接束）**
+$$
+T_{\mathbb C}M:=TM\otimes_{\mathbb R}\mathbb C.
+$$
+これは底空間を複素化する操作ではない。点 $p$ はそのままに、各実接空間 $T_pM$ の係数だけを複素数へ広げる。実ベクトル $X,Y$ を使えば、その元は $X+iY$ と書ける。
+
+$J$ を複素線形に
+$$
+J(X+iY):=JX+iJY
+$$
+と延長する。最小多項式 $t^2+1=(t-i)(t+i)$ は異なる根を持つので、各ファイバーは $i$ 固有空間と $-i$ 固有空間の直和に分かれる。
+$$
+T_{\mathbb C}M=T^{1,0}M\oplus T^{0,1}M,
+$$
+$$
+T^{1,0}M=\ker(J-iI),\qquad
+T^{0,1}M=\ker(J+iI).
+$$
+ここで上付きの $1,0$ はベクトルが「正則座標を一回微分する方向」に対応することを予告する記号である。定義自体は固有値 $+i$ による。
+
+## 3.2 射影公式を導く
+
+任意の $Z\in T_{\mathbb C}M$ を二つの固有成分に分ける射影は
+$$
+P^{1,0}=\frac12(I-iJ),\qquad
+P^{0,1}=\frac12(I+iJ)
+$$
+である。たとえば
+$$
+\begin{aligned}
+JP^{1,0}Z
+&=\frac12(JZ-iJ^2Z)\\
+&=\frac12(JZ+iZ)\\
+&=i\frac12(Z-iJZ)\\
+&=iP^{1,0}Z.
+\end{aligned}
+$$
+よって像は $i$ 固有空間に入る。また
+$$
+P^{1,0}+P^{0,1}=I,
+$$
+$$
+P^{1,0}P^{0,1}
+=\frac14(I-iJ)(I+iJ)
+=\frac14(I+J^2)=0.
+$$
+したがって本当に直和分解である。実ベクトル $X$ に対しては
+$$
+X^{1,0}=\frac12(X-iJX),\qquad
+X^{0,1}=\frac12(X+iJX)
+$$
+となる。複素共役は $i$ の符号を反転するので、$T^{1,0}$ と $T^{0,1}$ を交換する。
+
+## 3.3 partial/partial z はどこから来るか
+
+$\mathbb C$ 上で $z=x+iy$, $\bar z=x-iy$ とする。まず複素化余接空間で
+$$
+dz=dx+i\,dy,\qquad d\bar z=dx-i\,dy
+$$
+と定める。この基底変換を逆に解くと
+$$
+dx=\frac{dz+d\bar z}{2},\qquad
+dy=\frac{dz-d\bar z}{2i}.
+$$
+となる。$dz,d\bar z$ の双対基底を
+$\partial/\partial z,\partial/\partial\bar z$ と定める。すなわち、前者は $dz$ に対して1、$d\bar z$ に対して0を返すベクトルである。
+$$
+\frac{\partial}{\partial z}=a\frac{\partial}{\partial x}
++b\frac{\partial}{\partial y}
+$$
+と置けば、双対性の条件は
+$$
+a+ib=1,\qquad a-ib=0
+$$
+である。二式を加減すると $a=1/2$, $b=-i/2$ となる。したがって
+$$
+\frac{\partial}{\partial z}
+=\frac12\left(
+\frac{\partial}{\partial x}
+-i\frac{\partial}{\partial y}
+\right).
+$$
+同様に
+$$
+\frac{\partial}{\partial\bar z}
+=\frac12\left(
+\frac{\partial}{\partial x}
++i\frac{\partial}{\partial y}
+\right).
+$$
+標準複素構造では $J\partial_x=\partial_y$, $J\partial_y=-\partial_x$ だから、
+$$
+J\frac{\partial}{\partial z}
+=i\frac{\partial}{\partial z},\qquad
+J\frac{\partial}{\partial\bar z}
+=-i\frac{\partial}{\partial\bar z}.
+$$
+つまり $\partial/\partial z$ と $\partial/\partial\bar z$ は便利な記号ではなく、$J$ の二つの固有方向を具体的に表している。
+
+## 3.4 dz と dbar z はどの意味で独立か
+
+$dz,d\bar z$ は実微分形式ではなく複素数値の一次形式であり、互いに複素共役である。それでも複素化余接空間では複素線形独立である。実際、
+$$
+a\,dz+b\,d\bar z=0
+$$
+とすると
+$$
+(a+b)dx+i(a-b)dy=0.
+$$
+$dx,dy$ は複素化後も基底なので、$a+b=0$ かつ $a-b=0$、したがって $a=b=0$ である。逆変換も
+$$
+dx=\frac{dz+d\bar z}{2},\qquad
+dy=\frac{dz-d\bar z}{2i}
+$$
+と求まる。
+
+双対性を直接確認すると、
+$$
+dz\left(\frac{\partial}{\partial z}\right)=1,\qquad
+dz\left(\frac{\partial}{\partial\bar z}\right)=0,
+$$
+$$
+d\bar z\left(\frac{\partial}{\partial z}\right)=0,\qquad
+d\bar z\left(\frac{\partial}{\partial\bar z}\right)=1.
+$$
+たとえば最初の式は
+$$
+(dx+i\,dy)\frac12(\partial_x-i\partial_y)
+=\frac12(1+i(-i))=1
+$$
+である。
+
+## 3.5 (p,q)-形式が必要になる
+
+まず複素化余接束を
+$$
+T^*_{\mathbb C}M:=T^*M\otimes_{\mathbb R}\mathbb C
+\cong\operatorname{Hom}_{\mathbb C}(T_{\mathbb C}M,\mathbb C)
+$$
+と定める。その中の部分束を
+$$
+T^{*1,0}M:=\operatorname{Ann}(T^{0,1}M),\qquad
+T^{*0,1}M:=\operatorname{Ann}(T^{1,0}M)
+$$
+と置く。すると
+$$
+T^*_{\mathbb C}M=T^{*1,0}M\oplus T^{*0,1}M
+$$
+と分かれる。これは抽象的双対 $(T^{1,0}M)^*$ を、反対側の固有束上で零とすることにより余接束内へ埋めたものでもある。外積を取ると、複素 $k$ 形式は
+$$
+\Lambda^kT^*_{\mathbb C}M
+=\bigoplus_{p+q=k}\Lambda^{p,q}T^*M,
+$$
+$$
+\Lambda^{p,q}T^*M
+:=\Lambda^pT^{*1,0}M\otimes
+\Lambda^qT^{*0,1}M
+$$
+と分解する。一般の概複素構造では、$T^{*1,0}$ の局所枠を $\theta^1,\ldots,\theta^n$ とすれば、$(p,q)$-形式は $\theta^i$ と $\bar\theta^j$ の外積で書かれる。
+
+ここから可積分な場合、すなわち複素多様体の場合に戻る。正則座標 $z^1,\ldots,z^n$ を選べば $\theta^j=dz^j$ と取れるので、$(p,q)$-形式は
+$$
+\alpha=
+\sum_{|I|=p,|J|=q}
+\alpha_{I\bar J}\,
+dz^{i_1}\wedge\cdots\wedge dz^{i_p}
+\wedge
+d\bar z^{j_1}\wedge\cdots\wedge d\bar z^{j_q}
+$$
+と書ける。
+
+この分解は成分整理ではない。正則関数 $f$ の Cauchy–Riemann 方程式は
+$$
+\frac{\partial f}{\partial\bar z^j}=0
+$$
+であり、微分 $df$ の $(0,1)$ 成分が消えるという座標不変な形に書き直せる。
+
+## 3.6 可積分でないときに先走ってはいけない
+
+型分解そのものは任意の概複素構造で作れる。しかし外微分 $d$ が
+$$
+d=\partial+\bar\partial
+$$
+と二つだけに分かれるとはまだ限らない。一般の概複素多様体では
+$$
+d=\mu+\partial+\bar\partial+\bar\mu
+$$
+となり、それぞれ型を
+$$
+(p,q)\mapsto
+(p+2,q-1),\ (p+1,q),\ (p,q+1),\ (p-1,q+2)
+$$
+だけ変える。端の二成分 $\mu,\bar\mu$ は可積分性の失敗を反映し、$N_J=0$ のとき、かつそのときに限って消える。
+
+端成分が本当に現れ得ることを、第2章の非可積分例で確かめる。そこで
+$$
+\theta^2=dz_2-\bar z_1\,d\bar z_2
+$$
+と置くと、$\theta^2(L_1)=\theta^2(L_2)=0$ なので $\theta^2$ は、その概複素構造に関する $(1,0)$-形式である。しかし
+$$
+d\theta^2=-d\bar z_1\wedge d\bar z_2
+$$
+であり、
+$$
+d\theta^2(L_1,L_2)
+=-\theta^2([L_1,L_2])=-1.
+$$
+したがって $d\theta^2$ は非零の $(0,2)$ 成分を持つ。これは
+$$
+\bar\mu:\Omega^{1,0}\longrightarrow\Omega^{0,2}
+$$
+が消えないことを、具体的に示している。
+
+したがって次の問いは明確である。
+
+> 複素構造が可積分なら、なぜ外微分は $\partial$ と $\bar\partial$ に分かれ、なぜ $\bar\partial^2=0$ になるのか。そのコホモロジーは de Rham コホモロジーが忘れる何を覚えているのか。
+
+これが次章の出発点である。
+
+
+
+
+

@@ -1,0 +1,352 @@
+---
+title: '9. Kähler恒等式とHodge分解'
+sidebar: complex-geometry
+format:
+  html:
+    toc: true
+---
+
+## 9.1 二つのHodge理論がまだ別々に存在している
+
+前章までに、コンパクトHermitian多様体上では二種類の調和代表を得た。
+$$
+H_{\mathrm{dR}}^k(X;\mathbb C)
+\cong\mathcal H_d^k(X),
+$$
+$$
+H_{\bar\partial}^{p,q}(X)
+\cong\mathcal H_{\bar\partial}^{p,q}(X).
+$$
+しかし一般のHermitian多様体では、$d$-調和形式が型ごとに分かれるとは限らず、$\bar\partial$-調和形式が $d$-閉であるとも限らない。二つのHodge理論は同じ計量から作られていても、まだ別々である。
+
+Kähler条件 $d\omega=0$ は、この二つのLaplacianを一致させる。閉性という一階微分の条件が、なぜ二階微分作用素の一致を生むのか。その橋がKähler恒等式である。
+
+## 9.2 Lefschetz作用素とその随伴
+
+Kähler形式 $\omega$ との外積を
+$$
+L:\mathcal A^{p,q}(X)\longrightarrow
+\mathcal A^{p+1,q+1}(X),
+\qquad
+L\alpha=\omega\wedge\alpha
+$$
+と定める。$L$ の点ごとのHermitian内積に関する随伴を
+$$
+\Lambda:=L^*
+$$
+と書く。$\Lambda$ は型を $(1,1)$ だけ下げる。コンパクトな場合には、これは微分形式の $L^2$ 内積に関する随伴とも一致する。
+
+標準的な複素Euclid空間の一点で、単位的余標構 $\zeta^1,\ldots,\zeta^n$ を選び
+$$
+\omega=i\sum_j\zeta^j\wedge\bar\zeta^j
+$$
+と書けば、$L$ は各 $i\zeta^j\wedge\bar\zeta^j$ を付け加える操作であり、$\Lambda$ は対応する二方向を縮約する操作である。Kähler恒等式は、この外積・縮約と微分作用素の交換関係である。
+
+## 9.3 交換子の規約
+
+次数付き作用素 $A,B$ の交換子を
+$$
+[A,B]
+:=AB-(-1)^{|A||B|}BA
+$$
+とする。$L,\Lambda$ は偶数次数、$\partial,\bar\partial$ は奇数次数なので、$[\Lambda,\partial]$ などは通常の差である。一方、二つの奇作用素の交換子は反交換子になる。
+
+本書の規約
+$$
+\omega(X,Y)=g(JX,Y),\qquad
+\Delta_\partial=\partial\partial^*+\partial^*\partial
+$$
+の下で、次の形を採用する。
+
+## 9.4 Kähler恒等式
+
+**重要な非自明結果（Kähler恒等式）**  Kähler多様体上で
+$$
+\boxed{[\Lambda,\partial]=i\bar\partial^*},
+\qquad
+\boxed{[\Lambda,\bar\partial]=-i\partial^*}.
+$$
+随伴を取ると
+$$
+\boxed{[L,\partial^*]=i\bar\partial},
+\qquad
+\boxed{[L,\bar\partial^*]=-i\partial}.
+$$
+これらは局所的な作用素恒等式なので、コンパクト性を必要としない。ここで $\partial^*,\bar\partial^*$ は形式上の随伴であり、コンパクト台を持つ形式に対する部分積分で特徴づけられる。コンパクトな場合には大域的な $L^2$ 随伴でもある。Kähler条件は必要であり、一般のHermitian多様体ではtorsion項が加わる。
+
+**何が非自明か。**  左辺はKähler形式による線形代数的作用と微分の交換子、右辺は微分作用素の形式上の随伴である。点ごとの複素線形代数と微分作用素が、閉性 $d\omega=0$ によって直接結ばれている。
+
+**証明概略。**  各点でKähler正規座標を選ぶと、その点で
+$$
+g_{j\bar k}=\frac12\delta_{jk},
+\qquad
+\frac{\partial g_{j\bar k}}{\partial z^\ell}
+=\frac{\partial g_{j\bar k}}{\partial\bar z^\ell}=0
+$$
+となる。したがってその点では、$\partial,\bar\partial$ とその随伴の主要な一階部分が平坦な $\mathbb C^n$ のものと一致する。外積と縮約の基本交換関係を各座標方向で計算すると上の式を得る。一般のHermitian計量では一次微分を同時に消せず、その残りがtorsion項になる。
+
+完全な証明は局所正規座標で基底形式への作用を追う計算である。ここでは定理として使用し、符号は上の四式を基準に固定する。
+
+## 9.5 混合項が消える
+
+まず
+$$
+\bar\partial^*=-i[\Lambda,\partial]
+$$
+を使う。$\partial^2=0$ だから
+$$
+\begin{aligned}
+\partial\bar\partial^*
++\bar\partial^*\partial
+&=-i\left(
+\partial[\Lambda,\partial]
++[\Lambda,\partial]\partial
+\right)\\
+&=-i\left(
+\partial\Lambda\partial-\partial^2\Lambda
++\Lambda\partial^2-\partial\Lambda\partial
+\right)\\
+&=0.
+\end{aligned}
+$$
+同様に
+$$
+\bar\partial\partial^*
++\partial^*\bar\partial=0.
+$$
+したがって $d=\partial+\bar\partial$, $d^*=\partial^*+\bar\partial^*$ を展開したときの混合項は消える。
+$$
+\Delta_d
+=\Delta_\partial+\Delta_{\bar\partial}.
+$$
+## 9.6 二つの複素Laplacianが一致する
+
+Kähler恒等式と次数付きJacobi恒等式を使うと
+$$
+\Delta_\partial=\Delta_{\bar\partial}
+$$
+が従う。計算の骨格を示す。$\partial^*=i[\Lambda,\bar\partial]$ なので
+$$
+\Delta_\partial
+=i[\partial,[\Lambda,\bar\partial]].
+$$
+次数付きJacobi恒等式と
+$$
+[\partial,\bar\partial]=
+\partial\bar\partial+\bar\partial\partial=0
+$$
+を使って交換子を移すと
+$$
+i[\partial,[\Lambda,\bar\partial]]
+=-i[\bar\partial,[\Lambda,\partial]]
+=\Delta_{\bar\partial}.
+$$
+以上から
+$$
+\boxed{
+\Delta_d=2\Delta_\partial
+=2\Delta_{\bar\partial}
+}.
+$$
+係数2は本書のLaplacianの定義による。Laplacianを半分に正規化する文献では現れない。
+
+## 9.7 調和形式が型ごとに分かれる
+
+$\Delta_{\bar\partial}$ は型を保つ。複素 $k$-形式を
+$$
+\alpha=\sum_{p+q=k}\alpha^{p,q}
+$$
+と型分解すると、
+$$
+\Delta_d\alpha
+=2\sum_{p+q=k}
+\Delta_{\bar\partial}\alpha^{p,q}.
+$$
+異なる型の直和なので、
+$$
+\Delta_d\alpha=0
+\iff
+\Delta_{\bar\partial}\alpha^{p,q}=0
+\quad\text{for all }p,q.
+$$
+したがって
+$$
+\mathcal H_d^k(X;\mathbb C)
+=\bigoplus_{p+q=k}
+\mathcal H_{\bar\partial}^{p,q}(X).
+$$
+ここで初めて、de Rham調和形式の型成分がそれぞれDolbeault調和形式になる。一般のHermitian多様体で欠けていた橋が完成した。
+
+## 9.8 Hodge分解
+
+**定理（コンパクトKähler多様体のHodge分解）**  $X$ をコンパクトKähler多様体とする。このとき
+$$
+\boxed{
+H_{\mathrm{dR}}^k(X;\mathbb C)
+\cong
+\bigoplus_{p+q=k}
+H_{\bar\partial}^{p,q}(X)
+}.
+$$
+右辺の各群を調和代表によってde Rhamコホモロジー内の部分空間とみなし、
+$$
+H^{p,q}(X)
+:=\{[\alpha]\in H_{\mathrm{dR}}^{p+q}(X;\mathbb C)
+\mid \alpha\text{ は調和な }(p,q)\text{-形式}\}
+$$
+と書けば、
+$$
+H^k(X;\mathbb C)
+=\bigoplus_{p+q=k}H^{p,q}(X).
+$$
+この定理ではコンパクト性とKähler条件の両方を仮定する。この証明では、各コホモロジー類を調和形式で表す段階でコンパクト性を使い、Laplacianを一致させる段階でKähler条件を使う。これは個々の多様体が同様の分解を持つための論理的必要条件を主張するものではなく、非Kähler多様体にも $\partial\bar\partial$-補題を満たす例がある。
+
+調和代表は選んだKähler計量に依存する。しかし、de Rhamコホモロジー内の部分空間 $H^{p,q}(X)$ とその直和分解は、得られた同型を通じて複素構造から定まる。計量はその部分空間の各元から標準的な代表を選ぶ役割を果たす。
+
+## 9.9 共役対称性とBetti数
+
+複素共役は $(p,q)$-形式を $(q,p)$-形式へ送る。実計量から作るLaplacianは共役と可換するため、
+$$
+\overline{H^{p,q}(X)}=H^{q,p}(X).
+$$
+したがってHodge数
+$$
+h^{p,q}:=\dim_\mathbb C H^{p,q}(X)
+$$
+は
+$$
+h^{p,q}=h^{q,p}
+$$
+を満たす。
+
+特に $k=1$ では
+$$
+H^1(X;\mathbb C)
+=H^{1,0}(X)\oplus H^{0,1}(X),
+$$
+$$
+h^{1,0}=h^{0,1}.
+$$
+よって
+$$
+\boxed{b_1=2h^{1,0}}
+$$
+は偶数である。第7章の一次Hopf曲面は $b_1=1$ だったので、Kähler計量を持たないことがここで証明された。
+
+より一般に奇数次 $k$ では $p+q=k$ なら $p\ne q$ であり、$(p,q)$ と $(q,p)$ が対になる。したがって、コンパクトKähler多様体の奇数次Betti数はすべて偶数である。
+
+## 9.10 Frölicherスペクトル系列は最初で退化する
+
+第5章では
+$$
+E_1^{p,q}=H_{\bar\partial}^{p,q}(X)
+\Longrightarrow H_{\mathrm{dR}}^{p+q}(X;\mathbb C)
+$$
+を得た。コンパクト性により各項は有限次元であり、収束先はHodgeフィルトレーションに対して
+$$
+E_\infty^{p,q}\cong
+F^pH^{p+q}_{\mathrm{dR}}(X;\mathbb C)/
+F^{p+1}H^{p+q}_{\mathrm{dR}}(X;\mathbb C)
+$$
+を満たす。Hodge分解により、各全次数で $E_1$ の次元の総和がすでにde Rhamコホモロジー、したがって $E_\infty$ の次元の総和に等しい。後続微分が非零なら次元が減るので、
+$$
+E_1=E_\infty.
+$$
+これをFrölicherスペクトル系列の $E_1$ 退化という。ただし退化だけでは直和分解の自然な分裂まで自動的に与えるわけではない。Kähler計量による調和代表が、その分裂を具体的に与えている。
+
+## 9.11 partial-dbar 補題
+
+Kähler条件の強さを別の形で表す重要な結果がある。
+
+**定理（$\partial\bar\partial$-補題）**  $X$ をコンパクトKähler多様体とし、$\alpha$ を純型の微分形式とする。次の条件を考える。
+
+1. $\alpha$ は $d$-完全であり、かつ $\partial\alpha=\bar\partial\alpha=0$。
+2. $\alpha$ は $\partial$-完全であり、かつ $\bar\partial$-閉。
+3. $\alpha$ は $\bar\partial$-完全であり、かつ $\partial$-閉。
+4. ある形式 $\beta$ が存在して
+$$
+   \alpha=\partial\bar\partial\beta.
+$$
+これらは同値である。実形式の規約に応じて $i\partial\bar\partial\beta$ と書くこともある。
+
+**なぜ非自明か。**  一般の二重複体では、$\partial$-完全かつ $\bar\partial$-閉であっても、$\partial\bar\partial$-完全とは限らない。この補題は二つの微分の間の障害がKähler条件の下で消えることを述べる。
+
+**証明概略。**  条件2から条件4を導く計算を示す。$G$ を $\Delta_{\bar\partial}$ のGreen作用素とする。Kähler恒等式からLaplacianが定数倍を除いて一致するので、$G$ は $\partial,\bar\partial$ およびその形式上の随伴と可換する。
+
+$\alpha=\partial\gamma$ は $\partial$-完全だから、調和形式 $u$ に対して
+$$
+\langle\alpha,u\rangle
+=\langle\partial\gamma,u\rangle
+=\langle\gamma,\partial^*u\rangle=0
+$$
+となり、$\alpha$ の調和成分は零である。さらに $\bar\partial\alpha=0$ なので、Hodge分解から
+$$
+\alpha=\bar\partial\bar\partial^*G\alpha
+$$
+を得る。また $\partial\alpha=0$ と可換性から
+$$
+\partial G\alpha=G\partial\alpha=0.
+$$
+Kähler恒等式 $\bar\partial^*=-i[\Lambda,\partial]$ を代入すると
+$$
+\begin{aligned}
+\alpha
+&=-i\bar\partial[\Lambda,\partial]G\alpha\\
+&=-i\bar\partial(\Lambda\partial-\partial\Lambda)G\alpha\\
+&=i\bar\partial\partial(\Lambda G\alpha)\\
+&=-i\partial\bar\partial(\Lambda G\alpha).
+\end{aligned}
+$$
+したがって $\beta=-i\Lambda G\alpha$ と置けば $\alpha=\partial\bar\partial\beta$ である。$\alpha$ が $(p,q)$ 型なら、$G$ は型を保ち $\Lambda$ は型を $(1,1)$ 下げるため、$\beta$ は $(p-1,q-1)$ 型である。条件3から条件4はこの計算の複素共役であり、条件4から条件1–3は $\partial^2=\bar\partial^2=0$ と $d=\partial+\bar\partial$ から従う。
+
+残る条件1から条件2・3への橋も確認する。$\alpha=d\eta$ は $d$-完全だから、任意の $d$-調和形式 $u$ に対して
+$$
+\langle\alpha,u\rangle
+=\langle d\eta,u\rangle
+=\langle\eta,d^*u\rangle=0.
+$$
+Kähler恒等式により $d$-調和、$\partial$-調和、$\bar\partial$-調和は同値なので、$\alpha$ は後二者の調和空間にも直交する。条件1では $\partial\alpha=\bar\partial\alpha=0$ だから、それぞれのHodge分解を使って
+$$
+\alpha
+=\partial\partial^*G_\partial\alpha,
+\qquad
+\alpha
+=\bar\partial\bar\partial^*G_{\bar\partial}\alpha
+$$
+を得る。したがって $\alpha$ は $\partial$-完全かつ $\bar\partial$-完全であり、条件2と条件3をともに満たす。解析的核心はGreen作用素、代数的核心はKähler恒等式である。
+
+## 9.12 Hard Lefschetz定理への入口
+
+Lefschetz作用素はコホモロジー上でも
+$$
+L[\alpha]=[\omega\wedge\alpha]
+$$
+を定める。これは $d\omega=0$ だからである。
+
+**重要な非自明結果（Hard Lefschetz定理）**  複素次元 $n$ のコンパクトKähler多様体では、$0\le k\le n$ に対して
+$$
+L^{n-k}:
+H^k(X;\mathbb C)
+\longrightarrow
+H^{2n-k}(X;\mathbb C)
+$$
+は同型である。
+
+Kähler恒等式から
+$$
+[\Delta_d,L]=[\Delta_d,\Lambda]=0
+$$
+が従うため、$L,\Lambda$ は調和形式を調和形式へ送る。そこで形式上の $L,\Lambda$ と次数作用素が満たす $\mathfrak{sl}_2$ の関係式を有限次元の調和形式空間へ制限し、その表現論をコホモロジーへ移すと定理を得る。単なるPoincaré双対性より強く、Kähler類との外積が具体的な同型を与える。
+
+## 9.13 次の問い：曲率はなぜ (1,1) 型になるのか
+
+Hodge分解により、Kähler多様体上では複素幾何由来のコホモロジー類を型で分類できる。では、以前学んだChern類はこの分解のどこに入るのだろうか。
+
+正則ベクトル束には $\bar\partial_E$ があり、Hermitian計量には長さを保つ条件がある。この二つを同時に満たすChern接続の曲率は $(1,1)$ 型になる。その不変多項式から得られるChern形式は $(k,k)$ 型になり、位相的Chern類とHodge分解が接続される。
+
+次章では、この流れを局所行列と線束の具体計算から導く。
+
+
+
+
+

@@ -34,6 +34,13 @@ python scripts/validate_site.py
 3. `_quarto.yml` のnavbarとsidebarへ追加する。
 4. `quarto render` と `python scripts/validate_site.py` を実行する。
 
+## 掲載教材
+
+- Navier-Stokes方程式を読む
+- Buffer Overflow / ROP 入門
+- 作用素環論から非可換幾何へ
+- 複素多様体・複素幾何
+
 ## Deploy
 
 `main` branchへのpushでGitHub ActionsがQuartoサイトをビルドし、GitHub Pagesへ公開します。

@@ -6,6 +6,7 @@ project:
     - "navier-stokes/**/*.qmd"
     - "buffer-overflow/**/*.qmd"
     - "noncommutative-geometry/**/*.qmd"
+    - "complex-geometry/**/*.qmd"
 
 website:
   title: "AI教科書ポータル"
@@ -26,6 +27,8 @@ website:
         href: buffer-overflow/index.qmd
       - text: "非可換幾何"
         href: noncommutative-geometry/index.qmd
+      - text: "複素幾何"
+        href: complex-geometry/index.qmd
     right:
       - icon: github
         href: "https://github.com/takahito-0398/textbooks"
@@ -140,6 +143,42 @@ website:
         href: noncommutative-geometry/chapters/appendix-d-notation.qmd
       - text: "付録E　参考文献"
         href: noncommutative-geometry/chapters/appendix-e-bibliography.qmd
+  - id: complex-geometry
+    title: "複素多様体・複素幾何"
+    style: docked
+    collapse-level: 1
+    contents:
+      - complex-geometry/index.qmd
+      - text: "第1章　複素数から複素多様体へ"
+        href: complex-geometry/chapters/01-complex-numbers-to-manifolds.qmd
+      - text: "第2章　概複素構造と可積分性"
+        href: complex-geometry/chapters/02-almost-complex-and-integrability.qmd
+      - text: "第3章　接束の複素化と型分解"
+        href: complex-geometry/chapters/03-complexified-tangent-and-types.qmd
+      - text: "第4章　外微分はなぜpartialとdbarに分かれるのか"
+        href: complex-geometry/chapters/04-d-and-dbar.qmd
+      - text: "第5章　Dolbeaultコホモロジー：正則性の大域的障害"
+        href: complex-geometry/chapters/05-dolbeault-cohomology.qmd
+      - text: "第6章　正則ベクトル束：正則性をファイバーへ運ぶ"
+        href: complex-geometry/chapters/06-holomorphic-vector-bundles.qmd
+      - text: "第7章　Hermitian計量からKähler幾何へ"
+        href: complex-geometry/chapters/07-hermitian-to-kahler.qmd
+      - text: "第8章　Hodge理論：コホモロジー類から自然な代表元を選ぶ"
+        href: complex-geometry/chapters/08-hodge-theory.qmd
+      - text: "第9章　Kähler恒等式とHodge分解"
+        href: complex-geometry/chapters/09-kahler-identities-and-hodge-decomposition.qmd
+      - text: "第10章　Chern接続・曲率・Chern類"
+        href: complex-geometry/chapters/10-chern-connection-and-classes.qmd
+      - text: "第11章　複素射影空間とFubini-Study計量"
+        href: complex-geometry/chapters/11-projective-space-and-fubini-study.qmd
+      - text: "第12章　線束の正値性とKodaira埋め込み"
+        href: complex-geometry/chapters/12-positivity-and-kodaira-embedding.qmd
+      - text: "第13章　複素解析的対象と代数的対象"
+        href: complex-geometry/chapters/13-analytic-and-algebraic.qmd
+      - text: "第14章　複素トーラス、アーベル多様体、理論の境界"
+        href: complex-geometry/chapters/14-complex-tori-and-boundaries.qmd
+      - text: "参考文献と確認方針"
+        href: complex-geometry/chapters/references.qmd
 
 format:
   html:

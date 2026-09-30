@@ -1,0 +1,538 @@
+---
+title: '10. Chern接続・曲率・Chern類'
+sidebar: complex-geometry
+format:
+  html:
+    toc: true
+---
+
+## 10.1 正則構造だけでも計量だけでも接続は決まらない
+
+正則ベクトル束 $E\to X$ は、反正則方向の微分
+$$
+\bar\partial_E:
+\mathcal A^0(E)\to\mathcal A^{0,1}(E)
+$$
+を持つ。しかしこれは接続の $(0,1)$ 成分だけであり、$(1,0)$ 方向の微分は指定しない。
+
+一方、Hermitian計量 $h$ を保つ接続は多数ある。二つの計量接続の差として、適切な歪Hermitianな $\operatorname{End}E$-値一次形式を加えられるからである。
+
+そこで二つの条件を同時に要求する。
+
+1. 接続の $(0,1)$ 成分が正則構造 $\bar\partial_E$ に等しい。
+2. 接続がHermitian計量 $h$ を保つ。
+
+驚くべきことに、この二条件は接続を一意に決める。
+
+## 10.2 Hermitian接続の意味
+
+本章でもHermitian内積は第一変数について複素線形、第二変数について共役線形とする。接続
+$$
+\nabla:\mathcal A^0(E)\to
+\mathcal A^1(E)
+$$
+が計量と両立するとは、任意の切断 $s,t$ に対して
+$$
+d\,h(s,t)
+=h(\nabla s,t)+h(s,\nabla t)
+$$
+となることをいう。右辺では、第一項の形式係数にはそのまま、第二項には複素共役を伴ってHermitian積を延長する。
+
+## 10.3 Chern接続の存在と一意性
+
+**定理（Chern接続）**  正則ベクトル束 $E\to X$ と滑らかなHermitian計量 $h$ に対して、
+$$
+\nabla^{0,1}=\bar\partial_E,
+\qquad
+\nabla h=0
+$$
+を満たす接続 $\nabla$ が一意に存在する。これをChern接続という。
+
+この定理にKähler条件は不要である。底空間は任意の複素多様体でよい。
+
+### 一意性はなぜ成り立つか
+
+$\nabla,\nabla'$ が二条件を満たすとする。その差
+$$
+B:=\nabla'-\nabla
+$$
+は $\operatorname{End}E$-値一次形式である。$(0,1)$ 成分が等しいので
+$$
+B^{0,1}=0.
+$$
+計量適合性の差を取ると
+$$
+h(Bs,t)+h(s,Bt)=0.
+$$
+これは $B$ が歪Hermitianであることを意味し、型を共役すると $(1,0)$ 成分と $(0,1)$ 成分が互いに決まる。すでに $B^{0,1}=0$ なので $B^{1,0}=0$、したがって $B=0$ である。
+
+## 10.4 局所正則枠で接続形式を導く
+
+第6章と同様、局所枠を行ベクトル
+$$
+e=(e_1,\ldots,e_r)
+$$
+とし、切断を $s=ef$（$f$ は列ベクトル）と書く。接続形式 $A$ を
+$$
+\nabla(ef)=e(df+Af)
+$$
+で定める。
+
+計量行列を
+$$
+H_{\alpha\bar\beta}
+:=h(e_\alpha,e_\beta)
+$$
+とする。第一変数線形の規約では
+$$
+h(ef,eg)=f^T H\,\overline g.
+$$
+計量適合性を展開すると
+$$
+dH=A^T H+H\overline A.
+$$
+枠 $e$ が正則なら $\bar\partial_Ee_\alpha=0$ なので、Chern接続の条件から
+$$
+A^{0,1}=0.
+$$
+上の計量適合式の $(1,0)$ 成分を取れば
+$$
+\partial H=A^T H.
+$$
+よって
+$$
+\boxed{
+A^T=(\partial H)H^{-1}
+},
+\qquad
+\boxed{
+A=(H^{-1})^T(\partial H)^T
+}.
+$$
+この局所式が枠に依存しない接続を定めることも確認する。正則枠を $e'=eG$ と変えると、同じ切断の係数は $f'=G^{-1}f$ であり、
+$$
+H'=G^T H\overline G.
+$$
+また
+$$
+\begin{aligned}
+\nabla(e'f')
+&=\nabla(eGf')\\
+&=e\bigl(d(Gf')+AGf'\bigr)\\
+&=eG\bigl(df'+G^{-1}dG\,f'+G^{-1}AGf'\bigr).
+\end{aligned}
+$$
+ゆえに接続行列は
+$$
+\boxed{A'=G^{-1}AG+G^{-1}dG}
+$$
+と変換する。曲率の変換も途中を展開する。
+$$
+B=G^{-1}AG,
+\qquad
+\theta=G^{-1}dG
+$$
+と置くと $A'=B+\theta$ である。
+$d(G^{-1})=-G^{-1}(dG)G^{-1}$ を使えば
+$$
+\begin{aligned}
+dB
+&=G^{-1}(dA)G-\theta\wedge B-B\wedge\theta,\\
+d\theta
+&=-\theta\wedge\theta,\\
+A'\wedge A'
+&=B\wedge B+B\wedge\theta
++\theta\wedge B+\theta\wedge\theta.
+\end{aligned}
+$$
+したがって交差項が対ごとに消え、
+$$
+\begin{aligned}
+F'
+&=d(B+\theta)+(B+\theta)\wedge(B+\theta)\\
+&=G^{-1}(dA)G+B\wedge B\\
+&=G^{-1}(dA+A\wedge A)G\\
+&=G^{-1}FG.
+\end{aligned}
+$$
+すなわち
+$$
+\boxed{F'=G^{-1}FG}
+$$
+を得る。変換後の $A'$ は $A'^{0,1}=0$ であり、上の計算から同じHermitian計量に適合する。したがってChern接続の一意性により、$H'=G^TH\overline G$ を計量公式へ代入して得る接続と一致する。ゆえに局所公式は大域的な接続を定め、その曲率は局所行列の寄せ集めではなく、大域的な $\operatorname{End}E$-値二形式である。
+
+これは第一変数線形・列係数という本書の規約に対応する。第二変数線形のHermitian積と別の行列配置を使う文献では
+$$
+A=H^{-1}\partial H
+$$
+と書かれる。見た目の差は規約によるもので、幾何学的接続は同じである。
+
+この公式は存在も示している。右辺で $A^{1,0}$ を定め、$A^{0,1}=0$ とすれば、$\partial H=A^TH$ を満たす。Hermitian対称性 $H^T=\overline H$ を使い、この式を共役して転置すると
+$$
+\bar\partial H=H\overline A
+$$
+も得られる。二式を足せば $dH=A^TH+H\overline A$ となるので、正則構造と計量適合性をともに満たす。
+
+## 10.5 曲率が (1,1) 型になる理由
+
+接続の曲率は
+$$
+F_\nabla=\nabla^2
+\in\mathcal A^2(X,\operatorname{End}E)
+$$
+である。上の列係数規約では局所的に
+$$
+F_\nabla=dA+A\wedge A.
+$$
+Chern接続では $A$ が $(1,0)$ 型なので、
+$$
+F_\nabla^{0,2}=0.
+$$
+$(2,0)$ 成分は
+$$
+\partial A+A\wedge A
+$$
+である。ここで $K=H^T$ と置けば、上の公式は
+$$
+A=K^{-1}\partial K
+$$
+となる。恒等式 $K^{-1}K=I$ に $\partial$ を作用させると
+$$
+\partial(K^{-1})=-K^{-1}(\partial K)K^{-1}
+$$
+だから、行列積と外積の順序を保って
+$$
+\begin{aligned}
+\partial A
+&=\partial(K^{-1}\partial K)\\
+&=\partial(K^{-1})\wedge\partial K+K^{-1}\partial^2K\\
+&=-K^{-1}(\partial K)K^{-1}\wedge\partial K\\
+&=-A\wedge A.
+\end{aligned}
+$$
+したがって
+$$
+\partial A+A\wedge A=0.
+$$
+したがって
+$$
+\boxed{
+F_\nabla\in
+\mathcal A^{1,1}(X,\operatorname{End}E)
+}.
+$$
+具体的には
+$$
+F_\nabla=\bar\partial A.
+$$
+正則構造が $(0,2)$ 成分を消し、計量から一意に決まる $(1,0)$ 成分が $(2,0)$ 成分も消す。曲率が $(1,1)$ 型になることは偶然ではない。
+
+## 10.6 線束ではすべてが一つの関数になる
+
+正則線束 $L$ の局所正則枠を $e$ とする。計量は正の関数
+$$
+h(e,e)=H
+$$
+で表される。階数1では転置が消え、Chern接続形式は
+$$
+A=H^{-1}\partial H=\partial\log H.
+$$
+局所重み $\varphi$ を
+$$
+H=e^{-\varphi}
+$$
+で定めると
+$$
+A=-\partial\varphi.
+$$
+曲率は
+$$
+\begin{aligned}
+F_\nabla
+&=dA\\
+&=-\bar\partial\partial\varphi\\
+&=\partial\bar\partial\varphi.
+\end{aligned}
+$$
+最後に $\bar\partial\partial=-\partial\bar\partial$ を使った。したがって
+$$
+\boxed{
+iF_\nabla=i\partial\bar\partial\varphi
+}.
+$$
+Kählerポテンシャルと全く同じ形が現れた。線束の計量の曲率が正であることは、局所重み $\varphi$ が強多重劣調和であることを意味する。
+
+### 枠を変えても曲率が変わらない
+
+正則枠を $e'=eg$ と変える。第一変数線形なので
+$$
+H'=h(e',e')=|g|^2H,
+$$
+$$
+\log H'=\log H+\log|g|^2.
+$$
+$g$ は零を持たない正則関数なので、局所的に正則な対数を取り
+$$
+\partial\bar\partial\log|g|^2=0
+$$
+と分かる。よって
+$$
+\partial\bar\partial\log H'
+=\partial\bar\partial\log H.
+$$
+接続形式は変わっても曲率は大域的に定まる。
+
+## 10.7 Chern–Weil理論との再会
+
+以前学んだChern–Weil理論では、任意の複素ベクトル束と接続から
+$$
+c(E,\nabla)
+:=
+\det\left(
+I+\frac{i}{2\pi}F_\nabla
+\right)
+$$
+を作った。次数 $2k$ の成分を $c_k(E,\nabla)$ と書く。
+
+Bianchi恒等式
+$$
+\nabla F_\nabla=0
+$$
+と行列の不変多項式の性質から、各 $c_k(E,\nabla)$ は閉形式になる。接続を変えたときの差はChern–Simons形式の外微分になるため、
+$$
+[c_k(E,\nabla)]
+\in H_{\mathrm{dR}}^{2k}(X;\mathbb C)
+$$
+は接続に依存しない。これは位相的Chern類
+$$
+c_k(E)\in H^{2k}(X;\mathbb Z)
+$$
+の複素係数de Rham像である。
+
+Chern接続を使う新しい意味は、曲率が $(1,1)$ 型になることにある。行列式の $k$ 次項は曲率を $k$ 個掛けるので、
+$$
+c_k(E,\nabla)\in\mathcal A^{k,k}(X).
+$$
+したがってコンパクトKähler多様体上では
+$$
+\boxed{
+c_k(E)_{\mathbb C}\in
+H^{k,k}(X)\cap
+\operatorname{im}\!\left(
+H^{2k}(X;\mathbb Z)
+\longrightarrow H^{2k}(X;\mathbb C)
+\right)
+}.
+$$
+位相的に定義されたChern類が、正則構造によってHodge分解の対角成分に入る。これがChern–Weil理論を複素幾何から見直したときに得られる新しい意味である。
+
+### 位相的K理論との再接続
+
+位相的K群 $K^0(X)$ の元は、複素ベクトル束の仮想差
+$$
+[E]-[F]
+$$
+で表される。直和に関する加法性を持つ特性類として、Chern指標
+$$
+\operatorname{ch}(E,\nabla)
+=
+\operatorname{Tr}
+\exp\left(\frac{i}{2\pi}F_\nabla\right)
+$$
+を考える。指数関数を級数展開すると
+$$
+\operatorname{ch}(E,\nabla)
+=
+\operatorname{rank}E
++\frac{i}{2\pi}\operatorname{Tr}F_\nabla
++\frac1{2!}
+\operatorname{Tr}
+\left(\frac{i}{2\pi}F_\nabla\right)^2
++\cdots.
+$$
+Chern–Weil理論により各成分は閉形式であり、そのコホモロジー類は接続に依存しない。また
+$$
+\operatorname{ch}(E\oplus F)
+=
+\operatorname{ch}(E)+\operatorname{ch}(F),
+$$
+$$
+\operatorname{ch}(E\otimes F)
+=
+\operatorname{ch}(E)\operatorname{ch}(F)
+$$
+なので、
+$$
+\operatorname{ch}([E]-[F])
+:=
+\operatorname{ch}(E)-\operatorname{ch}(F)
+$$
+は仮想差の表示によらず定まる。こうして
+$$
+\operatorname{ch}:
+K^0(X)\longrightarrow H^{\mathrm{even}}(X;\mathbb Q)
+$$
+を得る。有限CW複体では有理化後に
+$$
+K^0(X)\otimes\mathbb Q
+\cong
+H^{\mathrm{even}}(X;\mathbb Q)
+$$
+を与える。
+
+いま $X$ をコンパクトKähler多様体、$E$ をその上の正則ベクトル束とする。Chern接続の曲率は $(1,1)$ 型なので、Chern指標の次数 $2k$ 成分は $(k,k)$ 型になり、
+$$
+\operatorname{ch}_k(E)_{\mathbb C}
+\in
+H^{k,k}(X)\cap
+\operatorname{im}\!\left(
+H^{2k}(X;\mathbb Q)
+\longrightarrow H^{2k}(X;\mathbb C)
+\right)
+$$
+に入る。位相的K理論では仮想束として扱っていた情報が、正則構造を入れることでHodge分解の対角成分へ配置される。これが複素幾何から見たK理論の新しい意味である。
+
+### 第2章の問いへ戻る：なぜ S^4 に概複素構造はないか
+
+第2章では、向き付け可能な偶数次元多様体でも概複素構造を持つとは限らない例として $S^4$ を挙げた。特性類を使ってその主張を証明する。
+
+**完全な証明。**  
+$S^4$ が概複素構造 $J$ を持つと仮定する。すると実接束 $TS^4$ は、複素階数 $2$ の複素ベクトル束 $E=(TS^4,J)$ の基礎実ベクトル束である。
+
+複素階数 $2$ の束とその基礎実束の特性類には
+$$
+e(TS^4)=c_2(E),
+\qquad
+p_1(TS^4)=c_1(E)^2-2c_2(E)
+$$
+という関係がある。$H^2(S^4;\mathbb Z)=0$ だから
+$$
+c_1(E)=0.
+$$
+またEuler類の基本類上の値はEuler標数なので、
+$$
+\left\langle c_2(E),[S^4]\right\rangle
+=
+\left\langle e(TS^4),[S^4]\right\rangle
+=
+\chi(S^4)=2.
+$$
+したがって
+$$
+\left\langle p_1(TS^4),[S^4]\right\rangle
+=
+-2\left\langle c_2(E),[S^4]\right\rangle
+=-4.
+$$
+一方、Hirzebruchの符号数定理は任意の閉向き付き4次元多様体 $M$ に対して
+$$
+\left\langle p_1(TM),[M]\right\rangle
+=3\sigma(M)
+$$
+を与える。$S^4$ の中間次元コホモロジーは零なので $\sigma(S^4)=0$、したがって
+$$
+\left\langle p_1(TS^4),[S^4]\right\rangle=0.
+$$
+これは $-4$ という先の値と矛盾する。ゆえに $S^4$ は概複素構造を持たない。 $\square$
+
+## 10.8 第一Chern類と線束
+
+線束では行列式は一次なので、
+$$
+\boxed{
+c_1(L,h)
+=\frac{i}{2\pi}F_\nabla
+},
+$$
+$$
+\boxed{
+c_1(L)
+=\left[
+\frac{i}{2\pi}F_\nabla
+\right].
+}
+$$
+局所重み $H=e^{-\varphi}$ を使えば
+$$
+c_1(L,h)
+=\frac{i}{2\pi}
+\partial\bar\partial\varphi.
+$$
+係数 $i/(2\pi)$ は、de Rham類が整数Chern類に一致するための正規化である。省略すると「曲率に比例する実 $(1,1)$ 類」までは言えても、整数格子との正確な対応を失う。
+
+## 10.9 計量を変えると何が変わるか
+
+同じ正則線束上の二つのHermitian計量を
+$$
+H'=e^{-\psi}H
+$$
+とする。対応する局所重みは $\varphi'=\varphi+\psi$ なので、
+$$
+F_{\nabla'}-F_\nabla
+=\partial\bar\partial\psi.
+$$
+したがって
+$$
+c_1(L,h')-c_1(L,h)
+=\frac{i}{2\pi}\partial\bar\partial\psi
+$$
+は完全形式であり、コホモロジー類は変わらない。
+
+これは「Chern形式は計量に依存するが、Chern類は依存しない」という区別を具体的に示す。同時に、同じChern類の中で曲率代表を調整する問題が $\partial\bar\partial$ 方程式になることも分かる。
+
+## 10.10 接束の場合
+
+正則接束 $T^{1,0}X$ にKähler計量から来るHermitian計量を入れる。Kählerの場合、接束のChern接続は複素化したLevi–Civita接続と一致する。一般のHermitian多様体では両者は一致せず、torsionの差が残る。
+
+接束の第一Chern形式は曲率のトレース
+$$
+c_1(T^{1,0}X,h)
+=\frac{i}{2\pi}\operatorname{Tr}F_\nabla
+$$
+である。局所計量行列を $H$ とすると
+$$
+\operatorname{Tr}A
+=\operatorname{Tr}(K^{-1}\partial K)
+=\partial\log\det K
+=\partial\log\det H.
+$$
+また $\operatorname{Tr}(A\wedge A)=0$ なので、曲率のトレースは
+$$
+\begin{aligned}
+\operatorname{Tr}F_\nabla
+&=\bar\partial\operatorname{Tr}A\\
+&=\bar\partial\partial\log\det H\\
+&=-\partial\bar\partial\log\det H.
+\end{aligned}
+$$
+Kähler計量のRicci形式を本書では
+$$
+\rho=i\,\operatorname{Tr}F_\nabla
+$$
+と定める。したがって
+$$
+[\rho]=2\pi c_1(X)
+$$
+が得られる。これはKähler計量のRicci曲率を複素構造の特性類へ結ぶ式であり、Calabi予想への入口になる。
+
+## 10.11 次の問い：正の曲率は何を生むか
+
+線束 $L$ のHermitian計量が
+$$
+iF_\nabla>0
+$$
+を満たすとき、$L$ を正値線束という。計量適合性から $iF_\nabla$ は実形式であり、線束に対するBianchi恒等式から $dF_\nabla=0$ である。したがってこの不等式は、$iF_\nabla$ が正定値な閉実 $(1,1)$-形式、すなわちKähler形式になることを意味する。
+
+曲率の正値性は局所的な微分不等式に見える。しかし $X$ がコンパクト複素多様体なら、Kodaira理論では、それが十分高いテンソル冪 $L^{\otimes m}$ の大域正則切断を大量に生み、それらが
+$$
+X\longrightarrow\mathbb{CP}^N
+$$
+という埋め込みを作る。
+
+その仕組みを理解するには、まず複素射影空間を「複素直線の空間」として作り、標準線束 $\mathcal O(-1)$、双対 $\mathcal O(1)$、Fubini–Study計量を具体的に計算する必要がある。次章でそれを行う。
+
+
+
+
+
+

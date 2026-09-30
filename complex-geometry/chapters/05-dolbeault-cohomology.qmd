@@ -1,0 +1,395 @@
+---
+title: '5. Dolbeaultコホモロジー：正則性の大域的障害'
+sidebar: complex-geometry
+format:
+  html:
+    toc: true
+---
+
+## 5.1 de Rhamコホモロジーだけでは何を忘れるのか
+
+滑らかな多様体 $M$ の de Rham コホモロジーは
+$$
+H_{\mathrm{dR}}^k(M;\mathbb C)
+=
+\frac{\ker(d:\mathcal A^k\to\mathcal A^{k+1})}
+{\operatorname{im}(d:\mathcal A^{k-1}\to\mathcal A^k)}
+$$
+である。これは微分同相で不変なので、基礎にある滑らかな多様体の位相を捉える。しかし、同じ滑らかな多様体に異なる複素構造を入れても、de Rham コホモロジーは変わらない。そこでは正則方向と反正則方向を区別していないからである。
+
+前章で、複素構造が外微分を
+$$
+d=\partial+\bar\partial
+$$
+へ分けることを見た。$\bar\partial$ だけを使えば、複素構造に依存する情報を残したまま、閉形式と完全形式の差を測れる。
+
+## 5.2 定義はどの問題への答えか
+
+固定した $p$ に対し、
+$$
+0\longrightarrow
+\mathcal A^{p,0}(X)
+\xrightarrow{\bar\partial}
+\mathcal A^{p,1}(X)
+\xrightarrow{\bar\partial}\cdots
+\xrightarrow{\bar\partial}
+\mathcal A^{p,n}(X)
+\longrightarrow0
+$$
+を考える。$\bar\partial^2=0$ なので、像は次の核に含まれる。
+
+**定義（Dolbeaultコホモロジー）**
+$$
+H_{\bar\partial}^{p,q}(X)
+:=
+\frac{
+\ker\bigl(\bar\partial:
+\mathcal A^{p,q}(X)\to\mathcal A^{p,q+1}(X)\bigr)}
+{
+\operatorname{im}\bigl(\bar\partial:
+\mathcal A^{p,q-1}(X)\to\mathcal A^{p,q}(X)\bigr)
+}.
+$$
+分子は $\bar\partial$-閉な $(p,q)$-形式、分母は $\bar\partial$-完全な $(p,q)$-形式である。したがって一つの類 $[\alpha]_{\bar\partial}$ は、
+$$
+\alpha\sim\alpha+\bar\partial\beta
+$$
+という同値関係の下での形式を表す。
+
+この商空間は「正則性に関する局所方程式が、大域的には解けない障害」を記録する。単なる de Rham コホモロジーの添字分けではない。
+
+## 5.3 最低次数では正則関数そのものが現れる
+
+$(p,q)=(0,0)$ では、分母に当たる $\mathcal A^{0,-1}$ は存在しないので、
+$$
+H_{\bar\partial}^{0,0}(X)
+=\ker\bigl(\bar\partial:\mathcal A^{0,0}(X)
+\to\mathcal A^{0,1}(X)\bigr).
+$$
+前章で示した
+$$
+\bar\partial f=0\iff f\text{ は正則}
+$$
+により、
+$$
+\boxed{H_{\bar\partial}^{0,0}(X)=\mathcal O(X)}
+$$
+である。ここで $\mathcal O(X)$ は $X$ 上の大域正則関数全体である。
+
+この時点ですでに de Rham 理論との差が見える。連結な多様体なら
+$$
+H_{\mathrm{dR}}^0(M;\mathbb C)\cong\mathbb C
+$$
+だが、非コンパクトな複素多様体では $\mathcal O(X)$ は非常に大きくなり得る。たとえば
+$$
+H_{\bar\partial}^{0,0}(\mathbb C)
+=\{\mathbb C\text{ 上の整関数}\}
+$$
+であり、多項式や $e^z$ などを含む無限次元空間である。
+
+一方、連結コンパクト複素多様体では最大値原理から大域正則関数は定数なので、
+$$
+H_{\bar\partial}^{0,0}(X)\cong\mathbb C.
+$$
+同じ記号の群が、コンパクト性によって全く異なる大きさになり得る。
+
+## 5.4 局所的に解けることと大域的に解けること
+
+de Rham 理論では、閉形式は局所的には完全であるという Poincaré の補題が基礎だった。複素幾何にも対応する局所結果がある。
+
+**定理（$\bar\partial$-Poincaré補題）**  $X$ を複素多様体とする。$q>0$ とし、$\alpha$ を $\bar\partial\alpha=0$ を満たす滑らかな $(p,q)$-形式とする。各点は、ある近傍 $U$ を持ち、その上で
+$$
+\alpha|_U=\bar\partial\beta
+$$
+となる滑らかな $(p,q-1)$-形式 $\beta$ が存在する。
+
+コンパクト性もKähler条件も仮定していない。これは局所座標内の解析的な可解性に関する定理である。
+
+### 一変数で解作用素を見る
+
+$\mathbb C$ の円板 $D$ で $(0,1)$-形式
+$$
+\alpha=a(z,\bar z)\,d\bar z
+$$
+を考える。複素次元1では $(0,2)$-形式が存在しないので、任意の $\alpha$ が自動的に $\bar\partial$-閉である。求めるのは
+$$
+\bar\partial u
+=\frac{\partial u}{\partial\bar z}\,d\bar z
+=a\,d\bar z,
+$$
+すなわち
+$$
+\frac{\partial u}{\partial\bar z}=a
+$$
+の局所解である。
+
+まず $\overline{D'}\subset D$ となる小さい円板 $D'$ を取り、
+$$
+\chi\in C_c^\infty(D),\qquad \chi|_{D'}=1
+$$
+となる滑らかな切断関数を選ぶ。$\chi$ の台は $D$ の内部にコンパクトに含まれるので、$\chi a$ を $\mathbb C$ 上へ零で延長しても滑らかであり、コンパクトな台を持つ。Cauchy–Green作用素を
+$$
+u(z)=\frac1{\pi}\int_{\mathbb C}
+\frac{\chi(\zeta)a(\zeta)}{z-\zeta}\,d\xi\,d\eta,
+\qquad \zeta=\xi+i\eta,
+$$
+と定める。ここで $d\xi\,d\eta$ は正の Lebesgue 測度である。核 $1/(z-\zeta)$ は、分布の意味で
+$$
+\frac{\partial}{\partial\bar z}
+\left(\frac1{\pi z}\right)=\delta_0
+$$
+を満たすため、
+$$
+\frac{\partial u}{\partial\bar z}
+=\chi(z)a(z)
+$$
+となる。特に $\chi=1$ である $D'$ 上では $\bar\partial u=\alpha$ である。このように、元の円板全体で解く必要はなく、各点の周りで少し小さい円板へ縮めれば局所解が得られる。
+
+**証明概略（多変数・高次形式の場合）**  多重円板上で、反正則次数の最後の変数から順に一変数の解作用素を適用する。各段階で一つの $d\bar z^j$ 成分を除き、$\bar\partial\alpha=0$ が残りの成分との整合条件になる。これを反正則次数について帰納してホモトピー公式
+$$
+\bar\partial T+T\bar\partial=I
+$$
+を $q>0$ の形式上で得る。$q=0$ では正則関数が核に残るため、この式をそのまま使えない。全次数を一つの式で扱うなら、正則成分への射影 $P$ を入れて
+$$
+\bar\partial T+T\bar\partial=I-P
+$$
+と書く。境界近くの台と正則性の管理が必要なので、一般の場合の解析的詳細は標準的な $\bar\partial$-Poincaré 補題として引用する。ここで完全に示したのは一変数の局所解構成である。
+
+ここで重要なのは「局所的には必ず解ける」ことと「多様体全体で一つの解がある」ことは別だという点である。局所解同士が重なりで一致しない可能性があり、そのずれが大域的障害になる。
+
+## 5.5 複素トーラスで大域的障害を見る
+
+一次元複素トーラス
+$$
+E=\mathbb C/\Lambda,\qquad
+\Lambda=\mathbb Z+\tau\mathbb Z,\quad \operatorname{Im}\tau>0
+$$
+を考える。平行移動不変な形式 $d\bar z$ は格子による平行移動で変わらないので、$E$ 上の大域的 $(0,1)$-形式へ降りる。また
+$$
+\bar\partial(d\bar z)=0
+$$
+である。
+
+もし $d\bar z=\bar\partial f$ となる大域関数 $f$ が存在すれば、$\mathbb C$ への持ち上げ $\tilde f$ は $\Lambda$-周期的で
+$$
+\frac{\partial\tilde f}{\partial\bar z}=1
+$$
+を満たす。基本平行四辺形 $P$ 上で両辺を面積分する。実座標 $z=x+iy$ を使うと
+$$
+\frac{\partial\tilde f}{\partial\bar z}
+=\frac12\left(
+\frac{\partial\tilde f}{\partial x}
++i\frac{\partial\tilde f}{\partial y}
+\right).
+$$
+$\tau=a+ib$（$b>0$）と書き、基本平行四辺形を
+$$
+z=s+t\tau,\qquad 0\le s,t\le1
+$$
+で表す。持ち上げをこの座標で
+$$
+F(s,t):=\tilde f(s+t\tau)
+$$
+と書く。このとき $x=s+at$, $y=bt$ だから
+$$
+dx\,dy=b\,ds\,dt.
+$$
+また
+$$
+F_s=\tilde f_x,\qquad
+F_t=a\tilde f_x+b\tilde f_y
+$$
+より
+$$
+\frac{\partial\tilde f}{\partial\bar z}\,dx\,dy
+=\frac12\left(
+(b-ia)F_s+iF_t
+\right)ds\,dt.
+$$
+$F(s+1,t)=F(s,t)$ および
+$F(s,t+1)=F(s,t)$ なので、微分を積分すると
+$$
+\int_0^1F_s\,ds
+=F(1,t)-F(0,t)=0,
+$$
+$$
+\int_0^1F_t\,dt
+=F(s,1)-F(s,0)=0.
+$$
+したがって
+$$
+\int_P
+\frac{\partial\tilde f}{\partial\bar z}\,dx\,dy=0.
+$$
+しかし右辺が1なら
+$$
+\int_P1\,dx\,dy=\operatorname{Area}(P)>0
+$$
+であり矛盾する。したがって $d\bar z$ は $\bar\partial$-閉だが $\bar\partial$-完全ではなく、
+$$
+[d\bar z]_{\bar\partial}\ne0
+\quad\text{in}\quad H_{\bar\partial}^{0,1}(E).
+$$
+各小円板では方程式を解けるのに、トーラス全体では周期性が解を妨げる。これがコホモロジー類の具体的な意味である。
+
+## 5.6 正則 p-形式との関係
+
+$(p,0)$-形式
+$$
+\alpha=\sum_{|I|=p}\alpha_I\,dz^I
+$$
+について
+$$
+\bar\partial\alpha
+=\sum_{I,j}
+\frac{\partial\alpha_I}{\partial\bar z^j}
+d\bar z^j\wedge dz^I.
+$$
+したがって $\bar\partial\alpha=0$ であることは、すべての係数 $\alpha_I$ が正則であることと同値である。よって
+$$
+H_{\bar\partial}^{p,0}(X)
+=\{\text{$X$ 上の大域正則 $p$-形式}\}.
+$$
+たとえば $\mathbb{CP}^1$ には非零の大域正則1形式がない。実際、アフィン座標 $z$ 上で正則1形式を $f(z)\,dz$ と書く。無限遠点の座標 $w=1/z$ では
+$$
+dz=d\left(\frac1w\right)=-\frac1{w^2}dw
+$$
+なので
+$$
+f(z)\,dz
+=-f(1/w)\frac1{w^2}dw.
+$$
+これが $w=0$ で正則であるには、整関数 $f$ が無限遠で $O(z^{-2})$ でなければならない。特に $f$ は $|z|$ が十分大きい領域で有界であり、残りのコンパクト円板上でも連続だから有界である。Liouvilleの定理により $f$ は定数である。一方 $f(z)=O(z^{-2})$ から $f(z)\to0$ なので、その定数は0である。したがって
+$$
+H_{\bar\partial}^{1,0}(\mathbb{CP}^1)=0.
+$$
+一方、複素トーラス $E$ では $dz$ が商へ降りる非零の正則1形式なので、
+$$
+H_{\bar\partial}^{1,0}(E)\ne0.
+$$
+Dolbeaultコホモロジーは、複素構造に適合する正則形式の違いを直接見る。ただし、この二例は基礎となる滑らかな多様体も $S^2$ と $T^2$ で異なるため、「同じ滑らかな多様体上の異なる複素構造」を比較した例ではない。Dolbeault群が複素構造の変形で変わる現象は重要な発展事項だが、具体例には変形理論の準備が必要になるため、本書では扱わない。
+
+## 5.7 局所解のずれを記録するには層が要る
+
+$\bar\partial$-Poincaré補題は、$\bar\partial$-閉形式が各座標近傍では完全になると言う。それでも大域的に完全とは限らなかった。したがって問題は、局所解をどう貼り合わせるかにある。
+
+開集合 $U\subset X$ ごとに、その上の正則 $p$-形式全体を対応させるものを $\Omega_X^p$ と書く。包含 $V\subset U$ に対して形式を制限できる。この「開集合ごとのデータと制限写像」をまとめたものが層である。
+
+同様に、滑らかな $(p,q)$-形式の層を $\mathcal A_X^{p,q}$ と書く。$\bar\partial$-Poincaré補題により、層の列
+$$
+0\longrightarrow\Omega_X^p
+\longrightarrow\mathcal A_X^{p,0}
+\xrightarrow{\bar\partial}
+\mathcal A_X^{p,1}
+\xrightarrow{\bar\partial}\cdots
+\xrightarrow{\bar\partial}
+\mathcal A_X^{p,n}
+\longrightarrow0
+$$
+は完全である。
+
+最初の核が $\Omega_X^p$ なのは、$(p,0)$-形式が $\bar\partial$-閉であることと正則であることが同値だからである。正の次数での完全性が $\bar\partial$-Poincaré補題である。
+
+さらに $\mathcal A_X^{p,q}$ は1の分割を掛けられる細層であり、高次層コホモロジーが消える。このため、局所データの貼り合わせ障害を測る層コホモロジーを、大域微分形式の複体で計算できる。
+
+## 5.8 Dolbeault定理
+
+**定理（Dolbeault定理）**  $X$ を複素多様体とする。任意の $p,q\ge0$ に対して自然な同型
+$$
+\boxed{
+H^q(X,\Omega_X^p)
+\cong
+H_{\bar\partial}^{p,q}(X)
+}
+$$
+が存在する。
+
+コンパクト性もKähler条件も不要である。
+
+**何が非自明か。**  左辺は局所的な正則 $p$-形式を貼り合わせる障害として定義される層コホモロジーであり、右辺は大域的な滑らかな $(p,q)$-形式と微分作用素 $\bar\partial$ から作られる。定義の見た目が全く異なる二つを同一視している。
+
+**証明の論理。**
+
+1. $\bar\partial$-Poincaré補題により、上の層の列は $\Omega_X^p$ の分解になる。
+2. 滑らかな形式の層は細層なので非輪状である。
+3. 非輪状分解の大域切断を取った複体のコホモロジーが、元の層の層コホモロジーを計算する。
+4. その大域切断の複体は、Dolbeaultコホモロジーを定義した複体そのものである。
+
+解析的な核心は $\bar\partial$-Poincaré補題、局所から大域への核心は非輪状分解の一般論である。両者を混同して「局所補題だけで直ちに大域同型が出る」としてはいけない。
+
+## 5.9 de Rhamコホモロジーとの関係はまだ直和ではない
+
+$(p,q)$-形式を格子状に並べると、$\partial$ は右へ、$\bar\partial$ は上へ進む。
+$$
+\begin{matrix}
+\vdots&\vdots&\vdots\\
+\uparrow\bar\partial&\uparrow\bar\partial&\uparrow\bar\partial\\
+\mathcal A^{0,1}&\xrightarrow{\partial}&\mathcal A^{1,1}&\xrightarrow{\partial}\cdots\\
+\uparrow\bar\partial&\uparrow\bar\partial&\uparrow\bar\partial\\
+\mathcal A^{0,0}&\xrightarrow{\partial}&\mathcal A^{1,0}&\xrightarrow{\partial}\cdots
+\end{matrix}
+$$
+全体を対角線 $p+q=k$ ごとにまとめ、その全微分を $d=\partial+\bar\partial$ としたものが de Rham 複体である。正則次数によるフィルトレーションを
+$$
+F^p\mathcal A^k
+:=
+\bigoplus_{\substack{r+s=k\\r\ge p}}
+\mathcal A^{r,s},
+$$
+$$
+F^pH^k
+:=
+\operatorname{im}\left(
+H^k(F^p\mathcal A^\bullet)
+\longrightarrow
+H_{\mathrm{dR}}^k(X;\mathbb C)
+\right)
+$$
+と定める。このフィルター付き複体から、Dolbeaultコホモロジーを出発点として de Rham コホモロジーへ近づく Frölicherスペクトル系列
+$$
+E_1^{p,q}=H_{\bar\partial}^{p,q}(X)
+\Longrightarrow H_{\mathrm{dR}}^{p+q}(X;\mathbb C)
+$$
+が得られる。最初の微分は $\partial$ が誘導する
+$$
+d_1^{p,q}:
+H_{\bar\partial}^{p,q}(X)
+\longrightarrow
+H_{\bar\partial}^{p+1,q}(X)
+$$
+であり、一般には
+$$
+d_r:E_r^{p,q}\longrightarrow
+E_r^{p+r,q-r+1}
+$$
+となる。
+
+収束記号は $E_\infty$ の各成分が de Rham コホモロジーそのものへ直接等しいという意味ではない。正則次数によるフィルトレーション $F^\bullet$ に対して
+$$
+E_\infty^{p,q}
+\cong
+\frac{
+F^pH_{\mathrm{dR}}^{p+q}(X;\mathbb C)}
+{
+F^{p+1}H_{\mathrm{dR}}^{p+q}(X;\mathbb C)}
+$$
+となる、すなわち de Rham コホモロジーの随伴次数付き空間を与えるという意味である。
+
+ここで重要なのは、一般の複素多様体では
+$$
+H_{\mathrm{dR}}^k(X;\mathbb C)
+\stackrel{?}{=}
+\bigoplus_{p+q=k}H_{\bar\partial}^{p,q}(X)
+$$
+と直ちに書けないことである。右辺から左辺へ至る途中で、$d_1$ を含む後続の微分が非零になり、情報を消す場合がある。
+
+では、どのような追加構造があれば型分解がコホモロジー上でも保たれるのだろうか。コンパクト多様体に対する答えがKähler条件とHodge理論である。後に示すHodge分解では「コンパクトかつKähler」という二つの仮定を使う。しかし、その前に二つ準備が必要になる。
+
+1. 正則関数だけでなく、正則ベクトル束の切断にも $\bar\partial$ を作用させること。
+2. 複素構造と両立する長さ・角度を入れ、コホモロジー類から自然な代表元を選ぶこと。
+
+次章では第一の準備として、正則ベクトル束と $\bar\partial_E$ を導入する。
+
+
+
+

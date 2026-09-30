@@ -1,0 +1,403 @@
+---
+title: '8. Hodge理論：コホモロジー類から自然な代表元を選ぶ'
+sidebar: complex-geometry
+format:
+  html:
+    toc: true
+---
+
+## 8.1 商空間のままでは何が見えにくいのか
+
+de Rhamコホモロジーは
+$$
+H_{\mathrm{dR}}^k(M)
+=
+\frac{\ker(d:\Omega^k(M)\to\Omega^{k+1}(M))}
+{\operatorname{im}(d:\Omega^{k-1}(M)\to\Omega^k(M))}
+$$
+である。一つの類 $[\alpha]$ は、閉形式
+$$
+\alpha,\quad \alpha+d\beta,\quad
+\alpha+d\beta'
+$$
+をすべて同一視する。これは位相的不変量を作るには適切だが、計算や幾何には扱いにくい。類そのものは無数の代表元を持ち、どれを選べばよいかを教えてくれないからである。
+
+そこで次の問題を考える。
+
+> Riemann計量を使って、各コホモロジー類から最も自然な代表元を一意に選べないか。
+
+関数の場合、Dirichletエネルギーを最小にするものはLaplacianが零になる。微分形式でも同じ変分原理を作ると、調和形式が現れる。
+
+## 8.2 計量は形式にも内積を入れる
+
+$(M,g)$ を向き付けられた実 $m$ 次元Riemann多様体とする。点ごとの余接空間の内積は、外積空間 $\Lambda^kT_p^*M$ に内積を誘導する。正規直交余標構
+$$
+e^1,\ldots,e^m
+$$
+に対し、
+$$
+e^{i_1}\wedge\cdots\wedge e^{i_k}
+\qquad(i_1<\cdots<i_k)
+$$
+を正規直交基底とする内積である。
+
+向きと計量は体積形式
+$$
+\operatorname{vol}_g=e^1\wedge\cdots\wedge e^m
+$$
+を定める。これを使えば、点ごとの内積を多様体全体で積分できる。
+$$
+(\alpha,\beta)_{L^2}
+:=\int_M\langle\alpha,\beta\rangle_g\,
+\operatorname{vol}_g.
+$$
+非コンパクトな場合には積分が有限とは限らない。以下の基本定理では $M$ をコンパクトかつ境界なしと仮定する。
+
+## 8.3 Hodge starは何をする作用素か
+
+**定義（Hodge star）**  Hodge star
+$$
+*:\Omega^k(M)\longrightarrow\Omega^{m-k}(M)
+$$
+は、すべての $k$-形式 $\alpha,\beta$ に対して
+$$
+\alpha\wedge *\beta
+=\langle\alpha,\beta\rangle_g\,
+\operatorname{vol}_g
+$$
+を満たすように定まる作用素である。
+
+正規直交余標構で、添字集合 $I=(i_1<\cdots<i_k)$ の補集合を $I^c$ とする。$e^I\wedge e^{I^c}$ を正の向きへ並べ替える符号を $\varepsilon(I)$ とすれば、
+$$
+*e^I=\varepsilon(I)e^{I^c}.
+$$
+たとえば正の向きを持つ $\mathbb R^2$ では
+$$
+*1=dx\wedge dy,\qquad
+*dx=dy,\qquad
+*dy=-dx,\qquad
+*(dx\wedge dy)=1.
+$$
+二回作用させると、$k$ 個と $m-k$ 個の一次形式を入れ替える符号が現れ、
+$$
+*^2=(-1)^{k(m-k)}
+$$
+となる。
+
+複素数値形式には $*$ を複素線形に延長し、Hermitian $L^2$ 内積を
+$$
+(\alpha,\beta)_{L^2}
+=\int_M\alpha\wedge *\overline{\beta}
+$$
+とする。これは第一変数線形・第二変数共役線形である。以下ではまず実形式で随伴公式を導く。複素形式では
+$$
+d(\alpha\wedge *\overline\beta)
+$$
+から始める。$d$ と実計量から作った $*$ は複素共役と可換するため、同じ計算の各項に共役を保ったまま
+$$
+d(*\overline\beta)
+=d(*\bar\beta),\qquad
+*\overline{d^*\beta}
+$$
+と変形でき、同じ $d^*$ の公式がHermitian内積についての随伴を与える。
+
+## 8.4 d の随伴を作る
+
+外微分
+$$
+d:\Omega^{k-1}(M)\to\Omega^k(M)
+$$
+に対し、$L^2$ 内積についての形式上の随伴 $d^*$ を
+$$
+(d\alpha,\beta)_{L^2}
+=(\alpha,d^*\beta)_{L^2}
+$$
+で定めたい。
+
+$\beta\in\Omega^k(M)$ に対し、符号を計算すると
+$$
+\boxed{
+d^*\beta
+=(-1)^{m(k+1)+1}*d*\beta
+}
+$$
+となる。文献によって $\delta$ と書かれる作用素である。
+
+なぜこれが随伴になるかを見る。次数 $k-1$ の $\alpha$ に対し、
+$$
+d(\alpha\wedge *\beta)
+=d\alpha\wedge *\beta
++(-1)^{k-1}\alpha\wedge d*\beta.
+$$
+コンパクトで境界がないためStokesの定理から
+$$
+\int_Md(\alpha\wedge *\beta)=0.
+$$
+したがって
+$$
+\int_Md\alpha\wedge *\beta
+=(-1)^k\int_M\alpha\wedge d*\beta.
+$$
+右辺で $*^2$ の符号を使って $d*\beta$ を $*d^*\beta$ の形へ戻すと、上の公式と随伴関係を得る。符号は次元と次数に依存するが、本質は「Stokesの定理により微分を一方から他方へ移す」ことである。
+
+境界があれば境界積分が残るため、絶対境界条件・相対境界条件などを指定しなければ同じ議論はできない。
+
+## 8.5 Laplacianと調和形式
+
+関数のLaplacianを微分形式へ拡張して
+$$
+\Delta:=dd^*+d^*d
+$$
+と定める。これは次数を変えない二階微分作用素
+$$
+\Delta:\Omega^k(M)\to\Omega^k(M)
+$$
+である。
+
+**定義（調和形式）**  $\Delta\alpha=0$ を満たす形式を調和形式といい、
+$$
+\mathcal H^k(M):=\ker(\Delta:\Omega^k\to\Omega^k)
+$$
+と書く。
+
+「調和」という名前だけでは、閉形式との関係は見えない。内積を取ると
+$$
+\begin{aligned}
+(\Delta\alpha,\alpha)_{L^2}
+&=(dd^*\alpha,\alpha)_{L^2}
++(d^*d\alpha,\alpha)_{L^2}\\
+&=(d^*\alpha,d^*\alpha)_{L^2}
++(d\alpha,d\alpha)_{L^2}\\
+&=\|d^*\alpha\|_{L^2}^2
++\|d\alpha\|_{L^2}^2.
+\end{aligned}
+$$
+したがって、コンパクトで境界がない場合には
+$$
+\boxed{
+\Delta\alpha=0
+\iff
+d\alpha=0\ \text{かつ}\ d^*\alpha=0
+}.
+$$
+左から右は上の非負量の和が零になることから従い、右から左は定義へ代入すればよい。調和形式は閉じているためde Rhamコホモロジー類を定める。
+
+## 8.6 なぜ調和代表は一意になり得るのか
+
+同じコホモロジー類に二つの調和形式 $\alpha,\alpha'$ があれば、
+$$
+\alpha-\alpha'=d\beta
+$$
+である。一方、差も調和的なので $d^*(\alpha-\alpha')=0$ である。そこで
+$$
+\begin{aligned}
+\|\alpha-\alpha'\|_{L^2}^2
+&=(d\beta,\alpha-\alpha')_{L^2}\\
+&=(\beta,d^*(\alpha-\alpha'))_{L^2}\\
+&=0.
+\end{aligned}
+$$
+よって $\alpha=\alpha'$ である。
+
+この計算は「調和代表が存在するなら一意」であることを示す。しかし存在は示していない。任意の閉形式から完全形式を引いて余閉にもできること、すなわち
+$$
+d^*(\alpha-d\beta)=0
+$$
+を解く必要がある。これは
+$$
+d^*d\beta=d^*\alpha
+$$
+という偏微分方程式である。ただし $d^*d$ 単独は一般に楕円型ではない。変換 $\beta\mapsto\beta+d\eta$ による自由度が残り、その主記号には核がある。この方程式を直接 $d^*d$ の楕円性で解くのではなく、自由度を処理して完全なLaplacian
+$$
+\Delta=dd^*+d^*d
+$$
+とGreen作用素を使う。存在証明に楕円型解析が必要になるのはこの段階である。
+
+## 8.7 Hodge分解定理
+
+**重要な非自明結果（Hodge分解定理）**  $M$ をコンパクトで向き付け可能な、境界のないRiemann多様体とする。このとき
+$$
+\boxed{
+\Omega^k(M)
+=\mathcal H^k(M)
+\oplus\operatorname{im}d
+\oplus\operatorname{im}d^*
+}
+$$
+という $L^2$-直交直和分解が成り立つ。また $\mathcal H^k(M)$ は有限次元である。
+
+**何が非自明か。**  形式空間は無限次元であり、有限次元線形代数の直交分解をそのまま適用できない。像が閉じていること、直交補空間が本当に像として書けること、調和空間が有限次元であることは、$\Delta$ が楕円型作用素であることから従う解析的結果である。
+
+**証明概略。**
+
+1. 主記号を、微分 $\partial_j$ を $i\xi_j$ へ置き換える規約で取る。$\varepsilon(\xi)$ を $\xi$ の外積、$\iota_{\xi^\sharp}$ を計量双対ベクトルによる縮約とすると、
+$$
+   \sigma_d(\xi)=i\varepsilon(\xi),\qquad
+   \sigma_{d^*}(\xi)=-i\iota_{\xi^\sharp}.
+$$
+   外積と縮約の反交換関係
+$$
+   \varepsilon(\xi)\iota_{\xi^\sharp}
+   +\iota_{\xi^\sharp}\varepsilon(\xi)
+   =|\xi|^2\operatorname{id}
+$$
+   により、
+$$
+   \begin{aligned}
+   \sigma_\Delta(\xi)
+   &=\varepsilon(\xi)\iota_{\xi^\sharp}
+   +\iota_{\xi^\sharp}\varepsilon(\xi)\\
+   &=|\xi|^2\operatorname{id}.
+   \end{aligned}
+   \qquad(\xi\ne0)
+$$
+   したがって $\Delta$ は楕円型である。$i$ を入れない主記号規約では全体の符号が変わるが、可逆性は変わらない。
+2. コンパクト多様体上の楕円型正則性とFredholm理論から、$\ker\Delta$ は有限次元で、像は閉じる。
+3. Green作用素 $G$ を調和形式の直交補空間上の $\Delta^{-1}$ として構成する。
+4. 任意の形式 $\alpha$ は
+$$
+   \alpha=H\alpha+\Delta G\alpha
+   =H\alpha+dd^*G\alpha+d^*dG\alpha
+$$
+   と分かれる。ここで $H$ は調和部分への直交射影である。
+5. 随伴関係から三成分が互いに直交する。
+
+完全な証明にはSobolev空間、楕円型評価、コンパクト埋め込みなどが必要である。本書では定理として引用するが、入力がコンパクト性・計量・楕円性であり、出力が有限次元直交分解であることを区別する。
+
+## 8.8 Hodge定理：位相とPDEの橋
+
+Hodge分解を閉形式 $\alpha$ に適用し、
+$$
+\alpha=h+d\beta+d^*\gamma
+$$
+と書く。両辺へ $d$ を作用させると
+$$
+0=d\alpha=dd^*\gamma.
+$$
+内積を取れば
+$$
+\|d^*\gamma\|_{L^2}^2
+=(dd^*\gamma,\gamma)_{L^2}=0
+$$
+なので $d^*\gamma=0$ である。したがって
+$$
+\alpha=h+d\beta
+$$
+となり、$[\alpha]=[h]$ である。存在と前節の一意性を合わせると次を得る。
+
+**定理（Hodge定理）**  コンパクトで向き付け可能な、境界のないRiemann多様体では、自然な写像
+$$
+\mathcal H^k(M)\longrightarrow H_{\mathrm{dR}}^k(M),
+\qquad h\longmapsto[h]
+$$
+は同型である。すなわち各de Rhamコホモロジー類は一意な調和代表元を持つ。
+
+これは単に便利な代表元を選べるというだけではない。
+$$
+\boxed{
+\text{位相的な商空間}
+\quad\longleftrightarrow\quad
+\text{楕円型PDE }\Delta\alpha=0\text{ の解空間}
+}
+$$
+という対応である。左辺は計量によらないが、右辺の具体的な調和代表は計量に依存する。それでも解空間の次元
+$$
+\dim\mathcal H^k(M)=b_k(M)
+$$
+は位相的不変量になる。
+
+## 8.9 具体例
+
+### 円周
+
+長さ $2\pi$ の円周 $S^1$ に角度座標 $\theta$ を入れる。$\theta$ 自体は大域的実数値関数ではないが、$d\theta$ は大域的一次形式である。向きを $d\theta$ で定めると
+$$
+*1=d\theta,\qquad *d\theta=1.
+$$
+したがって
+$$
+d^*(a\,d\theta)=-*d(a)=-a',
+$$
+$$
+\Delta f=d^*df=-f'',\qquad
+\Delta(a\,d\theta)=-a''d\theta.
+$$
+特に零形式 $f$ について
+$$
+\Delta f=-\frac{d^2f}{d\theta^2}
+$$
+という符号規約になり、周期的な調和関数は定数だけである。一次形式は $a(\theta)d\theta$ と書け、調和条件から $a$ は定数になる。したがって
+$$
+\mathcal H^0(S^1)=\mathbb R,\qquad
+\mathcal H^1(S^1)=\mathbb R\,d\theta,
+$$
+これは $H_{\mathrm{dR}}^0(S^1)$, $H_{\mathrm{dR}}^1(S^1)$ を具体化している。
+
+### 平坦トーラス
+
+$\mathbb R^m/\mathbb Z^m$ の平坦計量では、定数係数形式
+$$
+dx^{i_1}\wedge\cdots\wedge dx^{i_k}
+$$
+が調和的であり、それらが $\mathcal H^k$ の基底になる。よって
+$$
+b_k=\binom{m}{k}.
+$$
+第5章の複素トーラスで現れた $dz,d\bar z$ は、実調和形式を複素構造に従って型分解したものでもある。
+
+## 8.10 仮定を外すと何が壊れるか
+
+実直線 $\mathbb R$ の標準計量では $dx$ は
+$$
+dx=d(x)
+$$
+と完全である。また
+$$
+d(dx)=0,\qquad d^*(dx)=0,\qquad\Delta(dx)=0
+$$
+でもある。したがって零コホモロジー類が $0$ と $dx$ という異なる調和代表を持ってしまう。ここで $x$ と $dx$ は $L^2(\mathbb R)$ に入らないため、
+$$
+\|dx\|_{L^2}^2=(x,d^*dx)_{L^2}
+$$
+という内積自体が有限値として定義できない。有限区間 $[-R,R]$ で部分積分すれば境界項が残り、$R\to\infty$ でも消えない。コンパクト多様体での一意性証明をそのまま移せない理由はここにある。
+
+境界を持つ多様体でも、Stokesの境界項を消す条件が必要になる。非コンパクト版や境界付き版のHodge理論は存在するが、$L^2$ 条件や境界条件を指定した別の定理である。
+
+## 8.11 複素幾何へ戻る
+
+ここまでのHodge理論は、複素構造もKähler条件も必要としなかった。コンパクトRiemann多様体なら成立する。
+
+複素多様体にHermitian計量を入れれば、$\bar\partial$ の随伴 $\bar\partial^*$ とDolbeault Laplacian
+$$
+\Delta_{\bar\partial}
+=\bar\partial\bar\partial^*
++\bar\partial^*\bar\partial
+$$
+も作れる。
+
+**重要な非自明結果（Dolbeault版Hodge定理）**  $X$ をコンパクトで境界のないHermitian多様体とする。各 $(p,q)$ について
+$$
+\mathcal A^{p,q}(X)
+=\mathcal H_{\bar\partial}^{p,q}(X)
+\oplus\operatorname{im}\bar\partial
+\oplus\operatorname{im}\bar\partial^*
+$$
+という直交分解が成り立ち、自然な写像
+$$
+\mathcal H_{\bar\partial}^{p,q}(X)
+\longrightarrow H_{\bar\partial}^{p,q}(X)
+$$
+は同型である。したがって各Dolbeaultコホモロジー類は一意な $\bar\partial$-調和代表を持つ。
+
+この結果にKähler条件は不要である。証明の解析的入力は、$\Delta_{\bar\partial}$ も楕円型であることと、コンパクト多様体上の楕円型理論である。
+
+しかし一般のHermitian多様体では、$d$-調和性と $\bar\partial$-調和性は一致しない。Kähler条件を加えると
+$$
+\Delta_d=2\Delta_{\partial}
+=2\Delta_{\bar\partial}
+$$
+という強い恒等式が成立する。これにより一つのde Rham調和形式を型ごとに分けても各成分が調和的なままになり、Hodge分解が生まれる。次章では、その仕組みをKähler恒等式から導く。
+
+
+
+

@@ -1,0 +1,237 @@
+---
+title: '6. 正則ベクトル束：正則性をファイバーへ運ぶ'
+sidebar: complex-geometry
+format:
+  html:
+    toc: true
+---
+
+## 6.1 なぜ滑らかな複素ベクトル束では足りないのか
+
+複素多様体 $X$ 上の関数には「滑らか」と「正則」の区別があった。ベクトル束でも同じ問題が生じる。滑らかな複素ベクトル束 $E\to X$ では、局所切断を
+$$
+s=\sum_{\alpha=1}^r f^\alpha e_\alpha
+$$
+と書けるが、係数 $f^\alpha$ が正則かどうかは局所枠 $e_1,\ldots,e_r$ の選択に依存する。別の枠へ移ったときも正則性が保存されるには、枠の変換自体が正則でなければならない。
+
+## 6.2 遷移関数による定義
+
+階数 $r$ の複素ベクトル束 $E\to X$ を、開被覆 $\{U_i\}$ 上の局所自明化で表す。重なり $U_i\cap U_j$ では遷移関数
+$$
+g_{ij}:U_i\cap U_j\longrightarrow GL(r,\mathbb C)
+$$
+があり、
+$$
+g_{ii}=I,\qquad
+g_{ij}g_{jk}=g_{ik}
+$$
+を満たす。
+
+**定義（正則ベクトル束）**  すべての $g_{ij}$ が正則になる局所自明化を持つ複素ベクトル束を正則ベクトル束という。
+
+局所枠を列 $e_i=(e_{i,1},\ldots,e_{i,r})$ とし、
+$$
+e_j=e_i g_{ij}
+$$
+と書く。切断 $s=e_if_i=e_jf_j$ の係数は
+$$
+f_j=g_{ij}^{-1}f_i
+$$
+と変換する。$g_{ij}^{-1}$ も正則なので、$f_i$ が正則であることと $f_j$ が正則であることは同値である。したがって「正則切断」が座標に依存せず定まる。
+
+### 基本例
+
+- 自明束 $X\times\mathbb C^r$ は定数遷移関数を持つ。
+- 正則座標変換のJacobianは正則なので、$T^{1,0}X$ は正則ベクトル束になる。
+- その双対 $T^{*1,0}X$ も正則である。その外積束を $\Lambda^pT^{*1,0}X$、その正則切断の層を
+$$
+  \Omega_X^p:=\mathcal O(\Lambda^pT^{*1,0}X)
+$$
+  と書く。束とその正則切断の層は別の対象であり、$\Omega_X^p$ は後者を表す。
+- 複素次元 $n$ では
+$$
+  K_X:=\Lambda^nT^{*1,0}X
+$$
+  を標準束という。これは階数1の正則ベクトル束、すなわち正則線束である。
+
+## 6.3 正則枠を使わずに正則性を表せないか
+
+関数では
+$$
+f\text{ が正則}\iff\bar\partial f=0
+$$
+だった。切断についても「反正則方向へ変化しない」という方程式で正則性を表したい。
+
+正則局所枠 $e_1,\ldots,e_r$ 上で $s=\sum f^\alpha e_\alpha$ と書き、
+$$
+\bar\partial_Es
+:=\sum_{\alpha=1}^r
+\bar\partial f^\alpha\otimes e_\alpha
+$$
+と定める。正則な枠変換 $g$ に対して $\bar\partial g=0$ なので、この定義は正則枠によらない。
+$$
+\bar\partial_E:
+\mathcal A^0(X,E)\longrightarrow
+\mathcal A^{0,1}(X,E)
+$$
+は
+$$
+\bar\partial_E(fs)
+=\bar\partial f\otimes s+f\bar\partial_Es
+$$
+を満たす。ここで $\mathcal A^{p,q}(X,E)$ は $E$-値 $(p,q)$-形式全体である。
+
+正則枠で係数ごとに作用させた定義から、
+$$
+\boxed{s\text{ が正則}\iff\bar\partial_Es=0}
+$$
+が分かる。
+
+## 6.4 E-値形式へ延長する
+
+$\alpha\in\mathcal A^{p,q}(X)$, $s\in\mathcal A^0(X,E)$ に対し
+$$
+\bar\partial_E(\alpha\otimes s)
+=\bar\partial\alpha\otimes s
++(-1)^{p+q}\alpha\wedge\bar\partial_Es
+$$
+と定める。符号は全次数 $p+q$ を持つ形式を作用素の前へ移すことで生じる。これにより
+$$
+\bar\partial_E:
+\mathcal A^{p,q}(X,E)\longrightarrow
+\mathcal A^{p,q+1}(X,E)
+$$
+が得られる。
+
+正則局所枠では通常の $\bar\partial$ を各係数へ作用させるだけなので、
+$$
+\bar\partial_E^2=0.
+$$
+したがって正則ベクトル束に値を取るDolbeaultコホモロジー
+$$
+H_{\bar\partial}^{p,q}(X,E)
+:=
+\frac{\ker(\bar\partial_E:\mathcal A^{p,q}(X,E)
+\to\mathcal A^{p,q+1}(X,E))}
+{\operatorname{im}(\bar\partial_E:\mathcal A^{p,q-1}(X,E)
+\to\mathcal A^{p,q}(X,E))}
+$$
+を定義できる。
+
+## 6.5 滑らかな束から正則構造を復元する
+
+今度は逆向きに考える。滑らかな複素ベクトル束 $E$ に、複素線形でLeibniz則
+$$
+D''(fs)=\bar\partial f\otimes s+fD''s
+$$
+を満たす作用素
+$$
+D'':\mathcal A^0(X,E)\to\mathcal A^{0,1}(X,E)
+$$
+を与えたとする。これを $(0,1)$-接続という。第6.4節と同じ次数付きLeibniz則により、$D''$ をすべての $E$-値 $(p,q)$-形式へ延長する。
+
+枠を行ベクトル $e=(e_1,\ldots,e_r)$、係数を列ベクトル $f$ とし、切断を $s=ef$ と書く。滑らかな局所枠 $e$ では
+$$
+D''(ef)=e(\bar\partial f+A^{0,1}f)
+$$
+と書ける。ここで $A^{0,1}$ は行列値 $(0,1)$-形式である。別の枠 $e'=eg$ と係数 $f'=g^{-1}f$ を使うと、
+$$
+\begin{aligned}
+D''(e'f')
+&=D''(egf')\\
+&=e\{\bar\partial(gf')+A^{0,1}gf'\}\\
+&=eg\{\bar\partial f'
++(g^{-1}\bar\partial g
++g^{-1}A^{0,1}g)f'\}.
+\end{aligned}
+$$
+したがって
+$$
+A'^{0,1}
+=g^{-1}A^{0,1}g+g^{-1}\bar\partial g.
+$$
+したがって $A^{0,1}$ 自体は枠に依存するが、作用素 $D''$ は内在的である。
+
+二回作用させると
+$$
+\begin{aligned}
+(D'')^2(ef)
+&=e\left[
+\bar\partial(\bar\partial f+A^{0,1}f)
++A^{0,1}\wedge(\bar\partial f+A^{0,1}f)
+\right]\\
+&=e\left[
+(\bar\partial A^{0,1})f
+-A^{0,1}\wedge\bar\partial f
++A^{0,1}\wedge\bar\partial f
++A^{0,1}\wedge A^{0,1}f
+\right]\\
+&=e\left(
+\bar\partial A^{0,1}
++A^{0,1}\wedge A^{0,1}
+\right)f.
+\end{aligned}
+$$
+第二行の負号は、$\bar\partial$ が一次形式 $A^{0,1}$ を越えるときに生じる。表示の通り $\bar\partial f$ を含む二項は相殺するので、$(D'')^2$ は関数線形であり、
+$$
+(D'')^2\in
+\mathcal A^{0,2}(X,\operatorname{End}E)
+$$
+とみなせる。これは局所枠を正則枠へ変えられない障害である。
+
+**重要な非自明結果（Koszul–Malgrange定理）**  複素多様体 $X$ 上の滑らかな複素ベクトル束 $E\to X$ と、上のLeibniz則を満たす複素線形な $(0,1)$-接続 $D''$ を考える。もし
+$$
+(D'')^2=0
+$$
+を満たすなら、固定した滑らかな束 $E$ 上には、付随するDolbeault作用素が $D''$ となる正則ベクトル束構造が一意に入る。その正則切断は $D''s=0$ を満たす切断である。コンパクト性やKähler条件は不要である。
+
+**何が非自明か。**  条件 $(D'')^2=0$ から、各点の近くで
+$$
+D''(eg)=0
+$$
+となる可逆行列値関数 $g$ を実際に解き、正則枠 $eg$ を作る必要がある。これはベクトル束版のNewlander–Nirenberg定理に相当する可積分性問題である。
+
+**証明概略。**  局所式では未知行列 $g$ に対する
+$$
+\bar\partial g+A^{0,1}g=0
+$$
+を解く。$(D'')^2=0$、すなわち
+$$
+\bar\partial A^{0,1}
++A^{0,1}\wedge A^{0,1}=0
+$$
+が整合条件である。解析的な局所可解性から可逆な解を構成し、その解でゲージ変換すると $A'^{0,1}=0$ になる。すると新しい枠では $D''=\bar\partial$ である。
+
+ここで行列解 $g$ 自体は一意ではない。二つの解 $g,g'$ があれば、対応する二つの $D''$-平坦枠の間の変換 $g^{-1}g'$ は $\bar\partial(g^{-1}g')=0$ を満たし、正則である。したがって正則枠の族が定める正則構造は一意である。
+
+## 6.6 Dolbeault定理を束係数へ広げる
+
+正則切断の層を $\mathcal O(E)$ と書く。$\bar\partial_E$-Poincaré補題により
+$$
+0\longrightarrow
+\Omega_X^p\otimes_{\mathcal O_X}\mathcal O(E)
+\longrightarrow\mathcal A_X^{p,0}(E)
+\xrightarrow{\bar\partial_E}
+\mathcal A_X^{p,1}(E)
+\longrightarrow\cdots
+$$
+は細層分解になる。局所完全性は正則枠を選び、通常の $\bar\partial$-Poincaré補題を各成分へ適用することで従う。細層なのは滑らかな $E$-値形式の層 $\mathcal A_X^{p,q}(E)$ である。したがって
+$$
+\boxed{
+H^q(X,\Omega_X^p\otimes_{\mathcal O_X}\mathcal O(E))
+\cong H_{\bar\partial}^{p,q}(X,E)
+}.
+$$
+これは、正則ベクトル束の局所切断を貼り合わせる障害を、滑らかな $E$-値形式と偏微分方程式で計算できるという主張である。
+
+## 6.7 次の問い：正則構造と長さを同時に尊重できるか
+
+$\bar\partial_E$ は反正則方向の微分を指定するが、全方向の平行移動を与える接続ではない。一方、Hermitian計量を入れれば、長さを保つ接続を考えたくなる。
+
+> 正則構造 $\bar\partial_E$ とHermitian計量の両方を保つ接続はあるか。あるなら一意か。
+
+この問いの答えがChern接続である。ただし、その意味を理解するため、まず接束自身に複素構造と両立する計量を入れ、Hermitian幾何からKähler幾何へ進む。
+
+
+
+

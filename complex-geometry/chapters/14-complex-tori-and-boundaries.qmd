@@ -1,0 +1,534 @@
+---
+title: '14. 複素トーラス、アーベル多様体、理論の境界'
+sidebar: complex-geometry
+format:
+  html:
+    toc: true
+---
+
+## 14.1 同じ位相的トーラスに何を加えるのか
+
+実トーラス
+$$
+\mathbb R^{2n}/\mathbb Z^{2n}
+$$
+は滑らかな実多様体である。ここへ複素構造を入れるには、実ベクトル空間 $\mathbb R^{2n}$ に
+$$
+J^2=-I
+$$
+を満たす線形写像 $J$ を選び、格子による平行移動と両立させればよい。
+
+複素ベクトル空間 $V\cong\mathbb C^n$ と、その実ベクトル空間を張る格子
+$$
+\Lambda\subset V,
+\qquad
+\Lambda\cong\mathbb Z^{2n}
+$$
+を取る。
+
+**定義（複素トーラス）**
+$$
+X=V/\Lambda
+$$
+を複素トーラスという。
+
+格子は離散部分群なので、十分小さな開球 $U\subset V$ では
+$$
+(U+\lambda)\cap U=\varnothing
+\qquad(\lambda\in\Lambda\setminus\{0\})
+$$
+となる。商写像
+$$
+\pi:V\to V/\Lambda
+$$
+の $U$ への制限は像への同相写像であり、その逆を局所座標にする。座標の重なりは
+$$
+z\longmapsto z+\lambda
+$$
+という複素アフィン変換なので正則である。したがって商は複素次元 $n$ の複素多様体になる。
+
+## 14.2 なぜコンパクトなのか
+
+$\Lambda$ の実基底を
+$$
+\lambda_1,\ldots,\lambda_{2n}
+$$
+とする。基本平行多面体
+$$
+P
+=
+\left\{
+\sum_{j=1}^{2n}t_j\lambda_j
+\ \middle|\
+0\le t_j\le1
+\right\}
+$$
+はコンパクトであり、任意の $v\in V$ はある格子元を引くことで $P$ に移せる。したがって
+$$
+\pi(P)=V/\Lambda.
+$$
+コンパクト集合の連続像なので $X$ はコンパクトである。
+
+普遍被覆は $V\cong\mathbb C^n$ であり、
+$$
+\pi_1(X)\cong\Lambda\cong\mathbb Z^{2n}.
+$$
+位相空間としては実 $2n$ 次元トーラスだが、どの線形複素構造を選ぶかにより正則幾何は変化する。
+
+## 14.3 全ての複素トーラスはKählerである
+
+$V$ 上に任意の正定値Hermitian内積 $h$ を選ぶ。その実部を $g$、基本二形式を
+$$
+\omega(u,v)=g(Ju,v)
+$$
+とする。$g$ と $\omega$ の係数は線形座標で定数である。
+
+格子元による平行移動
+$$
+\tau_\lambda(v)=v+\lambda
+$$
+の微分は恒等写像なので、
+$$
+\tau_\lambda^*g=g,
+\qquad
+\tau_\lambda^*\omega=\omega.
+$$
+したがって $g,\omega$ は商 $X$ 上へ降りる。さらに係数が定数だから
+$$
+d\omega=0.
+$$
+よって
+$$
+\boxed{
+\text{全ての複素トーラスはKähler多様体である。}
+}
+$$
+ここではKähler計量の存在に整数条件は必要ない。任意のHermitian内積が平行移動不変な平坦Kähler計量を与える。
+
+## 14.4 微分形式も商へ降りる
+
+$V=\mathbb C^n$ の線形座標を $z_1,\ldots,z_n$ とする。一次形式
+$$
+dz_1,\ldots,dz_n
+$$
+は平行移動で不変なので、$X$ 上の大域正則一次形式へ降りる。したがって
+$$
+H^0(X,\Omega_X^1)
+\cong V^*,
+\qquad
+h^{1,0}(X)=n.
+$$
+これらの外積により
+$$
+H^0(X,\Omega_X^p)
+\cong\Lambda^pV^*,
+\qquad
+h^{p,0}(X)=\binom np.
+$$
+平坦計量について定数係数形式は調和であり、実トーラスのde Rhamコホモロジーは不変形式で表される。したがって
+$$
+H^k(X;\mathbb C)
+\cong
+\Lambda^k
+\left(
+H^{1,0}(X)\oplus H^{0,1}(X)
+\right)
+$$
+であり、
+$$
+h^{p,q}(X)
+=
+\binom np\binom nq.
+$$
+複素トーラスは、Hodge分解を具体的な定数係数形式で見られる基本例である。
+
+## 14.5 Kählerなのに射影的とは限らない
+
+第12章の判定によれば、コンパクト複素多様体が射影的であるためには整なKähler類が必要十分である。
+
+複素トーラス $X=V/\Lambda$ 上の平行移動不変な実二形式は、実ベクトル空間 $V_\mathbb R$ 上の交代双線形形式
+$$
+E:V_\mathbb R\times V_\mathbb R\to\mathbb R
+$$
+と同じデータである。
+
+この二形式が整数コホモロジー類を表す条件は
+$$
+E(\lambda,\mu)\in\mathbb Z
+\qquad
+(\lambda,\mu\in\Lambda)
+$$
+である。格子が張る二次元トーラス上で積分すると、この値が周期として現れるからである。
+
+さらに $E$ が $(1,1)$ 型である条件は
+$$
+E(Ju,Jv)=E(u,v)
+\qquad
+(u,v\in V_\mathbb R)
+$$
+である。実二形式 $\alpha$ が $(1,1)$ 型であることと
+$$
+\alpha(Ju,Jv)=\alpha(u,v)
+$$
+は同値だった。
+
+最後に正定値性は
+$$
+E(u,Ju)>0
+\qquad(u\neq0)
+$$
+で表される。
+
+## 14.6 Riemann形式
+
+以上をまとめる。
+
+**定義（Riemann形式）**  
+複素トーラス $X=V/\Lambda$ 上のRiemann形式とは、実交代双線形形式
+$$
+E:V_\mathbb R\times V_\mathbb R\to\mathbb R
+$$
+で、次を満たすものをいう。
+
+1. $E(\Lambda,\Lambda)\subset\mathbb Z$。
+2. $E(Ju,Jv)=E(u,v)$。
+3. $E(u,Ju)>0$ for $u\neq0$。
+
+第二条件から
+$$
+g_E(u,v):=E(u,Jv)
+$$
+は対称になる。実際、
+$$
+\begin{aligned}
+g_E(v,u)
+&=E(v,Ju)\\
+&=E(Jv,J^2u)\\
+&=-E(Jv,u)\\
+&=E(u,Jv)\\
+&=g_E(u,v).
+\end{aligned}
+$$
+第三条件は
+$$
+g_E(u,u)=E(u,Ju)>0
+$$
+を意味する。したがって $g_E$ はRiemann計量であり、その基本二形式は
+$$
+\begin{aligned}
+\omega_E(u,v)
+&=g_E(Ju,v)\\
+&=E(Ju,Jv)\\
+&=E(u,v).
+\end{aligned}
+$$
+つまり $E$ 自身が正の実 $(1,1)$-形式である。
+
+## 14.7 アーベル多様体の判定
+
+**定理（Riemannの双線形関係による判定）**  
+複素トーラス $X=V/\Lambda$ に対して、次は同値である。
+
+1. $X$ は射影的である。
+2. $X$ は正値正則線束を持つ。
+3. $X$ はRiemann形式を持つ。
+
+射影的な複素トーラスをアーベル多様体という。
+
+条件2から3は、正値線束の第一Chern形式を平行移動で平均して不変形式にし、その格子上の周期を読むことで得られる。条件3から2には、整数 $(1,1)$ 類を正則線束として実現するLefschetzの $(1,1)$ 定理、またはトーラスに特化したAppell–Humbert定理を使う。条件2と1の同値はKodaira埋め込み定理である。
+$$
+\boxed{
+\text{複素トーラス}
++
+\text{Riemann形式}
+=
+\text{アーベル多様体}
+}
+$$
+Riemann形式の第一条件だけが位相的整数性、第二条件が複素構造との両立、第三条件が正値性である。三条件のどれも省けない。
+
+## 14.8 複素次元1では全て射影的
+
+$n=1$ の複素トーラスは楕円曲線である。
+$$
+X=\mathbb C/(\mathbb Z+\tau\mathbb Z),
+\qquad
+\operatorname{Im}\tau>0
+$$
+と書ける。実基底 $1,\tau$ に対し
+$$
+E(1,\tau)=1,
+\qquad
+E(\tau,1)=-1
+$$
+となる交代形式を定め、実双線形に延長する。これは格子上で整数値を取る。
+
+この $E$ は、標準座標 $z=x+iy$ では
+$$
+E=\frac1{\operatorname{Im}\tau}\,dx\wedge dy
+$$
+である。したがって $\operatorname{Im}\tau>0$ より
+$$
+E(u,Ju)>0
+\qquad(u\neq0)
+$$
+となる。実二次元では全ての二形式が自動的に $(1,1)$ 型なので、Riemann形式を得る。
+
+したがって全ての一次元複素トーラスはアーベル多様体である。非射影的複素トーラスが現れるのは複素次元 $2$ 以上である。
+
+## 14.9 高次元では整数条件が外れる
+
+複素次元 $n\ge2$ とし、固定した実トーラス
+$$
+T=\mathbb R^{2n}/\mathbb Z^{2n}
+$$
+上には多くの線形複素構造 $J$ がある。非零の整数交代形式 $E$ を一つ固定すると、
+$$
+E(Ju,Jv)=E(u,v)
+$$
+は $J$ に対する実代数方程式を課す。向きを一つ固定し、それと両立する線形複素構造からなる連結成分を
+$$
+\mathcal J
+\cong
+GL^+(2n,\mathbb R)/GL(n,\mathbb C)
+$$
+と書く。これは有限次元の連結多様体である。固定した非零 $E$ に対し、上の方程式を満たす集合 $\mathcal J_E$ は閉な実解析的部分集合になる。
+
+$\mathcal J_E$ は真の部分集合である。実次元が少なくとも $4$ なら、$E(u,v)\neq0$ となる $u,v$ を選び、$Ju,Jv$ が張る二平面上の $E$ の値が $E(u,v)$ と異なるような線形複素構造をこの成分内で選べるからである。したがって定義方程式は $\mathcal J$ 上で恒等的には成り立たず、$\mathcal J_E$ は内部を持たない。
+
+整数交代形式 $E$ は可算個しかない。有限次元多様体 $\mathcal J$ はBaire空間なので、可算個の閉かつ内部を持たない集合
+$$
+\bigcup_{0\neq E\in\Lambda^2\Lambda^*}\mathcal J_E
+$$
+は $\mathcal J$ 全体を覆わない。したがって一般の複素構造 $J$、すなわちこの可算合併の補集合に属する $J$、では
+$$
+H^{1,1}(X)\cap
+\operatorname{im}\bigl(
+H^2(X;\mathbb Z)\to H^2(X;\mathbb C)
+\bigr)
+=0.
+$$
+そのようなトーラスはKählerだが、正値線束を持てず、射影的ではない。
+
+ここで「一般」とは、全ての例を一つの明示式で列挙したという意味ではなく、可算個の閉かつ内部を持たない特殊条件を避けたパラメータに対する主張である。Baireの定理により、そのようなパラメータが実際に存在することまで保証される。
+
+## 14.10 Néron–Severi群が測るもの
+
+正則線束の同型類全体はPicard群
+$$
+\operatorname{Pic}(X)
+=H^1(X,\mathcal O_X^*)
+$$
+をなす。指数完全列
+$$
+0\longrightarrow\mathbb Z
+\longrightarrow\mathcal O_X
+\xrightarrow{\exp(2\pi i\,\cdot)}
+\mathcal O_X^*
+\longrightarrow0
+$$
+から第一Chern類写像
+$$
+c_1:\operatorname{Pic}(X)\longrightarrow H^2(X;\mathbb Z)
+$$
+が得られる。
+
+$\operatorname{Pic}(X)$ の単位元、すなわち自明線束を含む連結成分を
+$$
+\operatorname{Pic}^0(X)
+$$
+と書く。複素トーラスでは指数完全列により
+$$
+\operatorname{Pic}^0(X)=\ker c_1
+$$
+である。商
+$$
+\operatorname{NS}(X)
+=
+\operatorname{Pic}(X)/\operatorname{Pic}^0(X)
+$$
+をNéron–Severi群という。Lefschetzの $(1,1)$ 定理により、コンパクトKähler多様体では、torsionを除いて
+$$
+\operatorname{NS}(X)
+\cong
+H^{1,1}(X)\cap
+\operatorname{im}\bigl(
+H^2(X;\mathbb Z)\to H^2(X;\mathbb C)
+\bigr)
+$$
+とみなせる。右辺では整数係数群そのものではなく複素係数への像を取るため、torsionは消えている。複素トーラスの整数コホモロジーにはtorsionがないので、この注意による差は生じない。
+
+複素トーラスが射影的であるためには、$\operatorname{NS}(X)$ の中に正の類が必要である。一般の高次元複素トーラスでは $\operatorname{NS}(X)=0$ になり得る。
+
+## 14.11 極性は埋め込みの選択を記録する
+
+アーベル多様体 $X$ と豊富な線束 $L$ から
+$$
+\lambda_L:X\longrightarrow X^\vee=\operatorname{Pic}^0(X),
+\qquad
+x\longmapsto t_x^*L\otimes L^{-1}
+$$
+という同種写像が定まる。ここで $t_x$ は $x$ による平行移動である。本書では、この形で得られる同種写像 $\lambda_L$ を極性という。同値に、$\operatorname{NS}(X)$ における豊富な類を極性と呼んでもよい。
+
+線束そのものと極性は同じデータではない。$P\in\operatorname{Pic}^0(X)$ に対して $L$ と $L\otimes P$ は同じNéron–Severi類を持ち、同じ極性を与える。極性は単に「射影的である」というyes/no情報より多くを持つが、線束の $\operatorname{Pic}^0$ 方向の違いは忘れる。
+
+Riemann形式 $E$ を格子上の整数交代形式として標準形へ変形すると、適切な格子基底で行列は
+$$
+\begin{pmatrix}
+0&D\\
+-D&0
+\end{pmatrix},
+\qquad
+D=\operatorname{diag}(d_1,\ldots,d_n),
+$$
+$$
+d_1\mid d_2\mid\cdots\mid d_n
+$$
+という形になる。ここで各 $d_i$ は正整数である。列
+$$
+(d_1,\ldots,d_n)
+$$
+を極性の型という。全て $d_j=1$ のとき、そしてそのときに限り $\lambda_L$ は同型になる。この場合を主極性という。
+
+同じ複素トーラスが複数の異なる極性を持つこともある。射影埋め込みは複素多様体だけから一意に決まるのではなく、どの正値線束を選ぶかに依存する。
+
+## 14.12 主極性の代表例
+
+種数 $g$ のコンパクトRiemann面 $C$ から作るJacobi多様体
+$$
+\operatorname{Jac}(C)
+=
+H^0(C,\Omega_C^1)^*/
+H_1(C;\mathbb Z)
+$$
+は複素次元 $g$ の複素トーラスであり、自然な主極性を持つ。したがってアーベル多様体である。
+
+これはRiemann面の積分
+$$
+p\longmapsto
+\left(
+\int_{p_0}^p\omega_1,\ldots,
+\int_{p_0}^p\omega_g
+\right)
+$$
+から生じる。積分路を変えると周期が加わるため、値はベクトル空間そのものではなく周期格子で割ったトーラスに入る。
+
+ここでも「多価性を商空間で吸収する」という、本書で繰り返し現れた発想が働いている。
+
+## 14.13 四つの境界を並べる
+
+ここまでに見た例を使い、条件の境界を整理する。
+
+### 概複素だが複素とは限らない
+$$
+J^2=-I
+$$
+は各接空間に複素線形代数を入れるが、局所正則座標の存在までは保証しない。Nijenhuisテンソルの消滅が可積分性を測り、Newlander–Nirenberg定理が局所座標への橋を与える。
+
+### HermitianだがKählerとは限らない
+
+Hermitian計量は $J$ と両立する長さを与えるが、基本二形式の閉性までは保証しない。一次Hopf曲面はコンパクト複素多様体でHermitian計量を持つが、$b_1=1$ なのでKählerではない。
+
+### Kählerだが射影的とは限らない
+
+高次元の一般の複素トーラスは平坦Kähler計量を持つが、非零の整数 $(1,1)$ 類を持たず、正値線束も射影埋め込みも持たない。
+
+### 複素トーラスだがアーベル多様体とは限らない
+
+複素トーラスにRiemann形式が存在するとき、そしてそのときに限りアーベル多様体になる。違いは複素構造やKähler性の有無ではなく、正のKähler類を整数格子に合わせられるかにある。
+
+## 14.14 概念の連鎖を振り返る
+
+本書の出発点は
+$$
+\mathbb C\cong\mathbb R^2
+$$
+なのに、複素解析が実二変数解析よりはるかに強い、という疑問だった。
+
+複素数 $i$ の作用を接空間へ抽象化して
+$$
+J^2=-I
+$$
+を得た。しかし点ごとの線形代数だけでは座標は生まれず、Nijenhuisテンソルと可積分性が必要になった。
+
+接束を複素化すると
+$$
+T_\mathbb C X
+=
+T^{1,0}X\oplus T^{0,1}X
+$$
+に分かれ、それが微分形式の $(p,q)$ 型と
+$$
+d=\partial+\bar\partial
+$$
+を生んだ。$\bar\partial^2=0$ からDolbeaultコホモロジーが現れ、正則性の大域障害を記録した。
+
+複素構造と両立する長さを求めてHermitian計量を入れ、基本二形式
+$$
+\omega(X,Y)=g(JX,Y)
+$$
+を得た。その閉性
+$$
+d\omega=0
+$$
+を要求すると、複素幾何、Riemann幾何、シンプレクティック幾何が同じ構造の中で結びついた。
+
+計量からLaplacianを作ると、抽象的なコホモロジー類に一意な調和代表を選べた。
+$$
+\text{位相的商空間}
+\longleftrightarrow
+\text{楕円型PDEの解空間}.
+$$
+Kähler恒等式は $d$ と $\bar\partial$ の二つのHodge理論を一致させ、
+$$
+H^k(X;\mathbb C)
+=
+\bigoplus_{p+q=k}H^{p,q}(X)
+$$
+を与えた。
+
+正則ベクトル束とHermitian計量からChern接続が一意に決まり、その $(1,1)$ 型曲率がChern類をHodge分解の対角成分へ置いた。線束の正の曲率は $\bar\partial$ 方程式の評価を通じて大域切断を生み、Kodaira埋め込みへつながった。
+
+最後にChowとGAGAが、射影的な状況では複素解析的対象と代数的対象が一致することを示した。しかし一般の複素トーラスは、その一致がKähler幾何だけからは出ないことを示している。
+
+## 14.15 到達点
+
+複素幾何は、定義を横に並べた理論ではない。
+$$
+\boxed{
+\begin{gathered}
+\text{複素数の線形代数}\\
+\Downarrow\\
+\text{可積分な複素構造}\\
+\Downarrow\\
+(p,q)\text{ 型と }\bar\partial\text{ コホモロジー}\\
+\Downarrow\\
+\text{Hermitian・Kähler幾何}\\
+\Downarrow\\
+\text{Hodge理論}\\
+\Downarrow\\
+\text{Chern接続と曲率}\\
+\Downarrow\\
+\text{正値線束と射影埋め込み}\\
+\Downarrow\\
+\text{代数幾何との接続}
+\end{gathered}
+}
+$$
+という必然の連鎖である。
+
+各段階で加えた条件は、前の段階で答えられなかった問いに答えている。
+
+- $J^2=-I$ は「各接空間で $i$ を掛ける」を表す。
+- 可積分性は、その点ごとの構造が正則座標から来るかを判定する。
+- $\bar\partial$ は正則性の失敗を測る。
+- $d\omega=0$ は局所的なHermitian線形代数を大域的なシンプレクティック構造へ変える。
+- 調和性はコホモロジー類をPDEの一意解へ変える。
+- Chern曲率は正則束のねじれを微分形式として可視化する。
+- 正値性は局所曲率を大域正則切断へ変える。
+- 整性はKähler幾何と射影代数幾何の境界を定める。
+
+定義の条件は、後から付け加えた装飾ではない。どの問いまで答えたいかに応じて必要になった構造である。この連鎖を自分で再構成できることが、本書の目標である。
+
+
+

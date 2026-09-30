@@ -1,0 +1,63 @@
+---
+title: '複素多様体・複素幾何：なぜその構造を考えるのか'
+sidebar: complex-geometry
+format:
+  html:
+    toc: true
+---
+
+この教材の目標は、複素幾何の用語を順番に覚えることではない。実二次元の空間に一つの演算を加えたはずの複素数が、なぜ解析・幾何・位相を強く拘束するのかを出発点にして、各概念が必要になる理由を再構成することである。
+
+## 読者への前提
+
+滑らかな多様体、接束と余接束、微分形式、de Rham コホモロジー、Riemann 計量、ベクトル束、接続と曲率、Chern–Weil 理論の初歩を既知とする。ただし、それらが複素幾何でどのような意味を持つかは本文で説明し直す。
+
+## 読み方
+
+本文では、定義を最初の答えとして置かない。まず問題を作り、既存の言葉では何が足りないかを確認してから定義する。証明の扱いは次の表示で区別する。
+
+- **定理**：仮定と結論を明記した結果。
+- **完全な証明**：本文内で論証を完結させる。
+- **証明概略**：主要な論理と難所を示すが、解析的評価などを引用する。
+- **直観**：定義や定理を考える見方であり、証明の代用ではない。
+- **重要な非自明結果**：本書の範囲では証明を引用する結果。
+
+## 全体の道筋
+
+1. [複素数から複素多様体へ](chapters/01-complex-numbers-to-manifolds.qmd)
+2. [概複素構造と可積分性](chapters/02-almost-complex-and-integrability.qmd)
+3. [接束の複素化と型分解](chapters/03-complexified-tangent-and-types.qmd)
+4. [微分形式の型と $d=\partial+\bar\partial$](chapters/04-d-and-dbar.qmd)
+5. [Dolbeault コホモロジー：正則性を測るコホモロジー](chapters/05-dolbeault-cohomology.qmd)
+6. [正則ベクトル束と層の言葉](chapters/06-holomorphic-vector-bundles.qmd)
+7. [Hermitian 計量から Kähler 形式へ](chapters/07-hermitian-to-kahler.qmd)
+8. [Hodge star、Laplacian、調和代表](chapters/08-hodge-theory.qmd)
+9. [Kähler 恒等式と Hodge 分解](chapters/09-kahler-identities-and-hodge-decomposition.qmd)
+10. [Chern 接続、曲率、Chern 類](chapters/10-chern-connection-and-classes.qmd)
+11. [複素射影空間と Fubini–Study 計量](chapters/11-projective-space-and-fubini-study.qmd)
+12. [線束の正値性と Kodaira 埋め込み](chapters/12-positivity-and-kodaira-embedding.qmd)
+13. [複素解析的対象と代数的対象](chapters/13-analytic-and-algebraic.qmd)
+14. [複素トーラス、アーベル多様体、非例が示す境界](chapters/14-complex-tori-and-boundaries.qmd)
+15. [参考文献と確認方針](chapters/references.qmd)
+
+この番号は執筆管理のための区切りであり、概念の流れそのものではない。各章の最後の問いが次章の入口になるよう構成する。
+
+## 規約
+
+- 多様体は、特に断らない限り Hausdorff かつ第二可算な有限次元 $C^\infty$ 多様体とする。
+- 複素多様体の複素次元を $n$ と書くと、その実次元は $2n$ である。
+- 概複素構造 $J$ は実接束の自己準同型で $J^2=-\operatorname{id}$ を満たすものとする。
+- 実ベクトル場の Lie 括弧を複素双線形に延長して、複素化接束上でも同じ記号 $[\ ,\ ]$ を使う。
+- Nijenhuis テンソルは
+$$
+  N_J(X,Y)=[JX,JY]-[X,Y]-J[JX,Y]-J[X,JY]
+$$
+  とする。この符号・定数倍には文献差があるが、零になる条件は変わらない。この規約では $Z,W\in T^{1,0}$ に対し $N_J(Z,W)=-4[Z,W]^{0,1}$ となる。
+- Hermitian 計量に付随する基本二形式は $\omega(X,Y)=g(JX,Y)$ とする。
+- Chern 接続と曲率の規約は該当章で固定し、第一 Chern 形式に現れる $i/(2\pi)$ を省略しない。
+
+## 執筆状態
+
+第1–14章の本文を完成済み。各章について独立した数学・教育的監査、指摘反映後の再監査、全章横断の規約・用語・相互参照・到達基準監査を実施し、合格を確認した。MarkdownをSource of Truthとし、PDF化は行っていない。このWeb版では、本文をQuartoへ移行して公開する。
+
+

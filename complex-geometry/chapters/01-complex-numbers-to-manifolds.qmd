@@ -1,0 +1,167 @@
+---
+title: '1. 複素数から複素多様体へ'
+sidebar: complex-geometry
+format:
+  html:
+    toc: true
+---
+
+## 1.1 同じ点集合なのに、なぜ別の幾何になるのか
+
+集合としても実ベクトル空間としても、
+$$
+\mathbb C\longrightarrow\mathbb R^2,\qquad x+iy\longmapsto (x,y)
+$$
+は同一視である。それなら複素解析は実二変数解析の言い換えにすぎないのだろうか。
+
+違いは、点の数や位相ではなく「許す写像」にある。実解析では微分可能な写像 $f:\mathbb R^2\to\mathbb R^2$ を広く許す。複素解析では、微分が複素数の掛け算と両立する写像だけを許す。この小さく見える条件が、実は微分を非常に強く拘束する。
+
+$f(z)=u(x,y)+iv(x,y)$ を実 $C^1$ 級写像として考える。点 $z$ における実微分は
+$$
+D f_z=
+\begin{pmatrix}
+u_x&u_y\\
+v_x&v_y
+\end{pmatrix}
+$$
+である。一方、$\mathbb C$ 上で $i$ を掛ける操作は
+$$
+i(x+iy)=-y+ix
+$$
+だから、$\mathbb R^2$ 上の行列
+$$
+J_0=
+\begin{pmatrix}
+0&-1\\
+1&0
+\end{pmatrix}
+$$
+で表される。実微分が複素線形であるとは、先に $i$ を掛けても、写した後で $i$ を掛けても同じ、すなわち
+$$
+D f_zJ_0=J_0D f_z
+$$
+となることである。両辺を計算すると
+$$
+D f_zJ_0=
+\begin{pmatrix}
+u_y&-u_x\\
+v_y&-v_x
+\end{pmatrix},
+\qquad
+J_0Df_z=
+\begin{pmatrix}
+-v_x&-v_y\\
+u_x&u_y
+\end{pmatrix}.
+$$
+したがって複素線形性は
+$$
+u_x=v_y,\qquad u_y=-v_x
+$$
+と同値である。これは Cauchy–Riemann 方程式にほかならない。ここでは実 $C^1$ 級を仮定しているので、この二式は複素微分可能性の必要十分条件になる。正則性を一階偏微分の存在だけから結論しているわけではない。
+
+任意の実線形写像 $\mathbb R^2\to\mathbb R^2$ は4個の実数で決まるが、$J_0$ と可換するものは
+$$
+\begin{pmatrix}a&-b\\b&a\end{pmatrix}
+$$
+という2個の実数だけで決まる。これは複素数 $a+ib$ による掛け算そのものである。複素構造は、許される微分を半分に絞っている。
+
+### 条件を外すと何が壊れるか
+
+写像 $f(z)=\bar z$ は実線形かつ滑らかだが、
+$$
+f(iz)=\overline{iz}=-i\bar z\ne i\bar z=if(z)
+$$
+なので複素線形ではない。差商も実軸方向では
+$$
+\frac{f(z+t)-f(z)}{t}=1
+$$
+だが、虚軸方向では
+$$
+\frac{f(z+it)-f(z)}{it}
+=\frac{-it}{it}=-1
+$$
+となる。したがって複素微分は存在しない。座標 $(x,y)$ だけを見れば自然な鏡映でも、複素解析の許す座標変換ではない。
+
+## 1.2 局所的に C^n である、だけでは足りない
+
+実 $2n$ 次元多様体は、各点の近くが $\mathbb R^{2n}\cong\mathbb C^n$ に見える。これだけを複素多様体の定義にすると、すべての実偶数次元多様体が自動的に複素多様体になりそうである。足りないのは、異なる座標の間の両立条件である。
+
+二つの座標
+$$
+\varphi_\alpha:U_\alpha\to V_\alpha\subset\mathbb C^n,\qquad
+\varphi_\beta:U_\beta\to V_\beta\subset\mathbb C^n
+$$
+が重なるとき、同じ点は二通りの複素座標で表される。その変換
+$$
+\varphi_\beta\circ\varphi_\alpha^{-1}:
+\varphi_\alpha(U_\alpha\cap U_\beta)\to
+\varphi_\beta(U_\alpha\cap U_\beta)
+$$
+が双正則であれば、一つの座標で正則と判定した関数は別の座標でも正則である。正則性が座標の選び方に依存しない幾何学的概念になる。
+
+**定義（複素多様体）**  複素次元 $n$ の複素多様体とは、$\mathbb C^n$ の開集合への座標近傍で覆われ、すべての座標変換が双正則になる Hausdorff・第二可算な位相空間である。
+
+この定義は「各点が $\mathbb C^n$ に見える」ことと「見え方を交換しても正則性が保存される」ことを同時に要求する。後者こそが構造の本体である。
+
+## 1.3 最初の例を座標変換まで調べる
+
+### C^n と Riemann 面
+
+$\mathbb C^n$ は恒等写像を一枚の座標とすればよく、開部分集合も同様である。複素1次元の複素多様体を Riemann 面という。実次元は2だが、向き付けられた曲面というだけでは正則関数の概念はまだ指定されていない。複素座標の族がその追加情報を担う。
+
+### 複素射影空間 CP^n
+
+$\mathbb C^{n+1}\setminus\{0\}$ 上で
+$$
+(Z_0,\ldots,Z_n)\sim(\lambda Z_0,\ldots,\lambda Z_n),
+\qquad \lambda\in\mathbb C^\times
+$$
+と同一視し、同値類を $[Z_0:\cdots:Z_n]$ と書く。$U_j=\{[Z]\mid Z_j\ne0\}$ 上では
+$$
+\varphi_j([Z_0:\cdots:Z_n])=
+\left(\frac{Z_0}{Z_j},\ldots,
+\widehat{\frac{Z_j}{Z_j}},\ldots,\frac{Z_n}{Z_j}\right)
+$$
+を座標に取れる。帽子はその成分を除くことを表す。たとえば $U_0\cap U_1$ では、$U_0$ 座標を
+$$
+(z_1,\ldots,z_n)=\left(\frac{Z_1}{Z_0},\ldots,\frac{Z_n}{Z_0}\right)
+$$
+とすると、$U_1$ 座標は
+$$
+\left(\frac{Z_0}{Z_1},\frac{Z_2}{Z_1},\ldots,\frac{Z_n}{Z_1}\right)
+=\left(\frac1{z_1},\frac{z_2}{z_1},\ldots,\frac{z_n}{z_1}\right).
+$$
+重なりでは $z_1\ne0$ なので、これは正則であり、逆変換も正則である。射影空間が複素多様体なのは、商集合を作ったからだけではなく、この座標変換が正則だからである。
+
+## 1.4 座標帳を、接空間上の演算に翻訳する
+
+複素座標は強力だが、座標帳全体を持ち歩かずに、その微分幾何学的な痕跡を表せないだろうか。
+
+$\mathbb C\cong\mathbb R^2$ では $i$ 倍を $J_0$ で表した。しかも
+$$
+J_0^2=
+\begin{pmatrix}0&-1\\1&0\end{pmatrix}^2
+=\begin{pmatrix}-1&0\\0&-1\end{pmatrix}
+=-I.
+$$
+$\mathbb C^n$ では各座標平面に同じ操作を入れる。複素多様体 $M$ の正則座標 $(z^1,\ldots,z^n)$, $z^k=x^k+iy^k$ を使い、
+$$
+J\frac{\partial}{\partial x^k}=\frac{\partial}{\partial y^k},
+\qquad
+J\frac{\partial}{\partial y^k}=-\frac{\partial}{\partial x^k}
+$$
+と定める。正則座標変換の実微分は複素線形、すなわち $J_0$ と可換するので、この定義は正則座標の選択によらない。したがって $J:TM\to TM$ が大域的に定まり、$J^2=-\operatorname{id}$ を満たす。
+
+ここで向きを逆に問える。
+
+> 実多様体の各接空間に $i$ 倍を表す $J$ が滑らかに与えられたなら、そこから正則座標を復元できるだろうか。
+
+この問いが概複素構造と可積分性を分ける。次章では、点ごとの線形代数だけでは座標の存在を保証できない理由を調べる。
+
+
+
+
+
+
+

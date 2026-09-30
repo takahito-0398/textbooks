@@ -39,4 +39,14 @@ C*-環、von Neumann環、K理論、巡回コホモロジー、スペクトル�
 [教科書を開く](noncommutative-geometry/)
 :::
 
+::: {.book-card}
+### 複素多様体・複素幾何
+
+複素構造の必然性からKähler幾何、Hodge理論、Chern類、射影幾何までを一つの流れとして読む教材。
+
+- 分野: 数学 / 複素幾何 / Kähler幾何 / Hodge理論
+
+[教科書を開く](complex-geometry/)
+:::
+
 :::

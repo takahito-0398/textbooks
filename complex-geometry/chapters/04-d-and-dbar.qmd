@@ -1,0 +1,294 @@
+---
+title: '4. 外微分はなぜ partial と dbar に分かれるのか'
+sidebar: complex-geometry
+format:
+  html:
+    toc: true
+---
+
+## 4.1 型分解があるだけでは、作用素はまだない
+
+前章では、複素多様体 $X$ 上の複素数値 $k$-形式が
+$$
+\mathcal A^k(X;\mathbb C)
+=\bigoplus_{p+q=k}\mathcal A^{p,q}(X)
+$$
+と分かれることを見た。ここで $\mathcal A^{p,q}(X)$ は滑らかな $(p,q)$-形式全体を表す。
+
+しかし、ベクトル空間を型ごとに分けただけでは、微分がその分解とどう関係するかは分からない。外微分
+$$
+d:\mathcal A^k(X;\mathbb C)\longrightarrow
+\mathcal A^{k+1}(X;\mathbb C)
+$$
+が $(p,q)$-形式をどの型へ送るかを調べる必要がある。
+
+可積分でない概複素構造では、前章で見たように型を二段飛び越す成分が現れた。複素多様体では正則座標が存在するため、その余分な成分が消える。この事実を座標で導こう。
+
+## 4.2 まず関数の微分を分ける
+
+局所複素座標を
+$$
+z^j=x^j+iy^j,\qquad
+\bar z^j=x^j-iy^j
+\quad (j=1,\ldots,n)
+$$
+とする。滑らかな複素数値関数 $f$ に対して
+$$
+df=\sum_{j=1}^n
+\left(
+\frac{\partial f}{\partial x^j}dx^j
++\frac{\partial f}{\partial y^j}dy^j
+\right).
+$$
+前章の逆変換
+$$
+dx^j=\frac{dz^j+d\bar z^j}{2},\qquad
+dy^j=\frac{dz^j-d\bar z^j}{2i}
+$$
+を代入すると、
+$$
+\begin{aligned}
+df
+={}&\sum_j
+\frac{\partial f}{\partial x^j}
+\frac{dz^j+d\bar z^j}{2}
++\sum_j
+\frac{\partial f}{\partial y^j}
+\frac{dz^j-d\bar z^j}{2i}\\
+={}&\sum_j
+\frac12\left(
+\frac{\partial f}{\partial x^j}
+-i\frac{\partial f}{\partial y^j}
+\right)dz^j\\
+&+\sum_j
+\frac12\left(
+\frac{\partial f}{\partial x^j}
++i\frac{\partial f}{\partial y^j}
+\right)d\bar z^j.
+\end{aligned}
+$$
+そこで
+$$
+\frac{\partial f}{\partial z^j}
+:=\frac12\left(
+\frac{\partial f}{\partial x^j}
+-i\frac{\partial f}{\partial y^j}
+\right),
+$$
+$$
+\frac{\partial f}{\partial\bar z^j}
+:=\frac12\left(
+\frac{\partial f}{\partial x^j}
++i\frac{\partial f}{\partial y^j}
+\right)
+$$
+と書けば、
+$$
+df=
+\underbrace{\sum_j\frac{\partial f}{\partial z^j}dz^j}_{(1,0)\text{ 型}}
++
+\underbrace{\sum_j\frac{\partial f}{\partial\bar z^j}d\bar z^j}_{(0,1)\text{ 型}}.
+$$
+この二成分を
+$$
+\partial f:=\sum_j\frac{\partial f}{\partial z^j}dz^j,
+\qquad
+\bar\partial f:=\sum_j
+\frac{\partial f}{\partial\bar z^j}d\bar z^j
+$$
+と定める。したがって関数上では
+$$
+d f=\partial f+\bar\partial f.
+$$
+正則関数の Cauchy–Riemann 方程式は
+$$
+\frac{\partial f}{\partial\bar z^j}=0
+\quad (j=1,\ldots,n)
+$$
+だから、座標に依存しない形では
+$$
+\boxed{f\text{ が正則}\iff\bar\partial f=0}
+$$
+となる。$\bar\partial$ は、滑らかな関数の中に残っている反正則方向の変化を取り出す作用素である。
+
+## 4.3 一般の (p,q)-形式へ拡張する
+
+局所的な $(p,q)$-形式を
+$$
+\alpha=
+\sum_{|I|=p,\ |J|=q}
+\alpha_{I\bar J}\,dz^I\wedge d\bar z^J
+$$
+と書く。ここで
+$$
+dz^I=dz^{i_1}\wedge\cdots\wedge dz^{i_p},
+\qquad
+d\bar z^J=d\bar z^{j_1}\wedge\cdots\wedge d\bar z^{j_q}
+$$
+である。座標一次形式は閉じているので
+$$
+d(dz^j)=d^2z^j=0,\qquad
+d(d\bar z^j)=d^2\bar z^j=0.
+$$
+Leibniz則を使うと、
+$$
+d\alpha
+=\sum_{I,J}d\alpha_{I\bar J}
+\wedge dz^I\wedge d\bar z^J.
+$$
+係数関数の微分を前節の二成分へ分ければ、
+$$
+\begin{aligned}
+d\alpha
+={}&
+\sum_{I,J,k}
+\frac{\partial\alpha_{I\bar J}}{\partial z^k}
+dz^k\wedge dz^I\wedge d\bar z^J\\
+&+
+\sum_{I,J,k}
+\frac{\partial\alpha_{I\bar J}}{\partial\bar z^k}
+d\bar z^k\wedge dz^I\wedge d\bar z^J.
+\end{aligned}
+$$
+第一の和は $(p+1,q)$ 型、第二の和は $(p,q+1)$ 型である。そこで
+$$
+\partial:\mathcal A^{p,q}(X)\longrightarrow
+\mathcal A^{p+1,q}(X),
+$$
+$$
+\bar\partial:\mathcal A^{p,q}(X)\longrightarrow
+\mathcal A^{p,q+1}(X)
+$$
+を、それぞれ $d\alpha$ の該当する型の成分として定める。型分解は直和なので、この定義に曖昧さはない。そして
+$$
+\boxed{d=\partial+\bar\partial}
+$$
+を得る。
+
+### なぜ座標の選び方に依存しないのか
+
+$\partial\alpha$ と $\bar\partial\alpha$ の局所公式だけを見ると、正則座標に依存しているように見える。しかし定義は「座標微分を使うこと」ではなく、座標不変な外微分 $d\alpha$ を、座標不変な型分解へ射影することである。正則座標変換は $(1,0)$ 型と $(0,1)$ 型を保つため、別の正則座標でも同じ成分が得られる。
+
+## 4.4 一つの具体計算
+
+$\mathbb C^2$ 上で
+$$
+\alpha=z^1\bar z^2\,dz^2
+$$
+を考える。これは $(1,0)$-形式である。係数の微分は
+$$
+d(z^1\bar z^2)
+=\bar z^2\,dz^1+z^1\,d\bar z^2.
+$$
+したがって
+$$
+\begin{aligned}
+d\alpha
+&=d(z^1\bar z^2)\wedge dz^2
++z^1\bar z^2\,d(dz^2)\\
+&=\bar z^2\,dz^1\wedge dz^2
++z^1\,d\bar z^2\wedge dz^2.
+\end{aligned}
+$$
+第二項の順序を $dz$ が先になるよう直すと
+$$
+d\alpha
+=\bar z^2\,dz^1\wedge dz^2
+-z^1\,dz^2\wedge d\bar z^2.
+$$
+よって
+$$
+\partial\alpha
+=\bar z^2\,dz^1\wedge dz^2,
+\qquad
+\bar\partial\alpha
+=-z^1\,dz^2\wedge d\bar z^2.
+$$
+$\partial$ は正則次数を一つ増やし、$\bar\partial$ は反正則次数を一つ増やすことが式の上でも見える。
+
+## 4.5 d^2=0 は三つの恒等式を含んでいる
+
+任意の $(p,q)$-形式 $\alpha$ に対して
+$$
+0=d^2\alpha
+=(\partial+\bar\partial)^2\alpha
+$$
+である。右辺を順序を保って展開すると
+$$
+0=
+\partial^2\alpha
++\partial\bar\partial\alpha
++\bar\partial\partial\alpha
++\bar\partial^2\alpha.
+$$
+各項の型は
+$$
+\begin{array}{c|c}
+\text{項}&\text{型}\\ \hline
+\partial^2\alpha&(p+2,q)\\
+\partial\bar\partial\alpha&(p+1,q+1)\\
+\bar\partial\partial\alpha&(p+1,q+1)\\
+\bar\partial^2\alpha&(p,q+2)
+\end{array}
+$$
+である。異なる型の和が零なら、直和分解の各成分が零でなければならない。したがって
+$$
+\boxed{\partial^2=0},\qquad
+\boxed{\bar\partial^2=0},\qquad
+\boxed{\partial\bar\partial+
+\bar\partial\partial=0}.
+$$
+最後の式は $\partial$ と $\bar\partial$ が反可換することを表す。
+
+### 関数上で混合項を確認する
+
+滑らかな関数 $f$ に対して
+$$
+\bar\partial f=
+\sum_k f_{\bar z^k}\,d\bar z^k
+$$
+なので
+$$
+\partial\bar\partial f
+=\sum_{j,k}
+f_{z^j\bar z^k}\,
+dz^j\wedge d\bar z^k.
+$$
+一方、
+$$
+\bar\partial\partial f
+=\sum_{j,k}
+f_{\bar z^k z^j}\,
+d\bar z^k\wedge dz^j
+=-\sum_{j,k}
+f_{\bar z^k z^j}\,
+dz^j\wedge d\bar z^k.
+$$
+$f$ は滑らかなので混合偏微分は交換し、二式の和は零になる。反可換性の符号は、偏微分の符号ではなく、一次形式の外積を交換したときに生じる。
+
+## 4.6 dbar^2=0 は何を可能にするか
+
+$\bar\partial^2=0$ だから、
+$$
+\mathcal A^{p,0}(X)
+\xrightarrow{\bar\partial}
+\mathcal A^{p,1}(X)
+\xrightarrow{\bar\partial}
+\mathcal A^{p,2}(X)
+\xrightarrow{\bar\partial}\cdots
+$$
+は複体になる。つまり、$\bar\partial$-完全な形式は必ず $\bar\partial$-閉である。
+
+ここで自然な問いが生まれる。
+
+> $\bar\partial\alpha=0$ を満たす形式は、いつ $\alpha=\bar\partial\beta$ と書けるのか。
+
+これは Cauchy–Riemann 方程式の高次形式版である。局所的には解けても、大域的には解けないことがある。その「大域的に解けない度合い」を記録するのが Dolbeault コホモロジーである。
+
+
+
+
+
+
+
+

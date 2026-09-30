@@ -5,7 +5,13 @@
 
   const clean = (value) => (value || "").replace(/\s+/g, " ").trim();
   const chapterTitle = clean(main.querySelector("h1")?.textContent || document.title.replace(/–.*$/, ""));
-  const headings = Array.from(main.querySelectorAll("h1[id], h2[id], h3[id]"));
+  const headingId = (heading) => (
+    heading.id ||
+    heading.dataset.anchorId ||
+    heading.closest("section[id]")?.id ||
+    ""
+  );
+  const headings = Array.from(main.querySelectorAll("h1, h2, h3")).filter((heading) => headingId(heading));
   const sectionHeadings = headings.filter((heading) => heading.tagName !== "H1");
   const sidebarLinks = Array.from(document.querySelectorAll("#quarto-sidebar a.sidebar-link"));
   const activeSidebarIndex = sidebarLinks.findIndex((link) => link.classList.contains("active"));
@@ -78,7 +84,8 @@
   sheet.setAttribute("aria-label", "目次");
   const tocLinks = sectionHeadings.map((heading) => {
     const depth = heading.tagName === "H3" ? 2 : 1;
-    return `<a href="#${heading.id}" data-reader-target="${heading.id}" style="padding-left:${(depth - 1) * 1.1}rem">${clean(heading.textContent)}</a>`;
+    const id = headingId(heading);
+    return `<a href="#${id}" data-reader-target="${id}" style="padding-left:${(depth - 1) * 1.1}rem">${clean(heading.textContent)}</a>`;
   }).join("");
   sheet.innerHTML = `
     <div class="reader-toc-sheet__head">
@@ -103,9 +110,10 @@
     if (!heading) return;
     activeHeading = heading;
     const text = clean(heading.textContent || chapterTitle);
+    const id = headingId(heading);
     currentSectionEls.forEach((el) => { el.textContent = text; });
     sheet.querySelectorAll("a[data-reader-target]").forEach((link) => {
-      link.classList.toggle("is-active", link.dataset.readerTarget === heading.id);
+      link.classList.toggle("is-active", link.dataset.readerTarget === id);
     });
   }
 

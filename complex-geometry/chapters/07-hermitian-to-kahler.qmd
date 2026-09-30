@@ -1,0 +1,429 @@
+---
+title: '7. Hermitian計量からKähler幾何へ'
+sidebar: complex-geometry
+format:
+  html:
+    toc: true
+---
+
+## 7.1 複素構造に長さを入れるとき、何を両立させるべきか
+
+複素多様体は方向を $J$ によって90度回転できる。そこへ任意のRiemann計量 $g$ を置いても、一般には
+$$
+g(JX,JY)=g(X,Y)
+$$
+とは限らない。$i$ 倍によってベクトルの長さが変わるなら、複素ベクトル空間の標準的な幾何とは両立していない。
+
+そこで $J$ を直交変換にする計量を要求する。
+
+**定義（Hermitian計量）**  複素多様体 $(X,J)$ 上のHermitian計量とは、
+$$
+g(JX,JY)=g(X,Y)
+$$
+を満たすRiemann計量 $g$ である。
+
+この条件は特別な存在条件ではない。任意のRiemann計量 $g_0$ から
+$$
+g(X,Y)
+:=\frac12\left(
+g_0(X,Y)+g_0(JX,JY)
+\right)
+$$
+と置けば正定値であり、
+$$
+\begin{aligned}
+g(JX,JY)
+&=\frac12\left(
+g_0(JX,JY)+g_0(J^2X,J^2Y)
+\right)\\
+&=\frac12\left(
+g_0(JX,JY)+g_0(X,Y)
+\right)\\
+&=g(X,Y).
+\end{aligned}
+$$
+したがって任意の複素多様体はHermitian計量を持つ。後に現れるKähler計量との違いはここにある。Hermitian計量は常に作れるが、Kähler計量の存在は大域的・位相的制約を持つ。
+
+## 7.2 Hermitian内積と実計量
+
+本書ではHermitian内積を第一変数について複素線形、第二変数について共役線形とする。実接ベクトル上で
+$$
+\omega(X,Y):=g(JX,Y)
+$$
+と置き、
+$$
+h(X,Y):=g(X,Y)-i\omega(X,Y)
+$$
+と定めると、
+$$
+\begin{aligned}
+h(JX,Y)
+&=g(JX,Y)-ig(J^2X,Y)\\
+&=\omega(X,Y)+ig(X,Y)\\
+&=ih(X,Y).
+\end{aligned}
+$$
+したがって $h$ は第一変数について複素線形である。$g$ と $J$ の両立性から
+$$
+g(JX,Y)=-g(X,JY)
+$$
+が従うので、$\omega$ は反対称であり実二形式になる。実際、
+$$
+\omega(Y,X)=g(JY,X)=g(X,JY)=-g(JX,Y)=-\omega(X,Y).
+$$
+$h$ の残りの条件も確認できる。
+$$
+h(X,JY)
+=g(X,JY)-ig(JX,JY)
+=-\omega(X,Y)-ig(X,Y)
+=-ih(X,Y),
+$$
+$$
+h(Y,X)
+=g(X,Y)+i\omega(X,Y)
+=\overline{h(X,Y)},
+$$
+$$
+h(X,X)=g(X,X)>0\qquad(X\ne0).
+$$
+よって $h$ は確かに、第一変数線形・第二変数共役線形の正定値Hermitian内積である。
+
+$\omega$ を基本二形式またはHermitian形式と呼ぶ。三つのデータは
+$$
+(g,J)\longleftrightarrow h
+\longleftrightarrow(g,J,\omega)
+$$
+として互いに結ばれている。
+
+## 7.3 omega はなぜ (1,1)-形式なのか
+
+実二形式 $\omega$ が $(1,1)$ 型であることは
+$$
+\omega(JX,JY)=\omega(X,Y)
+$$
+と同値である。実際、
+$$
+\begin{aligned}
+\omega(JX,JY)
+&=g(J(JX),JY)\\
+&=g(-X,JY)\\
+&=g(JX,Y)\\
+&=\omega(X,Y).
+\end{aligned}
+$$
+最後から二行目では $g(X,JY)=-g(JX,Y)$ を使った。
+
+逆向きも確認しておく。実二形式を複素化すると、$(2,0)$ 成分と $(0,2)$ 成分は $J$ を両変数へ作用させたとき符号が反転し、$(1,1)$ 成分は符号が変わらない。したがって $J$-不変なら前二成分は零であり、$(1,1)$ 型になる。
+
+正則座標では、実計量を複素双線形に延長したものを $g_{\mathbb C}$ とし、
+$$
+h_{j\bar k}
+:=g_{\mathbb C}\left(
+\frac{\partial}{\partial z^j},
+\frac{\partial}{\partial\bar z^k}
+\right)
+$$
+と定める。この小文字 $h_{j\bar k}$ はHermitian内積 $h$ 自身の成分ではなく、複素化した実計量の成分である。本書ではこの規約により
+$$
+g=2\operatorname{Re}
+\left(\sum_{j,k}h_{j\bar k}\,
+dz^j\otimes d\bar z^k\right)
+$$
+と書き、基本二形式を
+$$
+\omega=i\sum_{j,k}h_{j\bar k}\,
+dz^j\wedge d\bar z^k
+$$
+と書く。係数行列 $(h_{j\bar k})$ はHermitian正定値である。Hermitian内積 $h$ 自身の成分を $H_{j\bar k}$ と書く文献では $H_{j\bar k}=2h_{j\bar k}$ となる。文献によって $1/2$ の置き場所が異なるため、具体例で本書の規約を固定する。
+
+## 7.4 標準的な C^n
+$$
+g_0=\sum_{j=1}^n
+\left((dx^j)^2+(dy^j)^2\right)
+$$
+とすると、
+$$
+\omega_0=\sum_{j=1}^n dx^j\wedge dy^j.
+$$
+一方、
+$$
+\begin{aligned}
+dz^j\wedge d\bar z^j
+&=(dx^j+i\,dy^j)\wedge(dx^j-i\,dy^j)\\
+&=-i\,dx^j\wedge dy^j
++i\,dy^j\wedge dx^j\\
+&=-2i\,dx^j\wedge dy^j.
+\end{aligned}
+$$
+したがって
+$$
+\boxed{
+\omega_0=\frac{i}{2}
+\sum_{j=1}^n dz^j\wedge d\bar z^j
+}.
+$$
+この規約では $h_{j\bar k}=\frac12\delta_{jk}$ である。
+
+## 7.5 Hermitianだけでは何が足りないのか
+
+Hermitian計量は $J$ と点ごとに両立する。しかし、隣り合う点の構造が微分の意味で両立するとは限らない。その失敗は $d\omega$ に現れる。
+
+$\mathbb C^2$ 上で標準計量を正の関数で変形し、
+$$
+g=e^{x^1}g_0,\qquad
+\omega=e^{x^1}\omega_0
+$$
+とする。これは依然としてHermitian計量だが、
+$$
+\begin{aligned}
+d\omega
+&=e^{x^1}dx^1\wedge\omega_0\\
+&=e^{x^1}dx^1\wedge
+\left(dx^1\wedge dy^1+dx^2\wedge dy^2\right)\\
+&=e^{x^1}dx^1\wedge dx^2\wedge dy^2
+\ne0.
+\end{aligned}
+$$
+つまりHermitian条件だけでは、基本二形式は閉じない。点ごとの複素線形代数は整っていても、微分幾何学的な整合性が不足している。
+
+## 7.6 Kähler条件
+
+**定義（Kähler計量）**  Hermitian計量 $g$ の基本二形式 $\omega$ が
+$$
+\boxed{d\omega=0}
+$$
+を満たすとき、$g$ をKähler計量、$\omega$ をKähler形式という。Kähler計量を少なくとも一つ持つ複素多様体をKähler多様体という。
+
+この閉性条件が特別なのは、$\omega$ が同時に三つの構造を担うからである。
+
+1. $g(X,Y)=\omega(X,JY)$ によりRiemann計量を復元する。
+2. $\omega(JX,JY)=\omega(X,Y)$ により複素構造と両立する。
+3. 閉性と非退化性によりシンプレクティック形式になる。
+
+非退化性は正定値性から従う。$X\ne0$ なら
+$$
+\omega(X,JX)=g(JX,JX)=g(X,X)>0
+$$
+なので、$\omega(X,\cdot)$ は零ではない。
+
+したがってKähler幾何は、複素幾何・Riemann幾何・シンプレクティック幾何の単なる並置ではなく、同じテンソル $g,J,\omega$ が互いを決定する両立構造である。
+
+## 7.7 閉性を座標で読む
+
+$\omega$ は実 $(1,1)$-形式なので
+$$
+d\omega=\partial\omega+\bar\partial\omega
+$$
+の二項はそれぞれ $(2,1)$, $(1,2)$ 型である。型が異なるため、
+$$
+d\omega=0
+\iff
+\partial\omega=0
+\quad\text{かつ}\quad
+\bar\partial\omega=0.
+$$
+局所表示
+$$
+\omega=i\sum_{j,k}h_{j\bar k}\,
+dz^j\wedge d\bar z^k
+$$
+に $\partial$ を作用させると
+$$
+\partial\omega
+=i\sum_{\ell,j,k}
+\frac{\partial h_{j\bar k}}{\partial z^\ell}
+dz^\ell\wedge dz^j\wedge d\bar z^k.
+$$
+$j,\ell$ を交換した項とまとめると、
+$$
+\partial\omega
+=\frac{i}{2}\sum_{\ell,j,k}
+\left(
+\frac{\partial h_{j\bar k}}{\partial z^\ell}
+-\frac{\partial h_{\ell\bar k}}{\partial z^j}
+\right)
+dz^\ell\wedge dz^j\wedge d\bar z^k.
+$$
+したがって、これが零であることは
+$$
+\frac{\partial h_{j\bar k}}{\partial z^\ell}
+=
+\frac{\partial h_{\ell\bar k}}{\partial z^j}
+$$
+と同値である。Kähler条件は、計量係数の一階微分に対する対称性条件になっている。
+
+また $\omega$ は実形式なので
+$$
+\overline{\partial\omega}=\bar\partial\omega.
+$$
+したがって上の対称性から $\partial\omega=0$ が従えば、その共役である $\bar\partial\omega$ も零になる。
+
+## 7.8 局所Kählerポテンシャル
+
+**定理（局所ポテンシャル）**  実 $(1,1)$-形式 $\omega$ が閉じているなら、各点の近くで実数値滑らかな関数 $\varphi$ が存在して
+$$
+\omega=i\partial\bar\partial\varphi
+$$
+と書ける。
+
+**証明概略。**  $d\omega=0$ からPoincaréの補題で局所的に $\omega=d\gamma$ と書く。$\omega$ は実なので $\gamma$ も実に選べる。$\gamma=\alpha+\bar\alpha$ と $(1,0)$, $(0,1)$ 成分へ分けると、
+$$
+\omega
+=\partial\alpha+\bar\partial\alpha
++\partial\bar\alpha+\bar\partial\bar\alpha.
+$$
+$\omega$ は $(1,1)$ 型なので、$(2,0)$, $(0,2)$ 成分はそれぞれ零であり、
+$$
+\partial\alpha=0,\qquad
+\bar\partial\bar\alpha=0.
+$$
+$\partial$-Poincaré補題により、局所的に複素数値関数 $f$ が存在して $\alpha=\partial f$ と書ける。すると
+$$
+\begin{aligned}
+\omega
+&=\bar\partial\partial f
++\partial\bar\partial\bar f\\
+&=-\partial\bar\partial f
++\partial\bar\partial\bar f\\
+&=\partial\bar\partial(\bar f-f)\\
+&=i\partial\bar\partial(-2\operatorname{Im}f).
+\end{aligned}
+$$
+よって $\varphi=-2\operatorname{Im}f$ と取ればよい。二つの実ポテンシャル $\varphi,\varphi'$ が同じ $\omega$ を与えるとき、その差は
+$$
+\partial\bar\partial(\varphi-\varphi')=0
+$$
+を満たす。このような実関数を多重調和関数といい、ポテンシャルの非一意性を表す。
+
+$\mathbb C^n$ では
+$$
+\varphi(z)=\frac12\sum_j|z^j|^2
+$$
+に対し
+$$
+\bar\partial\varphi
+=\frac12\sum_j z^j\,d\bar z^j,
+$$
+$$
+i\partial\bar\partial\varphi
+=\frac{i}{2}\sum_jdz^j\wedge d\bar z^j
+=\omega_0.
+$$
+Kähler計量の係数は局所的に
+$$
+h_{j\bar k}
+=\frac{\partial^2\varphi}
+{\partial z^j\partial\bar z^k}
+$$
+という複素Hessianから生じる。正定値性は $\varphi$ の強多重劣調和性に対応する。
+
+## 7.9 例と非例
+
+### 複素トーラス
+
+$\mathbb C^n$ 上の $\omega_0$ は平行移動不変なので、格子 $\Lambda$ による商
+$$
+\mathbb C^n/\Lambda
+$$
+へ降りる。閉性も保たれるため、すべての複素トーラスはKählerである。ただし、後に見るように、すべてが射影的とは限らない。
+
+### 複素次元1
+
+複素次元1では実次元が2であり、任意の二形式 $\omega$ に対して $d\omega$ は三形式になる。三形式は実2次元多様体上で恒等的に零なので、任意のHermitian計量は自動的にKählerである。HermitianとKählerの差が現れるのは複素次元2以上である。
+
+### Hermitianだが、その計量はKählerでない
+
+前節の $e^{x^1}g_0$ は $\mathbb C^2$ 上のHermitian計量だがKähler計量ではない。ただし $\mathbb C^2$ 自体は標準Kähler計量を持つ。「あるHermitian計量がKählerでない」ことと「多様体がKähler計量を一つも持たない」ことを区別しなければならない。
+
+コンパクトな真の非例として、実数 $0<\lambda<1$ に対し
+$$
+X_\lambda
+:=
+(\mathbb C^2\setminus\{0\})/
+\langle z\mapsto\lambda z\rangle
+$$
+を考える。この無限巡回群の作用は正則かつ自由であり、さらに任意のコンパクト集合とその十分大きな反復像が交わらないという意味で固有不連続である。したがって商は一次Hopf曲面という複素曲面になる。
+
+$\mathbb C^2\setminus\{0\}$ を
+$$
+z\longmapsto
+\left(
+\frac{\log|z|}{\log\lambda},
+\frac{z}{|z|}
+\right)
+\in\mathbb R\times S^3
+$$
+で表すと、$z\mapsto\lambda z$ は第一成分を1だけ増やし、第二成分を変えない。したがって商は
+$$
+(\mathbb R/\mathbb Z)\times S^3
+\cong S^1\times S^3
+$$
+と微分同相であり、特にコンパクトである。
+
+任意の複素多様体と同様にHermitian計量は持つが、Kähler計量は持たない。後のHodge分解から、コンパクトKähler多様体の第一Betti数は偶数になる。一方、
+$$
+b_1(X_\lambda)=b_1(S^1\times S^3)=1
+$$
+なのでKählerではあり得ない。この論証はHodge理論の章で完成させる。
+
+## 7.10 閉性は接続とどう関係するか
+
+$\nabla=\nabla^{\mathrm{LC}}$ を $g$ のLevi–Civita接続とする。まず $\nabla$ はtorsion-freeなので、二形式の外微分は共変微分の交代化で書ける。
+$$
+\begin{aligned}
+d\omega(X,Y,Z)
+={}&(\nabla_X\omega)(Y,Z)
++(\nabla_Y\omega)(Z,X)
++(\nabla_Z\omega)(X,Y).
+\end{aligned}
+$$
+$\nabla g=0$ と $\omega(Y,Z)=g(JY,Z)$ から
+$$
+(\nabla_X\omega)(Y,Z)
+=g((\nabla_XJ)Y,Z)
+$$
+なので、
+$$
+\boxed{
+d\omega(X,Y,Z)
+=\sum_{\mathrm{cyc}}
+g((\nabla_XJ)Y,Z)
+}.
+$$
+特に $\nabla J=0$ なら $d\omega=0$ である。
+
+逆向きにはNijenhuisテンソルも必要になる。本書の符号規約では
+$$
+\begin{aligned}
+2g((\nabla_ZJ)X,JY)
+={}&d\omega(JX,Y,Z)
++d\omega(X,JY,Z)\\
+&-g(N_J(X,Y),Z).
+\end{aligned}
+$$
+この式は、上の巡回和、$J^2=-I$、計量の $J$-不変性、Lie括弧
+$[X,Y]=\nabla_XY-\nabla_YX$ を代入して整理することで得られる。
+
+したがって複素構造が可積分、すなわち $N_J=0$ であるHermitian多様体では、
+$$
+d\omega=0
+\iff
+\nabla^{\mathrm{LC}}J=0.
+$$
+右辺は、Levi–Civita平行移動が複素構造を保つことを意味する。一般の概Hermitian多様体では $d\omega=0$ だけから $\nabla J=0$ は従わず、上の式に $N_J$ の項が残る。
+
+Kähler条件により、Riemann幾何の標準接続が複素方向の分解を保つ。この事実が、Laplacianの間に予想外に強い関係を生み、Hodge分解へつながる。
+
+次章ではまず、計量を入れた実多様体上でHodge star、形式上の随伴、Laplacianを作り、
+$$
+\text{de Rhamコホモロジー類}
+\longleftrightarrow
+\text{調和形式}
+$$
+という位相と偏微分方程式の橋を構成する。
+
+
+
+
+
+

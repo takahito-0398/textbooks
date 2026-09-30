@@ -1,0 +1,611 @@
+---
+title: '11. 複素射影空間とFubini–Study計量'
+sidebar: complex-geometry
+format:
+  html:
+    toc: true
+---
+
+## 11.1 なぜ行き先が射影空間なのか
+
+前章では、正値線束の大域正則切断を使って複素多様体を射影空間へ写すという問題が現れた。なぜ行き先はベクトル空間ではないのだろうか。
+
+線束 $L\to X$ の大域正則切断を
+$$
+s_0,\ldots,s_N\in H^0(X,L)
+$$
+とする。局所正則枠 $e$ を選べば
+$$
+s_j=f_je
+$$
+と書けるので、各点で数の組
+$$
+(f_0(x),\ldots,f_N(x))\in\mathbb C^{N+1}
+$$
+を得る。ところが枠を $e'=ge$ と取り替えると、$g$ は零にならない正則関数であり、
+$$
+s_j=f_je=f'_je'=f'_jge
+$$
+だから
+$$
+f'_j=g^{-1}f_j.
+$$
+全成分が同じ非零複素数倍だけ変わるので、数の組そのものは枠に依存する。枠によらず残るのは
+$$
+[f_0(x):\cdots:f_N(x)]
+$$
+という比だけである。
+
+ただし全ての $s_j(x)$ が零なら $[0:\cdots:0]$ となり、射影点は定まらない。そのような点の集合
+$$
+B=\{x\in X\mid s_0(x)=\cdots=s_N(x)=0\}
+$$
+を切断系の基点集合という。最初に得られる写像の定義域は $X\setminus B$ であり、$B=\varnothing$ のとき初めて $X$ 全体の射影写像になる。
+
+射影空間は、単に便利なコンパクト空間として外から持ち込まれるのではない。線束の切断を座標として使おうとした瞬間に生じる「共通スカラー倍の不定性」を、ちょうど吸収する空間である。
+
+## 11.2 複素直線全体の空間
+
+$\mathbb C^{n+1}\setminus\{0\}$ 上に
+$$
+Z\sim W
+\quad\Longleftrightarrow\quad
+W=\lambda Z
+\text{ となる }\lambda\in\mathbb C^*
+\text{ が存在する}
+$$
+という同値関係を入れる。
+
+**定義（複素射影空間）**
+$$
+\mathbb{CP}^n
+=
+(\mathbb C^{n+1}\setminus\{0\})/\mathbb C^*
+$$
+と定める。$Z=(Z_0,\ldots,Z_n)\neq0$ の同値類を
+$$
+[Z_0:\cdots:Z_n]
+$$
+と書き、$Z_0,\ldots,Z_n$ を斉次座標と呼ぶ。
+
+ベクトル $Z\neq0$ は原点を通る複素直線
+$$
+\mathbb CZ=\{\lambda Z\mid\lambda\in\mathbb C\}
+$$
+を決める。非零定数倍したベクトルは同じ直線を決めるから、
+$$
+\boxed{
+\mathbb{CP}^n
+=
+\mathbb C^{n+1}\text{ 内の複素一次元部分空間全体}
+}
+$$
+である。
+
+実射影空間との違いにも注意したい。複素スカラー
+$$
+\lambda=re^{i\theta}
+$$
+で割るので、大きさ $r$ だけでなく位相 $e^{i\theta}$ も忘れる。各同値類から長さ $1$ の代表を選ぶと、なお $S^1$ 倍の自由度が残る。したがって
+$$
+\mathbb{CP}^n\cong S^{2n+1}/S^1.
+$$
+これはHopfファイブレーションの高次元版である。
+
+## 11.3 商集合から複素多様体へ
+
+商集合には商写像 $\mathbb C^{n+1}\setminus\{0\}\to\mathbb{CP}^n$ による商位相を入れる。商集合を作っただけでは、まだ複素多様体の局所座標を得たとはいえない。局所座標を作り、その座標変換が正則であることを確かめる必要がある。
+
+各 $j=0,\ldots,n$ に対し
+$$
+U_j
+=
+\{[Z_0:\cdots:Z_n]\mid Z_j\neq0\}
+$$
+と置く。$U_j$ では代表元を $Z_j$ で割り、$j$ 番目の成分を $1$ にできる。たとえば $U_0$ では
+$$
+[Z_0:Z_1:\cdots:Z_n]
+=
+[1:z_1:\cdots:z_n],
+\qquad
+z_k=\frac{Z_k}{Z_0}.
+$$
+よって
+$$
+\varphi_0:U_0\longrightarrow\mathbb C^n,
+\qquad
+[Z_0:\cdots:Z_n]
+\longmapsto
+\left(\frac{Z_1}{Z_0},\ldots,\frac{Z_n}{Z_0}\right)
+$$
+は全単射である。逆写像
+$$
+(z_1,\ldots,z_n)\longmapsto[1:z_1:\cdots:z_n]
+$$
+も商位相について連続なので、$\varphi_0$ は同相写像である。他の $U_j$ も同様に $\mathbb C^n$ と同一視できる。
+
+座標変換を省略せずに確認する。$U_0\cap U_1$ で、$U_0$ の座標を
+$$
+(z_1,\ldots,z_n)
+=
+\left(\frac{Z_1}{Z_0},\ldots,\frac{Z_n}{Z_0}\right)
+$$
+とする。ここでは $z_1\neq0$ である。$U_1$ の座標は
+$$
+w_0=\frac{Z_0}{Z_1}=\frac1{z_1},
+\qquad
+w_k=\frac{Z_k}{Z_1}=\frac{z_k}{z_1}
+\quad(k\ge2)
+$$
+となる。分母 $z_1$ は重なり上で零にならないので、座標変換は正則である。有限個の第二可算なchartで覆われるため第二可算性を持つ。また二つの異なる複素直線は単位球面上の互いに交わらないコンパクトな $S^1$-軌道として分離できるので、商はHausdorffである。したがって $\{(U_j,\varphi_j)\}$ は $\mathbb{CP}^n$ に複素次元 $n$ の複素多様体構造を与える。
+
+## 11.4 CP^1 と無限遠
+
+$\mathbb{CP}^1$ は二つのコピー $U_0\cong\mathbb C$, $U_1\cong\mathbb C$ を
+$$
+w=\frac1z
+$$
+で貼り合わせた空間である。$U_0$ から外れる唯一の点は $[0:1]$ であり、$z$-平面から見ると無限遠点に当たる。したがって
+$$
+\mathbb{CP}^1=\mathbb C\cup\{\infty\}
+$$
+であり、Riemann球面と同じ複素多様体である。
+
+この例は「射影化は無限遠を加える」という直観を与える。ただし高次元では、単一の無限遠点を加えるのではない。$U_0\cong\mathbb C^n$ の補集合は
+$$
+\{Z_0=0\}\cong\mathbb{CP}^{n-1}
+$$
+である。高次元の無限遠には、どの方向へ遠ざかったかを記録する射影空間が現れる。
+
+## 11.5 なぜコンパクトになるのか
+
+任意の射影点には長さ $1$ の代表元があるので、
+$$
+q:S^{2n+1}\longrightarrow\mathbb{CP}^n,
+\qquad
+Z\longmapsto[Z]
+$$
+は連続な全射である。球面 $S^{2n+1}$ はコンパクトであり、コンパクト空間の連続像はコンパクトだから、$\mathbb{CP}^n$ はコンパクトである。
+
+ただし $n>1$ では $\mathbb{CP}^n$ は $\mathbb C^n$ の一点コンパクト化ではない。補集合が一点ではなく $\mathbb{CP}^{n-1}$ であることが、その違いをすでに示している。
+
+## 11.6 各点が表す直線を束ねる
+
+射影点 $[Z]$ 自体が $\mathbb C^{n+1}$ 内の直線 $\mathbb CZ$ であった。そこで各点の上に、その点が表す直線そのものを置く。
+
+**定義**
+$$
+\mathcal O(-1)
+=
+\{
+([Z],v)\in\mathbb{CP}^n\times\mathbb C^{n+1}
+\mid
+v\in\mathbb CZ
+\}.
+$$
+射影
+$$
+\pi:\mathcal O(-1)\longrightarrow\mathbb{CP}^n,
+\qquad
+([Z],v)\longmapsto[Z]
+$$
+のファイバーは
+$$
+\mathcal O(-1)_{[Z]}=\mathbb CZ
+$$
+である。この束は英語ではtautological line bundleと呼ばれる。日本語の訳語には揺れがあるため、本書では記号 $\mathcal O(-1)$ を主に使う。
+
+双対線束を
+$$
+\mathcal O(1):=\mathcal O(-1)^*
+$$
+とする。正値になるのは $\mathcal O(1)$ 側である。符号の意味は、$\mathcal O(1)$ の大域切断が一次斉次多項式に、$\mathcal O(k)=\mathcal O(1)^{\otimes k}$ の大域切断が次数 $k$ の斉次多項式に対応することから見えてくる。
+
+## 11.7 局所枠と遷移関数
+
+$U_j$ 上で、点 $[Z]$ の代表元を $Z_j=1$ となるよう正規化する。そのベクトル自身を $\mathcal O(-1)$ の局所枠
+$$
+e_j([Z])=\frac{Z}{Z_j}
+$$
+とする。
+
+$U_j\cap U_k$ 上では
+$$
+e_k
+=\frac{Z}{Z_k}
+=\frac{Z_j}{Z_k}\frac{Z}{Z_j}
+=\frac{Z_j}{Z_k}e_j.
+$$
+したがって $\mathcal O(-1)$ の遷移関数は $Z_j/Z_k$ である。双対枠 $e_j^*$ は $e_j^*(e_j)=1$ を満たすので、
+$$
+e_k^*
+=\frac{Z_k}{Z_j}e_j^*.
+$$
+これが $\mathcal O(1)$ の遷移関数である。
+
+線形形式
+$$
+\ell(Z)=a_0Z_0+\cdots+a_nZ_n
+$$
+は、各直線 $\mathbb CZ$ への制限によって
+$$
+[Z]\longmapsto
+\ell|_{\mathbb CZ}
+\in(\mathbb CZ)^*
+=\mathcal O(1)_{[Z]}
+$$
+という大域正則切断を与える。逆向きも確認する。切断を $\mathbb C^{n+1}\setminus\{0\}$ へ引き戻し、点 $Z$ が張る直線上で評価すると、正則関数 $P$ を得る。遷移関数の式から
+$$
+P(\lambda Z)=\lambda P(Z)
+\qquad(\lambda\in\mathbb C^*)
+$$
+を満たす。$P$ は原点を越えて正則に延長し、そのTaylor展開へ上の斉次性を代入すると一次以外の項は全て零になる。よって $P$ は線形形式である。したがって
+$$
+H^0(\mathbb{CP}^n,\mathcal O(1))
+\cong
+(\mathbb C^{n+1})^*.
+$$
+より一般に、$\mathcal O(k)$ の切断を同様に引き戻すと
+$$
+P(\lambda Z)=\lambda^kP(Z)
+$$
+を満たす正則関数になる。$n\ge1$ ではHartogsの拡張定理により原点を越えて正則に延長する。原点でのTaylor展開を
+$$
+P(Z)=\sum_{d=0}^\infty P_d(Z)
+$$
+と斉次成分へ分けると、
+$$
+\sum_d\lambda^dP_d(Z)
+=\lambda^k\sum_dP_d(Z)
+$$
+が全ての $\lambda$ で成り立つため、$P_d=0$ for $d\neq k$ である。よって $P=P_k$ は次数 $k$ の斉次多項式である。逆に斉次多項式は遷移関数と両立する局所係数を与える。したがって $k\ge0$ なら
+$$
+H^0(\mathbb{CP}^n,\mathcal O(k))
+\cong
+\{
+\mathbb C^{n+1}\text{ 上の次数 }k
+\text{ の斉次多項式}
+\}.
+$$
+射影代数幾何で斉次多項式を使う理由は、線束の切断という幾何学にある。
+
+## 11.8 標準内積から線束計量を作る
+
+$\mathbb C^{n+1}$ の標準Hermitian内積を $\mathcal O(-1)$ の各ファイバーへ制限すると、$\mathcal O(-1)$ にHermitian計量が入る。
+
+$U_0$ で
+$$
+e_0=(1,z_1,\ldots,z_n)
+$$
+だから、その長さの二乗は
+$$
+h_{-1}(e_0,e_0)
+=1+|z_1|^2+\cdots+|z_n|^2.
+$$
+双対計量では長さの二乗が逆数になるので、$\mathcal O(1)$ の双対枠 $e_0^*$ に対し
+$$
+h_1(e_0^*,e_0^*)
+=
+\frac1{1+|z_1|^2+\cdots+|z_n|^2}.
+$$
+前章の記法 $H=e^{-\varphi}$ と比べると、
+$$
+\varphi
+=
+\log(1+|z_1|^2+\cdots+|z_n|^2).
+$$
+したがって $\mathcal O(1)$ のChern曲率は
+$$
+F
+=
+\partial\bar\partial\log(1+|z|^2),
+\qquad
+|z|^2=\sum_{j=1}^n|z_j|^2.
+$$
+ここから
+$$
+\boxed{
+\omega_{\mathrm{FS}}
+=
+i\partial\bar\partial\log(1+|z|^2)
+}
+$$
+と定める。これが本書の正規化によるFubini–Study形式である。文献によって $1/2$ や $1/(2\pi)$ を掛ける規約がある。本書では
+$$
+\left[
+\frac{\omega_{\mathrm{FS}}}{2\pi}
+\right]
+=
+c_1(\mathcal O(1))
+$$
+となる正規化を使う。
+
+## 11.9 局所式を展開する
+$$
+r=1+|z|^2
+=1+\sum_{j=1}^nz_j\bar z_j
+$$
+と置く。$\bar z_j$ は $\partial$ に関して定数として扱われるので、
+$$
+\partial r
+=\sum_{j=1}^n\bar z_j\,dz_j,
+\qquad
+\bar\partial r
+=\sum_{k=1}^nz_k\,d\bar z_k.
+$$
+連鎖律から
+$$
+\bar\partial\log r
+=\frac1r\bar\partial r
+=\sum_{k=1}^n\frac{z_k}{r}\,d\bar z_k.
+$$
+さらに
+$$
+\partial\left(\frac{z_k}{r}\right)
+=
+\frac{r\,dz_k-z_k\partial r}{r^2}
+=
+\sum_{j=1}^n
+\frac{r\delta_{jk}-\bar z_jz_k}{r^2}\,dz_j.
+$$
+よって
+$$
+\partial\bar\partial\log r
+=
+\sum_{j,k=1}^n
+\frac{r\delta_{jk}-\bar z_jz_k}{r^2}
+\,dz_j\wedge d\bar z_k,
+$$
+したがって
+$$
+\boxed{
+\omega_{\mathrm{FS}}
+=
+i\sum_{j,k=1}^n
+\frac{(1+|z|^2)\delta_{jk}-\bar z_jz_k}
+{(1+|z|^2)^2}
+\,dz_j\wedge d\bar z_k.
+}
+$$
+## 11.10 正定値性と閉性
+
+係数行列を
+$$
+g_{j\bar k}
+=
+\frac{r\delta_{jk}-\bar z_jz_k}{r^2}
+$$
+とする。任意の $\xi=(\xi_1,\ldots,\xi_n)\in\mathbb C^n$ に対し
+$$
+\sum_{j,k}g_{j\bar k}\xi_j\overline{\xi_k}
+=
+\frac{
+r|\xi|^2-
+\left|\sum_j\bar z_j\xi_j\right|^2
+}{r^2}.
+$$
+Cauchy–Schwarzの不等式より
+$$
+\left|\sum_j\bar z_j\xi_j\right|^2
+\le |z|^2|\xi|^2.
+$$
+したがって分子は
+$$
+r|\xi|^2-|z|^2|\xi|^2
+=|\xi|^2
+$$
+以上である。$\xi\neq0$ なら上の値は正なので、$\omega_{\mathrm{FS}}$ は正定値である。
+
+また局所的に $\omega_{\mathrm{FS}}=i\partial\bar\partial\log r$ だから
+$$
+\begin{aligned}
+d\omega_{\mathrm{FS}}
+&=i(\partial+\bar\partial)
+\partial\bar\partial\log r\\
+&=i\partial^2\bar\partial\log r
++i\bar\partial\partial\bar\partial\log r\\
+&=0.
+\end{aligned}
+$$
+最後の等号では $\partial^2=0$ と
+$\bar\partial\partial=-\partial\bar\partial$ を使った。よって $\omega_{\mathrm{FS}}$ はKähler形式である。
+
+## 11.11 局所ポテンシャルは大域関数ではない
+$$
+\omega_{\mathrm{FS}}
+=i\partial\bar\partial\log(1+|z|^2)
+$$
+を見ると、右辺のポテンシャルが射影空間全体の関数に見えるかもしれない。しかし $z$ は $U_0$ の局所座標にすぎない。
+
+斉次座標で各 $U_j$ 上の局所ポテンシャルを
+$$
+\varphi_j
+=
+\log
+\frac{\sum_{\ell=0}^n|Z_\ell|^2}{|Z_j|^2}
+$$
+と書く。$U_j\cap U_k$ 上で
+$$
+\varphi_j-\varphi_k
+=
+\log\left|\frac{Z_k}{Z_j}\right|^2.
+$$
+$Z_k/Z_j$ は重なり上で零にならない正則関数である。一般に、そのような正則関数 $g$ について局所的に正則な対数を選べば
+$$
+\log|g|^2=\log g+\log\bar g.
+$$
+$\bar\partial\log g=0$ かつ
+$\partial\log\bar g=0$ なので、
+$$
+\partial\bar\partial\log|g|^2=0.
+$$
+ゆえに
+$$
+i\partial\bar\partial\varphi_j
+=
+i\partial\bar\partial\varphi_k
+$$
+となり、局所的に定義した二形式は大域的に貼り合わさる。
+
+計量の局所重みは枠に依存するが、その $\partial\bar\partial$ は枠変換による差を消す。これが、線束の曲率が大域形式になる仕組みの具体例である。
+
+## 11.12 CP^1 で正規化を確かめる
+
+$n=1$ では
+$$
+\omega_{\mathrm{FS}}
+=
+\frac{i\,dz\wedge d\bar z}{(1+|z|^2)^2}.
+$$
+$z=x+iy$ とすると
+$$
+\begin{aligned}
+dz\wedge d\bar z
+&=(dx+i\,dy)\wedge(dx-i\,dy)\\
+&=-i\,dx\wedge dy+i\,dy\wedge dx\\
+&=-2i\,dx\wedge dy.
+\end{aligned}
+$$
+したがって
+$$
+i\,dz\wedge d\bar z=2\,dx\wedge dy.
+$$
+極座標 $z=re^{i\theta}$ では
+$dx\wedge dy=r\,dr\wedge d\theta$ なので、
+$$
+\int_{\mathbb{CP}^1}\omega_{\mathrm{FS}}
+=
+\int_0^{2\pi}\int_0^\infty
+\frac{2r}{(1+r^2)^2}\,dr\,d\theta.
+$$
+$u=1+r^2$, $du=2r\,dr$ と置けば
+$$
+\int_0^\infty
+\frac{2r}{(1+r^2)^2}\,dr
+=
+\int_1^\infty u^{-2}\,du
+=1.
+$$
+よって
+$$
+\int_{\mathbb{CP}^1}\omega_{\mathrm{FS}}
+=2\pi,
+\qquad
+\int_{\mathbb{CP}^1}
+\frac{\omega_{\mathrm{FS}}}{2\pi}
+=1.
+$$
+これは
+$$
+\left[
+\frac{\omega_{\mathrm{FS}}}{2\pi}
+\right]
+=c_1(\mathcal O(1))
+$$
+が整数コホモロジーの正の生成元であることと一致する。抽象的に見えた正規化係数 $2\pi$ が、具体的な積分として現れた。
+
+## 11.13 複素構造を保つ群と計量を保つ群
+
+標準内積を保つユニタリ群 $U(n+1)$ は、$\mathbb C^{n+1}$ の複素直線を複素直線へ送るので、$\mathbb{CP}^n$ に作用する。標準内積から作った $\mathcal O(-1)$ の計量もこの作用で保たれる。したがって、その双対計量の曲率である $\omega_{\mathrm{FS}}$ も $U(n+1)$ に不変である。
+
+すべての射影線形変換 $PGL(n+1,\mathbb C)$ がFubini–Study計量を保つわけではない。複素構造を保つ変換群は大きいが、選んだHermitian内積と計量まで保つ群は射影ユニタリ群である。この違いは、複素構造とHermitian計量が同じデータではないことを具体的に示す。
+
+## 11.14 超平面は切断の零点である
+
+零でない線形形式 $\ell\in(\mathbb C^{n+1})^*$ は射影超平面
+$$
+H_\ell
+=
+\{
+[Z]\in\mathbb{CP}^n
+\mid
+\ell(Z)=0
+\}
+$$
+を定める。同時に $\ell$ は $\mathcal O(1)$ の大域正則切断を定め、その零点集合がちょうど $H_\ell$ になる。
+$$
+\boxed{
+\text{線束の切断}
+\quad\longleftrightarrow\quad
+\text{零点で定まる幾何学的対象}
+}
+$$
+曲率は線束のねじれを微分幾何的に測り、切断の零点は同じねじれを複素解析的・代数幾何的に目に見える形にする。第一Chern類が超平面のコホモロジー類になるのは偶然ではない。
+
+より正確には、横断的な正則切断の零点集合を重複度込みで数えた因子のPoincaré双対が、その線束の第一Chern類になる。$\ell$ の零因子は $H_\ell$ なので、
+$$
+c_1(\mathcal O(1))
+=\operatorname{PD}[H_\ell].
+$$
+## 11.15 切断から作る射影写像
+
+複素多様体 $X$ と正則線束 $L\to X$ を考え、切断
+$$
+s_0,\ldots,s_N\in H^0(X,L)
+$$
+がどの点でも同時には零にならないとする。このとき
+$$
+\Phi:X\longrightarrow\mathbb{CP}^N,
+\qquad
+x\longmapsto[s_0(x):\cdots:s_N(x)]
+$$
+が定まる。局所枠を変えても全座標が共通因子倍されるので、射影点は変わらない。
+
+まず切断系が基点を持たない時点で、線束の同型を確認できる。局所枠 $e$ に対して $s_j=f_je$ と書き、双対枠を $e^*$ とする。各点で
+$$
+e^*(x)
+\longmapsto
+(f_0(x),\ldots,f_N(x))
+\in
+\Phi^*\mathcal O(-1)_x
+$$
+と定める。枠を $e'=ge$ と変えると
+$$
+e'^*=g^{-1}e^*,
+\qquad
+f'_j=g^{-1}f_j
+$$
+となるため、この対応は枠によらない。よって
+$$
+L^*\cong\Phi^*\mathcal O(-1),
+$$
+その双対を取って
+$$
+\boxed{L\cong\Phi^*\mathcal O(1)}
+$$
+を得る。
+
+さらにこの写像が埋め込みなら、$\mathbb{CP}^N$ のKähler形式を引き戻して
+$$
+\Phi^*\omega_{\mathrm{FS}}
+$$
+を得る。引き戻しは $d$ と可換し、埋め込みの微分は単射なので、これは $X$ 上のKähler形式である。また上の自然な同型により、
+$$
+\left[
+\frac{\Phi^*\omega_{\mathrm{FS}}}{2\pi}
+\right]
+=c_1(L).
+$$
+したがって射影的な複素多様体は、必ず整なKähler類を持つ。
+
+## 11.16 逆向きの問い
+
+ここまでで一方向は見えた。
+$$
+X\hookrightarrow\mathbb{CP}^N
+\quad\Longrightarrow\quad
+X\text{ はKählerで、整なKähler類を持つ。}
+$$
+では逆に、コンパクト複素多様体 $X$ が整なKähler類を持てば、射影空間へ正則に埋め込めるだろうか。
+
+整性から、その類を第一Chern類に持つ正則線束を作る必要がある。さらに曲率を正にし、その正値性から十分多くの大域正則切断を生み出さなければならない。最後に、それらの切断が異なる点を区別し、各点の異なる接方向も区別することを示す必要がある。
+
+これは局所的な曲率条件から大域的な座標関数を作る問題であり、自明ではない。答えがKodaira埋め込み定理である。
+
+次章では「線束が正である」の正確な意味を確認し、なぜ高いテンソル冪を取るのか、切断が点と接ベクトルを分離するとは何か、$\bar\partial$ 方程式の解法がどこで必要になるかを追う。
+
+
+
+
+
+
