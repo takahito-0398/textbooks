@@ -1,0 +1,37 @@
+---
+title: "Navier-Stokes方程式を読む"
+description: "Navier-Stokes方程式の各項、具体解、渦度、臨界性、正則性問題を因果関係として読む講義ノート。"
+sidebar: navier-stokes
+format:
+  html:
+    toc: true
+---
+# Navier-Stokes方程式を読む
+
+具体解から非線形・渦度・臨界性・正則性問題へ
+
+$$
+\rho\left(\partial_t\boldsymbol{u}+(\boldsymbol{u}\cdot\nabla)\boldsymbol{u}\right)=-\nabla P+\mu\Delta\boldsymbol{u}+\rho\boldsymbol{f},\qquad \nabla\cdot\boldsymbol{u}=0
+$$
+
+本書は、式を覚えるためではなく、式の各項がどこから来て、どの仮定で消え、何を制御し、どこで制御が失敗するかを追うための講義ノートである。理系大学院生を想定するが、流体力学・関数解析の専門知識は前提にしない。
+
+> **読み方**
+>
+> 第I-II部で方程式と具体解を手で計算し、第III部のBurgers方程式で非線形急峻化を体験する。第IV-VI部で無次元化・エネルギー・渦度をつなぎ、第VII-VIII部で数値例と解析の言葉を整える。第IX部で正則性問題を因果関係として読み、第X部を発展編とする。
+
+全面改訂版 / 2026年9月27日。厳密な公式定式化と2026年9月の状況は、Clay Mathematics Institute の一次資料を基準に区別して記した。
+
+## 章一覧
+
+- [第I部　方程式を読む](chapters/01-equation-basics.qmd)
+- [第II部　一般形から具体解へ](chapters/02-explicit-solutions.qmd)
+- [第III部　非線形急峻化の最小模型](chapters/03-burgers-nonlinearity.qmd)
+- [第IV部　Reynolds数・無次元化・スケール](chapters/04-reynolds-scaling.qmd)
+- [第V部　エネルギー・Fourier相互作用・圧力](chapters/05-energy-fourier-pressure.qmd)
+- [第VI部　渦度と次元](chapters/06-vorticity-dimension.qmd)
+- [第VII部　渦を計算して見る](chapters/07-vortex-computation.qmd)
+- [第VIII部　解析の物差し](chapters/08-analysis-scales.qmd)
+- [第IX部　Navier-Stokes正則性問題](chapters/09-regularity-problem.qmd)
+- [第X部　発展トピック](chapters/10-advanced-topics.qmd)
+- [付録](chapters/11-appendices.qmd)

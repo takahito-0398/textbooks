@@ -1,0 +1,101 @@
+---
+title: "付録"
+sidebar: navier-stokes
+format:
+  html:
+    toc: true
+---
+## 付録
+
+図表・一次資料・次の学習経路
+
+### 付録A　図表一覧
+
+> **この章で知りたいこと**
+>
+> 図がどの直感を支えるか。
+
+| 番号 | 内容 |
+|---|---|
+| 図1 | 固定点で観測するEuler表示と、一つの粒子を追うLagrange表示。物質微分は両者をつなぐ。 |
+| 図2 | 非圧縮でも伸長と圧縮は同時に起こり得る。面積は同じだが形は変わる。 |
+| 図3 | 平行板の設定と解の速度場。下板は静止、上板は一定速度で動く。 |
+| 図4 | 静止した平行板間の圧力駆動流。速度は壁でゼロ、中心で最大となる。 |
+| 図5 | 円管内の放物面型速度分布。半径方向の面積要素が流量計算で効く。 |
+| 図6 | 壁の運動量が粘性で拡散する。相似変数により各時刻の曲線が一つに重なる。 |
+| 図7 | 波数が大きいほど波長は短く、粘性による減衰率は波数の2乗で増える。 |
+| 図8 | 特性線が集まり、交差する。交差後に滑らかな一価関数を続けることはできない。 |
+| 図9 | 粘性は不連続な交差の代わりに有限幅の遷移層を作る。粘性が小さいほど層は薄い。 |
+| 図10 | 移流が距離Lを運ぶ時間と、粘性が同じ距離を拡散する時間の比がReynolds数である。 |
+| 図11 | λを大きくすると、対応解は高く細くなる。同じ一つの解が時間発展で必ずこの形へ集中する、という主張ではない。 |
+| 図12 | 積のFourier変換は畳み込みとなり、モードpとqがモードp+qへ結合する。 |
+| 図13 | 局在sourceから離れても3次元Green核はゼロにならない。距離4倍なら単位sourceの寄与は1/4になる。 |
+| 図14 | 同じ渦度でもstrain固有方向との配向で増幅と減衰が分かれる。上段Aは正固有値方向、下段Bは負固有値方向。長さ2倍・断面積1/2・渦度2倍は、非粘性かつ一様な軸対称伸長という直感模型に限る。 |
+| 図15 | 2次元では渦度は面に垂直なスカラー。3次元では渦管方向にも速度が変化できる。 |
+| 図16 | 周期箱の二次元Taylor-Green渦。渦セルは存在するが、振幅は粘性で指数減衰する。 |
+| 図17 | 周期二次元せん断層の数値計算。色は渦度、矢印は速度。分布した渦度帯が曲がり、渦核へ組織化される。 |
+| 図18 | 支持領域が縮むと有限pノルムは小さくなるが、最大値ノルムは高さをそのまま見る。 |
+| 図19 | λを変えたときのLpノルム比。p=3だけが水平で、p=2は微細化で弱く、p=6は強くなる。 |
+| 図20 | 危険な自己強化ループと、それに対抗する粘性。総エネルギーの有界性だけではループを止めきれない。 |
+| 図21 | 球面上の速度は点ごとに異なる接平面に属する。異なる点のベクトルを比較するには、平行移動という規則が必要になる。 |
+| 図22 | Hodge分解は平面のHelmholtz分解を閉曲面へ拡張する。S²では調和1-form成分が消えるが、回転勾配成分は豊富に残る。 |
+| 図23 | 剛体回転u=Ω×xは非自明なKilling場で、極に零点を持つ。harmonic 1-formがないこと、流れがないこと、毛玉定理は別の主張である。 |
+| 図24 | 元の時空間では特異点へ向かう円柱が縮む。rescaling後は全てを同じ大きさで観察でき、縮尺ごとの形を比較できる。 |
+| 図25 | 左：空間半径rに時間幅r²を組み合わせる放物型円柱。右：各特異点が最低量の集中を必要とするなら、小円柱による被覆の総半径が制約される。 |
+
+### 付録B　参考文献・一次資料
+
+> **この章で知りたいこと**
+>
+> 公式定式化、既知結果、球面上の方程式をどの資料で確認したか。
+
+[1] C. L. Fefferman, Existence and Smoothness of the Navier-Stokes Equation, Clay Mathematics Institute official problem description, The Millennium Prize Problems, pp.57-67.
+
+[2] Clay Mathematics Institute, Navier-Stokes Announcement, 11 September 2026. https://www.claymath.org/news/navier-stokes-announcement/
+
+[3] Clay Mathematics Institute, Navier-Stokes Equation official problem page, classification Active, accessed 27 September 2026. https://www.claymath.org/millennium/navier-stokes-equation/
+
+[4] OpenAI, On the Navier-Stokes Millennium Prize Problem, 8 September 2026. https://openai.com/index/navier-stokes-solution/
+
+[5] J. Leray, Sur le mouvement d'un liquide visqueux emplissant l'espace, Acta Mathematica 63 (1934), 193-248.
+
+[6] O. A. Ladyzhenskaya, The Mathematical Theory of Viscous Incompressible Flow, 2nd ed., 1969.
+
+[7] L. Caffarelli, R. Kohn, L. Nirenberg, Partial regularity of suitable weak solutions of the Navier-Stokes equations, CPAM 35 (1982), 771-831.
+
+[8] L. Escauriaza, G. Seregin, V. Sverak, L3,infinity-solutions of Navier-Stokes equations and backward uniqueness, Russian Mathematical Surveys 58 (2003), 211-250.
+
+[9] T. Tao, Why global regularity for Navier-Stokes is hard, expository article, 2007; and 254A Notes 1, 2018.
+
+[10] A. J. Majda, A. L. Bertozzi, Vorticity and Incompressible Flow, Cambridge University Press, 2002.
+
+[11] C. Cao, M. A. Rammaha, E. S. Titi, The Navier-Stokes equations on the rotating 2-D sphere: Gevrey regularity and asymptotic degrees of freedom, ZAMP 50 (1999), 341-360, DOI 10.1007/PL00001493.
+
+[12] R. Temam, Navier-Stokes Equations: Theory and Numerical Analysis, AMS Chelsea.
+
+[13] P. Constantin, C. Foias, Navier-Stokes Equations, University of Chicago Press, 1988.
+
+[14] J. Necas, M. Ruzicka, V. Sverak, On Leray's self-similar solutions of the Navier-Stokes equations, Acta Mathematica 176 (1996), 283-294.
+
+[15] T.-P. Tsai, On Leray's self-similar solutions of the Navier-Stokes equations satisfying local energy estimates, Archive for Rational Mechanics and Analysis 143 (1998), 29-51.
+
+> **資料の使い分け**
+>
+> 公式問題のA/B/C/Dと条件は[1]、2026年9月の外部状態は[2][3]を優先した。解析の標準事項は原論文と専門書、S²は球面上のNavier-Stokes原著を参照した。
+
+### 付録C　今後さらに深掘りできる発展トピック
+
+> **この章で知りたいこと**
+>
+> 本書の次にどの方向へ進めるか。
+
+| 方向 | 次の問い |
+|---|---|
+| 臨界空間 | L³、Ḣ1/2、BMO^-1の小データ理論は熱半群推定でどう閉じるか |
+| 正則性規準 | Serrin条件や渦度方向の幾何学的整列は何を排除するか |
+| 弱解の一意性 | energy inequalityとweak-strong uniquenessはどう関係するか |
+| 乱流 | Kolmogorovスケールと数学的臨界性はどこまで同じでどこから違うか |
+| 数値解析 | 擬スペクトル法のaliasing、CFL条件、収束検証、渦度保存をどう確認するか |
+| 幾何流体力学 | Euler方程式を体積保存微分同相群上の測地線としてどう読むか |
+| 曲面・薄領域 | S²、一般Riemann面、薄い三次元球殻の極限はどう接続するか |
+| 2026年成果 | 公表証明の強制項・局所化・形式検証・公式認定を一次資料で追跡する |
