@@ -5,7 +5,6 @@ format:
   html:
     toc: true
 ---
-# 1. Cの文字列がCPUへ届くまで
 
 ## 1.1 ストレージ、メモリ、CPU
 

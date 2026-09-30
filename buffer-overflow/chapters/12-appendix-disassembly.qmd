@@ -5,7 +5,6 @@ format:
   html:
     toc: true
 ---
-# 補遺A. 実際の逆アセンブリと呼び出し規約
 
 ## A.1 `read_name`の実命令
 

@@ -5,7 +5,6 @@ format:
   html:
     toc: true
 ---
-## 第IV部　Reynolds数・無次元化・スケール
 
 時間尺度、項の大きさ、模型相似、PDEの対称性を一つの構造として見る
 

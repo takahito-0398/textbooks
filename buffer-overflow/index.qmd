@@ -6,7 +6,6 @@ format:
   html:
     toc: true
 ---
-# Buffer Overflow / ROP 入門
 
 文字列入力から命令位置が変わるまで
 

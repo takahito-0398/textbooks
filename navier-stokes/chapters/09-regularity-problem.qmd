@@ -5,7 +5,6 @@ format:
   html:
     toc: true
 ---
-## 第IX部　Navier-Stokes正則性問題
 
 何が問われ、どの危険シナリオがあり、なぜ標準評価で終わらないのか
 

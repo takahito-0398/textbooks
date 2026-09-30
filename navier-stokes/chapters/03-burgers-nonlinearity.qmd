@@ -5,7 +5,6 @@ format:
   html:
     toc: true
 ---
-## 第III部　非線形急峻化の最小模型
 
 Burgers方程式で、移流が自分自身の勾配を強める仕組みを計算する
 

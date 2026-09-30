@@ -5,7 +5,6 @@ format:
   html:
     toc: true
 ---
-## 付録
 
 図表・一次資料・次の学習経路
 

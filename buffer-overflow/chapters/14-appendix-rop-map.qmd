@@ -5,7 +5,6 @@ format:
   html:
     toc: true
 ---
-# 補遺C. ROPを次に学ぶための地図
 
 ## C.1 ガジェット
 

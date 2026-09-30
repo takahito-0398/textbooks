@@ -5,7 +5,6 @@ format:
   html:
     toc: true
 ---
-# 9. 現代の防御はどの因果を切るのか
 
 ![入力からRIP制御までの因果と各防御が止める位置](../assets/11-defense-layers.png)
 

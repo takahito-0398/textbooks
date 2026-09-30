@@ -6,7 +6,6 @@ format:
   html:
     toc: true
 ---
-# Navier-Stokes方程式を読む
 
 具体解から非線形・渦度・臨界性・正則性問題へ
 
