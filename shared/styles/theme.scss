@@ -1,12 +1,16 @@
 /*-- scss:defaults --*/
-$primary: #2563eb;
-$link-color: #1d4ed8;
-$font-family-sans-serif: "Segoe UI", "Noto Sans JP", system-ui, -apple-system, sans-serif;
+$primary: #4da3ff;
+$link-color: #7bbcff;
+$font-family-sans-serif: "BIZ UDPGothic", "Noto Sans JP", "Hiragino Sans", "Yu Gothic", "Segoe UI", system-ui, -apple-system, sans-serif;
+$headings-font-family: "BIZ UDPMincho", "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
 $font-family-monospace: "Cascadia Code", "SFMono-Regular", Consolas, monospace;
-$body-color: #172033;
-$body-bg: #ffffff;
-$code-block-bg: #f6f8fb;
-$border-color: #dbe3ef;
+$body-color: #e7edf4;
+$body-bg: #0b1118;
+$code-block-bg: #111b27;
+$border-color: #26384a;
+$headings-color: #f3f7fb;
+$navbar-bg: #0d1722;
+$navbar-fg: #e7edf4;
 
 /*-- scss:rules --*/
 body { line-height: 1.8; }

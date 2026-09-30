@@ -143,9 +143,7 @@ website:
 
 format:
   html:
-    theme:
-      light: [cosmo, shared/styles/theme.scss]
-      dark: [darkly, shared/styles/theme.scss]
+    theme: [darkly, shared/styles/theme.scss]
     toc: true
     toc-depth: 3
     number-sections: false
@@ -155,6 +153,7 @@ format:
     link-external-icon: true
     fig-responsive: true
     css: shared/styles/custom.css
+    include-after-body: shared/scripts/reader-ui.html
 
 execute:
   freeze: auto

@@ -1,0 +1,178 @@
+<script>
+(function () {
+  const main = document.querySelector("main.content");
+  if (!main) return;
+
+  const clean = (value) => (value || "").replace(/\s+/g, " ").trim();
+  const chapterTitle = clean(main.querySelector("h1")?.textContent || document.title.replace(/–.*$/, ""));
+  const headings = Array.from(main.querySelectorAll("h1[id], h2[id], h3[id]"));
+  const sectionHeadings = headings.filter((heading) => heading.tagName !== "H1");
+  const sidebarLinks = Array.from(document.querySelectorAll("#quarto-sidebar a.sidebar-link"));
+  const activeSidebarIndex = sidebarLinks.findIndex((link) => link.classList.contains("active"));
+  const prevSidebarLink = activeSidebarIndex > 0 ? sidebarLinks[activeSidebarIndex - 1] : null;
+  const nextSidebarLink = activeSidebarIndex >= 0 ? sidebarLinks[activeSidebarIndex + 1] : null;
+  const prevHref = document.querySelector('link[rel="prev"]')?.getAttribute("href") || prevSidebarLink?.getAttribute("href");
+  const nextHref = document.querySelector('link[rel="next"]')?.getAttribute("href") || nextSidebarLink?.getAttribute("href");
+  const prevLabel = clean(prevSidebarLink?.textContent || document.querySelector(".nav-page-previous .nav-page-text")?.textContent || "前の章");
+  const nextLabel = clean(nextSidebarLink?.textContent || document.querySelector(".nav-page-next .nav-page-text")?.textContent || "次の章");
+
+  const progress = document.createElement("div");
+  progress.className = "reader-progress";
+  progress.innerHTML = '<div class="reader-progress__bar" aria-hidden="true"></div>';
+  document.body.appendChild(progress);
+
+  const mobileStatus = document.createElement("aside");
+  mobileStatus.className = "reader-mobile-status";
+  mobileStatus.setAttribute("aria-label", "現在位置");
+  mobileStatus.innerHTML = `
+    <div class="reader-mobile-status__chapter">
+      <span class="reader-current-chapter"></span>
+      <span class="reader-mobile-status__percent">0%</span>
+    </div>
+    <div class="reader-mobile-status__section">
+      <span class="reader-current-section"></span>
+    </div>
+    <div class="reader-mobile-status__meter" aria-hidden="true"><span></span></div>
+  `;
+  document.body.insertBefore(mobileStatus, document.getElementById("quarto-content") || main);
+
+  const rail = document.createElement("aside");
+  rail.className = "reader-rail";
+  rail.setAttribute("aria-label", "読書位置");
+  rail.innerHTML = `
+    <div class="reader-rail__label">現在</div>
+    <div class="reader-rail__chapter reader-current-chapter"></div>
+    <div class="reader-rail__section reader-current-section"></div>
+    <div class="reader-rail__meter" aria-hidden="true"><span></span></div>
+    <div class="reader-rail__percent">0%</div>
+    <div class="reader-rail__links">
+      ${prevHref ? `<a href="${prevHref}"><span>前の章</span>${prevLabel}</a>` : ""}
+      ${nextHref ? `<a href="${nextHref}"><span>次の章</span>${nextLabel}</a>` : ""}
+    </div>
+  `;
+  document.body.appendChild(rail);
+
+  const tocButtonId = "reader-toc-button";
+  const bottomNav = document.createElement("nav");
+  bottomNav.className = "reader-bottom-nav";
+  bottomNav.setAttribute("aria-label", "読書ナビゲーション");
+  bottomNav.innerHTML = `
+    <a class="reader-bottom-nav__prev" ${prevHref ? `href="${prevHref}"` : 'href="#" aria-disabled="true"'}>
+      <span>前の章</span><strong>${prevLabel}</strong>
+    </a>
+    <button id="${tocButtonId}" class="reader-bottom-nav__toc" type="button" aria-haspopup="dialog" aria-expanded="false">目次</button>
+    <a class="reader-bottom-nav__next" ${nextHref ? `href="${nextHref}"` : 'href="#" aria-disabled="true"'}>
+      <span>次の章</span><strong>${nextLabel}</strong>
+    </a>
+  `;
+  document.body.appendChild(bottomNav);
+
+  const backdrop = document.createElement("div");
+  backdrop.className = "reader-toc-backdrop";
+  document.body.appendChild(backdrop);
+
+  const sheet = document.createElement("section");
+  sheet.className = "reader-toc-sheet";
+  sheet.setAttribute("role", "dialog");
+  sheet.setAttribute("aria-modal", "true");
+  sheet.setAttribute("aria-label", "目次");
+  const tocLinks = sectionHeadings.map((heading) => {
+    const depth = heading.tagName === "H3" ? 2 : 1;
+    return `<a href="#${heading.id}" data-reader-target="${heading.id}" style="padding-left:${(depth - 1) * 1.1}rem">${clean(heading.textContent)}</a>`;
+  }).join("");
+  sheet.innerHTML = `
+    <div class="reader-toc-sheet__head">
+      <div class="reader-toc-sheet__title">この章の目次</div>
+      <button class="reader-toc-sheet__close" type="button" aria-label="目次を閉じる">閉じる</button>
+    </div>
+    <div class="reader-toc-sheet__body">${tocLinks || "<p>このページには見出しがありません。</p>"}</div>
+  `;
+  document.body.appendChild(sheet);
+
+  const currentChapterEls = document.querySelectorAll(".reader-current-chapter");
+  const currentSectionEls = document.querySelectorAll(".reader-current-section");
+  const percentEls = document.querySelectorAll(".reader-mobile-status__percent, .reader-rail__percent");
+  const meterEls = document.querySelectorAll(".reader-progress__bar, .reader-mobile-status__meter span, .reader-rail__meter span");
+  const tocButton = document.getElementById(tocButtonId);
+  const closeButton = sheet.querySelector(".reader-toc-sheet__close");
+
+  currentChapterEls.forEach((el) => { el.textContent = chapterTitle; });
+  let activeHeading = sectionHeadings[0] || headings[0] || null;
+
+  function setActiveHeading(heading) {
+    if (!heading) return;
+    activeHeading = heading;
+    const text = clean(heading.textContent || chapterTitle);
+    currentSectionEls.forEach((el) => { el.textContent = text; });
+    sheet.querySelectorAll("a[data-reader-target]").forEach((link) => {
+      link.classList.toggle("is-active", link.dataset.readerTarget === heading.id);
+    });
+  }
+
+  function updateProgress() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    const percent = Math.min(100, Math.max(0, Math.round((scrollTop / max) * 100)));
+    percentEls.forEach((el) => { el.textContent = `${percent}%`; });
+    meterEls.forEach((el) => { el.style.width = `${percent}%`; });
+  }
+
+  function updateByScrollPosition() {
+    const offset = window.innerHeight < 700 ? 150 : 190;
+    let current = sectionHeadings[0] || headings[0] || null;
+    for (const heading of sectionHeadings) {
+      if (heading.getBoundingClientRect().top <= offset) current = heading;
+      else break;
+    }
+    setActiveHeading(current);
+    updateProgress();
+  }
+
+  if ("IntersectionObserver" in window && sectionHeadings.length) {
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+      if (visible) setActiveHeading(visible.target);
+    }, { rootMargin: "-18% 0px -70% 0px", threshold: [0, 1] });
+    sectionHeadings.forEach((heading) => observer.observe(heading));
+  }
+
+  function openSheet() {
+    sheet.classList.add("is-open");
+    backdrop.classList.add("is-open");
+    tocButton?.setAttribute("aria-expanded", "true");
+    closeButton?.focus({ preventScroll: true });
+  }
+
+  function closeSheet() {
+    sheet.classList.remove("is-open");
+    backdrop.classList.remove("is-open");
+    tocButton?.setAttribute("aria-expanded", "false");
+    tocButton?.focus({ preventScroll: true });
+  }
+
+  tocButton?.addEventListener("click", openSheet);
+  closeButton?.addEventListener("click", closeSheet);
+  backdrop.addEventListener("click", closeSheet);
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && sheet.classList.contains("is-open")) closeSheet();
+  });
+
+  sheet.addEventListener("click", (event) => {
+    const link = event.target.closest("a[href^='#']");
+    if (!link) return;
+    const target = document.getElementById(decodeURIComponent(link.hash.slice(1)));
+    if (!target) return;
+    event.preventDefault();
+    closeSheet();
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+    history.replaceState(null, "", link.hash);
+  });
+
+  window.addEventListener("scroll", updateByScrollPosition, { passive: true });
+  window.addEventListener("resize", updateByScrollPosition);
+  setActiveHeading(activeHeading);
+  updateByScrollPosition();
+})();
+</script>
