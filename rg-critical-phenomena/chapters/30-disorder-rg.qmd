@@ -1,0 +1,193 @@
+---
+title: '第30部　disorderとRG――Harris判定、replica、rare region'
+sidebar: rg-critical-phenomena
+format:
+  html:
+    toc: true
+---
+
+## 1. quenchedとannealedを分ける
+
+ランダムcouplingを $J$ とし、固定した $J$ に対する分配関数を $Z[J]$ とする。quenched disorderでは $J$ が熱平衡時間scaleで凍結しており、自由エネルギーを先に取る。
+
+$$
+F_{\rm q}=-T\,\mathbb E_J[\log Z[J]].
+$$
+
+annealed disorderでは $J$ も熱化し
+
+$$
+F_{\rm a}=-T\log\mathbb E_J[Z[J]].
+$$
+
+Jensenの不等式により一般に両者は同じでない。平均を取る順序は模型の一部であり、計算上の都合で交換できない。
+
+## 2. Harris criterionの導出
+
+clean臨界点の相関長を
+
+$$
+\xi\sim |t|^{-\nu_{\rm clean}}
+$$
+
+とする。相関体積 $\xi^d$ 内に独立な弱いrandom-mass disorderがあると、局所臨界温度の標準偏差は中心極限定理型に
+
+$$
+\delta t_\xi\sim \xi^{-d/2}
+$$
+
+と減る。一方、臨界点からの平均距離は
+
+$$
+|t|\sim \xi^{-1/\nu_{\rm clean}}.
+$$
+
+clean scalingが自己無撞着であるには、$\xi\to\infty$ で局所揺らぎが平均距離より小さく
+
+$$
+\frac{\delta t_\xi}{|t|}
+\sim \xi^{1/\nu_{\rm clean}-d/2}\to0
+$$
+
+でなければならない。従って
+
+$$
+d\nu_{\rm clean}>2
+$$
+
+ならweak uncorrelated disorderはirrelevant、$d\nu_{\rm clean}<2$ ならrelevantと判定する。等号はmarginalで高次解析が必要である。[Harris (1974)](https://doi.org/10.1088/0022-3719/7/9/009) の判定はclean fixed pointの安定性を問う。
+
+これは独立・短距離相関・弱disorderを仮定したpower countingである。長距離相関disorder、強disorder、rare eventでは変更される。
+
+## 3. disorder fixed pointのbound
+
+disorderがrelevantならflowは新しいrandom fixed point、first-order化、runaway、infinite-randomness fixed pointなどへ向かいうる。新固定点の指数をHarris判定だけで計算することはできない。
+
+独立randomnessをもつ広い系で、有限size scalingの相関長指数に
+
+$$
+\nu_{\rm dis}\ge\frac2d
+$$
+
+型のboundがある。[Chayes et al. (1986)](https://doi.org/10.1103/PhysRevLett.57.2999) の定理にはdisorder分布、有限size quantity、transitionのsharpnessなどの仮定がある。数値的な「effective exponent」がboundを一時的に破ることは、asymptotic regime未到達や複数長さの可能性を示す。
+
+## 4. replica trick
+
+$$
+\mathbb E[\log Z]
+=\lim_{n\to0}\frac{\mathbb E[Z^n]-1}{n}
+$$
+
+を形式的に使い、整数 $n$ 個のreplicaを導入する。random mass
+
+$$
+S[\phi;\delta r]
+=\sum_{a=1}^nS_0[\phi_a]
++\frac12\int d^dx\,\delta r(x)
+\sum_a\phi_a^2(x)
+$$
+
+で
+
+$$
+\mathbb E[\delta r(x)\delta r(y)]
+=\Delta\delta(x-y)
+$$
+
+とする。Gaussian disorder平均を取るとreplica作用に
+
+$$
+-\frac{\Delta}{8}\int d^dx
+\left(\sum_a\phi_a^2\right)^2
+$$
+
+が生成される。元のreplica内quartic couplingとは異なるindex構造をもち、両couplingを同時にRGで流す必要がある。
+
+$n$ は最初は正整数であり、$n\to0$ への解析接続は常に自動的に正当化されるわけではない。replica symmetry breaking、複数saddle、nonperturbative rare eventでは特に注意する。
+
+## 5. random fieldとImry–Ma比較
+
+random field $h(x)$ が秩序変数へ線形にcoupleすると、長さ $L$ のdomainを反転するrandom-field energy gainは典型的に
+
+$$
+\Delta E_{\rm RF}\sim L^{d/2}
+$$
+
+である。Ising domain wall costは
+
+$$
+\Delta E_{\rm wall}\sim L^{d-1}.
+$$
+
+$d<2$ ではrandom gainが大scaleで勝ち、$d=2$ はmarginalとなる。これがIsing random-field問題の下部臨界次元2を示唆するImry–Ma argumentである。[Imry–Ma (1975)](https://doi.org/10.1103/PhysRevLett.35.1399)
+
+連続対称性では滑らかなtwist costが $L^{d-2}$ となり、対応する比較は下部臨界次元4を示唆する。ここまでがImry–Maのscaling argumentであり、秩序の存在・不在の完全なrigorous proofではない。
+
+対応する厳密結果は、命題を分けて述べる必要がある。Aizenman–Wehr (1989) は、二次元のquenched randomnessが一次転移の不連続性を丸めること、またrandom-field模型について二次元IsingでGibbs状態の一意性、連続対称性では $d\le4$ で連続対称性破れがないことを示した **[Rigorous theorem under stated hypotheses]**。Bricmont–Kupiainen (1987) は三次元random-field Ising模型が低温・弱random fieldで二相をもつことを示し、Ising RFIMの下部臨界次元が高々2であることを与えた **[Rigorous result for 3D RFIM at weak field/low temperature]**。従って「Imry–Ma比較」は次元を予言する議論、「Aizenman–Wehr/Bricmont–Kupiainen」は特定仮定下の定理である。
+
+## 6. rare regionとGriffiths singularity
+
+平均的にはdisordered phaseでも、局所的にordered側の大きな領域が指数的に稀に現れる。領域体積を $L^d$ とすると確率は概略
+
+$$
+P(L)\sim e^{-cL^d}
+$$
+
+だが、応答時間や局所感受率が同じ体積に対して指数的に大きくなれば、稀な領域が平均observableの非解析性や非常に遅いdynamicを支配しうる。
+
+typical valueとdisorder averageが大きく異なる場合、平均だけでは分布の幅を表せない。log observable、median、full distribution、sample-to-sample varianceを併記する必要がある。
+
+## 7. self-averaging
+
+体積 $V$ のobservable $X$ に対しrelative variance
+
+$$
+R_X(V)=
+\frac{\mathbb E[X^2]-\mathbb E[X]^2}
+{\mathbb E[X]^2}
+$$
+
+が $V\to\infty$ で0ならself-averagingである。臨界点では相関volumeがsystem sizeへ達し、random fixed pointでは $R_X$ が有限に残ることがある。
+
+simulationではdisorder realization数と各sample内のthermal samplingを別々に収束させる。error barを一種類の独立標本として数えると過小評価になる。
+
+## 8. clean universalityからの拡張
+
+disorderは「microscopic detailだから必ずirrelevant」ではない。RGの普遍性は、どの摂動が固定点でirrelevantかを判定して初めて成立する。Harris criterionはその最初の検査である。
+
+同じ平均Hamiltonianでも、quenched/annealed、random-bond/random-field、disorder相関、分布tailが違えば別のtheory spaceを流れる。universality classの指定にはrandomnessの型も含める。
+
+## 証拠水準
+
+- Harris criterion: weak・short-range・uncorrelated disorderについての **[Heuristic stability scaling criterion]**。
+- Chayes bound: 論文のfinite-size・disorder仮定下の **[Rigorous theorem]**。
+- replica $n\to0$: 整数momentからの **[Formal analytic continuation / perturbative method]**。
+- Imry–Ma比較: domain costとrandom gainの **[Heuristic scaling argument]**。Aizenman–WehrとBricmont–Kupiainenの結果は別途 **[Rigorous theorem/result under stated hypotheses]**。
+- rare-region効果: disorder分布とdynamicsに依存する **[Model-dependent asymptotic mechanism]**。
+
+## 章末整理
+
+### この章で分かったこと
+
+quenched平均の順序、Harris criterion、replica間相互作用、Imry–Ma比較、rare regionをRGの言葉で整理できる。
+
+### その結果、何が説明できるようになったか
+
+clean fixed pointがdisorderに安定か、新しいrandom universalityが必要かを仮定付きで判定できる。
+
+### まだ説明できていないこと
+
+random fixed pointの具体的beta function、replica symmetry breaking、infinite-randomness RGは未展開である。
+
+### よくある誤解
+
+- quenchedとannealed averageは交換できない。
+- Harris criterionは新固定点の指数値まで与えない。
+- replica $n\to0$ は全模型で自動的に厳密な操作ではない。
+
+### 次に自然に出てくる疑問
+
+時間依存・保存則・量子揺らぎを加えると、静的普遍性classにどの新しい指数と固定点が必要になるか。
+
+
+

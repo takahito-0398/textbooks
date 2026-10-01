@@ -1,0 +1,137 @@
+---
+title: '第10部　確率論、力学系、共形場理論'
+sidebar: rg-critical-phenomena
+format:
+  html:
+    toc: true
+---
+
+## 1. 中央極限定理を RG として読む
+
+まず高次 cumulant まで存在し、特性関数の対数を原点近傍で必要次数まで展開できる、平均 0・分散 $\sigma^2$ の独立同分布な確率変数 $X_1,X_2$ を取る。この強めの仮定は RG 固有方向を見通しよく表示するためである。分布 $p$ への変換を
+
+$$
+T[p]=\operatorname{Law}\left(\frac{X_1+X_2}{\sqrt2}\right)
+$$
+
+と定義する。これは二つを block にまとめ、分散が元と同じになるよう $\sqrt2$ で再尺度化する RG である。
+
+特性関数 $\varphi(k)=\mathbb E[e^{ikX}]$ は独立性により
+
+$$
+\varphi_{T[p]}(k)=\varphi(k/\sqrt2)^2.
+$$
+
+$K(k)=\log\varphi(k)$ を cumulant で
+
+$$
+K(k)=\sum_{n\ge1}\frac{\kappa_n(ik)^n}{n!}
+$$
+
+と展開すると
+
+$$
+K'(k)=2K(k/\sqrt2),\qquad
+\kappa_n'=2^{1-n/2}\kappa_n.
+$$
+
+平均 $\kappa_1$ は中心化しなければ $\sqrt2$ 倍される relevant direction、分散 $\kappa_2$ は marginal だが規格化で固定、$n>2$ の cumulant は減衰する irrelevant directions である。Gaussian 分布では $\kappa_{n>2}=0$ なので固定点になる。この解析的な部分クラスでは、異なる初期分布が平均と分散以外の詳細を忘れて同じ Gaussian へ近づくことを固有方向として読める。
+
+古典的中央極限定理そのものには全高次 moment は不要である。平均 0、有限分散だけを仮定すると、特性関数は $k\to0$ で
+
+$$
+\varphi(k)=1-\frac{\sigma^2k^2}{2}+o(k^2),
+\qquad
+\log\varphi(k)=-\frac{\sigma^2k^2}{2}+o(k^2).
+$$
+
+$N$ 個の規格化和 $S_N=N^{-1/2}\sum_{i=1}^NX_i$ について
+
+$$
+\log\varphi_{S_N}(k)
+=N\log\varphi(k/\sqrt N)
+=-\frac{\sigma^2k^2}{2}+N\,o(k^2/N)
+\longrightarrow-\frac{\sigma^2k^2}{2}.
+$$
+
+右辺は Gaussian の特性関数の対数なので、Lévy の連続性定理を介して分布収束が得られる。ここでは存在しないかもしれない $\kappa_4,\kappa_6,\ldots$ を使っていない。
+
+**[Rigorous theorem under assumptions]** 古典的中央極限定理には有限分散と独立性、またはそれを弱めた適切な条件が必要である。無限分散の heavy tail では適切な domain-of-attraction 条件の下で Lévy stable law、強い長距離相関では別の極限が現れうる。相互作用する臨界場の RG が CLT そのものなのではなく、block 化・再尺度化・固定点・irrelevant data という構造が共通する。
+
+## 2. RG を力学系として読む
+
+連続 flow を
+
+$$
+\frac{dg_i}{d\ell}=\beta_i(g)
+$$
+
+と書く。固定点で $\beta_i(g^*)=0$。Jacobian $B_{ij}=\partial_j\beta_i|_*$ の固有値が局所安定性を決める。ただし線形化は局所情報であり、far-from-fixed-point の軌道、複数固定点間の crossover、runaway flow、limit cycle、複素固定点の影響は別に調べる必要がある。
+
+stable/unstable manifold の幾何学は、なぜ少数の tuning parameter で臨界面へ到達できるかを説明する。共役な座標変換で beta function の成分は変わるが、hyperbolic fixed point の安定・不安定方向の次元は保たれる。
+
+## 3. scale invariance と conformal invariance
+
+conformal transformation は局所的に角度を保ち、平行移動・回転・dilatation に加えて special conformal transformation を含む。conformal invariance は通常 scale invariance を含むが、逆は一般には自動でない。
+
+局所 stress tensor がある相対論的場の理論で、scale invariance は trace が
+
+$$
+T^\mu{}_\mu=\partial_\mu V^\mu
+$$
+
+という virial current の発散になることを許す。$V^\mu$ が適切な total derivative なら stress tensor を improve して traceless にでき、conformal invariance へ進む。そうでなければ障害になりうる。
+
+**[Theorem under explicit axioms]** Polchinski の二次元相対論的 QFT の設定では、unitarity、Poincaré invariance、離散的な scaling spectrum、保存された局所 stress tensor、相関関数に必要な正則性などの仮定の下で、scale invariance から conformal invariance が導かれる。これは任意の格子系・非相対論的系・連続 spectrum をもつ理論を覆う無条件定理ではない。
+
+**[Not a general theorem]** 高次元の任意の scale-invariant system について無条件に conformal とは言えない。例えば $D\ne4$ の free Maxwell theory は、ゲージ不変な局所演算子内容を採ると scale invariant だが conformal でない例を与える。3D Ising 臨界点の conformal invariance には virial-current 候補の不在を使う理論的議論と数値的根拠があるが、格子模型から CFT 公理を備えた scaling limit を構成する一般的証明とは区別する。
+
+四次元については肯定的な部分結果がある。Luty–Polchinski–Rattazzi (2012) は、四次元 Lorentz 不変・unitary QFT に対して $a$-theorem 型の仮定と stress tensor/virial current に関する条件の下で、摂動的なscale不変だがconformalでないpseudo-cycleを排除し、一定範囲でscale invarianceがconformal invarianceへ昇格することを示した **[Theorem under explicit QFT assumptions]**。これは非相対論的統計系や任意の格子scaling limitへ無条件に適用できる命題ではない。
+
+## 4. 二次元が特別な理由
+
+$d\ge3$ の global conformal group は有限次元だが、二次元の局所 conformal transformation は複素解析の正則写像へ拡張し、無限次元 Virasoro algebra を生む。生成子 $L_n$ は
+
+$$
+[L_m,L_n]=(m-n)L_{m+n}
++\frac c{12}m(m^2-1)\delta_{m+n,0}
+$$
+
+を満たす。$c$ は central charge であり、局所自由度と anomaly の情報を持つ。この無限対称性により、二次元 Ising CFT の primary spectrum や相関関数は三次元よりはるかに強く制約される。
+
+scale invariance だけなら同じ演算子の二点関数が斉次関数になることまでは言えるが、演算子混合、spin、接触項、退化がある場合の構造はconformal invarianceほど強く固定されない。conformal invariance は二点・三点関数の座標依存をほぼ固定し、四点関数に crossing symmetry を課す。これが conformal bootstrap の入口である。
+
+## 5. 確率論の scaling limit
+
+格子間隔 $a\to0$ と同時に場を再規格化し、相関関数または確率分布が非自明な極限へ収束するかを問うのが scaling limit である。物理的 RG 図はこの極限の候補を与えるが、tightness、極限の存在、一意性、回転・共形不変性、格子詳細からの独立性を証明するのは別の数学的課題である。
+
+## 出典案内
+
+確率分布の加算・再尺度化をRGとして読む対応は [Jona-Lasinio (2000)](https://arxiv.org/abs/cond-mat/0009219) を参照する。二次元でのscaleからconformalへの含意は、明示した公理の下での [Polchinski (1988)](https://doi.org/10.1016/0550-3213(88)90179-4) に基づき、高次元への無条件な一般化ではない。
+
+## 章末整理
+
+### この章で分かったこと
+
+CLT は universality の RG 構造を厳密に見せるが、仮定を外せば別固定点が現れる。scale invariance と conformal invariance は区別が必要で、二次元では無限次元対称性が理論を強く拘束する。
+
+### よくある誤解
+
+- Gaussian fixed point がすべての確率分布を引き付けるわけではない。
+- RG fixed point なら自動的に CFT になる、とは一般には言えない。
+- CFT の高精度数値は格子 scaling limit の存在証明と同義ではない。
+
+### その結果、何が説明できるようになったか
+
+普遍性を basin of attraction として読み、scale invariance と conformal invariance の論理差を説明できる。
+
+### まだ説明できていないこと
+
+3D Ising CFT data の計算法、格子 scaling limit の構成、rigorous RG の実際の評価は未説明である。
+
+### 次に自然に出てくる疑問
+
+現代の数値・functional・厳密な方法はそれぞれ何を確立しているか。
+
+
+

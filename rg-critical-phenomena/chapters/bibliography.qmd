@@ -1,0 +1,242 @@
+---
+title: '参考文献と主張対応表'
+sidebar: rg-critical-phenomena
+format:
+  html:
+    toc: true
+---
+
+調査基準日: 2026-09-28。原論文、査読 review、著者または出版社公開版を優先する。リンク先の記述を引用する場合は、本文の厳密性ラベルと原論文の仮定を再確認する。
+
+## 1. 歴史と基礎概念
+
+0a. V. L. Ginzburg, “Some remarks on phase transitions of the second kind and the microscopic theory of ferroelectric materials,” *Sov. Phys. Solid State* 2, 1824 (1960).  
+    支える主張: Ginzburg criterion の原典として参照する。二次資料経由の式だけでなく、平均場揺らぎ判定の出所を明記する。
+
+0b. B. Widom, “Equation of State in the Neighborhood of the Critical Point,” *J. Chem. Phys.* 43, 3898 (1965), [DOI](https://doi.org/10.1063/1.1696618).  
+    支える主張: scaling equation of state と Widom scaling relation の原典。
+
+1. L. D. Landau, “On the Theory of Phase Transitions” (1937), [CERN record / English translation](https://cds.cern.ch/record/480041).  
+   支える主張: 秩序変数、対称性、解析的自由エネルギー展開。Landau の原論文へ現代的 Wilson RG を遡及的に帰属させない。
+
+2. L. P. Kadanoff, “Scaling laws for Ising models near $T_c$,” *Physics Physique Fizika* 2, 263 (1966), [APS](https://journals.aps.org/ppf/abstract/10.1103/PhysicsPhysiqueFizika.2.263).  
+   支える主張: block-spin の scaling picture と cell magnetization。
+
+3. K. G. Wilson, “Renormalization Group and Critical Phenomena. I,” *Phys. Rev. B* 4, 3174 (1971), [APS PDF](https://journals.aps.org/prb/pdf/10.1103/PhysRevB.4.3174); “II,” *Phys. Rev. B* 4, 3184 (1971), [APS](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.4.3184).  
+   支える主張: theory space、fixed point、irrelevant variables、momentum-space construction。
+
+4. K. G. Wilson and J. Kogut, “The renormalization group and the $\epsilon$ expansion,” *Physics Reports* 12, 75 (1974), [DOI](https://doi.org/10.1016/0370-1573(74)90023-4).  
+   用途: 標準 review。momentum-shell と歴史的統合。
+
+5. M. E. Fisher, “Renormalization group theory: Its basis and formulation in statistical physics,” *Rev. Mod. Phys.* 70, 653 (1998), [APS](https://doi.org/10.1103/RevModPhys.70.653).  
+   用途: scaling、universality、corrections to scaling の歴史と概念。
+
+6. K. G. Wilson and M. E. Fisher, “Critical Exponents in 3.99 Dimensions,” *Phys. Rev. Lett.* 28, 240 (1972), [APS](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.28.240).  
+   支える主張: $4-\epsilon$ 展開と Wilson–Fisher 固定点。**[Controlled perturbative result for small $\epsilon$]**。
+
+## 2. QFT renormalization と EFT
+
+7. M. Gell-Mann and F. Low, “Quantum Electrodynamics at Small Distances,” *Phys. Rev.* 95, 1300 (1954), [APS](https://journals.aps.org/pr/abstract/10.1103/PhysRev.95.1300).  
+   支える主張: scale-dependent charge と functional equation の歴史。
+
+8. C. G. Callan, “Broken Scale Invariance in Scalar Field Theory,” *Phys. Rev. D* 2, 1541 (1970), [APS](https://journals.aps.org/prd/abstract/10.1103/PhysRevD.2.1541); K. Symanzik, “Small distance behaviour in field theory and power counting,” *Commun. Math. Phys.* 18, 227 (1970), [DOI](https://doi.org/10.1007/BF01649434).  
+   支える主張: Callan–Symanzik 方程式。両者は同時期の独立な定式化として扱う。
+
+9. S. Weinberg, “Phenomenological Lagrangians,” *Physica A* 96, 327 (1979), [CERN record](https://cds.cern.ch/record/419611).  
+   支える主張: 対称性に基づく EFT の一般的 Lagrangian。
+
+10. T. Appelquist and J. Carazzone, “Infrared Singularities and Massive Fields,” *Phys. Rev. D* 11, 2856 (1975), [DOI](https://doi.org/10.1103/PhysRevD.11.2856).  
+    支える主張: decoupling。mass-independent scheme や非 decoupling 例への注意が必要。
+
+11. C. P. Burgess, “Introduction to Effective Field Theory,” [arXiv:hep-th/0701053](https://arxiv.org/abs/hep-th/0701053); D. B. Kaplan, “Effective Field Theories,” [arXiv:nucl-th/9506035](https://arxiv.org/abs/nucl-th/9506035).  
+    用途: matching、running、power counting の教育的 review。
+
+## 3. 確率論と RG
+
+12. G. Jona-Lasinio, “Renormalization group and probability theory,” [arXiv:cond-mat/0009219](https://arxiv.org/abs/cond-mat/0009219).  
+    支える主張: CLT を固定点・basin の言葉で読む構造的類似。
+
+## 4. functional RG
+
+13. J. Polchinski, “Renormalization and Effective Lagrangians,” *Nucl. Phys. B* 231, 269 (1984), [DOI](https://doi.org/10.1016/0550-3213(84)90287-6).  
+    支える主張: exact Wilsonian flow identity。論文内の renormalizability proof は perturbative であることを区別する。
+
+14. C. Wetterich, “Exact evolution equation for the effective potential,” *Phys. Lett. B* 301, 90 (1993), [DOI](https://doi.org/10.1016/0370-2693(93)90726-X), [arXiv reprint](https://arxiv.org/abs/1710.05815).  
+    支える主張: effective average action の exact flow equation。
+
+15. N. Dupuis et al., “The nonperturbative functional renormalization group and its applications,” *Physics Reports* 910, 1 (2021), [DOI](https://doi.org/10.1016/j.physrep.2021.01.001), [arXiv:2006.04853](https://arxiv.org/abs/2006.04853).  
+    用途: truncation、derivative expansion、応用範囲。exact equation と approximate solution を分ける。
+
+## 5. 3D Ising と conformal bootstrap
+
+16. C.-H. Chang, V. Dommes, R. S. Erramilli, A. Homrich, P. Kravchuk, A. Liu, M. S. Mitchell, D. Poland, D. Simmons-Duffin, “Bootstrapping the 3d Ising stress tensor,” *JHEP* 03 (2025) 136, [DOI](https://doi.org/10.1007/JHEP03(2025)136), [arXiv:2411.15300](https://arxiv.org/abs/2411.15300).  
+    支える主張: $\Delta_\sigma=0.518148806(24)$、$\Delta_\epsilon=1.41262528(29)$。**[Conditional certified numerical bounds under stated gaps and CFT assumptions]**。
+
+17. F. Kos, D. Poland, D. Simmons-Duffin, A. Vichi, “Precision Islands in the Ising and $O(N)$ Models,” *JHEP* 08 (2016) 036, [DOI](https://doi.org/10.1007/JHEP08(2016)036), [arXiv:1603.04436](https://arxiv.org/abs/1603.04436).  
+    支える主張: mixed-correlator bootstrap island。
+
+18. S. Rychkov and N. Su, “New Developments in the Numerical Conformal Bootstrap,” *Rev. Mod. Phys.* 96, 045004 (2024), [DOI](https://doi.org/10.1103/RevModPhys.96.045004), [arXiv:2311.15844](https://arxiv.org/abs/2311.15844).  
+    用途: 現代 bootstrap の review と数値 bound の意味。
+
+## 6. scale と conformal
+
+19. J. Polchinski, “Scale and conformal invariance in quantum field theory,” *Nucl. Phys. B* 303, 226 (1988), [DOI](https://doi.org/10.1016/0550-3213(88)90179-4).  
+    支える主張: 二次元での明示的仮定下の scale $\Rightarrow$ conformal。
+
+20. S. El-Showk, Y. Nakayama, S. Rychkov, “What Maxwell Theory in $D\ne4$ teaches us about scale and conformal invariance,” [arXiv:1101.5385](https://arxiv.org/abs/1101.5385).  
+    支える主張: 高次元での無条件な同値への反例と演算子内容の注意。
+
+21. B. Delamotte, M. Tissier, N. Wschebor, “Scale invariance implies conformal invariance for the three-dimensional Ising model,” *Phys. Rev. E* 93, 012144 (2016), [DOI](https://doi.org/10.1103/PhysRevE.93.012144), [arXiv:1501.01776](https://arxiv.org/abs/1501.01776).  
+    注意: Wilson RG/scaling limit の構造を前提とする議論であり、格子から CFT を無条件構成した定理として引用しない。
+
+21a. M. A. Luty, J. Polchinski, R. Rattazzi, “The $a$-theorem and the Asymptotics of 4D Quantum Field Theory,” [arXiv:1204.5221](https://arxiv.org/abs/1204.5221).  
+    支える主張: 四次元unitary Lorentz不変QFTで、明示された仮定下の scale $\Rightarrow$ conformal の肯定的部分結果とpseudo-cycle排除。
+
+## 7. rigorous RG と数学的現在地
+
+22. R. Bauerschmidt, D. Brydges, G. Slade, “Scaling limits and critical behaviour of the 4-dimensional $n$-component $|\varphi|^4$ spin model,” *J. Stat. Phys.* 157 (2014), [DOI](https://doi.org/10.1007/s10955-014-1060-5), [arXiv:1403.7424](https://arxiv.org/abs/1403.7424).  
+    **[Rigorous theorem]** 四次元・small coupling の指定模型における scaling と対数補正。
+
+23. M. Aizenman, H. Duminil-Copin, “Marginal triviality of the scaling limits of critical 4D Ising and $\phi^4_4$ models,” *Annals of Mathematics* 194, 163 (2021), [DOI](https://doi.org/10.4007/annals.2021.194.1.3), [arXiv:1912.07973](https://arxiv.org/abs/1912.07973).  
+    **[Rigorous theorem]** 四次元 scaling limit の Gaussian 性。2024 corrigendum も併読する。
+
+24. D. Brydges, P. K. Mitter, B. Scoppola, “Critical $(\Phi^4)_{3,\epsilon}$,” *Commun. Math. Phys.* 240, 281 (2003), [DOI](https://doi.org/10.1007/s00220-003-0895-4), [arXiv:hep-th/0206040](https://arxiv.org/abs/hep-th/0206040).  
+    **[Rigorous theorem]** 十分小さい $\epsilon$ の変形模型。標準 short-range 3D Ising の定理ではない。
+
+25. C. Külske, “The Ising model: highlights and perspectives,” *Math. Phys. Anal. Geom.* 28, 20 (2025), [DOI](https://doi.org/10.1007/s11040-025-09515-1).  
+    用途: Ising 模型の数学的達成と未解決問題の現代 review。
+
+## 8. 補助講義資料
+
+26. D. Tong, *Statistical Field Theory*, [Section 3](https://www.damtp.cam.ac.uk/user/tong/sft/sfthtml/S3.html).  
+    用途: momentum-shell と $\epsilon$ 展開の教育的導出。一次資料ではない。
+
+27. M. Kardar, MIT OCW 8.334, [lecture notes](https://ocw.mit.edu/courses/8-334-statistical-mechanics-ii-statistical-physics-of-fields-spring-2014/pages/lecture-notes/).  
+    用途: 統計場理論の標準的講義補助。一次資料ではない。
+
+## 9. 有限サイズ・Ising exact result・流体
+
+28. M. E. Fisher and M. N. Barber, “Scaling Theory for Finite-Size Effects in the Critical Region,” *Phys. Rev. Lett.* 28, 1516 (1972), [DOI](https://doi.org/10.1103/PhysRevLett.28.1516).  
+    支える主張: 有限サイズ scaling、臨界点shift、$L/\xi$ による整理。
+
+29. L. Onsager, “Crystal Statistics. I. A Two-Dimensional Model with an Order-Disorder Transition,” *Phys. Rev.* 65, 117 (1944), [DOI](https://doi.org/10.1103/PhysRev.65.117).  
+    支える主張: 正方格子零磁場 Ising 模型の熱力学的 free energy と critical coupling。
+
+30. C. N. Yang, “The Spontaneous Magnetization of a Two-Dimensional Ising Model,” *Phys. Rev.* 85, 808 (1952), [APS](https://journals.aps.org/pr/abstract/10.1103/PhysRev.85.808).  
+    支える主張: $m=[1-\sinh^{-4}(2K)]^{1/8}$ と $\beta=1/8$。
+
+31. R. Hocken and M. R. Moldover, “Ising Critical Exponents in Real Fluids: An Experiment,” *Phys. Rev. Lett.* 37, 29 (1976), [DOI](https://doi.org/10.1103/PhysRevLett.37.29), [NIST record](https://www.nist.gov/publications/ising-critical-exponents-real-fluids-experiment).  
+    支える主張: Xe、SF$_6$、CO$_2$ の非常に狭い臨界領域における Ising 型指数と振幅比の実験的証拠。
+
+32. I. H. Bell, E. W. Lemmon, A. H. Harvey, “An Analysis of the Critical Region of Multiparameter Equations of State,” *International Journal of Thermophysics* 44, 158 (2023), [DOI](https://doi.org/10.1007/s10765-023-03261-8), [NIST PDF](https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=956233).  
+    用途: 実在流体の coexistence curve、mean-field と 3D Ising exponent、重力・effective exponent の実務的注意。
+
+33. F. J. Wegner, “Corrections to Scaling Laws,” *Phys. Rev. B* 5, 4529 (1972), [APS](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.5.4529).  
+    支える主張: nonlinear scaling field、irrelevant fieldによる補正、resonanceと対数項。
+
+34. A. Pelissetto and E. Vicari, “Critical phenomena and renormalization-group theory,” *Physics Reports* 368, 549 (2002), [DOI](https://doi.org/10.1016/S0370-1573(02)00219-3).  
+    用途: $O(N)$ universality class、critical exponents、corrections、crossover、二点関数の標準review。
+
+35. Y. C. Kim, M. E. Fisher, G. Orkoulas, “Asymmetric Fluid Criticality I: Scaling with Pressure Mixing,” *Phys. Rev. E* 67, 061506 (2003), [arXiv:cond-mat/0212145](https://arxiv.org/abs/cond-mat/0212145).  
+    支える主張: 非対称流体のcomplete scaling、pressure mixing、coexistence-curve diameter。
+
+36. D. Boyanovsky, “Field theory of the two-dimensional Ising model: Conformal invariance, order and disorder, and bosonization,” *Phys. Rev. B* 39, 6744 (1989), [APS](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.39.6744).  
+    用途: 二次元 Ising の fermion/CFT 記述と臨界相関。
+
+## 10. 実空間RG・連続対称性・$O(N)$模型
+
+37. A. A. Migdal, “Phase transitions in gauge and spin-lattice systems,” *Sov. Phys. JETP* 42, 743 (1975), [JETP](https://www.jetp.ras.ru/cgi-bin/e/index/e/42/4/p743?a=list).  
+    用途: bond-moving型の近似recursion。通常格子上で無条件にexactとは扱わない。
+
+38. L. P. Kadanoff, “Notes on Migdal's recursion formulas,” *Annals of Physics* 100, 359 (1976), [DOI](https://doi.org/10.1016/0003-4916(76)90062-2).  
+    用途: Migdal–Kadanoff recursionの構成と近似の位置付け。
+
+39. N. D. Mermin and H. Wagner, “Absence of Ferromagnetism or Antiferromagnetism in One- or Two-Dimensional Isotropic Heisenberg Models,” *Phys. Rev. Lett.* 17, 1133 (1966), [DOI](https://doi.org/10.1103/PhysRevLett.17.1133).  
+    **[Rigorous theorem under stated assumptions]** 有限range isotropic Heisenberg模型の一次元・二次元、有限温度での強磁性・反強磁性長距離秩序の不在。全ての二次元相転移の禁止へ拡張しない。
+
+40. J. M. Kosterlitz and D. J. Thouless, “Ordering, metastability and phase transitions in two-dimensional systems,” *J. Phys. C* 6, 1181 (1973), [DOI](https://doi.org/10.1088/0022-3719/6/7/010).  
+    支える主張: 二次元XY系のvortex解離、準長距離秩序、topological transition。
+
+41. E. Brézin, J. C. Le Guillou, J. Zinn-Justin, “Field theoretical approach to critical phenomena,” in *Phase Transitions and Critical Phenomena*, Vol. 6 (1976).  
+    用途: $O(N)$ $\phi^4$ 理論の摂動RG、指数、composite operator。規約を本文と照合して用いる。
+
+## 11. disorder
+
+42. A. B. Harris, “Effect of random defects on the critical behaviour of Ising models,” *J. Phys. C* 7, 1671 (1974), [DOI](https://doi.org/10.1088/0022-3719/7/9/009).  
+    支える主張: weak uncorrelated random-mass disorderに対する $d\nu$ stability criterion。
+
+43. J. T. Chayes, L. Chayes, D. S. Fisher, T. Spencer, “Finite-Size Scaling and Correlation Lengths for Disordered Systems,” *Phys. Rev. Lett.* 57, 2999 (1986), [DOI](https://doi.org/10.1103/PhysRevLett.57.2999).  
+    **[Rigorous theorem under stated assumptions]** disordered systemの有限サイズ相関長指数bound。数値的pre-asymptotic exponentへ無条件に適用しない。
+
+44. Y. Imry and S.-k. Ma, “Random-Field Instability of the Ordered State of Continuous Symmetry,” *Phys. Rev. Lett.* 35, 1399 (1975), [DOI](https://doi.org/10.1103/PhysRevLett.35.1399).  
+    用途: domain costとrandom-field gainのscaling比較。完全なrigorous proofとは区別する。
+
+44a. M. Aizenman and J. Wehr, “Rounding of First-Order Phase Transitions in Systems with Quenched Disorder,” *Phys. Rev. Lett.* 62, 2503 (1989), [DOI](https://doi.org/10.1103/PhysRevLett.62.2503).  
+    **[Rigorous theorem under stated hypotheses]** 二次元quenched disorderによる一次転移のrounding、random-field模型での二次元Ising一意性、連続対称性の $d\le4$ での不在。
+
+44b. J. Bricmont and A. Kupiainen, “Lower critical dimension for the random-field Ising model,” *Phys. Rev. Lett.* 59, 1829 (1987), [DOI](https://doi.org/10.1103/PhysRevLett.59.1829).  
+    **[Rigorous result under stated hypotheses]** 三次元RFIMの低温・弱random fieldでの二相存在。Imry–Ma議論と区別して引用する。
+
+## 12. 動的・量子臨界
+
+45. P. C. Hohenberg and B. I. Halperin, “Theory of dynamic critical phenomena,” *Rev. Mod. Phys.* 49, 435 (1977), [DOI](https://doi.org/10.1103/RevModPhys.49.435).  
+    用途: Model A–H、dynamic scaling、保存則とslow modeによる分類。
+
+46. J. A. Hertz, “Quantum critical phenomena,” *Phys. Rev. B* 14, 1165 (1976), [DOI](https://doi.org/10.1103/PhysRevB.14.1165).  
+    用途: itinerant systemの量子臨界秩序変数理論。gapless fermion消去の限界を伴って引用する。
+
+47. S. Sachdev, *Quantum Phase Transitions*, 2nd ed. (Cambridge University Press, 2011), [publisher](https://doi.org/10.1017/CBO9780511973765).  
+    用途: quantum-to-classical mapping、dynamic exponent、finite-temperature quantum critical scaling。
+
+## 13. walking・非平衡・乱流
+
+48. V. Gorbenko, S. Rychkov, B. Zan, “Walking, Weak first-order transitions, and Complex CFTs,” *JHEP* 10 (2018) 108, [arXiv:1807.11512](https://arxiv.org/abs/1807.11512).  
+    用途: fixed-point annihilation、walking、complex CFTによるpseudo-critical scaling。個別模型での実現は別途検証する。
+
+49. M. Kardar, G. Parisi, Y.-C. Zhang, “Dynamic Scaling of Growing Interfaces,” *Phys. Rev. Lett.* 56, 889 (1986), [DOI](https://doi.org/10.1103/PhysRevLett.56.889).  
+    支える主張: KPZ方程式と成長界面のdynamic scaling。
+
+50. U. Frisch, *Turbulence: The Legacy of A. N. Kolmogorov* (Cambridge University Press, 1995), [publisher](https://doi.org/10.1017/CBO9781139170666).  
+    用途: Kolmogorov scaling、4/5 law、intermittency、multifractal phenomenology。
+
+50a. L. N. Lipatov, “Divergence of the perturbation-theory series and the quasiclassical theory,” *Sov. Phys. JETP* 45, 216 (1977).  
+    支える主張: $\phi^4$ 型摂動級数のlarge-order挙動とBorel再総和の背景。
+
+50b. J. C. Le Guillou and J. Zinn-Justin, “Critical exponents from field theory,” *Phys. Rev. B* 21, 3976 (1980), [DOI](https://doi.org/10.1103/PhysRevB.21.3976).  
+    支える主張: 高次摂動級数の再総和による臨界指数推定。
+
+## 14. 二次元CFTの原典
+
+51. A. A. Belavin, A. M. Polyakov, A. B. Zamolodchikov, “Infinite conformal symmetry in two-dimensional quantum field theory,” *Nucl. Phys. B* 241, 333 (1984), [DOI](https://doi.org/10.1016/0550-3213(84)90052-X).  
+    支える主張: Virasoro表現、null vector、minimal model、二次元CFT相関関数。
+
+52. D. Friedan, Z. Qiu, S. Shenker, “Conformal Invariance, Unitarity, and Critical Exponents in Two Dimensions,” *Phys. Rev. Lett.* 52, 1575 (1984), [DOI](https://doi.org/10.1103/PhysRevLett.52.1575).  
+    支える主張: $c<1$ unitary CFTの離散系列と臨界指数。
+
+52a. A. B. Zamolodchikov, “‘Irreversibility’ of the flux of the renormalization group in a 2D field theory,” *JETP Lett.* 43, 730 (1986), [CERN record](https://cds.cern.ch/record/437291).  
+    支える主張: 二次元QFTの $c$ 定理。二次元・unitary等の仮定を外して一般化しない。
+
+## 15. 確率・limit cycle・absorbing state
+
+53. W. Feller, *An Introduction to Probability Theory and Its Applications*, Vol. II, 2nd ed. (Wiley, 1971), [DOI](https://doi.org/10.1002/9780470316388).  
+    用途: CLT、stable lawのdomain of attraction、収束定理。各定理のmoment・centering条件を明記する。
+
+54. E. Braaten, H.-W. Hammer, “Universality in Few-body Systems with Large Scattering Length,” *Physics Reports* 428, 259 (2006), [DOI](https://doi.org/10.1016/j.physrep.2005.11.001).  
+    用途: Efimov効果、RG limit cycle、離散scale不変性。
+
+54a. V. Efimov, “Energy levels arising from resonant two-body forces in a three-body system,” *Phys. Lett. B* 33, 563 (1970), [DOI](https://doi.org/10.1016/0370-2693(70)90349-7).  
+    支える主張: Efimov効果と離散scale不変性の原論文。
+
+55. H. Hinrichsen, “Non-equilibrium critical phenomena and phase transitions into absorbing states,” *Advances in Physics* 49, 815 (2000), [DOI](https://doi.org/10.1080/00018730050198152).  
+    用途: directed percolation universality、absorbing-state transitionと例外。
+
+## 引用上の禁止事項
+
+- review の「rigorous」を、格子 3D Ising universality の無条件定理へ拡張しない。
+- bootstrap の island を CFT の存在証明または格子 scaling limit の証明と呼ばない。
+- Wetterich/Polchinski 方程式の exact 性を、有限 truncation の exact 性へ移さない。
+- $\epsilon=1$ の低次代入を controlled result と呼ばない。
+- 高精度数値解を closed-form exact solution と呼ばない。
+
+
+

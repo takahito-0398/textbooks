@@ -40,6 +40,7 @@ python scripts/validate_site.py
 - Buffer Overflow / ROP 入門
 - 作用素環論から非可換幾何へ
 - 複素多様体・複素幾何
+- 繰り込み群・臨界現象――ミクロを忘れて普遍性を得る
 
 ## Deploy
 

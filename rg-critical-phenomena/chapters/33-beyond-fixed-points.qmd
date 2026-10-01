@@ -1,0 +1,192 @@
+---
+title: '第33部　固定点に到達しないRG――一次転移、walking、limit cycle'
+sidebar: rg-critical-phenomena
+format:
+  html:
+    toc: true
+---
+
+## 1. 固定点像の適用範囲
+
+連続相転移では、臨界面上のRG軌道が実固定点へ近づき、線形化固有値が指数を決める。しかし全てのflowがこの形ではない。
+
+- 有限RG時刻でcouplingが強結合へ走るrunaway flow。
+- 二つの固定点が衝突して複素平面へ消えるfixed-point annihilation。
+- 長いscale範囲をゆっくり流れるwalking。
+- couplingが周期軌道へ戻るlimit cycle。
+- marginal方向に沿うfixed line。
+
+固定点が見つからないとき、「相転移がない」と即断せず、truncation、変数、非摂動効果、一次転移の可能性を分ける。
+
+## 2. Landau理論の一次転移
+
+$\mathbb Z_2$ 対称な一様自由エネルギーを
+
+$$
+f(m)=\frac r2m^2+\frac u4m^4+\frac v6m^6,
+\qquad v>0
+$$
+
+とする。$u>0$ では $r=0$ を通る通常の連続転移が可能である。$u<0$ では $m=0$ と $m\ne0$ の極小がある $r>0$ で縮退し、秩序変数がjumpする。
+
+$x=m^2>0$ と置く。停留条件と相共存条件は
+
+$$
+r+ux+vx^2=0,
+$$
+
+$$
+\frac r2x+\frac u4x^2+\frac v6x^3=0.
+$$
+
+両式から
+
+$$
+x_{\rm coex}=-\frac{3u}{4v},
+\qquad
+r_{\rm coex}=\frac{3u^2}{16v}
+$$
+
+を得る。$u<0$ なので $x_{\rm coex}>0$ で、$m$ は0から有限値へjumpする。$u=0,r=0$ は平均場のtricritical pointである。
+
+この計算は一様平均場であり、揺らぎが一次転移を弱めたり強めたり、新しい固定点を生む可能性は別途調べる。
+
+## 3. runaway flowの読み方
+
+有限coupling領域に安定固定点がなく、quartic couplingがpotentialを不安定化する向きへ走ると、fluctuation-induced first-order transitionの兆候になりうる。しかしrunawayには少なくとも三つの解釈がある。
+
+1. 実際に相関長が有限の一次転移へ向かう。
+2. coupling座標が不適切で、別変数では有限に記述できる。
+3. 摂動展開・operator truncationが強結合で破綻した。
+
+従って摂動beta functionの発散だけは一次転移の証明でない。effective potentialの二重極小、latent heat、有限サイズ分布、interface tension、非摂動手法との一致を確認する。
+
+## 4. 固定点衝突のnormal form
+
+一変数の局所normal form
+
+$$
+\frac{dg}{d\ell}=\delta+g^2
+$$
+
+を考える。$\delta<0$ では
+
+$$
+g_\pm=\pm\sqrt{-\delta}
+$$
+
+の二固定点がある。$\delta=0$ で衝突し、$\delta>0$ では実固定点がなくなる。
+
+小さい $\delta>0$ では $g\simeq0$ のflowが遅い。$-\infty$ から $+\infty$ を通過するRG時刻は
+
+$$
+\Delta\ell
+=\int_{-\infty}^{\infty}
+\frac{dg}{\delta+g^2}
+=\frac{\pi}{\sqrt\delta}.
+$$
+
+長さscaleは $e^\ell$ なので
+
+$$
+\xi\sim \exp\left(\frac{\pi}{\sqrt\delta}\right)
+$$
+
+型の巨大だが有限な相関長が現れる。有限sizeや有限精度ではpower lawに見えるpseudo-criticalityを生みうる。
+
+## 5. complex fixed pointとwalking
+
+$\delta>0$ のnormal formを複素couplingまで拡張すれば固定点は
+
+$$
+g_\pm=\pm i\sqrt\delta
+$$
+
+にある。実couplingの物理系はそこへ到達しないが、近接する複素零点が実flowを遅くできる。この描像は弱い一次転移と広いscaling windowを説明する候補である。
+
+複素CFT dataは一般にreflection positivityを満たすunitary CFT dataではない。実系の近似的scalingを記述する解析構造として扱い、真の連続転移と呼ばない。walkingとcomplex CFTの整理は [Gorbenko–Rychkov–Zan (2018)](https://arxiv.org/abs/1807.11512) を参照する。
+
+## 6. BKTのessential scaling
+
+二次元XY模型ではvortex fugacity $y$ とstiffnessに関する変数 $x$ のflowが、規約依存係数を吸収して概略
+
+$$
+\frac{dx}{d\ell}=y^2,
+\qquad
+\frac{dy}{d\ell}=xy
+$$
+
+となる。通常の孤立双曲固定点を一つのrelevant固有値で離れる問題ではなく、fixed lineとseparatrixの近くを流れる。
+
+高温側の相関長は
+
+$$
+\xi\sim
+\exp\left(\frac{b}{\sqrt{T-T_{\rm BKT}}}\right)
+$$
+
+型に発散する **[RG asymptotic result for the BKT universality class]**。[Kosterlitz–Thouless (1973)](https://doi.org/10.1088/0022-3719/6/7/010) 有限の $\nu$ を用いる $\xi\sim|t|^{-\nu}$ では表せない。有限範囲のlog-log plotから巨大な有効 $\nu$ をfitしても、通常のpower-law universalityとは限らない。
+
+## 7. limit cycleと離散scale不変性
+
+coupling vectorが
+
+$$
+\boldsymbol g(\ell+T)=\boldsymbol g(\ell)
+$$
+
+を満たすと、RG limit cycleである。連続scale不変性ではなく倍率
+
+$$
+b_0=e^T
+$$
+
+ごとの離散scale不変性をもち、observableにlog-periodic correctionが現れうる。
+
+三体量子問題のEfimov効果は代表例で、束縛状態energyが幾何級数をなす **[Exact discrete-scaling structure in the universal zero-range limit]**。[Braaten–Hammer (2006)](https://doi.org/10.1016/j.physrep.2005.11.001) ただしlimit cycleは通常の短距離平衡ferromagnetのgenericな挙動ではない。unitarity、局所性、次元、自由度により許されるRG挙動は制約される。
+
+## 8. 一次転移の有限サイズ診断
+
+一次転移では相共存点で二つのphaseの確率peakが並び、自由エネルギーbarrierは周期境界の界面面積に比例して概略
+
+$$
+\Delta F_{\rm barrier}\sim \sigma L^{d-1}
+$$
+
+となる。比熱・感受率のpeakは体積 $L^d$ に比例し、pseudo-transition widthは $L^{-d}$ 型に狭まることがある。
+
+連続転移の $L^{\gamma/\nu}$、$L^{1/\nu}$ scalingと区別できるが、弱い一次転移では相関長がsystem sizeより大きく、前漸近的に連続転移へ見える。複数size、histogram、Binder量、interface tensionを組み合わせる。
+
+## 9. 証拠水準
+
+- Landau六次potentialの共存点: 仮定した一様potential内の **[Exact algebraic result / mean-field model]**。
+- normal formのwalking scale: 一変数flow内の **[Exact integral]**、個別模型への同定は **[Model-dependent interpretation]**。
+- complex CFTによる弱い一次転移: [Gorbenko–Rychkov–Zan (2018)](https://arxiv.org/abs/1807.11512) に基づく **[Analytic scenario / model-dependent evidence]**。
+- BKT essential scalingとEfimov cycle: それぞれの明示したuniversality limitにおける結果。
+
+## 章末整理
+
+### この章で分かったこと
+
+RGは実固定点だけでなく、runaway、固定点衝突、walking、fixed line、limit cycleを記述できる。
+
+### その結果、何が説明できるようになったか
+
+弱い一次転移が広いscale範囲でpower lawに見える理由と、BKTのessential singularityを通常の指数scalingから区別できる。
+
+### まだ説明できていないこと
+
+特定模型でcomplex fixed pointやlimit cycleが実現するための非摂動条件と、一次転移のnucleation dynamicsは未展開である。
+
+### よくある誤解
+
+- beta functionのrunawayだけで一次転移が証明されたとは限らない。
+- 巨大な有限相関長は真のscale invarianceと同義ではない。
+- BKT転移を有限の通常指数 $\nu$ で表すことはできない。
+
+### 次に自然に出てくる疑問
+
+外部駆動とenergy fluxをもつ乱流や成長界面で、平衡自由エネルギーなしにRGは何を予言できるか。
+
+
+

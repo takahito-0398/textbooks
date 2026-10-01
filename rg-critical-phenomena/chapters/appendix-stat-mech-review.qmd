@@ -1,0 +1,59 @@
+---
+title: '補遺B　統計力学の最小復習'
+sidebar: rg-critical-phenomena
+format:
+  html:
+    toc: true
+---
+
+## B.1 分配関数が熱力学を生成する理由
+
+canonical ensemble では状態 $s$ の確率は
+
+$$
+p_s=\frac{e^{-\beta E_s}}Z,
+\qquad Z=\sum_s e^{-\beta E_s}.
+$$
+
+規格化 $\sum_sp_s=1$ が $Z$ を要求する。内部エネルギーは
+
+$$
+U=\sum_sp_sE_s=-\frac{\partial\log Z}{\partial\beta}.
+$$
+
+entropy $S=-k_B\sum_sp_s\log p_s$ に $p_s$ を代入すると
+
+$$
+S=k_B(\log Z+\beta U),
+$$
+
+従って $F=U-TS=-k_BT\log Z$。分配関数が熱力学を「含む」とは、これらの微分関係を意味する。
+
+## B.2 fluctuation-response
+
+$H=H_0-hM$ として
+
+$$
+\langle M\rangle=\frac1\beta\frac{\partial\log Z}{\partial h}.
+$$
+
+もう一度微分すると
+
+$$
+\frac{\partial\langle M\rangle}{\partial h}
+=\beta(\langle M^2\rangle-\langle M\rangle^2).
+$$
+
+符号は Hamiltonian の外場項を $-hM$ とした規約に依存する。この関係は平衡・canonical ensemble の主張であり、任意の非平衡応答にそのまま適用できない。
+
+## B.3 connected correlation
+
+$\langle AB\rangle_c=\langle AB\rangle-\langle A\rangle\langle B\rangle$。独立ならゼロになる。高次 connected correlation は $W[J]=\log Z[J]$ の source 微分で生成される。$Z$ ではなく $\log Z$ が connected diagram を選ぶことは、自由エネルギーが示量的になることと対応する。
+
+## B.4 熱力学極限と極限順序
+
+自発的対称性の破れを定義する際、有限 $N$ で $h\to0$ を先に取ると対称性により $\langle M\rangle=0$。$N\to\infty$ を先に取ると異なる純粋相が分離し、その後 $h\to0^+$ で一方を選べる。非可換な極限が巨視的な非解析性を可能にする。
+
+
+
+

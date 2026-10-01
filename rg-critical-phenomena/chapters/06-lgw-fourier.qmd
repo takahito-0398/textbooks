@@ -1,0 +1,194 @@
+---
+title: '第6部　Landau–Ginzburg–Wilson 場の理論と Fourier 空間'
+sidebar: rg-critical-phenomena
+format:
+  html:
+    toc: true
+---
+
+## 1. 格子 Ising から連続場へ
+
+格子 Ising 模型
+
+$$
+H=-J\sum_{\langle ij\rangle}s_is_j-h\sum_i s_i,\qquad s_i=\pm1
+$$
+
+から、長距離で使う連続場を作る。辺 $\langle ij\rangle$ ごとに、$s_i^2=s_j^2=1$ を使うと
+
+$$
+-Js_is_j=\frac J2(s_i-s_j)^2-J
+$$
+
+である。定数 $-J$ は分配関数の全体因子を変えるだけなので捨てられる。格子点 $x_i$、最近接方向 $\hat e_\mu$ について滑らかな coarse-grained field $\phi(x)$ を置き、
+
+$$
+s_{i+\hat\mu}-s_i\;\longrightarrow\;a\,\partial_\mu\phi(x_i)+O(a^2)
+$$
+
+と展開すると
+
+$$
+\sum_{\langle ij\rangle}(s_i-s_j)^2
+\longrightarrow
+a^{2-d}\int d^dx\,(\nabla\phi)^2
+$$
+
+を得る。係数 $Ja^{2-d}/2$ は場と座標の規格化で正の定数 $c/2$ に吸収できる。これが第2部 §3で用いた勾配項の格子上の起源である。
+
+局所部分は、block $B_X$ 内のspin和
+
+$$
+\Phi_X=\frac1{|B_X|}\sum_{i\in B_X}s_i
+$$
+
+を固定した拘束付き分配関数
+
+$$
+e^{-S_{\rm loc}(\{\Phi_X\})}
+=\sum_{\{s_i\}}
+\prod_X\delta\!\left(\Phi_X-\frac1{|B_X|}\sum_{i\in B_X}s_i\right)
+e^{\beta J\sum_{\langle ij\rangle}s_is_j+\beta h\sum_i s_i}
+$$
+
+から定義できる。blockサイズが $a\ll ba\ll\xi$ を満たすとき、隣接blockの差は勾配項へ、同一block内の寄与は局所ポテンシャルへ展開される。$h=0$ でspin反転対称性があれば局所ポテンシャルは偶関数であり、局所性と解析性の仮定の下で
+
+$$
+V(\phi)=V_0+\frac r2\phi^2+\frac u{4!}\phi^4+\frac v{6!}\phi^6+\cdots
+$$
+
+と書ける。$\phi^4$ で「足りる」とは、安定性のため $u>0$ を残し、$\phi^6$ 以上や高階微分項が Wilson–Fisher 固定点近傍で irrelevant になる範囲の leading singularity を計算する、という意味である。係数 $r,u,v,\ldots$ はblockの取り方、格子、温度などに依存する非普遍量である。
+
+この写像は厳密な恒等変形ではなく、局所性、短距離相互作用、単一scalar秩序変数、解析的局所ポテンシャル、十分大きい相関長という仮定を含む **[Effective-field-theory construction / model-dependent identification]**。特定の格子模型がこの連続理論の同じ固定点へ入ることは、第12部 §6の「同定」に属する。
+
+以上を踏まえ、相関長が格子間隔 $a$ より十分長い $\xi\gg a$ 領域では、数格子を平均した秩序変数を滑らかな場 $\phi(x)$ で表す。Ising 型の一成分秩序変数に対する Euclidean action を
+
+$$
+S[\phi]=\int d^dx\left[
+\frac12(\nabla\phi)^2+
+\frac r2\phi^2+
+\frac u{4!}\phi^4-h\phi
++\sum_i g_i\mathcal O_i
+\right]
+$$
+
+と書く。温度因子は $S=\beta\mathcal H$ に吸収した。
+
+- $(\nabla\phi)^2/2$: 空間変化の費用。係数は座標・場の規格化で 1 にした。
+- $r\phi^2/2$: Gaussian の「質量」。臨界面からの温度型距離に対応するが、相互作用下の臨界点は一般に裸の $r=0$ ではない。
+- $u\phi^4/4!$: 揺らぎ同士の局所相互作用。$4!$ は diagram の組合せ係数を簡単にする規約。
+- $-h\phi$: 対称性を明示的に破る外場。
+- $\mathcal O_i$: 対称性が許す高次場・高階微分演算子。
+
+この action はミクロ理論の恒等的書き換えとは限らない。長距離 observables を同じ精度で再現する effective theory である。係数の数値は cutoff と coarse-graining の定義に依存する。
+
+## 2. functional integral
+
+分配関数は形式的に
+
+$$
+Z=\int\mathcal D\phi\,e^{-S[\phi]}
+$$
+
+である。格子正則化なら $\mathcal D\phi=\prod_i d\phi_i$ という有限次元積分から極限を取れる。連続表示の $\mathcal D\phi$ は通常の Lebesgue 測度を無限個掛けたものではなく、正則化と極限を伴う記法である。厳密性が必要な場合は有限格子・有限体積から始める。
+
+自由場 $u=0$ なら Fourier mode ごとに独立な Gaussian 積分になる。相互作用 $u\ne0$ では $\phi^4$ が異なる運動量 mode を結合するため、単純な積にならない。
+
+## 3. Fourier 変換と cutoff
+
+$$
+\phi(x)=\int_{|k|<\Lambda}\frac{d^dk}{(2\pi)^d}
+e^{ik\cdot x}\phi(k)
+$$
+
+とし、UV cutoff $\Lambda\sim\pi/a$ を置く。格子由来なら Brillouin zone が自然な cutoff になる。連続 EFT では cutoff は「この記述を信用する最大運動量」を表す。cutoff が物理的原子間隔に対応する場合も、計算上の regulator にすぎない場合もある。
+
+二次作用は
+
+$$
+S_0=\frac12\int_{|k|<\Lambda}\frac{d^dk}{(2\pi)^d}
+(k^2+r)\phi(k)\phi(-k).
+$$
+
+ここから propagator
+
+$$
+\langle\phi(k)\phi(k')\rangle_0
+=(2\pi)^d\delta^{(d)}(k+k')\frac1{k^2+r}
+$$
+
+が得られる。delta 関数は並進不変性による運動量保存を表す。
+
+## 4. canonical dimension
+
+作用を無次元とし、運動量次元を $[x]=-1$、$[\partial]=1$ と数える。運動項から
+
+$$
+-d+2+2[\phi]=0
+\quad\Rightarrow\quad
+[\phi]=\frac{d-2}{2}.
+$$
+
+質量係数は
+
+$$
+[r]+2[\phi]-d=0\Rightarrow[r]=2,
+$$
+
+quartic coupling は
+
+$$
+[u]+4[\phi]-d=0\Rightarrow[u]=4-d.
+$$
+
+よって Gaussian 固定点では $u$ は $d<4$ で relevant、$d>4$ で irrelevant、$d=4$ で marginal である。一般の $\phi^n$ coupling は
+
+$$
+[g_n]=d-\frac{n(d-2)}2.
+$$
+
+これは tree-level/canonical 分類である。相互作用固定点では量子・熱揺らぎが anomalous dimension を加え、完全な scaling dimension は canonical value と一致しない。
+
+## 5. Gaussian 固定点
+
+$u=0,r=0$ は massless Gaussian 固定点である。実空間 propagator は $d>2$ で
+
+$$
+G(r)\propto \frac1{r^{d-2}}
+$$
+
+なので $\eta=0$。$r$ の固有値は $y_t=2$、従って $\nu=1/2$。$d>4$ では quartic 項が irrelevant なので一般の Ising 型臨界点が Gaussian 固定点に支配され、平均場指数が現れる。ただし前章の dangerously irrelevant の注意が必要である。
+
+## 出典案内
+
+Landau–Ginzburg作用、Fourier mode、cutoff、operator power countingをWilson RGへ接続する標準的導出は [Wilson–Kogut (1974)](https://doi.org/10.1016/0370-1573(74)90023-4) を参照する。
+
+## 章末整理
+
+### この章で分かったこと
+
+長距離 Ising 型臨界現象は $\phi^4$ effective field theory で表され、canonical dimension だけで $d_c=4$ が現れる。Fourier mode は距離スケールを運動量 shell として分離する準備を与える。
+
+### 次の疑問
+
+高運動量 shell を実際に積分すると $r$ と $u$ はどのように変わり、非自明固定点はどう生まれるのか。
+
+### その結果、何が説明できるようになったか
+
+high momentum と short distance、mass と相関長、上部臨界次元の起源を結び付けられる。
+
+### まだ説明できていないこと
+
+相互作用を含む shell 積分と anomalous dimension は未計算である。
+
+### よくある誤解
+
+- cutoff は常に実在する最小長とは限らない。
+- canonical dimension は相互作用固定点での完全な scaling dimension ではない。
+
+### 次に自然に出てくる疑問
+
+shell 積分の各係数はどの Wick contraction から生じるか。
+
+
+

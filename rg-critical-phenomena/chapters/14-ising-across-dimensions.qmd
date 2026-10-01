@@ -1,0 +1,183 @@
+---
+title: '第14部　1D・2D・3D Ising 模型――「解ける」の意味を比較する'
+sidebar: rg-critical-phenomena
+format:
+  html:
+    toc: true
+---
+
+## 1. 同じ式、異なる次元
+
+零磁場の最近接 Ising 模型
+
+$$
+H=-J\sum_{\langle ij\rangle}s_is_j,
+\qquad s_i=\pm1
+$$
+
+はどの次元でも同じ形に見える。しかし domain wall のエネルギーと entropy、長距離幾何、臨界固定点が次元で変わるため、相転移の有無と指数は同じでない。
+
+## 2. 一次元を transfer matrix で解く
+
+周期境界 $s_{N+1}=s_1$ とし、$K=\beta J$、$H=\beta h$ と置く。各 bond の重みを両端へ外場を半分ずつ割り当てて
+
+$$
+T_{ss'}=\exp\left[Kss'+\frac H2(s+s')\right]
+$$
+
+と定義する。$s,s'=+1,-1$ の順なら
+
+$$
+T=
+\begin{pmatrix}
+e^{K+H} & e^{-K}\\
+e^{-K} & e^{K-H}
+\end{pmatrix}.
+$$
+
+全配置の重みを掛けて和を取る操作は行列積の trace なので
+
+$$
+Z_N=\operatorname{Tr}T^N=\lambda_+^N+\lambda_-^N.
+$$
+
+固有値は二次方程式から
+
+$$
+\lambda_\pm=e^K\cosh H
+\pm\sqrt{e^{2K}\sinh^2H+e^{-2K}}.
+$$
+
+有限温度では $\lambda_+>|\lambda_-|$ なので熱力学極限の自由エネルギー密度は
+
+$$
+f=-k_BT\lim_{N\to\infty}\frac1N\log Z_N
+=-k_BT\log\lambda_+.
+$$
+
+$T>0$ では平方根の中身が正で $\lambda_+$ は解析的だから、有限温度相転移はない。
+
+## 3. 一次元の相関長
+
+$h=0$ では
+
+$$
+\lambda_+=e^K+e^{-K}=2\cosh K,
+\qquad
+\lambda_-=e^K-e^{-K}=2\sinh K.
+$$
+
+transfer matrix の spectral decomposition から connected correlation は固有値比で
+
+$$
+\langle s_0s_r\rangle_c\propto
+\left(\frac{\lambda_-}{\lambda_+}\right)^r
+=(\tanh K)^r.
+$$
+
+$e^{-r/\xi}=(\tanh K)^r$ と比較して
+
+$$
+\xi^{-1}=-\log(\tanh K).
+$$
+
+任意の有限 $K$ で $\xi$ は有限で、$T\to0$、すなわち $K\to\infty$ でのみ発散する。低温で $\tanh K=1-2e^{-2K}+\cdots$ だから
+
+$$
+\xi\sim\frac12e^{2K}.
+$$
+
+これは domain wall の密度 $p\sim e^{-2K}$ の逆数と同じ指数scaleをもち、より正確には $\xi\sim1/(2p)$ で係数2が異なる。
+
+## 4. 二次元で何が exact か
+
+正方格子・零磁場の二次元 Ising 模型は、[Onsager (1944)](https://doi.org/10.1103/PhysRev.65.117) が熱力学極限の free energy を exact に求めた。critical coupling は
+
+$$
+\sinh(2K_c)=1,
+\qquad
+K_c=\frac12\log(1+\sqrt2).
+$$
+
+これは高温・低温 duality の self-dual point と一致する。ただし self-duality だけで相転移の存在と一意性が自動的に証明されるわけではなく、解析性の議論が必要である。
+
+[Yang (1952)](https://journals.aps.org/pr/abstract/10.1103/PhysRev.85.808) の spontaneous magnetization は
+
+$$
+m(T)=\left[1-\sinh^{-4}(2K)\right]^{1/8}
+\quad(T<T_c)
+$$
+
+である。$K\to K_c^+$ で角括弧は $K-K_c$ に一次なので
+
+$$
+m\sim (T_c-T)^{1/8},
+\qquad \beta=\frac18.
+$$
+
+他に $\nu=1$、$\eta=1/4$、$\gamma=7/4$、$\alpha=0$ だが、$\alpha=0$ は単なる有限 jump ではなく対数発散に対応する。指数が同じゼロでも singularity の形を確認する必要がある。二次元 Ising の fermion/CFT 表現と相関指数は [Boyanovsky (1989)](https://doi.org/10.1103/PhysRevB.39.6744) を参照。
+
+「2D Ising が exact に解けた」も範囲を明記する。零磁場の free energy と多くの相関データは exact だが、一般の一様外場 $h\ne0$ の格子模型の free energy は同じ意味では閉形式に解かれていない。臨界点での continuum limit は最小模型 CFT として非常に強く理解される。
+
+## 5. 三次元で何が分かるか
+
+三次元 simple-cubic Ising 模型には、二次元 Onsager 解に対応する閉形式の分配関数は知られていない。それでも Monte Carlo、高温・低温展開、再総和 field theory、conformal bootstrap が整合し、主要 universal data は高精度で分かる。
+
+2025年の [Chang et al.](https://arxiv.org/abs/2411.15300) の bootstrap 値を使えば
+
+$$
+\nu=0.62997097(12),\qquad
+\eta=0.036297612(48).
+$$
+
+scaling relations から
+
+$$
+\beta=\frac\nu2(1+\eta)\approx0.3264187,
+\qquad
+\gamma=\nu(2-\eta)\approx1.2370755.
+$$
+
+これは **[Conditional certified numerical bounds under stated CFT assumptions]** から導く値であり、格子模型から continuum CFT への収束証明ではない。
+
+## 6. 上部・下部臨界次元
+
+short-range Ising では下部臨界次元は $d_l=1$ である。$d=1$ では有限温度秩序がなく、$d>1$ で低温 ordered phase が可能になる。一方 $\phi^4$ description の上部臨界次元は $d_c=4$ で、$d>4$ では Gaussian fixed point が leading exponents を支配する。
+
+下部臨界次元は秩序が存在できる境界、上部臨界次元は相互作用固定点が mean-field/Gaussian に交代する境界であり、同じ概念ではない。
+
+## 7. 比較表
+
+| 次元 | 有限温度転移 | 長距離固定点 | 代表的理解 |
+|---|---:|---|---|
+| 1D | なし | $T=0$ でのみ臨界 | transfer matrix で exact |
+| 2D | あり | 非 Gaussian Ising CFT | 零磁場 free energy・主要臨界量が exact |
+| 3D | あり | Wilson–Fisher / Ising CFT | universal data は高精度、closed-form lattice solution なし |
+| $d>4$ | あり | Gaussian | mean-field exponent、dangerously irrelevant $u$ に注意 |
+
+## 章末整理
+
+### この章で分かったこと
+
+同じ Ising Hamiltonian でも次元により domain wall、固定点、指数、可解性が変わる。
+
+### その結果、何が説明できるようになったか
+
+exact solution、高精度数値、条件付き bootstrap bound、物理的同定を区別できる。
+
+### まだ説明できていないこと
+
+二次元 transfer matrix の対角化全体、fermion 化、三次元数値法の実装は扱っていない。
+
+### よくある誤解
+
+- 2D Ising の「exact」は任意外場の全問題が解けたという意味ではない。
+- 3D Ising は未解決だから指数が分からない、という意味ではない。
+- 下部臨界次元と上部臨界次元は別の問いに答える。
+
+### 次に自然に出てくる疑問
+
+固定点へ近づく速さと、有限距離で観測される「有効指数」はどう整理されるか。
+
+
+

@@ -1,0 +1,210 @@
+---
+title: '第17部　実空間RG――消去すると何が生成されるか'
+sidebar: rg-critical-phenomena
+format:
+  html:
+    toc: true
+---
+
+## 1. 変換を確率核として定義する
+
+格子間隔を $a$、block の線形倍率を $b>1$ とする。元の spin を $s$、粗視化後の block 変数を $S$ と書く。実空間RGは、条件付き確率核 $P(S|s)$ を用いて
+
+$$
+e^{-H'[S]}=\sum_{\{s\}}P(S|s)e^{-H[s]},
+\qquad
+\sum_{\{S\}}P(S|s)=1
+$$
+
+と定義できる。第二式により
+
+$$
+\sum_{\{S\}}e^{-H'[S]}=\sum_{\{s\}}e^{-H[s]}=Z
+$$
+
+だから、有限格子での分配関数は保たれる。これは変換の定義として exact である。ただし、得られた $H'[S]$ を少数の coupling だけで表す段階で近似が入る。
+
+例えば Ising block 内の多数決を採用するなら、奇数個の spin を含む block では
+
+$$
+P(S_B|s)=\delta_{S_B,\operatorname{sgn}\sum_{i\in B}s_i}.
+$$
+
+偶数個の場合の tie breaking、確率的な soft blocking、block の重なり方は別々のRG schemeである。固定点の座標や flow の細部は変わりうるが、同じ固定点へ流れるなら臨界指数は一致すべきである。この発想の原型は [Kadanoff (1966)](https://journals.aps.org/ppf/abstract/10.1103/PhysicsPhysiqueFizika.2.263) の cell picture にある。
+
+## 2. 一次元Isingのdecimationを最後まで行う
+
+零磁場の一次元 Ising 鎖
+
+$$
+-H=K\sum_i s_is_{i+1}
+$$
+
+で、偶数 site の spin を残し、奇数 site を和に取る。隣り合う残存 spin を $S=s_{2j}$、$S'=s_{2j+2}$、消去する spin を $\sigma=s_{2j+1}$ とすると
+
+$$
+\sum_{\sigma=\pm1}e^{K\sigma(S+S')}
+=2\cosh[K(S+S')].
+$$
+
+右辺を $A e^{K'SS'}$ と表す。同符号なら $S+S'=\pm2$、異符号なら $S+S'=0$ なので
+
+$$
+Ae^{K'}=2\cosh(2K),\qquad Ae^{-K'}=2.
+$$
+
+従って
+
+$$
+K'=\frac12\log\cosh(2K),
+\qquad
+A=2\sqrt{\cosh(2K)}.
+$$
+
+$A$ は自由エネルギーを変える additive constant だが、相関を議論する coupling flow からは分離できる。この例では零磁場・最近接という作用の形が閉じ、recursion は exact である。
+
+$K>0$ に対し $K'<K$ であり、有限温度の有限 $K$ は反復により高温固定点 $K=0$ へ流れる。低温固定点は $K=\infty$ である。有限の不安定固定点がないことは、一次元 short-range Ising に有限温度相転移がない事実と一致する。大きい $K$ では
+
+$$
+K'=K-\frac12\log2+O(e^{-4K}),
+$$
+
+だから、domain-wall fugacity $y=e^{-2K}$ を使う方が線形化しやすく、$y'=2y-2y^3+O(y^5)$ となる。固定点近傍で適切な座標を選ぶ重要性がここにも現れる。
+
+## 3. 二次元では作用の形が閉じない
+
+正方格子で一つの sublattice を消去すると、消去 spin $\sigma$ に接する四つの残存 spin $s_1,\ldots,s_4$ から
+
+$$
+\sum_{\sigma=\pm1}
+e^{K\sigma(s_1+s_2+s_3+s_4)}
+=2\cosh\left[K\sum_{a=1}^4s_a\right]
+$$
+
+が生じる。この重みは一般に、一個の最近接 coupling $K'$ だけでは全ての外部配置について再現できない。対角を含む pair coupling、四体 coupling、さらに反復後には長距離・多体相互作用が生成される。
+
+一つのstarについて実際に分解する。四つの外部spinを円周順に $s_1,\ldots,s_4$ とし
+
+$$
+\log\left[2\cosh K(s_1+s_2+s_3+s_4)\right]
+=C+K_2\sum_{1\le i<j\le4}s_is_j
++K_4s_1s_2s_3s_4
+$$
+
+と置く。star単体は四外部spinの任意の置換に対称なので、この段階では隣接pairと対向pairの係数は同じ $K_2$ である。配置を、全て同符号、三対一、二対二に分類し
+
+$$
+L_4=\log[2\cosh(4K)],\qquad
+L_2=\log[2\cosh(2K)],\qquad
+L_0=\log2
+$$
+
+と書く。それぞれのpair和と四体積は
+
+$$
+(6,1),\qquad(0,-1),\qquad(-2,1)
+$$
+
+なので
+
+$$
+L_4=C+6K_2+K_4,\qquad
+L_2=C-K_4,\qquad
+L_0=C-2K_2+K_4.
+$$
+
+これを解くと
+
+$$
+K_2=\frac{L_4-L_0}{8},
+\qquad
+K_4=\frac{L_4-4L_2+3L_0}{8},
+\qquad
+C=\frac{L_4+4L_2+3L_0}{8}.
+$$
+
+$K_4$ は一般に非零であり、pair相互作用だけでは閉じないことが明示的に分かる。格子全体でstarを重ねて反復すると、幾何学的に異なるpair couplingとさらに長距離の多体項が生成される。
+
+従って理論空間は
+
+$$
+H[s]=-\sum_\alpha K_\alpha\mathcal O_\alpha[s]
+$$
+
+という無限個の対称性許容演算子で考える必要がある。RG写像は $K_\alpha' =R_\alpha(\{K\})$ であり、最近接 Ising 軸だけを追うことは無限次元写像の射影である。
+
+ここから二種類の誤りを区別できる。
+
+1. 消去和や block kernel 自体を近似する誤り。
+2. exact に生成された $H'$ を少数 coupling へ射影する truncation error。
+
+両者は同じではない。truncation を改善するには、対称性と canonical relevance に基づいて演算子基底を広げ、異なる blocking や基底で universal quantity が安定するかを調べる。
+
+## 4. majority rule と情報の喪失
+
+粗視化は一般に可逆でない。同じ block magnetization をもつ多数の微視配置が一つの $S_B$ に写る。しかし「情報を捨てる」だけでは普遍性の説明にならない。必要なのは、捨てた情報に対応する coupling perturbation が固定点近傍で irrelevant、すなわち反復により減衰することである。
+
+固定点 $K^*$ の近傍で
+
+$$
+\delta K_\alpha'=
+\sum_\beta T_{\alpha\beta}\delta K_\beta+O(\delta K^2),
+\qquad
+T_{\alpha\beta}=
+\left.\frac{\partial R_\alpha}{\partial K_\beta}\right|_{K^*}
+$$
+
+と線形化する。固有値を $\lambda_i=b^{y_i}$ と書けば、$y_i>0$ は relevant、$y_i<0$ は irrelevant、$y_i=0$ は marginal である。温度方向の固有値から $\nu=1/y_t$ が得られる。
+
+非可逆性から直ちに単調な「RG entropy」が存在するとも限らない。二次元相対論的QFTの $c$ theorem などは追加の局所性・unitarity・Lorentz invarianceを用いる強い主張であり、任意の block-spin map の一般論ではない。
+
+## 5. Migdal–Kadanoff 型近似の位置付け
+
+bond moving と decimation を組み合わせる Migdal–Kadanoff recursion は、高次元格子の flow を少数 coupling で扱う有用な近似である。一部の階層格子では対応する recursion が exact になるが、通常の正方格子・立方格子で exact とは限らない。[Migdal (1975)](https://www.jetp.ras.ru/cgi-bin/e/index/e/42/4/p743?a=list) と [Kadanoff (1976)](https://doi.org/10.1016/0003-4916(76)90062-2) の recursion を使うときは、対象格子、bond-moving prescription、保存される量を明記する必要がある。
+
+近似RGの価値は、相構造、固定点、crossover、指数の概算を低コストで調べ、より系統的な方法へ接続することにある。検証では少なくとも次を確認する。
+
+- 高温・低温極限を正しく写すか。
+- 対称性を保存するか。
+- 既知の exact result や高精度数値とどの量が一致するか。
+- blocking factor や truncation を変えたとき universal prediction が安定するか。
+
+## 6. 実空間RGとtensor network
+
+二次元古典分配関数は局所tensorの縮約として書ける。block内のtensorを縮約し bond dimension を切る操作は、実空間粗視化を数値線形代数として実装する方法である。ここでも exact contraction と singular-value truncation を分けなければならない。局所的に小さい特異値を捨てる規則が、臨界固定点の長距離情報を最適に保存するとは自動的に言えない。
+
+この観点は、従来の「生成相互作用を手で列挙する」問題を、tensorの内部indexが運ぶ相関をどう圧縮するかという問題へ移す。ただし bond dimension による収束、短距離entanglementの除去、固定点tensorの非普遍な冗長性は別途監査が必要である。
+
+## 証拠水準
+
+- 確率核による有限格子の分配関数保存: **[Exact definition/identity]**。
+- 1D zero-field nearest-neighbor decimationとstar分解: **[Exact finite-step calculation]**。
+- 少数couplingへの射影: **[Operator truncation]**。
+- 通常格子上のMigdal–Kadanoff recursion: **[Approximation]**。対応する階層格子でexactな場合と分ける。
+
+## 章末整理
+
+### この章で分かったこと
+
+実空間RGは確率核を用いて exact に定義できるが、多次元では一般に無限個の相互作用を生成する。一次元 Ising decimation は閉じる特別な例である。
+
+### その結果、何が説明できるようになったか
+
+block spin の直観を、分配関数を保つ写像、理論空間の線形化、truncation errorという検査可能な言葉へ変換できる。
+
+### まだ説明できていないこと
+
+一般の相互作用基底で固定点を高精度に求める方法と、tensor truncation の誤差評価は後の数値RGの課題である。
+
+### よくある誤解
+
+- coarse graining を定義しただけでは臨界指数は求まらない。
+- 消去後も最近接相互作用だけが残るとは限らない。
+- Migdal–Kadanoff recursion は通常格子上で常に exact ではない。
+
+### 次に自然に出てくる疑問
+
+相互作用のないGaussian理論では、無限次元の理論空間と固有演算子をどこまでexactに調べられるか。
+
+
+

@@ -1,0 +1,140 @@
+---
+title: '第11部　QCD、functional RG、3D Ising、rigorous RG'
+sidebar: rg-critical-phenomena
+format:
+  html:
+    toc: true
+---
+
+## 1. QCD と漸近的自由
+
+非 Abelian gauge theory の一 loop beta function は、表現 $R$ の Dirac fermion が $N_f$ flavor あるとき
+
+$$
+\mu\frac{dg}{d\mu}=-b_0g^3+O(g^5),\qquad
+b_0=\frac1{(4\pi)^2}\left(\frac{11}{3}C_A-\frac{4}{3}T_RN_f\right).
+$$
+
+$SU(N_c)$ の fundamental representation では $C_A=N_c$、$T_R=1/2$ なので括弧は $11N_c/3-2N_f/3$ となる。$N_f<11N_c/2$ なら $b_0>0$ で、高エネルギー $\mu\to\infty$ に向かって $g\to0$ となる。これが asymptotic freedom である。短距離では摂動論が制御され、長距離では coupling が強くなり confinement や chiral symmetry breaking の非摂動問題へ移る。
+
+one-loop 方程式を分離して積分すると
+
+$$
+\int_{g(\mu_0)}^{g(\mu)}\frac{dg}{g^3}
+=-b_0\int_{\mu_0}^{\mu}\frac{d\mu'}{\mu'},
+$$
+
+従って積分定数を $\Lambda_{\rm QCD}$ で表して
+
+$$
+\Lambda_{\rm QCD}=\mu\exp\left[-\frac1{2b_0g(\mu)^2}\right]
+$$
+
+を得る。高次補正と scheme の変更は右辺に冪・有限係数を加えるため、$\Lambda$ の規格化は scheme dependent だが、一つの scheme 内では RG 不変尺度である。RG はこの尺度生成を説明するが、それだけで confinement を解析的に解いたことにはならない。
+
+## 2. functional RG
+
+### Polchinski 型
+
+cutoff-dependent Wilson action の全 functional を流す式は、高運動量 covariance の変化を相互作用の一次・二次 functional derivative で表す。正則化を指定した上で、これは partition function の cutoff independence から導かれる exact functional identity である。
+
+### Wetterich 型
+
+IR regulator $R_k$ を加えた effective average action $\Gamma_k$ は
+
+$$
+\partial_k\Gamma_k=\frac12\operatorname{Tr}
+\left[(\Gamma_k^{(2)}+R_k)^{-1}\partial_kR_k\right]
+$$
+
+を満たす。$k$ が大きいと低運動量揺らぎを抑え、$k\to0$ で通常の quantum effective action へ近づく。
+
+右辺が one-loop の形をしていても、逆 propagator に完全な $\Gamma_k^{(2)}$ が入るため形式的には exact である。しかし未知の functional の方程式なので、そのまま解けたわけではない。local potential approximation、derivative expansion、vertex expansion などで
+
+$$
+\Gamma_k[\phi]=\int d^dx\left[
+U_k(\phi)+\frac12Z_k(\phi)(\nabla\phi)^2+\cdots
+\right]
+$$
+
+と切った時点で **[Nonperturbative approximation]** になる。nonperturbative は「小 coupling 展開に限定されない」であって「誤差なし」ではない。有限 truncation の regulator dependence は安定性診断になるが、一般的な厳密 error bar ではない。
+
+## 3. 3D Ising のケーススタディ
+
+三次元 Ising universality class については、conformal bootstrap、Monte Carlo、高温展開、再総和摂動論、functional RG が整合する高精度データを与える。
+
+2025 年の mixed-correlator bootstrap の報告値は
+
+$$
+\Delta_\sigma=0.518148806(24),\qquad
+\Delta_\epsilon=1.41262528(29),
+$$
+
+従って
+
+$$
+\eta=2\Delta_\sigma-(d-2)=0.036297612(48),
+$$
+
+$$
+\nu=\frac1{d-\Delta_\epsilon}=0.62997097(12).
+$$
+
+**[Conditional certified numerical bound]** これらの狭い island は crossing、unitarity、演算子 gap など明示した CFT 仮定の下の数値制約である。格子 Ising がその CFT へ収束することや、island 内に CFT が存在することを単独で証明するものではない。
+
+三次元 Ising について、次を分ける必要がある。
+
+- 高精度に分かる: 低い scaling dimension、臨界指数、多数の OPE data。
+- exact ではない: 単純立方格子分配関数の closed form、全相関関数の解析式。
+- 数学的に未完成: 格子場の三次元 scaling limit の構成、CFT との厳密同一視、広い模型族への universality theorem。
+
+「非常によく分かっている」と「Onsager の二次元解の意味で exactly solved」は両立しない分類である。
+
+## 4. rigorous RG は何を証明するか
+
+厳密 RG では、各 scale の有効相互作用を normed space 上で定義し、relevant/marginal coordinate と無限次元 remainder を分離し、large-field region を含む一様評価を積み重ねる。目標は、固定点または臨界軌道の存在、相関関数の漸近形、指数・対数補正、scaling limit、universality を定理として得ることである。
+
+代表的に立証されているのは次のような限定された主張である。
+
+- **[Rigorous theorem]** 小 coupling の四次元格子 $|\phi|^4$ 模型における臨界挙動と対数補正。
+- **[Rigorous theorem]** 四次元 nearest-neighbor ferromagnetic Ising-type 模型のうち論文で定義される Griffiths–Simon class、および対応する lattice-cutoff $\lambda\phi^4$ 模型について、臨界・近臨界 scaling limit が Gaussian になること。証明は random-current 表現と multiscale estimate を用い、狭義の「厳密 RG の反復写像」だけによる結果ではない。
+- **[Rigorous theorem]** 十分小さい $\epsilon>0$ で、標準 short-range 3D 共分散をそのまま使うのではない変形 $\phi^4_{3,\epsilon}$ 模型に、非 Gaussian 固定点と一本の不安定方向をもつ critical manifold が存在すること。
+
+これらは標準的 short-range 3D nearest-neighbor Ising の完全な定理ではない。模型、次元、小結合、reflection positivity など仮定を明記しなければ、rigorous RG の達成を過大評価する。
+
+また、block-spin 変換後の measure が単純な局所 Gibbs Hamiltonian で表せない non-Gibbsian 問題もあり、素朴な theory space 上で RG map が常に良定義とは限らない。
+
+## 5. conformal bootstrap との役割分担
+
+RG は「どのミクロ理論がどの固定点へ行くか」「どの perturbation が relevant か」「crossover をどう記述するか」を扱う。bootstrap は固定点が CFT だと仮定し、crossing と positivity から固定点内部の spectrum と OPE coefficients を拘束する。bootstrap は RG trajectory を直接構成せず、RG は単独で高精度の全 CFT data を自動的に出すわけではない。
+
+## 出典案内
+
+effective average actionのexact flowは [Wetterich (1993)](https://doi.org/10.1016/0370-2693(93)90726-X)、非摂動FRGの現代的reviewは [Dupuis et al. (2021)](https://doi.org/10.1016/j.physrep.2021.01.001) を参照する。3D Isingの数値CFT dataは [Chang et al. (2025)](https://arxiv.org/abs/2411.15300)、4D rigorous resultは [Bauerschmidt–Brydges–Slade (2014)](https://arxiv.org/abs/1403.7424) と [Aizenman–Duminil-Copin (2021)](https://arxiv.org/abs/1912.07973) の対象範囲内で引用する。
+
+## 章末整理
+
+### この章で分かったこと
+
+exact functional flow、非摂動 truncation、高精度 bootstrap、rigorous theorem は異なる認識論的地位をもつ。3D Ising は universal data が極めて精密に分かる一方、格子から continuum CFT への数学的橋は未完成である。
+
+### よくある誤解
+
+- exact flow equation は exact solution ではない。
+- bootstrap の certified exclusion は格子模型の scaling limit の証明ではない。
+- rigorous RG はあらゆる次元・模型の普遍性を一括証明していない。
+
+### その結果、何が説明できるようになったか
+
+exact identity、truncated nonperturbative calculation、certified numerical bound、数学的定理を証拠水準ごとに分類できる。
+
+### まだ説明できていないこと
+
+各 rigorous theorem の証明技法、FRG truncation の収束、bootstrap の半正定値計画の実装は専門的展開を要する。
+
+### 次に自然に出てくる疑問
+
+RG が失敗・未完成になる構造を一般にどう分類するか。
+
+
+

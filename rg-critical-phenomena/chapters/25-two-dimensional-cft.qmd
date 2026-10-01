@@ -1,0 +1,273 @@
+---
+title: '第25部　二次元CFT――Virasoro対称性が臨界現象を解く'
+sidebar: rg-critical-phenomena
+format:
+  html:
+    toc: true
+---
+
+## 1. 複素座標と局所共形変換
+
+二次元Euclidean空間で
+
+$$
+z=x+iy,\qquad \bar z=x-iy
+$$
+
+を使う。局所的に角度を保つ向き保存変換は
+
+$$
+z\mapsto f(z),\qquad
+\bar z\mapsto \bar f(\bar z)
+$$
+
+と正則・反正則写像へ分解される。$d\ge3$ のglobal conformal groupが有限次元なのに対し、二次元の局所正則関数は無限個のTaylor係数をもち、無限次元対称性を与える。
+
+無限小変換 $z\mapsto z+\epsilon(z)$ をLaurent展開し
+
+$$
+\epsilon(z)=-\sum_{n\in\mathbb Z}\epsilon_nz^{n+1}
+$$
+
+と書くと、対応する生成子は $L_n$ である。量子論ではcentral extensionを含むVirasoro代数
+
+$$
+[L_m,L_n]=(m-n)L_{m+n}
++\frac c{12}m(m^2-1)\delta_{m+n,0}
+$$
+
+を満たす。$c$ はcentral chargeで、単なる演算子の規格化定数ではなく理論を特徴付ける普遍量である。
+
+## 2. primary fieldと二点関数
+
+conformal weight $(h,\bar h)$ のprimary fieldは
+
+$$
+\phi(z,\bar z)\mapsto
+\left(\frac{df}{dz}\right)^{-h}
+\left(\frac{d\bar f}{d\bar z}\right)^{-\bar h}
+\phi(f(z),\bar f(\bar z))
+$$
+
+と変換する。scaling dimensionとspinは
+
+$$
+\Delta=h+\bar h,
+\qquad
+s=h-\bar h
+$$
+
+である。
+
+平行移動・回転・dilatation・special conformal transformationを課すと、scalar primaryの二点関数は
+
+$$
+\langle\phi_i(z_1,\bar z_1)
+\phi_j(z_2,\bar z_2)\rangle
+=\frac{C_i\delta_{ij}}
+{z_{12}^{2h_i}\bar z_{12}^{2\bar h_i}}
+$$
+
+型に固定される。$C_i$ は場の規格化で1にできる。scale invarianceだけでもべきは得るが、conformal invarianceは異なる場のselection ruleとtensor構造をさらに制約する。
+
+## 3. 三点関数とOPE data
+
+三つのscalar primaryの三点関数は
+
+$$
+\langle\phi_1(x_1)\phi_2(x_2)\phi_3(x_3)\rangle
+=\frac{C_{123}}
+{|x_{12}|^{\Delta_1+\Delta_2-\Delta_3}
+ |x_{23}|^{\Delta_2+\Delta_3-\Delta_1}
+ |x_{31}|^{\Delta_3+\Delta_1-\Delta_2}}
+$$
+
+に固定される。残る数 $C_{123}$ がoperator product expansion係数である。
+
+近接した二演算子は
+
+$$
+\phi_i(x)\phi_j(0)
+=\sum_k C_{ij}{}^k(x,\partial)\mathcal O_k(0)
+$$
+
+と局所演算子の和へ展開できる。CFTを指定する基本dataは、primary spectrum $(\Delta,s)$、central charge、OPE係数である。相関関数はこのdataと対称性から組み立てられる。
+
+OPEが「近距離で近似的に成り立つformal series」なのか、相関関数内で収束するのかは理論の公理と領域に依存する。数値bootstrapではEuclidean OPE収束を用いる。
+
+## 4. stress tensorとcentral charge
+
+正則stress tensor $T(z)$ のOPEは
+
+$$
+T(z)T(0)
+\sim\frac{c/2}{z^4}
++\frac{2T(0)}{z^2}
++\frac{\partial T(0)}z+\cdots.
+$$
+
+$z^{-4}$ の係数がVirasoro代数のcentral termになる。$T$ とprimaryのOPE
+
+$$
+T(z)\phi(0)
+\sim\frac{h\phi(0)}{z^2}
++\frac{\partial\phi(0)}z+\cdots
+$$
+
+はWard identityを局所的に表す。
+
+unitaryな二次元相対論的QFTのRG flowでは、適切な仮定の下でUVからIRへ単調減少する $c$-functionが存在し、固定点でcentral chargeに一致する。これは任意の統計的coarse grainingに普遍的な単調量があるという主張ではない。
+
+## 5. minimal modelという離散系列
+
+正エネルギー・unitarity・離散的なVirasoro highest-weight spectrumなど分類の仮定を置くと、$c<1$ の許容central chargeとweightはminimal modelの離散系列へ制限される **[Theorem under representation-theoretic assumptions]**。[Friedan–Qiu–Shenker (1984)](https://doi.org/10.1103/PhysRevLett.52.1575)。
+
+null stateをもつ表現では、相関関数が微分方程式を満たし、許されるprimary spectrumとfusion ruleが強く制限される。[Belavin–Polyakov–Zamolodchikov (1984)](https://doi.org/10.1016/0550-3213(84)90052-X)
+
+臨界二次元Ising模型に対応するminimal modelは
+
+$$
+c=\frac12
+$$
+
+である。以下のprimary spectrumとfusion ruleは **[Exact CFT data within the Ising minimal model]** であり、格子の非普遍量まで決める主張ではない。[Belavin–Polyakov–Zamolodchikov (1984)](https://doi.org/10.1016/0550-3213(84)90052-X)
+
+このCFTは三つのVirasoro primaryをもつ。
+
+| primary | $(h,\bar h)$ | $\Delta$ | 格子での対応 |
+|---|---:|---:|---|
+| $\mathbf1$ | $(0,0)$ | $0$ | 恒等演算子 |
+| $\sigma$ | $(1/16,1/16)$ | $1/8$ | spin / 秩序変数 |
+| $\varepsilon$ | $(1/2,1/2)$ | $1$ | energy density |
+
+fusion ruleは
+
+$$
+\sigma\times\sigma=\mathbf1+\varepsilon,
+\qquad
+\sigma\times\varepsilon=\sigma,
+\qquad
+\varepsilon\times\varepsilon=\mathbf1.
+$$
+
+これは例えばspin四点関数の中間channelに現れるVirasoro familyを指定する。
+
+代表計算として、Ising minimal model $M(3,4)$ のKac公式
+
+$$
+h_{r,s}=\frac{[(4r-3s)^2-1]}{48},
+\qquad
+1\le r\le2,\quad 1\le s\le3
+$$
+
+を使う。独立な同一視を除くと
+
+$$
+h_{1,1}=0,\qquad
+h_{1,2}=\frac1{16},\qquad
+h_{1,3}=\frac12
+$$
+
+が残る。$(1,2)$ 表現にはlevel 2のnull vector
+
+$$
+\left(L_{-2}-\frac43L_{-1}^2\right)|h=1/16\rangle
+$$
+
+があり、相関関数内でこのdescendantをゼロにする条件が二階のBPZ微分方程式を与える。これが $\sigma$ 四点関数の中間channelを $\mathbf1$ と $\varepsilon$ に制限する機構である **[Exact minimal-model representation result]**。
+
+## 6. Ising臨界指数をCFT dataから読む
+
+$d=2$ で秩序変数のdimensionが $\Delta_\sigma=1/8$ だから
+
+$$
+d-2+\eta=2\Delta_\sigma
+\quad\Longrightarrow\quad
+\eta=\frac14.
+$$
+
+温度摂動は $\int d^2x\,t\varepsilon$ なので
+
+$$
+y_t=d-\Delta_\varepsilon=1,
+\qquad
+\nu=1.
+$$
+
+磁場固有値は
+
+$$
+y_h=d-\Delta_\sigma=\frac{15}{8}.
+$$
+
+従って
+
+$$
+\beta=\nu\Delta_\sigma=\frac18,
+\qquad
+\gamma=\nu(2-\eta)=\frac74,
+\qquad
+\delta=\frac{y_h}{\Delta_\sigma}=15.
+$$
+
+格子のOnsager–Yang結果とCFT spectrumが同じ指数を与えることは、格子臨界点とcontinuum fixed pointの同定を強く支える。
+
+## 7. 円筒上の有限サイズspectrum
+
+複素平面から円周 $L$ の円筒への写像
+
+$$
+w=\frac L{2\pi}\log z
+$$
+
+はdilatationを円筒上の時間並進へ写す。量子Hamiltonianのenergy gapとscaling dimensionは
+
+$$
+E_n-E_0=\frac{2\pi v}{L}
+(\Delta_n+N_n+\bar N_n)
+$$
+
+型に結ばれる。$v$ は非普遍な速度、$N_n,\bar N_n$ はdescendant levelである。基底energyにはcentral chargeによるCasimir項
+
+$$
+E_0(L)=e_\infty L-\frac{\pi cv}{6L}+\cdots
+$$
+
+が現れる。これにより有限サイズの格子spectrumやtransfer matrixから $c$ と $\Delta_n$ を抽出できる。
+
+## 8. 「exact」の範囲
+
+minimal modelを解くことは、任意のmicroscopic Hamiltonianの全温度分配関数を解くこととは違う。CFTがexactに与えるのは臨界scaling limitのuniversal dataである。非普遍な $T_c$、格子間隔scale、metric factor、臨界点から有限距離の全crossoverは別問題である。
+
+また二次元の強いVirasoro制約を三次元へそのまま移せない。三次元ではglobal conformal groupは有限次元だが、OPE associativityとunitarityを数値最適化するbootstrapが代わりに強力となる。
+
+## 出典案内
+
+二次元CFTのprimary、OPE、Virasoro表現による相関関数分類は [Belavin–Polyakov–Zamolodchikov (1984)](https://doi.org/10.1016/0550-3213(84)90052-X)、$c<1$ unitary系列の分類は [Friedan–Qiu–Shenker (1984)](https://doi.org/10.1103/PhysRevLett.52.1575) を参照する。
+
+## 章末整理
+
+### この章で分かったこと
+
+二次元では局所conformal symmetryがVirasoro代数へ拡張し、primary spectrum、OPE、相関関数を強く制約する。
+
+### その結果、何が説明できるようになったか
+
+二次元Isingの $\nu,\eta,\beta,\gamma,\delta$ を三つのprimary dataから導き、有限サイズspectrumへ接続できる。
+
+### まだ説明できていないこと
+
+null-vector方程式の解法、modular invarianceによる分配関数分類、境界CFTは未展開である。
+
+### よくある誤解
+
+- CFTのexact solutionは格子模型の全温度解と同義ではない。
+- central chargeは任意に消せる規格化定数ではない。
+- 二次元のVirasoro対称性は高次元CFTに一般化されない。
+
+### 次に自然に出てくる疑問
+
+Virasoro代数のない三次元でも、crossing symmetryとunitarityだけでIsing CFT dataをどこまで絞れるか。
+
+
+

@@ -1,0 +1,241 @@
+---
+title: '第8部　$\epsilon$ 展開、Wilson–Fisher 固定点、臨界指数'
+sidebar: rg-critical-phenomena
+format:
+  html:
+    toc: true
+---
+
+## 1. なぜ $d=4-\epsilon$ か
+
+$d=4$ では quartic coupling は canonical に marginal である。$d=4-\epsilon$ なら beta function は概略
+
+$$
+\beta_g=\epsilon g-Ag^2+O(g^3),\qquad A>0
+$$
+
+となる。第一項は次元解析、第二項は揺らぎの loop 効果で、両者が釣り合う
+
+$$
+g_*=\frac\epsilon A+O(\epsilon^2)
+$$
+
+は $\epsilon\ll1$ なら弱結合にある。この小パラメータが摂動計算を制御する。分数次元空間を直接想像する必要はなく、次元 $d$ に依存する積分を解析接続して 4 次元近傍で展開する。
+
+前章の規約では $A=3/2$ なので
+
+$$
+g_* = \frac{2}{3}\epsilon+O(\epsilon^2).
+$$
+
+固定点座標の係数 $2/3$ は規約依存だが、そこから整合的に求める指数は規約に依存しない。
+
+## 1.1 二変数の固定点を解く
+
+$\epsilon=4-d$ とし、前章の二つの beta function を同時にゼロと置く。非自明解では $g_*=O(\epsilon)$、$\tilde r_*=O(\epsilon)$ と予想できる。$g$ の式で分母を一次精度では 1 として
+
+$$
+0=\epsilon g_*-\frac32g_*^2+O(\epsilon^3)
+$$
+
+から $g_*=2\epsilon/3+O(\epsilon^2)$。これを $\tilde r$ の式へ入れ、同じ精度で $(1+\tilde r_*)^{-1}=1+O(\epsilon)$ とすれば
+
+$$
+0=2\tilde r_*+\frac{g_*}{2}+O(\epsilon^2),
+\qquad
+\tilde r_*=-\frac\epsilon6+O(\epsilon^2).
+$$
+
+$\tilde r_*$ がゼロでないのは tadpole による臨界面の additive shift であり、物理的な臨界温度の補正を含む。その数値座標は scheme dependent である。
+
+## 2. 温度方向の固有値
+
+$r$ には additive shift があるので、$r_c(g)$ を引いた温度型 scaling field $t_R$ を使う。固定点での安定行列は、$(\delta\tilde r,\delta g)$ の順で一次まで
+
+$$
+B_*=
+\begin{pmatrix}
+2-\epsilon/3 & 1/2+O(\epsilon)\\
+O(\epsilon^2) & -\epsilon
+\end{pmatrix}
++O(\epsilon^2).
+$$
+
+例えば左上成分は
+
+$$
+\left.\frac{\partial\beta_{\tilde r}}{\partial\tilde r}
+\right|_*
+=2-\frac{g_*}{2(1+\tilde r_*)^2}
+=2-\frac\epsilon3+O(\epsilon^2),
+$$
+
+右下成分は $\epsilon-3g_*=-\epsilon+O(\epsilon^2)$ である。左下成分は $O(g_*^2)=O(\epsilon^2)$ なので、この次数では行列は上三角であり、固有値を対角成分から読める。quartic 方向は $y_u=-\epsilon$ で IR irrelevant、温度方向は
+
+$$
+y_t=\frac1\nu=2-\frac\epsilon3+O(\epsilon^2).
+$$
+
+逆数を一次まで展開する。$1/(2-a\epsilon)=\tfrac12(1+a\epsilon/2)+O(\epsilon^2)$ なので
+
+$$
+\nu=\frac12+\frac\epsilon{12}+O(\epsilon^2).
+$$
+
+one-loop では $\eta=0+O(\epsilon^2)$。場の scaling dimension は
+
+$$
+\Delta_\phi=\frac{d-2+\eta}{2}.
+$$
+
+磁場 coupling $h\phi$ が作用内で無次元になるため
+
+$$
+y_h=d-\Delta_\phi=\frac{d+2-\eta}{2}.
+$$
+
+## 3. 他の指数を導く
+
+前章までの scaling relations から
+
+$$
+\gamma=\nu(2-\eta),
+\qquad
+\beta=\frac\nu2(d-2+\eta),
+$$
+
+$$
+\delta=\frac{d+2-\eta}{d-2+\eta},
+\qquad
+2-\alpha=d\nu
+$$
+
+を得る。$\nu=1/2+\epsilon/12$、$d=4-\epsilon$、$\eta=O(\epsilon^2)$ を代入し一次まで揃えると
+
+$$
+\gamma=1+\frac\epsilon6+O(\epsilon^2),
+$$
+
+$$
+\beta=\frac12-\frac\epsilon6+O(\epsilon^2),
+\qquad
+\alpha=\frac\epsilon6+O(\epsilon^2).
+$$
+
+途中で $O(\epsilon^2)$ の積を捨てる次数管理が必要である。
+
+## 4. scaling relation はなぜあるか
+
+臨界指数が独立でないのは、特異自由エネルギーが二つの relevant scaling field $t,h$ と空間次元からなる斉次関数だからである。例えば
+
+$$
+f_s(t,h)=|t|^{d/y_t}
+\Phi_\pm\left(h|t|^{-y_h/y_t}\right).
+$$
+
+$h$ 微分一回で $m$、二回で $\chi$ を得るため、同じ $y_t,y_h$ の組が複数の指数を決める。Widom、Rushbrooke、Fisher、Josephson/hyperscaling relations はこの構造の異なる表現である。
+
+ただし hyperscaling は $d>d_c$ で単純には破れる。長距離相互作用、quenched disorder、異方性、複数の長さスケールがある系では、どの仮定が残るかを再検討する。
+
+## 5. $\epsilon=1$ と置くとは何か
+
+**[Controlled perturbative result]** $\epsilon\ll1$ で有限次数までの誤差を次数で管理すること。
+
+**[Extrapolation]** 三次元を求めるため低次式へ $\epsilon=1$ を代入すること。例えば one-loop の $\nu=7/12\simeq0.583$ は方向性を捉えるが、現代の高精度値には及ばない。
+
+摂動級数は一般に収束級数とは限らず、しばしば factorial に増大する漸近級数である。それでも最適打切り、Borel 変換、conformal mapping、large-order 情報を用いる再総和で高精度を得られる。発散級数が役立つのは、有限次数の初期部分が小パラメータ領域の関数を良く近似し、発散の構造自体も追加情報をもつからである。
+
+ε=1での目安は次の通りである。one-loop値は低次外挿であり、精密値は第26部 §6のbootstrap値を代表として示す。
+
+| 指数 | 平均場 | one-loop $\epsilon=1$ | 精密値の代表 |
+|---|---:|---:|---:|
+| $\nu$ | $0.5$ | $0.5833$ | $\simeq0.62997$ |
+| $\eta$ | $0$ | $0$ | $\simeq0.03630$ |
+| $\gamma$ | $1$ | $1.1667$ | $\simeq1.23708$ |
+| $\beta$ | $0.5$ | $0.3333$ | $\simeq0.32642$ |
+
+Borel再総和とconformal mappingを用いた高次摂動の系統化は、Lipatovのlarge-order解析と Le Guillou–Zinn-Justin の再総和研究に基づく **[Resummed asymptotic expansion / Extrapolation]** である。有限次数の低次代入と、large-order情報を含む再総和を同じ証拠水準に置かない。
+
+## 5.1 初期値独立性を閉じた式で見る
+
+第5部で述べた「同じ固定点へ近づくなら指数が同じ」を、one-couplingの閉じた流れで確認する。IR向きRG時間 $\ell=\log b$ について
+
+$$
+\frac{dg}{d\ell}=\epsilon g-Ag^2,\qquad A>0
+$$
+
+を解く。$g_*=\epsilon/A$ と置き、$y=g/g_*$ とすれば
+
+$$
+\frac{dy}{d\ell}=\epsilon y(1-y).
+$$
+
+初期値 $g_0>0$ から
+
+$$
+g(\ell)=
+\frac{g_*}{1+\left(g_*/g_0-1\right)e^{-\epsilon\ell}}
+$$
+
+を得る。従って
+
+$$
+g(\ell)-g_*
+=-\frac{g_*\left(g_*/g_0-1\right)e^{-\epsilon\ell}}
+{1+\left(g_*/g_0-1\right)e^{-\epsilon\ell}}
+=O(e^{-\epsilon\ell})
+=O(b^{-\omega}),
+\qquad \omega=\epsilon .
+$$
+
+異なる正の初期値 $g_0$ は同じ $g_*$ へ近づき、差は correction-to-scaling 指数 $\omega$ で消える。指数 $\nu,\eta,\ldots$ は固定点とその線形化から決まるため、$g_0$ の非普遍な違いに依存しない **[Controlled one-loop demonstration]**。
+
+同じ理屈は $\phi^6$ 係数にも働く。$d=4-\epsilon$ のGaussian次元では
+
+$$
+y_6=d-6\frac{d-2}{2}=6-2d=-2+2\epsilon
+$$
+
+である。相互作用固定点では演算子混合を含むscaling field $w_6$ で判定するが、三次元Ising固定点の $\phi^6$ 方向は通常 irrelevant と扱われる。$y_6<0$ の範囲では
+
+$$
+\frac{dw_6}{d\ell}=y_6 w_6+\cdots,\qquad
+w_6(\ell)=w_6(0)e^{y_6\ell}+\cdots
+$$
+
+と減衰する。従ってミクロな $\phi^6$ 係数は有限スケール補正には現れるが、leading exponentを変えない。
+
+## 6. 「解けた」の意味
+
+Wilson–Fisher 固定点の存在を摂動的に示し指数を級数計算できることは、三次元 Ising 模型の closed-form exact solution を与えることとは違う。高次摂動、Monte Carlo、high-temperature expansion、conformal bootstrap、functional RG は相補的であり、一致が理論像を強く支持する。
+
+## 出典案内
+
+$4-\epsilon$ 次元の非Gaussian固定点と臨界指数展開の原論文は [Wilson–Fisher (1972)](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.28.240) である。small $\epsilon$ のcontrolled resultと $\epsilon=1$ への外挿を区別する。
+
+## 章末整理
+
+### この章で分かったこと
+
+$4-\epsilon$ 次元では canonical scaling と loop が釣り合い、弱結合の非 Gaussian 固定点が生じる。その線形化固有値が指数を決め、scaling relations が残りの指数を結び付ける。
+
+### よくある誤解
+
+- $\epsilon=1$ の低次代入は exact ではない。
+- fixed-point coupling の数値より、固有値・scaling dimension が普遍的である。
+- exact な flow equation と exact solution は同義ではない。
+
+### その結果、何が説明できるようになったか
+
+平均場値からの系統的ずれと、普遍指数が固定点の局所固有値になる理由を計算できる。
+
+### まだ説明できていないこと
+
+$\epsilon=1$ の高精度化に必要な高次再総和と、格子模型との厳密同定は未完である。
+
+### 次に自然に出てくる疑問
+
+同じ尺度依存は量子場理論の renormalization と EFT でどう表現されるか。
+
+
+

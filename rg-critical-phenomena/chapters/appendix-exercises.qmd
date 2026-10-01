@@ -1,0 +1,275 @@
+---
+title: '補遺C　理解確認問題と解答指針'
+sidebar: rg-critical-phenomena
+format:
+  html:
+    toc: true
+---
+
+## 問1　有限相関長
+
+有限な $\xi$ をもつ $G(r)=r^{-p}e^{-r/\xi}$ が連続 scale invariance を満たさないことを示せ。
+
+**解答指針:** $G(br)/G(r)=b^{-p}e^{-(b-1)r/\xi}$ は $r$ に依存するため、場の再規格化を表す定数倍だけでは元に戻らない。
+
+## 問2　1D Ising decimation
+
+$K'=\tfrac12\log\cosh(2K)$ について、有限 $K>0$ なら $K'<K$ を示し、固定点を求めよ。
+
+**解答指針:** $\cosh(2K)<e^{2K}$ を使う。$K=0$ と $K=\infty$ の意味を、有限温度相転移の有無と結び付ける。
+
+## 問3　新しい相互作用
+
+局所自由度を和で消すと、なぜ最近接二体相互作用だけに閉じないのかを、境界 spin の条件付き重みの積を考えて説明せよ。
+
+**解答指針:** $-\log$ を取った有効重みを、対称性が許す spin 積の完全基底で展開する。内部自由度を共有する経路が遠距離・多体結合を生む。
+
+## 問4　canonical dimension
+
+$\int d^dx(\partial\phi)^2/2$ を無次元に保って $[\phi]$ を求め、$\phi^n$ coupling の次元を導け。$d=3$ で $n=2,4,6$ を分類せよ。
+
+**解答指針:** $[g_n]=d-n(d-2)/2$。Gaussian 固定点での分類であることを明記する。
+
+## 問5　shell 積分
+
+$$
+I=\int_{\Lambda/b<|k|<\Lambda}\frac{d^dk}{(2\pi)^d}
+\frac1{k^2+r}
+$$
+
+を動径積分へ直し、$b=e^{\delta\ell}$ の薄い shell で $\delta\ell$ の一次まで求めよ。
+
+**解答指針:** $d^dk=S_{d-1}k^{d-1}dk$ を使い、積分区間の幅が $\Lambda\delta\ell$ であることを使う。分母を無断で $k^2$ に置換せず、どの近似をしたかを書く。
+
+## 問6　dangerously irrelevant
+
+$d>4$ の Landau potential $f=rm^2/2+um^4/4$ で、$u\to0$ を極小化の前に行うと何が壊れるか。
+
+**解答指針:** $r<0$ で安定な極小がなくなる。RG 固有値が負でも、scaling function が $u$ に特異なら観測量から消せない。
+
+## 問7　CLT と RG
+
+$T[p]=\operatorname{Law}((X_1+X_2)/\sqrt2)$ に対する第4 cumulant の固有倍率を求めよ。非 Gaussian 性が何回の反復でどう減るか述べよ。
+
+**解答指針:** $2^{1-4/2}=1/2$。$n$ 回で $2^{-n}$。
+
+## 問8　scheme dependence
+
+$\beta(g)=-bg^2-cg^3+O(g^4)$ と $\tilde g=g+ag^2+O(g^3)$ から $\tilde\beta=(d\tilde g/dg)\beta$ を計算し、どの係数がこの変換で保たれるか確認せよ。
+
+**解答指針:** $\tilde\beta=-b\tilde g^2-(c-ab)\tilde g^3+O(\tilde g^4)$ の形になる。一次の非線形再定義だけなら一ループ係数 $b$ は保存され、二ループ係数 $c$ も標準的な mass-independent coupling 再定義の範囲では物理的に保存される係数として扱われる。座標変換で flow 成分が変わることと、observable が任意になることを混同しない。
+
+## 問9　3D Ising の「解」
+
+高精度 bootstrap data が得られることと、格子分配関数の closed-form solution、scaling limit の厳密構成が異なる理由を説明せよ。
+
+**解答指針:** 仮定、入力、公理、出力、誤差保証の対象を分ける。
+
+## 問10　適用限界
+
+runaway flow から一次転移を直ちに断定できない理由を三つ挙げよ。
+
+**解答指針:** truncation 破綻、別の強結合固定点、変数選択、複素固定点による walking などを検討する。
+
+## 問11　有限サイズscaling
+
+$$
+m(t,h,L)=L^{-\beta/\nu}
+\mathcal M(tL^{1/\nu},hL^{y_h})
+$$
+
+から、$t=h=0$ における $\langle|m|\rangle$ と感受率の $L$ 依存を導け。
+
+**解答指針:** $\langle|m|\rangle\sim L^{-\beta/\nu}$。$\chi=L^d\langle m^2\rangle_c$ とhyperscalingを用いて $\chi\sim L^{\gamma/\nu}$。
+
+## 問12　Binder cumulant
+
+$U_4=1-\langle m^4\rangle/(3\langle m^2\rangle^2)$ が秩序変数のmetric factorに依存しないことを示し、異なる $L$ の曲線が臨界点近傍で交差する理由を述べよ。
+
+**解答指針:** $m\mapsto am$ の因子が比で相殺する。$U_4=\mathcal U(tL^{1/\nu},L^{-\omega})$ と書き、補正がなければ $t=0$ で同じ値になる。
+
+## 問13　1D transfer matrix
+
+$h=0$ の1D Ising transfer matrixの二固有値から
+
+$$
+\xi^{-1}=-\log(\tanh K)
+$$
+
+を導き、$K\to\infty$ の漸近形を求めよ。
+
+**解答指針:** connected correlationは $(\lambda_-/\lambda_+)^r$。$\tanh K=1-2e^{-2K}+\cdots$ から $\xi\sim e^{2K}/2$。
+
+## 問14　correction to scaling
+
+irrelevant固有値 $y_{\rm irr}=-\omega<0$ と温度固有値 $y_t=1/\nu$ から、熱力学極限の観測量に $|t|^{\omega\nu}$ 補正が現れることを示せ。
+
+**解答指針:** $b=|t|^{-\nu}$ と選び、$u_{\rm irr}b^{-\omega}=u_{\rm irr}|t|^{\omega\nu}$ をscaling functionで展開する。
+
+## 問15　lattice gas写像
+
+$n_i=(1+s_i)/2$ を用い、最近接lattice gas
+
+$$
+H=-\epsilon\sum_{\langle ij\rangle}n_in_j-\mu\sum_i n_i
+$$
+
+をIsing Hamiltonianへ変換せよ。coordination numberを $z$ としてparticle-hole対称点を求めよ。
+
+**解答指針:** pair項を展開し、各siteが $z$ bondsに属することを数える。零Ising外場から $\mu_c=-z\epsilon/2$。
+
+## 問16　Gaussian operator mixing
+
+Gaussian高速mode $\zeta$ について
+
+$$
+\langle(\phi+\zeta)^6\rangle
+$$
+
+をWick展開し、$\phi^6$ がどのlower monomialとmixingするか示せ。
+
+**解答指針:** $\phi^6+15C\phi^4+45C^2\phi^2+15C^3$。固有演算子にはlower-power subtractionが必要。
+
+## 問17　Goldstone赤外発散
+
+$$
+\int_{1/L}^{\Lambda}dk\,k^{d-3}
+$$
+
+を $d<2,d=2,d>2$ で評価し、連続対称性の下部臨界次元との関係を述べよ。
+
+**解答指針:** $d<2$ は $L^{2-d}$、$d=2$ は $\log L$、$d>2$ はIR有限。これは定理全体でなくspin-wave power counting。
+
+## 問18　$O(N)$ one-loop
+
+$$
+\nu=\frac12+\frac{N+2}{4(N+8)}\epsilon+O(\epsilon^2)
+$$
+
+について $N=1$ と $N\to\infty$ を取り、第8部およびlarge-$N$結果と比較せよ。
+
+**解答指針:** $N=1$ で $1/2+\epsilon/12$。$N\to\infty$ で $1/2+\epsilon/4$ は $1/(2-\epsilon)$ の一次展開。
+
+## 問19　scaling relations
+
+$\beta=(d-y_h)/y_t$、$\gamma=(2y_h-d)/y_t$、$\delta=y_h/(d-y_h)$ からWidom関係を導け。
+
+**解答指針:** $\beta(\delta-1)=[(d-y_h)/y_t][(2y_h-d)/(d-y_h)]=\gamma$。
+
+## 問20　Callan–Symanzik running
+
+$d\lambda/d\log\mu=3\lambda^2/(16\pi^2)$ を初期値 $\lambda(\mu_0)$ で解き、形式的Landau poleを求めよ。
+
+**解答指針:** $1/\lambda(\mu)=1/\lambda(\mu_0)-[3/(16\pi^2)]\log(\mu/\mu_0)$。分母ゼロは摂動記述の警告であり、UV挙動の完全な証明ではない。
+
+## 問21　tree-level matching
+
+重い場 $H$ に $gH\phi^2/2$ がcoupleする模型で平方完成を行い、$O(M^{-4})$ までの局所有効作用を導け。
+
+**解答指針:** $-g^2\phi^2(M^2-\partial^2)^{-1}\phi^2/8$ を展開し、$-g^2\phi^4/(8M^2)+g^2[\partial(\phi^2)]^2/(8M^4)$。
+
+## 問22　stable law
+
+$\varphi_*(k)=e^{-c|k|^\alpha}$ が $b$ 個の独立和を $b^{1/\alpha}$ で割る変換の固定点であることを示せ。
+
+**解答指針:** $\varphi_*(k/b^{1/\alpha})^b=e^{-bc|k|^\alpha/b}=\varphi_*(k)$。
+
+## 問23　二次元Ising CFT
+
+$\Delta_\sigma=1/8$、$\Delta_\varepsilon=1$ から $\eta,\nu,\beta,\delta$ を導け。
+
+**解答指針:** $\eta=2\Delta_\sigma=1/4$、$\nu=1/(2-\Delta_\varepsilon)=1$、$\beta=\nu\Delta_\sigma=1/8$、$\delta=(2-\Delta_\sigma)/\Delta_\sigma=15$。
+
+## 問24　bootstrap crossing
+
+四点関数の $12$ channelと $14$ channelを比較し
+
+$$
+v^{\Delta_\sigma}\mathcal G(u,v)
+=u^{\Delta_\sigma}\mathcal G(v,u)
+$$
+
+が得られることを、prefactorの変換を追って確認せよ。
+
+**解答指針:** $x_1\leftrightarrow x_3$ で $u\leftrightarrow v$ と外部距離prefactorが変わる。positivityはunitary・同一実scalarという追加仮定を要する。
+
+## 問25　Wetterich方程式
+
+modified Legendre transformからconnected propagatorが
+
+$$
+G_k=(\Gamma_k^{(2)}+R_k)^{-1}
+$$
+
+になることを示せ。
+
+**解答指針:** $\delta\phi/\delta J=W_k^{(2)}$ と $\delta J/\delta\phi=\Gamma_k^{(2)}+R_k$ が逆行列であることを使う。
+
+## 問26　FRGのmode分解
+
+$O(N)$ potential $U(\rho)$ のHessianを背景 $\phi=(\sqrt{2\rho},0,\ldots)$ で対角化せよ。
+
+**解答指針:** transverse $N-1$ 成分は $U'$、radial成分は $U'+2\rho U''$。LPAの $\eta=0$ はtruncationの定義である。
+
+## 問27　rigorous RGの論理
+
+perturbative beta functionが正しいことだけでは、なぜirrelevant remainder全体の制御にならないか。
+
+**解答指針:** 無限個の生成演算子、large field、全scaleでの誤差蓄積をnormで抑える必要がある。polymer activityの収縮とrelevant tuningを挙げる。
+
+## 問28　Harris criterion
+
+相関体積内の局所臨界温度揺らぎと平均距離を比較し、$d\nu_{\rm clean}>2$ を導け。
+
+**解答指針:** $\delta t_\xi\sim\xi^{-d/2}$、$|t|\sim\xi^{-1/\nu}$。比が0へ行く条件を求める。
+
+## 問29　replica平均
+
+分散 $\Delta$ のGaussian random massを平均し、replica間quartic項の符号と係数を求めよ。
+
+**解答指針:** $\mathbb E e^{-(1/2)\int\delta r A}=e^{(\Delta/8)\int A^2}$ なので、作用には $-(\Delta/8)(\sum_a\phi_a^2)^2$。
+
+## 問30　Model AとB
+
+Gaussian臨界点でModel AとModel Bの緩和率を求め、$z=2,4$ を導け。
+
+**解答指針:** Model Aは $\omega\sim k^2$、保存則をもつModel Bは追加の $k^2$ により $\omega\sim k^4$。
+
+## 問31　量子臨界fan
+
+$\xi_\tau\sim|g-g_c|^{-\nu z}$ と有限温度虚時間長 $1/T$ を比較し、crossover変数を求めよ。
+
+**解答指針:** $T/|g-g_c|^{\nu z}$、または $r/T^{1/(\nu z)}$。fanと有限温度classical critical regionを区別する。
+
+## 問32　fixed-point annihilation
+
+$dg/d\ell=\delta+g^2$ を積分し、$\delta>0$ でwalking scaleが $e^{\pi/\sqrt\delta}$ 型になることを示せ。
+
+**解答指針:** $\int_{-\infty}^{\infty}dg/(\delta+g^2)=\pi/\sqrt\delta$。有限だが巨大な相関長である。
+
+## 問33　BKTと通常scaling
+
+$\xi\sim\exp(b/\sqrt t)$ に対する有効指数
+
+$$
+\nu_{\rm eff}(t)=-\frac{d\log\xi}{d\log t}
+$$
+
+を求め、$t\to0^+$ の挙動を述べよ。
+
+**解答指針:** $\nu_{\rm eff}=b/(2\sqrt t)$ で発散する。有限の通常指数ではない。
+
+## 問34　KPZ scaling relation
+
+$x\mapsto bx,t\mapsto b^zt,h\mapsto b^\chi h$ の下で $\partial_t h$ と $(\nabla h)^2$ のscaleを比較し、非線形couplingがrenormalizeされない仮定の下で $\chi+z=2$ を導け。
+
+**解答指針:** 両項の指数は $\chi-z$ と $2\chi-2$。等置する。関係の根拠はtilt symmetryであり、単なる次元解析以上の仮定を含む。
+
+## 問35　総合課題
+
+具体的な一つの模型を選び、自由度、対称性、次元、保存則、disorder、候補有効作用、制御法、観測量、誤差診断を一ページで設計せよ。
+
+**解答指針:** 結論の数値より、どの仮定からどの証拠水準の結論が出るかを表にする。代替説明と失敗条件を最低一つ挙げる。
+
+
+

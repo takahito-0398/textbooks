@@ -1,0 +1,168 @@
+---
+title: '第29部　rigorous RG――何を定理として証明するのか'
+sidebar: rg-critical-phenomena
+format:
+  html:
+    toc: true
+---
+
+## 1. 物理的RG図を定理へ分解する
+
+「RGで臨界現象を説明した」という物理的主張には、数学的には別々の課題が含まれる。
+
+1. 有限格子・UV cutoffでmeasureが定義される。
+2. 熱力学極限と臨界点が存在する。
+3. covarianceをscaleごとに分解し、RG mapを制御できる。
+4. relevant parameterを調整した軌道が固定点近傍に留まる。
+5. correlation functionやsusceptibilityの漸近形を誤差付きで導く。
+6. continuum scaling limitの存在・一意性・普遍性を示す。
+
+一つの論文が全項目を任意の模型・次元で証明するわけではない。「rigorous RG」という名称だけで3D Ising universality全体の定理と解釈してはいけない。
+
+## 2. 有限range covariance decomposition
+
+Gaussian covarianceを
+
+$$
+C=\sum_{j=1}^NC_j
+$$
+
+とscale分解する。$C_j(x,y)$ は主に距離 $L^j$ の揺らぎを担い、有限rangeまたは高速減衰するよう構成する。場を独立Gaussian場の和
+
+$$
+\phi=\sum_{j=1}^N\zeta_j,
+\qquad
+\mathbb E[\zeta_j\zeta_j]=C_j
+$$
+
+と表せば、期待値を一scaleずつ積分できる。
+
+$$
+Z_{j+1}(\phi)=
+\mathbb E_{C_{j+1}}\!
+\left[Z_j(\phi+\zeta_{j+1})\right]
+$$
+
+型の写像がprogressive integrationである。momentum shellの直観を、確率measure間の厳密な反復へ置き換える。
+
+## 3. local couplingとpolymer activity
+
+積分後の有効相互作用を有限個のlocal relevant/marginal couplingだけで閉じることはできない。rigorous RGでは概略
+
+$$
+Z_j=e^{-V_j}(1+K_j)
+$$
+
+と分ける。
+
+- $V_j$: mass、quartic coupling、field-strength、vacuum energyなど選んだlocal polynomial。
+- $K_j$: blockの連結集合polymerに付随する非局所・高次 remainder。
+
+摂動計算でbeta functionを求めるだけでなく、適切なnormで
+
+$$
+\|K_{j+1}\|_{j+1}
+\le q\|K_j\|_j+\text{controlled source},
+\qquad q<1
+$$
+
+型の収縮を示し、捨てた全演算子の総効果を抑える。large-field regulator、field derivative、polymer sizeへの重みがnormに組み込まれる。
+
+典型的なpolymer normは、scale $j$ のblock集合 $X$ に支えられたactivity $K(X,\phi)$ に対し
+
+$$
+\|K\|_j=
+\sup_X A^{|X|}\sup_\phi
+\frac{1}{G_j(X,\phi)}
+\sum_{|\alpha|\le p}
+h_j^{|\alpha|}\left|D^\alpha K(X,\phi)\right|
+$$
+
+のように定義する。$A^{|X|}$ は大きいpolymerを罰し、$D^\alpha$ は場に関するFréchet微分、$h_j$ はscaleごとの場の大きさ、$G_j$ はlarge-field regulatorである。具体的な指数や微分次数は模型ごとに設計するが、目的は「局所couplingに入れなかった全remainderが全scaleで小さい」ことを数式にする点にある **[Rigorous RG norm schema]**。
+
+## 4. relevant方向のtuning
+
+massはrelevantなので、初期値を一般に選ぶと臨界trajectoryから離れる。臨界mass $m_c^2(g)$ を選び、反復が所望のstable manifold上に留まることを示す必要がある。
+
+有限次元の双曲型力学系ならstable manifold theoremが使えるが、RGはscale依存normをもつ無限次元写像である。rigorous proofでは
+
+- perturbative coordinateの逐次更新。
+- remainderの収縮。
+- relevant coordinateのboundary-value problem。
+- 全scaleでのuniform estimate。
+
+を組み合わせる。物理で「臨界面へtuneする」と一行で言う部分が証明の主要部になる。
+
+## 5. 四次元 $|\varphi|^4$ の対数補正
+
+$d=4$ ではquartic couplingがmarginalで、loop効果によりゆっくりゼロへ流れる。従ってGaussian leading powerにlogarithmic correctionが乗る。
+
+[Bauerschmidt–Brydges–Slade (2014)](https://arxiv.org/abs/1403.7424) は、四次元の $n$ 成分 $|\varphi|^4$ spin模型をsmall couplingなど明示した条件で解析し、critical two-point function、susceptibility、correlation length、specific heatのscalingと対数補正を導いた。
+
+この結果から言えるのは対象模型・次元・coupling regimeでの定理である。任意の四次元格子作用や三次元strong-coupling模型へ係数をそのまま移せない。
+
+## 6. marginal triviality
+
+[Aizenman–Duminil-Copin (2021)](https://arxiv.org/abs/1912.07973) は、四次元critical Isingおよび $\phi^4_4$ 模型のscaling limitがGaussianになるmarginal trivialityを、論文とcorrigendumで定式化した。
+
+Gaussian scaling limitでも臨界近傍に対数補正が存在しうる。「Gaussian」と「全てがfree lattice modelと有限scaleで一致」は同義ではない。また四次元のtrivialityを三次元Isingへ適用して非相互作用と結論してはいけない。
+
+## 7. small-$\epsilon$ 非Gaussian固定点
+
+[Brydges–Mitter–Scoppola (2003)](https://arxiv.org/abs/hep-th/0206040) は、三次元に近い階層をもつ long-range / fractional covarianceの $(\Phi^4)_{3,\epsilon}$ 模型で、十分小さい $\epsilon$ に対する非Gaussian fixed pointをrigorous RGで構成した。
+
+これはWilson–Fisher像の数学的実現として重要だが、nearest-neighbor simple-cubic 3D Isingのscaling limitを直接構成した定理ではない。模型のpropagator、dimension parameter、smallness条件を省略して引用してはならない。
+
+## 8. 三次元Isingで残る距離
+
+三次元Isingについて、相転移の存在、臨界点の一意性に関する多くの厳密結果、臨界・非臨界での相関不等式や幾何学的結果がある。一方、標準格子模型から
+
+- 回転・共形不変なlocal continuum fieldの構成。
+- Wilson–Fisher CFT spectrumとの同定。
+- bootstrap精度の臨界指数を定理として導出。
+
+を一括して与える完成済み証明はない。高精度数値・bootstrap・摂動RGの一致は非常に強い証拠だが、証明の未完部分を埋めたことにはならない。数学的現在地のoverviewは [Külske (2025)](https://doi.org/10.1007/s11040-025-09515-1) を参照する。
+
+## 9. rigorousとnumerical certificate
+
+computer-assisted proofやbootstrapのcertified boundも数学的に厳密な要素をもちうるが、対象命題が違う。
+
+- rigorous lattice RG: 特定measureのscale反復と極限を制御する。
+- numerical bootstrap certificate: 仮定したCFT crossing・unitarity・gapと両立しない領域を排除する。
+- Monte Carlo: 有限size・統計誤差・系統誤差のもとで格子observableを推定する。
+
+どれか一つを他の論理的入力なしに置き換えることはできない。複数方法の一致はcross-validationであり、仮定集合の和集合を忘れてはならない。
+
+## 証拠水準
+
+- 4D $|\varphi|^4$ 対数補正: 指定模型・small couplingの **[Rigorous theorem]**。
+- 4D marginal triviality: corrigendumを含む対象模型の **[Rigorous theorem]**。
+- $(\Phi^4)_{3,\epsilon}$ fixed point: sufficiently small $\epsilon$ の変形模型に対する **[Rigorous theorem]**。
+- standard short-range 3D Ising CFTへの同定: **[Strong physical evidence; mathematically incomplete]**。
+
+## 章末整理
+
+### この章で分かったこと
+
+rigorous RGはscale decomposition、local projection、polymer remainder、relevant tuning、uniform norm estimateを組み合わせる証明技法である。
+
+### その結果、何が説明できるようになったか
+
+4D logarithmic correction、marginal triviality、small-$\epsilon$非Gaussian固定点の各定理を、3D Isingの未解決部分と混同せず配置できる。
+
+### まだ説明できていないこと
+
+polymer normの具体的定義、cluster expansionの収束証明、3D short-range scaling limitの構成は未展開である。
+
+### よくある誤解
+
+- rigorous RG論文一つが全universality conjectureを証明するわけではない。
+- 4D Gaussian scaling limitは対数補正の不在を意味しない。
+- small-$\epsilon$変形模型の定理は標準3D Isingの定理ではない。
+
+### 次に自然に出てくる疑問
+
+quenched disorderやrandom fieldはclean fixed pointの安定性をどう変え、新しい普遍性を生むか。
+
+
+

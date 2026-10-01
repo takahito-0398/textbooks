@@ -1,0 +1,205 @@
+---
+title: '第23部　EFT matching――重い場を積分して係数を決める'
+sidebar: rg-critical-phenomena
+format:
+  html:
+    toc: true
+---
+
+## 1. toy UV理論
+
+軽い実scalar $\phi$ と質量 $M$ の重いscalar $H$ を含むEuclidean作用を
+
+$$
+S[\phi,H]=S_{\rm light}[\phi]
++\int d^dx\left[
+\frac12H(-\partial^2+M^2)H
++\frac g2H\phi^2
+\right]
+$$
+
+とする。全potentialが安定になるよう $S_{\rm light}$ に十分な $\phi^4$ 項などがあると仮定する。この模型は重い場の積分を解析的に行えるmatchingの教材である。
+
+観測する外部運動量を $E$ とし、$E\ll M$ を展開parameterとする。EFTの目的は $H$ を外線から消し、そのvirtual effectを $\phi$ だけの局所演算子で再現することである。
+
+## 2. Gaussian積分によるexactな非局所有効作用
+
+演算子
+
+$$
+A=-\partial^2+M^2,
+\qquad
+J=\frac g2\phi^2
+$$
+
+を使うと重い場部分は $H A H/2+JH$ である。平方完成
+
+$$
+\frac12HAH+JH
+=\frac12(H+A^{-1}J)A(H+A^{-1}J)
+-\frac12JA^{-1}J
+$$
+
+により
+
+$$
+\int\mathcal DH\,e^{-S[\phi,H]}
+\propto
+e^{-S_{\rm eff}[\phi]},
+$$
+
+$$
+S_{\rm eff}[\phi]
+=S_{\rm light}[\phi]
+-\frac{g^2}{8}\int d^dx\,d^dy\,
+\phi^2(x)G_M(x-y)\phi^2(y),
+$$
+
+$$
+G_M=(-\partial^2+M^2)^{-1}
+$$
+
+を得る。$H$ が二次式だけに現れる範囲では、この非局所作用はexactである。functional determinantはここでは $\phi$ に依存しない定数である。
+
+## 3. derivative expansion
+
+低運動量では
+
+$$
+\frac1{M^2-\partial^2}
+=\frac1{M^2}
+\left(1+\frac{\partial^2}{M^2}
++\frac{\partial^4}{M^4}+\cdots\right)
+$$
+
+と展開できる。従って
+
+$$
+S_{\rm eff}=S_{\rm light}
+-\frac{g^2}{8M^2}\int d^dx\,\phi^4
+-\frac{g^2}{8M^4}\int d^dx\,
+\phi^2\partial^2\phi^2+O(M^{-6}).
+$$
+
+このGaussian toyでは運動量表示の幾何級数であり、$|p^2|<M^2$ なら収束する低運動量Taylor展開である。一般のEFTのloop展開やthreshold近傍まで同じ収束性を仮定してはいけない。
+
+境界項を捨てて部分積分すれば
+
+$$
+-\int\phi^2\partial^2\phi^2
+=\int[\partial_\mu(\phi^2)]^2,
+$$
+
+なので、次の項は正符号の高階微分演算子になる。$H$ をon shellで生成できるthreshold $E\sim M$ ではこの低エネルギー展開を使えない。
+
+## 4. amplitude matchingで係数を検算する
+
+UV理論の $\phi\phi\to\phi\phi$ tree amplitudeには、重い $H$ の交換が三channelで現れる。Euclidean運動量の記号を使えば各propagatorは概略
+
+$$
+\frac{g^2}{M^2+p^2}
+=\frac{g^2}{M^2}
+\left(1-\frac{p^2}{M^2}+\cdots\right).
+$$
+
+三channelの零運動量部分は局所 $\phi^4$ vertexで再現される。相互作用を $\lambda\phi^4/4!$ と書く規約では、上の有効作用のquartic項は
+
+$$
+\Delta\lambda=-\frac{3g^2}{M^2}
+$$
+
+に対応する。符号はEuclidean作用、頂点、amplitudeの規約と一緒に確認する必要があるが、Gaussian積分と三channel計算が同じ係数を与えることが本質である。
+
+matchingではUVとEFTを同じ外部状態・同じrenormalization scheme・同じ次数で比較する。EFT側にもlight-field loopがあり、それは両側で共通なので、差からshort-distance Wilson coefficientを抽出する。
+
+## 5. operator basisと冗長性
+
+同じ次数に複数の演算子が存在する。部分積分、低次の運動方程式、局所場の再定義によりS-matrixへ同じ効果をもつ演算子を除ける。例えば
+
+$$
+\phi^2\partial^2\phi^2
+$$
+
+と $[\partial(\phi^2)]^2$ は部分積分で等価である。basisを変えると個々のWilson coefficientは変わるが、observableは変わらない。
+
+運動方程式を使う操作はoff-shell Green関数を単純には保存しない一方、適切な局所場再定義として扱えばon-shell observableを保存する。どのquantityをmatchingしているかを明記する必要がある。
+
+## 6. power countingと誤差
+
+演算子 $\mathcal O_i$ の次元を $\Delta_i$ とすると
+
+$$
+\mathcal L_{\rm EFT}
+=\sum_i\frac{C_i}{M^{\Delta_i-d}}\mathcal O_i.
+$$
+
+典型運動量 $E$ での寄与は、係数・loop factor・対称性による追加抑制を別にして $(E/M)^{\Delta_i-d}$ と見積もる。ただし、作用の $1/M$ の冪とamplitudeの相対誤差を混同してはいけない。
+
+本章の交換propagatorでは
+
+$$
+\frac{g^2}{M^2+p^2}
+=\frac{g^2}{M^2}
+\left[
+1-\frac{p^2}{M^2}
++\frac{p^4}{M^4}
++O\!\left(\frac{p^6}{M^6}\right)
+\right].
+$$
+
+$1/M^4$ のderivative項、すなわち括弧内の $p^2/M^2$ まで保持すると、最初の省略amplitudeは絶対的には $g^2p^4/M^6$、leading $g^2/M^2$ に対する相対誤差は $O((E/M)^4)$ である。誤差次数は、残したoperatorと観測量の次元を揃えて報告する。
+
+対称性がlower-dimensional operatorを禁止する場合、高次元演算子がleadingになる。逆に小さい係数を「自然」と仮定するだけで誤差を過小評価してはいけない。loop matchingなら $1/(4\pi)^2$、複数coupling、対数もpower countingに含める。
+
+## 7. matching scaleとrunning
+
+$\mu\sim M$ でmatchingすると $\log(M/\mu)$ を小さくできる。その後Wilson coefficientはoperator mixingを含む
+
+$$
+\mu\frac d{d\mu}C_i(\mu)
+=\sum_j\gamma_{ij}C_j(\mu)
+$$
+
+に従って低scaleへ走る。低エネルギーmatrix element側の $\mu$ 依存と相殺し、observableは所定次数で $\mu$ に依存しない。
+
+mass-independentなMS schemeでは重い場のbeta function寄与が $\mu<M$ で自動的に消えない。thresholdでUV理論からEFTへ切り替えるmatchingがdecouplingを実装する。[Appelquist–Carazzone (1975)](https://doi.org/10.1103/PhysRevD.11.2856) のdecouplingも、gauge symmetry、mass生成機構、観測量などの仮定を外して「重い粒子は常に影響ゼロ」と一般化してはならない。
+
+## 8. Wilson RGとの接続
+
+重い場を積分して非局所作用を得て、低運動量で局所演算子へ展開する操作は、Wilsonianな「短距離自由度の影響を全許容演算子へ移す」考えの具体例である。
+
+irrelevant operatorが重要でないという意味はゼロではなく、指定精度で高いpowerに抑制されるという意味である。EFTはこの抑制を定量的な誤差予算へ変える。
+
+## 証拠水準
+
+- 重いGaussian場の非局所作用: toy模型内の **[Exact Gaussian integration]**。
+- $E/M$ derivative expansion: $E\ll M$ の **[Controlled asymptotic expansion]**。
+- tree amplitude matching: 指定したoperator basisと規約の **[Perturbative matching result]**。
+- decoupling: [Appelquist–Carazzone](https://doi.org/10.1103/PhysRevD.11.2856) の仮定内の定理で、一般的な影響ゼロの主張ではない。
+
+## 章末整理
+
+### この章で分かったこと
+
+重いGaussian場をexactに積分し、非局所有効作用を $1/M$ で展開してWilson coefficientを求められる。
+
+### その結果、何が説明できるようになったか
+
+matching、operator basis、power counting、threshold runningを一つの具体例で接続できる。
+
+### まだ説明できていないこと
+
+loop-level matching、gauge field、非decouplingの具体例、非摂動matrix elementは未展開である。
+
+### よくある誤解
+
+- 重い場を消すとは影響を捨てることではない。影響を局所係数へ移す。
+- nonrenormalizable operatorはEFTの破綻ではない。
+- matching coefficient単体はbasis・schemeに依存しうる。
+
+### 次に自然に出てくる疑問
+
+独立変数の加算と再尺度化では、Gaussian以外の固定分布と収束速度をどう分類できるか。
+
+
+

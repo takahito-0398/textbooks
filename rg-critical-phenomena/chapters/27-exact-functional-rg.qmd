@@ -1,0 +1,229 @@
+---
+title: '第27部　exact functional RG equation――PolchinskiとWetterich'
+sidebar: rg-critical-phenomena
+format:
+  html:
+    toc: true
+---
+
+## 1. 「exact」の意味を限定する
+
+functional RGは、有限個のcouplingだけでなく作用汎関数全体のscale依存を方程式にする。代表的な二形式は
+
+- Wilsonian interaction actionを流すPolchinski方程式。
+- IR-regulated 1PI effective actionを流すWetterich方程式。
+
+である。両方とも正則化されたfunctional integralの恒等式としてexactである。しかし無限個の関数・演算子を含む方程式を有限truncationで解けば、その解はapproximateである。
+
+## 2. Polchinski方程式の設定
+
+UV cutoffに依存するregulated propagatorを $C_\Lambda(p)$ とし
+
+$$
+S_\Lambda[\phi]
+=\frac12\phi\cdot C_\Lambda^{-1}\cdot\phi
++S_{I,\Lambda}[\phi]
+$$
+
+と分ける。内積記号は運動量積分を含む。cutoffを下げても分配関数が変わらないよう $S_{I,\Lambda}$ を調整する。
+
+IR向き時刻
+
+$$
+t=\log\frac{\Lambda_0}{\Lambda},
+\qquad
+\dot C_\Lambda=\partial_t C_\Lambda
+$$
+
+を使う一つの規約では、$t$ が増えるほど $\Lambda$ は下がり、Polchinski方程式はIR向きに流れる。field-independent定数を除いて
+
+$$
+\partial_tS_{I,\Lambda}
+=\frac12\frac{\delta S_I}{\delta\phi}
+\cdot\dot C_\Lambda\cdot
+\frac{\delta S_I}{\delta\phi}
+-\frac12\operatorname{Tr}\left(
+\dot C_\Lambda
+\frac{\delta^2S_I}{\delta\phi\,\delta\phi}
+\right).
+$$
+
+第一項は二つのinteraction vertexを一本のscale shell propagatorで結ぶtree型項、第二項は一つのvertex内を縮約するloop型項である。見かけ上one-loop構造でも、右辺にfull $S_I$ が入るため摂動one-loop近似ではない。この式は指定したcutoff下の **[Exact functional identity]** である。[Polchinski (1984)](https://doi.org/10.1016/0550-3213(84)90287-6)
+
+## 3. total functional derivativeからの導出
+
+分配関数
+
+$$
+Z_\Lambda=\int\mathcal D\phi\,
+\exp\left[
+-\frac12\phi C_\Lambda^{-1}\phi-S_{I,\Lambda}
+\right]
+$$
+
+の $t$ 微分をゼロにしたい。functional integration by partsで
+
+$$
+0=\int\mathcal D\phi\,
+\frac{\delta}{\delta\phi}\cdot
+\left[
+\frac12\dot C_\Lambda
+\left(
+\frac{\delta S_I}{\delta\phi}
++C_\Lambda^{-1}\phi
+\right)e^{-S_\Lambda}
+\right]
+$$
+
+型のtotal derivativeを挿入し、Gaussian kernelの微分と組み合わせると前節のflowを得る。境界項が消えること、measureとregulatorが定義されていることを仮定する。
+
+この導出は、RG flowを「物理理論が変わる時間発展」ではなく、同じpartition functionを異なるcutoffで表す補償変換として示す。
+
+## 4. effective average action
+
+Wetterich形式では低運動量modeを抑えるIR regulator
+
+$$
+\Delta S_k[\varphi]
+=\frac12\int\frac{d^dq}{(2\pi)^d}
+\varphi(-q)R_k(q)\varphi(q)
+$$
+
+を加える。望ましい $R_k$ は概略
+
+$$
+R_k(q)\sim k^2\quad(q^2\ll k^2),
+\qquad
+R_k(q)\to0\quad(q^2\gg k^2)
+$$
+
+を満たし、$q\lesssim k$ のmodeにmassを与える。
+
+$$
+W_k[J]=\log\int\mathcal D\varphi\,
+e^{-S[\varphi]-\Delta S_k[\varphi]+J\cdot\varphi}
+$$
+
+とし、平均場 $\phi=\delta W_k/\delta J$ を使ってmodified Legendre transform
+
+$$
+\Gamma_k[\phi]
+=J\cdot\phi-W_k[J]-\Delta S_k[\phi]
+$$
+
+を定義する。最後に $\Delta S_k[\phi]$ を引くことで、$k\to0$ では通常の1PI effective actionへ戻る。
+
+## 5. Wetterich方程式の導出
+
+$t=\log k$ と置く。この規約では $t$ が増えるほど $k$ も増えるのでUV向きであり、IRへ解くときは $k$ を下げる、すなわち $t$ を減らす向きに積分する。Legendre transformを固定した平均場 $\phi$ で微分すると、$J$ の微分項は相殺され
+
+$$
+\partial_t\Gamma_k[\phi]
+=\frac12\operatorname{Tr}
+\left[
+\langle\varphi\varphi\rangle-\phi\phi
+\right]\partial_tR_k.
+$$
+
+connected二点関数はmodified Legendre transformの逆Hessianなので
+
+$$
+G_k=(\Gamma_k^{(2)}+R_k)^{-1}.
+$$
+
+従って
+
+$$
+\boxed{
+\partial_t\Gamma_k[\phi]
+=\frac12\operatorname{Tr}\left[
+(\Gamma_k^{(2)}[\phi]+R_k)^{-1}
+\partial_tR_k
+\right]}
+$$
+
+を得る。ここで
+
+$$
+\langle\varphi\varphi\rangle_c
+=\langle\varphi\varphi\rangle-\phi\phi
+$$
+
+なので、角括弧はconnected二点関数そのものである。これがWetterich方程式であり、正則化されたfunctional integralの **[Exact functional identity]** である。[Wetterich (1993)](https://doi.org/10.1016/0370-2693(93)90726-X)
+
+## 6. one-loop形だがone-loop近似でない
+
+通常のone-loop effective action
+
+$$
+\Gamma_{\rm 1loop}=S+\frac12\operatorname{Tr}\log S^{(2)}
+$$
+
+をscale微分した形に似ている。しかしWetterich式のpropagatorにはbare Hessian $S^{(2)}$ でなくfull running Hessian $\Gamma_k^{(2)}$ が入る。この自己無撞着性により全loop次数を含む。
+
+一方、右辺を評価するには $\Gamma_k$ の全field・momentum依存を知る必要がある。有限ansatzへ射影した瞬間にtruncation errorが入る。
+
+## 7. UV初期条件とIR極限
+
+$k=\Lambda$ で $R_\Lambda$ を十分大きく選ぶと揺らぎが凍り
+
+$$
+\Gamma_\Lambda\simeq S
+$$
+
+を初期条件にできる。そこから $k$ を0へ下げるとmodeが順次解放され
+
+$$
+\Gamma_{k\to0}=\Gamma
+$$
+
+となる。
+
+有限cutoffのEFTでは $\Gamma_\Lambda=S$ を定義として置けるが、continuum limitを主張するにはbare parameterのcutoff依存とUV fixed pointを別途調べる必要がある。
+
+## 8. 両形式の関係
+
+Polchinski作用は「まだ積分していない低modeのためのWilsonian action」、Wetterich作用は「$q\gtrsim k$ の揺らぎを取り込んだIR-regulated 1PI action」である。適切なLegendre変換とregulator対応の下で関係付けられるが、同じ汎関数ではない。
+
+比較するときは少なくとも
+
+- cutoffがUV抑制かIR抑制か。
+- flow parameterがUV向きかIR向きか。
+- connected、Wilsonian、1PIのどの生成汎関数か。
+- field-independent vacuum termを残すか。
+
+を揃える必要がある。
+
+## 9. 証拠水準
+
+- Polchinski/Wetterich方程式: regulatorとmeasureを定義した上での **[Exact functional identity]**。
+- $\Gamma_\Lambda\simeq S$: regulatorが揺らぎを十分抑えるUV初期条件についての **[Regulator-dependent limiting statement]**。
+- LPA、derivative expansion、vertex expansion: exact式を有限ansatzへ射影する **[Systematic truncation / nonperturbative approximation]**。
+- truncationで得た固定点・指数: 収束とregulator安定性を別途示す **[Numerical approximation]**。
+
+## 章末整理
+
+### この章で分かったこと
+
+分配関数またはmodified Legendre transformのscale不変性から、Polchinski方程式とWetterich方程式を導ける。
+
+### その結果、何が説明できるようになったか
+
+exact RG equationのexact性と、実際の有限truncationの近似性を明確に分離できる。
+
+### まだ説明できていないこと
+
+具体的なpotential flow、regulator依存性、臨界指数の数値収束は次章へ残る。
+
+### よくある誤解
+
+- 右辺がtrace一個でも摂動one-loopだけを含む式ではない。
+- exact flow equationを持つことはexact solutionを得たことではない。
+- Polchinski作用と1PI effective actionは同じ汎関数ではない。
+
+### 次に自然に出てくる疑問
+
+無限次元のWetterich方程式を、誤差を監査できる有限の近似へどう落とすか。
+
+
+

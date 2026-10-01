@@ -7,6 +7,7 @@ project:
     - "buffer-overflow/**/*.qmd"
     - "noncommutative-geometry/**/*.qmd"
     - "complex-geometry/**/*.qmd"
+    - "rg-critical-phenomena/**/*.qmd"
 
 website:
   title: "AI教科書ポータル"
@@ -29,6 +30,8 @@ website:
         href: noncommutative-geometry/index.qmd
       - text: "複素幾何"
         href: complex-geometry/index.qmd
+      - text: "繰り込み群・臨界現象"
+        href: rg-critical-phenomena/index.qmd
     right:
       - icon: github
         href: "https://github.com/takahito-0398/textbooks"
@@ -179,6 +182,92 @@ website:
         href: complex-geometry/chapters/14-complex-tori-and-boundaries.qmd
       - text: "参考文献と確認方針"
         href: complex-geometry/chapters/references.qmd
+  - id: rg-critical-phenomena
+    title: "繰り込み群・臨界現象"
+    style: docked
+    collapse-level: 1
+    contents:
+      - rg-critical-phenomena/index.qmd
+      - text: '第1部　相転移・臨界現象・普遍性という謎'
+        href: rg-critical-phenomena/chapters/01-phenomena.qmd
+      - text: '第2部　Landau 理論は何を説明し、なぜ破れるのか'
+        href: rg-critical-phenomena/chapters/02-landau-fluctuations.qmd
+      - text: '第3部　相関長、スケール不変性、べき則'
+        href: rg-critical-phenomena/chapters/03-correlation-scaling.qmd
+      - text: '第4部　Ising 模型から最初の繰り込み群へ'
+        href: rg-critical-phenomena/chapters/04-block-spin.qmd
+      - text: '第5部　理論空間、RG 流、固定点、普遍性'
+        href: rg-critical-phenomena/chapters/05-theory-space.qmd
+      - text: '第6部　Landau–Ginzburg–Wilson 場の理論と Fourier 空間'
+        href: rg-critical-phenomena/chapters/06-lgw-fourier.qmd
+      - text: '第7部　momentum-shell RG を一段ずつ計算する'
+        href: rg-critical-phenomena/chapters/07-momentum-shell.qmd
+      - text: '第8部　epsilon 展開、Wilson–Fisher 固定点、臨界指数'
+        href: rg-critical-phenomena/chapters/08-wilson-fisher.qmd
+      - text: '第9部　量子場理論の繰り込み、running coupling、EFT'
+        href: rg-critical-phenomena/chapters/09-qft-eft.qmd
+      - text: '第10部　確率論、力学系、共形場理論'
+        href: rg-critical-phenomena/chapters/10-probability-cft.qmd
+      - text: '第11部　QCD、functional RG、3D Ising、rigorous RG'
+        href: rg-critical-phenomena/chapters/11-modern-rg.qmd
+      - text: '第12部　RG の限界と現在地'
+        href: rg-critical-phenomena/chapters/12-limits-open.qmd
+      - text: '第13部　有限サイズ scaling'
+        href: rg-critical-phenomena/chapters/13-finite-size-scaling.qmd
+      - text: '第14部　1D・2D・3D Ising 模型'
+        href: rg-critical-phenomena/chapters/14-ising-across-dimensions.qmd
+      - text: '第15部　scaling field、crossover、corrections to scaling'
+        href: rg-critical-phenomena/chapters/15-scaling-fields-corrections.qmd
+      - text: '第16部　液体–気体臨界点はなぜ Ising 型なのか'
+        href: rg-critical-phenomena/chapters/16-liquid-gas-universality.qmd
+      - text: '第17部　実空間RG'
+        href: rg-critical-phenomena/chapters/17-real-space-rg.qmd
+      - text: '第18部　Gaussian模型とRG固有演算子'
+        href: rg-critical-phenomena/chapters/18-gaussian-fixed-point.qmd
+      - text: '第19部　O(N) 模型'
+        href: rg-critical-phenomena/chapters/19-on-model.qmd
+      - text: '第20部　O(N)模型のone-loop RG'
+        href: rg-critical-phenomena/chapters/20-on-one-loop.qmd
+      - text: '第21部　scaling relations'
+        href: rg-critical-phenomena/chapters/21-scaling-relations.qmd
+      - text: '第22部　countertermとCallan–Symanzik方程式'
+        href: rg-critical-phenomena/chapters/22-counterterms-cs.qmd
+      - text: '第23部　EFT matching'
+        href: rg-critical-phenomena/chapters/23-eft-matching.qmd
+      - text: '第24部　確率分布のRG'
+        href: rg-critical-phenomena/chapters/24-probability-rg.qmd
+      - text: '第25部　二次元CFT'
+        href: rg-critical-phenomena/chapters/25-two-dimensional-cft.qmd
+      - text: '第26部　三次元conformal bootstrap'
+        href: rg-critical-phenomena/chapters/26-conformal-bootstrap.qmd
+      - text: '第27部　exact functional RG equation'
+        href: rg-critical-phenomena/chapters/27-exact-functional-rg.qmd
+      - text: '第28部　functional RGの近似'
+        href: rg-critical-phenomena/chapters/28-frg-truncations.qmd
+      - text: '第29部　rigorous RG'
+        href: rg-critical-phenomena/chapters/29-rigorous-rg.qmd
+      - text: '第30部　disorderとRG'
+        href: rg-critical-phenomena/chapters/30-disorder-rg.qmd
+      - text: '第31部　動的臨界現象'
+        href: rg-critical-phenomena/chapters/31-dynamic-criticality.qmd
+      - text: '第32部　量子臨界現象'
+        href: rg-critical-phenomena/chapters/32-quantum-criticality.qmd
+      - text: '第33部　固定点に到達しないRG'
+        href: rg-critical-phenomena/chapters/33-beyond-fixed-points.qmd
+      - text: '第34部　非平衡RGと乱流'
+        href: rg-critical-phenomena/chapters/34-nonequilibrium-turbulence.qmd
+      - text: '第35部　統合――RGで問題を解く手順と未解決問題'
+        href: rg-critical-phenomena/chapters/35-synthesis-open-problems.qmd
+      - text: '補遺A　RG計算のための数学道具'
+        href: rg-critical-phenomena/chapters/appendix-mathematical-tools.qmd
+      - text: '補遺B　統計力学の最小復習'
+        href: rg-critical-phenomena/chapters/appendix-stat-mech-review.qmd
+      - text: '補遺C　理解確認問題と解答指針'
+        href: rg-critical-phenomena/chapters/appendix-exercises.qmd
+      - text: '参考文献と主張対応表'
+        href: rg-critical-phenomena/chapters/bibliography.qmd
+      - text: '概念史――何が初めて理解可能になったか'
+        href: rg-critical-phenomena/chapters/history.qmd
 
 format:
   html:

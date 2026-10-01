@@ -1,0 +1,164 @@
+---
+title: '第24部　確率分布のRG――Gaussian basin、stable law、収束補正'
+sidebar: rg-critical-phenomena
+format:
+  html:
+    toc: true
+---
+
+## 1. block和を変換として定義する
+
+まず平均0、または対称でlocation shiftを必要としない独立同分布な確率変数 $X_1,\ldots,X_b$ の分布を $p$ とし、再尺度化した和
+
+$$
+Y=b^{-1/\alpha}\sum_{i=1}^bX_i
+$$
+
+の分布を $T_{b,\alpha}[p]$ とする。特性関数 $\varphi(k)=\mathbb E[e^{ikX}]$ は
+
+$$
+\varphi_{T[p]}(k)
+=\varphi(k/b^{1/\alpha})^b
+$$
+
+と変換する。統計力学のblock spinと同じく、合成、再尺度化、固定点、basin of attractionを問える。
+
+一般の分布では規格化和からcentering列 $a_b$ を引き、$Y=b^{-1/\alpha}(\sum_iX_i-a_b)$ とする。平均が有限なら通常 $a_b=b\mathbb E[X]$ を用いる。中心化を忘れると平均方向はrelevantで、反復ごとに増幅される。
+
+## 2. 有限分散とGaussian固定点
+
+平均0、分散 $\sigma^2<\infty$ なら $\alpha=2$ を選ぶ。原点近傍で
+
+$$
+\log\varphi(k)
+=-\frac{\sigma^2k^2}{2}+o(k^2)
+$$
+
+だから
+
+$$
+b\log\varphi(k/\sqrt b)
+\longrightarrow-\frac{\sigma^2k^2}{2}.
+$$
+
+Gaussian特性関数へ収束する。有限分散domainでは、分布の歪度や尖度など多くのmicroscopic detailが規格化和のleading limitから消える。
+
+高次cumulantが存在する解析的部分classでは
+
+$$
+\kappa_n'=b^{1-n/2}\kappa_n.
+$$
+
+$n>2$ はirrelevant、分散は規格化で固定、平均は中心化で除く。この固有値表示は見通しがよいが、古典的CLT自体は全高次momentを要求しない。
+
+## 3. 収束速度とcorrection to scaling
+
+三次絶対moment $\rho=\mathbb E|X|^3<\infty$ があれば、Berry–Esseen型評価は規格化和の累積分布 $F_n$ と標準Gaussian $\phi$ の差を
+
+$$
+\sup_x|F_n(x)-\Phi(x)|
+\le \frac{C\rho}{\sigma^3\sqrt n}
+$$
+
+と抑える。これは固定点への接近速度がleading irrelevant dataと仮定に依存する具体例である。定数 $C$ の最良値を本章では必要としない。
+
+十分なmomentと正則性があればEdgeworth展開により、歪度に比例する $n^{-1/2}$ 補正、尖度や歪度二乗に比例する $n^{-1}$ 補正を系統化できる。ただしtail全域で一様に有効とは限らず、有限次数展開を正の確率密度として扱えるとも限らない。
+
+## 4. 無限分散とstable固定点
+
+tailが重く分散が発散する場合、$\sqrt n$ 規格化は適切でない。$0<\alpha<2$ の対称stable lawの代表的特性関数は
+
+$$
+\varphi_*(k)=\exp(-c|k|^\alpha)
+$$
+
+である。実際
+
+$$
+\varphi_*(k/b^{1/\alpha})^b
+=\exp\left[-bc\frac{|k|^\alpha}{b}\right]
+=\varphi_*(k)
+$$
+
+だから $T_{b,\alpha}$ の固定点である。$\alpha=2$ はGaussianに対応し、$\alpha<2$ では分散が有限でない。
+
+したがって「和を取れば常にGaussian」は誤りである。初期分布のtailとnorming sequenceがどのstable lawのbasinへ入るかを決める。さらに非対称stable lawにはskewnessとlocation parameterがあり、上の式は対称な最小例である。
+
+## 5. generalized CLTの仮定
+
+単に分散が無限というだけで同じ $\alpha$-stable lawへ収束するわけではない。tailのregular variationと左右tailの比、適切な中心化列・規格化列などdomain-of-attraction条件が必要である。
+
+逆に有限分散でも収束速度は任意に遅くなりうる。有限sampleでGaussianに見えないことだけから、非Gaussian極限を結論してはいけない。固定点の同定とcrossover scaleの推定を分ける必要がある。
+
+## 6. 独立性を外すと何が変わるか
+
+相関した変数の和の分散は
+
+$$
+\operatorname{Var}\left(\sum_{i=1}^nX_i\right)
+=n\operatorname{Var}(X_0)
++2\sum_{r=1}^{n-1}(n-r)\operatorname{Cov}(X_0,X_r).
+$$
+
+相関が十分速く減衰してcovariance和が収束すれば、追加条件の下で $n^{1/2}$ scalingとGaussian極限が残ることがある。臨界点のように相関がpower lawで長距離に及ぶと、分散のscale自体が変わり、block変数は非Gaussianな相互作用固定点へ流れうる。
+
+これが「臨界現象はCLTの破れ」と言われる一つの意味である。ただし相関があるだけでCLTが必ず破れるわけではなく、mixing条件や相関のsummabilityを調べる必要がある。
+
+## 7. large deviationとの違い
+
+CLTは平均近傍の典型的な $O(n^{1/2})$ 揺らぎを記述する。large deviation principleは標本平均が $O(1)$ ずれる稀な事象を
+
+$$
+\mathbb P\left(\frac1n\sum_iX_i\approx x\right)
+\asymp e^{-nI(x)}
+$$
+
+のrate function $I(x)$ で記述する。両者は同じ分布の異なるscaling regimeであり、Gaussian fixed pointだけでtail確率全体を近似してはいけない。
+
+自由エネルギーとcumulant generating functionのLegendre構造はlarge deviationと統計力学を結ぶが、非凸性、相共存、非解析性では単純なLegendre変換の解釈に注意が要る。
+
+## 8. 類比の到達点と限界
+
+確率分布RGはuniversalityを最も透明に示す模型の一つである。しかし独立和ではblock間相互作用が生成されず、臨界場のRGより単純である。
+
+- Gaussian CLT固定点: 独立性、有限分散、$\sqrt n$ scaling。
+- stable固定点: heavy tail、$n^{1/\alpha}$ scaling。
+- 臨界固定点: 長距離相関、空間構造、局所相互作用、anomalous dimension。
+
+共通するのは「粗視化後に形を保つ分布」と「初期条件のbasin」であり、固定点の内容まで同一ではない。確率論との構造的対応は [Jona-Lasinio (2000)](https://arxiv.org/abs/cond-mat/0009219) を参照。
+
+## 9. 証拠水準
+
+- 有限分散i.i.d. CLT: **[Rigorous theorem under finite-variance assumptions]**。
+- Berry–Esseen評価: **[Rigorous bound under a finite third absolute moment]**。
+- stable lawへの一般化CLT: **[Rigorous theorem under domain-of-attraction and centering assumptions]**。
+- 長距離相関から非Gaussian fixed pointが生じるという一般論: 個々の依存構造に追加条件を要する **[Structural analogy / model-dependent theorem]**。
+
+CLT、stable law、収束速度の定理と仮定は [Feller, Vol. II](https://doi.org/10.1002/9780470316388) を参照する。
+
+## 章末整理
+
+### この章で分かったこと
+
+block和のRGにはGaussianだけでなくstable固定点があり、moment・tail・依存性がbasinと収束速度を決める。
+
+### その結果、何が説明できるようになったか
+
+CLTの普遍性、correction to scaling、heavy-tail例外、臨界相関による非Gaussian極限を一つの枠組みで比較できる。
+
+### まだ説明できていないこと
+
+依存変数CLTの厳密なmixing条件、stable lawの完全分類、確率場のtightness証明は未展開である。
+
+### よくある誤解
+
+- 独立な和が常に $\sqrt n$ でGaussianへ収束するとは限らない。
+- 高次cumulant展開は有限分散CLTの必要条件ではない。
+- CLTはlarge-deviation tail全体を記述しない。
+
+### 次に自然に出てくる疑問
+
+二次元ではscale invarianceがVirasoro対称性へ拡張すると、相関関数とoperator spectrumはどこまで決まるか。
+
+
+

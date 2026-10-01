@@ -1,0 +1,193 @@
+---
+title: '第26部　三次元conformal bootstrap――crossingから臨界指数を囲い込む'
+sidebar: rg-critical-phenomena
+format:
+  html:
+    toc: true
+---
+
+## 1. 四点関数に残る自由度
+
+同一scalar primary $\sigma$ の四点関数はconformal symmetryにより
+
+$$
+\langle\sigma(x_1)\sigma(x_2)
+\sigma(x_3)\sigma(x_4)\rangle
+=\frac{\mathcal G(u,v)}
+{|x_{12}|^{2\Delta_\sigma}|x_{34}|^{2\Delta_\sigma}}
+$$
+
+と書ける。独立な座標依存性はcross ratio
+
+$$
+u=\frac{x_{12}^2x_{34}^2}{x_{13}^2x_{24}^2},
+\qquad
+v=\frac{x_{14}^2x_{23}^2}{x_{13}^2x_{24}^2}
+$$
+
+だけに残る。二点・三点関数と違い、関数 $\mathcal G(u,v)$ は対称性だけでは一意に決まらない。
+
+## 2. OPEとconformal block
+
+$12\to0$ channelでOPEを挿入すると
+
+$$
+\mathcal G(u,v)
+=\sum_{\mathcal O\in\sigma\times\sigma}
+\lambda_{\sigma\sigma\mathcal O}^2
+g_{\Delta_\mathcal O,\ell_\mathcal O}(u,v).
+$$
+
+$g_{\Delta,\ell}$ はconformal blockで、primary $\mathcal O$ と全descendantの寄与をkinematicsからまとめた既知関数である。未知量はoperator dimensionとOPE係数である。
+
+同一の実scalarを反射正値なunitary CFTで扱うと、適切な規格化で
+
+$$
+\lambda_{\sigma\sigma\mathcal O}^2\ge0.
+$$
+
+このpositivityが数値最適化を可能にする。非unitary理論では同じ不等式を使えない。
+
+## 3. crossing equation
+
+同じ四点関数を $14\to0$ channelで展開しても結果は一致しなければならない。従って
+
+$$
+v^{\Delta_\sigma}\mathcal G(u,v)
+=u^{\Delta_\sigma}\mathcal G(v,u).
+$$
+
+block展開を代入すれば、恒等演算子の寄与と他の全演算子の寄与が満たす無限次元のsum ruleになる。
+
+数値bootstrapは、crossing式へ作用する線形汎関数 $\alpha$ を探す。仮定したspectrumに対し、恒等演算子では一方の符号、許された全blockでは反対の符号を取る $\alpha$ が見つかれば、そのspectrumはcrossingとpositivityに矛盾するため排除される。
+
+これは特定のLagrangianを摂動展開する計算ではない。CFT公理に近い整合条件から許容dataを外側から削る方法である。
+
+最小例では、crossing式を
+
+$$
+\sum_{\mathcal O}\lambda_{\sigma\sigma\mathcal O}^2 F_{\Delta,\ell}(u,v)=0
+$$
+
+と書き、対称点 $u=v=1/4$ の近傍で
+
+$$
+\alpha[F]=\sum_{m+n\le\Lambda}a_{mn}
+\partial_u^m\partial_v^n F\big|_{u=v=1/4}
+$$
+
+という有限個の微分汎関数を選ぶ。unitarityにより $\lambda^2\ge0$ なので、仮定した全非恒等演算子に $\alpha[F_{\Delta,\ell}]\ge0$、恒等演算子に $\alpha[F_{\mathbf1}]>0$ が成り立つなら、和はゼロになれず、そのspectrum仮定は排除される **[Finite-dimensional numerical bootstrap certificate]**。実際の計算ではこの条件を半正定値計画問題へ変換し、$\Lambda$、spin cutoff、gap仮定を上げて安定性を調べる。
+
+## 4. unitarity boundとspin
+
+$d\ge3$ のunitary CFTではprimary dimensionに下限がある。scalarでは
+
+$$
+\Delta\ge\frac{d-2}{2},
+$$
+
+spin $\ell>0$ のsymmetric traceless operatorでは
+
+$$
+\Delta\ge \ell+d-2.
+$$
+
+後者の等号は保存currentに対応する。stress tensorは spin 2、$\Delta=d$ でboundを飽和する。これらの条件とglobal symmetry sectorをcrossingに組み込むことで制約が強くなる。
+
+## 5. single-correlator boundからislandへ
+
+$\langle\sigma\sigma\sigma\sigma\rangle$ だけでも、最初の $\mathbb Z_2$-even scalar $\varepsilon$ のdimensionにboundを与えられる。しかしIsing CFTを小さいislandへ絞るには、$\sigma$ と $\varepsilon$ のmixed correlator群
+
+$$
+\langle\sigma\sigma\sigma\sigma\rangle,
+\quad
+\langle\sigma\sigma\varepsilon\varepsilon\rangle,
+\quad
+\langle\varepsilon\varepsilon\varepsilon\varepsilon\rangle
+$$
+
+のcrossingを同時に課し、sectorごとのspectrum gapなどを仮定する。
+
+islandの幅はderivative truncation、spin cutoff、数値精度を上げると縮むが、結果の論理的強さは入力仮定に依存する。「小さいislandが見えた」だけでCFTの存在・一意性や格子Isingからの収束が証明されたとは限らない。
+
+## 6. 2025年の三次元Ising data
+
+[Chang et al. (2025)](https://arxiv.org/abs/2411.15300) はstress tensorを含むmixed-correlator bootstrapから、明示したgapとunitary CFT仮定の下で
+
+$$
+\Delta_\sigma=0.518148806(24),
+\qquad
+\Delta_\varepsilon=1.41262528(29)
+$$
+
+を報告した。括弧の $(24)$、$(29)$ は最後の表示桁に対する不確かさを表す。これは入力されたCFT公理、gap仮定、有限の数値探索設定、丸め・外挿管理の下で得られた数値的に認証された島の幅であり、格子Ising模型のscaling limit存在を同時に証明するものではない。本書ではこれを **[Conditional certified numerical bound under stated bootstrap assumptions]** と分類する。
+
+臨界指数への変換は
+
+$$
+\eta=2\Delta_\sigma-(d-2),
+\qquad
+\nu=\frac1{d-\Delta_\varepsilon}
+$$
+
+である。$d=3$ を代入すると
+
+$$
+\eta=0.036297612(48),
+\qquad
+\nu=0.62997097(12).
+$$
+
+さらに
+
+$$
+\beta=\nu\Delta_\sigma\approx0.3264187,
+\qquad
+\gamma=\nu(2-\eta)\approx1.2370755.
+$$
+
+最後の桁の誤差伝播では入力間相関が必要であり、ここでの丸め値に独立誤差を勝手に付けない。
+
+## 7. stress tensorとcentral charge
+
+stress tensorの二点関数係数 $C_T$ は三次元CFTの普遍dataであり、Ward identityにより $\lambda_{\sigma\sigma T}$ と $\Delta_\sigma$ に結ばれる。$C_T$ を精密化するにはstress tensorが唯一の保存spin-2演算子であることなど、sectorの同定が重要になる。
+
+二次元のcentral charge $c$ と同様の役割を一部担うが、三次元ではVirasoro代数のcentral termそのものではない。次元をまたいで記号だけを同一視しない。
+
+## 8. bootstrapが答えない問い
+
+bootstrapは「仮定したCFT公理とspectrum条件を満たすdata」を制約する。次は別問題である。
+
+- 具体的格子Hamiltonianが臨界点をもつこと。
+- scaling limitが存在して局所CFTになること。
+- その極限がbootstrap island内のCFTと一致すること。
+- 非普遍な $T_c$ やmetric factorを求めること。
+
+Monte Carlo、high-temperature expansion、実験、摂動RGとの一致は同定を強く支持するが、各方法の仮定と誤差を合算せず並列に示す必要がある。bootstrapの方法論と証拠水準は [Rychkov–Su (2024)](https://doi.org/10.1103/RevModPhys.96.045004) を参照。
+
+## 章末整理
+
+### この章で分かったこと
+
+四点関数のOPE associativity、crossing、unitarity positivityからCFT spectrumとOPE係数を数値的に制約できる。
+
+### その結果、何が説明できるようになったか
+
+三次元Isingの高精度指数がどの仮定と変換式から得られるか、islandが何を証明し何を証明しないかを区別できる。
+
+### まだ説明できていないこと
+
+conformal blockの再帰計算、semidefinite programming、truncation収束の実装は未展開である。
+
+### よくある誤解
+
+- bootstrapは格子模型を直接simulationする方法ではない。
+- 数値islandは無仮定の存在・一意性証明ではない。
+- 高精度の指数とclosed-form exact solutionは同義ではない。
+
+### 次に自然に出てくる疑問
+
+固定点から離れた全trajectoryを、無限個の演算子を保つfunctional RG equationでどう記述するか。
+
+
+

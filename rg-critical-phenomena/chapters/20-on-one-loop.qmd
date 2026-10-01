@@ -1,0 +1,263 @@
+---
+title: '第20部　$O(N)$模型のone-loop RG――組合せ係数から指数まで'
+sidebar: rg-critical-phenomena
+format:
+  html:
+    toc: true
+---
+
+## 1. 規約と目標
+
+$d=4-\epsilon$ で
+
+$$
+S=\int d^dx\left[
+\frac12(\nabla\boldsymbol\phi)^2
++\frac r2\boldsymbol\phi^2
++\frac u{4!}(\boldsymbol\phi^2)^2
+\right]
+$$
+
+を考える。無次元couplingを
+
+$$
+g=K_du\Lambda^{-\epsilon},
+\qquad
+K_d=\frac{S_{d-1}}{(2\pi)^d}
+$$
+
+と定義し、WilsonのIR向き時刻 $\ell=\log(\Lambda_{\rm UV}/k)$ を使う。以下の係数はこの規約に依存するが、同じ規約で求めた固定点固有値は普遍的である。
+
+目標は
+
+$$
+\frac{dg}{d\ell}
+=\epsilon g-\frac{N+8}{6}g^2+O(g^3),
+$$
+
+$$
+\frac{d\tilde r}{d\ell}
+=2\tilde r+\frac{N+2}{6}\frac{g}{1+\tilde r}
++O(g^2)
+$$
+
+を導き、$N=1$ で第7部の係数 $3/2$ と $1/2$ を再現することである。
+
+## 2. quartic vertexのtensor構造
+
+相互作用を成分で微分すると、四点vertexのindex tensorは
+
+$$
+V_{abcd}=\frac u3
+(\delta_{ab}\delta_{cd}
++\delta_{ac}\delta_{bd}
++\delta_{ad}\delta_{bc})
+$$
+
+となる。$N=1$ では括弧が3なので通常のvertex $u$ に戻る。
+
+one-loop四点関数には、外線の組分けに対応する $s,t,u$ 三channelがある。括弧内のtensorを
+
+$$
+T_{abcd}=
+\delta_{ab}\delta_{cd}
++\delta_{ac}\delta_{bd}
++\delta_{ad}\delta_{bc}
+$$
+
+と書く。一つのchannelを内部index $i,j$ で縮約すると
+
+$$
+T_{abij}T_{ijcd}
+=(N+4)\delta_{ab}\delta_{cd}
++2\delta_{ac}\delta_{bd}
++2\delta_{ad}\delta_{bc}.
+$$
+
+例えば $\delta_{ab}\delta_{ij}\delta_{ij}\delta_{cd}$ が $N\delta_{ab}\delta_{cd}$ を与え、残りのcross contractionが定数4と2を作る。外部indexを $(ab|cd)$、$(ac|bd)$、$(ad|bc)$ に組み替えた三channelを足せば
+
+$$
+T_{abij}T_{ijcd}
++T_{acij}T_{ijbd}
++T_{adij}T_{ijbc}
+=(N+8)T_{abcd}.
+$$
+
+従ってloop補正は元と同じ唯一の $O(N)$ invariant quartic tensorへ閉じる。
+
+$N$ の項は閉じた内部index loop $\delta_{ii}=N$ から、定数項は外部indexを交差させる複数の縮約から来る。この構造にshell積分
+
+$$
+I_2(r)=\int_{\rm shell}\frac{d^dq}{(2\pi)^d}
+\frac1{(q^2+r)^2}
+=K_d\frac{\Lambda^d}{(\Lambda^2+r)^2}d\ell
+$$
+
+と第二cumulantの負符号を組み合わせると
+
+$$
+\delta u=-\frac{N+8}{6}u^2I_2(r)
+$$
+
+を得る。$N=1$ なら $(N+8)/6=3/2$ である。
+
+## 3. tadpoleとmassの係数
+
+二点関数のone-loop補正はtadpoleである。外部成分を $a,b$ とすると、vertexの残り二本を内部で縮約して
+
+$$
+V_{abii}=\frac u3
+(\delta_{ab}\delta_{ii}
++2\delta_{ai}\delta_{bi})
+=\frac u3(N+2)\delta_{ab}.
+$$
+
+diagramの対称係数 $1/2$ を含めれば
+
+$$
+\delta r=\frac{N+2}{6}uI_1(r),
+\qquad
+I_1(r)=\int_{\rm shell}\frac{d^dq}{(2\pi)^d}
+\frac1{q^2+r}.
+$$
+
+$N=1$ では $\delta r=uI_1/2$ に戻る。tadpoleは外部運動量に依存しないため、この次数では波動関数繰り込みを生じず
+
+$$
+\eta=0+O(g^2)=O(\epsilon^2)
+$$
+
+である。
+
+## 4. rescalingとbeta function
+
+shell積分後に $k'=bk$、$\phi'(x')=b^{(d-2)/2}\phi_<(x)$ としてcutoffを戻す。$\tilde r=r/\Lambda^2$ と $g$ に直すと
+
+$$
+\beta_g\equiv\frac{dg}{d\ell}
+=\epsilon g-\frac{N+8}{6}
+\frac{g^2}{(1+\tilde r)^2}+O(g^3),
+$$
+
+$$
+\beta_{\tilde r}\equiv\frac{d\tilde r}{d\ell}
+=2\tilde r+\frac{N+2}{6}
+\frac{g}{1+\tilde r}+O(g^2).
+$$
+
+$\tilde r$ の定数項は臨界面のadditive shiftを表す。したがって物理的な温度型scaling fieldは $t_R\propto\tilde r-\tilde r_c(g)$ と取る。
+
+## 5. Wilson–Fisher固定点
+
+$g_*=O(\epsilon)$、$\tilde r_*=O(\epsilon)$ として一次まで解くと
+
+$$
+g_*=\frac{6\epsilon}{N+8}+O(\epsilon^2),
+$$
+
+$$
+\tilde r_*=-\frac{N+2}{12}g_*+O(\epsilon^2)
+=-\frac{N+2}{2(N+8)}\epsilon+O(\epsilon^2).
+$$
+
+$g_*$ の正値性には $N>-8$ が必要だが、通常の $O(N)$ spin模型では正整数 $N$ を考える。固定点座標はcutoffやcoupling規約に依存する。
+
+quartic方向の線形化固有値は
+
+$$
+y_g=\left.\frac{\partial\beta_g}{\partial g}\right|_*
+=-\epsilon+O(\epsilon^2),
+$$
+
+でIR irrelevantである。leading correction-to-scaling exponentはこの次数で $\omega=\epsilon+O(\epsilon^2)$ となる。
+
+## 6. 温度固有値と$\nu$
+
+mass方向の微分は
+
+$$
+y_t=\left.\frac{\partial\beta_{\tilde r}}
+{\partial\tilde r}\right|_*
+=2-\frac{N+2}{6}g_*+O(\epsilon^2)
+=2-\frac{N+2}{N+8}\epsilon+O(\epsilon^2).
+$$
+
+従って
+
+$$
+\nu=\frac1{y_t}
+=\frac12+\frac{N+2}{4(N+8)}\epsilon
++O(\epsilon^2).
+$$
+
+$N=1$ では $\nu=1/2+\epsilon/12$。$N\to\infty$ では一次式は $\nu=1/2+\epsilon/4+\cdots$ となり、large-$N$ exact leading result $1/(d-2)=1/(2-\epsilon)=1/2+\epsilon/4+\cdots$ と整合する。
+
+二loopで初めて
+
+$$
+\eta=\frac{N+2}{2(N+8)^2}\epsilon^2
++O(\epsilon^3)
+$$
+
+が現れる。この式だけ二loopから借り、他をone-loopのまま混ぜる場合は、全体が一貫した $O(\epsilon^2)$ 精度になったとは言えない。
+
+## 7. 他の指数と検算
+
+hyperscalingが成り立つ $d<4$ の固定点で
+
+$$
+\alpha=2-d\nu,
+\qquad
+\beta=\frac\nu2(d-2+\eta),
+\qquad
+\gamma=\nu(2-\eta)
+$$
+
+を使う。one-loop精度では $\eta=0$ として
+
+$$
+\alpha=\frac{4-N}{2(N+8)}\epsilon+O(\epsilon^2),
+$$
+
+$$
+\beta=\frac12-\frac{3}{2(N+8)}\epsilon+O(\epsilon^2),
+\qquad
+\gamma=1+\frac{N+2}{2(N+8)}\epsilon+O(\epsilon^2).
+$$
+
+$N=1$ を代入すると第8部の $\alpha=\epsilon/6$、$\beta=1/2-\epsilon/6$、$\gamma=1+\epsilon/6$ を全て再現する。これは規約と組合せ係数の有効なunit checkである。
+
+## 8. 証拠水準と適用限界
+
+ここで導いたのは **[Controlled perturbative result]** $\epsilon\ll1$ における有限次数展開である。三次元へ $\epsilon=1$ を代入するのは **[Extrapolation]** であり、高精度には高loop計算と再総和が必要である。
+
+$N=2$ の二次元極限へ $\epsilon=2$ を低次代入してもBKT fixed lineとvortexを再現できない。$4-\epsilon$ 展開はquartic Landau–Ginzburg固定点近傍の局所的制御法であり、全ての次元・topological sectorを一つの低次式で覆うものではない。
+
+標準的な $O(N)$ 指数と高次結果の整理は [Pelissetto–Vicari (2002)](https://doi.org/10.1016/S0370-1573(02)00219-3)、$4-\epsilon$ の原型は [Wilson–Fisher (1972)](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.28.240) を参照。
+
+## 章末整理
+
+### この章で分かったこと
+
+$O(N)$ のindex contractionから $(N+2)$ と $(N+8)$ が生じ、固定点と指数の $N$ 依存性をone-loopで導ける。
+
+### その結果、何が説明できるようになったか
+
+Isingの係数を一般成分数へ拡張し、$N=1$ とlarge-$N$ の二方向で式を検算できる。
+
+### まだ説明できていないこと
+
+高loop再総和、BKT sector、cubic anisotropy、複合演算子の完全なmixing行列は扱っていない。
+
+### よくある誤解
+
+- beta functionの係数はcoupling規約を揃えず比較できない。
+- $\eta=0$ はone-loopの結果でありexact resultではない。
+- $\epsilon=1$ や2への低次代入はcontrolled small-$\epsilon$ resultではない。
+
+### 次に自然に出てくる疑問
+
+scaling relationとhyperscalingは、自由エネルギーの斉次性からどこまで導け、dangerously irrelevant variableでどう破れるか。
+
+
+

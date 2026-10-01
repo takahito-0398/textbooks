@@ -1,0 +1,208 @@
+---
+title: '第34部　非平衡RGと乱流――flux、KPZ、異常scaling'
+sidebar: rg-critical-phenomena
+format:
+  html:
+    toc: true
+---
+
+## 1. 平衡RGから何が変わるか
+
+平衡臨界現象ではBoltzmann分布、free energy、detailed balanceが強い制約を与える。非平衡steady stateでは
+
+- 外部からのenergy・粒子注入。
+- 小scaleでの散逸。
+- 非零のprobability current。
+- fluctuation–dissipation relationの破れ。
+
+があり、静的自由エネルギーを最小化するだけでは分布を決められない。それでも長距離・長時間modeを粗視化し、scale不変なsteady stateとrelevant operatorを探すRGの発想は使える。
+
+## 2. Navier–Stokesのscale
+
+非圧縮速度場 $\boldsymbol v$ は
+
+$$
+\partial_t\boldsymbol v
++(\boldsymbol v\cdot\nabla)\boldsymbol v
+=-\nabla p+\nu\nabla^2\boldsymbol v
++\boldsymbol f,
+\qquad
+\nabla\cdot\boldsymbol v=0
+$$
+
+に従う。forcing $\boldsymbol f$ が大scaleでenergyを注入し、粘性 $\nu$ が小scaleで散逸する。両者の間のinertial rangeでは、平均energy flux $\varepsilon$ がscaleに依存せず伝達されるという描像を用いる。
+
+粘性・forcingの詳細がinertial-range leading lawから消えることはuniversalityに似るが、平衡fixed pointと同じmeasureを仮定してはいけない。
+
+## 3. Kolmogorov dimensional scaling
+
+速度差
+
+$$
+\delta v_L(r)=
+[\boldsymbol v(\boldsymbol x+\boldsymbol r)
+-\boldsymbol v(\boldsymbol x)]
+\cdot\frac{\boldsymbol r}{r}
+$$
+
+の $p$ 次structure functionを
+
+$$
+S_p(r)=\langle[\delta v_L(r)]^p\rangle
+$$
+
+とする。inertial rangeで $\varepsilon$ と $r$ だけが関係すると仮定すれば
+
+$$
+[\varepsilon]=L^2T^{-3},
+\qquad
+\delta v(r)\sim(\varepsilon r)^{1/3},
+$$
+
+$$
+S_p(r)\sim C_p(\varepsilon r)^{p/3}.
+$$
+
+これは **[Heuristic dimensional scaling]** Kolmogorov 1941 predictionである。特に高Reynolds数、局所等方・一様・stationaryという仮定のinertial rangeでは、longitudinal三次structure functionに
+
+$$
+\left\langle[\delta v_L(r)]^3\right\rangle
+=-\frac45\varepsilon r
+$$
+
+を与える4/5 lawがあり、Navier–Stokes方程式と仮定から得る **[Exact inertial-range relation under stated assumptions]** である。[Frisch (1995)](https://doi.org/10.1017/CBO9781139170666)
+
+## 4. intermittencyとanomalous exponent
+
+実際の高次structure functionは
+
+$$
+S_p(r)\sim r^{\zeta_p}
+$$
+
+と書いたとき、一般に
+
+$$
+\zeta_p\ne\frac p3
+$$
+
+となる。散逸が空間的に間欠的で、単一scaling dimensionだけでは高次momentを記述できないためである。
+
+臨界現象のcomposite operatorが独自のanomalous dimensionをもつように、乱流でも速度差の高次演算子・multifractal spectrumが重要になる。ただしNavier–Stokes乱流の制御されたfixed point計算は平衡 $\phi^4$ より難しく、現象論・数値・exact relation・RG近似の証拠水準を分ける。
+
+## 5. 二次元と三次元のcascade
+
+三次元ではenergyが大scaleから小scaleへ流れるdirect cascadeが基本である。二次元非圧縮流ではenergyとenstrophyの二つの保存量があり、
+
+- energyのinverse cascade。
+- enstrophyのdirect cascade。
+
+という二重cascadeが生じる。したがって「粗視化すると常にUV自由度の影響が消える」という一方向の直観だけではfluxの向きを説明できない。
+
+RG scaleと物理的energy transferの向きも同義ではない。RGは記述scaleの変換、cascadeは非線形dynamicsによる保存量fluxである。
+
+## 6. KPZ方程式
+
+成長界面の高さ $h(\boldsymbol x,t)$ に対するKardar–Parisi–Zhang方程式は
+
+$$
+\partial_th
+=\nu\nabla^2h
++\frac\lambda2(\nabla h)^2
++\eta,
+$$
+
+$$
+\langle\eta(x,t)\eta(x',t')\rangle
+=2D\,\delta^{(d)}(x-x')\delta(t-t')
+$$
+
+である。界面粗さと時間scaleを
+
+$$
+\langle[h(x,t)-h(0,t)]^2\rangle
+\sim |x|^{2\chi},
+\qquad
+t\sim x^z
+$$
+
+で定義する。
+
+tilt/Galilean型対称性が保たれる設定では
+
+$$
+\chi+z=2
+$$
+
+という指数関係を得る。これは平衡hyperscalingでなく、非平衡方程式固有の対称性Ward identityに由来する。[Kardar–Parisi–Zhang (1986)](https://doi.org/10.1103/PhysRevLett.56.889)
+
+## 7. KPZのcouplingと次元
+
+無次元有効couplingは概略
+
+$$
+g\sim\frac{\lambda^2D}{\nu^3}k^{d-2}
+$$
+
+である。$d=2$ が摂動power counting上のmarginal dimensionになる。$d<2$ ではnonlinearityがrelevantである。一次元のstationary KPZ classでは、fluctuation–dissipation型の定常measureが $\chi=1/2$ を与え、tilt relation $\chi+z=2$ と合わせて **[Exact exponent relation in 1D under the standard KPZ assumptions]**
+
+$$
+\chi=\frac12,\qquad z=\frac32
+$$
+
+が得られる。[Kardar–Parisi–Zhang (1986)](https://doi.org/10.1103/PhysRevLett.56.889)
+
+$d>2$ ではweak-coupling smooth phaseとstrong-coupling rough phaseの可能性があり、strong-coupling fixed pointは単純な低次摂動では制御しにくい。functional RG、数値、exactly solvable geometryの結果を適用範囲付きで比較する。
+
+## 8. absorbing state
+
+absorbing configurationから自発的に脱出できないstochastic systemでは、定常activityが秩序変数になる。contact processなどのgenericな単一absorbing-state transitionはdirected percolation universalityに入ることが多い。
+
+しかし追加の保存則、複数absorbing state、quenched disorder、long-range processは別classを生む。「対称性と次元だけ」でなく、absorbing constraintとnoiseの秩序変数依存性もtheory spaceの一部である。directed percolationへの同定と例外のreviewは [Hinrichsen (2000)](https://doi.org/10.1080/00018730050198152) を参照する。
+
+## 9. 非平衡での検証
+
+非平衡RGの主張を検証するときは
+
+- forcingとdissipationのscale separation。
+- steady state到達と初期条件依存。
+- equal-timeとdynamic observableの区別。
+- response/correlationの独立測定。
+- probability distributionのtailとrare event。
+
+を確認する。有限rangeのpower lawだけでfixed pointを断定しない原則は平衡系と同じである。
+
+## 10. 証拠水準
+
+- Kolmogorov $p/3$: **[Heuristic dimensional scaling]**。
+- 4/5 law: 局所等方・一様・stationary inertial rangeでの **[Exact relation under stated assumptions]**。
+- intermittency exponent: 主に **[Experimental/numerical evidence and phenomenology]**。一般の第一原理閉形式解はない。
+- KPZ $\chi+z=2$: tilt symmetryを保つ設定の **[Ward-identity scaling relation]**。
+- 1D KPZ指数: standard KPZ classの **[Exact exponent result]**。高次元strong couplingへ無条件に移さない。
+
+## 章末整理
+
+### この章で分かったこと
+
+平衡free energyがなくても、flux、動的作用、対称性、scale変換を用いて非平衡universalityを組織できる。
+
+### その結果、何が説明できるようになったか
+
+Kolmogorov scalingとintermittency、cascadeとRGの違い、KPZの $\chi+z=2$、absorbing-state classを比較できる。
+
+### まだ説明できていないこと
+
+Navier–Stokes intermittency exponentの第一原理計算、KPZ高次元strong coupling、active matterの分類は未解決である。
+
+### よくある誤解
+
+- RG flowの向きとenergy cascadeの向きは同じ概念ではない。
+- $p/3$ 則は全高次momentのexact lawではない。
+- 非平衡steady stateが常に有効free energyをもつとは限らない。
+
+### 次に自然に出てくる疑問
+
+ここまでの方法を一つの問題解決手順へ統合すると、何を入力し、どの証拠水準で結論すべきか。
+
+
+

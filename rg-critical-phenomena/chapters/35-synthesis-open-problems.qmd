@@ -1,0 +1,204 @@
+---
+title: '第35部　統合――RGで問題を解く手順と未解決問題'
+sidebar: rg-critical-phenomena
+format:
+  html:
+    toc: true
+---
+
+## 1. 中心命題
+
+繰り込み群の中心命題は「粗視化すると細部が消える」だけではない。正確には、
+
+> 観測scaleを変えたとき、有効理論が理論空間を流れ、固定点・固定集合・遅いflowの近傍では少数のscaling fieldが長距離挙動を支配する。
+
+という構造である。普遍性はmicroscopic detailの不在ではなく、detailに対応する方向の多くがirrelevantであることから生じる。
+
+## 2. 問題設定の手順
+
+新しい臨界問題では次を順に固定する。
+
+1. **自由度**: spin、密度、場、界面、vortex、fermion、gauge field。
+2. **対称性**: global/local、離散/連続、明示的・自発的破れ。
+3. **次元とrange**: 空間次元、虚時間、long-range kernel、境界。
+4. **ensembleとdisorder**: quenched/annealed、保存量、外場。
+5. **dynamics**: 平衡静的、保存則、detailed balance、driving。
+6. **観測量**: correlation、response、amplitude ratio、spectrum、transport。
+
+この入力が違えば、同じ記号 $\phi^4$ が現れても同じuniversality classとは限らない。
+
+## 3. 有効作用を構成する
+
+指定した自由度と対称性から、許される局所演算子を
+
+$$
+S_{\rm eff}=\sum_i g_i\int d^dx\,\mathcal O_i
+$$
+
+と列挙する。次元解析でrelevant/marginal候補を優先するが、次を例外として監査する。
+
+- symmetryによりleading operatorが禁止される。
+- topological defectが局所polynomialに見えない。
+- gapless modeを積分して非局所kernelが生じる。
+- dangerously irrelevant operatorがordered phaseや有限サイズを支配する。
+- quenched disorderがreplica間相互作用を生成する。
+
+「対称性が許す全演算子」は無限個だが、所望精度のpower countingで有限個に整理するのがEFT/RGである。
+
+## 4. 制御parameterを選ぶ
+
+計算法ごとに何が小さいかを明示する。
+
+| 方法 | 制御または検証軸 | 主な弱点 |
+|---|---|---|
+| $4-\epsilon$ 展開 | $\epsilon\ll1$ | $\epsilon=1,2$ は再総和・外挿 |
+| large $N$ | $1/N\ll1$ | 小さい $N$ への外挿 |
+| weak coupling loop | coupling小 | strong couplingで破綻 |
+| derivative expansion FRG | momentum滑らか、次数収束 | 明示的小parameterがない場合 |
+| finite-size scaling | $L\gg a$、補正をfit | crossover・弱い一次転移 |
+| bootstrap | CFT、unitarity、crossing、gap | 格子scaling limitを直接構成しない |
+| rigorous RG | 指定模型・norm・smallness条件 | 適用模型が限定される |
+
+方法の名前でなく、small parameter、truncation、入力仮定、収束検査を報告する。
+
+## 5. 固定点と観測量を結ぶ
+
+静的な $d$ 次元Euclidean bulk理論の固定点 $g^*$ で
+
+$$
+\frac{d\,\delta g_i}{d\ell}
+=\sum_jB_{ij}\delta g_j,
+\qquad
+B_{ij}=\left.\frac{\partial\beta_i}{\partial g_j}\right|_{g^*}
+$$
+
+を対角化する。摂動を $\int d^dx\,g_i\mathcal O_i$ と書くこの静的規約では、固有値 $y_i$ とoperator dimensionは
+
+$$
+\Delta_i=d-y_i
+$$
+
+で結ばれる。温度・磁場sectorなら
+
+$$
+\nu=\frac1{y_t},
+\qquad
+\eta=d+2-2y_h
+$$
+
+である。
+
+量子臨界点で作用measureが $d^dx\,d\tau$、$\tau\mapsto b^z\tau$ とscaleする場合、局所時空演算子へのcouplingは
+
+$$
+\Delta_i=d+z-y_i
+$$
+
+型になる。動的応答汎関数ではresponse fieldを含む各項の時空scalingを別々に数える。従って $\Delta=d-y$ や $\eta=d+2-2y_h$ を量子・動的・境界問題へ無条件に流用しない。
+
+次にfree-energy scaling、OPE、Ward identity、dynamic scalingなど、その問題に適切な橋を使ってobservableへ変換する。固定点座標そのものをobservableと誤認しない。
+
+## 6. 証拠水準の共通ラベル
+
+本書では結論を次のように区別する。
+
+- **[Exact identity/definition]**: 正則化された積分、Legendre変換、代数恒等式。
+- **[Rigorous theorem under assumptions]**: 仮定を列挙した数学的定理。
+- **[Controlled perturbative result]**: 小parameterと誤差次数がある。
+- **[Systematic truncation]**: 次数を上げられるが収束証明が別途必要。
+- **[Conditional numerical bound]**: bootstrapなど入力仮定下のcertificate。
+- **[Numerical/experimental evidence]**: 統計・系統誤差を伴う。
+- **[Heuristic scaling argument]**: Imry–Ma、Ginzburg、dimensional estimate。
+- **[Extrapolation/conjecture]**: 制御領域外への延長または未証明の同定。
+
+同じ数値が複数方法で一致しても、最も強いラベルを他の方法へ自動転写しない。
+
+## 7. 最小の自己監査
+
+計算を結論にする前に以下を確認する。
+
+### 数式
+
+- couplingとfieldのdimensionが一致するか。
+- RG時刻の向きとbeta functionの符号が明記されているか。
+- loop次数と $\epsilon$ 次数を混ぜていないか。
+- $N=1$、Gaussian、large-$N$、既知exact limitを再現するか。
+
+### 物理
+
+- thermodynamic limitと外場ゼロ極限の順序を指定したか。
+- finite-size、regular background、correction to scalingを含めたか。
+- first-order、crossover、heavy tailなど代替説明を検討したか。
+- staticとdynamic universalityを分けたか。
+
+### 証拠
+
+- primary sourceとreviewを区別したか。
+- theoremの模型・次元・smallness条件を省いていないか。
+- numerical precisionを存在証明やclosed formと呼んでいないか。
+
+## 8. 現在の主要未解決問題
+
+### 三次元Isingの数学的構成
+
+格子模型からlocal continuum CFTへの収束、conformal invariance、bootstrapで得る全dataとの同定を一つの枠組みで証明する課題は残る。
+
+### 強結合量子臨界
+
+Fermi surface、gauge field、deconfined degree of freedomが絡むfixed pointでは、sign problemや非局所性により制御計算が難しい。
+
+### 非平衡・乱流
+
+Navier–Stokes intermittency exponent、active matter、強結合KPZの一般次元構造には統一的なcontrolled solutionがない。
+
+### RG flowの大域構造
+
+高次元QFTでのscaleからconformalへの条件、許されるlimit cycle、複素fixed pointと実observableの関係、theory-space metricと単調量は限定された条件でのみ理解される。
+
+### 誤差付きuniversality
+
+異なるmicroscopic模型が同じfixed pointへ近づく速度を、実験・simulationで使える有限scaleのrigorous boundとして与える課題がある。
+
+## 9. 学習経路の閉じ方
+
+本書の議論は次の輪を作る。
+
+$$
+\text{現象}
+\to\text{秩序変数・相関}
+\to\text{有効作用}
+\to\text{粗視化}
+\to\text{理論空間のflow}
+\to\text{固定点・固有演算子}
+\to\text{指数・scaling function}
+\to\text{実験・数値による検証}.
+$$
+
+検証で不一致が出れば、入力した自由度、対称性、保存則、disorder、truncationへ戻る。RGは一方向の公式集ではなく、仮定と観測を往復する問題解決法である。
+
+## 章末整理
+
+### この章で分かったこと
+
+RG問題を、入力の指定、有効作用、制御parameter、固定点解析、observable変換、証拠監査という再利用可能な手順にまとめた。
+
+### その結果、何が説明できるようになったか
+
+平衡臨界現象、QFT/EFT、確率極限定理、CFT、disorder、動的・量子・非平衡問題を同じ枠組みで比較できる。
+
+### まだ説明できていないこと
+
+列挙した未解決問題は、現時点で一般解をもたないか、限定模型でのみ解かれている。
+
+### よくある誤解
+
+- RGは万能な数値計算algorithmではなく、仮定と近似の体系である。
+- universalityはmicroscopic detailが全て消えるという主張ではない。
+- 複数手法の一致は重要だが、各手法の仮定を消去しない。
+
+### 次に自然に出てくる疑問
+
+各章の演習を解き、特定の模型についてこの手順を最初から最後まで自力で適用できるか。
+
+
+

@@ -1,0 +1,86 @@
+---
+title: '繰り込み群・臨界現象――ミクロを忘れて普遍性を得る'
+sidebar: rg-critical-phenomena
+format:
+  html:
+    toc: true
+---
+
+中心の問いは「なぜ、ミクロには異なる系が臨界点で同じマクロな振る舞いを示すのか」です。
+
+## 読書経路
+
+## 全体の依存図
+
+本書は **第1–12部を圧縮稿**、**第13–35部を詳細編** として読む構成である。第1–3部で現象・Landau理論・相関長を導入し、第4–8部で実空間RG・理論空間・LGW作用・momentum-shell・Wilson–Fisher固定点をつなぐ。第9–12部はQFT/EFT、確率・CFT、現代的手法、限界の整理で圧縮稿を閉じる。
+
+詳細編の対応は次の通りである。第13–16部は第1–3部の有限サイズ・次元依存・補正・流体対応を再訪する。第17–21部は第4–8部の実空間RG、Gaussian固定点、$O(N)$、one-loop、scaling relationを展開する。第22–24部は第9–10部のcounterterm、EFT matching、確率RGを具体化する。第25–26部は第10–12部のCFT/bootstrapを詳説する。第27–35部は第11–12部のfunctional RG、rigorous RG、disorder、動的・量子・非固定点・非平衡・統合を扱う。第12部 §7「最終回答」は圧縮稿の結論であり、詳細編はその各構成要素の再訪である。
+
+1. [現象から普遍性へ](chapters/01-phenomena.qmd) — 相転移、相関、臨界指数、普遍性
+2. [Landau 理論と揺らぎ](chapters/02-landau-fluctuations.qmd) — 平均場理論、成功、破綻、Ginzburg 判定
+3. [相関長・スケール不変性・べき則](chapters/03-correlation-scaling.qmd)
+4. [Ising 模型から最初の RG へ](chapters/04-block-spin.qmd) — block spin、粗視化、有効 Hamiltonian
+5. [理論空間・流れ・固定点](chapters/05-theory-space.qmd) — relevant / irrelevant / marginal、普遍性
+6. [Landau–Ginzburg 場の理論](chapters/06-lgw-fourier.qmd) — Fourier mode、UV/IR、cutoff
+7. [momentum-shell RG](chapters/07-momentum-shell.qmd) — shell 積分、rescaling、Gaussian 固定点
+8. [Wilson–Fisher 固定点と臨界指数](chapters/08-wilson-fisher.qmd) — $4-\epsilon$ 展開、指数、scaling relations
+9. [量子場理論の繰り込みと EFT](chapters/09-qft-eft.qmd) — bare/renormalized、running coupling、scheme
+10. [確率・力学系・CFT](chapters/10-probability-cft.qmd) — 中央極限定理、scaling limit、2次元
+11. [現代の RG](chapters/11-modern-rg.qmd) — QCD、functional RG、3D Ising、bootstrap、rigorous RG
+12. [限界と未解決問題](chapters/12-limits-open.qmd)
+13. [数学補遺](chapters/appendix-mathematical-tools.qmd)
+14. [統計力学補遺](chapters/appendix-stat-mech-review.qmd)
+15. [演習と解答指針](chapters/appendix-exercises.qmd)
+16. [参考文献と主張対応表](chapters/bibliography.qmd)
+17. [概念史](chapters/history.qmd)
+
+## 詳細編（圧縮初稿を自立教科書へ展開する章）
+
+18. [有限サイズ scaling](chapters/13-finite-size-scaling.qmd) — pseudo-critical point、Binder cumulant、data collapse、補正
+19. [次元をまたぐ Ising 模型](chapters/14-ising-across-dimensions.qmd) — 1D transfer matrix、2D exact result、3D の現在地
+20. [scaling field と corrections](chapters/15-scaling-fields-corrections.qmd) — nonlinear field、$\omega$、crossover、対数補正
+21. [液体–気体の Ising 普遍性](chapters/16-liquid-gas-universality.qmd) — lattice gas、field mixing、critical opalescence
+22. [実空間RG](chapters/17-real-space-rg.qmd) — exact blocking、decimation、生成相互作用、truncation
+23. [Gaussian固定点](chapters/18-gaussian-fixed-point.qmd) — propagator、canonical dimension、固有演算子
+24. [$O(N)$ 模型](chapters/19-on-model.qmd) — Goldstone mode、下部臨界次元、BKTへの入口
+25. [$O(N)$ one-loop RG](chapters/20-on-one-loop.qmd) — index contraction、固定点、$N$依存指数
+26. [scaling relations](chapters/21-scaling-relations.qmd) — 斉次自由エネルギー、指数関係、equation of state
+27. [countertermとCallan–Symanzik方程式](chapters/22-counterterms-cs.qmd) — one-loop pole、beta function、scheme
+28. [EFT matching](chapters/23-eft-matching.qmd) — 重い場の積分、derivative expansion、power counting
+29. [確率分布のRG](chapters/24-probability-rg.qmd) — Gaussian basin、stable law、収束補正
+30. [二次元CFT](chapters/25-two-dimensional-cft.qmd) — Virasoro代数、minimal model、Ising spectrum
+31. [三次元conformal bootstrap](chapters/26-conformal-bootstrap.qmd) — crossing、unitarity、Ising island
+32. [exact functional RG equation](chapters/27-exact-functional-rg.qmd) — Polchinski、Wetterich、Legendre変換
+33. [functional RGの近似](chapters/28-frg-truncations.qmd) — derivative expansion、threshold、誤差診断
+34. [rigorous RG](chapters/29-rigorous-rg.qmd) — covariance分解、polymer remainder、定理の範囲
+35. [disorderとRG](chapters/30-disorder-rg.qmd) — Harris判定、replica、Imry–Ma、rare region
+36. [動的臨界現象](chapters/31-dynamic-criticality.qmd) — critical slowing down、Model A/B、保存則
+37. [量子臨界現象](chapters/32-quantum-criticality.qmd) — 虚時間、$z$、有限温度fan
+38. [固定点に到達しないRG](chapters/33-beyond-fixed-points.qmd) — 一次転移、walking、limit cycle
+39. [非平衡RGと乱流](chapters/34-nonequilibrium-turbulence.qmd) — cascade、intermittency、KPZ
+40. [統合と未解決問題](chapters/35-synthesis-open-problems.qmd) — 問題解決手順、証拠水準、研究課題
+
+詳細編は正本本文の一部であり、旧稿や別版ではありません。第1–12部で全体像を得た後、個別論点の導出と具体例を補う螺旋構造です。
+
+## 概念依存関係
+
+```text
+相転移 → 秩序変数 → 相関関数 → 相関長
+                        ↓
+                 臨界点・べき則
+                        ↓
+Ising 模型 → 粗視化 → 有効 Hamiltonian → 理論空間
+                                        ↓
+                        RG 流 → 固定点 → 固有方向
+                                        ↓
+                     普遍性 ← irrelevant 方向の減衰
+                                        ↓
+Landau–Ginzburg → momentum shell → Wilson–Fisher 固定点
+                                        ↓
+                              臨界指数と scaling relation
+```
+
+この図の矢印は論理依存を表し、歴史的順序を表すとは限りません。
+
+
+

@@ -1,0 +1,113 @@
+---
+title: '補遺A　RG計算のための数学道具'
+sidebar: rg-critical-phenomena
+format:
+  html:
+    toc: true
+---
+
+## A.1 $d$ 次元球面積と動径積分
+
+Gaussian 積分を二通りに計算する。
+
+$$
+\int_{\mathbb R^d}d^dx\,e^{-x^2}
+=\left(\int_{-\infty}^{\infty}e^{-x^2}dx\right)^d
+=\pi^{d/2}.
+$$
+
+球座標では
+
+$$
+\int d^dx\,e^{-x^2}
+=S_{d-1}\int_0^\infty dr\,r^{d-1}e^{-r^2}
+=\frac{S_{d-1}}2\Gamma(d/2).
+$$
+
+従って
+
+$$
+S_{d-1}=\frac{2\pi^{d/2}}{\Gamma(d/2)}.
+$$
+
+球対称な $f(k)$ なら
+
+$$
+\int\frac{d^dk}{(2\pi)^d}f(|k|)
+=K_d\int_0^\infty dk\,k^{d-1}f(k),
+\quad K_d=\frac{S_{d-1}}{(2\pi)^d}.
+$$
+
+## A.2 Gaussian 積分と propagator
+
+正定値行列 $A$ に対し
+
+$$
+\int_{\mathbb R^n}d^nx\,
+e^{-x^TAx/2}=(2\pi)^{n/2}(\det A)^{-1/2}.
+$$
+
+source $J$ を加えて平方完成すると
+
+$$
+Z[J]=Z[0]\exp\left(\frac12J^TA^{-1}J\right),
+$$
+
+従って $J$ 微分から $\langle x_ix_j\rangle=(A^{-1})_{ij}$。場の理論では $A=k^2+r$ の逆数が propagator になる。
+
+## A.3 Wick の定理
+
+中心化 Gaussian 変数の奇数点関数はゼロ、偶数点関数は二点関数の全 pairings の和である。例えば
+
+$$
+\langle X_1X_2X_3X_4\rangle
+=\langle X_1X_2\rangle\langle X_3X_4\rangle
++\langle X_1X_3\rangle\langle X_2X_4\rangle
++\langle X_1X_4\rangle\langle X_2X_3\rangle.
+$$
+
+one-loop の係数はこの pairing 数から生じる。
+
+## A.4 cumulant 展開
+
+cumulant generating function の定義から
+
+$$
+\log\langle e^{tX}\rangle
+=t\langle X\rangle+
+\frac{t^2}{2}(\langle X^2\rangle-\langle X\rangle^2)+\cdots.
+$$
+
+$t=-1$ と置けば本文の shell integration の符号が得られる。connected diagram だけが $\log Z$ に残ることの代数的表現である。
+
+## A.5 Fourier 規約
+
+本文では
+
+$$
+\phi(x)=\int\frac{d^dk}{(2\pi)^d}e^{ikx}\phi(k),
+\qquad
+\phi(k)=\int d^dx\,e^{-ikx}\phi(x)
+$$
+
+を使う。このとき
+
+$$
+\int d^dx\,e^{i(k+q)x}=(2\pi)^d\delta^{(d)}(k+q).
+$$
+
+規約を変えると $(2\pi)^d$ の位置が変わるが物理は変わらない。
+
+## A.6 線形化と固有値
+
+離散写像 $g'=R(g)$ を固定点 $g^*$ の周りで
+
+$$
+g'-g^*=M(g-g^*)+O(|g-g^*|^2)
+$$
+
+とする。$Mv_\alpha=\lambda_\alpha v_\alpha$、$\lambda_\alpha=b^{y_\alpha}$ と書けば $n$ 回後の線形成分は $b^{ny_\alpha}$ 倍。連続 flow では $\dot g=B(g-g^*)$ から $e^{\theta_\alpha\ell}$ となる。文献により $\theta$ と $y$ の符号規約が逆の場合があるため、必ず IR へ向かう $\ell$ の定義を確認する。
+
+
+
+

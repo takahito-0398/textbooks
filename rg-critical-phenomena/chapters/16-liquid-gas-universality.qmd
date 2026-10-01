@@ -1,0 +1,166 @@
+---
+title: '第16部　液体–気体臨界点はなぜ Ising 型なのか'
+sidebar: rg-critical-phenomena
+format:
+  html:
+    toc: true
+---
+
+## 1. 見かけ上の問題
+
+磁石には $s_i\mapsto-s_i$、または $m\mapsto-m$ の明瞭な $\mathbb Z_2$ 対称性がある。実在流体では液体と気体を入れ替える厳密な microscopic 対称性は見えない。それでも多くの一成分流体の臨界指数は三次元 Ising class と一致する。RG が分類する「対称性」とは、裸の分子模型の見た目だけなのだろうか。
+
+## 2. lattice gas と Ising の exact な写像
+
+格子 site の占有数を $n_i=0,1$ とし、最近接粒子間に引力 $-\varepsilon n_in_j$、化学ポテンシャル $\mu$ を入れる。
+
+$$
+\mathcal H_{\rm LG}=-\varepsilon\sum_{\langle ij\rangle}n_in_j
+-\mu\sum_i n_i.
+$$
+
+$$
+n_i=\frac{1+s_i}{2},\qquad s_i=\pm1
+$$
+
+と置く。積は
+
+$$
+n_in_j=\frac14(1+s_i+s_j+s_is_j).
+$$
+
+配位数を $z$ とすると、全 bond にわたる一次項は
+
+$$
+\sum_{\langle ij\rangle}(s_i+s_j)=z\sum_i s_i.
+$$
+
+従って定数を除けば
+
+$$
+\mathcal H_{\rm LG}
+=-\frac\varepsilon4\sum_{\langle ij\rangle}s_is_j
+-\left(\frac{z\varepsilon}{4}+\frac\mu2\right)
+\sum_i s_i+\text{const.}
+$$
+
+である。すなわち
+
+$$
+J=\frac\varepsilon4,
+\qquad
+h=\frac{z\varepsilon}{4}+\frac\mu2.
+$$
+
+lattice gas の粒子–空孔交換は Ising の spin 反転に対応する。零場条件は $\mu_c=-z\varepsilon/2$ で、半充填 $\rho_c=1/2$ において
+
+$$
+\rho-\frac12=\langle n\rangle-\frac12
+=\frac12\langle s\rangle=\frac m2
+$$
+
+が秩序変数になる。この理想化模型では対応は exact である。
+
+## 3. 実在流体には厳密対称性がない
+
+実在流体の共存曲線は一般に $\rho_c$ の周りで完全な左右対称ではない。そのため物理的な $T-T_c$、$\mu-\mu_c$ がそのまま Ising の thermal field と magnetic field になるとは限らない。臨界点近傍では解析的な field mixing を許す。より完全な理論では圧力も混合しうることが [Kim–Fisher–Orkoulas](https://arxiv.org/abs/cond-mat/0212145) に整理されている。最小表示では
+
+$$
+u_t=a(T-T_c)+b(\mu-\mu_c)+\cdots,
+$$
+
+$$
+u_h=c(\mu-\mu_c)+d(T-T_c)+\cdots
+$$
+
+のような scaling field を取る。適切な座標では leading singular part が emergent な Ising 対称性を示し、非対称性は irrelevant field や解析的背景、subleading mixing に入る。
+
+これは microscopic Hamiltonian に厳密対称性が「新しく発生する」というより、固定点で relevant な奇・偶 operator の分類に合わせて長距離座標を取り直すという意味である。
+
+## 4. order parameter と観測量
+
+共存曲線上の液体密度 $\rho_l$ と気体密度 $\rho_v$ から
+
+$$
+\Delta\rho=\frac{\rho_l-\rho_v}{2}
+\sim(-t)^\beta
+$$
+
+が Ising 磁化に対応する。一方 diameter
+
+$$
+\rho_{\rm diam}=\frac{\rho_l+\rho_v}{2}
+$$
+
+は解析的に一定とは限らず、field mixing と singular correction を含む。isothermal compressibility
+
+$$
+\kappa_T=-\frac1V\left(\frac{\partial V}{\partial p}\right)_T
+$$
+
+は密度応答である。磁場型 scaling field がゼロとなる共存曲線側や、適切に定義した critical isochore など標準的な漸近 path では、その leading singular part が磁化率に対応して $\kappa_T\sim|t|^{-\gamma}$ となる。一般の path では二変数 scaling function と field mixing を評価する必要がある。密度相関の長さが $\xi\sim|t|^{-\nu}$ で発散し、光散乱の増大である critical opalescence を生む。
+
+## 5. critical opalescence
+
+散乱vector $q$ に対する静的 structure factor は密度揺らぎの Fourier 変換である。
+
+$$
+S(q)=\int d^dr\,e^{-iq\cdot r}
+\langle\delta\rho(0)\delta\rho(r)\rangle.
+$$
+
+静的 scaling form は
+
+$$
+S(q,t)=\chi(t)f_\pm(q\xi),
+\qquad f_\pm(0)=1.
+$$
+
+Gaussian/Ornstein–Zernike 近似では $f(x)=1/(1+x^2)$ なので
+
+$$
+S(q)\sim\frac{\chi}{1+q^2\xi^2}
+$$
+
+という形になる。相互作用固定点では $f_\pm(x\gg1)\sim x^{-2+\eta}$ であり、臨界点では $S(q,0)\sim q^{-2+\eta}$ となる。臨界点へ近づくと $S(0)\propto\kappa_T$ と $\xi$ が増え、可視光の波長に近い大きな密度揺らぎが強く散乱する。白っぽく濁ることは「分子が巨大化した」のではなく、多数分子の相関した密度領域が全スケールに現れる結果である。二点関数とstructure factorの一般的 scaling は [Pelissetto–Vicari review](https://doi.org/10.1016/S0370-1573(02)00219-3) も参照。
+
+## 6. 重力と有限範囲の難しさ
+
+圧縮率が大きい臨界流体では、わずかな重力でも高さ方向の圧力差が大きな密度勾配を生む。真の漸近領域が狭い場合、重力、温度不均一、不純物、有限セル、crossover correction が有効指数をずらす。[Hocken–Moldover (1976)](https://doi.org/10.1103/PhysRevLett.37.29) の Xe、SF$_6$、CO$_2$ の精密光学実験は、論文要旨で $|T-T_c|/T_c<5\times10^{-5}$、本文でおよそ $-1.5\times10^{-5}<\epsilon<5\times10^{-5}$ の臨界近傍を扱い、三次元 Ising に近い指数と振幅比を報告した。
+
+**[Experimental evidence]** 実験的一致は普遍性の強い証拠だが、任意の分子potentialに対する数学的 universality theorem ではない。
+
+## 7. binary mixture
+
+二成分混合物では濃度差が scalar order parameter になる。demixing critical point 近傍で一方が豊富な相と他方が豊富な相が合流し、保存された scalar density の静的臨界性は Ising 型になりうる。ただし dynamics では order parameter の保存、momentum density、hydrodynamic mode が結合するため、静的 universality class が同じでも動的 universality class は磁石と同じとは限らない。
+
+## 8. 適用条件
+
+三次元 short-range scalar Ising class という結論には、単一の scalar order parameter、十分短距離の相互作用、連続転移、quenched disorder や長距離異方性が支配的でないことなどが必要である。Coulomb 系でも screening 後の有効相互作用や追加modeの扱いを確認しなければならない。
+
+## 章末整理
+
+### この章で分かったこと
+
+lattice gas は Ising 模型へ exact に写り、実在流体では field mixing 後の長距離 fixed-point theory が Ising 型になる。
+
+### その結果、何が説明できるようになったか
+
+液体–気体の密度差、compressibility、critical opalescence と磁化・感受率・相関長の対応を説明できる。
+
+### まだ説明できていないこと
+
+流体の動的臨界現象、hydrodynamic coupling、complete scaling の定量式は未展開である。
+
+### よくある誤解
+
+- 実在流体に microscopic な厳密 particle–hole 対称性が必要なわけではない。
+- 静的 universality class が同じでも dynamics が同一とは限らない。
+- 有効指数のずれだけで Ising universality を否定できない。
+
+### 次に自然に出てくる疑問
+
+block-spin 図と theory-space flow を、より具体的な real-space transformation でどう結ぶか。
+
+
+

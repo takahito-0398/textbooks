@@ -1,0 +1,199 @@
+---
+title: '第28部　functional RGの近似――potential flow、derivative expansion、誤差'
+sidebar: rg-critical-phenomena
+format:
+  html:
+    toc: true
+---
+
+## 1. $O(N)$ derivative expansion
+
+$O(N)$ invariant
+
+$$
+\rho=\frac12\boldsymbol\phi^2
+$$
+
+を用い、effective average actionを
+
+$$
+\Gamma_k[\boldsymbol\phi]
+=\int d^dx\left[
+U_k(\rho)
++\frac12Z_k(\rho)(\partial_\mu\boldsymbol\phi)^2
++\frac14Y_k(\rho)(\partial_\mu\rho)^2
++O(\partial^4)
+\right]
+$$
+
+と展開する。これはfield amplitude依存をpotential関数として保持し、momentum依存を微分次数で整理するderivative expansionである。
+
+- LPA: $U_k(\rho)$だけを流し、$Z_k=1$。
+- LPA$'$: $U_k$ とfield-independent $Z_k$ を流し、$\eta$を含める。
+- 高次: $Z_k(\rho),Y_k(\rho)$、$O(\partial^4)$ 演算子を含める。
+
+polynomial truncation $U_k=\sum_{n=0}^{n_{\max}}\lambda_{n,k}(\rho-\kappa_k)^n/n!$ は、derivative expansionとは別のfield-space truncationである。
+
+## 2. constant backgroundでHessianを対角化する
+
+背景場を第1成分方向に取り
+
+$$
+\boldsymbol\phi=(\sqrt{2\rho},0,\ldots,0)
+$$
+
+とする。LPAでpotential Hessianは
+
+$$
+\frac{\partial^2U}{\partial\phi_a\partial\phi_b}
+=U'(\rho)\delta_{ab}
++U''(\rho)\phi_a\phi_b.
+$$
+
+従って $N-1$ 個のtransverse modeと1個のradial modeのmassは
+
+$$
+m_T^2=U_k'(\rho),
+\qquad
+m_R^2=U_k'(\rho)+2\rho U_k''(\rho).
+$$
+
+Wetterich式へ代入すると
+
+$$
+\partial_tU_k(\rho)
+=\frac12\int\frac{d^dq}{(2\pi)^d}\,
+\partial_tR_k(q)
+\left[
+\frac{N-1}{Z_kq^2+R_k+m_T^2}
++\frac1{Z_kq^2+R_k+m_R^2}
+\right].
+$$
+
+この式は任意のpotential形を保ったLPA/LPA$'$ flowの出発点である。
+
+## 3. dimensionless flowと固定関数
+
+$$
+\tilde\rho=Z_kk^{2-d}\rho,
+\qquad
+u_k(\tilde\rho)=k^{-d}U_k(\rho),
+\qquad
+\eta_k=-\partial_t\log Z_k
+$$
+
+を定義する。dimensionless potentialのflowは概略
+
+$$
+\partial_tu
+=-du+(d-2+\eta)\tilde\rho\,u'
++2v_d\left[
+(N-1)l_0^d(u';\eta)
++l_0^d(u'+2\tilde\rho u'';\eta)
+\right].
+$$
+
+$v_d$ は角度積分係数、$l_0^d$ はregulatorに依存するthreshold functionである。固定点は有限個のcouplingの零点でなく
+
+$$
+\partial_tu_*(\tilde\rho)=0
+$$
+
+を満たす固定関数として求める。
+
+固定関数の周りで
+
+$$
+u_k=u_*+\epsilon e^{-\theta t}f(\tilde\rho)
+$$
+
+と線形化すると固有値問題が得られる。flow時刻の向きによる符号規約を確認した上で、relevantな温度固有値から $1/\nu$、leading irrelevant固有値から $\omega$ を読む。
+
+## 4. thresholdとdecoupling
+
+分母に $m^2/k^2$ が入るため、$m^2\gg k^2$ のmodeの寄与はthreshold functionで抑制される。これはFRGでmassive modeのdecouplingがflow内に連続的に実装される仕組みである。
+
+sharp cutoffのshell pictureと違い、smooth regulatorでは有限幅の運動量が重み付きでflowへ寄与する。物理的observableはexact解ならregulatorに依存しないが、有限truncationでは残留依存がある。
+
+## 5. anomalous dimension
+
+LPAでは $Z_k$ を固定するため
+
+$$
+\eta=0
+$$
+
+が近似の定義上固定される。相互作用固定点で非零の $\eta$ を得るには、二点vertexの外部運動量依存を取り出し
+
+$$
+\partial_tZ_k
+\propto
+\left.\frac{\partial}{\partial p^2}
+\partial_t\Gamma_k^{(2)}(p,-p)
+\right|_{p=0}
+$$
+
+のように射影する。LPA$'$ は一つの $Z_k$ だけを保ち、より高次ではfield依存や複数tensor構造を分ける。
+
+したがってLPAの $\eta=0$ を理論の予言と呼んではならない。それは捨てたmomentum dependenceの直接の帰結である。
+
+## 6. regulator choice
+
+$R_k$ はIR正則化、UV初期条件、数値安定性を満たす範囲で任意性がある。exact observableはこの選択に依存しない。有限truncationで結果が変わるため、
+
+- regulator family内のvariation。
+- derivative orderを上げた変化。
+- field gridとpolynomial expansionの比較。
+- expansion pointとfield rangeのvariation。
+
+を誤差診断に使う。
+
+principle of minimal sensitivityやoptimized regulatorは収束を改善しうるが、stationary pointが真値を保証する定理ではない。regulator variationだけを全truncation errorと同一視してもいけない。
+
+## 7. polynomialとgrid
+
+potential最小点 $\kappa_k$ の周りのpolynomial展開は少数の常微分方程式へ還元できるが、radius of convergence外の構造や複数minimumを見落としうる。field gridで偏微分方程式として解けばglobal shapeを保てるが、離散化・境界条件・剛性の誤差が入る。
+
+first-order transitionやmetastabilityを扱うとき、局所polynomialだけではbarrierを失うことがある。$k\to0$ のfull effective potentialはconvexになる一方、有限 $k$ のcoarse-grained potentialにはbarrierが残り、nucleation記述に使われる。この二つを矛盾とみなさない。
+
+## 8. controlledかどうか
+
+derivative expansionは外部momentumがregulator scaleに比べて滑らかな問題で有効だが、常に小さい明示parameterをもつとは限らない。精度は次数間収束、他手法との比較、regulator安定性で経験的・系統的に評価する。
+
+$\epsilon\ll1$、$1/N\ll1$ の極限では摂動展開と照合できる。三次元Isingではbootstrap、Monte Carlo、高loop再総和との一致が検証になる。強いmomentum依存、Fermi surface、gauge制約、リアルタイムでは単純derivative expansionが不十分なことがある。
+
+現代的な応用とtruncationの整理は [Dupuis et al. (2021)](https://doi.org/10.1016/j.physrep.2021.01.001) を参照する。
+
+## 証拠水準
+
+- potential flowへの射影: Wetterich恒等式にansatzを代入した **[Exact projection before truncation closure]**。
+- LPA/LPA$'$とderivative expansion: **[Systematic nonperturbative approximation]**。
+- regulator variationと次数収束: **[Error diagnostic]** であり、一般的なrigorous error barではない。
+- 他手法との指数一致: **[Cross-validation]**。方程式のexact性をtruncated解へ移さない。
+
+## 章末整理
+
+### この章で分かったこと
+
+Wetterich方程式をderivative expansionへ射影し、$O(N)$ potentialのtransverse・radial threshold flowを導ける。
+
+### その結果、何が説明できるようになったか
+
+固定関数、mass decoupling、anomalous dimension、regulator依存を一つの計算枠組みで扱える。
+
+### まだ説明できていないこと
+
+具体的な数値積分、higher-derivative basisの完全分類、real-time FRGは未展開である。
+
+### よくある誤解
+
+- LPAの $\eta=0$ はexact resultではない。
+- regulator依存が小さいだけで全誤差が小さいとは限らない。
+- $k\to0$ のconvexityと有限 $k$ のbarrierは矛盾しない。
+
+### 次に自然に出てくる疑問
+
+物理的RG図のどの部分が数学的定理として構成され、三次元Ising universalityには何が未証明か。
+
+
+

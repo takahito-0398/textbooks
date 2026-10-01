@@ -1,0 +1,114 @@
+---
+title: '第12部　RG の限界と現在地'
+sidebar: rg-critical-phenomena
+format:
+  html:
+    toc: true
+---
+
+## 1. 強結合
+
+flow が弱結合固定点に留まるなら摂動論は制御できる。強結合へ runaway すると、beta function の低次打切りは信頼できない。runaway は一次転移、別の非摂動固定点、束縛状態形成、単に変数選択が悪い、など複数の意味を持ちうるため、「発散したから一次転移」と自動判定してはいけない。
+
+## 2. truncation と scheme
+
+実空間 RG、functional RG、演算子積展開の有限化はいずれも無限次元問題を切る。結果が cutoff shape や regulator parameter で変わることは、exact physics の任意性ではなく truncation の残差である。演算子基底を増やした収束、既知極限、Ward identity、独立手法との比較が必要である。
+
+## 3. disorder と非平衡
+
+quenched disorder では disorder average と自由エネルギーの対数が絡み、rare region、Griffiths singularity、infinite-randomness fixed point が通常の弱い disorder 展開を破ることがある。非平衡では詳細釣り合いがなく、静的自由エネルギーだけでは dynamics を決められない。保存則、noise、可逆 coupling により動的 universality class と動的指数 $z$ が変わる。
+
+## 4. 一次転移と fixed point 以外の振る舞い
+
+連続転移は実 RG 固定点で整理されることが多いが、弱い一次転移は長い擬似 scaling を示す場合がある。複素固定点近傍の walking、limit cycle と離散スケール不変性、chaotic RG、topological defect の fugacity が主役になる転移もある。「べき則らしさ」を見ただけで通常の実固定点と断定できない。
+
+## 5. solved / partially solved / open
+
+### Solved under stated assumptions
+
+- 二次元零磁場 Ising 模型の熱力学的 free energy と主要臨界データ。
+- 独立同分布・有限分散などを仮定した中央極限定理。
+- Gaussian theory と摂動論の指定次数の計算。
+- 特定の高次元・四次元・小結合模型に対する厳密 RG 定理。
+
+### Partially solved
+
+- 3D Ising の universal data: 数値・bootstrap・再総和で極めて高精度だが closed-form solution ではない。
+- functional RG: 多くの系で有力だが truncation の一般的収束定理や error bound は不足。
+- scale から conformal への昇格: 次元と仮定に依存する強い結果があるが無条件の一般命題ではない。
+
+### Physically understood but mathematically incomplete
+
+- broad class の short-range 3D Ising 系が同じ Wilson–Fisher 固定点へ流れるという像。
+- $\epsilon$ 展開を $\epsilon=1$ へ再総和して使う有効性。
+- global theory-space geometry と microscopic model から continuum fixed point への対応。
+
+### Genuinely open
+
+- short-range 3D Ising scaling limit の厳密構成と非 Gaussian CFT 性。
+- 格子 3D Ising と bootstrap Ising CFT の厳密同一視。
+- 広い microscopic Hamiltonian 群に対する三次元 universality theorem。
+- disorder、量子臨界金属、強結合 gauge theory、乱流に対する一般的で制御された RG。
+- FRG truncation の一般的収束・誤差評価理論。
+- 高次元における scale invariance から conformal invariance への最小仮定。
+
+## 6. 何をもって「RG が説明した」と言うか
+
+少なくとも四段階を区別する。
+
+1. 機構: fixed point と irrelevant directions が普遍性を説明する。
+2. 計算: 制御パラメータまたは数値法で指数を求める。
+3. 同定: 特定のミクロ模型がその basin に入ることを示す。
+4. 証明: 極限の存在、誤差、universality を明示した仮定の下で定理化する。
+
+多くの成功例は 1 と 2 で圧倒的であり、3 は強い物理的証拠を持つが、4 が全般に完了しているわけではない。この差は欠点を隠すためではなく、RG の真の到達点を評価するために必要である。
+
+## 7. 最終回答――なぜ忘れると見えるのか
+
+粗視化は、任意に情報を捨てる操作ではない。長距離 observable の確率分布を保つよう短距離自由度を総和し、その効果を有効 coupling へ移す。再尺度化を反復すると、固定点近傍で relevant 成分だけが増え、irrelevant 成分は縮む。異なるミクロ系の差の多くが irrelevant directions に沿っているため、臨界点を調整した後の長距離理論は少数の scaling data へ収束する。
+
+したがって「忘れるから正しい」のではない。「問う尺度と observable を限定し、捨てた自由度の効果を有効作用へ正しく織り込むと、長距離で識別可能な情報の方向が少数になる」のである。RG の力はこの圧縮を計算と幾何学に変えた点にあり、限界はその無限次元 flow を一般に厳密制御する難しさにある。
+
+この最終回答は、上の四段階では主に 1 の機構を述べ、第7–8部・第20–22部の計算が 2 を支え、第6部 §1や第16部の写像が 3 の典型例を与える。4 の証明は第29部で見るように、特定模型・次元・仮定ごとに別途成立する。
+
+## 8. Q&A――三つの短い確認
+
+**Q1. 情報を捨てたのに予測が改善するのはなぜか。**  
+短距離自由度の状態を単に消去するのではなく、消去した自由度が長距離observableへ与える効果を有効couplingへ移すからである。改善するのは全情報の予測ではなく、長距離・低運動量・臨界特異性に限った予測である **[Mechanism-level RG explanation]**。
+
+**Q2. 普遍性はRGなしで説明できないか。**  
+対称性、scaling仮説、熱力学的整合性だけでも多くの関係式は説明できる。しかし、なぜミクロに異なるHamiltonianが同じscaling functionや指数へ近づくか、どの摂動が消えどの摂動が残るかを体系的に判定するには、固定点と固有方向を使うRGが最も直接的な機構を与える **[Conceptual comparison]**。
+
+**Q3. 固定点は実在する物理状態か。**  
+固定点は多くの場合、有限の実験試料がそのまま取る熱力学状態ではなく、粗視化と再尺度化を反復したときの有効記述の極限である。臨界点のscaling limitでは相関長が無限大になり、固定点理論が長距離相関を記述する。非普遍な短距離状態そのものと同一視しない **[Interpretive statement]**。
+
+## 出典案内
+
+Ising模型の数学的達成と未解決問題は [Külske (2025)](https://doi.org/10.1007/s11040-025-09515-1)、数値bootstrapの仮定と到達点は [Rychkov–Su (2024)](https://doi.org/10.1103/RevModPhys.96.045004) を参照する。未解決という記述は「数値が不明」という意味でなく、格子からのscaling limit構成や定理としての同定が未完という意味で用いる。
+
+## 章末整理
+
+### この章で分かったこと
+
+RG は万能解法ではなく、固定点・尺度分離・制御された近似が成立する範囲で極めて強力である。物理的理解、高精度数値、摂動的制御、数学的証明を区別すれば、成功と未解決性を同時に正確に述べられる。
+
+### その結果、何が説明できるようになったか
+
+「RGで解けた」という主張を、機構・計算・同定・証明のどの水準かに分解して評価できる。
+
+### まだ説明できていないこと
+
+列挙した open problem の解決法は現在の研究課題であり、本書も一般解を与えない。
+
+### よくある誤解
+
+- runaway flow は常に一次転移を証明するわけではない。
+- nonperturbative approximation は厳密解を意味しない。
+- 物理的合意が強いことと一般定理があることは同じではない。
+
+### 次に自然に出てくる疑問
+
+個別の模型でどの証拠水準まで到達しているか、どの operator basis と数値手法が最適かは、各分野の専門的研究へ続く。
+
+
+

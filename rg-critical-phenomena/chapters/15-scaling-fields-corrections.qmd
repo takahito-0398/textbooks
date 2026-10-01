@@ -1,0 +1,185 @@
+---
+title: '第15部　scaling field、crossover、corrections to scaling'
+sidebar: rg-critical-phenomena
+format:
+  html:
+    toc: true
+---
+
+## 1. bare coupling と scaling field は同じか
+
+固定点近傍の線形化で固有方向を $u_\alpha$ と書く。
+
+$$
+u_\alpha'=b^{y_\alpha}u_\alpha+O(u^2).
+$$
+
+$u_\alpha$ は元の Hamiltonian の単一係数とは限らない。例えば温度型 scaling field は一般に
+
+$$
+u_t=a_1t+a_2t^2+a_3h^2+\cdots
+$$
+
+のような解析的組合せである。$\mathbb Z_2$ 対称性があれば温度型は $h$ に偶、磁場型は $h$ に奇でなければならない。したがって「$r$ が温度そのもの」「$u$ が一つの実在相互作用そのもの」と同一視するのは座標依存を無視している。
+
+## 2. nonlinear scaling field
+
+固定点の近くでも beta function には非線形項がある。
+
+$$
+\frac{dg_i}{d\ell}=B_{ij}\delta g_j+
+\frac12C_{ijk}\delta g_j\delta g_k+\cdots.
+$$
+
+非共鳴条件の下では座標を非線形に変えて多くの混合項を除ける。この「flow をできるだけ対角な形へ直す座標」が nonlinear scaling field である。[Wegner (1972)](https://doi.org/10.1103/PhysRevB.5.4529) はこの再定義から corrections to scaling を系統化した。
+
+resonance とは、ある固有値が非負整数 $n_j$ を使って $y_i=\sum_jn_jy_j$ と表され、対応する monomial が線形項と同じ scaling をもつ場合である。最小例として
+
+$$
+\dot u=yu+cv^2,\qquad \dot v=\frac y2v
+$$
+
+では $v^2\propto e^{y\ell}$ が $u$ の斉次解と同じ指数をもち、積分すると $u\supset c\ell e^{y\ell}$ が残る。$\ell=\log L$ なので logarithm が生じ、単純な解析的座標変換では除けない。
+
+## 3. leading correction exponent
+
+最もゼロに近い irrelevant 固有値を
+
+$$
+y_{\rm irr}=-\omega,
+\qquad \omega>0
+$$
+
+とする。温度だけを変えた observable は一般に
+
+$$
+O(t)=|t|^{-\rho}
+\left[A_0+A_1|t|^{\omega\nu}+A_2|t|+\cdots\right].
+$$
+
+$|t|^{\omega\nu}$ は irrelevant field、括弧内の $|t|$ は nonlinear scaling field が生む乗法的 analytic correction の例である。regular background は別に
+
+$$
+O(t)=O_s(t)+O_{\rm reg}(t),\qquad
+O_{\rm reg}(t)=B_0+B_1t+\cdots
+$$
+
+と加法的に存在する。例えば $O_s=|t|^{-\gamma}$ の感受率では定数背景の相対補正は $|t|^\gamma$ となり、常に括弧内の $|t|$ ではない。どの補正が leading かは observable、指数、振幅に依存する。
+
+有限範囲で log-log plot の傾きを取ると
+
+$$
+\rho_{\rm eff}(t)=-\frac{d\log O}{d\log|t|}
+$$
+
+は真の $\rho$ へゆっくり drift する。実験や数値で異なる指数に見える原因の一つであり、universality の破れと即断できない。
+
+## 4. improved model
+
+同じ universality class 内でも、microscopic parameter を調整して leading irrelevant scaling field の振幅 $A_1$ をゼロにできることがある。このような improved action/model では leading correction が抑えられ、高精度の指数推定が容易になる。三次元 $O(N)$ 模型での corrections と improved Hamiltonian の利用は [Pelissetto–Vicari review](https://doi.org/10.1016/S0370-1573(02)00219-3) に整理されている。
+
+これは irrelevant operator 自体が理論空間から消えたという意味ではない。選んだ microscopic trajectory がその固有方向への射影を持たない、または小さくしたという意味である。
+
+## 5. crossover
+
+固定点 A の近くに relevant perturbation $g$ があり、その固有値を $y_g>0$ とする。反復で $g(\ell)\simeq e^{y_g\ell}g_0$。$g(\ell_\times)\sim1$ となる尺度は
+
+$$
+\ell_\times\sim-\frac1{y_g}\log|g_0|,
+\qquad
+\xi_\times\sim e^{\ell_\times}\sim|g_0|^{-1/y_g}.
+$$
+
+$L\ll\xi_\times$ では A の指数に見え、$L\gg\xi_\times$ では別固定点 B または massive phase の挙動が現れる。この crossover は「指数が尺度で本当に連続変化する」というより、異なる固定点の支配域を有限尺度で横切る現象である。
+
+二つの relevant field $t,g$ があるなら自由エネルギーは
+
+$$
+f_s(t,g)=b^{-d}f_s(b^{y_t}t,b^{y_g}g).
+$$
+
+$b=|t|^{-1/y_t}$ を選ぶと
+
+$$
+f_s(t,g)=|t|^{d/y_t}
+\Phi_\pm\left(g|t|^{-\phi}\right),
+\qquad
+\phi=\frac{y_g}{y_t}.
+$$
+
+$\phi$ は crossover exponent である。
+
+## 6. marginal coupling と対数補正
+
+$y_g=0$ なら線形化では変化しない。例えば
+
+$$
+\frac{dg}{d\ell}=-Ag^2,
+\qquad A>0
+$$
+
+なら
+
+$$
+g(\ell)=\frac{g_0}{1+Ag_0\ell}
+\sim\frac1{A\ell}.
+$$
+
+長さ $L\sim e^\ell$ なので $g(L)\sim1/\log L$。ここでは observable の flow の符号規約を
+
+$$
+\frac{d\log O}{d\ell}=x_O+\gamma_O(g),
+\qquad \gamma_O(g)=c_1g+\cdots
+$$
+
+と定義する。この規約なら canonical factor $e^{x_O\ell}$ を除いた補正は
+
+$$
+\exp\left(\int^{\log L}d\ell\,\gamma_O(g(\ell))\right)
+\sim(\log L)^{c_1/A}
+$$
+
+が通常の power law に乗る。$d=4$ の $\phi^4$ 理論で対数補正が現れる基本機構である。
+
+## 7. dangerously irrelevant を再訪する
+
+irrelevant field $u$ を含む scaling formを
+
+$$
+f_s(t,h,u)=b^{-d}f_s(b^{y_t}t,b^{y_h}h,b^{y_u}u)
+$$
+
+とする。$y_u<0$ でも scaling function が第三引数 $z\to0$ で $z^{-p}$ のように特異なら、$u$ を先にゼロへ置けない。danger は固有値分類の誤りではなく、observable の scaling function が fixed-point coordinate に非解析的なことである。
+
+## 証拠水準
+
+- nonlinear scaling fieldとirrelevant補正: 固定点近傍の解析的座標変換を仮定する **[RG normal-form result]**。
+- $|t|^{\omega\nu}$ 補正: leading irrelevant fieldが非零である場合の **[Asymptotic scaling result]**。
+- resonanceによる対数項: 固有値関係と非線形項に依存する **[Normal-form mechanism]**。
+
+## 章末整理
+
+### この章で分かったこと
+
+scaling field は bare parameter の非線形混合であり、irrelevant direction は漸近則への補正を支配する。
+
+### その結果、何が説明できるようになったか
+
+有効指数の drift、improved model、crossover scale、marginal coupling の対数補正を同じ flow の言葉で説明できる。
+
+### まだ説明できていないこと
+
+特定模型の $\omega$ や crossover function の高精度計算は行っていない。
+
+### よくある誤解
+
+- bare temperature と温度型固有座標は厳密に同一とは限らない。
+- 補正が大きいことは直ちに別 universality class を意味しない。
+- irrelevant coupling は有限尺度で観測不能という意味ではない。
+
+### 次に自然に出てくる疑問
+
+磁石と対称性が異なる実在流体が、なぜ同じ Ising universality class に入るのか。
+
+
+

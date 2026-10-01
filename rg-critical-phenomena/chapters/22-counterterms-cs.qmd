@@ -1,0 +1,348 @@
+---
+title: '第22部　countertermとCallan–Symanzik方程式――$\phi^4$の具体計算'
+sidebar: rg-critical-phenomena
+format:
+  html:
+    toc: true
+---
+
+## 1. Wilson流とは別の計算座標
+
+Euclidean scalar理論
+
+$$
+\mathcal L_0=\frac12(\partial\phi_0)^2
++\frac12m_0^2\phi_0^2
++\frac{\lambda_0}{4!}\phi_0^4
+$$
+
+をdimensional regularizationで $d=4-\epsilon$ に置く。renormalized量を
+
+$$
+\phi_0=Z_\phi^{1/2}\phi,
+\qquad
+m_0^2=Z_{m^2}m^2,
+\qquad
+\lambda_0=\mu^\epsilon Z_\lambda\lambda
+$$
+
+と定義する。$\mu$ は四次元で無次元な $\lambda$ を維持するための任意のrenormalization scaleである。
+
+ここでは $\mu$ を増やす向きをUVとするCallan–Symanzik規約を使う。第20部の $\ell$ はIRへ増えるため、同じ物理的方向を比較すると符号が逆になる。
+
+Z因子から anomalous dimension を
+
+$$
+\gamma_\phi(\lambda)
+=\frac12\mu\left.\frac{d\log Z_\phi}{d\mu}\right|_0,
+\qquad
+\gamma_{m^2}(\lambda)
+=-\mu\left.\frac{d\log Z_{m^2}}{d\mu}\right|_0
+$$
+
+と定義する。縦棒の $0$ は bare量固定を意味する。この符号規約では、臨界指数との対応が後の式
+
+$$
+\eta=2\gamma_\phi^*,\qquad
+\frac1\nu=2-\gamma_{m^2}^*
+$$
+
+になるように置いている。第9部の概略式と符号が違って見える場合は、$\gamma_m m\partial_m$ と $\gamma_{m^2}m^2\partial_{m^2}$ の定義差を同時に読む必要がある。
+
+## 2. one-loop四点積分のpole
+
+外部運動量 $p$ を流すbubble積分は
+
+$$
+I(p)=\mu^\epsilon\int\frac{d^dq}{(2\pi)^d}
+\frac1{(q^2+m^2)[(q+p)^2+m^2]}.
+$$
+
+Feynman parameter
+
+$$
+\frac1{AB}=\int_0^1dx\,
+\frac1{[xA+(1-x)B]^2}
+$$
+
+を使い、$q\mapsto q-(1-x)p$ とshiftすると
+
+$$
+I(p)=\mu^\epsilon\int_0^1dx
+\int\frac{d^dq}{(2\pi)^d}
+\frac1{[q^2+\Delta(x,p)]^2},
+$$
+
+$$
+\Delta(x,p)=m^2+x(1-x)p^2.
+$$
+
+標準Gaussian積分
+
+$$
+\int\frac{d^dq}{(2\pi)^d}
+\frac1{(q^2+\Delta)^2}
+=\frac1{(4\pi)^{d/2}}
+\Gamma\!\left(2-\frac d2\right)
+\Delta^{d/2-2}
+$$
+
+を用いる。$d=4-\epsilon$ では $\Gamma(\epsilon/2)=2/\epsilon+O(1)$ なので
+
+$$
+I(p)=\frac1{8\pi^2}\frac1\epsilon
++\text{finite}(p,m,\mu)+O(\epsilon).
+$$
+
+pole部分が外部運動量に依存しないことは、局所counterterm $\phi^4$ で除去できることを示す。
+
+## 3. channelと対称係数
+
+四点関数には $s,t,u$ の三channelがあり、各bubbleには対称係数 $1/2$ がある。従ってpole部分は概略
+
+$$
+\Gamma^{(4)}_{\rm 1loop,div}
+=\frac{3\lambda^2}{16\pi^2}\frac1\epsilon
+$$
+
+となる。minimal subtractionでは
+
+$$
+\lambda_0=\mu^\epsilon\left[
+\lambda+\frac{3\lambda^2}{16\pi^2\epsilon}
++O(\lambda^3)
+\right]
+$$
+
+と選ぶ。countertermは発散を「捨てる」のではなく、bare parameterとrenormalized parameterの関係を、指定したrenormalization conditionまたはsubtraction schemeで定義する。
+
+同じone-loopでもtadpoleはmassをrenormalizeするが外部運動量に依存しない。従って
+
+$$
+Z_\phi=1+O(\lambda^2),
+\qquad
+\gamma_\phi=O(\lambda^2)
+$$
+
+であり、統計模型のone-loopで $\eta=0$ だったことと対応する。
+
+## 4. bare couplingを固定してbeta functionを得る
+
+bare couplingは $\mu$ に依存しないので
+
+$$
+0=\mu\frac d{d\mu}\lambda_0
+$$
+
+と置く。$\beta(\lambda)=\mu\,d\lambda/d\mu|_{\lambda_0}$ と定義し、前式を有限項まで整理すると
+
+$$
+\beta(\lambda)=-\epsilon\lambda
++\frac{3\lambda^2}{16\pi^2}
++O(\lambda^3).
+$$
+
+四次元 $\epsilon=0$ では
+
+$$
+\beta(\lambda)=\frac{3\lambda^2}{16\pi^2}+\cdots>0.
+$$
+
+一方 $d=4-\epsilon$ では非自明零点
+
+$$
+\lambda_*=\frac{16\pi^2}{3}\epsilon+O(\epsilon^2)
+$$
+
+がある。第8部の無次元couplingは $g=K_4u$、$K_4=1/(8\pi^2)$ であり、$\lambda=u$ と対応させると
+
+$$
+g_*=K_4\lambda_*
+=\frac1{8\pi^2}\frac{16\pi^2}{3}\epsilon
+=\frac{2\epsilon}{3}
+$$
+
+となる。固定点座標はscheme依存だが、この換算では第8部の $g_*=2\epsilon/3$ と同じ正規化に戻る。
+
+## 5. running couplingと大きな対数
+
+四次元でone-loop方程式
+
+$$
+\frac{d\lambda}{d\log\mu}
+=\frac{3\lambda^2}{16\pi^2}
+$$
+
+を積分すると
+
+$$
+\frac1{\lambda(Q)}=
+\frac1{\lambda(\mu)}-
+\frac3{16\pi^2}\log\frac Q\mu.
+$$
+
+固定次数のamplitudeに現れる $\lambda^2\log(Q/\mu)$ が大きいとき、$\mu\sim Q$ と選びrunning couplingを用いることでleading logarithmを再総和できる。
+
+分母がゼロになる形式的scaleは摂動的Landau poleである。これはそのscaleまで理論が確実に物理的特異点をもつという証明ではなく、摂動解またはそのUV completionなしの記述が信頼できなくなる警告である。
+
+## 6. Callan–Symanzik方程式
+
+bare場で定義した連結 $n$点関数を $G_0^{(n)}$、renormalized場のものを $G_R^{(n)}$ とする。$\phi_0=Z_\phi^{1/2}\phi$ だから
+
+$$
+G_0^{(n)}(\{x\};m_0^2,\lambda_0)
+=Z_\phi^{n/2}G_R^{(n)}(\{x\};m^2,\lambda,\mu).
+$$
+
+左辺は bare parameter を固定すれば $\mu$ に依存しない。従って
+
+$$
+0=\mu\left.\frac d{d\mu}\right|_0
+\left[Z_\phi^{n/2}G_R^{(n)}\right].
+$$
+
+積の微分を展開すると
+
+$$
+0=Z_\phi^{n/2}
+\left[
+\mu\frac\partial{\partial\mu}
+\beta(\lambda)\frac\partial{\partial\lambda}
+\mu\left.\frac{dm^2}{d\mu}\right|_0\frac\partial{\partial m^2}
+n\gamma_\phi
+\right]G_R^{(n)}.
+$$
+
+$m_0^2=Z_{m^2}m^2$ を bare 固定で微分すると
+
+$$
+0=\mu\frac d{d\mu}\log m_0^2
+=\mu\frac d{d\mu}\log Z_{m^2}
++\mu\frac d{d\mu}\log m^2
+$$
+
+なので、上の定義により
+
+$$
+\mu\left.\frac{dm^2}{d\mu}\right|_0
+=\gamma_{m^2}m^2.
+$$
+
+したがって renormalized $n$点関数 $G_R^{(n)}$ は
+
+$$
+\left[
+\mu\frac\partial{\partial\mu}
++\beta(\lambda)\frac\partial{\partial\lambda}
++\gamma_{m^2}(\lambda)m^2\frac\partial{\partial m^2}
++n\gamma_\phi(\lambda)
+\right]G_R^{(n)}=0
+$$
+
+を満たす **[Exact RG identity after renormalization definitions]**。
+
+固定点 $\beta(\lambda_*)=0$ ではrunningが止まり、$\gamma_\phi(\lambda_*)$ が場のanomalous dimensionを与える。したがって「発散を相殺するcounterterm計算」と「臨界点のscaling dimension」は、beta functionと固定点を介して同じ構造になる。
+
+mass演算子の固有値も同じ式から読む。固定点で $m^2$ は
+
+$$
+\mu\frac{dm^2}{d\mu}=\gamma_{m^2}^*m^2
+$$
+
+と走る。WilsonのIR向き長さ再尺度化ではcanonicalな $m^2$ の次元2を含めて
+
+$$
+y_t=2-\gamma_{m^2}^*
+$$
+
+となるため
+
+$$
+\frac1\nu=y_t=2-\gamma_{m^2}^*.
+$$
+
+one-loop MSでは $Z_\phi=1+O(\lambda^2)$ なので $\eta=2\gamma_\phi^*=O(\epsilon^2)$。また本章の規約で
+
+$$
+\gamma_{m^2}(\lambda)=\frac{\lambda}{16\pi^2}+O(\lambda^2).
+$$
+
+第4節の固定点 $\lambda_*=16\pi^2\epsilon/3+O(\epsilon^2)$ を代入して
+
+$$
+\frac1\nu=2-\frac{\epsilon}{3}+O(\epsilon^2)
+$$
+
+を得る。これは第8部 §2のWilson流の結果と一致する。
+
+## 7. scheme dependenceを式で見る
+
+解析的なcoupling再定義
+
+$$
+\lambda'=\lambda+a\lambda^2+O(\lambda^3)
+$$
+
+に対しchain ruleから
+
+$$
+\beta'(\lambda')=
+\frac{d\lambda'}{d\lambda}\beta(\lambda).
+$$
+
+beta functionの高次係数と固定点座標は変わる。一方、exactな固定点での線形化固有値
+
+$$
+\left.\frac{d\beta'}{d\lambda'}\right|_{\lambda'_*}
+=\left.\frac{d\beta}{d\lambda}\right|_{\lambda_*}
+$$
+
+は一変数の非特異な座標変換で不変である。有限次数では再展開・打切りのため残差が生じ、それを理論誤差の診断に使える。
+
+## 8. 何がrenormalizedされたのか
+
+renormalizationは無限大同士を恣意的に引く操作ではない。
+
+1. regulatorを置いて積分を定義する。
+2. 測定可能量を固定するrenormalization conditionを選ぶ。
+3. bare parameterをその条件に合うようregulator依存にする。
+4. 所望次数でregulatorを外したobservable間関係を得る。
+
+MS schemeは計算に便利だが、$\lambda(\mu)$ 自体は直接observableではない。異なるschemeでも同じ物理的散乱振幅を同じ精度で計算すれば一致する。
+
+## 出典案内
+
+renormalized相関関数のscale方程式は [Callan (1970)](https://journals.aps.org/prd/abstract/10.1103/PhysRevD.2.1541) と [Symanzik (1970)](https://doi.org/10.1007/BF01649434) に基づく。本章のpole係数は $d=4-\epsilon$ と $\lambda\phi^4/4!$ の規約であり、$d=4-2\epsilon$ 規約の式と分母だけを比較しない。
+
+## 証拠水準
+
+- one-loop poleとbeta function: $\lambda\ll1$、$d=4-\epsilon$、MS規約の **[Controlled perturbative result]**。
+- Callan–Symanzik方程式: bare量のscale不変性からの **[Exact RG identity]**、係数は摂動計算。
+- one-loop Landau pole: truncated beta functionの **[Perturbative warning]**、UV完成の非存在証明ではない。
+
+## 章末整理
+
+### この章で分かったこと
+
+$\phi^4$ のone-loop bubbleから局所pole、counterterm、beta function、running couplingを一続きに導ける。
+
+### その結果、何が説明できるようになったか
+
+QFTのUV繰り込みと統計力学のWilson–Fisher固定点が、flowの向きとcoupling規約を変えた同じ固定点構造をもつことを確認できる。
+
+### まだ説明できていないこと
+
+mass anomalous dimensionの完全な導出、two-loopの波動関数繰り込み、gauge symmetryを保つrenormalizationは未展開である。
+
+### よくある誤解
+
+- countertermは観測不能な発散を無根拠に捨てる項ではない。
+- MS couplingや固定点座標そのものはobservableではない。
+- Landau poleの摂動的出現だけでUV理論の全挙動が証明されたわけではない。
+
+### 次に自然に出てくる疑問
+
+重い自由度を実際に積分し、EFTのWilson coefficientとpower countingをどう計算するか。
+
+
+

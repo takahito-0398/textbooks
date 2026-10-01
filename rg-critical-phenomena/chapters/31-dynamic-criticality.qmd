@@ -1,0 +1,225 @@
+---
+title: '第31部　動的臨界現象――critical slowing downと保存則'
+sidebar: rg-critical-phenomena
+format:
+  html:
+    toc: true
+---
+
+## 1. 静的普遍性だけでは時間を決めない
+
+平衡分布が同じ
+
+$$
+P_{\rm eq}[\phi]\propto e^{-F[\phi]/T}
+$$
+
+でも、時間発展が秩序変数を保存するか、energy・momentum・他のslow modeとcoupleするかでdynamicは異なる。静的指数 $\nu,\eta$ が同じでもdynamic exponent $z$ は異なりうる。
+
+相関長 $\xi$ に対応する最長緩和時間を
+
+$$
+\tau\sim\xi^z
+$$
+
+と定義する。臨界点で $\xi\to\infty$ とともに $\tau$ が発散することがcritical slowing downである。
+
+## 2. Model A――非保存秩序変数
+
+Ising型の非保存秩序変数に対する最小Langevin方程式は
+
+$$
+\partial_t\phi(x,t)
+=-\Gamma\frac{\delta F}{\delta\phi(x,t)}
++\zeta(x,t)
+$$
+
+である。Gaussian自由エネルギー
+
+$$
+F=\frac12\int d^dx\,
+\left[(\nabla\phi)^2+r\phi^2\right]
+$$
+
+ならFourier modeは
+
+$$
+\partial_t\phi_k
+=-\Gamma(k^2+r)\phi_k+\zeta_k.
+$$
+
+緩和率は $\omega_{\rm rel}=\Gamma(k^2+r)$。臨界点 $r=0$ で $k\sim\xi^{-1}$ とすれば
+
+$$
+\tau\sim \xi^2,
+\qquad z_{\rm Gaussian}=2.
+$$
+
+これは **[Exact result for the linear Gaussian Model A]** である。相互作用は $z$ にanomalous correctionを与える。$z=2$ を全Ising dynamicsのexact値とみなしてはいけない。
+
+## 3. fluctuation–dissipationとnoise
+
+平衡分布 $e^{-F/T}$ をstationaryにするwhite noiseは
+
+$$
+\langle\zeta(x,t)\rangle=0,
+$$
+
+Model Aの相互作用を入れた代表的なone-loop計算では、静的 $\phi^4$ vertexに加えてresponse場 $\tilde\phi$ を持つJanssen–De Dominicis作用を使う。$u$ のone-loopは静的理論と同じ固定点へ流れ、運動係数 $\Gamma$ のrenormalizationは最初の非零寄与が二loopで現れる。したがって
+
+$$
+z_{\rm A}=2+c\,\eta+O(\epsilon^3),
+\qquad
+c=6\log\frac43-1
+$$
+
+であり、one-loop精度では $z_{\rm A}=2+O(\epsilon^2)$ と読める **[Perturbative dynamic RG result]**。これは「静的 $\eta=0$ だから常に $z=2$」という意味ではなく、Model Aでは時間微分項の独立なrenormalizationが低次で遅れて現れるという次数管理の結果である。
+
+$$
+\langle\zeta(x,t)\zeta(x',t')\rangle
+=2\Gamma T\,
+\delta^{(d)}(x-x')\delta(t-t').
+$$
+
+dissipation係数 $\Gamma$ とnoise強度の関係がfluctuation–dissipation theoremを表す。noiseを任意に変えると一般に別の非平衡steady stateになる。
+
+response field $\tilde\phi$ を導入すると、noise平均後のMartin–Siggia–Rose–Janssen–De Dominicis作用は概略
+
+$$
+S_{\rm dyn}
+=\int d^dx\,dt\,
+\left[
+\tilde\phi\left(
+\partial_t\phi+\Gamma\frac{\delta F}{\delta\phi}
+\right)
+-\Gamma T\tilde\phi^2
+\right].
+$$
+
+これに対して空間・時間を異方的にrescaleするdynamic RGを行う。
+
+## 4. Model B――保存秩序変数
+
+局所保存則
+
+$$
+\partial_t\phi+\nabla\cdot\boldsymbol j=0
+$$
+
+を満たすdiffusive dynamicsでは
+
+$$
+\partial_t\phi
+=\Gamma\nabla^2
+\frac{\delta F}{\delta\phi}
++\zeta_B.
+$$
+
+Gaussian臨界点で
+
+$$
+\partial_t\phi_k
+=-\Gamma k^2(k^2+r)\phi_k+\zeta_{B,k},
+$$
+
+従って $r=0$ では緩和率が $k^4$ となり
+
+$$
+z_{\rm Gaussian}=4.
+$$
+
+平衡Model Bでは保存則と静的anomalous dimensionの関係から
+
+$$
+z=4-\eta
+$$
+
+が得られる。これは平衡Model Bの保存則と静的固定点を用いる **[Dynamic scaling relation under Model B assumptions]** である。[Hohenberg–Halperin (1977)](https://doi.org/10.1103/RevModPhys.49.435) Model Aと同じ静的 $O(N)$ fixed pointを共有しても、保存則だけでdynamic classが変わる。
+
+## 5. dynamic scaling form
+
+時空二点相関を
+
+$$
+C(x,t)=\langle\phi(x,t)\phi(0,0)\rangle_c
+$$
+
+とする。臨界点のdynamic scalingは
+
+$$
+C(x,t)=b^{-2\Delta_\phi}
+C(x/b,t/b^z)
+$$
+
+を仮定する。動的structure factorを時空Fourier変換すると
+
+$$
+S(k,\omega)
+=k^{-2+\eta-z}
+\mathcal S(\omega/k^z).
+$$
+
+$\omega$ で積分すれば等時structure factor $S(k)\sim k^{-2+\eta}$ に戻る。有限相関長では
+
+$$
+S(k,\omega;t)
+=\xi^{2-\eta+z}
+\widehat{\mathcal S}(k\xi,\omega\xi^z).
+$$
+
+実験・simulationでは相関時間のdata collapseから $z$ を推定できる。
+
+## 6. 他のslow modeとのcoupling
+
+秩序変数が非保存か保存かだけでなく、保存energy density、momentum density、他のGoldstone modeとのreversible couplingがdynamic classを変える。
+
+- Model C: 非保存秩序変数と保存energy-like density。
+- Model E/F: planar order parameterと保存density、superfluid dynamics。
+- Model H: 保存scalar order parameterとmomentum流体力学。液体–気体臨界点に関係する。
+
+この分類は [Hohenberg–Halperin (1977)](https://doi.org/10.1103/RevModPhys.49.435) に体系化されている。microscopic update ruleを見ずに静的Hamiltonianだけから $z$ を決められない。
+
+## 7. Monte Carlo dynamicsとの違い
+
+Markov-chain Monte Carloのsweep数は、algorithmが物理的遷移率を模倣する場合を除き、実時間ではない。local Metropolis、cluster update、overrelaxationは同じ静的分布をsampleしてもalgorithmic dynamic exponentが異なる。
+
+cluster algorithmがcritical slowing downを大幅に減らしても、物質のphysical $z$ が変わったわけではない。一方、simulationのautocorrelation timeとeffective sample sizeを評価するにはalgorithmic $z$ が重要である。
+
+## 8. 非平衡では何が失われるか
+
+detailed balanceやfluctuation–dissipation関係を破るdriving、absorbing state、active matterでは、定常分布を局所自由エネルギー $F$ で書けないことがある。その場合もcoarse grainingとfixed pointは使えるが、equilibrium static RGをそのまま流用できない。
+
+responseとcorrelationは独立な指数をもちうる。entropy production、probability current、causalityを含むdynamic actionの対称性を監査する必要がある。
+
+## 9. 証拠水準
+
+- Gaussian Model A/Bの緩和率: 線形確率方程式からの **[Exact Gaussian result]**。
+- Model分類と $z=4-\eta$: equilibrium、保存則、slow-mode contentを指定した **[RG result under stated dynamical assumptions]**。
+- 一般の駆動非平衡系への拡張: detailed balanceの有無を模型ごとに調べる **[Model-dependent RG analysis]**。
+
+## 章末整理
+
+### この章で分かったこと
+
+時間scaleは $\tau\sim\xi^z$ と発散し、保存則とslow-mode couplingがdynamic universality classを決める。
+
+### その結果、何が説明できるようになったか
+
+Model Aの $z\simeq2$、Model Bの $z=4-\eta$、液体・磁性・algorithmic dynamicsの違いを整理できる。
+
+### まだ説明できていないこと
+
+dynamic beta functionのloop計算、Model Hの流体力学、absorbing-state fixed pointは未展開である。
+
+### よくある誤解
+
+- 静的指数が同じならdynamic exponentも同じとは限らない。
+- Monte Carlo sweepは一般に物理時間ではない。
+- white-noise強度は平衡問題でdissipationと独立に選べない。
+
+### 次に自然に出てくる疑問
+
+零温度で量子揺らぎが臨界性を支配するとき、虚時間とdynamic exponentは有効次元をどう変えるか。
+
+
+

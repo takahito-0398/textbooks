@@ -1,0 +1,186 @@
+---
+title: '第18部　Gaussian模型とRG固有演算子'
+sidebar: rg-critical-phenomena
+format:
+  html:
+    toc: true
+---
+
+## 1. 二次作用が特別な理由
+
+cutoff $\Lambda$ をもつ実scalar場の作用を
+
+$$
+S_0[\phi]=\frac12\int_{|k|<\Lambda}
+\frac{d^dk}{(2\pi)^d}(k^2+r)|\phi(k)|^2
+$$
+
+とする。Fourier mode ごとに独立なGaussian積分なので、$\Lambda/b<|k|<\Lambda$ の高速modeを積分しても低速modeに依存する新しい頂点は生じない。生成されるのは
+
+$$
+\frac12\operatorname{Tr}_{>}\log(k^2+r)
+$$
+
+という自由エネルギー定数だけである。従ってGaussian部分のshell積分はexactに閉じる。
+
+ただし $r\ne0$ のもとで尺度変換すれば $r'=b^2r$ である。臨界Gaussian固定点は $r^*=0$ にあり、massは relevant で固有指数 $y_t=2$ をもつ。
+
+## 2. propagatorと相関長
+
+運動量空間の二点関数は
+
+$$
+G(k)=\langle\phi(k)\phi(-k)\rangle
+=\frac1{k^2+r}.
+$$
+
+$r>0$ では分母のpole scaleから
+
+$$
+\xi=r^{-1/2}
+$$
+
+と読める。従って $r\propto t$ なら平均場の $\nu=1/2$ である。$r=0$ では、$d>2$ かつ接触項・UV正則化を別扱いにして
+
+$$
+G(x)=\int\frac{d^dk}{(2\pi)^d}
+\frac{e^{ik\cdot x}}{k^2}
+=\frac{\Gamma(d/2-1)}{4\pi^{d/2}}\frac1{|x|^{d-2}}.
+$$
+
+一般の臨界相関 $G(x)\sim |x|^{-(d-2+\eta)}$ と比較してGaussian固定点では $\eta=0$ である。$d=2$ ではmassless scalarの場そのものの相関は対数的であり、上式をそのまま代入してはならない。
+
+## 3. 場とcouplingのcanonical dimension
+
+座標を $x'=x/b$ として運動項を不変にするには
+
+$$
+\phi'(x')=b^{(d-2)/2}\phi(x),
+\qquad
+[\phi]=\frac{d-2}{2}
+$$
+
+とする。局所演算子
+
+$$
+\mathcal O_{p,q}\sim \partial^q\phi^p
+$$
+
+のcanonical scaling dimensionは、index contractionを省略して
+
+$$
+\Delta_{p,q}=\frac{p(d-2)}2+q.
+$$
+
+作用への摂動 $g_{p,q}\int d^dx\,\mathcal O_{p,q}$ のengineering exponent、すなわちmonomial基底における三角mixing行列のcanonicalな対角成分は
+
+$$
+y^{\rm eng}_{p,q}=d-\Delta_{p,q}.
+$$
+
+微分なしの偶数冪では
+
+$$
+y^{\rm eng}_{2n}=d-n(d-2)=2n-(n-1)d.
+$$
+
+特に
+
+$$
+y^{\rm eng}_2=2,\qquad y^{\rm eng}_4=4-d,\qquad y^{\rm eng}_6=6-2d.
+$$
+
+これだけで $\phi^4$ の上部臨界次元が4、$\phi^6$ がmarginalになる三臨界点の上部臨界次元が3と予告される。
+
+## 4. monomialと固有演算子は同義ではない
+
+「$\phi^p$ の次元を数えれば全て固有方向になる」という説明は不完全である。cutoffを伴うGaussian積分では contraction により $\phi^p$ が $\phi^{p-2},\phi^{p-4},\ldots$ とmixingする。例えば高速mode $\zeta$ に対し
+
+$$
+\langle(\phi_<+\zeta)^4\rangle_>
+=\phi_<^4+6C_>\phi_<^2+3C_>^2,
+\qquad C_>=\langle\zeta^2\rangle_>.
+$$
+
+従って線形化RGを対角化する固有演算子は、cutoff規約に応じた lower-power subtraction を含む。全Gaussian covarianceを $C=C_<+C_>$ と分けると、quarticのnormal-ordered組合せ
+
+$$
+:\!\phi^4\!:_C
+=\phi^4-6C\phi^2+3C^2
+$$
+
+は
+
+$$
+\mathbb E_{C_>}
+\left[:\!(\phi_<+\zeta)^4\!:_C\right]
+=:\!\phi_<^4\!:\!_{C_<}
+$$
+
+を満たす。shell contractionで生じる $\phi^2$ と定数がsubtractionのcovariance更新へ吸収され、再尺度化後にquartic scaling operatorとして閉じる。真の固有operatorはこのような三角mixingの対角化後の組合せであり、その固有値が対応するengineering exponentに一致する。固有vectorの座標表示はcutoff schemeに依存する。
+
+さらに total derivative、運動方程式に比例する演算子、場の再定義で除ける redundant operator を物理的摂動と区別する必要がある。理論空間の座標数をそのまま独立な観測量の数と数えてはいけない。
+
+## 5. 安定性と上部臨界次元
+
+対角化後のquartic scaling operatorの固有値を $y_4=4-d$ と書く。
+
+$d>4$ では $y_4<0$ なので、臨界面上のquartic couplingはGaussian固定点へ流れる。leading exponentsが平均場値になるのはこのためである。しかしordered phaseを安定化する $u\phi^4$ は、$u\to0$ と置くと秩序変数振幅が定義できなくなる。この意味で $u$ は dangerously irrelevant であり、自由エネルギーを $u$ に正則と仮定した単純hyperscaling
+
+$$
+2-\alpha=d\nu
+$$
+
+は $d>4$ で破れる。
+
+$d=4$ では $\phi^4$ はtree levelでmarginalである。loopを含めると marginally irrelevant となり、平均場べきに乗る対数補正が現れる。$d<4$ では $y_4>0$ だからGaussian固定点はquartic方向にも不安定で、相互作用するWilson–Fisher固定点が必要になる。
+
+## 6. composite operatorと観測量
+
+$\phi$ の二点関数だけでなく、energy densityに対応する $\phi^2$ などのcomposite operatorにも独自のrenormalizationが必要である。Gaussian点では $[\phi^2]=d-2$ なので、そのcoupling $r$ の指数は2である。相互作用固定点では一般に
+
+$$
+\Delta_{\phi^2}=d-y_t=d-\frac1\nu
+$$
+
+となり、$2\Delta_\phi$ とは一致しない。これは「積の次元は次元の積み上げ」というGaussian的直観が、相互作用CFTではoperator mixingとanomalous dimensionにより破れる例である。
+
+臨界指数を求めるとは、基本場の$\eta$だけでなく、対称性sectorごとのrelevant composite operatorのscaling dimensionを求めることでもある。
+
+## 出典案内
+
+Gaussian fixed pointでのcanonical power countingと上部臨界次元は [Wilson–Kogut (1974)](https://doi.org/10.1016/0370-1573(74)90023-4)、nonlinear scaling fieldとirrelevant方向の補正は [Wegner (1972)](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.5.4529) を参照する。
+
+## 証拠水準
+
+- Gaussian shell積分、propagator、normal-ordering identity: cutoff付きGaussian measure内の **[Exact calculation]**。
+- canonical/engineering exponent: Gaussian固定点の **[Exact linearized eigenvalue after operator mixing]**。
+- dangerously irrelevant $u$ によるhyperscaling破れ: $\phi^4$ Landau–RG記述の **[Scaling result under the stated effective theory]**。
+
+## 章末整理
+
+### この章で分かったこと
+
+Gaussian固定点ではshell積分がexactに閉じ、canonical dimensionから線形化固有値を体系的に分類できる。
+
+### その結果、何が説明できるようになったか
+
+上部臨界次元、mean-field exponent、quartic couplingのrelevanceを同じ固定点解析から導ける。
+
+### まだ説明できていないこと
+
+相互作用によるanomalous dimensionと、composite operatorの非自明なmixingは次の章以降へ残る。
+
+### よくある誤解
+
+- Gaussianとは揺らぎがないという意味ではない。揺らぎの分布が二次作用で決まる。
+- monomialはcutoff付きRGで自動的に固有演算子になるとは限らない。
+- irrelevant couplingは全ての観測量から単純にゼロと置けるとは限らない。
+
+### 次に自然に出てくる疑問
+
+秩序変数が一成分でなく、連続対称性をもつとき、固定点・Goldstone mode・下部臨界次元はどう変わるか。
+
+
+
+

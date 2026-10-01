@@ -1,0 +1,21 @@
+---
+title: '概念史――何が初めて理解可能になったか'
+sidebar: rg-critical-phenomena
+format:
+  html:
+    toc: true
+---
+
+年表ではなく、問題の変化として整理する。
+
+1. **Landau** は、相転移を秩序変数と対称性、自由エネルギーの安定性で分類可能にした。弱点は、臨界揺らぎが平均場の周りで小さいという前提を内蔵することだった。
+2. **Kadanoff** は、相関長より小さい block を一自由度にまとめても臨界点の長距離記述が自己相似になるという像を与え、scaling law に物理的機構を与えた。
+3. **Wilson** は、粗視化後に Hamiltonian の形そのものが変わることを受け入れ、無限次元 theory space、fixed point、relevant/irrelevant directions として定式化した。renormalization は発散処理から多重尺度の有効理論へ意味を広げた。
+4. **Wilson と Fisher** は $4-\epsilon$ 次元で非自明固定点を弱結合として捉え、非平均場指数を系統的に計算可能にした。
+5. **Gell-Mann–Low、Callan、Symanzik** の流れは QFT の renormalized Green 関数の尺度依存を方程式化した。Wilsonian picture と操作は同一ではないが、scale dependence と fixed point の言葉で統合して理解できる。
+6. **Polchinski、Wetterich** らの functional equation は action 全体の flow を exact identity として書いた。課題は方程式を書くことから、無限個の関数・演算子をどう制御して解くかへ移った。
+7. **conformal bootstrap と rigorous RG** は、固定点内部の整合条件による高精度制約と、特定模型での定理という異なる方向から、物理的 RG 像のどこまでを確立できるかを明確にしている。
+
+
+
+
