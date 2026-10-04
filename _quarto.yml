@@ -21,23 +21,6 @@ website:
   page-navigation: true
   navbar:
     background: primary
-    left:
-      - text: "Home"
-        href: index.qmd
-      - text: "Navier-Stokes"
-        href: navier-stokes/index.qmd
-      - text: "Buffer Overflow / ROP"
-        href: buffer-overflow/index.qmd
-      - text: "非可換幾何"
-        href: noncommutative-geometry/index.qmd
-      - text: "複素幾何"
-        href: complex-geometry/index.qmd
-      - text: "繰り込み群・臨界現象"
-        href: rg-critical-phenomena/index.qmd
-      - text: "楕円曲線・BSD"
-        href: elliptic-curves-bsd/index.qmd
-      - text: "逆スペクトル幾何"
-        href: inverse-spectral-geometry/index.qmd
     right:
       - icon: github
         href: "https://github.com/takahito-0398/textbooks"
