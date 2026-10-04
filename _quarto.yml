@@ -9,6 +9,7 @@ project:
     - "complex-geometry/**/*.qmd"
     - "rg-critical-phenomena/**/*.qmd"
     - "elliptic-curves-bsd/**/*.qmd"
+    - "inverse-spectral-geometry/**/*.qmd"
 
 website:
   title: "AI教科書ポータル"
@@ -35,6 +36,8 @@ website:
         href: rg-critical-phenomena/index.qmd
       - text: "楕円曲線・BSD"
         href: elliptic-curves-bsd/index.qmd
+      - text: "逆スペクトル幾何"
+        href: inverse-spectral-geometry/index.qmd
     right:
       - icon: github
         href: "https://github.com/takahito-0398/textbooks"
@@ -295,6 +298,42 @@ website:
         href: elliptic-curves-bsd/chapters/08-synthesis.qmd
       - text: "参考文献"
         href: elliptic-curves-bsd/chapters/references.qmd
+  - id: inverse-spectral-geometry
+    title: "逆スペクトル幾何"
+    style: docked
+    collapse-level: 1
+    contents:
+      - inverse-spectral-geometry/index.qmd
+      - text: "第1章　弦――長さは音から聞こえるか"
+        href: inverse-spectral-geometry/chapters/01-string.qmd
+      - text: "第2章　膜――なぜラプラシアンが現れるか"
+        href: inverse-spectral-geometry/chapters/02-membrane.qmd
+      - text: "第3章　固有値・固有関数・スペクトル"
+        href: inverse-spectral-geometry/chapters/03-spectrum.qmd
+      - text: "第4章　解ける形――区間・長方形・円板"
+        href: inverse-spectral-geometry/chapters/04-solvable-shapes.qmd
+      - text: "第5章　逆問題――何を知れば何が戻るか"
+        href: inverse-spectral-geometry/chapters/05-inverse-problem.qmd
+      - text: "第6章　Weyl則――面積は聞こえる"
+        href: inverse-spectral-geometry/chapters/06-weyl-law.qmd
+      - text: "第7章　熱トレース――境界と位相を聞く"
+        href: inverse-spectral-geometry/chapters/07-heat-trace.qmd
+      - text: "第8章　変分原理と円板の剛性"
+        href: inverse-spectral-geometry/chapters/08-variational-rigidity.qmd
+      - text: "第9章　等スペクトル drum"
+        href: inverse-spectral-geometry/chapters/09-isospectral-drums.qmd
+      - text: "第10章　Transplantation の完全計算"
+        href: inverse-spectral-geometry/chapters/10-transplantation.qmd
+      - text: "第11章　Sunada 法"
+        href: inverse-spectral-geometry/chapters/11-sunada.qmd
+      - text: "第12章　有限データ・一意性・安定性"
+        href: inverse-spectral-geometry/chapters/12-data-and-stability.qmd
+      - text: "第13章　発展――wave trace と条件付き剛性"
+        href: inverse-spectral-geometry/chapters/13-beyond.qmd
+      - text: "付録A　解析的基礎"
+        href: inverse-spectral-geometry/chapters/a-analytic-foundations.qmd
+      - text: "付録B　数値実験"
+        href: inverse-spectral-geometry/chapters/b-numerical-lab.qmd
 
 format:
   html:

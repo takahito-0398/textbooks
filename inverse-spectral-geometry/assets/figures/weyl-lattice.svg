@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" role="img" aria-labelledby="t d"><title id="t">楕円内の格子点</title><desc id="d">第一象限の楕円内の整数格子点が長方形固有値を数える</desc><rect width="720" height="420" fill="white"/><g transform="translate(70 360)"><path d="M0 0H600M0 0V-320" stroke="#0f172a" stroke-width="2"/><path d="M0 -300 A520 300 0 0 1 520 0" fill="#dbeafe" fill-opacity=".6" stroke="#2563eb" stroke-width="4"/><g fill="#0f172a">
+<circle cx="80" cy="-60" r="5"/><circle cx="160" cy="-60" r="5"/><circle cx="240" cy="-60" r="5"/><circle cx="320" cy="-60" r="5"/><circle cx="400" cy="-60" r="5"/><circle cx="480" cy="-60" r="5"/>
+<circle cx="80" cy="-120" r="5"/><circle cx="160" cy="-120" r="5"/><circle cx="240" cy="-120" r="5"/><circle cx="320" cy="-120" r="5"/><circle cx="400" cy="-120" r="5"/>
+<circle cx="80" cy="-180" r="5"/><circle cx="160" cy="-180" r="5"/><circle cx="240" cy="-180" r="5"/><circle cx="320" cy="-180" r="5"/>
+<circle cx="80" cy="-240" r="5"/><circle cx="160" cy="-240" r="5"/><circle cx="240" cy="-240" r="5"/>
+</g></g><g font-family="sans-serif" font-size="18"><text x="650" y="388">m</text><text x="40" y="45">n</text><text x="350" y="35">楕円面積 ÷ 4 ≈ 格子点数</text></g></svg>

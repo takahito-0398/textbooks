@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 470" role="img" aria-labelledby="title desc">
+  <title id="title">GWW領域の七三角形分割</title>
+  <desc id="desc">二つの非合同な八角形を、それぞれ七つの合同な直角二等辺三角形に分割した構成図。</desc>
+  <defs><style>
+    .tile{stroke:#334155;stroke-width:3;stroke-linejoin:round}.n{font:700 20px system-ui,sans-serif;fill:#0f172a;text-anchor:middle;dominant-baseline:middle}
+    .label{font:700 24px system-ui,sans-serif;fill:#0f172a;text-anchor:middle}
+  </style></defs>
+  <g transform="translate(35 35) scale(1.05)">
+    <polygon class="tile" fill="#bfdbfe" points="120,0 0,120 120,120"/><text class="n" x="80" y="80">1</text>
+    <polygon class="tile" fill="#fde68a" points="0,120 120,240 120,120"/><text class="n" x="80" y="160">2</text>
+    <polygon class="tile" fill="#bbf7d0" points="120,120 120,240 240,240"/><text class="n" x="160" y="200">3</text>
+    <polygon class="tile" fill="#fecaca" points="120,120 240,240 240,120"/><text class="n" x="200" y="160">4</text>
+    <polygon class="tile" fill="#ddd6fe" points="240,240 240,360 360,240"/><text class="n" x="280" y="280">5</text>
+    <polygon class="tile" fill="#fed7aa" points="240,120 240,240 360,240"/><text class="n" x="280" y="200">6</text>
+    <polygon class="tile" fill="#bae6fd" points="240,120 360,240 360,120"/><text class="n" x="320" y="160">7</text>
+    <text class="label" x="180" y="410">領域 A</text>
+  </g>
+  <g transform="translate(530 35) scale(1.05)">
+    <polygon class="tile" fill="#bfdbfe" points="0,0 120,0 120,120"/><text class="n" x="80" y="40">1</text>
+    <polygon class="tile" fill="#fde68a" points="0,0 120,120 0,120"/><text class="n" x="40" y="80">2</text>
+    <polygon class="tile" fill="#bbf7d0" points="0,120 120,120 120,240"/><text class="n" x="80" y="160">3</text>
+    <polygon class="tile" fill="#fecaca" points="120,120 120,240 240,240"/><text class="n" x="160" y="200">4</text>
+    <polygon class="tile" fill="#ddd6fe" points="120,240 240,240 240,360"/><text class="n" x="200" y="280">5</text>
+    <polygon class="tile" fill="#fed7aa" points="120,120 240,120 240,240"/><text class="n" x="200" y="160">6</text>
+    <polygon class="tile" fill="#bae6fd" points="240,120 240,240 360,240"/><text class="n" x="280" y="200">7</text>
+    <text class="label" x="180" y="410">領域 B</text>
+  </g>
+</svg>

@@ -1,0 +1,192 @@
+---
+title: "数値実験ノート"
+execute:
+  enabled: false
+---
+
+# 数値実験ノート {.appendix}
+
+数値計算は定理の代わりではない。ここでは、本文の式を手で確かめ、有限データがどのように見えるかを観察するために使う。コードは Python 3、NumPy、Matplotlib を想定し、Stage 1 では実行結果を正本にしない。
+
+## 長方形の固有値と重複度
+
+```{python}
+import numpy as np
+
+def rectangle_eigenvalues(a, b, cutoff):
+    m_max = int(a * np.sqrt(cutoff) / np.pi)
+    n_max = int(b * np.sqrt(cutoff) / np.pi)
+    values = []
+    for m in range(1, m_max + 1):
+        for n in range(1, n_max + 1):
+            lam = np.pi**2 * (m*m/a**2 + n*n/b**2)
+            if lam <= cutoff:
+                values.append((lam, m, n))
+    return sorted(values)
+
+for lam, m, n in rectangle_eigenvalues(1.0, 1.0, 120)[:8]:
+    print(f"{lam:9.5f}  mode=({m},{n})")
+```
+
+正方形では $(1,2)$ と $(2,1)$ が同じ値になる。`b=1.03` と少し変えると二値が分裂する。ここで観察するのは「数値誤差で近い」のか「式により厳密に等しい」のかの違いである。
+
+期待される先頭値は次の通りである（$\pi^2$ を単位とする）。
+
+|領域|モード|$\lambda/\pi^2$|
+|---|---|---:|
+|$1\times1$|$(1,1)$|2.0000|
+|$1\times1$|$(1,2),(2,1)$|5.0000（重複）|
+|$1\times1.03$|$(1,1)$|1.9426|
+|$1\times1.03$|$(1,2)$|4.7704|
+|$1\times1.03$|$(2,1)$|4.9426|
+
+3%の形状変化で縮退が分裂する一方、低い二値は比較的近い。有限精度では「重複」と「近接」の判別自体が観測問題になる。
+
+## 計数関数と Weyl 主要項
+
+```{python}
+import matplotlib.pyplot as plt
+
+a, b, cutoff = 2.0, 1.0, 3000.0
+eigs = np.array([v[0] for v in rectangle_eigenvalues(a, b, cutoff)])
+grid = np.linspace(1.0, cutoff, 800)
+count = np.searchsorted(eigs, grid, side="right")
+weyl = (a*b)/(4*np.pi) * grid
+
+plt.step(grid, count, where="post", label=r"$N(\lambda)$")
+plt.plot(grid, weyl, label="Weyl main term")
+plt.xlabel(r"$\lambda$")
+plt.legend()
+plt.show()
+```
+
+差 `count-weyl` は消えずに揺らぐが、比 `count/grid` は `a*b/(4*pi)` へ近づく。漸近同値 $f\sim g$ は差 $f-g\to0$ ではなく比 $f/g\to1$ を意味する。
+
+二項近似を比較する場合は、本文で述べた仮定差を忘れてはならない。長方形での観察を一般領域の定理へ無条件に昇格させない。
+
+## 熱トレースで高周波をまとめる
+
+```{python}
+def truncated_heat_trace(eigenvalues, t):
+    return np.exp(-t * eigenvalues).sum()
+
+for t in [0.2, 0.1, 0.05, 0.02]:
+    z = truncated_heat_trace(eigs, t)
+    leading = (a*b)/(4*np.pi*t)
+    print(t, z, leading)
+```
+
+小さい $t$ ほど多くの高固有値が必要になる。有限打切りで $t$ を小さくしすぎると、計算値は真の熱トレースを過小評価する。この失敗は、短時間熱漸近が高周波情報を要求することの数値的な裏返しである。
+
+打切り誤差は
+
+$$
+0\le Z(t)-\sum_{k=1}^Ne^{-t\lambda_k}
+=\sum_{k>N}e^{-t\lambda_k}
+$$
+
+である。固定した $N$ では $t\downarrow0$ とともに未観測項が効くため、短時間情報を有限スペクトルだけで復元できない。
+
+$2\times1$ 長方形で十分多数の項を基準値として比較すると、誤差は次のようになる。
+
+| $t$ |項数 $N$|打切り熱トレース|基準値との差|
+|---:|---:|---:|---:|
+|0.10|10|0.503393|$1.67\times10^{-4}$|
+|0.10|30|0.503560|$7.19\times10^{-11}$|
+|0.05|10|1.509289|$3.15\times10^{-2}$|
+|0.05|30|1.540727|$2.29\times10^{-5}$|
+|0.02|10|4.056743|1.15894|
+|0.02|30|5.147445|$6.82\times10^{-2}$|
+|0.02|100|5.215675|$5.51\times10^{-6}$|
+
+同じ30項でも $t=0.10$ では十分だが、$t=0.02$ では目に見える不足が残る。「短時間ほど多くの高周波が必要」という主張を二変数 $t,N$ の数値で確認できる。
+
+## 有限データとモデル制約
+
+長方形族で $x=a^{-2},y=b^{-2}$ を最小二乗推定するコードは次の通りである。
+
+```{python}
+A = np.array([[1, 1], [4, 1], [1, 4]], dtype=float)
+true_xy = np.array([0.25, 1.0])       # a=2, b=1
+exact = A @ true_xy                   # lambda/pi^2
+
+for noise in ([0, 0, 0],
+              [0.001, -0.001, 0.0005],
+              [0.01, -0.01, 0.005]):
+    observed = exact * (1 + np.array(noise))
+    x_hat, y_hat = np.linalg.lstsq(A, observed, rcond=None)[0]
+    print(1/np.sqrt(x_hat), 1/np.sqrt(y_hat))
+```
+
+固定出力は次の通りである。
+
+```text
+2.000000  1.000000
+2.002523  0.999628
+2.025671  0.996294
+```
+
+同じ有限データでも候補クラスを長方形へ狭めると復元できる。境界を任意関数へ広げれば未知自由度が急増し、三固有値では決まらない。これは事前仮定と安定性の最も単純な比較である。
+
+観測数の効果も、同じ1%規模の決定論的な雑音列で比較できる。使用モードを $(1,1),(2,1),(1,2),(2,2),(3,1),(1,3)$ の順に増やした結果は次である。
+
+|使用モード数|推定 $a$|推定 $b$|
+|---:|---:|---:|
+|2|2.044795|0.988534|
+|3|2.025671|0.996294|
+|6|1.993622|1.001808|
+
+この一例では冗長な測定が異符号の誤差を平均化する。ただし、モード番号を取り違える系統誤差や同方向の偏りは、測定数を増やすだけでは消えない。したがって表は普遍的な単調改善則ではなく、最小二乗が冗長データをどう利用するかの実例である。
+
+## 有限差分固有値の注意
+
+任意形状を格子へ切り、五点差分で $-\Delta$ を疎行列化すれば近似固有値を求められる。しかし、階段状に近似した境界そのものが別の領域であり、特に高次固有値は格子幅へ敏感である。等スペクトル性を数値的な近さだけで証明することはできない。格子細分での収束、境界表現、重複固有値の分裂を調べる必要がある。transplantation の価値は、有限精度の一致でなく固有空間の厳密な同型を与える点にある。
+
+## transplantation の全三辺検算
+
+次は第9章の互換から置換行列を作り、Neumann と Dirichlet の intertwining を全成分で検査する。固定点だけを $-1$ にするのが Dirichlet の奇反射である。
+
+~~~{python}
+T = np.array([
+    [0,1,1,0,1,0,0], [1,1,0,1,0,0,0],
+    [1,0,1,0,0,0,1], [0,1,0,0,0,1,1],
+    [1,0,0,0,1,1,0], [0,0,0,1,1,0,1],
+    [0,0,1,1,0,1,0],
+], dtype=int)
+D = np.diag([1,-1,-1,1,-1,1,1])
+TD = D @ T @ D
+
+left = {
+    "a": [1,0,5,3,4,2,6],
+    "b": [2,1,0,4,3,5,6],
+    "c": [4,6,2,3,0,5,1],
+}
+right = {
+    "a": [4,1,3,2,0,5,6],
+    "b": [1,0,2,3,6,5,4],
+    "c": [2,5,0,3,4,1,6],
+}
+
+def permutation(mapping, odd_boundary=False):
+    matrix = np.zeros((7, 7), dtype=int)
+    for i, j in enumerate(mapping):
+        matrix[i, j] = -1 if odd_boundary and i == j else 1
+    return matrix
+
+for side in "abc":
+    P, Q = permutation(left[side]), permutation(right[side])
+    PD = permutation(left[side], odd_boundary=True)
+    QD = permutation(right[side], odd_boundary=True)
+    assert np.array_equal(Q @ T, T @ P)
+    assert np.array_equal(QD @ TD, TD @ PD)
+
+assert round(np.linalg.det(T)) == -24
+assert round(np.linalg.det(TD)) == -24
+assert np.array_equal(
+    T @ T.T,
+    2*np.eye(7, dtype=int) + np.ones((7,7), dtype=int),
+)
+print("all transplantation checks passed")
+~~~
+
+固定出力は “all transplantation checks passed” である。これは浮動小数の近似一致でなく、成分が整数の行列等式を検査している。

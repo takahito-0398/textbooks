@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="430" viewBox="0 0 900 430" role="img" aria-labelledby="title desc">
+  <title id="title">BCDS propellerの境界頂点番号</title>
+  <desc id="desc">左右のpropeller外周だけを太線で描き、反時計回りにp1からp9、q1からq9の頂点番号を付けた図。</desc>
+  <rect width="900" height="430" fill="#ffffff"/>
+  <path d="M52 324L175.5 311L260 220L357 142.5L269.6 90.3L175.5 129L150 30.5L52 116L130 220Z" fill="#dbeafe" stroke="#0f172a" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M479.9 238.2L580 220L625.5 311L719.6 349.7L710 220L719.6 90.3L621.7 4.9L625.5 129L502 116Z" fill="#fee2e2" stroke="#0f172a" stroke-width="6" stroke-linejoin="round"/>
+  <g fill="#0f172a" font-family="sans-serif" font-size="15" font-weight="700">
+    <text x="25" y="345">p1</text><text x="170" y="338">p2</text><text x="265" y="240">p3</text><text x="362" y="145">p4</text><text x="277" y="82">p5</text><text x="177" y="151">p6</text><text x="135" y="24">p7</text><text x="25" y="110">p8</text><text x="105" y="216">p9</text>
+    <text x="455" y="260">q1</text><text x="560" y="215">q2</text><text x="604" y="332">q3</text><text x="724" y="370">q4</text><text x="715" y="224">q5</text><text x="727" y="84">q6</text><text x="600" y="20">q7</text><text x="632" y="151">q8</text><text x="475" y="108">q9</text>
+  </g>
+  <g font-family="sans-serif" text-anchor="middle" fill="#0f172a">
+    <text x="205" y="400" font-size="22">左境界（反時計回り）</text>
+    <text x="650" y="400" font-size="22">右境界（反時計回り）</text>
+  </g>
+</svg>

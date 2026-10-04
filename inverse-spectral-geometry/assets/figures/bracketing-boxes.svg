@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="430" viewBox="0 0 900 430" role="img" aria-labelledby="title desc">
+  <title id="title">Dirichlet–Neumann bracketingの箱分割</title>
+  <desc id="desc">曲線領域を正方格子で覆い、完全に内部にある箱と境界に触れる箱を色分けした図。</desc>
+  <rect width="900" height="430" fill="#ffffff"/>
+  <defs>
+    <clipPath id="domain"><path d="M150 215 C150 95 270 55 405 95 C535 28 730 105 744 224 C755 330 620 376 485 336 C350 395 170 340 150 215Z"/></clipPath>
+  </defs>
+  <path d="M150 215 C150 95 270 55 405 95 C535 28 730 105 744 224 C755 330 620 376 485 336 C350 395 170 340 150 215Z" fill="#eef2ff" stroke="#111827" stroke-width="5"/>
+  <g clip-path="url(#domain)">
+    <g fill="#bfdbfe">
+      <rect x="210" y="130" width="60" height="60"/><rect x="270" y="130" width="60" height="60"/><rect x="330" y="130" width="60" height="60"/>
+      <rect x="390" y="130" width="60" height="60"/><rect x="450" y="130" width="60" height="60"/><rect x="510" y="130" width="60" height="60"/><rect x="570" y="130" width="60" height="60"/>
+      <rect x="210" y="190" width="60" height="60"/><rect x="270" y="190" width="60" height="60"/><rect x="330" y="190" width="60" height="60"/><rect x="390" y="190" width="60" height="60"/><rect x="450" y="190" width="60" height="60"/><rect x="510" y="190" width="60" height="60"/><rect x="570" y="190" width="60" height="60"/><rect x="630" y="190" width="60" height="60"/>
+      <rect x="210" y="250" width="60" height="60"/><rect x="270" y="250" width="60" height="60"/><rect x="330" y="250" width="60" height="60"/><rect x="390" y="250" width="60" height="60"/><rect x="450" y="250" width="60" height="60"/><rect x="510" y="250" width="60" height="60"/><rect x="570" y="250" width="60" height="60"/>
+    </g>
+    <g fill="#fde68a">
+      <rect x="150" y="130" width="60" height="60"/><rect x="150" y="190" width="60" height="60"/><rect x="150" y="250" width="60" height="60"/>
+      <rect x="210" y="70" width="60" height="60"/><rect x="270" y="70" width="60" height="60"/><rect x="330" y="70" width="60" height="60"/><rect x="390" y="70" width="60" height="60"/><rect x="450" y="70" width="60" height="60"/><rect x="510" y="70" width="60" height="60"/><rect x="570" y="70" width="60" height="60"/><rect x="630" y="130" width="60" height="60"/><rect x="690" y="190" width="60" height="60"/>
+      <rect x="210" y="310" width="60" height="60"/><rect x="270" y="310" width="60" height="60"/><rect x="330" y="310" width="60" height="60"/><rect x="390" y="310" width="60" height="60"/><rect x="450" y="310" width="60" height="60"/><rect x="510" y="310" width="60" height="60"/><rect x="570" y="310" width="60" height="60"/><rect x="630" y="250" width="60" height="60"/>
+    </g>
+  </g>
+  <g stroke="#94a3b8" stroke-width="1" opacity=".75">
+    <path d="M150 70V370M210 70V370M270 70V370M330 70V370M390 70V370M450 70V370M510 70V370M570 70V370M630 70V370M690 70V370M750 70V370"/>
+    <path d="M150 70H750M150 130H750M150 190H750M150 250H750M150 310H750M150 370H750"/>
+  </g>
+  <path d="M150 215 C150 95 270 55 405 95 C535 28 730 105 744 224 C755 330 620 376 485 336 C350 395 170 340 150 215Z" fill="none" stroke="#111827" stroke-width="5"/>
+  <g font-family="sans-serif" font-size="18"><rect x="160" y="390" width="22" height="22" fill="#bfdbfe"/><text x="192" y="407">内部箱 D_in</text><rect x="375" y="390" width="22" height="22" fill="#fde68a"/><text x="407" y="407">境界箱を含む N_out</text></g>
+</svg>

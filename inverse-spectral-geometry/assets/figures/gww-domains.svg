@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="430" viewBox="0 0 900 430" role="img" aria-labelledby="title desc">
+  <title id="title">Gordon–Webb–Wolpertの等スペクトル平面領域</title>
+  <desc id="desc">七つの合同な直角二等辺三角形からなる二つの非合同な八角形領域を、内部の三角形分割とともに示す。</desc>
+  <rect width="900" height="430" fill="#ffffff"/>
+  <g transform="translate(60 30) scale(.155)" stroke="#0f172a" stroke-width="24" stroke-linejoin="round">
+    <path d="M900 225L450 675L900 1125L1350 1125L1350 1575L1800 1125L1800 675L900 675Z" fill="#dbeafe"/>
+  </g>
+  <g transform="translate(116.375 30) scale(.155)" stroke="#0f172a" stroke-width="24" stroke-linejoin="round">
+    <path d="M3150 225L2700 225L2700 675L3600 1575L3600 1125L4050 1125L3600 675L3150 675Z" fill="#fee2e2"/>
+  </g>
+  <g font-family="sans-serif" text-anchor="middle" fill="#0f172a">
+    <text x="255" y="395" font-size="24" font-weight="700">GWW 1</text>
+    <text x="665" y="395" font-size="24" font-weight="700">GWW 2</text>
+    <text x="450" y="424" font-size="14">七つの合同な直角二等辺三角形による標準的な模式図</text>
+  </g>
+</svg>

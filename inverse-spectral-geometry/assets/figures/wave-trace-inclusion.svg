@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" role="img" aria-labelledby="title desc">
+  <title id="title">wave trace の特異台と長さスペクトルの包含関係</title>
+  <desc id="desc">長さスペクトルの集合の中にwave traceで観測される特異時刻が含まれ、相殺により見えない長さがあり得る。</desc>
+  <defs><style>
+    .outer{fill:#dbeafe;stroke:#2563eb;stroke-width:4}.inner{fill:#fef3c7;stroke:#d97706;stroke-width:4}
+    .zero{fill:#dcfce7;stroke:#16a34a;stroke-width:3}.txt{font:24px system-ui,sans-serif;fill:#0f172a}
+    .small{font:19px system-ui,sans-serif;fill:#334155}.lost{fill:#ef4444}.arrow{stroke:#475569;stroke-width:3;marker-end:url(#a)}
+  </style><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#475569"/></marker></defs>
+  <rect class="outer" x="110" y="55" width="680" height="300" rx="55"/>
+  <text class="txt" x="450" y="94" text-anchor="middle">{0} ∪ Lsp(M,g)</text>
+  <rect class="inner" x="245" y="135" width="410" height="150" rx="45"/>
+  <text class="txt" x="450" y="184" text-anchor="middle">SingSupp Tr(eⁱᵗ√ᴾ)</text>
+  <circle class="zero" cx="340" cy="235" r="25"/><text class="small" x="340" y="242" text-anchor="middle">0</text>
+  <circle cx="460" cy="235" r="12" fill="#d97706"/><circle cx="525" cy="235" r="12" fill="#d97706"/>
+  <circle class="lost" cx="705" cy="225" r="12"/><text class="small" x="705" y="260" text-anchor="middle">相殺で見えない長さ</text>
+  <line class="arrow" x1="675" y1="262" x2="702" y2="239"/>
+  <text class="small" x="450" y="393" text-anchor="middle">安全な主張：特異時刻 ⊆ {0} ∪ 閉軌道長</text>
+</svg>

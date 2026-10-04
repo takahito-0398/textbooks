@@ -37,6 +37,16 @@ python scripts/build_bsd_pdf.py
 
 出力先は `dist/elliptic-curves-bsd.pdf` です。Quarto CLI 1.10以降と、日本語を含むシステムフォントが必要です。
 
+## 逆スペクトル幾何教材のPDF
+
+Web版と同じQMD正本から生成します。
+
+```powershell
+python scripts/build_inverse_spectral_geometry_pdf.py
+```
+
+公開・ダウンロード用PDFは `inverse-spectral-geometry/assets/inverse-spectral-geometry.pdf` に出力されます。
+
 ## 新しい教科書の追加
 
 1. `<slug>/index.qmd` と `<slug>/chapters/*.qmd` を追加する。
@@ -52,6 +62,7 @@ python scripts/build_bsd_pdf.py
 - 複素多様体・複素幾何
 - 繰り込み群・臨界現象――ミクロを忘れて普遍性を得る
 - 楕円曲線の有理点と Birch–Swinnerton-Dyer 予想
+- 逆スペクトル幾何
 
 ## Deploy
 

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="420" viewBox="0 0 900 420" role="img" aria-labelledby="title desc">
+  <title id="title">内部辺と外部辺での反射接着</title>
+  <desc id="desc">内部辺での値と法線微分の整合、および外部辺での奇反射と偶反射を比較する図。</desc>
+  <rect width="900" height="420" fill="#ffffff"/>
+  <g font-family="sans-serif">
+    <text x="170" y="36" font-size="23" font-weight="700">内部辺</text>
+    <path d="M80 80 L250 350 L420 80Z" fill="#dbeafe" stroke="#2563eb" stroke-width="3"/>
+    <path d="M420 80 L250 350 L590 350Z" fill="#fee2e2" stroke="#dc2626" stroke-width="3"/>
+    <path d="M420 80L250 350" stroke="#111827" stroke-width="6"/>
+    <path d="M315 205l-55-35m55 35l55 35" stroke="#111827" stroke-width="3"/>
+    <text x="265" y="150" font-size="18">n₁</text><text x="350" y="245" font-size="18">n₂=−n₁</text>
+    <text x="125" y="385" font-size="17">値は同じ、外向き法線微分は逆符号</text>
+    <text x="665" y="36" font-size="23" font-weight="700">外部辺</text>
+    <path d="M650 85L650 345" stroke="#111827" stroke-width="6"/>
+    <path d="M650 215 C705 105 770 110 825 215" fill="none" stroke="#2563eb" stroke-width="4"/>
+    <path d="M650 215 C595 325 530 320 475 215" fill="none" stroke="#dc2626" stroke-width="4"/>
+    <text x="680" y="135" font-size="18" fill="#2563eb">f(r)</text><text x="510" y="315" font-size="18" fill="#dc2626">−f(−r)</text>
+    <text x="600" y="378" font-size="17">奇反射: f=0</text>
+    <path d="M685 225 C735 175 785 175 830 225" fill="none" stroke="#059669" stroke-width="3" stroke-dasharray="8 5"/>
+    <path d="M615 225 C565 175 515 175 470 225" fill="none" stroke="#059669" stroke-width="3" stroke-dasharray="8 5"/>
+    <text x="682" y="260" font-size="17" fill="#059669">偶反射: ∂ₙf=0</text>
+  </g>
+</svg>
