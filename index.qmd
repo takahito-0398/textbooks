@@ -59,4 +59,14 @@ C*-環、von Neumann環、K理論、巡回コホモロジー、スペクトル�
 [教科書を開く](complex-geometry/)
 :::
 
+::: {.book-card}
+### 楕円曲線の有理点と Birch–Swinnerton-Dyer 予想
+
+有理点の探索から群構造、Mordell–Weil、有限体上の点数、L関数を経てBSD予想へ至る算術幾何の教材。
+
+- 分野: 数学 / 数論 / 楕円曲線 / 算術幾何
+
+[教科書を開く](elliptic-curves-bsd/)
+:::
+
 :::

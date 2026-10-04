@@ -8,6 +8,7 @@ project:
     - "noncommutative-geometry/**/*.qmd"
     - "complex-geometry/**/*.qmd"
     - "rg-critical-phenomena/**/*.qmd"
+    - "elliptic-curves-bsd/**/*.qmd"
 
 website:
   title: "AI教科書ポータル"
@@ -32,6 +33,8 @@ website:
         href: complex-geometry/index.qmd
       - text: "繰り込み群・臨界現象"
         href: rg-critical-phenomena/index.qmd
+      - text: "楕円曲線・BSD"
+        href: elliptic-curves-bsd/index.qmd
     right:
       - icon: github
         href: "https://github.com/takahito-0398/textbooks"
@@ -268,6 +271,30 @@ website:
         href: rg-critical-phenomena/chapters/bibliography.qmd
       - text: '概念史――何が初めて理解可能になったか'
         href: rg-critical-phenomena/chapters/history.qmd
+  - id: elliptic-curves-bsd
+    title: "楕円曲線の有理点とBSD予想"
+    style: docked
+    collapse-level: 1
+    contents:
+      - elliptic-curves-bsd/index.qmd
+      - text: "第1章　有理点を探す問いを、作る問いへ変える"
+        href: elliptic-curves-bsd/chapters/01-rational-points.qmd
+      - text: "第2章　無限遠点を加えると、点は群になる"
+        href: elliptic-curves-bsd/chapters/02-group-law.qmd
+      - text: "第3章　Mordell–Weil、rank、height"
+        href: elliptic-curves-bsd/chapters/03-mordell-weil-rank-height.qmd
+      - text: "第4章　有限体への還元とHasse評価"
+        href: elliptic-curves-bsd/chapters/04-reduction-and-hasse.qmd
+      - text: "第5章　Euler積とL関数"
+        href: elliptic-curves-bsd/chapters/05-euler-product-and-l-function.qmd
+      - text: "第6章　モジュラー性と中心点"
+        href: elliptic-curves-bsd/chapters/06-modularity-and-center.qmd
+      - text: "第7章　Birch–Swinnerton-Dyer予想"
+        href: elliptic-curves-bsd/chapters/07-bsd-conjecture.qmd
+      - text: "第8章　最初の問いへ戻る"
+        href: elliptic-curves-bsd/chapters/08-synthesis.qmd
+      - text: "参考文献"
+        href: elliptic-curves-bsd/chapters/references.qmd
 
 format:
   html:

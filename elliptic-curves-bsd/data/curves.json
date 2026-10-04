@@ -1,0 +1,40 @@
+{
+  "checked_at": "2026-10-04",
+  "curves": [
+    {
+      "id": "E1",
+      "equation": "y^2 = x^3 - 2",
+      "ainvs": [0, 0, 0, 0, -2],
+      "lmfdb_label": "1728.o3",
+      "conductor": 1728,
+      "minimal_discriminant": -1728,
+      "bad_primes": [2, 3],
+      "algebraic_rank": 1,
+      "analytic_rank": 1,
+      "torsion_structure": [],
+      "generators": [[3, 5, 1]],
+      "root_number": -1,
+      "source": "https://www.lmfdb.org/EllipticCurve/Q/data/1728.o3"
+    },
+    {
+      "id": "E0",
+      "equation": "y^2 = x^3 - x",
+      "ainvs": [0, 0, 0, -1, 0],
+      "lmfdb_label": "32.a3",
+      "conductor": 32,
+      "minimal_discriminant": 64,
+      "bad_primes": [2],
+      "algebraic_rank": 0,
+      "analytic_rank": 0,
+      "torsion_structure": [2, 2],
+      "torsion_points": ["O", [0, 0], [1, 0], [-1, 0]],
+      "root_number": 1,
+      "source": "https://www.lmfdb.org/EllipticCurve/Q/32/a/3"
+    }
+  ],
+  "notes": [
+    "LMFDB の ainvs は一般 Weierstrass 形 [a1,a2,a3,a4,a6] の係数である。",
+    "E1 の生成元 (3,5) と rank bounds [1,1] は LMFDB ec_mwbsd データで確認した。",
+    "E0 の torsion 点は方程式への代入と 2-torsion 条件 y=0 から直接確認できる。"
+  ]
+}

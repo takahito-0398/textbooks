@@ -27,6 +27,16 @@ quarto render
 python scripts/validate_site.py
 ```
 
+## 楕円曲線・BSD教材のPDF
+
+Web版と同じQMD正本から、手元保存用PDFを生成します。
+
+```powershell
+python scripts/build_bsd_pdf.py
+```
+
+出力先は `dist/elliptic-curves-bsd.pdf` です。Quarto CLI 1.10以降と、日本語を含むシステムフォントが必要です。
+
 ## 新しい教科書の追加
 
 1. `<slug>/index.qmd` と `<slug>/chapters/*.qmd` を追加する。
@@ -41,6 +51,7 @@ python scripts/validate_site.py
 - 作用素環論から非可換幾何へ
 - 複素多様体・複素幾何
 - 繰り込み群・臨界現象――ミクロを忘れて普遍性を得る
+- 楕円曲線の有理点と Birch–Swinnerton-Dyer 予想
 
 ## Deploy
 

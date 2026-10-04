@@ -1,0 +1,190 @@
+---
+title: "7. Birch–Swinnerton-Dyer 予想"
+sidebar: elliptic-curves-bsd
+format:
+  html:
+    toc: true
+---
+
+解析接続された $L$ 関数を $s=1$ のまわりで Taylor 展開する。
+
+$$
+L(E,s)=c_r(s-1)^r+c_{r+1}(s-1)^{r+1}+\cdots,
+\qquad c_r\ne0.
+$$
+
+最初に消えない項の指数を
+
+$$
+r_{\mathrm{an}}=\operatorname{ord}_{s=1}L(E,s)
+$$
+
+と書き、**解析的 rank** と呼ぶ。一方、Mordell–Weil 群の自由部分の rank を
+
+$$
+r_{\mathrm{alg}}=\operatorname{rank}E(\mathbb Q)
+$$
+
+と書く。BSD 予想の rank 部分、しばしば弱い BSD と呼ばれる主張は
+
+$$
+\boxed{
+r_{\mathrm{alg}}=r_{\mathrm{an}}
+}
+$$
+
+である。
+
+具体的には次の対応を予想する。
+
+$$
+\begin{array}{c|c}
+r=0 & L(E,1)\ne0\\
+r=1 & L(E,1)=0,\quad L'(E,1)\ne0\\
+r=2 & L(E,1)=L'(E,1)=0,\quad L''(E,1)\ne0
+\end{array}
+$$
+
+左辺は有理数解を足し合わせる有限生成群の次元である。右辺は、全素数の有限体上の点数を Euler 積へ束ね、解析接続した複素関数の零点次数である。この二つが等しいという点に予想の異常な強さがある。
+
+$$
+E(\mathbb Q)
+\longrightarrow E(\mathbf F_p)
+\longrightarrow N_p
+\longrightarrow a_p
+\longrightarrow L(E,s)
+\longrightarrow \operatorname{ord}_{s=1}
+\longrightarrow r.
+$$
+
+一つの素数は一枚の影にすぎない。全素数の影を整合的に束ねたとき、大域的な自由度が中心点の零点として現れる、というのが BSD の中心思想である。
+
+## 7.1 Sha の前に、楕円曲線自身と torsor を分ける
+
+楕円曲線 $E$ 自身には単位元 $\mathcal O\in E(\mathbb Q)$ があるので、「$E$ が $\mathbb Q$ 上に一点も持たない」ことはない。局所・大域原理の失敗を測るには、$E$ とよく似ているが基点をまだ選んでいない別の曲線を考える。
+
+$E$ の torsor（主等質空間）とは、$E$ が平行移動のように作用し、任意の二点の間をただ一つの群要素で移れる種数1曲線 $C$ である。代数閉包上で一点を選べば $C$ は $E$ と同じ形に見えるが、$\mathbb Q$ 上の点がなければ原点を選べず、$C(\mathbb Q)$ を $E(\mathbb Q)$ と同一視できない。
+
+ここで「局所的に点がある」とは
+
+$$
+C(\mathbb R)\ne\varnothing,
+\qquad
+C(\mathbb Q_p)\ne\varnothing
+\quad(\text{すべての素数 }p)
+$$
+
+を意味する。$C(\mathbf F_p)\ne\varnothing$ という mod $p$ の条件だけではない。すべての局所体で点があるのに $C(\mathbb Q)=\varnothing$ となる torsor があり、その同値類を集めた群が Tate–Shafarevich 群
+
+$$
+\Sha(E/\mathbb Q)
+$$
+
+である。したがって $\Sha$ は、楕円曲線 $E$ を有限体へ還元した点数の誤差ではなく、**$E$ の torsor に対する $\mathbb R$ と全 $\mathbb Q_p$ の局所情報が、大域的な有理点を保証しない障害**を測る。
+
+> **具体例：Selmer の三次曲線。**
+> $$
+> C:\quad 3X^3+4Y^3+5Z^3=0
+> $$
+> は $\mathbb R$ とすべての $\mathbb Q_p$ で点を持つが、$\mathbb Q$ 上には点を持たない。その Jacobian は、原点を $[1:-1:0]$ とする楕円曲線
+> $$
+> E:\quad X^3+Y^3+60Z^3=0
+> $$
+> であり、$C$ は $\Sha(E/\mathbb Q)$ の非零な位数3の元を表す。局所可解性と大域可解性が実際に分かれる古典例である。証明は Cassels『*Lectures on Elliptic Curves*』第18章を参照する。
+
+## 7.2 強い BSD：次数だけでなく先頭係数まで
+
+最小 Weierstrass 模型と実周期の規約を固定すると、強い BSD 予想は概略
+
+$$
+\frac{L^{(r)}(E,1)}{r!}
+=
+\frac{
+\Omega_E\,\operatorname{Reg}(E)\,\#\Sha(E/\mathbb Q)
+\displaystyle\prod_p c_p
+}{
+\#E(\mathbb Q)_{\mathrm{tors}}^2
+}
+$$
+
+と主張する。文献により $\Omega_E$ に実連結成分数を含めるかなどの規約差がある。本教材では $\Omega_E$ を BSD 公式に現れる実周期全体としている。
+
+- **実無限素点の因子 $\Omega_E$**：実曲線上で不変微分を積分して得る実周期。解析と実幾何を結ぶ。
+- **大域的な自由格子 $\operatorname{Reg}(E)$**：自由生成元 $P_1,\ldots,P_r$ に対する高さ行列の行列式
+  $$
+  \operatorname{Reg}(E)=\det(\langle P_i,P_j\rangle).
+  $$
+  自由部分を格子と見たときの基本領域の二乗体積に相当する。rank 0 では1と約束する。
+- **局所・大域障害 $\#\Sha(E/\mathbb Q)$**：前節の torsor のうち、すべての局所体で点を持つものを数える。
+- **悪い有限素点の因子 $c_p$**：Néron 模型の特殊ファイバーが持つ連結成分の個数である Tamagawa 数。良い素数では1で、悪い還元が整数モデルに残す局所的なずれを補正する。
+- **有限部分の補正 $\#E(\mathbb Q)_{\mathrm{tors}}^2$**：自由格子では見えない有限位数点の重複を分母で補正する。
+
+これらの因子の配置は、解析側の正規化された体積と算術側の格子の共体積を比較した結果と捉えられる。$\Omega_E$ と $\operatorname{Reg}(E)$ は実方向と自由格子の体積、$c_p$ は各悪い素数での局所測度のずれ、$\#\Sha$ は局所データから大域点へ戻れない指数を表す。torsion は自由格子の共体積には現れない有限の重複度であり、楕円曲線とその双対を比較するため二乗して分母に入る。
+
+左辺は解析的な先頭係数だが、右辺は「無限素点」「大域的な点の格子」「局所・大域障害」「悪い有限素点」「torsion」という、曲線の算術を構成する各層を一つずつ含む。ただし、測度の正規化からこの公式を厳密に導くには Néron 模型、双対性、Tamagawa 測度が必要であり、本教材では発展事項として公式自体を受け入れる。$\Sha$ の有限性自体が一般には未解決であり、強い BSD はその有限性と位数まで先頭係数へ組み込む。
+
+## 7.3 何が証明され、何が未解決か
+
+ここは主張の向きを分ける必要がある。
+
+**定理として分かっている主要部分。** $E/\mathbb Q$ の解析的 rank が0または1なら、Gross–Zagier と Kolyvagin、および全楕円曲線の保型性を合わせて
+
+$$
+r_{\mathrm{an}}=r_{\mathrm{alg}}
+$$
+
+が成り立ち、$\Sha(E/\mathbb Q)$ は有限である。解析的 rank 1 では、Gross–Zagier 公式が $L'(E,1)$ に関係する量を Heegner 点の Néron–Tate 高さへ結びつける。これは概念的な要約であり、実際の定理では補助的な虚二次体、その体が満たす Heegner 条件、必要に応じた二次 twist を選んで公式を適用する。微分が非零なら点の高さが正で、その点は無限位数になる。Kolyvagin の Euler system は、そこから Selmer 群を制御し、rank がちょうど1であることと $\Sha$ の有限性を導く。解析的 rank 0 でも対応する Kolyvagin 型の議論により rank 0 と有限性が得られる。
+
+**これだけでは強い BSD 全体ではない。** 上の定理は rank の一致と $\Sha$ の有限性を与えるが、すべての素数について先頭係数公式を無条件に丸ごと証明した、という意味ではない。Iwasawa 理論、Kato の Euler system、主予想、$p$-進 Gross–Zagier 公式などにより、追加仮定のもとで強い BSD の $p$-primary 部分や逆向きの含意に大きな進展がある。仮定は通常、良い通常還元、残余表現の既約性、Tamagawa 因子、局所条件などを含み得るため、「rank 0 と1では強い BSD が無条件にすべて証明済み」とまとめるのは不正確である。
+
+**未解決部分。** 一般の解析的 rank 2 以上で rank の一致を証明すること、一般の $\Sha$ の有限性、強い BSD の先頭係数公式は未解決である。Clay Mathematics Institute も BSD を未解決の Millennium Prize Problem として掲げている。有限範囲の数値計算で $L(E,1)=0$ らしく見えても、厳密な零点次数や有理点生成元の不存在を証明したことにはならない。
+
+## 7.4 なぜ rank 2 以上は同じ方法で進まないのか
+
+解析的 rank 1 では最初の非零項が一次微分 $L'(E,1)$ である。Gross–Zagier 公式はこの一次微分を一つの Heegner 点の標準高さへ結びつける。高さが非零なら、その一点が無限位数である。Kolyvagin はその点から作る Euler system（素数ごとに互いに整合するコホモロジー類の族）を使い、Selmer 群に余分な独立方向がないことと $\Sha$ の有限性を制御する。この仕組みは「一次微分、一つの点、rank 1 の Selmer 群」という対応に強く適合している。
+
+rank 2 なら必要なのは一つの点ではなく、独立な二点と高さ pairing の $2\times2$ 行列式である。解析側でも $L''(E,1)$ のような高次微分を、複数の点または高次の代数サイクルへ結びつけなければならない。一点の非零性だけでは二点の独立性を証明できず、rank 1 用の Euler system の上界評価もそのままでは十分でない。
+
+より高次の Gross–Zagier 型公式、導来 Heegner class、高次元 Euler system、Iwasawa 理論には重要な進展がある。しかし任意の $E/\mathbb Q$ について、高次微分から必要な数の独立な有理点を作り、Selmer 群と $\Sha$ を同時に完全制御する一般的方法はまだない。難しさは単に計算量が増えることではなく、rank 1 で一致した「一つの解析量と一つの算術点」の対応を、高次の行列式的情報へ拡張することにある。
+
+## 7.5 BSD が正しければ rank は簡単に計算できるか
+
+必ずしもそうではない。解析接続された $L$ 関数を高精度で数値評価できても、非常に小さい非零値と厳密な0を区別するには誤差評価が要る。零点次数を証明し、さらに強い BSD から生成元を得るには、周期、高さ、Selmer 群、$\Sha$、Tamagawa 数の厳密計算も関わる。BSD は問題の正しい構造を示すが、すべての計算を自動的に容易にする呪文ではない。
+
+## ここまでで分かったこと
+
+弱い BSD は代数的 rank と解析的 rank の一致、強い BSD は最初の非零 Taylor 係数までの算術的公式である。解析的 rank 0・1 では rank の一致と $\Sha$ の有限性が定理だが、高 rank と強い公式全体は未解決である。
+
+## まだ分からないこと
+
+高 rank で解析的情報から独立な有理点を構成し、Selmer 群と $\Sha$ を同時に制御する一般的方法がない。
+
+## 次に必要になる発想
+
+合同数、Galois 表現、Iwasawa 理論など、同じ局所・大域・解析の橋を別の問題へ延ばす。
+
+## 理解確認
+
+1. $L(E,1)\ne0$ なら解析的 rank はいくつか。BSD を仮定すると有理点群について何が言えるか。
+2. 「解析的 rank 1 なら代数的 rank 1」は何によって橋渡しされるか。
+3. rank の一致と強い BSD の違いを述べよ。
+4. $\Sha(E/\mathbb Q)$ が「$E(\mathbb Q)=\varnothing$」を測る群でないのはなぜか。
+5. $C(\mathbf F_p)\ne\varnothing$ と $C(\mathbb Q_p)\ne\varnothing$ はなぜ同じ条件でないか。
+6. rank 2 を示すのに、一つの非 torsion Heegner 点だけでは足りないのはなぜか。
+
+**解答。** 1. 解析的 rank は0。BSD なら代数的 rank も0で、有理点は有限 torsion 群だけになる。2. Gross–Zagier が $L$ 関数の微分と Heegner 点の高さを結び、Kolyvagin の Euler system が Selmer 群と $\Sha$ を制御する。3. 前者は零点次数だけを決め、後者は周期、レギュレータ、$\Sha$、Tamagawa 数、torsion を用いて先頭係数まで決める。4. 楕円曲線 $E$ 自身には常に単位元 $\mathcal O\in E(\mathbb Q)$ があり、$\Sha$ が分類するのは $E$ の torsor だからである。5. 前者は mod $p$ の一点だけを要求するが、後者はその点をすべての $p$-冪精度へ整合的に持ち上げることを要求するからである。6. 一点から分かる自由方向は高々一つであり、rank 2 には独立な二点と高さ pairing の非零な行列式が必要だからである。
+
+## 7.6 第5〜7章の用語集
+
+| 用語 | 本教材での意味・役割 |
+|---|---|
+| local zeta function（局所ゼータ関数） | $\mathbf F_{p^n}$ 上の点数を全 $n$ についてまとめる母関数 |
+| Tate module（Tate 加群） | $\ell$-冪 torsion 点の逆極限。Frobenius を線形作用として読む空間 |
+| newform（新形式） | Hecke 作用素の正規化された同時固有形式で、古い低レベル形式から来ないもの |
+| Mellin transform（Mellin 変換） | 指数減衰する Fourier 展開を Dirichlet 級数へ移す積分変換 |
+| root number（根数） | 関数等式の符号 $w_E$。中心での零点次数の偶奇を制約する |
+| torsor（主等質空間） | $E$ が単純推移的に作用する、基点を未選択の種数1曲線 |
+| Selmer group（Selmer 群） | descent の候補のうち、すべての局所条件を通過した有限群 |
+| regulator（レギュレータ） | 自由生成元の高さ pairing 行列の行列式 |
+| Tamagawa number（Tamagawa 数） | 悪い素数での Néron 模型の連結成分数 $c_p$ |
+| Euler system | 素数ごとに整合するコホモロジー類の族。Selmer 群の上界を制御する |

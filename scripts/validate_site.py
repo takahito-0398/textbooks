@@ -33,6 +33,8 @@ for path in ROOT.rglob('*'):
                 errors.append(f'possible secret pattern in {path.relative_to(ROOT)}')
         for match in LINK_RE.finditer(text):
             raw = match.group(1).split()[0]
+            if raw.startswith('\\'):
+                continue
             target = raw.split('#', 1)[0]
             if not target or is_external(target):
                 continue

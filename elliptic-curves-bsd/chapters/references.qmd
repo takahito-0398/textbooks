@@ -1,0 +1,40 @@
+---
+title: "参考文献"
+sidebar: elliptic-curves-bsd
+format:
+  html:
+    toc: true
+---
+
+確認日：2026年10月4日。
+
+## 基本文献
+
+1. Joseph H. Silverman, *The Arithmetic of Elliptic Curves*, 2nd ed., Graduate Texts in Mathematics 106, Springer, 2009. 楕円曲線、Mordell–Weil 定理、高さ、還元の標準文献。
+2. Joseph H. Silverman and John Tate, *Rational Points on Elliptic Curves*, 2nd ed., Springer, 2015. 弦接法から descent までの導入。
+3. John Cremona, *Algorithms for Modular Elliptic Curves*, 2nd ed., Cambridge University Press, 1997. rank、導手、局所データの計算法。
+4. J. W. S. Cassels, “Arithmetic on curves of genus 1. VIII,” *Journal für die reine und angewandte Mathematik* 217 (1965), 180–199. Selmer 群と Tate–Shafarevich 群の古典的基礎。
+5. Fred Diamond and Jerry Shurman, *A First Course in Modular Forms*, Graduate Texts in Mathematics 228, Springer, 2005. 保型形式、Hecke 作用素、Mellin 変換と $L$ 関数の標準的導入。
+6. J.-P. Serre, *Abelian $\ell$-Adic Representations and Elliptic Curves*, 2nd ed., A K Peters, 1998. Tate module と Frobenius 表現。
+
+## BSD と研究状況
+
+7. Andrew Wiles, [“The Birch and Swinnerton-Dyer Conjecture”](https://www.claymath.org/wp-content/uploads/2022/05/birchswin.pdf), Clay Mathematics Institute official problem description. 予想、歴史、強い形の公式。Clay の[問題ページ](https://www.claymath.org/millennium/birch-and-swinnerton-dyer-conjecture/)も参照。
+8. B. J. Birch and H. P. F. Swinnerton-Dyer, “Notes on elliptic curves. I,” *Journal für die reine und angewandte Mathematik* 212 (1963), 7–25; “II,” 218 (1965), 79–108. 初期の数値実験と予想。
+9. Benedict H. Gross and Don B. Zagier, [“Heegner Points and Derivatives of L-Series”](https://doi.org/10.1007/BF01388809), *Inventiones Mathematicae* 84 (1986), 225–320. $L$ 関数の微分と Heegner 点の高さ。
+10. V. A. Kolyvagin, “Finiteness of $E(\mathbb Q)$ and $\Sha(E,\mathbb Q)$ for a subclass of Weil curves,” *Izvestiya Akademii Nauk SSSR* 52 (1988); English translation, *Mathematics of the USSR-Izvestiya* 32 (1989), 523–541. Euler system による rank と $\Sha$ の制御。
+11. Christopher Skinner, [“A converse to a theorem of Gross, Zagier, and Kolyvagin”](https://doi.org/10.4007/annals.2020.191.2.1), *Annals of Mathematics* 191 (2020), 329–354. rank 1 の逆向きと Iwasawa 理論、既知結果の条件の整理。
+12. Christophe Breuil, Brian Conrad, Fred Diamond, and Richard Taylor, [“On the modularity of elliptic curves over Q: wild 3-adic exercises”](https://doi.org/10.1090/S0894-0347-01-00370-8), *Journal of the American Mathematical Society* 14 (2001), 843–939. $\mathbb Q$ 上の全楕円曲線の保型性を完成。
+
+## 曲線データ
+
+13. LMFDB, [curve 1728.o3: $y^2=x^3-2$](https://www.lmfdb.org/EllipticCurve/Q/data/1728.o3). rank 1、analytic rank 1、生成元 $(3,5)$、torsion 自明、導手1728、悪い素数2,3。
+14. LMFDB, [curve 32.a3: $y^2=x^3-x$](https://www.lmfdb.org/EllipticCurve/Q/32/a/3). rank 0、torsion $(\mathbb Z/2\mathbb Z)^2$、導手32。
+
+## 局所・大域原理の具体例
+
+15. J. W. S. Cassels, *Lectures on Elliptic Curves*, London Mathematical Society Student Texts 24, Cambridge University Press, 1991, Chapter 18. Selmer の三次曲線 $3X^3+4Y^3+5Z^3=0$、その Jacobian、局所・大域原理の失敗。
+
+## 読み進める順序
+
+弦接法と高さは Silverman–Tate、厳密な算術は Silverman、計算は Cremona、BSD の定式化と現状の入口は Wiles、rank 1 の橋は Gross–Zagier と Kolyvagin の順に読むと、本教材の流れを保ったまま深められる。
