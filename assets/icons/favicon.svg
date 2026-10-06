@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="AI教科書ポータル">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="44%" r="68%">
+      <stop offset="0%" stop-color="#14263a"/>
+      <stop offset="58%" stop-color="#0b1320"/>
+      <stop offset="100%" stop-color="#050910"/>
+    </radialGradient>
+    <radialGradient id="core" cx="43%" cy="38%" r="62%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="34%" stop-color="#aeeeff"/>
+      <stop offset="68%" stop-color="#47b8ff"/>
+      <stop offset="100%" stop-color="#0d5e8f"/>
+    </radialGradient>
+    <filter id="soft-glow" x="-45%" y="-45%" width="190%" height="190%">
+      <feGaussianBlur stdDeviation="9" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.15 0 0 0 0 0.78 0 0 0 0 1 0 0 0 .78 0"/>
+      <feBlend in="SourceGraphic" mode="screen"/>
+    </filter>
+    <filter id="ring-glow" x="-55%" y="-55%" width="210%" height="210%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.55 0 0 0 0 0.92 0 0 0 0 1 0 0 0 .88 0"/>
+      <feBlend in="SourceGraphic" mode="screen"/>
+    </filter>
+    <mask id="torus-hole">
+      <rect width="512" height="512" fill="white"/>
+      <ellipse cx="256" cy="256" rx="71" ry="42" fill="black" transform="rotate(-19 256 256)"/>
+    </mask>
+    <linearGradient id="orbit" x1="112" y1="112" x2="400" y2="400" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#eaffff" stop-opacity=".25"/>
+      <stop offset="42%" stop-color="#f7ffff"/>
+      <stop offset="62%" stop-color="#73dfff"/>
+      <stop offset="100%" stop-color="#c9f7ff" stop-opacity=".32"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="96" fill="url(#bg)"/>
+  <circle cx="256" cy="256" r="172" fill="none" stroke="#1f6f9e" stroke-width="2" opacity=".22"/>
+  <ellipse cx="256" cy="256" rx="145" ry="84" fill="none" stroke="#dffcff" stroke-width="23" opacity=".27" filter="url(#soft-glow)" transform="rotate(-19 256 256)"/>
+  <ellipse cx="256" cy="256" rx="124" ry="70" fill="url(#core)" mask="url(#torus-hole)" filter="url(#soft-glow)" transform="rotate(-19 256 256)"/>
+  <ellipse cx="256" cy="256" rx="70" ry="40" fill="none" stroke="#06101d" stroke-width="24" opacity=".95" transform="rotate(-19 256 256)"/>
+  <ellipse cx="256" cy="256" rx="178" ry="54" fill="none" stroke="#06101d" stroke-width="16" opacity=".58" transform="rotate(31 256 256)"/>
+  <path d="M91 290 C143 156 335 105 420 198" fill="none" stroke="url(#orbit)" stroke-width="16" stroke-linecap="round" filter="url(#ring-glow)"/>
+  <path d="M421 198 C476 264 402 361 283 382 C196 397 119 364 91 290" fill="none" stroke="url(#orbit)" stroke-width="11" stroke-linecap="round" opacity=".62"/>
+  <ellipse cx="256" cy="256" rx="124" ry="70" fill="none" stroke="#f6ffff" stroke-width="7" opacity=".82" transform="rotate(-19 256 256)"/>
+  <ellipse cx="256" cy="256" rx="71" ry="42" fill="none" stroke="#78dfff" stroke-width="8" opacity=".48" transform="rotate(-19 256 256)"/>
+</svg>

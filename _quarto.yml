@@ -3,6 +3,9 @@ project:
   output-dir: _site
   resources:
     - CNAME
+    - favicon.ico
+    - site.webmanifest
+    - assets/icons/*
   render:
     - "*.qmd"
     - "navier-stokes/**/*.qmd"
@@ -332,6 +335,7 @@ format:
     link-external-icon: true
     fig-responsive: true
     css: shared/styles/custom.css
+    include-in-header: shared/includes/pwa-head.html
     include-after-body: shared/scripts/reader-ui.html
 
 execute:
