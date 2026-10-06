@@ -8,7 +8,7 @@ Productionを390px幅で、ポータル、教材トップ、文章・数式・�
 
 ## Audit Method
 
-- Production: `https://takahito-0398.github.io/textbooks/`
+- Production: `https://textbooks.yohakostudio.com/`
 - 主対象: 390×844、補助対象: 360 / 375 / 412 / 430 / 768 / 1280 / 1440px
 - Journey: ポータル → 教材トップ → 最初の章 → 長文・数式・表・コード → 目次 → 前後移動 → 最終章
 - 実測対象: 固定UIの矩形、ページ横幅、要素内overflow、前後リンク、目次のfocus、スクロール前後の状態

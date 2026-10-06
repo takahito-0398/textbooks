@@ -2,7 +2,7 @@
 
 Quarto + GitHub Actions + GitHub Pagesで公開する個人教科書ポータルです。
 
-- 公開URL: https://takahito-0398.github.io/textbooks/
+- 公開URL: https://textbooks.yohakostudio.com/
 - Repository: https://github.com/takahito-0398/textbooks
 
 ## ローカル環境

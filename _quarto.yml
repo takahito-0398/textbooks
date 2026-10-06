@@ -1,6 +1,8 @@
 project:
   type: website
   output-dir: _site
+  resources:
+    - CNAME
   render:
     - "*.qmd"
     - "navier-stokes/**/*.qmd"
@@ -13,7 +15,7 @@ project:
 
 website:
   title: "AI教科書ポータル"
-  site-url: "https://takahito-0398.github.io/textbooks/"
+  site-url: "https://textbooks.yohakostudio.com/"
   repo-url: "https://github.com/takahito-0398/textbooks"
   search:
     location: navbar
