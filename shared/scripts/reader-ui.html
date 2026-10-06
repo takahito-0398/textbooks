@@ -4,6 +4,12 @@
   if (!main) return;
 
   const clean = (value) => (value || "").replace(/\s+/g, " ").trim();
+  const escapeHtml = (value) => clean(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+  const escapeAttr = (value) => escapeHtml(value).replace(/'/g, "&#39;");
   const headingId = (heading) => (
     heading.id ||
     heading.dataset.anchorId ||
@@ -22,6 +28,11 @@
   const chapterTitle = clean(main.querySelector("h1")?.textContent || document.title.replace(/–.*$/, ""));
   const headings = Array.from(main.querySelectorAll("h1, h2, h3")).filter((heading) => headingId(heading));
   const sectionHeadings = headings.filter((heading) => heading.tagName !== "H1");
+  const bookTitle = clean(
+    document.querySelector("#quarto-sidebar .sidebar-title")?.textContent ||
+    sidebarLinks[0]?.textContent ||
+    "教材"
+  );
   const prevSidebarLink = activeSidebarIndex > 0 ? sidebarLinks[activeSidebarIndex - 1] : null;
   const nextSidebarLink = activeSidebarIndex < sidebarLinks.length - 1 ? sidebarLinks[activeSidebarIndex + 1] : null;
   const portalHref = document.querySelector(".navbar-brand")?.getAttribute("href") || "/";
@@ -103,18 +114,20 @@
   sheet.className = "reader-toc-sheet";
   sheet.setAttribute("role", "dialog");
   sheet.setAttribute("aria-modal", "true");
-  sheet.setAttribute("aria-label", "目次");
-  const tocLinks = sectionHeadings.map((heading) => {
-    const depth = heading.tagName === "H3" ? 2 : 1;
-    const id = headingId(heading);
-    return `<a href="#${id}" data-reader-target="${id}" style="padding-left:${(depth - 1) * 1.1}rem">${clean(heading.textContent)}</a>`;
+  sheet.setAttribute("aria-label", "教材全体の目次");
+  const tocLinks = sidebarLinks.map((link, index) => {
+    const href = link.getAttribute("href");
+    const label = clean(link.textContent) || (index === 0 ? "教材トップ" : `章 ${index}`);
+    const current = index === activeSidebarIndex;
+    if (!href) return "";
+    return `<a href="${escapeAttr(href)}" class="${current ? "is-active" : ""}" ${current ? 'aria-current="page"' : ""}>${escapeHtml(label)}</a>`;
   }).join("");
   sheet.innerHTML = `
     <div class="reader-toc-sheet__head">
-      <div class="reader-toc-sheet__title">この章の目次</div>
+      <div class="reader-toc-sheet__title">${escapeHtml(bookTitle)} 目次</div>
       <button class="reader-toc-sheet__close" type="button" aria-label="目次を閉じる">閉じる</button>
     </div>
-    <div class="reader-toc-sheet__body">${tocLinks || "<p>このページには見出しがありません。</p>"}</div>
+    <div class="reader-toc-sheet__body">${tocLinks || "<p>この教材には目次がありません。</p>"}</div>
   `;
   document.body.appendChild(sheet);
 
@@ -130,13 +143,7 @@
     if (!heading) return;
     activeHeading = heading;
     const text = clean(heading.textContent || chapterTitle);
-    const id = headingId(heading);
     currentSectionEls.forEach((el) => { el.textContent = text; });
-    sheet.querySelectorAll("a[data-reader-target]").forEach((link) => {
-      link.classList.toggle("is-active", link.dataset.readerTarget === id);
-      if (link.dataset.readerTarget === id) link.setAttribute("aria-current", "location");
-      else link.removeAttribute("aria-current");
-    });
   }
 
   function updateProgress(scrollTop) {
