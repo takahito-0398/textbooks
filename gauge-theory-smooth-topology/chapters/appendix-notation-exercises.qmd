@@ -28,6 +28,11 @@ description: "記号規約、理解確認問題、証明深度と文献の対応
 5. indexが0でもmoduliが空または特異になりうる理由を $H_A^0,H_A^2$ で説明せよ。
 6. 1-parameter moduliのcompactificationに余分な境界が出る三つの原因を挙げよ。
 7. SW方程式が可換接続を使いながら非線形である項を二つ挙げよ。
+8. Coulomb slice条件 $d_A^*a=0$ がorbit方向への直交条件であることを、$L^2$ 内積で示せ。
+9. $X=\mathbb{CP}^2$、$c_2(P)=1$ のとき、ASD複体のexpected dimensionを計算せよ。
+10. $H_A^2\ne0$ のとき、Kuranishi mapの値域がなぜ $H_A^2$ になるかを説明せよ。
+11. chargeを一つ落としたbubbling stratumが、主stratumに比べて概略codimension $4$ になる理由を説明せよ。
+12. $b_2^+=1$ でwall-crossingが起こりうる理由を、1-parameter familyとcodimensionの観点から述べよ。
 
 # 解答指針
 
@@ -38,6 +43,11 @@ description: "記号規約、理解確認問題、証明深度と文献の対応
 5. indexはkernelとcokernelの差であり、stabilizerとobstructionの実次元を個別には固定しない。
 6. reducible、bubbling、transversality failureである。
 7. $D_A\Phi$ の $A$ 依存性と $q(\Phi)$ である。
+8. $\langle a,d_A\phi\rangle=\langle d_A^*a,\phi\rangle$ なので、$d_A^*a=0$ は全ての無限小gauge方向 $d_A\phi$ に直交する条件である。
+9. $b_1=0$、$b_2^+=1$ なので $8\cdot1-3(1+1)=2$ である。
+10. 無限次元の可解方向は右逆で解けるが、$d_A^+$ の余核方向だけは線形化で消せないため、その有限次元余核へ射影した方程式が残る。
+11. $d(k)-d(k-1)=8$ だけmoduli次元が下がり、bubble位置の4次元が戻るため、差し引きでcodimension $4$ と見積もる。
+12. reducibleの壁が概略codimension $b_2^+$ で、$b_2^+=1$ では1-parameter pathが一般に壁を横切るからである。
 
 # 文献の読み分け
 
@@ -51,4 +61,3 @@ ASD方程式、moduli、Donaldson不変量の詳細は @donaldsonKronheimer1990�
 - 深度D: 正確な入力・出力・用途を示して引用した。
 
 深度Dは未証明という意味ではない。証明が本書の前提と規模を越えるため、どの結果をどの形で借りたかを追跡可能にしたという意味である。
-

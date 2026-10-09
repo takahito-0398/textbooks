@@ -17,6 +17,14 @@ $$
 
 があり、Rellich compactnessと組み合わせるとkernelとcokernelが有限次元、像が閉となる。つまり $D_A$ はFredholm作用素である。
 
+# estimateが有限次元性を生む仕組み
+
+楕円評価の右辺に $\|a\|_{L^2}$ が残っているのは、kernel方向を完全には制御できないからである。しかしkernelが無限次元なら、$\|a_n\|_{L_k^2}=1$、$D_Aa_n=0$、互いに $L^2$ 直交という列を取れる。楕円評価とRellich compactnessにより、部分列は $L^2$ で強収束するはずだが、直交性とnorm条件に反する。従ってkernelは有限次元である。
+
+像が閉であることも同じ評価から従う。$D_Aa_n$ が収束する列に対し、kernelの直交補へ $a_n$ を取り直すと、楕円評価で $a_n$ が有界になり、弱収束とcompactnessから極限を得る。余核の有限次元性は随伴作用素 $D_A^*$ に同じ議論を適用する。
+
+この段階で初めて、無限次元のPDE問題から有限次元の線形代数が現れる。「方程式が楕円的である」という言葉は、この有限次元化を保証する具体的な解析命題を含んでいる。
+
 # indexが変形に強い理由
 
 Fredholm indexを
@@ -38,6 +46,32 @@ $$
 
 この式は局所の偏微分方程式から、$k,b_1,b_2^+$ という位相的数だけで決まるexpected dimensionが出ることを示す。
 
+# 具体計算：$\mathbb{CP}^2$ と $S^2\times S^2$
+
+式が抽象的に見えるので、二つの基本例で数を出す。
+
+$X=\mathbb{CP}^2$ では $b_1=0$、$b_2^+=1$ である。従って
+
+$$
+\operatorname{ind}D_A=8k-3(1+1)=8k-6.
+$$
+
+$k=1$ ならexpected dimensionは $2$ である。ただし $b_2^+=1$ なので、後で見る計量依存性ではwall-crossingを避けられない。この例は、index計算ができることと、不変量がただちに計量独立になることが別問題であることを教えてくれる。
+
+$X=S^2\times S^2$ では交点形式はhyperbolic formで、$b_2^+=1$、$b_1=0$ である。従って同じく
+
+$$
+\operatorname{ind}D_A=8k-6.
+$$
+
+一方、$K3$ では $b_1=0$、$b_2^+=3$ なので
+
+$$
+\operatorname{ind}D_A=8k-12.
+$$
+
+同じchargeでも、自己双対調和2形式の数が多いほどexpected dimensionは小さくなる。これは、ASD方程式が「自己双対方向を消す」方程式であり、背景多様体の自己双対方向の大きさを敏感に見ることの反映である。
+
 # expectedとactualを区別する
 
 コホモロジーで書けば
@@ -53,7 +87,17 @@ irreducibleなら中心を除いて $H_A^0=0$ と扱える。さらに $H_A^2=0$
 方程式の成分数ではなく、gauge fixing後の楕円Fredholm作用素が有限次元kernel/cokernelを持つことが根拠である。indexを実次元と呼ぶには、stabilizerとobstructionの消滅を別に示す必要がある。
 :::
 
+# Atiyah--Singerをどの深さで使っているか
+
+本書ではAtiyah--Singer index theoremを完全証明しない。必要なのは、楕円作用素の解析的indexがsymbol classから決まり、特性類の積分で計算できる、という形である。この章での使い方は次の通りである。
+
+1. $D_A=d_A^*\oplus d_A^+$ は楕円作用素である。
+2. そのprincipal symbolは束 $P$ と $TX$ の位相型から決まる。
+3. index theoremにより、解析的indexは対応する特性類の積分に等しい。
+4. $SU(2)$ 束ではその積分が $8k-3(1-b_1+b_2^+)$ に整理される。
+
+つまり、証明の核心を外部化しているのはindex theoremそのものであり、ASD複体が楕円であること、どの作用素のindexを計算しているか、得られた数をactual dimensionと混同してはいけないことは本文内で閉じている。
+
 # regularityへの問い
 
 線形化が全射でない接続を、計量や方程式への摂動で避けられるだろうか。避けられたとして、Sobolev解は滑らかか、局所chartはどのように作られるか。次章ではimplicit function theoremとtransversalityを用い、expected dimensionを実際のsmooth moduliへ変える条件を明示する。
-

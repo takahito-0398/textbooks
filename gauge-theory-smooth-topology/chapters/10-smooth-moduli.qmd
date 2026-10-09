@@ -24,6 +24,36 @@ $$
 
 の零点として局所moduliを表せる。これがKuranishi模型である。obstruction spaceという名前は、$H_A^2$ が非零だと変形が二次以上で妨げられることを正確に表す。
 
+# Kuranishi写像はどう作るか
+
+上の有限次元写像を、もう少し構成として見る。楕円理論により、$d_A^+$ の像の直交補を $H_A^2$ と同一視し、射影
+
+$$
+\Pi:\Omega^2_+(\operatorname{ad}P)\longrightarrow H_A^2
+$$
+
+を取る。$H_A^2$ に垂直な方向では、線形化 $d_A^+$ が右逆を持つ。そこで $a$ を
+
+$$
+a=h+\eta(h),\qquad h\in H_A^1
+$$
+
+の形で探し、$H_A^2$ に垂直な成分
+
+$$
+(1-\Pi)\Phi(h+\eta)=0
+$$
+
+をimplicit function theoremで解く。残る方程式が
+
+$$
+\kappa(h)=\Pi\Phi(h+\eta(h))=0
+$$
+
+である。これがKuranishi mapで、局所moduliは $\kappa^{-1}(0)$ にstabilizer作用を割ったものとして表される。
+
+$d\kappa_0=0$ であることも重要である。一次の障害はすでに $H_A^1$ の定義で消してあるので、obstructionは二次以上で現れる。これが「一次変形は存在するのに、本当の曲線として伸びない」現象の数学的な場所である。
+
 # generic metricは何を動かすのか
 
 固定計量で全ての解がregularとは限らない。計量 $g$ も変数に含めたuniversal moduli problemを考え、射影
@@ -36,9 +66,47 @@ $$
 
 計量を動かすだけでreducibleを避けられない場合は、holonomy perturbationなど方程式側の摂動が必要になる。何を摂動したかを明示しなければ、不変量の定義域やcompactnessが変わりうる。
 
+# transversalityが解決すること、しないこと
+
+transversalityは、線形化が全射になるように補助データを選ぶ手段である。従って解決するのは $H_A^2$ の消滅、つまり局所的な滑らかさである。解決しない問題もある。
+
+まず、reducible接続のstabilizerはtransversalityだけでは消えない。reducibleを避けるには、束の位相型、計量条件、$b_2^+$ の仮定、または摂動の設計を別に見る必要がある。
+
+次に、compactnessはtransversalityから出ない。regularなmoduliでも、解列がbubblingで逃げれば、点の数え上げは不変量にならない。
+
+最後に、orientationも別問題である。滑らかな多様体であっても、向きが選べなければ符号付きcountを定義できない。
+
+この三つを分けると、moduli構成の流れが見えやすくなる。
+
+| 段階 | 主な問題 | 使う道具 |
+|---|---|---|
+| 局所商 | gauge重複とstabilizer | slice定理、irreducibility |
+| 局所滑らかさ | $H_A^2$ | implicit function theorem、Sard--Smale |
+| 大域閉性 | 解列の逃走 | Uhlenbeck compactness |
+| 数え上げ | 符号と境界 | determinant line、cobordism |
+
 # Sobolev解からsmooth解へ
 
 Banach多様体を作るため接続を $L_k^2$ で完備化したが、最終的なmoduliはsmooth接続で解釈したい。Coulomb gaugeでASD方程式は楕円型系となる。右辺のquadratic termをSobolev乗法で一段ずつ改善し、elliptic bootstrappingを反復すれば、弱解はgauge変換後にsmoothになる。従って完備化は解析の道具であり、新しい粗い解を不変量へ混入させるものではない。
+
+# bootstrappingの一段目
+
+局所Coulomb gaugeで $A=A_0+a$ と書くと、ASD方程式とgauge条件は概略
+
+$$
+d_{A_0}^+a=-(a\wedge a)^+,\qquad d_{A_0}^*a=\text{lower terms}
+$$
+
+という楕円系になる。$a\in L^2_k$ で $k>2$ なら、Sobolev乗法により右辺は一つ低い空間で制御できる。楕円正則性は
+
+$$
+\|a\|_{L^2_{k+1}(U')}
+\le C\bigl(\|D_{A_0}a\|_{L^2_k(U)}+\|a\|_{L^2(U)}\bigr)
+$$
+
+の形で内部正則性を与える。これを局所chartで繰り返すと、$a$ は任意階のSobolev空間に属し、Sobolev embeddingからsmoothになる。
+
+ここで重要なのは、正則性改善が方程式を使っていることである。任意の $L^2_k$ 接続が滑らかになるわけではない。ASDという楕円方程式を満たすから、完備化の外へ迷い込んだように見える解が滑らかな世界へ戻ってくる。
 
 # 向きは数える前に必要
 
@@ -52,4 +120,3 @@ $$
 の向きを選ぶ問題になる。Donaldson理論では $H^1(X;\mathbb R)\oplus H^2_+(X;\mathbb R)$ のhomology orientation等がこの選択を制御する。
 
 局所的なsmoothnessが得られても、moduliがcompactとは限らない。解列が収束しなければ、点の数え上げもcobordismも境界から漏れる。第6章の小scale instantonが示した通り、4次元のscale invarianceは曲率集中を許す。次章では逃げ方を分類する。
-

@@ -33,11 +33,41 @@ $$
 
 ここでcompactnessを確認せずに「cobordismだから不変」と結論してはいけない。bubbling stratumやreducible locusへ列が逃げれば、compactification後の境界に新成分が加わる。
 
+# parameterized moduliの線形化
+
+$g_t$ を動かすとき、方程式は
+
+$$
+F_A^{+,g_t}=0
+$$
+
+である。線形化には接続方向 $a$ だけでなく、計量方向 $\dot g$ も現れる。
+
+$$
+(a,\dot g)\longmapsto d_A^{+,g}a+\dot\pi_+(F_A)
+$$
+
+ここで $\dot\pi_+$ はHodge star、したがって自己双対射影の変化である。固定計量で $d_A^+$ が全射でなくても、計量方向が余核を埋めればuniversal moduliはregularになりうる。これがgeneric metricの横断性の中身である。
+
+ただし、$F_A$ の形によっては計量方向が十分に効かない。特にreducibleや低いchargeの特殊解では、計量を動かすだけで全射性を得られないことがある。その場合、方程式への摂動を導入するか、対象を避ける仮定を置く必要がある。
+
 # $b_2^+>1$ の役割
 
 reducibleが現れる条件は、概略的にはあるcohomology classのself-dual harmonic部分が0になることとして書ける。計量空間内でその条件は $b_2^+$ 個の実条件を課す。1-parameter pathがこの壁を避けるにはcodimensionが2以上、すなわち $b_2^+>1$ が自然な安全条件になる。
 
 $b_2^+=1$ では壁はcodimension 1で、pathが横切る可能性がある。この場合、不変量は計量から完全に独立ではなくchamberに依存し、wall-crossing formulaが差を記述する。「例外」ではなく、仮定を弱めたときに何が境界へ現れるかを示す構造である。
+
+# wall crossingを境界として見る
+
+$b_2^+=1$ のとき、二つの計量を結ぶpathはreducibleの壁を横切ることがある。parameterized moduliをcompact化すると、境界は
+
+$$
+\mathcal M(g_1)\sqcup(-\mathcal M(g_0))
+$$
+
+だけではなく、壁上のreducibleを中心とする局所模型から来る成分を持つ。この余分な境界の符号付き寄与がwall-crossing termである。
+
+この見方をすると、$b_2^+>1$ の仮定は突然の魔法ではない。1-parameter cobordismが避けるべき悪い集合のcodimensionを上げ、余分な境界を消すための仮定である。
 
 # 正次元moduliではclassを積分する
 
@@ -55,9 +85,36 @@ $$
 
 を作る。次数の和がmoduliのdimensionと一致しなければ値は0である。幾何的には、cycleに対応する条件をmoduli上で課し、それらの横断交点を数えている。
 
+# $\mu$-mapは何を測るか
+
+$\mu$-mapは、$X$ 内のcycleを「そのcycle上で接続が満たす条件」としてmoduli上のcohomology classへ移す装置である。定義にはuniversal bundleのPontryagin class、またはChern classを使う。形式的には
+
+$$
+\mu(\alpha)=-\frac14 p_1(\mathbb P)/\alpha
+$$
+
+のように、universal bundleの特性類を $\alpha\in H_i(X)$ に対してslant productする。ここで $\mathbb P$ は $X\times\mathcal B^*$ 上のuniversal $SO(3)$ 束である。
+
+直感的には、点class $\mathrm{pt}\in H_0(X)$ からは次数4の条件、曲面class $\Sigma\in H_2(X)$ からは次数2の条件が出る。moduliの次元と挿入次数が一致したときだけ、有限個の交点を数える形になる。
+
+この説明で重要なのは、Donaldson不変量が「ASD接続の個数」だけではないことである。正次元moduliでは、幾何的条件を何個か課して0次元へ切り下げ、その符号付き交点数を取っている。
+
 # 一つの不変量を作る九段階
 
 ここまでの機械は、方程式、対称性、線形化、複体、index、regularity、orientation、compactification、countの順で動く。どれか一段を省くと「有限次元か」「滑らかか」「符号を付けられるか」「逃げないか」のいずれかが未解決になる。
 
-次章ではこの共通機械から得られるDonaldsonの二つの出力を分離する。対角化定理はdefinite intersection formへの制約であり、Donaldson多項式はより精密なsmooth invariantである。同じ解析基盤を使うが、同じ主張ではない。
+# 失敗モードの対応表
 
+最後に、このPartで出てきた失敗を一覧にしておく。これは後のDonaldson定理とSW理論を読むための点検表でもある。
+
+| 失敗 | 数学的な場所 | 対応する道具 |
+|---|---|---|
+| 同じ接続を何度も数える | gauge orbit | 商、slice |
+| 商が特異になる | stabilizer、$H_A^0$ | irreducible条件、特異stratum管理 |
+| 一次解が本物の解にならない | obstruction、$H_A^2$ | Kuranishi模型、摂動 |
+| expected dimensionが実次元でない | regularity failure | Sard--Smale、generic metric |
+| 点数の符号が決まらない | determinant line | homology orientation |
+| 解列が逃げる | bubbling | Uhlenbeck compactification |
+| 計量を変えると値が変わる | 余分な境界 | cobordism、$b_2^+>1$、wall-crossing |
+
+次章ではこの共通機械から得られるDonaldsonの二つの出力を分離する。対角化定理はdefinite intersection formへの制約であり、Donaldson多項式はより精密なsmooth invariantである。同じ解析基盤を使うが、同じ主張ではない。
