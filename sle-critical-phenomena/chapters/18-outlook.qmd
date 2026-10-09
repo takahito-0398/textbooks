@@ -1,0 +1,51 @@
+---
+title: "第18章　CLE・CFT・LQGへの三つの出口"
+description: "一本のSLEからloop ensemble、場の辞書、random surfaceへ進む"
+sidebar: sle-critical-phenomena
+---
+<!-- contract: authoring/contracts/18-outlook.json -->
+
+# 一本の曲線で答えられない問い
+
+本書は離散interfaceをLoewner駆動へ変換し、対称性からSLEを分類し、模型固有observableで収束を同定した。最後にGFFからSLE$_4$ level lineを回収した。それでも三つの情報が残る。
+
+## CLE：全てのloopを同時に見る
+
+一つの探索経路は一組の境界点を結ぶ。臨界配置の全interfaceを記述するには、互いに整合するrandom loop ensembleが要る。CLEは等角不変性とdomain Markov型の再帰性をloop集合へ拡張する。
+
+::: {.callout-note title="STATUS: Orientation"}
+本書はCLEの必要性とSLEとの関係を示すが、構成・分類・full scaling limitの証明は次教材の範囲とする。
+:::
+
+## CFT：martingale PDEを表現論へ翻訳する
+
+SLE martingaleのPDEとCFTのnull-vector方程式には対応があり、
+$$
+c(\kappa)=\frac{(3\kappa-8)(6-\kappa)}{2\kappa}
+$$
+が中心電荷の辞書になる。これは本書では導出済み定理として使わない。どの相関関数、境界条件、正規化を対応させるかを指定して初めて数学的主張になる。
+
+::: {.callout-important title="STATUS: Heuristic dictionary"}
+CFT対応は計算を予言しobservable候補を与えるが、formal path integralや表現論の式をそのまま格子模型の収束証明にしない。
+:::
+
+## LQG：場を背景でなくrandom geometryにする
+
+GFFをEuclid領域上のrandom distributionとして扱うだけでなく、形式的計量
+$$
+e^{\gamma h(z)}|dz|^2
+$$
+が示唆するrandom面積と距離を構成する方向がLiouville quantum gravityである。$h(z)$ はpointwiseにないので指数は正則化とrenormalizationを要る。Gaussian multiplicative chaosとKPZ関係がその入口になる。
+
+::: {.callout-warning title="STATUS: Limitation"}
+本章で証明していないのはCLE構成、CFT公理化、LQG計量構成、KPZ定理である。三つをSLEの既証明事項と同じstatusに置かない。
+:::
+
+# 到達点
+
+平面曲線の巨大な状態は、等角写像で過去を消すことで実数駆動へ移る。DMPと等角不変性はその駆動をBrown運動へ強制する。格子模型からの収束には別途tightnessとobservableが要り、GFF couplingは曲線をrandom fieldの可測な幾何として戻す。
+
+次教材で完全な理論として構成すべき問いは、**一本の曲線から平面全体のloopとrandom surfaceへ、どの順序で進むか**である。
+
+[前章](17-gff-sle4.qmd) | [教材入口](../index.qmd)
+

@@ -1,0 +1,58 @@
+---
+title: "第16章　Gaussian Free Fieldは関数ではない"
+description: "Dirichlet energyからGFFをdistributionとして構成する"
+sidebar: sle-critical-phenomena
+---
+<!-- contract: authoring/contracts/16-gff.json -->
+
+# 各点の高さを選べない場
+
+領域 $D$ 上の滑らかな関数にDirichlet内積
+$$
+(f,g)_\nabla=\frac1{2\pi}\int_D\nabla f\cdot\nabla g\,dA
+$$
+を入れる。零境界条件で完備化した空間を $H_0^1(D)$ とし、正規直交基底 $(e_n)$ と独立標準Gaussian $(\xi_n)$ を使って形式的に
+$$
+h=\sum_{n\ge1}\xi_ne_n
+$$
+と書く。
+
+$$
+\mathbb E\|h\|_\nabla^2=\sum_{n\ge1}\mathbb E[\xi_n^2]=\infty
+$$
+なので、この級数は $H_0^1(D)$ 値random variableとして収束しない。二次元ではpointwise値 $h(z)$ も定義できない。そこでtest function $\rho$ に対するpairing $(h,\rho)$ を定義し、random distributionとして扱う。
+
+::: {.callout-note title="STATUS: Definition"}
+零境界GFFは中心Gaussian random distributionで、共分散はGreen operatorにより
+$$
+\mathbb E[(h,\rho)(h,\sigma)]
+=\iint_{D\times D}\rho(x)G_D(x,y)\sigma(y)\,dx\,dy
+$$
+と与えられる。
+:::
+
+## なぜ対数発散するのか
+
+二次元Green関数は対角近くで
+$$
+G_D(x,y)=-\log|x-y|+O(1)
+$$
+の特異性を持つ。円平均 $h_\varepsilon(z)$ は定義できるが、その分散は
+$$
+\operatorname{Var}(h_\varepsilon(z))
+=\log\varepsilon^{-1}+O(1)
+$$
+と発散する。従って通常の関数のように $\{h=0\}$ をpointwiseに取れない。
+
+::: {.callout-important title="STATUS: Proposition"}
+GFFはtest functionに対するpairingや円平均として観測できるが、点ごとの高さを持つ連続関数ではない。level lineの定義には別のcoupling概念が必要になる。
+:::
+
+Dirichlet energyは二次元で等角不変なので、GFFの法則も適切なpullbackの下で等角不変になる。この対称性がSLEとの接点だが、対称性だけでlevel lineは作れない。
+
+::: {.callout-warning title="STATUS: Limitation"}
+本章で証明していないのはGaussian measureの関数解析的構成とGreen operatorの全スペクトル論である。pointwise level setは存在すると仮定しない。
+:::
+
+[前章](15-universality.qmd) | [次章](17-gff-sle4.qmd)
+

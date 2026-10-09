@@ -1,0 +1,59 @@
+---
+title: "第9章　楕円性とindexが次元になるまで"
+description: "Fredholm性とAtiyah-Singer index formulaからexpected dimensionを得る"
+---
+
+<!-- contract: contracts/09-ellipticity-index.json -->
+
+# 方程式の本数を数えてはいけない
+
+ASD方程式は点ごとに3成分、接続は4成分、gauge自由度は1成分だから $4-3-1=0$、という素朴な差し引きは正しくない。微分作用素の核と余核は大域境界条件と位相に依存し、各点のrankだけでは決まらない。有限次元性を保証するのは、前章で確認したsymbol列のexactnessである。
+
+Sobolev completionを選び、$D_A:L_k^2\Omega^1\to L_{k-1}^2(\Omega^0\oplus\Omega^2_+)$ と見る。閉多様体上の楕円作用素にはestimate
+
+$$
+\|a\|_{L_k^2}\le C\bigl(\|D_Aa\|_{L_{k-1}^2}+\|a\|_{L^2}\bigr)
+$$
+
+があり、Rellich compactnessと組み合わせるとkernelとcokernelが有限次元、像が閉となる。つまり $D_A$ はFredholm作用素である。
+
+# indexが変形に強い理由
+
+Fredholm indexを
+
+$$
+\operatorname{ind}D_A=\dim\ker D_A-\dim\operatorname{coker}D_A
+$$
+
+と定義する。係数や計量を連続に変えてFredholm性が保たれる限り、indexは整数値連続関数なので一定である。この安定性が解析量を位相量へ変える入口になる。
+
+$SU(2)$ 束で $c_2(P)=k$、$X$ が閉・向き付きならAtiyah--Singer index theoremから
+
+$$
+\operatorname{ind}D_A
+=8k-3(1-b_1(X)+b_2^+(X))
+$$
+
+を得る。単連結なら $b_1=0$ なので $8k-3(1+b_2^+)$ である。[@donaldsonKronheimer1990]
+
+この式は局所の偏微分方程式から、$k,b_1,b_2^+$ という位相的数だけで決まるexpected dimensionが出ることを示す。
+
+# expectedとactualを区別する
+
+コホモロジーで書けば
+
+$$
+\operatorname{ind}D_A
+=\dim H_A^1-\dim H_A^0-\dim H_A^2.
+$$
+
+irreducibleなら中心を除いて $H_A^0=0$ と扱える。さらに $H_A^2=0$ なら $\dim H_A^1=\operatorname{ind}D_A$ である。しかし $H_A^2\ne0$ なら、線形化は全射でなく、quadratic termが実際の解集合を切る。従ってindexは仮想的な差であって、無条件の局所次元ではない。
+
+::: {.callout-warning title="有限次元性の根拠"}
+方程式の成分数ではなく、gauge fixing後の楕円Fredholm作用素が有限次元kernel/cokernelを持つことが根拠である。indexを実次元と呼ぶには、stabilizerとobstructionの消滅を別に示す必要がある。
+:::
+
+# regularityへの問い
+
+線形化が全射でない接続を、計量や方程式への摂動で避けられるだろうか。避けられたとして、Sobolev解は滑らかか、局所chartはどのように作られるか。次章ではimplicit function theoremとtransversalityを用い、expected dimensionを実際のsmooth moduliへ変える条件を明示する。
+

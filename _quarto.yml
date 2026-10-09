@@ -15,6 +15,8 @@ project:
     - "rg-critical-phenomena/**/*.qmd"
     - "elliptic-curves-bsd/**/*.qmd"
     - "inverse-spectral-geometry/**/*.qmd"
+    - "gauge-theory-smooth-topology/**/*.qmd"
+    - "sle-critical-phenomena/**/*.qmd"
 
 website:
   title: "AI教科書ポータル"
@@ -322,6 +324,88 @@ website:
         href: inverse-spectral-geometry/chapters/a-analytic-foundations.qmd
       - text: "付録B　数値実験"
         href: inverse-spectral-geometry/chapters/b-numerical-lab.qmd
+  - id: gauge-theory-smooth-topology
+    title: "4次元ゲージ理論と滑らかな位相"
+    style: docked
+    collapse-level: 1
+    contents:
+      - gauge-theory-smooth-topology/index.qmd
+      - text: "Part I　分類問題の衝突"
+        contents:
+          - gauge-theory-smooth-topology/chapters/01-smooth-structures.qmd
+          - gauge-theory-smooth-topology/chapters/02-intersection-form.qmd
+          - gauge-theory-smooth-topology/chapters/03-freedman-donaldson.qmd
+      - text: "Part II　4次元の方程式"
+        contents:
+          - gauge-theory-smooth-topology/chapters/04-connections-curvature.qmd
+          - gauge-theory-smooth-topology/chapters/05-why-four-dimensions.qmd
+          - gauge-theory-smooth-topology/chapters/06-yang-mills-asd.qmd
+      - text: "Part III　moduliの局所構造"
+        contents:
+          - gauge-theory-smooth-topology/chapters/07-gauge-quotient.qmd
+          - gauge-theory-smooth-topology/chapters/08-deformation-complex.qmd
+          - gauge-theory-smooth-topology/chapters/09-ellipticity-index.qmd
+          - gauge-theory-smooth-topology/chapters/10-smooth-moduli.qmd
+      - text: "Part IV　compactificationとDonaldson理論"
+        contents:
+          - gauge-theory-smooth-topology/chapters/11-bubbling.qmd
+          - gauge-theory-smooth-topology/chapters/12-invariant-machine.qmd
+          - gauge-theory-smooth-topology/chapters/13-donaldson-outputs.qmd
+          - gauge-theory-smooth-topology/chapters/14-topological-vs-smooth.qmd
+      - text: "Part V　Seiberg-Witten理論"
+        contents:
+          - gauge-theory-smooth-topology/chapters/15-spinors.qmd
+          - gauge-theory-smooth-topology/chapters/16-seiberg-witten-equations.qmd
+          - gauge-theory-smooth-topology/chapters/17-donaldson-vs-sw.qmd
+      - text: "Part VI　幾何への帰還"
+        contents:
+          - gauge-theory-smooth-topology/chapters/18-kahler-symplectic.qmd
+      - text: "付録"
+        contents:
+          - gauge-theory-smooth-topology/chapters/appendix-analysis.qmd
+          - gauge-theory-smooth-topology/chapters/appendix-notation-exercises.qmd
+  - id: sle-critical-phenomena
+    title: "二次元臨界現象とSLE"
+    style: docked
+    collapse-level: 1
+    contents:
+      - sle-critical-phenomena/index.qmd
+      - section: "Part I　離散から曲線へ"
+        contents:
+          - sle-critical-phenomena/chapters/01-lattice-to-interface.qmd
+          - sle-critical-phenomena/chapters/02-curve-space.qmd
+      - section: "Part II　Loewner符号化"
+        contents:
+          - sle-critical-phenomena/chapters/03-conformal-erasure.qmd
+          - sle-critical-phenomena/chapters/04-loewner-equation.qmd
+          - sle-critical-phenomena/chapters/05-schramm-principle.qmd
+      - section: "Part III　SLEの幾何"
+        contents:
+          - sle-critical-phenomena/chapters/06-brownian-loewner.qmd
+          - sle-critical-phenomena/chapters/07-bessel-threshold.qmd
+          - sle-critical-phenomena/chapters/08-geometric-phases.qmd
+      - section: "Part IV　確率を計算する"
+        contents:
+          - sle-critical-phenomena/chapters/09-martingales.qmd
+          - sle-critical-phenomena/chapters/10-left-passage.qmd
+          - sle-critical-phenomena/chapters/11-fractal-dimension.qmd
+      - section: "Part V　離散模型へ戻る"
+        contents:
+          - sle-critical-phenomena/chapters/12-convergence-blueprint.qmd
+          - sle-critical-phenomena/chapters/13-percolation-sle6.qmd
+          - sle-critical-phenomena/chapters/14-lerw-sle2.qmd
+          - sle-critical-phenomena/chapters/15-universality.qmd
+      - section: "Part VI　場と次の幾何"
+        contents:
+          - sle-critical-phenomena/chapters/16-gff.qmd
+          - sle-critical-phenomena/chapters/17-gff-sle4.qmd
+          - sle-critical-phenomena/chapters/18-outlook.qmd
+      - section: "付録"
+        contents:
+          - sle-critical-phenomena/appendices/a-probability.qmd
+          - sle-critical-phenomena/appendices/b-convergence.qmd
+          - sle-critical-phenomena/appendices/c-bessel-dimension.qmd
+          - sle-critical-phenomena/appendices/d-numerics.qmd
 
 format:
   html:

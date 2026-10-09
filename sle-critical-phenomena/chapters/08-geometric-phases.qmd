@@ -1,0 +1,39 @@
+---
+title: "第8章　三つの幾何相"
+description: "kappaによるsimple・自己接触・space-filling相を区別する"
+sidebar: sle-critical-phenomena
+---
+<!-- contract: authoring/contracts/08-geometric-phases.json -->
+
+# 二つの閾値、三つの相
+
+前章の $\kappa=4$ は実軸点の飲み込み閾値だった。trace全体には内部点への接近と写像歪みの評価も要り、結論は三相になる [@rohdeSchramm2005; @lawlerSchrammWerner2004]。
+
+![SLEの三つの幾何相。](../assets/figures/kappa-phases.svg)
+
+$$
+\begin{array}{c|c|c}
+\kappa&\text{trace}&\text{hull}\\ \hline
+0\le\kappa\le4&\text{単純}&\gamma[0,t]\\
+4<\kappa<8&\text{自己接触し領域を囲む}&\gamma[0,t]\text{より大きい}\\
+\kappa\ge8&\text{空間充填的}&\text{訪問域とともに成長}
+\end{array}
+$$
+
+::: {.callout-important title="STATUS: Black-box theorem"}
+Brown駆動chainのtraceは $\kappa\le4$ で単純、$4<\kappa<8$ で自己接触を持ち、$\kappa\ge8$ で空間充填的になる。証明の核は境界・内部点の飲み込み評価とscale不変性である。
+:::
+
+$\kappa=4$ は境界接触の開始、$\kappa=8$ は空間充填性の開始に答える。percolationの $\kappa=6$ はbubbleを囲むがtrace自体は平面を埋めない。LERWの $\kappa=2$ は単純相、UST Peano curveの $\kappa=8$ は空間充填相に入る。
+
+::: {.callout-note title="STATUS: Interpretation"}
+$\kappa$ はBrown運動の分散であると同時に、Loewner変換を通して境界接触・自己接触・空間充填性を制御する幾何parameterである。
+:::
+
+有限stepの図は離散化誤差を含み、接触の見た目で定理を判定できない。
+
+::: {.callout-warning title="STATUS: Numerical evidence"}
+図は固定seedの模式図であり、三相定理を証明していない。traceとfilled hullを区別するために使う。
+:::
+
+[前章](07-bessel-threshold.qmd) | [次章](09-martingales.qmd)

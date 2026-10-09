@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 300" role="img" aria-labelledby="title desc">
+<title id="title">Left-passage probability</title>
+<desc id="desc">傾きx/yに対して0から1へ単調に増える左側通過確率。中心では2分の1。</desc>
+<metadata>{"animated": false, "deterministic": true, "figure_id": "fig-left-passage", "generator": "scripts/generate_sle_figures.py", "license": "repository content", "print_fallback": null, "simulation": false}</metadata>
+<rect width="640" height="300" rx="18" fill="#0b1118"/>
+<g stroke="#344e64" stroke-width="1"><path d="M55 30 V245 H590"/><path d="M55 137 H590" stroke-dasharray="5 5"/><path d="M315 30 V245" stroke-dasharray="5 5"/></g>
+<polyline points="55,231 81,228 107,223 133,215 159,202 185,184 211,160 237,133 263,105 289,81 315,63 341,50 367,42 393,37 419,34 445,32 471,31 497,30 523,29 549,29 575,29" fill="none" stroke="#68d39b" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="315" cy="132" r="6" fill="#ffd19a"/>
+<g fill="#e7edf4" font-family="system-ui, sans-serif" font-size="14"><text x="20" y="38">1</text><text x="20" y="142">1/2</text><text x="28" y="246">0</text><text x="305" y="270">x/y</text><text x="326" y="120">p(0)=1/2</text></g>
+</svg>

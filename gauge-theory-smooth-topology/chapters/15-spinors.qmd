@@ -1,0 +1,62 @@
+---
+title: "第15章　なぜspinorが必要になるのか"
+description: "Spin^c構造とDirac作用素から第二のゲージ方程式の未知量を導く"
+---
+
+<!-- contract: contracts/15-spinors.json -->
+
+# 2形式だけでなく一次の作用素を使う
+
+Donaldson理論では接続の曲率を自己双対成分へ射影した。第二の理論では、接続に加えて一次微分を受ける場を導入する。その自然な候補がspinorである。
+
+向き付きRiemannian 4多様体上の $\mathrm{Spin}^c$ 構造は、rank 2の複素vector bundle $W^+,W^-$ とClifford multiplication
+
+$$
+\rho:T^*X\otimes\mathbb C\longrightarrow
+\operatorname{Hom}(W^+,W^-)
+$$
+
+を与える。$W^+$ のdeterminant lineを $L$ と書く。$L$ 上のunitary connection $A$ とLevi--Civita connectionから $W^+$ の共変微分が定まり、合成
+
+$$
+D_A:\Gamma(W^+)\xrightarrow{\nabla_A}
+\Gamma(T^*X\otimes W^+)\xrightarrow{\rho}
+\Gamma(W^-)
+$$
+
+が $\mathrm{Spin}^c$ Dirac作用素である。
+
+# SpinでなくSpin^cなのはなぜか
+
+spin構造の存在には $w_2(TX)=0$ が必要で、全ての向き付き4多様体で満たされるわけではない。$\mathrm{Spin}^c$ 構造ではline bundleの $c_1(L)$ がmod 2で $w_2(TX)$ を持ち上げるため、向き付き4多様体上で広く利用できる。理論の適用範囲を保つための一般化であり、記号の装飾ではない。
+
+# 曲率とspinorを同じ型で結ぶ
+
+4次元のClifford代数は、自己双対2形式を $W^+$ のtrace-free skew-Hermitian endomorphismと同一視する。spinor $\Phi\in\Gamma(W^+)$ から二次写像
+
+$$
+q(\Phi)=(\Phi\otimes\Phi^*)_0
+$$
+
+を作ると、$q(\Phi)$ を $i\Lambda^2_+$ のsectionとして読める。従って $F_A^+$ と同じ型を持つ。これで
+
+$$
+D_A\Phi=0,qquad F_A^+=q(\Phi)
+$$
+
+という連成が可能になる。
+
+もし $\Phi$ を入れず $F_A^+=0$ だけを $U(1)$ 接続へ課せば、方程式はほぼ線形で、intersection formを越えるsmooth情報を十分に作れない。spinorの二次項が非線形性を戻し、同時にWeitzenböck formulaを通じて強いa priori boundを与える。
+
+# gauge symmetryは可換でも残る
+
+$u:X\to S^1$ は
+
+$$
+(A,\Phi)\longmapsto(A-u^{-1}du,u\Phi)
+$$
+
+と作用する。接続部分は可換なので $A\wedge A$ を持たないが、spinorとの積 $u\Phi$ と $q(\Phi)$ があるため全系は線形ではない。moduliを作るには、Donaldson側と同様にsymmetry、linearization、index、regularity、orientation、compactnessを再確認する必要がある。
+
+次章ではperturbed Seiberg--Witten方程式を正確に置き、expected dimensionとcompactnessがどこから来るかを導く。
+

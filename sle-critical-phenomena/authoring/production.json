@@ -1,0 +1,150 @@
+{
+  "schema_version": 1,
+  "book": {
+    "id": "sle-critical-phenomena",
+    "title": "二次元臨界現象とSLE――格子模型から共形不変なランダム曲線へ",
+    "central_problem": "二次元臨界模型の境界を、等角写像、domain Markov property、一次元確率過程へ翻訳し、分類可能な連続極限として理解する。",
+    "stage": "production-complete",
+    "canonical_web": "https://textbooks.yohakostudio.com/sle-critical-phenomena/",
+    "repository": "https://github.com/takahito-0398/textbooks",
+    "source_of_truth": "Quarto QMD",
+    "formal_prose_started": true
+  },
+  "scope": {
+    "core": ["chordal SLE", "critical percolation", "LERW", "Schramm left-passage formula", "SLE4-GFF coupling"],
+    "appendix": ["Brown motion", "martingale and Ito calculus", "weak convergence", "Caratheodory convergence", "Bessel process", "Hausdorff dimension", "simulation methods"],
+    "advanced": ["radial and whole-plane SLE", "SLE_kappa(rho)", "locality", "restriction", "duality", "CLE", "multiple SLE"],
+    "orientation_only": ["CFT dictionary", "LQG and GMC", "KPZ"],
+    "excluded": ["probability-first fifty-page prelude", "full proof of Smirnov theorem", "parallel treatment of all SLE variants"]
+  },
+  "proof_depth_policy": {
+    "A": "完全証明。仮定と式変形を読者が再構成できる。",
+    "B": "本質部分を証明し、境界正則性などの技術部を明示して分離する。",
+    "C": "証明アーキテクチャ。入力、難所、核心、出力、依存先を示す。",
+    "D": "結果を引用。必要性、正確な入力と出力、使用箇所、一次資料を示す。"
+  },
+  "status_vocabulary": ["definition", "theorem", "proposition", "lemma", "assumption", "heuristic", "physical_intuition", "conjecture", "numerical_evidence", "expected_behavior", "open_problem", "black_box_theorem"],
+  "normalizations": [
+    {"id": "norm-hcap", "statement": "g_t(z)=z+2t/z+O(|z|^{-3}) とし、hcap(K_t)=2t とする。", "applies_from": "ch-03"},
+    {"id": "norm-brown", "statement": "標準Brown運動は E[(B_t-B_s)^2]=t-s、駆動関数は U_t=sqrt(kappa) B_t。", "applies_from": "ch-05"},
+    {"id": "norm-bessel", "statement": "X_t/sqrt(kappa) のBessel次元は 1+4/kappa。", "applies_from": "ch-07"},
+    {"id": "norm-dimension", "statement": "SLE traceのHausdorff次元は min(2,1+kappa/8)。", "applies_from": "ch-11"},
+    {"id": "norm-cft", "statement": "c(kappa)=((3kappa-8)(6-kappa))/(2kappa)。CFT対応はheuristic registryで扱う。", "applies_from": "ch-18"}
+  ],
+  "domain_conventions": [
+    {"id": "domain-chordal", "statement": "chordal settingは単連結領域Dと異なる二つのprime end a,bを持つ向き付き組(D;a,b)。"},
+    {"id": "domain-half-plane", "statement": "等角写像で(a,b)を(0,infinity)へ送り、hydrodynamic normalizationで残る自由度を固定する。"},
+    {"id": "domain-orientation", "statement": "探索経路は始点aから終点bへ向ける。左右はこの向きに対して定義する。"}
+  ],
+  "terminology": [
+    {"term": "等角", "preferred": "等角", "note": "conformalの訳。『共形』は書名や固有の慣用句で許容する。"},
+    {"term": "trace", "preferred": "trace（曲線の像）", "note": "hullと同一視しない。"},
+    {"term": "hull", "preferred": "hull", "note": "曲線の像に、上半平面から切り離された成分を埋めた閉集合。"},
+    {"term": "driving function", "preferred": "駆動関数", "note": "先端prime endの標準領域境界上の像。"},
+    {"term": "half-plane capacity", "preferred": "半平面容量", "note": "Euclid長ではなく無限遠展開の1/z係数。"},
+    {"term": "swallowing", "preferred": "飲み込み", "note": "traceが点を通過することと区別する。"},
+    {"term": "universality", "preferred": "普遍性", "note": "指数、scaling function、曲線法則のどの一致かを併記する。"}
+  ],
+  "convergence_topologies": [
+    {"id": "top-curve", "object": "再パラメータ化同値類としての曲線", "use": "曲線全体の極限法則", "warning": "hull収束や駆動関数収束から自動ではない。"},
+    {"id": "top-hull", "object": "増大hull族", "use": "Loewner chain", "warning": "traceの存在を含意しない。"},
+    {"id": "top-driving", "object": "コンパクト時間区間上の連続駆動関数", "use": "駆動過程の同定", "warning": "曲線収束へ戻す追加条件が必要。"},
+    {"id": "top-closed", "object": "閉集合", "use": "clusterやloop集合", "warning": "順序と向きを失う。"}
+  ],
+  "prerequisites": [
+    {"id": "pre-filtration", "placement": "just-in-time", "first_use": "ch-05", "purpose": "DMPの条件付き法則"},
+    {"id": "pre-brown", "placement": "short-bridge", "first_use": "ch-05", "purpose": "連続Levy過程とscaling"},
+    {"id": "pre-ito", "placement": "just-in-time", "first_use": "ch-07", "purpose": "Bessel変換とmartingale PDE"},
+    {"id": "pre-stopping", "placement": "just-in-time", "first_use": "ch-07", "purpose": "swallowingとoptional stopping"},
+    {"id": "pre-rmt", "placement": "external-with-contract", "first_use": "ch-03", "purpose": "単連結領域の標準化"},
+    {"id": "pre-tightness", "placement": "appendix", "first_use": "ch-12", "purpose": "部分列極限の存在"},
+    {"id": "pre-bessel", "placement": "just-in-time", "first_use": "ch-07", "purpose": "kappa=4閾値"}
+  ],
+  "theorems": [
+    {"id": "thm-slit-map", "title": "縦スリット写像と無限遠展開", "chapter": "ch-04", "depth": "A", "status": "theorem", "sources": ["lawler2005"]},
+    {"id": "thm-schramm-principle", "title": "仮定付きSchramm分類原理", "chapter": "ch-05", "depth": "A", "status": "theorem", "sources": ["schramm2000", "schramm2006"]},
+    {"id": "thm-trace", "title": "Brown駆動Loewner chainのtrace存在", "chapter": "ch-06", "depth": "C", "status": "black_box_theorem", "sources": ["rohdeSchramm2005"]},
+    {"id": "thm-bessel-threshold", "title": "境界点swallowingのkappa=4閾値", "chapter": "ch-07", "depth": "A", "status": "theorem", "sources": ["lawler2005"]},
+    {"id": "thm-sle-phases", "title": "SLEの三つの幾何相", "chapter": "ch-08", "depth": "C", "status": "black_box_theorem", "sources": ["rohdeSchramm2005", "lawlerSchrammWerner2004"]},
+    {"id": "thm-left-passage", "title": "Schramm left-passage formula", "chapter": "ch-10", "depth": "A", "status": "theorem", "sources": ["schramm2001"]},
+    {"id": "thm-dimension", "title": "SLE traceのHausdorff次元", "chapter": "ch-11", "depth": "C", "status": "black_box_theorem", "sources": ["beffara2008"]},
+    {"id": "thm-smirnov", "title": "三角格子臨界site percolationの等角不変性", "chapter": "ch-13", "depth": "C", "status": "black_box_theorem", "sources": ["smirnov2001"]},
+    {"id": "thm-lerw", "title": "planar LERWのSLE2収束", "chapter": "ch-14", "depth": "C", "status": "black_box_theorem", "sources": ["lawlerSchrammWerner2004"]},
+    {"id": "thm-gff-sle4", "title": "GFF level lineとSLE4 coupling", "chapter": "ch-17", "depth": "C", "status": "black_box_theorem", "sources": ["schrammSheffield2009", "schrammSheffield2013"]}
+  ],
+  "black_boxes": [
+    {"id": "bb-rmt", "theorem": "Riemann mapping theorem", "input": "単連結な真部分領域", "output": "標準領域への等角写像", "difficulty": "正規族と境界挙動", "used_by": ["ch-03", "ch-04"], "source": "ahlfors1979"},
+    {"id": "bb-trace", "theorem": "SLE trace existence", "input": "Brown駆動Loewner chain", "output": "連続traceの存在", "difficulty": "粗い駆動関数と境界歪曲の制御", "used_by": ["ch-06", "ch-08"], "source": "rohdeSchramm2005"},
+    {"id": "bb-smirnov", "theorem": "Smirnov theorem", "input": "三角格子site percolation", "output": "Cardy公式と等角不変な極限", "difficulty": "離散正則observableと境界収束", "used_by": ["ch-13"], "source": "smirnov2001"},
+    {"id": "bb-dimension", "theorem": "Beffara dimension theorem", "input": "SLE_kappa trace", "output": "dim_H=min(2,1+kappa/8)", "difficulty": "Green estimateとsecond moment", "used_by": ["ch-11"], "source": "beffara2008"}
+  ],
+  "correspondences": [
+    {"model": "triangular-lattice critical site percolation", "boundary_condition": "Dobrushin", "interface": "exploration path", "limit": "SLE_6", "status": "theorem", "source": "smirnov2001"},
+    {"model": "planar LERW", "boundary_condition": "chordal", "interface": "loop-erased path", "limit": "SLE_2", "status": "theorem", "source": "lawlerSchrammWerner2004"},
+    {"model": "UST Peano curve", "boundary_condition": "appropriate wired/free", "interface": "Peano curve", "limit": "SLE_8", "status": "theorem", "source": "lawlerSchrammWerner2004"},
+    {"model": "critical Ising", "boundary_condition": "Dobrushin", "interface": "spin interface", "limit": "SLE_3", "status": "theorem", "source": "chelkakEtAl2014"},
+    {"model": "critical FK-Ising", "boundary_condition": "Dobrushin", "interface": "FK interface", "limit": "SLE_16/3", "status": "theorem", "source": "smirnov2010"},
+    {"model": "self-avoiding walk", "boundary_condition": "chordal", "interface": "walk", "limit": "SLE_8/3", "status": "conjecture", "source": "lawlerSchrammWerner2004"}
+  ],
+  "sources": [
+    {"id": "schramm2000", "kind": "primary", "citation": "schramm2000", "supports": ["thm-schramm-principle"]},
+    {"id": "schramm2001", "kind": "primary", "citation": "schramm2001", "supports": ["thm-left-passage"]},
+    {"id": "schramm2006", "kind": "primary", "citation": "schramm2006", "supports": ["thm-schramm-principle"]},
+    {"id": "lawler2005", "kind": "standard", "citation": "lawler2005", "supports": ["thm-slit-map", "thm-bessel-threshold"]},
+    {"id": "ahlfors1979", "kind": "standard", "citation": "ahlfors1979", "supports": ["bb-rmt"]},
+    {"id": "rohdeSchramm2005", "kind": "primary", "citation": "rohdeSchramm2005", "supports": ["thm-trace", "thm-sle-phases", "bb-trace"]},
+    {"id": "beffara2008", "kind": "primary", "citation": "beffara2008", "supports": ["thm-dimension", "bb-dimension"]},
+    {"id": "smirnov2001", "kind": "primary", "citation": "smirnov2001", "supports": ["thm-smirnov", "bb-smirnov"]},
+    {"id": "lawlerSchrammWerner2004", "kind": "primary", "citation": "lawlerSchrammWerner2004", "supports": ["thm-lerw"]},
+    {"id": "chelkakEtAl2014", "kind": "primary", "citation": "chelkakEtAl2014", "supports": ["Ising to SLE3"]},
+    {"id": "smirnov2010", "kind": "primary", "citation": "smirnov2010", "supports": ["FK-Ising to SLE16/3"]},
+    {"id": "schrammSheffield2009", "kind": "primary", "citation": "schrammSheffield2009", "supports": ["thm-gff-sle4"]},
+    {"id": "schrammSheffield2013", "kind": "primary", "citation": "schrammSheffield2013", "supports": ["thm-gff-sle4"]},
+    {"id": "kemppainenSmirnov2017", "kind": "primary", "citation": "kemppainenSmirnov2017", "supports": ["random-curve-tightness", "driving-convergence"]}
+  ],
+  "figures": [
+    {"id": "fig-slit-map", "chapter": "fixture-00", "objective": "成長済みの縦スリットを標準領域へ戻す写像を示す。", "type": "svg", "generator": "scripts/generate_sle_figures.py", "asset": "assets/figures/vertical-slit-map.svg", "alt": "上半平面の縦スリットが等角写像で実軸へ押し戻される模式図", "mobile": "viewBox responsive", "dark_mode": "self-contained palette", "print_fallback": null, "status": "implemented"},
+    {"id": "fig-driving-trace", "chapter": "fixture-00", "objective": "駆動関数の一次元データと成長hullの対応を同期表示する。", "type": "animated-svg", "generator": "scripts/generate_sle_figures.py", "asset": "assets/figures/driving-trace.svg", "alt": "時間とともに伸びる曲線と対応する駆動関数を並べた図", "mobile": "stack below 640px", "dark_mode": "self-contained palette", "print_fallback": "assets/figures/driving-trace-print.svg", "status": "implemented"},
+    {"id": "fig-percolation", "chapter": "ch-01", "objective": "clusterではなく探索interfaceを主役として示す。", "type": "deterministic-svg", "generator": "scripts/generate_sle_figures.py", "asset": "assets/figures/percolation-interface.svg", "alt": "白黒セルの境界を進む探索経路", "mobile": "viewBox responsive", "dark_mode": "self-contained palette", "print_fallback": null, "status": "implemented"},
+    {"id": "fig-kappa-phases", "chapter": "ch-08", "objective": "kappa=4,8の閾値をtraceとhullの差を保って比較する。", "type": "deterministic-svg", "generator": "scripts/generate_sle_figures.py", "asset": "assets/figures/kappa-phases.svg", "alt": "kappaごとのSLE幾何相", "mobile": "viewBox responsive", "dark_mode": "self-contained palette", "print_fallback": null, "status": "implemented"},
+    {"id": "fig-left-passage", "chapter": "ch-10", "objective": "解析式と特殊値を比較する。", "type": "deterministic-plot", "generator": "scripts/generate_sle_figures.py", "asset": "assets/figures/left-passage.svg", "alt": "傾きに対する左側通過確率", "mobile": "viewBox responsive", "dark_mode": "self-contained palette", "print_fallback": null, "status": "implemented"}
+  ],
+  "simulation_policy": {
+    "required_metadata": ["algorithm", "seed", "kappa", "step_size", "precision", "forward_or_backward", "validation_test"],
+    "minimum_validation": ["same-seed step refinement", "invariant or solvable-case check", "visual output is labeled numerical evidence"],
+    "forbidden_claim": "simulationを定理の証明として扱わない"
+  },
+  "curriculum": [
+    {"id": "ch-01", "part": "I", "title": "白黒の格子から一本の曲線へ", "entry_question": "格子模型から何を取り出せば極限を問えるか。", "exit_question": "格子幅を0へ送るとき、曲線の何が収束するのか。", "math_dependencies": [], "pedagogical_dependencies": [], "proof_depth": "A"},
+    {"id": "ch-02", "part": "I", "title": "曲線空間を直接扱うことの破綻", "entry_question": "格子幅を0へ送るとき、曲線の何が収束するのか。", "exit_question": "巨大な曲線空間を、履歴を失わずに圧縮できるか。", "math_dependencies": ["ch-01"], "pedagogical_dependencies": ["ch-01"], "proof_depth": "B"},
+    {"id": "ch-03", "part": "II", "title": "等角写像で成長済み部分を消す", "entry_question": "巨大な曲線空間を、履歴を失わずに圧縮できるか。", "exit_question": "標準領域へ戻す写像の時間発展を式にできるか。", "math_dependencies": ["pre-rmt"], "pedagogical_dependencies": ["ch-02"], "proof_depth": "A"},
+    {"id": "ch-04", "part": "II", "title": "縦スリットからLoewner方程式へ", "entry_question": "標準領域へ戻す写像の時間発展を式にできるか。", "exit_question": "曲線がランダムなら、駆動関数の法則は何か。", "math_dependencies": ["ch-03"], "pedagogical_dependencies": ["ch-03"], "proof_depth": "B"},
+    {"id": "ch-05", "part": "II", "title": "Schrammの分類原理", "entry_question": "曲線がランダムなら、駆動関数の法則は何か。", "exit_question": "Brown運動を駆動関数に入れると、本当に曲線が出るか。", "math_dependencies": ["ch-04", "pre-filtration", "pre-brown"], "pedagogical_dependencies": ["ch-04"], "proof_depth": "A"},
+    {"id": "ch-06", "part": "III", "title": "Brown運動を入れたLoewner chain", "entry_question": "Brown運動を駆動関数に入れると、本当に曲線が出るか。", "exit_question": "kappaは境界点の運動をどう変えるか。", "math_dependencies": ["ch-05"], "pedagogical_dependencies": ["ch-05"], "proof_depth": "C"},
+    {"id": "ch-07", "part": "III", "title": "実軸点を追うとBessel過程が現れる", "entry_question": "kappaは境界点の運動をどう変えるか。", "exit_question": "局所的なswallowing閾値は曲線全体の幾何を決めるか。", "math_dependencies": ["ch-06", "pre-ito", "pre-stopping", "pre-bessel"], "pedagogical_dependencies": ["ch-06"], "proof_depth": "A"},
+    {"id": "ch-08", "part": "III", "title": "三つの幾何相", "entry_question": "局所的なswallowing閾値は曲線全体の幾何を決めるか。", "exit_question": "曲線に関する確率を、どの保存量から計算するか。", "math_dependencies": ["ch-07"], "pedagogical_dependencies": ["ch-07"], "proof_depth": "C"},
+    {"id": "ch-09", "part": "IV", "title": "martingaleは何を保存するか", "entry_question": "曲線に関する確率を、どの保存量から計算するか。", "exit_question": "具体的な通過確率を閉じた式にできるか。", "math_dependencies": ["ch-08", "pre-ito"], "pedagogical_dependencies": ["ch-08"], "proof_depth": "A"},
+    {"id": "ch-10", "part": "IV", "title": "中心計算：Schramm left-passage formula", "entry_question": "具体的な通過確率を閉じた式にできるか。", "exit_question": "局所確率を積み上げて曲線の次元を測れるか。", "math_dependencies": ["ch-09"], "pedagogical_dependencies": ["ch-09"], "proof_depth": "A"},
+    {"id": "ch-11", "part": "IV", "title": "fractal geometryと臨界指数", "entry_question": "局所確率を積み上げて曲線の次元を測れるか。", "exit_question": "候補として得たSLEは離散曲線の実際の極限か。", "math_dependencies": ["ch-10"], "pedagogical_dependencies": ["ch-10"], "proof_depth": "C"},
+    {"id": "ch-12", "part": "V", "title": "収束証明の共通設計図", "entry_question": "候補として得たSLEは離散曲線の実際の極限か。", "exit_question": "percolationではtightnessと同定をどう実行するか。", "math_dependencies": ["ch-11", "pre-tightness"], "pedagogical_dependencies": ["ch-05", "ch-11"], "proof_depth": "B"},
+    {"id": "ch-13", "part": "V", "title": "critical percolationとSLE6", "entry_question": "percolationではtightnessと同定をどう実行するか。", "exit_question": "別模型でも同じ収束設計が働くか。", "math_dependencies": ["ch-12"], "pedagogical_dependencies": ["ch-01", "ch-12"], "proof_depth": "C"},
+    {"id": "ch-14", "part": "V", "title": "LERWとSLE2", "entry_question": "別模型でも同じ収束設計が働くか。", "exit_question": "模型対応のどこまでが定理で、どこからが普遍性予想か。", "math_dependencies": ["ch-12"], "pedagogical_dependencies": ["ch-13"], "proof_depth": "C"},
+    {"id": "ch-15", "part": "V", "title": "模型対応表とuniversalityの境界", "entry_question": "模型対応のどこまでが定理で、どこからが普遍性予想か。", "exit_question": "一本の曲線ではなく、平面全体のランダム場をどう定義するか。", "math_dependencies": ["ch-13", "ch-14"], "pedagogical_dependencies": ["ch-13", "ch-14"], "proof_depth": "D"},
+    {"id": "ch-16", "part": "VI", "title": "Gaussian Free Fieldは関数ではない", "entry_question": "一本の曲線ではなく、平面全体のランダム場をどう定義するか。", "exit_question": "pointwise level setがない場から曲線を復元できるか。", "math_dependencies": ["ch-15"], "pedagogical_dependencies": ["ch-15"], "proof_depth": "B"},
+    {"id": "ch-17", "part": "VI", "title": "SLE4-GFF coupling", "entry_question": "pointwise level setがない場から曲線を復元できるか。", "exit_question": "一本の曲線からloop ensembleとrandom surfaceへどう広げるか。", "math_dependencies": ["ch-16"], "pedagogical_dependencies": ["ch-16"], "proof_depth": "C"},
+    {"id": "ch-18", "part": "VI", "title": "CLE・CFT・LQGへの三つの出口", "entry_question": "一本の曲線からloop ensembleとrandom surfaceへどう広げるか。", "exit_question": "次教材でどの出口を完全な理論として構成するか。", "math_dependencies": ["ch-17"], "pedagogical_dependencies": ["ch-17"], "proof_depth": "D"}
+  ],
+  "quality_gates": [
+    {"id": "G1", "name": "Architecture", "machine": ["schema", "dependency graph", "scope", "bridge continuity"]},
+    {"id": "G2", "name": "Mathematics", "machine": ["SLE normalization invariants", "known theorem ids", "status vocabulary"], "human": ["proof correctness"]},
+    {"id": "G3", "name": "Explanation", "machine": ["no unresolved stop point", "concept need", "derivation contract", "quality budget", "shortcut phrase scan"], "human": ["naturalness of motivation"]},
+    {"id": "G4", "name": "Continuity", "machine": ["exit-entry equality", "known references"], "human": ["paragraph-level bridge"]},
+    {"id": "G5", "name": "Sources", "machine": ["source registry", "BibTeX key", "deep claim source"], "human": ["source adequacy"]},
+    {"id": "G6", "name": "Rendering", "machine": ["Quarto render", "local links", "asset hashes", "responsive CSS hooks", "PDF signature"], "human": ["visual QA at desktop and 375px"]},
+    {"id": "G7", "name": "Independent Audit", "machine": ["audit bundle"], "human": ["independent sign-off"]}
+  ],
+  "audit_provenance": [
+    {"file": "SLE_preproduction_curriculum_audit_2026-10-08.md", "sha256": "3ced344c7bbbf3940f8fc9df4f84e7eecb7475bf75872c2990de296454980b85"},
+    {"file": "AI_textbook_stage2_5_candidate_deep_dive_2026-10-08.md", "sha256": "f821e953318695778d92d62dacaeed6c5707d1c8f58f4f50a92b653be84ae633"}
+  ]
+}

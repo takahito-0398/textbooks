@@ -22,9 +22,9 @@ def is_external(target: str) -> bool:
     return parsed.scheme in {'http', 'https', 'mailto'} or target.startswith('#')
 
 for path in ROOT.rglob('*'):
-    if '.git' in path.parts or path.is_dir():
+    if any(part in {'.git', '.quarto', '_site', 'dist', 'tmp'} for part in path.parts) or path.is_dir():
         continue
-    if path.name == 'quarto.zip' or '_site' in path.parts:
+    if path.name == 'quarto.zip':
         continue
     if path.suffix.lower() in {'.qmd', '.md', '.yml', '.yaml', '.css', '.scss', '.py'}:
         text = path.read_text(encoding='utf-8', errors='ignore')

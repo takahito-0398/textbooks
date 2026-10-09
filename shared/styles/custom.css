@@ -255,10 +255,23 @@ figcaption,
 
 .math.display,
 mjx-container[jax="CHTML"][display="true"] {
+  display: block;
+  width: 100%;
   max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   overflow-x: auto;
   overflow-y: hidden;
   padding: .55rem 0 .65rem;
+}
+
+/* Pandoc wraps display math in an inline span; make that wrapper the
+   scroll container so MathJax's intrinsic width cannot be clipped on mobile. */
+span.math.display {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
 }
 
 mjx-container {

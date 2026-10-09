@@ -1,0 +1,64 @@
+---
+title: "第7章　なぜgaugeで割るのか"
+description: "gauge orbitとCoulomb sliceから商空間の局所模型を作る"
+---
+
+<!-- contract: contracts/07-gauge-quotient.json -->
+
+# 同じ場の別表示を除く
+
+ASD方程式はenergy最小解を選んだが、解 $A$ と $A^g$ は同じ幾何を異なるframeで表示している。接続全体のaffine空間を $\mathcal A(P)$、gauge群を $\mathcal G(P)$ と書けば、調べたいのは
+
+$$
+\mathcal M_k=\{A\in\mathcal A(P):F_A^+=0\}/\mathcal G(P)
+$$
+
+である。これは単なる集合の商では不十分で、局所座標、接空間、向き、compactificationを持つ解析的な商でなければならない。
+
+無限小gauge変換を確認する。$g_t=\exp(t\phi)$ とすると
+
+$$
+\frac d{dt}A^{g_t}\Big|_{t=0}=d_A\phi.
+$$
+
+従ってorbitの接方向は $\operatorname{im}d_A\subset\Omega^1(X;\operatorname{ad}P)$ である。接続 $A+a$ をorbitに横断させる自然な条件は
+
+$$
+d_A^*a=0
+$$
+
+であり、これをCoulomb gauge conditionと呼ぶ。
+
+![接続空間を走るgauge orbitと、それに横断する局所Coulomb slice。](../assets/figures/gauge-slice.svg){#fig-gauge-slice fig-alt="接続空間内の曲線状のgauge軌道と、それを横切るCoulomb sliceの局所図"}
+
+# sliceはなぜ存在するか
+
+$A+a$ に小さなgauge変換 $e^\phi$ を施し、Coulomb条件を満たす $\phi$ を探す。一次近似では
+
+$$
+d_A^*(a-d_A\phi)=0,qquad
+d_A^*d_A\phi=d_A^*a.
+$$
+
+左辺は0形式上の楕円作用素である。$A$ がirreducible、すなわち共変定数な随伴sectionが中心から来るもの以外にないなら、適切な中心の処理後に逆作用素を持つ。非線形項はSobolev乗法評価で制御し、implicit function theoremを適用する。
+
+::: {.callout-important title="局所slice定理（証明アーキテクチャ、深度C）"}
+$A$ の近傍で、各gauge orbitは小さなCoulomb sliceと一意に交わる。ただしstabilizerが非自明なら一意性はその有限次元作用を除いた意味になる。解析にはSobolev completion、楕円評価、非線形写像の滑らかさが必要である。[@freedUhlenbeck1991]
+:::
+
+# reducibleが作る特異性
+
+$A^g=A$ を満たすgauge変換全体をstabilizer $\Gamma_A$ と呼ぶ。$SU(2)$ 接続がirreducibleなら典型的に中心 $\{\pm1\}$ だけだが、reducible接続ではより大きい。商の局所模型はsliceそのものではなく $S_A/\Gamma_A$ になるため、stabilizerが増える点でorbifold型またはより悪い特異性が現れる。
+
+従って「gaugeで割れば冗長性が消える」だけでは足りない。irreducibility条件を確保するか、特異stratumを別に管理する必要がある。また全体でsliceを一枚選べない問題は残り、局所chartを貼るという通常の多様体と同じ発想を使う。
+
+# 次の線形化
+
+sliceはgauge方向を除いた。次にASD方程式を $A+a$ で展開すると
+
+$$
+F_{A+a}^+=F_A^++d_A^+a+(a\wedge a)^+.
+$$
+
+線形項 $d_A^+a$ とgauge方向 $d_A\phi$ が連続して並ぶ。$d_A^+d_A=0$ がASD条件から従うため、この二つは複体を作る。次章では「方程式を線形化した作用素」だけでなく、「対称性も含めた複体」が正しい変形問題であることを見る。
+

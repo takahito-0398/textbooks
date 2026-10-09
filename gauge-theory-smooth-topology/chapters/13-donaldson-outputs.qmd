@@ -1,0 +1,42 @@
+---
+title: "第13章　Donaldsonの二つの出力"
+description: "対角化定理とDonaldson多項式不変量の論理を分離する"
+---
+
+<!-- contract: contracts/13-donaldson-outputs.json -->
+
+# 出力A：definite formへの制約
+
+Donaldson対角化定理は、閉・滑らか・単連結4多様体のdefinite intersection formが整数上で対角化されると述べる。証明では低chargeのASD moduli spaceをcompactifyし、その境界・端の構造を解析して格子へ矛盾を返す。結論は「多項式の値」ではなく、smooth manifoldが持ちうるintersection formの形への制約である。[@donaldson1983]
+
+入力を整理すると、smoothnessはASD解析を可能にし、単連結性はreducibleと束の分類を単純化し、definitenessはmoduliのdimensionと端を制御する。結論だけをFreedman分類と並べれば短いが、背後には第7--11章の全機械がある。
+
+# 出力B：多項式不変量
+
+一方、Donaldson polynomial invariantは正次元moduliへ $\mu$-classを挿入して得る。概略的には
+
+$$
+D_X^w:\operatorname{Sym}^*(H_0(X)\oplus H_2(X))\to\mathbb Z
+$$
+
+であり、束の特性類 $w$、homology orientation、dimension congruenceなどを固定して定義される。$b_2^+>1$ ではgenericな補助データに依存しないdiffeomorphism invariantになる。[@donaldsonKronheimer1990]
+
+多項式不変量はintersection formだけからは決まらない。従ってhomeomorphicな多様体を区別できる可能性がある。例えば複素曲面や楕円曲面では、代数幾何的構造と結びついた非自明な値がsmooth structureの情報を保持する。
+
+# 同じ機械、異なる論理
+
+両者の共通部分はASD方程式、gauge quotient、deformation complex、Uhlenbeck compactificationである。相違は、どのdimensionのmoduliをどう使い、何を結論するかにある。
+
+| 観点 | 対角化定理 | Donaldson多項式 |
+|---|---|---|
+| 主な入力 | definite intersection form | homology classへの挿入 |
+| moduliの利用 | 端・境界構造 | cohomology pairing |
+| 出力 | formの整数対角化 | 数・多項式 |
+| 主な用途 | smoothability obstruction | smooth structuresの識別 |
+
+この区別により、「Donaldson理論が交点形式を分類する」という曖昧な説明を避けられる。対角化定理は強い必要条件を与えるが、全smooth 4-manifoldを分類しない。多項式も完全不変量ではない。
+
+# どこまで分かったか
+
+解析的な解空間からsmooth invariantを作れるようになった。だが実例で「位相は同じ、滑らかさは違う」と結論するには二本の証明が要る。homeomorphismはtopological分類から、非diffeomorphismはsmooth invariantから得る。次章でその論理を図式化し、非平滑化可能性との混同を解く。
+

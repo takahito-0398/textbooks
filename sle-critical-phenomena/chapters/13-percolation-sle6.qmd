@@ -1,0 +1,39 @@
+---
+title: "第13章　critical percolationとSLE6"
+description: "離散正則observableからpercolation探索経路のSLE6収束を理解する"
+sidebar: sle-critical-phenomena
+---
+<!-- contract: authoring/contracts/13-percolation-sle6.json -->
+
+# 第1章の曲線へ戻る
+
+三角格子site percolationの探索経路は有限格子でDMPを持つ。しかし連続極限の等角不変性と $\kappa$ はDMPだけで決まらない。模型固有の入力は、三つの境界arcへの接続確率を組み合わせた離散正則observableである。
+
+離散Cauchy--Riemann型の関係と境界値から、格子幅を0へ送ったobservableは等角共変な正則関数へ収束する。その境界値問題の解がCardy formulaを与える [@smirnov2001]。
+
+::: {.callout-note title="STATUS: Black-box theorem"}
+Smirnovの定理の入力は三角格子の臨界site percolationと適切なJordan領域近似、出力はcrossing probabilityのCardy formulaへの収束と等角不変性である。難所は離散正則性、境界近傍の一様制御、領域近似である。
+:::
+
+## なぜ6なのか
+
+探索を少し進めた後もobservableは条件付き期待値なので離散martingaleである。極限へ渡して駆動過程にItô公式を適用すると、drift消失条件がBrown分散を固定し
+$$
+U_t=\sqrt6\,B_t
+$$
+を与える。ここで6は色対称性だけでなく、observableの微分方程式の係数から出る。
+
+::: {.callout-important title="STATUS: Theorem"}
+tightness、Cardy observableの収束、DMP、駆動同定、極限の一意性を合わせると、三角格子臨界site percolationの探索経路はchordal SLE$_6$ へ収束する。
+:::
+
+この定理は「全ての平面格子のpercolationがSLE$_6$」とは述べない。universalityは強く予想され、多くの結果があるが、格子とobservableごとの仮定を外せない。
+
+$\kappa=6$ は第8章の自己接触相、第11章の次元 $7/4$ と整合する。この整合は結論の検算であって、収束証明の代わりではない。
+
+::: {.callout-warning title="STATUS: Limitation"}
+本章で証明していないのはSmirnov定理の技術部と一般格子universalityである。分類と収束を分け、適用対象を三角格子site percolationに固定した。
+:::
+
+[前章](12-convergence-blueprint.qmd) | [次章](14-lerw-sle2.qmd)
+

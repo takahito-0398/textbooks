@@ -47,6 +47,32 @@ python scripts/build_inverse_spectral_geometry_pdf.py
 
 公開・ダウンロード用PDFは `inverse-spectral-geometry/assets/inverse-spectral-geometry.pdf` に出力されます。
 
+## 4次元ゲージ理論教材
+
+本文執筆前の章契約・依存関係・記法・定理・ブラックボックス・図版・出典を検証します。
+
+```powershell
+python scripts/validate_gauge_authoring.py
+python -m unittest tests.test_gauge_authoring
+python scripts/generate_gauge_figures.py
+python scripts/build_gauge_theory_pdf.py
+```
+
+監査提出物は `python scripts/validate_gauge_authoring.py --audit-bundle dist/gauge-theory-audit` で生成します。
+
+## 二次元臨界現象とSLE教材の制作基盤
+
+全18章の疑問鎖、数学的・教育的依存、記法、定理status、black box、図版、出典、Reader Stop-Pointを検証します。
+
+```powershell
+python scripts/generate_sle_figures.py
+python scripts/sle_authoring.py validate
+python -m unittest tests.test_sle_authoring
+python scripts/build_sle_pdf.py
+```
+
+執筆contextは `python scripts/sle_authoring.py context fixture-00 --output tmp/sle-context.md`、独立監査bundleは `python scripts/sle_authoring.py audit --output dist/sle-audit` で生成します。
+
 ## 新しい教科書の追加
 
 1. `<slug>/index.qmd` と `<slug>/chapters/*.qmd` を追加する。
@@ -63,6 +89,8 @@ python scripts/build_inverse_spectral_geometry_pdf.py
 - 繰り込み群・臨界現象――ミクロを忘れて普遍性を得る
 - 楕円曲線の有理点と Birch–Swinnerton-Dyer 予想
 - 逆スペクトル幾何
+- 4次元ゲージ理論と滑らかな位相
+- 二次元臨界現象とSLE（制作基盤検証中）
 
 ## Deploy
 

@@ -1,0 +1,65 @@
+{
+  "chapter_id": "fixture-00",
+  "source": "chapters/00-production-fixture.qmd",
+  "central_question": "複雑な成長曲線を、なぜ一本の実数値駆動関数で記述できるのか。",
+  "reader_starting_state": "上半平面と複素平方根を知り、等角写像が角度を保つことを知っている。",
+  "mathematical_prerequisites": ["complex-square-root", "asymptotic-expansion"],
+  "pedagogical_prerequisites": ["曲線空間を直接扱うと状態が巨大になるという問題意識"],
+  "previous_connection": "離散探索経路の極限を直接分類する難しさから、成長済み部分を消す表現を探す。",
+  "failed_approach": "曲線の全座標を時刻ごとに保存すると状態空間が増え続け、Markov性を時間増分へ翻訳できない。",
+  "new_concepts": [
+    {
+      "id": "half-plane-capacity",
+      "need": "成長hullの合成で加法的になり、無限遠から測れる時間が必要になる。",
+      "introduced_after": "曲線長や高さでは合成則が閉じないことを確認した後"
+    },
+    {
+      "id": "driving-function",
+      "need": "標準領域へ戻した後の先端位置だけで次の微小成長を指定する必要がある。",
+      "introduced_after": "縦スリット写像とhydrodynamic normalizationを計算した後"
+    }
+  ],
+  "derivations": [
+    {
+      "id": "derive-slit-map",
+      "inputs": ["g_t(z)=sqrt(z^2+4t)", "infinityでg_t(z)~zとなる平方根の枝"],
+      "assumptions": ["zはhullの外部", "t>=0"],
+      "steps_promised": 4,
+      "sanity_check": "t=0でg_0(z)=z、虚軸スリット先端2i sqrt(t)が0へ写る"
+    },
+    {
+      "id": "derive-loewner-ode",
+      "inputs": ["g_t(z)^2=z^2+4t", "chain rule"],
+      "assumptions": ["zのswallowing timeより前"],
+      "steps_promised": 3,
+      "sanity_check": "無限遠展開の1/z係数が2t"
+    }
+  ],
+  "results": [
+    {"id": "vertical-slit-map", "status": "theorem", "theorem_id": "thm-slit-map"},
+    {"id": "curve-to-driving-encoding", "status": "proposition", "theorem_id": null},
+    {"id": "classification-not-convergence", "status": "assumption", "theorem_id": null}
+  ],
+  "proof_depth": "A",
+  "black_boxes": ["bb-rmt"],
+  "reader_stop_points": [
+    {"question": "平方根の枝はどちらを選ぶのか。", "resolution": "body", "location": "縦スリット写像"},
+    {"question": "係数2tをなぜ時間と呼べるのか。", "resolution": "body", "location": "無限遠展開"},
+    {"question": "Loewner ODEが曲線を必ず生成するのか。", "resolution": "black_box", "location": "この検証で証明していないこと"},
+    {"question": "分類からpercolation収束まで証明できたのか。", "resolution": "body", "location": "この検証で証明していないこと"}
+  ],
+  "required_bridges": [
+    "曲線全体の保存から、等角写像で過去を消す操作への橋",
+    "縦スリットの具体計算から、一般の実数駆動関数への橋",
+    "決定論的Loewner chainから、確率法則の分類問題への橋"
+  ],
+  "figures": ["fig-slit-map", "fig-driving-trace"],
+  "sources": ["lawler2005", "schramm2000", "rohdeSchramm2005"],
+  "next_question": "等角不変性とdomain Markov propertyは、駆動関数の法則をどこまで決めるか。",
+  "quality_budget": {
+    "motivations": 2,
+    "worked_derivations": 2,
+    "interpretations": 2,
+    "explicit_limits": 2
+  }
+}

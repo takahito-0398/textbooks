@@ -1,0 +1,56 @@
+---
+title: "第18章　Kähler・symplectic 4-manifold"
+description: "Seiberg-Witten不変量からsymplectic幾何と埋め込み曲面へ戻る"
+---
+
+<!-- contract: contracts/18-kahler-symplectic.json -->
+
+# Kähler面では方程式が分解する
+
+Kähler surfaceではpositive spinor bundleが型分解を持ち、適切な $\mathrm{Spin}^c$ 構造で
+
+$$
+W^+\cong \Lambda^{0,0}\oplus\Lambda^{0,2}
+$$
+
+と書ける。spinorを $(\alpha,\beta)$ と表すとDirac方程式は $\bar\partial_A$ と $\bar\partial_A^*$ の組へ分かれ、曲率方程式も型 $(1,1)$ と $(0,2)$ の条件へ分解する。摂動の符号に応じて一方の成分が消え、残る方がholomorphic sectionとして解釈される。
+
+この具体化により、抽象的なspinor解とdivisor・line bundleの複素幾何が接続する。解析から得たmoduliが、既知のholomorphic dataで計算可能になる。
+
+# Taubesの反転：解から曲線へ
+
+閉symplectic 4-manifold $(X,\omega)$ はcompatible almost complex structureを通じてcanonical class $K=-c_1(TX,J)$ を持つ。Taubesの $SW\Rightarrow Gr$ は、適切なSW解のlarge-perturbation極限から擬正則曲線を取り出し、SW invariantとGromov invariantを結ぶ。[@taubes1996]
+
+::: {.callout-important title="Taubesの定理（Black Box、深度D）"}
+$b_2^+(X)>1$ の閉symplectic 4-manifoldではcanonical $\mathrm{Spin}^c$ 構造に対応するSW invariantが非零であり、より一般にbasic classの情報は擬正則曲線の存在へ変換される。本書ではstatement、摂動scale、曲率集中から曲線を抽出する証明骨格、下流の帰結を示し、解析的極限の全証明は引用する。
+:::
+
+# adjunction inequality
+
+$SW_X(\mathfrak s)\ne0$ とし、対応するbasic classを $K_{\mathfrak s}=c_1(L)$ とする。適切な仮定のもと、自己交点が非負のembedded connected surface $\Sigma\subset X$ に対して
+
+$$
+2g(\Sigma)-2\ge \Sigma\cdot\Sigma+
+|K_{\mathfrak s}\cdot[\Sigma]|
+$$
+
+というadjunction inequalityが成り立つ。左辺はgenus、右辺はhomologyとbasic classだけで書かれる。従って、同じhomology classを表すsmooth surfaceの最小genusへ下界を与える。
+
+複素曲線ではadjunction formulaが等号を与える場合があり、解析的不変量の下界が代数幾何の値と一致する。ここでゲージ理論はsmooth structureの識別器から、埋め込み問題の定量的道具へ変わる。
+
+# 正scalar curvatureへの障害
+
+未摂動SW方程式にWeitzenböck formulaを用いると、scalar curvature $s>0$ が至る所で正ならirreducible解を排除する方向に働く。非零SW invariantを持つ多様体では、このvanishing argumentと矛盾するため、正scalar curvature計量の存在に障害が生じる。正確な結論にはperturbation・chamber・basic classの条件を添える必要がある。
+
+# 中心問題への回答
+
+楕円型ゲージ方程式の解空間がsmooth structureを検出できる理由は、一つの奇跡ではなく連鎖である。
+
+1. 4次元では曲率2形式が自己双対に分かれ、topological chargeがenergy下限になる。
+2. gauge対称性を含む線形化が楕円複体を作り、indexが有限次元のexpected dimensionを与える。
+3. regularity、orientation、compactificationを加えると、解空間から変形不変な数を取れる。
+4. その数はsmoothなPDEを使うためhomeomorphismでは保存されず、diffeomorphismでは保存される。
+5. 非零・消滅・basic classの配置が、intersection form、smooth structure、曲面、symplectic幾何へ制約を返す。
+
+FreedmanとDonaldsonの衝突から始まった問いは、Taubesによって再び幾何へ戻った。4次元ゲージ理論は、位相と解析の間に補助構造を置く理論ではない。両者が同じ次数で出会う4次元において、解析的compactnessの壊れ方まで含めて位相情報へ翻訳する機械である。
+

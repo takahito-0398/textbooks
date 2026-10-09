@@ -1,0 +1,61 @@
+---
+title: "第11章　compactnessが壊れる仕方：bubbling"
+description: "曲率集中・energy量子化・Uhlenbeck compactificationを説明する"
+---
+
+<!-- contract: contracts/11-bubbling.json -->
+
+# 有界energyだけでは強収束しない
+
+固定charge $k$ のASD接続はenergy $8\pi^2k$ を持つため、一様な $L^2$ boundがある。しかし4次元では $L^2$ 曲率energyがscale invariantなので、BPST instantonを半径 $\rho_n\to0$ へ縮めてもboundは改善しない。曲率は一点へ集中し、接続列はその点を含む通常の位相では収束しない。
+
+曲率測度
+
+$$
+\mu_n=|F_{A_n}|^2d\mathrm{vol}
+$$
+
+を考えると、弱極限は滑らかな部分と原子部分へ分かれる。
+
+$$
+\mu_n\rightharpoonup |F_{A_\infty}|^2d\mathrm{vol}
++8\pi^2\sum_{i=1}^\ell m_i\delta_{x_i},qquad m_i\in\mathbb N.
+$$
+
+整数 $m_i$ は局所的に拡大した極限が $S^4$ 上のinstantonを作ることから現れる。
+
+![同じ総energyを保ったまま曲率密度が一点へ集中し、極限でchargeが原子として残る。](../assets/figures/bubbling.svg){#fig-bubbling fig-alt="幅が狭く高さが増す三つの曲率密度曲線と、極限の集中点を示す図"}
+
+# 小energyならgaugeを選べる
+
+compactnessの核心は、曲率が小さいballでは接続をCoulomb gaugeへ入れ、
+
+$$
+d^*a=0,qquad
+\|a\|_{L_1^2(B)}\le C\|F_A\|_{L^2(B)}
+$$
+
+のようなestimateを得ることである。有限個のballでのみsmall-energy thresholdを超えられるため、その中心を除けば一様estimateとRellich compactnessが使える。対角列を取り、gauge変換後に $A_n$ は $X\setminus\{x_1,\dots,x_\ell\}$ 上で $A_\infty$ へ収束する。
+
+::: {.callout-important title="Uhlenbeck compactness（Black Boxを含む証明アーキテクチャ、深度C）"}
+一様な $L^2$ 曲率boundを持つ接続列から、有限個の集中点を除いてgauge収束する部分列を取れる。ASD列では極限もASDで、removable singularity theoremにより低いchargeの束へ延長される。失われたchargeは有限個の整数multiplicityとして記録される。難所はsmall-energy gauge fixingとremovable singularityである。[@freedUhlenbeck1991]
+:::
+
+# ideal instantonで閉じる
+
+通常のmoduli $\mathcal M_k$ に、低いchargeのASD接続と点のunordered tupleを加え、
+
+$$
+\overline{\mathcal M}_k^{,U}
+=\bigsqcup_{\ell=0}^k
+\mathcal M_{k-\ell}\times\operatorname{Sym}^{\ell}(X)
+$$
+
+というUhlenbeck compactificationを作る。右辺の点は「粒子を追加した」のではなく、接続から消えたscaleと位置のうち、極限で残る位置とchargeだけを記録するideal objectである。
+
+stratum間のcodimensionが十分大きければ、低次元countはbubbling境界の影響を受けない。一方、1次元parameterized moduliでは端として現れる可能性をdimension countで毎回確認しなければならない。
+
+# compactificationは目的でなく次の入力
+
+compact spaceを得ただけでは不変量にならない。計量を変えたときのparameterized moduliが向き付きcobordismを作り、その境界が両端のmoduliだけであることを示す必要がある。reducible、bubbling、wall-crossingが余分な境界を作らない条件は何か。次章で「PDE解空間から数を取る」一般機械を組み立てる。
+

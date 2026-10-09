@@ -1,0 +1,62 @@
+---
+title: "付録A　確率解析の最小装備"
+description: "filtration、Brown運動、二次変分、Itô公式、停止時刻をSLEの式に即して補う"
+sidebar: sle-critical-phenomena
+---
+<!-- contract: authoring/contracts/a-probability.json -->
+
+# 過去を数式にする
+
+確率空間 $(\Omega,\mathcal F,\mathbb P)$ 上のfiltration $(\mathcal F_t)_{t\ge0}$ は、時刻とともに増える情報である。SLEでは $\mathcal F_t$ を駆動Brown運動、または同値な初期hullから生成する。random variable $X_t$ が $\mathcal F_t$-可測であるとき、時刻 $t$ までの観測だけで値を決められる。
+
+条件付き期待値は
+$$
+\int_A\mathbb E[X\mid\mathcal G]\,d\mathbb P
+=\int_A X\,d\mathbb P,\qquad A\in\mathcal G
+$$
+で特徴付けられる。$M_t=\mathbb E[X\mid\mathcal F_t]$ と置けばtower propertyによりmartingaleになる。第9章で通過事象の確率が保存量になる根拠はこれである。
+
+::: {.callout-note title="STATUS: Definition"}
+stopping time $\tau$ は $\{\tau\le t\}\in\mathcal F_t$ を満たすrandom timeである。「点が半径$\varepsilon$へ初めて入る時刻」は未来を見ずに判定できるのでstopping timeになる。
+:::
+
+# Brown運動と二次変分
+
+partition $\Pi=\{0=t_0<\cdots<t_n=t\}$ に沿う増分和は
+$$
+\sum_i(B_{t_{i+1}}-B_{t_i})^2.
+$$
+各項の期待値は $t_{i+1}-t_i$ なので和の期待値は $t$。meshを0へ送ると確率収束で $t$ へ行き、$d\langle B\rangle_t=dt$ と書く。一方、一次増分和は符号が相殺され、絶対変分は発散する。通常の微分では二次の項を捨てるが、Brown運動では
+$$
+(dB_t)^2=dt
+$$
+がorder $dt$ として残る。
+
+$X_t$ が
+$$
+dX_t=b_tdt+\sigma_tdB_t
+$$
+を満たすとき、Taylor展開をpartitionごとに足して極限を取ると
+$$
+df(X_t)=f'(X_t)dX_t+\frac12f''(X_t)\sigma_t^2dt
+$$
+を得る。これがItô公式である。多変数では共分散行列に対応する二階微分が加わる。
+
+::: {.callout-important title="STATUS: Derivation"}
+Itô補正は記憶すべき人工的な項ではない。Brown増分が$\sqrt{dt}$の大きさなので、Taylor展開の二次項が$dt$の大きさで残ることから生じる。
+:::
+
+# optional stoppingを安全に使う
+
+bounded stopping time $\tau$ と一様可積分なmartingaleなら
+$$
+\mathbb E[M_\tau]=\mathbb E[M_0].
+$$
+SLEでは特異点へ近づくため、まず $\tau_{\varepsilon,R}$ でcompact区間へ止める。そこでboundednessを確保し、$\varepsilon\downarrow0$, $R\uparrow\infty$ の順に極限を正当化する。局所martingaleというだけで期待値保存を宣言すると、strict local martingaleで破綻する。
+
+::: {.callout-warning title="STATUS: Limitation"}
+本付録で証明していないのはItô積分の$L^2$構成とoptional stoppingの最一般形である。本文の計算に必要な停止・有界化・極限の順序だけを固定した。
+:::
+
+[第5章](../chapters/05-schramm-principle.qmd) | [第9章](../chapters/09-martingales.qmd)
+

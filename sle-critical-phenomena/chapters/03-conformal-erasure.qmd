@@ -1,0 +1,49 @@
+---
+title: "第3章　等角写像で成長済み部分を消す"
+description: "単連結領域を上半平面へ標準化し、過去を写像へ吸収する"
+sidebar: sle-critical-phenomena
+---
+<!-- contract: authoring/contracts/03-conformal-erasure.json -->
+
+# 毎時刻、同じ領域へ戻す
+
+$H_t=\mathbb H\setminus K_t$ は時刻とともに変わる。Riemann写像定理は単連結な真部分領域を標準領域へ移す写像の存在を与える [@ahlfors1979]。ただし上半平面の自己同型を後から合成できるので、存在だけでは一意でない。
+
+無限遠を固定して
+$$
+g_t(z)=z+\frac{a_t}{z}+O(|z|^{-2}),\qquad z\to\infty
+$$
+というhydrodynamic normalizationを課す。定数項も0にすれば $g_t:H_t\to\mathbb H$ が一意に選ばれる。
+
+::: {.callout-note title="STATUS: Black-box theorem"}
+Riemann写像定理の入力は単連結な真部分領域、出力は標準領域への等角写像である。存在証明はblack boxとし、正規化と成長への利用を本文で扱う。
+:::
+
+$g_t$ によってhullは座標領域から消えるが、情報は関数に移る。$s<t$ なら
+$$
+g_{s,t}=g_t\circ g_s^{-1}
+$$
+は時刻 $s$ の標準座標で見た追加hullを再び $\mathbb H$ へ戻す。この合成則がMarkov性を写像の増分へ移す。
+
+拡大 $K\mapsto rK$ に対し、無限遠展開から
+$$
+\operatorname{hcap}(rK)=r^2\operatorname{hcap}(K)
+$$
+となる。本教材では
+$$
+g_t(z)=z+\frac{2t}{z}+O(|z|^{-2}),\qquad \operatorname{hcap}(K_t)=2t
+$$
+となるよう時間を選ぶ。
+
+::: {.callout-important title="STATUS: Definition"}
+半平面容量はEuclid長でなく、無限遠から見たhullの一次効果である。係数2はLoewner方程式の規約を固定する。
+:::
+
+境界正則性があれば先端prime endは $g_t$ により実軸上の点 $U_t$ へ送られる。$U_t$ は元の曲線の $x$ 座標ではなく、過去を消した座標での境界点である。
+
+::: {.callout-warning title="STATUS: Limitation"}
+本章で証明していないのは一般hullの境界延長である。写像の存在だけでは連続な先端像や曲線生成は出ない。
+:::
+
+[前章](02-curve-space.qmd) | [次章](04-loewner-equation.qmd)
+

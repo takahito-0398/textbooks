@@ -1,0 +1,54 @@
+---
+title: "第10章　中心計算：Schramm left-passage formula"
+description: "generator PDEを解いて左側通過確率を導く"
+sidebar: sle-critical-phenomena
+---
+<!-- contract: authoring/contracts/10-left-passage.json -->
+
+# 二変数から傾き一つへ
+
+$z=x+iy$ の左側通過確率を $P(x,y)$ とする。scale不変性から $P(x,y)=p(u)$, $u=x/y$。第9章のPDEへ
+$$
+P_x=y^{-1}p',\quad P_{xx}=y^{-2}p'',\quad P_y=-uy^{-1}p'
+$$
+を入れると
+$$
+\frac\kappa2p''(u)+\frac{4u}{1+u^2}p'(u)=0.
+$$
+$q=p'$ と置けば
+$$
+q(u)=C(1+u^2)^{-4/\kappa}.
+$$
+
+::: {.callout-note title="STATUS: Derivation"}
+角度だけに依存する事象なのでscale不変性が二変数PDEを傾き $u=x/y$ のODEへ落とす。
+:::
+
+向きの規約を固定し、$u\to-\infty,+\infty$ で境界値0,1を課すと
+$$
+\boxed{
+p(u)=
+\frac{\int_{-\infty}^{u}(1+s^2)^{-4/\kappa}ds}
+{\int_{-\infty}^{\infty}(1+s^2)^{-4/\kappa}ds}
+},\qquad 0<\kappa<8.
+$$
+対称性から $p(0)=1/2$。これはSchramm formulaの積分表示である [@schramm2001]。
+
+![left-passage probabilityの曲線。](../assets/figures/left-passage.svg)
+
+::: {.callout-important title="STATUS: Theorem"}
+停止領域でのmartingale、境界値、極限を正当化すると上式がleft-passage probabilityになる。積分の有限性 $4/\kappa>1/2$ は $\kappa<8$ と一致する。
+:::
+
+$\kappa=4$ では
+$$
+p(u)=\frac12+\frac1\pi\arctan u.
+$$
+中心で $1/2$、左右遠方で境界値へ行く。向きを逆にすると確率は $1-p$ になる。
+
+::: {.callout-warning title="STATUS: Numerical evidence"}
+図の数値積分は解析式の検算であり、有限sample simulationとの一致だけで定理を証明していない。
+:::
+
+[前章](09-martingales.qmd) | [次章](11-fractal-dimension.qmd)
+

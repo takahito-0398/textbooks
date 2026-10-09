@@ -1,0 +1,44 @@
+---
+title: "第11章　fractal geometryと臨界指数"
+description: "接近確率とHausdorff次元を結ぶ"
+sidebar: sle-critical-phenomena
+---
+<!-- contract: authoring/contracts/11-fractal-dimension.json -->
+
+# 長さでは測れない曲線
+
+SLE traceは通常の有限長で測れない。Hausdorff測度
+$$
+\mathcal H^s(E)=\lim_{\varepsilon\downarrow0}
+\inf\left\{\sum_i(\operatorname{diam}U_i)^s:
+E\subset\bigcup_iU_i,\ \operatorname{diam}U_i<\varepsilon\right\}
+$$
+の臨界値で $\dim_HE$ を定義する。
+
+::: {.callout-note title="STATUS: Definition"}
+有限解像度のbox countは直感を与えるが、直径の不均一な被覆も許すHausdorff次元の証明とは異なる。
+:::
+
+一点への接近確率が
+$$
+\mathbb P\{\operatorname{dist}(z,\gamma)<\varepsilon\}
+\asymp C(z)\varepsilon^{2-d}
+$$
+なら、面積1の領域にある $\varepsilon$-box約 $\varepsilon^{-2}$ 個のうち訪問される期待数は $\varepsilon^{-d}$。一次momentは上界を導くが、下界には二点同時接近のsecond momentが要る。
+
+::: {.callout-important title="STATUS: Black-box theorem"}
+Beffaraの定理により
+$$
+\boxed{\dim_H\gamma=\min(2,1+\kappa/8)}\quad\text{a.s.}
+$$
+である [@beffara2008]。証明はGreen estimateと二点相関評価を組み合わせる。
+:::
+
+$\kappa=2,6,8$ では次元は $5/4,7/4,2$。LERW、percolation探索経路、空間充填閾値と整合する。ただし次元は法則全体を決めない。
+
+::: {.callout-warning title="STATUS: Limitation"}
+本章で証明していないのはGreen estimateとsecond moment評価である。数値box countからSLE収束も結論しない。
+:::
+
+[前章](10-left-passage.qmd) | [次章](12-convergence-blueprint.qmd)
+

@@ -1,0 +1,64 @@
+---
+title: "第2章　4次元の代数的影：intersection form"
+description: "中間次元cycleの交点から4多様体の整数双線形形式を導く"
+---
+
+<!-- contract: contracts/02-intersection-form.json -->
+
+# 曲面を動かしても残る整数
+
+前章ではsmooth structureを直接比較せず、不変量で観測する方針を立てた。その前に、同じ位相型が何を保持するかを固定したい。閉じた向き付き4多様体 $X$ で、二つの2次元homology class $x,y\in H_2(X;\mathbb Z)/\mathrm{Tor}$ を横断的に交わる向き付き曲面で表す。交点 $p$ ごとに、二つの接平面の向きが $T_pX$ の向きと一致するかを $\varepsilon_p=\pm1$ で記録し、
+
+$$
+Q_X(x,y)=\sum_{p\in \Sigma_x\cap\Sigma_y}\varepsilon_p
+$$
+
+と置く。曲面の代表を動かすと交点は生成・消滅するが、局所的には符号が反対の対で起こるため総和は変わらない。
+
+Poincaré dualityを使えば同じ量は
+
+$$
+Q_X(x,y)=\langle \operatorname{PD}(x)\smile\operatorname{PD}(y),[X]\rangle
+$$
+
+と書ける。この式は定義の独立性と、なぜ4次元なのかを同時に示す。次数2のclassを二つ掛けると次数4となり、fundamental class上で評価できるからである。
+
+# unimodularという制約
+
+torsionを除いた $H_2(X;\mathbb Z)$ は自由Abel群であり、基底を選ぶと $Q_X$ は対称整数行列になる。Poincaré dualityにより随伴写像
+
+$$
+H_2(X;\mathbb Z)/\mathrm{Tor}\longrightarrow
+\operatorname{Hom}(H_2(X;\mathbb Z)/\mathrm{Tor},\mathbb Z)
+$$
+
+は同型なので、行列式は $\pm1$ である。これがunimodular性である。基底変更 $S\in GL(n,\mathbb Z)$ は行列を $Q\mapsto S^{\mathsf T}QS$ と変えるため、分類対象は行列そのものではなく整数合同類である。
+
+実数上ではSylvesterの慣性法則により
+
+$$
+Q_X\otimes\mathbb R\cong (+1)^{b_2^+}\oplus(-1)^{b_2^-}
+$$
+
+となる。signatureは $\sigma(X)=b_2^+-b_2^-$、rankは $b_2=b_2^++b_2^-$ である。後で $b_2^+$ が計量の族を動かす際の壁の余次元を支配するので、単なる線形代数の記号では終わらない。
+
+# evenとodd
+
+$Q_X(x,x)$ が全ての $x$ で偶数ならeven、そうでなければoddと呼ぶ。例えば
+
+$$
+Q_{\mathbb{CP}^2}=(1),\qquad
+Q_{S^2\times S^2}=H=
+\begin{pmatrix}0&1\\1&0\end{pmatrix}.
+$$
+
+$H$ はevenで不定値、$(1)$ はoddで正定値である。向きを反転すると $Q_{\bar X}=-Q_X$ となり、連結和では直和 $Q_{X\#Y}=Q_X\oplus Q_Y$ になる。これら二つの操作だけで、多数の例の形式を計算できる。
+
+::: {.callout-note title="形式が同じなら多様体も同じか"}
+単連結な閉4多様体ではintersection formは非常に強いが、smooth categoryでは完全不変量ではない。同じ形式を持ちながらdiffeomorphicでない多様体が存在することこそ、後半で作る不変量の出番である。
+:::
+
+# 代数から存在問題へ
+
+任意のunimodular formが4多様体から来るわけではない。さらに「位相多様体として実現できる」と「滑らかな多様体として実現できる」は別問題である。次章ではFreedmanのtopological分類とDonaldsonのsmooth制約を同じ表に置く。両者の許容範囲の差が、ゲージ理論を必要とする最初の衝突になる。
+

@@ -1,0 +1,89 @@
+{
+  "chapter_id": "ch-08",
+  "source": "chapters/08-geometric-phases.qmd",
+  "central_question": "局所的なswallowing閾値は曲線全体の幾何を決めるか。",
+  "reader_starting_state": "前章までの定義と主要な式を理解し、章末の未解決問題を共有している。",
+  "mathematical_prerequisites": [],
+  "pedagogical_prerequisites": [
+    "ch-07"
+  ],
+  "previous_connection": "前章の出口質問「局所的なswallowing閾値は曲線全体の幾何を決めるか。」をこの章の中心問題として引き継ぐ。",
+  "failed_approach": "局所的なswallowing閾値は曲線全体の幾何を決めるか。に対し、対象を区別せず結論だけを仮定すると、必要な仮定と証明statusを追跡できない。",
+  "new_concepts": [
+    {
+      "id": "geometric-phases-core",
+      "need": "中心問題を既知の対象だけでは閉じられないため、geometric-phasesの中心構成を導入する。",
+      "introduced_after": "既存の直接法が不足する理由を本文で確認した後"
+    },
+    {
+      "id": "geometric-phases-status",
+      "need": "定理・仮定・black box・数値証拠を分け、下流で利用できる結論を固定する。",
+      "introduced_after": "中心構成の入力と出力を区別した後"
+    }
+  ],
+  "derivations": [
+    {
+      "id": "derive-geometric-phases",
+      "inputs": [
+        "前章までに定義した対象",
+        "当章で明示した仮定"
+      ],
+      "assumptions": [
+        "式を適用する停止時刻または定義域の内部"
+      ],
+      "steps_promised": 3,
+      "sanity_check": "特殊例・scale・境界値の少なくとも一つで係数と符号を検算する"
+    }
+  ],
+  "results": [
+    {
+      "id": "geometric-phases-main",
+      "status": "black_box_theorem",
+      "theorem_id": "thm-sle-phases"
+    },
+    {
+      "id": "geometric-phases-boundary",
+      "status": "assumption",
+      "theorem_id": null
+    }
+  ],
+  "proof_depth": "C",
+  "black_boxes": [
+    "bb-trace"
+  ],
+  "reader_stop_points": [
+    {
+      "question": "なぜこの概念を今導入するのか。",
+      "resolution": "body",
+      "location": "章の導入と最初の節"
+    },
+    {
+      "question": "この式変形はどの仮定の下で許されるか。",
+      "resolution": "body",
+      "location": "中心計算"
+    },
+    {
+      "question": "この章で証明していない範囲は何か。",
+      "resolution": "black_box",
+      "location": "章末のLimitations"
+    }
+  ],
+  "required_bridges": [
+    "前章の問い「局所的なswallowing閾値は曲線全体の幾何を決めるか。」から中心構成への橋",
+    "中心結果から次章の問い「曲線に関する確率を、どの保存量から計算するか。」への橋"
+  ],
+  "figures": [
+    "fig-kappa-phases"
+  ],
+  "sources": [
+    "rohdeSchramm2005",
+    "lawlerSchrammWerner2004"
+  ],
+  "next_question": "曲線に関する確率を、どの保存量から計算するか。",
+  "quality_budget": {
+    "motivations": 2,
+    "worked_derivations": 1,
+    "interpretations": 2,
+    "explicit_limits": 1
+  }
+}

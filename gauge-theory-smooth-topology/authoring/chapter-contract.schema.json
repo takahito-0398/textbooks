@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://textbooks.yohakostudio.com/schemas/gauge-theory-chapter-contract.schema.json",
+  "title": "Gauge theory textbook chapter contract",
+  "type": "object",
+  "required": [
+    "chapter_id", "source", "central_question", "reader_starting_state",
+    "prerequisites", "new_concepts", "main_derivations", "results",
+    "proof_depth", "black_boxes", "rigor_statuses", "reader_stop_points",
+    "required_bridges", "figures", "sources", "previous_connection",
+    "next_question", "unresolved_stop_points"
+  ],
+  "properties": {
+    "chapter_id": {"type": "string", "pattern": "^(ch|fixture)-[0-9]{2}$"},
+    "source": {"type": "string", "pattern": "^chapters/.+\\.qmd$"},
+    "central_question": {"type": "string", "minLength": 10},
+    "reader_starting_state": {"type": "string", "minLength": 10},
+    "prerequisites": {"type": "array", "items": {"type": "string"}},
+    "new_concepts": {"type": "array", "items": {"type": "string"}},
+    "main_derivations": {"type": "array", "items": {"type": "string"}},
+    "results": {"type": "array", "items": {"type": "string"}},
+    "proof_depth": {"enum": ["A", "B", "C", "D"]},
+    "black_boxes": {"type": "array", "items": {"type": "string"}},
+    "rigor_statuses": {"type": "array", "items": {"enum": ["definition", "theorem", "proposition", "lemma", "heuristic", "physical_intuition", "conjecture", "numerical_evidence", "expected_behavior", "open_problem", "black_box_theorem"]}},
+    "reader_stop_points": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["question", "resolution", "location"],
+        "properties": {
+          "question": {"type": "string"},
+          "resolution": {"enum": ["body", "appendix", "black_box", "unresolved"]},
+          "location": {"type": "string"}
+        }
+      }
+    },
+    "required_bridges": {"type": "array", "items": {"type": "string"}, "minItems": 2},
+    "figures": {"type": "array", "items": {"type": "string"}},
+    "sources": {"type": "array", "items": {"type": "string"}},
+    "previous_connection": {"type": "string"},
+    "next_question": {"type": "string"},
+    "unresolved_stop_points": {"type": "array", "maxItems": 0}
+  },
+  "additionalProperties": false
+}
+

@@ -1,0 +1,67 @@
+---
+title: "第16章　Seiberg–Witten方程式とmoduli space"
+description: "方程式・線形化・次元・compactnessを一つのmoduli問題として構成する"
+---
+
+<!-- contract: contracts/16-seiberg-witten-equations.json -->
+
+# 方程式と摂動
+
+$\mathrm{Spin}^c$ 構造 $\mathfrak s$ を固定し、determinant line $L$ のconnection $A$ とpositive spinor $\Phi$ を未知量とする。self-dual imaginary 2-form $\eta$ を摂動として
+
+$$
+\begin{cases}
+D_A\Phi=0,\\
+F_A^+=q(\Phi)+i\eta
+\end{cases}
+$$
+
+をSeiberg--Witten方程式とする。係数は $q$ の規格化に吸収されるため、文献間で式を比較するときは両者を同時に確認する。[@witten1994]
+
+$\Phi=0$ の解はreducibleであり、第二式は $F_A^+=i\eta$ となる。generic perturbationと $b_2^+>0$ の条件を用いてreducibleを避けるのが、smooth moduliを作る基本方針である。
+
+# 線形化とexpected dimension
+
+無限小gauge変換 $f\in\Omega^0(i\mathbb R)$ は $(-df,f\Phi)$ を与える。方程式の線形化とgauge fixingを合わせた作用素は、概略的に
+
+$$
+\Omega^1(i\mathbb R)\oplus\Gamma(W^+)
+\longrightarrow
+\Omega^0(i\mathbb R)\oplus\Omega^2_+(i\mathbb R)\oplus\Gamma(W^-)
+$$
+
+となる。principal symbolは $d^*\oplus d^+$ とDirac作用素の直和なので楕円的である。index theoremから実expected dimension
+
+$$
+d(\mathfrak s)=\frac{c_1(L)^2-(2\chi(X)+3\sigma(X))}{4}
+$$
+
+を得る。
+
+この式もactual dimensionを無条件には与えない。regular perturbationでcokernelを消し、reducibleを避けたときにsmooth manifoldのdimensionになる。
+
+# Weitzenböck formulaがcompactnessを作る
+
+Dirac作用素には
+
+$$
+D_A^*D_A\Phi
+=\nabla_A^*\nabla_A\Phi+\frac{s}{4}\Phi+rac12\rho(F_A^+)\Phi
+$$
+
+というWeitzenböck formulaがある。方程式 $F_A^+=q(\Phi)+i\eta$ を代入し、$D_A\Phi=0$ との $L^2$ pairingを取ると、$|\Phi|^4$ の正項を含むestimateが得られる。最大値原理により $\|\Phi\|_{L^\infty}$ をscalar curvatureと摂動から抑えられる。
+
+曲率のself-dual部分は第二式で抑えられ、cohomology classが全曲率の調和部分を固定する。可換gauge fixingと楕円estimateから接続も制御される。ASD理論で現れたnon-abelian bubblingに比べ、固定 $\mathfrak s$ のSW moduliはcompactnessが直接的である。
+
+# 不変量
+
+$d(\mathfrak s)=0$ でorientationを選ぶと、regular moduliの点を符号付きで数え
+
+$$
+SW_X(\mathfrak s)\in\mathbb Z
+$$
+
+を得る。$b_2^+>1$ ではmetric・generic perturbationに依存しない。$b_2^+=1$ ではchamberを指定する。正次元の場合はcohomology classを挿入する拡張が必要である。
+
+次章では「SWはDonaldsonより簡単」という言い方を分解する。compactnessと計算が簡潔になる面はあるが、nonlinear coupling、transversality、orientation、wall-crossingは残る。
+

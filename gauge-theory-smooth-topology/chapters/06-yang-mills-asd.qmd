@@ -1,0 +1,71 @@
+---
+title: "第6章　Yang–Mills energyとASD方程式"
+description: "Chern-Weil数からenergy下限とASD方程式を完全導出する"
+---
+
+<!-- contract: contracts/06-yang-mills-asd.json -->
+
+# 位相数がenergyの床になる
+
+前章の分解を曲率へ適用し、$F_A=F_A^++F_A^-$ とする。本書では
+
+$$
+\mathrm{YM}(A)=\int_X|F_A|^2d\mathrm{vol}
+=\|F_A^+\|_{L^2}^2+\|F_A^-\|_{L^2}^2
+$$
+
+と定義する。chargeの規約を
+
+$$
+8\pi^2k=\|F_A^-\|_{L^2}^2-\|F_A^+\|_{L^2}^2
+$$
+
+に固定する。二式を引き算すれば
+
+$$
+\mathrm{YM}(A)=8\pi^2k+2\|F_A^+\|_{L^2}^2
+$$
+
+を得る。$k\ge0$ なら $\mathrm{YM}(A)\ge8\pi^2k$ であり、等号はちょうど
+
+$$
+F_A^+=0
+$$
+
+のときに成立する。これがanti-self-dual (ASD) 方程式である。符号規約や向きを反転すればself-dual側と入れ替わるが、「topological chargeがenergy下限を与え、片側の曲率が消えると等号」という内容は変わらない。[@donaldsonKronheimer1990]
+
+# ASDならYang--Mills、逆は違う
+
+Yang--Mills方程式はenergyのEuler--Lagrange方程式である。$A_t=A+ta$ と変分すると $\frac d{dt}F_{A_t}|_{0}=d_Aa$ なので
+
+$$
+\frac d{dt}\mathrm{YM}(A_t)\Big|_{0}
+=2\int_X\langle d_Aa,F_A\rangle
+=2\int_X\langle a,d_A^*F_A\rangle.
+$$
+
+従って臨界点は $d_A^*F_A=0$ を満たす。ASD接続では $*F_A=-F_A$ だから、Bianchi恒等式 $d_AF_A=0$ を使って
+
+$$
+d_A^*F_A=-*d_A*F_A=*d_AF_A=0.
+$$
+
+よってASDはYang--Mills解である。しかしYang--Mills方程式はenergyの全ての臨界点を含み、鞍点も許す。ASDは指定したchargeで絶対最小を達成する特別なYang--Mills解であり、両者は同値ではない。
+
+# 具体例：BPST instantonのscale
+
+$S^4$ を $\mathbb R^4\cup\{\infty\}$ と見なし、charge 1のBPST instanton族を考える。中心 $x_0$ とscale $\rho>0$ を持ち、曲率密度は定数倍を除いて
+
+$$
+|F_{A_{\rho,x_0}}(x)|^2
+\sim \frac{\rho^4}{(\rho^2+|x-x_0|^2)^4}
+$$
+
+となる。$\rho\to0$ で高さは増し幅は縮むが、積分energyは $8\pi^2$ のまま変わらない。これは第11章のbubblingの局所模型である。
+
+# 解をそのまま数えられない理由
+
+$A$ がASDなら任意のgauge変換 $g$ に対して $A^g$ もASDである。従って解集合には関数空間の次元だけ冗長性があり、そのままでは有限次元の幾何にならない。一方、単純に各orbitから代表を一つ選ぼうとしても、全体で連続な選択が存在するとは限らない。
+
+次章の課題は、まず局所的に代表を選ぶことだ。gauge orbitに横断するCoulomb sliceを作り、商空間を解析可能な座標へ移す。
+

@@ -1,0 +1,72 @@
+---
+title: "第4章　接続・曲率・gauge変換を作り直す"
+description: "局所1形式から接続・曲率・Chern-Weil数を導く"
+---
+
+<!-- contract: contracts/04-connections-curvature.json -->
+
+# 微分を束の上へ持ち上げる
+
+intersection formだけではsmooth categoryへの強い制約を説明できなかった。そこで多様体上に補助的な主 $SU(2)$ 束 $P\to X$ を置く。局所自明化を選ぶと接続は $\mathfrak{su}(2)$ 値1形式 $A$ として見えるが、$A$ 自身は幾何学的対象ではない。自明化を $g:U\to SU(2)$ で変えると
+
+$$
+A\longmapsto A^g=g^{-1}Ag+g^{-1}dg
+$$
+
+と非斉次に変換する。最後の項があるため、単に行列値tensorとは呼べない。
+
+随伴束のsection $s$ に対する共変微分を
+
+$$
+d_A s=ds+[A,s]
+$$
+
+と置くと、変換後には $d_{A^g}(g^{-1}sg)=g^{-1}(d_As)g$ が成り立つ。これが接続を導入する理由である。通常の微分 $d$ は局所表示の変更と両立しないが、$d_A$ は両立する。
+
+# 二回微分した失敗が曲率になる
+
+$d_A^2$ を計算すると
+
+$$
+d_A^2s=[F_A,s],\qquad F_A=dA+A\wedge A.
+$$
+
+$A\wedge A$ を落とすとgauge共変性が壊れる。非可換群を使う代価がこの二次項であり、同時に理論の非線形性の源でもある。曲率は
+
+$$
+F_{A^g}=g^{-1}F_Ag
+$$
+
+と斉次に変換するので、Ad不変内積でノルムを取った量は自明化に依存しない。
+
+Bianchi恒等式も定義から出る。graded Leibniz則とJacobi恒等式により
+
+$$
+d_AF_A=0.
+$$
+
+これは後でASD解がYang--Mills方程式を満たすことを導く一行になる。
+
+# 局所的な曲率から大域的整数へ
+
+規約を $\langle\xi,\eta\rangle=-\operatorname{tr}(\xi\eta)$ とし、$SU(2)$ 束のsecond Chern numberを
+
+$$
+k=c_2(P)[X]=\frac{1}{8\pi^2}\int_X\operatorname{tr}(F_A\wedge F_A)
+$$
+
+の符号規約に合わせて固定する。符号は文献のtrace規約で変わるが、一度選べばenergy identityまで同じ規約を保つ必要がある。
+
+なぜ右辺は接続 $A$ に依らないのか。$A_t$ を接続のpath、$\dot A_t=a_t$ とすると $\frac d{dt}F_{A_t}=d_{A_t}a_t$ なので、Bianchi恒等式とtraceの不変性から
+
+$$
+\frac d{dt}\operatorname{tr}(F_{A_t}\wedge F_{A_t})
+=2d\,\operatorname{tr}(a_t\wedge F_{A_t}).
+$$
+
+$X$ が閉ならStokesの定理により積分の微分は0である。解析的に変化する接続から、離散的な位相数が取り出された。
+
+# まだ方程式は選ばれていない
+
+曲率を得ただけでは、どの接続を数えるべきか決まらない。$F_A=0$ は強すぎて、多くの束で解がない。Yang--Mills方程式は二階で、moduliの構造を直接読むには複雑である。4次元ではHodge starが2形式を同じ次数に保つ。この偶然から、位相数とenergyを結ぶ一次方程式が現れる。
+

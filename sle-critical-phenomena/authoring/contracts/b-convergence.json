@@ -1,0 +1,75 @@
+{
+  "chapter_id": "app-02",
+  "source": "appendices/b-convergence.qmd",
+  "central_question": "曲線法則、hull、駆動関数、領域の収束をどう区別するか。",
+  "reader_starting_state": "対応する本文章を読み、補助定理または数値手法の詳細を確認したい。",
+  "mathematical_prerequisites": [],
+  "pedagogical_prerequisites": [
+    "本文の対応章"
+  ],
+  "previous_connection": "本文中で技術的詳細を分離した地点から参照され、必要な入力と安全な利用範囲を補う。",
+  "failed_approach": "定理名や公式だけを引用すると、仮定、停止、topology、誤差statusを誤って適用する。",
+  "new_concepts": [
+    {
+      "id": "b-convergence-contract",
+      "need": "本文の計算を安全に再構成するため、補助概念の入力と出力を固定する。",
+      "introduced_after": "本文で技術的な行間が生じる地点を確認した後"
+    }
+  ],
+  "derivations": [
+    {
+      "id": "derive-b-convergence",
+      "inputs": [
+        "本文の定義",
+        "付録で明示した仮定"
+      ],
+      "assumptions": [
+        "指定した定義域または停止区間"
+      ],
+      "steps_promised": 3,
+      "sanity_check": "境界値、特殊例、次元、刻みのいずれかで検算する"
+    }
+  ],
+  "results": [
+    {
+      "id": "b-convergence-result",
+      "status": "proposition",
+      "theorem_id": null
+    },
+    {
+      "id": "b-convergence-limit",
+      "status": "assumption",
+      "theorem_id": null
+    }
+  ],
+  "proof_depth": "B",
+  "black_boxes": [],
+  "reader_stop_points": [
+    {
+      "question": "本文のどの式にこの補足が必要か。",
+      "resolution": "body",
+      "location": "冒頭と本文リンク"
+    },
+    {
+      "question": "どの一般定理を本付録では証明していないか。",
+      "resolution": "body",
+      "location": "Limitation"
+    }
+  ],
+  "required_bridges": [
+    "本文の未展開部分から補助概念への橋",
+    "補助結果から本文の利用箇所へ戻る橋"
+  ],
+  "figures": [],
+  "sources": [
+    "kemppainenSmirnov2017"
+  ],
+  "next_question": "本文へ戻り、付録で固定した仮定の下で中心計算を再確認する。",
+  "quality_budget": {
+    "motivations": 1,
+    "worked_derivations": 1,
+    "interpretations": 1,
+    "explicit_limits": 1
+  }
+}
+

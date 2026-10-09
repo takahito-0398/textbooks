@@ -1,0 +1,54 @@
+---
+title: "付録B　記号・確認問題・参考文献案内"
+description: "記号規約、理解確認問題、証明深度と文献の対応"
+---
+
+# 記号と規約
+
+| 記号 | 意味 |
+|---|---|
+| $X$ | 閉・連結・向き付きsmooth 4-manifold |
+| $P\to X$ | 主 $SU(2)$ または $SO(3)$ 束 |
+| $A,F_A$ | 接続とその曲率 |
+| $\mathcal G$ | 指定Sobolev classのgauge群 |
+| $\mathcal M_k$ | charge $k$ のASD moduli space |
+| $H_A^i$ | ASD変形複体のcohomology |
+| $b_2^+$ | intersection formの正指数 |
+| $\mathfrak s$ | $\mathrm{Spin}^c$ 構造 |
+| $W^\pm,L$ | spinor bundlesとdeterminant line |
+
+本書では $F_A^+=0$ をASDと呼び、$\mathrm{YM}(A)=\|F_A\|_{L^2}^2$ とする。向き反転では $\Lambda^2_+$ と $\Lambda^2_-$ が交換される。
+
+# 確認問題
+
+1. $Q_{S^2\times S^2}$ がhyperbolic form $H$ になるよう、二つのfactorのclassの交点を計算せよ。
+2. $*e^{13}=-e^{24}$ の符号を、$e^{13}\wedge *e^{13}=d\mathrm{vol}$ から確認せよ。
+3. energy identityから、$k<0$ のときに等号を達成する方程式がどちら側になるかを求めよ。
+4. $d_A^+d_A=0$ の証明でASD条件を使う箇所を特定せよ。
+5. indexが0でもmoduliが空または特異になりうる理由を $H_A^0,H_A^2$ で説明せよ。
+6. 1-parameter moduliのcompactificationに余分な境界が出る三つの原因を挙げよ。
+7. SW方程式が可換接続を使いながら非線形である項を二つ挙げよ。
+
+# 解答指針
+
+1. 各factorは自己交点0で、異なるfactorは一点で正に交わる。
+2. $e^{13}\wedge e^{24}=-e^{1234}$ なので負号が必要である。
+3. orientationとcharge規約に従いself-dual側を用いる。
+4. $d_A^2\phi=[F_A,\phi]$ のself-dual部分を取る段階である。
+5. indexはkernelとcokernelの差であり、stabilizerとobstructionの実次元を個別には固定しない。
+6. reducible、bubbling、transversality failureである。
+7. $D_A\Phi$ の $A$ 依存性と $q(\Phi)$ である。
+
+# 文献の読み分け
+
+ASD方程式、moduli、Donaldson不変量の詳細は @donaldsonKronheimer1990、解析的基礎とcompactnessは @freedUhlenbeck1991 を参照する。topological分類の一次資料は @freedman1982、対角化定理は @donaldson1983、SW方程式導入は @witten1994、symplectic幾何への接続は @taubes1996 である。
+
+# 厳密性の表示
+
+- 深度A: 本文内で計算・証明を閉じた。
+- 深度B: 核心を示し、解析の補題のみ付録または文献へ送った。
+- 深度C: statement、主要補題、難所、論理順序を示した。
+- 深度D: 正確な入力・出力・用途を示して引用した。
+
+深度Dは未証明という意味ではない。証明が本書の前提と規模を越えるため、どの結果をどの形で借りたかを追跡可能にしたという意味である。
+

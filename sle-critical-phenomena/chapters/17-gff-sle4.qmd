@@ -1,0 +1,37 @@
+---
+title: "第17章　SLE4-GFF coupling"
+description: "local setと条件付き平均から関数でない場のlevel lineを定める"
+sidebar: sle-critical-phenomena
+---
+<!-- contract: authoring/contracts/17-gff-sle4.json -->
+
+# level setを先に作らない
+
+GFFはpointwise値を持たないため、集合 $\{h=0\}$ から曲線を抜き出せない。代わりに曲線 $\gamma$ を成長させ、初期部分を知ったときの場の条件付き法則でlevel lineを特徴付ける。
+
+曲線まで探索した領域 $D\setminus\gamma[0,t]$ で、
+$$
+h=h_t+\widetilde h_t
+$$
+と分解する。$h_t$ は境界値を調和延長した条件付き平均、$\widetilde h_t$ は残領域の零境界GFFで、探索済み情報と条件付き独立である。この性質を持つrandom closed setをlocal setと呼ぶ。
+
+::: {.callout-note title="STATUS: Definition"}
+local setは「場を先にpointwise観測して得る集合」ではない。集合を条件付けた後も、残りの揺らぎが残領域のGFFであるという空間Markov性で定義される。
+:::
+
+境界arcに $-\lambda$ と $+\lambda$ を置く特別な高さ差では、0-level lineをこのlocal-set規則で構成できる。正規化により $\lambda=\sqrt{\pi/8}$ と書く規約では、その曲線法則はSLE$_4$ になる [@schrammSheffield2013]。
+
+::: {.callout-important title="STATUS: Black-box theorem"}
+Schramm--Sheffield couplingは、distributionとしてのGFFから可測な連続曲線を構成し、その法則がSLE$_4$ であることを述べる。入力は単連結領域と指定境界値、出力はlocal setとしてのlevel lineと条件付き場の分解である。
+:::
+
+離散GFFでは頂点値があるため0-contourを直接引ける。格子を細かくするとこの曲線がSLE$_4$ 型へ収束する [@schrammSheffield2009]。連続couplingはその極限を「存在する曲線法則」だけでなく、「場から決定される曲線」として強化する。
+
+$\kappa=4$ は第7章の境界飲み込み閾値でもあった。ここでは調和関数の境界値jumpとLoewner martingaleの二次変分が釣り合うparameterとして再出現する。
+
+::: {.callout-warning title="STATUS: Limitation"}
+本章で証明していないのはlocal setの存在一意性と曲線のGFF可測性である。また任意の高さ線を通常のpointwise level setとして扱わない。
+:::
+
+[前章](16-gff.qmd) | [次章](18-outlook.qmd)
+

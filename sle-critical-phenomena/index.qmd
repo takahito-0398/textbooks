@@ -1,0 +1,35 @@
+---
+title: "二次元臨界現象とSLE"
+subtitle: "格子模型から等角不変なランダム曲線へ"
+description: "percolation探索経路からLoewner方程式、SLE、離散収束、GFF couplingへ進む全18章"
+sidebar: sle-critical-phenomena
+format:
+  html:
+    toc: true
+---
+
+# この本の問い {.unnumbered}
+
+> 二次元臨界模型の境界を連続極限へ移すとき、なぜ平面上の複雑なランダム曲線を一本のBrown運動で分類できるのか。
+
+白黒格子の探索経路から始め、等角写像で過去を消し、半平面容量を時間としてLoewner方程式を導く。等角不変性とdomain Markov propertyが駆動関数をBrown運動へ強制することを示した後、Bessel過程、martingale、left-passage formula、fractal次元を扱う。
+
+後半では「SLEが自然な候補であること」と「格子曲線が実際にSLEへ収束すること」を分離し、percolationとLERWで収束証明の設計図を確認する。最後にGFFをrandom distributionとして定義し、SLE\(_4\) level line couplingへ到達する。
+
+[第1章から読む](chapters/01-lattice-to-interface.qmd){.btn .btn-primary}
+
+[統合PDFを開く](assets/sle-critical-phenomena.pdf){.btn .btn-secondary}
+
+## 構成
+
+- Part I: 離散探索経路と曲線空間
+- Part II: 等角写像、半平面容量、Loewner方程式、Schramm分類
+- Part III: Brown駆動、Bessel過程、SLEの幾何相
+- Part IV: martingale、left-passage formula、fractal次元
+- Part V: 収束設計、percolation、LERW、universality
+- Part VI: GFF、SLE\(_4\) coupling、CLE・CFT・LQGへの出口
+- 付録: 確率解析、弱収束と領域収束、Bessel・Hausdorff次元、数値Loewner
+
+## statusの読み方
+
+本文では definition、theorem、proposition、assumption、black-box theorem、numerical evidence、heuristic を区別する。black boxでは入力、出力、難所、利用箇所を明示し、分類定理と格子模型の収束定理を混同しない。

@@ -79,4 +79,24 @@ C*-環、von Neumann環、K理論、巡回コホモロジー、スペクトル�
 [教科書を開く](inverse-spectral-geometry/)
 :::
 
+::: {.book-card}
+### 4次元ゲージ理論と滑らかな位相
+
+ASD方程式・Donaldson理論・Seiberg–Witten不変量が、多様体の微分構造を検出する仕組みを扱う教材。現在は本文執筆前の制作基盤を公開検証中です。
+
+- 分野: 数学 / 微分幾何 / ゲージ理論 / 4次元トポロジー
+
+[教材を読む](gauge-theory-smooth-topology/)
+:::
+
+::: {.book-card}
+### 二次元臨界現象とSLE
+
+格子模型の境界をLoewner方程式とBrown運動へ翻訳し、等角不変なランダム曲線として分類する全18章。percolation・LERWの収束とSLE\(_4\)--GFF couplingまで扱います。
+
+- 分野: 数学 / 確率論 / 複素解析 / 臨界現象
+
+[教材を読む](sle-critical-phenomena/)
+:::
+
 :::

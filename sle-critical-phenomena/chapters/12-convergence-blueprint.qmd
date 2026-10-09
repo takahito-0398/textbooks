@@ -1,0 +1,42 @@
+---
+title: "第12章　収束証明の共通設計図"
+description: "tightness・同定・一意性・曲線回収を分離する"
+sidebar: sle-critical-phenomena
+---
+<!-- contract: authoring/contracts/12-convergence-blueprint.json -->
+
+# 候補と収束を分ける
+
+分類原理は極限が存在する場合の候補を決めた。収束証明は
+$$
+\text{tightness}\to\text{subsequential limit}\to
+\text{driving identification}\to\text{uniqueness}
+$$
+に分ける。
+
+annulusを不必要に横切る確率を一様に抑えると曲線のoscillationを制御できる。Kemppainen--Smirnovの枠組みはこのcrossing estimateから曲線・Loewner記述のtightnessを導く [@kemppainenSmirnov2017]。
+
+::: {.callout-note title="STATUS: Proof architecture"}
+tightnessは部分列極限の存在、observableはその同定、極限法則の一意性は全列収束を担当する。
+:::
+
+離散observable $F_\delta$ が探索に沿うmartingaleで、境界まで制御され、等角共変な $F$ へ収束すれば
+$$
+\text{discrete martingale}\to
+\text{continuum martingale}\to
+\text{PDE/SDE}\to U_t=\sqrt\kappa B_t.
+$$
+停止時刻での一様可積分性と、領域収束に対するobservableの安定性も要る。
+
+::: {.callout-important title="STATUS: Proposition"}
+相対compactな曲線法則族で、全ての部分列極限が同じSLE$_\kappa$ 法則なら、全列がSLE$_\kappa$ へ弱収束する。
+:::
+
+駆動収束だけでは境界の細いfjordで曲線収束が壊れ得る。crossing estimateはこの挙動を排除し、curve、hull、drivingのtopologyを接続する。
+
+::: {.callout-warning title="STATUS: Limitation"}
+本章で証明していないのはcrossing estimateからtightnessを導く技術定理である。模型固有の入力は次の二章で確認する。
+:::
+
+[前章](11-fractal-dimension.qmd) | [次章](13-percolation-sle6.qmd)
+

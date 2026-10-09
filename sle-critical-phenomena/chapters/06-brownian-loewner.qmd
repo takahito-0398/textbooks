@@ -1,0 +1,41 @@
+---
+title: "第6章　Brown運動を入れたLoewner chain"
+description: "SLEの定義とtrace存在定理の役割を整理する"
+sidebar: sle-critical-phenomena
+---
+<!-- contract: authoring/contracts/06-brownian-loewner.json -->
+
+# ODEは飲み込みまで解く
+
+$U_t=\sqrt\kappa B_t$ をLoewner方程式へ入れる。Brown pathを固定すれば連続係数のODEなので、各 $z\in\mathbb H$ について分母が0になるまで一意解がある。飲み込み時刻 $\tau_z$ から
+$$
+K_t=\overline{\{z:\tau_z\le t\}}
+$$
+が定まる。
+
+::: {.callout-note title="STATUS: Definition"}
+chordal SLE$_\kappa$ はBrown駆動Loewner chainの法則である。第一段階で定まるのはhullと写像で、trace存在は別の問題である。
+:::
+
+滑らかな駆動なら
+$$
+\gamma(t)=\lim_{y\downarrow0}g_t^{-1}(U_t+iy)
+$$
+を期待できる。Brown運動は臨界Hölder指数 $1/2$ で制御できず、逆写像の境界歪みが増幅される。極限の存在と時刻連続性はODEの局所存在から出ない。
+
+::: {.callout-important title="STATUS: Black-box theorem"}
+Rohde--Schrammの定理によりBrown駆動chainは連続traceを持つ [@rohdeSchramm2005]。証明はBrown path評価と等角写像の歪曲評価を結ぶ。以後この出力を使う。
+:::
+
+Brown scalingとLoewner式から
+$$
+(r^{-1}K_{r^2t})_{t\ge0}\overset d=(K_t)_{t\ge0}.
+$$
+$\kappa=0$ なら縦スリットへ戻る。一般には $K_t$ と $\gamma[0,t]$ を同一視できない。特に曲線が領域を囲めば、その領域はhullへ追加される。
+
+::: {.callout-warning title="STATUS: Limitation"}
+本章で証明していないのはtrace存在定理の技術部と幾何相の分類である。次章では実軸点を追って $\kappa=4$ の閾値を計算する。
+:::
+
+[前章](05-schramm-principle.qmd) | [次章](07-bessel-threshold.qmd)
+

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 300" role="img" aria-labelledby="title desc">
+<title id="title">hullと駆動関数</title>
+<desc id="desc">左に上半平面で成長するhull、右に時間に対する実数値駆動関数を同期して示す。</desc>
+<metadata>{"animated": false, "deterministic": true, "figure_id": "fig-driving-trace-print", "generator": "scripts/generate_sle_figures.py", "license": "repository content", "print_fallback": null, "simulation": false}</metadata>
+<rect width="640" height="300" rx="18" fill="#0b1118"/>
+<g fill="#101d2a" stroke="#314b64"><rect x="26" y="34" width="270" height="224" rx="12"/><rect x="344" y="34" width="270" height="224" rx="12"/></g>
+<g stroke="#9dccff" stroke-width="2.5"><path d="M42 242 H280"/><path d="M370 226 H594"/><path d="M390 244 V54"/></g>
+<g stroke="#37536d" stroke-width="1"><path d="M108 242 V54" stroke-dasharray="4 5"/><path d="M390 158 H594" stroke-dasharray="4 5"/></g>
+
+<path d="M108 242 C105 204 142 194 131 158 C120 124 163 104 154 62" fill="none" stroke="#ffb86b" stroke-width="7" stroke-linecap="round"/>
+<circle cx="154" cy="62" r="6" fill="#ffd19a"/>
+<path d="M410 226 C452 204 425 180 470 158 C510 138 468 112 525 86" fill="none" stroke="#68d39b" stroke-width="4" stroke-linecap="round"/>
+<circle cx="525" cy="86" r="5" fill="#d6ffe9"/>
+<g fill="#e7edf4" font-family="system-ui, sans-serif" font-size="15"><text x="44" y="58">hull Kₜ</text><text x="362" y="58">driving Uₜ</text><text x="596" y="244">t</text><text x="372" y="62">U</text></g>
+<text x="320" y="283" text-anchor="middle" fill="#9daabc" font-family="system-ui, sans-serif" font-size="13">標準化後の先端位置を一次元で記録する</text>
+</svg>

@@ -1,0 +1,35 @@
+---
+title: "第14章　LERWとSLE2"
+description: "loop-erased random walkで同じ収束設計図がどう変わるかを見る"
+sidebar: sle-critical-phenomena
+---
+<!-- contract: authoring/contracts/14-lerw-sle2.json -->
+
+# loopを消すとMarkov性はどう残るか
+
+単純random walkの軌跡から、loopができるたび時系列順に消去して得る単純路がLERWである。最終経路だけを見ると操作は非局所的だが、初期部分を条件付けた後、残りはその部分を避けるrandom walkのloop-erasureとして記述できる。これがdomain Markov propertyを与える。
+
+::: {.callout-note title="STATUS: Definition"}
+chronological loop-erasureはpathから最初のloopを時系列順に除き、loopがなくなるまで繰り返す。出力は自己交差しない。
+:::
+
+LERWの模型固有observableはrandom walkのhitting probabilityやGreen関数から作られる。平面では離散調和関数が連続調和関数へ収束し、Loewner標準化後のmartingale条件が
+$$
+U_t=\sqrt2\,B_t
+$$
+を同定する。percolationの離散正則observableとは入力が異なるが、tightnessから駆動同定へ進む論理は第12章と同じである。
+
+::: {.callout-important title="STATUS: Black-box theorem"}
+Lawler--Schramm--Wernerの定理によりplanar LERWはchordal SLE$_2$ へ収束する [@lawlerSchrammWerner2004]。証明はGreen関数・hitting estimate、Loewner drivingの収束、曲線topologyへの回収を含む。
+:::
+
+$\kappa=2\le4$ なのでSLE$_2$ は単純であり、次元は $1+2/8=5/4$。loop-erasureの単純性と整合する。またUSTの枝はLERWの法則を持ち、同じ論文の枠組みでUST Peano curveとSLE$_8$ への接続が現れる。
+
+::: {.callout-warning title="STATUS: Limitation"}
+本章で証明していないのはGreen関数の精密漸近と駆動収束の誤差評価である。また自己回避歩行のSLE$_{8/3}$ 収束は同じstatusではなく未解決の予想である。
+:::
+
+同じ設計図が二模型で働いた。次は対応表の各行について、定理・予想・物理的期待を混同せずuniversalityの意味を区切る。
+
+[前章](13-percolation-sle6.qmd) | [次章](15-universality.qmd)
+

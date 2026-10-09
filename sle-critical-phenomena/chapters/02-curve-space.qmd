@@ -1,0 +1,45 @@
+---
+title: "第2章　曲線空間を直接扱うことの破綻"
+description: "curve・trace・hull・駆動関数の収束を分離する"
+sidebar: sle-critical-phenomena
+---
+<!-- contract: authoring/contracts/02-curve-space.json -->
+
+# 何が収束するのか
+
+確率法則の収束には、曲線が高確率で入るcompact集合を一様に見つけるtightnessが要る。微小な往復や細いfjordへの出入りはsup距離に効き、局所stepの評価だけでは制御できない。
+
+$$
+\begin{array}{c|c|c}
+\text{対象}&\text{保持する情報}&\text{失う情報}\\ \hline
+\gamma&順序・向き&速度\\
+\operatorname{tr}(\gamma)&曲線の像&訪問順序\\
+K_t&外部から隠れた領域を含むhull&内部の描き方\\
+U_t&標準化後の先端位置&写像なしの平面幾何
+\end{array}
+$$
+
+::: {.callout-note title="STATUS: Definition"}
+$K_t$ は $\gamma[0,t]$ と、それが $\mathbb H$ から切り離した有界成分を合わせた集合である。traceが点を通ることとhullが点を飲み込むことは異なる。
+:::
+
+過去 $\gamma[0,t]$ を条件付けると未来の領域は $D\setminus\gamma[0,t]$ になる。時刻ごとに状態空間が変わるので、未来を同じ時間増分として書けない。全座標を状態に加えれば情報は保てるが状態が増え続ける。
+
+hull収束へ落とすと訪問順序を失う。駆動関数収束も境界の細いfjordで不安定になり得るため、
+$$
+\text{curve convergence}\not\Leftarrow\text{driving convergence}
+$$
+である。第12章ではcrossing estimateを加えて隙間を埋める。
+
+::: {.callout-important title="STATUS: Proposition"}
+curve、trace、hull、drivingの収束は交換可能でない。収束証明では対象と、それらを接続する追加条件を指定する。
+:::
+
+欲しいのは過去を捨てず座標変換へ吸収し、未来を毎回同じ標準領域で見る操作である。
+
+::: {.callout-warning title="STATUS: Limitation"}
+本章で証明していないのはtightnessの一般定理である。閉集合の極限から向き付き曲線を復元できるとも仮定しない。
+:::
+
+[前章](01-lattice-to-interface.qmd) | [次章](03-conformal-erasure.qmd)
+

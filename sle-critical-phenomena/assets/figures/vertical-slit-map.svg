@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 726 300" role="img" aria-labelledby="title desc">
+<title id="title">縦スリット写像</title>
+<desc id="desc">左の上半平面から縦スリットを除いた領域を、右の上半平面へ等角写像で戻す模式図。</desc>
+<metadata>{"animated": false, "deterministic": true, "figure_id": "fig-slit-map", "generator": "scripts/generate_sle_figures.py", "license": "repository content", "print_fallback": null, "simulation": false}</metadata>
+<defs>
+  <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#16283b"/><stop offset="1" stop-color="#0c1621"/></linearGradient>
+  <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#68d39b"/></marker>
+</defs>
+<rect width="726" height="300" rx="18" fill="#0b1118"/>
+<g fill="url(#panel)" stroke="#314b64"><rect x="34" y="34" width="300" height="224" rx="12"/><rect x="392" y="34" width="300" height="224" rx="12"/></g>
+<g fill="none" stroke="#27425c" stroke-width="1" opacity=".9"><path d="M 56 42 V 248" /><path d="M 88 42 V 248" /><path d="M 120 42 V 248" /><path d="M 152 42 V 248" /><path d="M 184 42 V 248" /><path d="M 216 42 V 248" /><path d="M 248 42 V 248" /><path d="M 280 42 V 248" /><path d="M 42 72 H 326" /><path d="M 42 104 H 326" /><path d="M 42 136 H 326" /><path d="M 42 168 H 326" /><path d="M 42 200 H 326" /><path d="M 42 232 H 326" /><path d="M 414 42 V 248" /><path d="M 446 42 V 248" /><path d="M 478 42 V 248" /><path d="M 510 42 V 248" /><path d="M 542 42 V 248" /><path d="M 574 42 V 248" /><path d="M 606 42 V 248" /><path d="M 638 42 V 248" /><path d="M 400 72 H 684" /><path d="M 400 104 H 684" /><path d="M 400 136 H 684" /><path d="M 400 168 H 684" /><path d="M 400 200 H 684" /><path d="M 400 232 H 684" /></g>
+<g stroke="#9dccff" stroke-width="3"><path d="M42 248 H326"/><path d="M400 248 H684"/></g>
+<path d="M184 248 V112" fill="none" stroke="#ffb86b" stroke-width="9" stroke-linecap="round"/>
+<circle cx="184" cy="112" r="6" fill="#ffd19a"/>
+<path d="M344 146 C360 126 374 126 390 146" fill="none" stroke="#68d39b" stroke-width="3" marker-end="url(#arrow)"/>
+<circle cx="542" cy="248" r="7" fill="#ffb86b"/>
+<g fill="#e7edf4" font-family="system-ui, sans-serif" font-size="15"><text x="54" y="60">ℍ \ Kₜ</text><text x="412" y="60">ℍ</text><text x="321" y="116" text-anchor="end">2i√t</text><text x="363" y="112" text-anchor="middle" fill="#68d39b">gₜ</text><text x="184" y="278" text-anchor="middle">0</text><text x="542" y="278" text-anchor="middle">0</text></g>
+</svg>

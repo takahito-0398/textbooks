@@ -1,0 +1,85 @@
+{
+  "chapter_id": "ch-16",
+  "source": "chapters/16-gff.qmd",
+  "central_question": "一本の曲線ではなく、平面全体のランダム場をどう定義するか。",
+  "reader_starting_state": "前章までの定義と主要な式を理解し、章末の未解決問題を共有している。",
+  "mathematical_prerequisites": [],
+  "pedagogical_prerequisites": [
+    "ch-15"
+  ],
+  "previous_connection": "前章の出口質問「一本の曲線ではなく、平面全体のランダム場をどう定義するか。」をこの章の中心問題として引き継ぐ。",
+  "failed_approach": "一本の曲線ではなく、平面全体のランダム場をどう定義するか。に対し、対象を区別せず結論だけを仮定すると、必要な仮定と証明statusを追跡できない。",
+  "new_concepts": [
+    {
+      "id": "gff-core",
+      "need": "中心問題を既知の対象だけでは閉じられないため、gffの中心構成を導入する。",
+      "introduced_after": "既存の直接法が不足する理由を本文で確認した後"
+    },
+    {
+      "id": "gff-status",
+      "need": "定理・仮定・black box・数値証拠を分け、下流で利用できる結論を固定する。",
+      "introduced_after": "中心構成の入力と出力を区別した後"
+    }
+  ],
+  "derivations": [
+    {
+      "id": "derive-gff",
+      "inputs": [
+        "前章までに定義した対象",
+        "当章で明示した仮定"
+      ],
+      "assumptions": [
+        "式を適用する停止時刻または定義域の内部"
+      ],
+      "steps_promised": 3,
+      "sanity_check": "特殊例・scale・境界値の少なくとも一つで係数と符号を検算する"
+    }
+  ],
+  "results": [
+    {
+      "id": "gff-main",
+      "status": "proposition",
+      "theorem_id": null
+    },
+    {
+      "id": "gff-boundary",
+      "status": "assumption",
+      "theorem_id": null
+    }
+  ],
+  "proof_depth": "B",
+  "black_boxes": [],
+  "reader_stop_points": [
+    {
+      "question": "なぜこの概念を今導入するのか。",
+      "resolution": "body",
+      "location": "章の導入と最初の節"
+    },
+    {
+      "question": "この式変形はどの仮定の下で許されるか。",
+      "resolution": "body",
+      "location": "中心計算"
+    },
+    {
+      "question": "この章で証明していない範囲は何か。",
+      "resolution": "body",
+      "location": "章末のLimitations"
+    }
+  ],
+  "required_bridges": [
+    "前章の問い「一本の曲線ではなく、平面全体のランダム場をどう定義するか。」から中心構成への橋",
+    "中心結果から次章の問い「pointwise level setがない場から曲線を復元できるか。」への橋"
+  ],
+  "figures": [],
+  "sources": [
+    "schrammSheffield2013"
+  ],
+  "next_question": "pointwise level setがない場から曲線を復元できるか。",
+  "quality_budget": {
+    "motivations": 2,
+    "worked_derivations": 1,
+    "interpretations": 2,
+    "explicit_limits": 1
+  }
+}
+

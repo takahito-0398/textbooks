@@ -1,0 +1,89 @@
+{
+  "chapter_id": "ch-01",
+  "source": "chapters/01-lattice-to-interface.qmd",
+  "central_question": "格子模型から何を取り出せば極限を問えるか。",
+  "reader_starting_state": "確率の初歩と複素平面を知るが、SLEは未習である。",
+  "mathematical_prerequisites": [
+    "elementary-probability"
+  ],
+  "pedagogical_prerequisites": [
+    "離散模型の境界を極限へ送りたいという問題意識"
+  ],
+  "previous_connection": "白黒配置全体ではなく、順序と向きを持つinterfaceを極限対象として選ぶ。",
+  "failed_approach": "格子模型から何を取り出せば極限を問えるか。に対し、対象を区別せず結論だけを仮定すると、必要な仮定と証明statusを追跡できない。",
+  "new_concepts": [
+    {
+      "id": "lattice-to-interface-core",
+      "need": "中心問題を既知の対象だけでは閉じられないため、lattice-to-interfaceの中心構成を導入する。",
+      "introduced_after": "既存の直接法が不足する理由を本文で確認した後"
+    },
+    {
+      "id": "lattice-to-interface-status",
+      "need": "定理・仮定・black box・数値証拠を分け、下流で利用できる結論を固定する。",
+      "introduced_after": "中心構成の入力と出力を区別した後"
+    }
+  ],
+  "derivations": [
+    {
+      "id": "derive-lattice-to-interface",
+      "inputs": [
+        "前章までに定義した対象",
+        "当章で明示した仮定"
+      ],
+      "assumptions": [
+        "式を適用する停止時刻または定義域の内部"
+      ],
+      "steps_promised": 3,
+      "sanity_check": "特殊例・scale・境界値の少なくとも一つで係数と符号を検算する"
+    }
+  ],
+  "results": [
+    {
+      "id": "lattice-to-interface-main",
+      "status": "proposition",
+      "theorem_id": null
+    },
+    {
+      "id": "lattice-to-interface-boundary",
+      "status": "assumption",
+      "theorem_id": null
+    }
+  ],
+  "proof_depth": "A",
+  "black_boxes": [],
+  "reader_stop_points": [
+    {
+      "question": "なぜこの概念を今導入するのか。",
+      "resolution": "body",
+      "location": "章の導入と最初の節"
+    },
+    {
+      "question": "この式変形はどの仮定の下で許されるか。",
+      "resolution": "body",
+      "location": "中心計算"
+    },
+    {
+      "question": "この章で証明していない範囲は何か。",
+      "resolution": "body",
+      "location": "章末のLimitations"
+    }
+  ],
+  "required_bridges": [
+    "前章の問い「格子模型から何を取り出せば極限を問えるか。」から中心構成への橋",
+    "中心結果から次章の問い「格子幅を0へ送るとき、曲線の何が収束するのか。」への橋"
+  ],
+  "figures": [
+    "fig-percolation"
+  ],
+  "sources": [
+    "smirnov2001"
+  ],
+  "next_question": "格子幅を0へ送るとき、曲線の何が収束するのか。",
+  "quality_budget": {
+    "motivations": 2,
+    "worked_derivations": 1,
+    "interpretations": 2,
+    "explicit_limits": 1
+  }
+}
+

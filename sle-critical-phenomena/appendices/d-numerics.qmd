@@ -1,0 +1,43 @@
+---
+title: "付録D　Loewner数値実験の読み方"
+description: "離散化、seed、誤差検証、図版の証拠statusを定める"
+sidebar: sle-critical-phenomena
+---
+<!-- contract: authoring/contracts/d-numerics.json -->
+
+# Brown pathからhullを描く
+
+時間刻み $\Delta t$ でBrown増分
+$$
+\Delta U_n=\sqrt{\kappa\Delta t}\,Z_n,\qquad Z_n\sim N(0,1)
+$$
+を生成する。区間ごとに駆動を定数近似すれば、短時間写像は縦スリット解
+$$
+g_{\Delta t,U}(z)=U+\sqrt{(z-U)^2+4\Delta t}
+$$
+で計算できる。逆写像を逆順に合成し先端を戻す方法は、ODEを点ごとにforward Eulerで追うより幾何を保ちやすい。
+
+::: {.callout-note title="STATUS: Algorithm"}
+数値図にはalgorithm、seed、$\kappa$、step size、precision、forward/reverseの別、validation testを記録する。同じseedで刻みを半分にし、巨視的形状と容量係数が安定するかを見る。
+:::
+
+# 何を検算できるか
+
+$U_t\equiv0$ なら縦スリット $2i\sqrt t$ を再現する必要がある。任意の実装で無限遠展開の $1/z$ 係数が $2t$ になることも検算できる。Brown sampleではpathwiseな正解曲線が閉形式でないため、刻み比較、scale law、左右対称な統計量を使う。
+
+left-passage formulaとの比較では、独立seedのsample比率にbinomial標準誤差
+$$
+\sqrt{\frac{\widehat p(1-\widehat p)}N}
+$$
+を付ける。誤差棒と離散化biasを分けなければならない。
+
+::: {.callout-important title="STATUS: Numerical evidence"}
+simulationは式の符号、係数、予想を検査する。有限stepの一致はtrace存在、幾何相、格子模型収束の証明にならない。
+:::
+
+::: {.callout-warning title="STATUS: Limitation"}
+本付録で証明していないのは数値schemeの一様収束率である。Brown駆動の粗さにより、滑らかなODEと同じ誤差次数を仮定しない。
+:::
+
+[第4章](../chapters/04-loewner-equation.qmd) | [第10章](../chapters/10-left-passage.qmd)
+

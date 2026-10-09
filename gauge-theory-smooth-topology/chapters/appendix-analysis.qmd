@@ -1,0 +1,25 @@
+---
+title: "付録A　解析の道具箱"
+description: "Sobolev完備化・楕円評価・Fredholm作用素・transversalityの参照用まとめ"
+---
+
+# Sobolev indexの選び方
+
+4次元で接続のgauge作用をBanach Lie群作用として扱うには、通常 $k>2$ を選び $L_k^2\hookrightarrow C^0$ を使う。積写像が連続になる範囲を確認し、$\mathcal A_k=A_0+L_k^2\Omega^1$ と $\mathcal G_{k+1}=L_{k+1}^2(X,G)$ を組み合わせる。微分で一階失うため、gauge群側を一階高く取る。
+
+# 三つのcompactnessを区別する
+
+- Rellich compactness: boundedなSobolev列から低い次数で強収束する部分列を取る。
+- elliptic compactness: 方程式とgauge条件から高階estimateを得て収束を改善する。
+- Uhlenbeck compactness: 曲率集中点を除き、列ごとに異なるgaugeを選んで収束させる。
+
+三つ目は最初の二つにsmall-energy gauge theoremとenergy量子化を加えた非線形な結論である。
+
+# implicit function theoremの入力
+
+非線形写像 $F:E\to Y$ の零点集合を調べるとき、$DF_0$ が全射でsplit kernelを持てば、零点集合は局所的に $\ker DF_0$ を接空間とするBanach submanifoldになる。全射でないときはcokernelへ射影した有限次元Kuranishi mapが残る。
+
+# Sard--Smaleの役割
+
+parameterを含むuniversal equationが横断的なら、parameter空間への射影のregular valueに対して個々のmoduliがregularになる。結論を使う前に、写像のFredholm性、必要な微分可能性、可分性、reducibleの除外を確認する。
+

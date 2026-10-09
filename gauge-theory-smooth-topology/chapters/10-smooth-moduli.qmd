@@ -1,0 +1,55 @@
+---
+title: "第10章　滑らかなmoduli spaceを作る"
+description: "Kuranishi模型・regularity・transversalityからmoduliの局所構造を得る"
+---
+
+<!-- contract: contracts/10-smooth-moduli.json -->
+
+# 非線形方程式をslice上で解く
+
+ASD接続 $A$ のCoulomb slice上で
+
+$$
+\Phi(a)=d_A^+a+(a\wedge a)^+=0,qquad d_A^*a=0
+$$
+
+を解く。$D\Phi_0=d_A^+$ であり、$H_A^2=0$ なら線形化はsliceから $\Omega^2_+$ へ全射である。Banach空間版implicit function theoremにより、$0$ の近くの解集合は $H_A^1$ を接空間とするsmooth manifoldになる。irreducibilityで $H_A^0=0$ も満たせば、商の局所次元はindexに等しい。
+
+$H_A^2$ が消えない場合も構造は失われ切らない。Green作用素を使って無限次元方向を解消すると、有限次元写像
+
+$$
+\kappa:H_A^1\longrightarrow H_A^2,qquad
+\kappa(0)=0,quad d\kappa_0=0
+$$
+
+の零点として局所moduliを表せる。これがKuranishi模型である。obstruction spaceという名前は、$H_A^2$ が非零だと変形が二次以上で妨げられることを正確に表す。
+
+# generic metricは何を動かすのか
+
+固定計量で全ての解がregularとは限らない。計量 $g$ も変数に含めたuniversal moduli problemを考え、射影
+
+$$
+\pi:\mathcal M^{\mathrm{univ}}\to\mathrm{Met}(X)
+$$
+
+のregular valueを選ぶ。Sard--Smale theoremにより、適切な仮定の下でregular metricはresidual集合をなす。ここで「generic」とは、何となく一般的という意味ではなく、完備距離化可能な関数空間で可算個のopen dense集合の共通部分に属するという意味である。
+
+計量を動かすだけでreducibleを避けられない場合は、holonomy perturbationなど方程式側の摂動が必要になる。何を摂動したかを明示しなければ、不変量の定義域やcompactnessが変わりうる。
+
+# Sobolev解からsmooth解へ
+
+Banach多様体を作るため接続を $L_k^2$ で完備化したが、最終的なmoduliはsmooth接続で解釈したい。Coulomb gaugeでASD方程式は楕円型系となる。右辺のquadratic termをSobolev乗法で一段ずつ改善し、elliptic bootstrappingを反復すれば、弱解はgauge変換後にsmoothになる。従って完備化は解析の道具であり、新しい粗い解を不変量へ混入させるものではない。
+
+# 向きは数える前に必要
+
+0次元moduliの点を符号付きで数え、正次元moduliでcohomology classを積分するにはorientationが必要である。局所的にはdeterminant line
+
+$$
+\det D_A=\Lambda^{\max}\ker D_A\otimes
+(\Lambda^{\max}\operatorname{coker}D_A)^*
+$$
+
+の向きを選ぶ問題になる。Donaldson理論では $H^1(X;\mathbb R)\oplus H^2_+(X;\mathbb R)$ のhomology orientation等がこの選択を制御する。
+
+局所的なsmoothnessが得られても、moduliがcompactとは限らない。解列が収束しなければ、点の数え上げもcobordismも境界から漏れる。第6章の小scale instantonが示した通り、4次元のscale invarianceは曲率集中を許す。次章では逃げ方を分類する。
+

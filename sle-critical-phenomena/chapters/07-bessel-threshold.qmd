@@ -1,0 +1,60 @@
+---
+title: "第7章　実軸点を追うとBessel過程が現れる"
+description: "Bessel次元とkappa=4閾値を導く"
+sidebar: sle-critical-phenomena
+---
+<!-- contract: authoring/contracts/07-bessel-threshold.json -->
+
+# 距離を一次元拡散へ変える
+
+実軸点 $x>0$ を飲み込み前まで追い、
+$$
+X_t=g_t(x)-U_t
+$$
+と置く。Loewner式と $dU_t=\sqrt\kappa\,dB_t$ から
+$$
+dX_t=\frac2{X_t}dt-\sqrt\kappa\,dB_t.
+$$
+$-B_t$ もBrown運動なので、$R_t=X_t/\sqrt\kappa$ は
+$$
+dR_t=dW_t+\frac{2/\kappa}{R_t}dt
+$$
+を満たす。次元 $\delta$ のBessel過程
+$$
+dR_t=dW_t+\frac{\delta-1}{2R_t}dt
+$$
+と比較して
+$$
+\boxed{\delta=1+\frac4\kappa}
+$$
+を得る。
+
+::: {.callout-note title="STATUS: Proposition"}
+追っているのは元のEuclid距離でなく、過去を消した標準座標における実軸距離である。
+:::
+
+generator
+$$
+Lf=\frac12f''+\frac{\delta-1}{2r}f'
+$$
+について $Lf=0$ を解くと、$\delta\ne2$ で $f(r)=A+Br^{2-\delta}$。停止区間 $(\varepsilon,R)$ の境界値問題から、Bessel過程は $\delta\ge2$ なら0へ到達せず、$\delta<2$ なら到達する。従って
+$$
+\delta\ge2\Longleftrightarrow\kappa\le4.
+$$
+
+::: {.callout-important title="STATUS: Theorem"}
+境界点swallowingの閾値は $\kappa=4$ である [@lawler2005]。計算にはLoewner式、Bessel generator、停止区間を用いた。
+:::
+
+特異点へ近づく計算では
+$$
+\tau_{\varepsilon,R}=\inf\{t:R_t\notin(\varepsilon,R)\}
+$$
+で止め、boundedな領域で期待値を扱ってから極限を取る。
+
+::: {.callout-warning title="STATUS: Limitation"}
+本章で証明していないのは、固定境界点の判定だけからtrace全体の単純性や空間充填性が出るという主張である。
+:::
+
+[前章](06-brownian-loewner.qmd) | [次章](08-geometric-phases.qmd)
+

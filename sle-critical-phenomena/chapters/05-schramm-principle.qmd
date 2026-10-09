@@ -1,0 +1,44 @@
+---
+title: "第5章　Schrammの分類原理"
+description: "等角不変性とdomain Markov propertyからBrown駆動を導く"
+sidebar: sle-critical-phenomena
+---
+<!-- contract: authoring/contracts/05-schramm-principle.json -->
+
+# 曲線の条件を増分へ移す
+
+向き付き単連結領域 $(D;a,b)$ の曲線族に、等角不変性、domain Markov property、容量時間での連続駆動を仮定する。過去の情報を
+$$
+\mathcal F_t=\sigma(\gamma[0,s]:s\le t)
+$$
+とする。初期hullを $g_t$ で消し、先端を $g_t(z)-U_t$ で0へ戻すと、未来は初期法則と同じになる。
+
+::: {.callout-note title="STATUS: Assumption"}
+独立増分はDMPだけから出ない。容量時間、hydrodynamic normalization、先端を0へ戻す平行移動を合わせて $U_{t+s}-U_t$ が過去と独立で $U_s$ と同分布になる。
+:::
+
+従って $U_t$ は連続な定常独立増分過程であり
+$$
+U_t=bt+\sigma B_t
+$$
+と書ける。scale共変性
+$$
+(U_{r^2t})_{t\ge0}\overset d=(rU_t)_{t\ge0}
+$$
+を平均に適用すると $br^2t=brt$ が全ての $r$ で必要なので $b=0$。左右反射対称性からも同じ結論を得る。 $\sigma^2=\kappa$ と置けば
+$$
+\boxed{U_t=\sqrt\kappa B_t}.
+$$
+
+::: {.callout-important title="STATUS: Theorem"}
+三仮定とscale対称性の下で駆動関数は $\sqrt\kappa B_t$ に限られる。対応するchainをchordal SLE$_\kappa$ と呼ぶ [@schramm2000; @schramm2006]。
+:::
+
+これは「極限が存在し仮定を満たせばSLE」と分類する定理であり、格子模型の極限存在を証明しない。 $\kappa$ も模型固有observableで別途同定する。
+
+::: {.callout-warning title="STATUS: Limitation"}
+本章で証明していないのは連続Lévy過程の一般的特徴付けと各格子模型のSLE収束である。
+:::
+
+[前章](04-loewner-equation.qmd) | [次章](06-brownian-loewner.qmd)
+

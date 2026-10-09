@@ -1,0 +1,44 @@
+---
+title: "第15章　模型対応表とuniversalityの境界"
+description: "SLE対応の定理と予想を区別し、普遍性の主張範囲を定める"
+sidebar: sle-critical-phenomena
+---
+<!-- contract: authoring/contracts/15-universality.json -->
+
+# 一つの表に同じstatusを置かない
+
+$$
+\begin{array}{c|c|c}
+\text{模型・interface}&\text{候補}&\text{status}\\ \hline
+\text{三角格子site percolation探索}&\mathrm{SLE}_6&\text{定理}\\
+\text{planar LERW}&\mathrm{SLE}_2&\text{定理}\\
+\text{critical Ising spin interface}&\mathrm{SLE}_3&\text{定理}\\
+\text{critical FK-Ising interface}&\mathrm{SLE}_{16/3}&\text{定理}\\
+\text{self-avoiding walk}&\mathrm{SLE}_{8/3}&\text{予想}
+\end{array}
+$$
+
+IsingとFK-Isingにはそれぞれfermionic observableを用いる収束結果がある [@chelkakEtAl2014; @smirnov2010]。一方、self-avoiding walkは自然な候補と臨界指数の整合を持つが、同じ意味の曲線収束定理は得られていない。
+
+::: {.callout-note title="STATUS: Definition"}
+普遍性を述べるときは、臨界指数、crossing function、interface法則、loop ensembleのどれが一致するかを指定する。本章の中心は向き付きinterface法則である。
+:::
+
+## ミクロ情報はどこで消えるか
+
+格子固有の情報は、tightness estimateと離散observableの構成に残る。極限へ渡った後は、単連結領域、DMP、等角共変性、少数の境界条件へ圧縮される。その結果をSchramm分類へ入力すると、一つの数 $\kappa$ が曲線法則を整理する。
+
+これは全ての詳細が無関係という主張ではない。境界条件、interfaceの選び方、bulkとboundaryのobservableは極限を変える。universality classは「何を固定し、何を変えても同じか」という契約である。
+
+::: {.callout-important title="STATUS: Theorem and conjecture boundary"}
+表の定理行は指定した模型・境界条件・topologyに対する結果であり、予想行へ証明を移植できない。数値次元やCFT値の一致は強い証拠だが曲線法則の収束とは別である。
+:::
+
+::: {.callout-warning title="STATUS: Limitation"}
+本章で証明していないのは一般universality principleである。表はstatus registryであり、同じ$\kappa$候補を持つ模型を一括して定理化しない。
+:::
+
+曲線法則の分類は進んだが、平面全体に広がる揺らぎを一本のinterfaceだけで表すことはできない。次はrandom fieldを定義する。
+
+[前章](14-lerw-sle2.qmd) | [次章](16-gff.qmd)
+

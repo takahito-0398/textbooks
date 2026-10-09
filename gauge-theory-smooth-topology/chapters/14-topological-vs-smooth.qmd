@@ -1,0 +1,48 @@
+---
+title: "第14章　位相分類と滑らかな分類を照合する"
+description: "smoothability obstructionとexotic pairを別の証明課題として整理する"
+---
+
+<!-- contract: contracts/14-topological-vs-smooth.json -->
+
+# 二種類の否定を分ける
+
+第3章の $E_8$ 型の例では、topological 4-manifoldは存在するがDonaldson対角化定理に反するためsmooth structureを持たない。これはsmoothability obstructionである。
+
+exotic smooth structuresの主張は別である。smooth manifold $X_0,X_1$ に対し
+
+$$
+X_0\cong_{\mathrm{homeo}}X_1,qquad
+X_0\not\cong_{\mathrm{diff}}X_1
+$$
+
+の両方を示す必要がある。第一の矢印はFreedman型のtopological分類や具体的handle操作から、第二の否定はDonaldsonまたはSeiberg--Witten不変量の相違から得る。
+
+::: {.callout-warning title="非平滑化可能性はexotic pairではない"}
+topological manifoldが一つもsmooth structureを持たないことと、一つのtopological manifoldが互いに非同値な複数のsmooth structureを持つことは論理的に別である。前者だけから後者は従わない。
+:::
+
+# 照合の手順
+
+単連結な候補では、まずintersection form、Kirby--Siebenmann invariant、向きを照合してhomeomorphismの条件を確認する。次にsmooth invariantを計算する。もし
+
+$$
+D_{X_0}\ne D_{X_1}
+$$
+
+なら、diffeomorphism不変性に反するため両者はdiffeomorphicでない。ここで「形式が同じ」だけでhomeomorphicと断定してはいけないし、「不変量が違う」だけでhomeomorphicと断定してもいけない。
+
+連結和は有用だが危険でもある。intersection formは直和になる一方、多くのゲージ不変量は $b_2^+>0$ の二つの多様体の連結和で消える。従って位相的構成がsmooth情報を見えなくすることがある。どの操作の下で不変量がどう振る舞うかを併記する必要がある。
+
+# $\mathbb R^4$ のexotic性が示す境界
+
+compact単連結4多様体の議論とは別に、$\mathbb R^4$ には標準とはdiffeomorphicでないsmooth structureが存在する。intersection formは自明なので、compact多様体用の形式だけでは検出できない。無限遠の構造と埋め込みが本質になり、閉多様体のDonaldson不変量をそのまま適用する話ではない。
+
+この例は、どの不変量にも定義域と盲点があることを教える。本書の主線は閉多様体であり、open 4-manifoldの分類を結論に混ぜない。
+
+# 第二のゲージ理論が必要な理由
+
+Donaldson理論は強力だが、非可換gauge群、reducible、Uhlenbeck compactification、$\mu$-mapの計算が重い。1994年に現れたSeiberg--Witten方程式は、可換接続とspinorを連成させ、しばしばcompactnessと計算を大幅に扱いやすくした。しかし「可換だから線形」というわけではない。
+
+次章では、spinorがどこから来るかをDirac作用素の型から導く。新理論を結果一覧として追加するのではなく、ASD機械のどの難所を別の未知量で組み替えるのかを見る。
+

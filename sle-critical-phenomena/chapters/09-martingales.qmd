@@ -1,0 +1,56 @@
+---
+title: "第9章　martingaleは何を保存するか"
+description: "SLE observableからgenerator PDEを導く"
+sidebar: sle-critical-phenomena
+---
+<!-- contract: authoring/contracts/09-martingales.json -->
+
+# 未来の確率を現在の座標で表す
+
+固定点 $z=x+iy$ について
+$$
+Z_t=g_t(z)-U_t=X_t+iY_t
+$$
+と置く。最終事象 $A$ の条件付き確率
+$$
+M_t=\mathbb P(A\mid\mathcal F_t)=F(X_t,Y_t)
+$$
+はtower propertyからmartingaleである。
+
+::: {.callout-note title="STATUS: Definition"}
+martingaleは $\mathbb E[M_t\mid\mathcal F_s]=M_s$ を満たす。sample pathごとに一定という意味ではない。
+:::
+
+Loewner式より
+$$
+dX_t=\frac{2X_t}{X_t^2+Y_t^2}dt-\sqrt\kappa\,dB_t,\qquad
+dY_t=-\frac{2Y_t}{X_t^2+Y_t^2}dt.
+$$
+Itô公式を適用すると
+$$
+\begin{aligned}
+dF={}&\left[
+\frac\kappa2F_{xx}
++\frac{2x}{x^2+y^2}F_x
+-\frac{2y}{x^2+y^2}F_y
+\right]dt-\sqrt\kappa F_x\,dB_t.
+\end{aligned}
+$$
+二次変分 $d\langle X\rangle_t=\kappa dt$ が $\kappa F_{xx}/2$ を生む。従ってdrift消失条件は
+$$
+\boxed{\mathcal LF=
+\frac\kappa2F_{xx}+\frac{2x}{x^2+y^2}F_x-\frac{2y}{x^2+y^2}F_y=0}.
+$$
+
+::: {.callout-important title="STATUS: Proposition"}
+DMPは条件付き確率をmartingaleへ、Itô公式はmartingale条件をPDEへ変える。確率問題が境界値問題へ移るのはこの二段階による。
+:::
+
+PDEだけでは真のmartingaleとは限らない。 $Z_t$ が実軸や駆動点へ近づく前に止め、有界性または一様可積分性を確認する。
+
+::: {.callout-warning title="STATUS: Limitation"}
+本章で証明していないのは無条件のoptional stoppingである。次章では切断領域で計算してから境界極限を取る。
+:::
+
+[前章](08-geometric-phases.qmd) | [次章](10-left-passage.qmd)
+

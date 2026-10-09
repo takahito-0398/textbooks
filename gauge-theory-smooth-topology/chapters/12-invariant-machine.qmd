@@ -1,0 +1,63 @@
+---
+title: "第12章　PDE解空間から数を取り出す一般原理"
+description: "orientation・compactification・cobordismから不変量を構成する"
+---
+
+<!-- contract: contracts/12-invariant-machine.json -->
+
+# 0次元なら点を数える
+
+regularでcompactな0次元moduli space $\mathcal M$ は有限集合である。各点のdeterminant lineの向きから $\varepsilon([A])=\pm1$ を定め、
+
+$$
+n=\sum_{[A]\in\mathcal M}\varepsilon([A])
+$$
+
+と数える。向きを無視した点数は、parameterを動かしたとき点が対生成・対消滅する現象を相殺できない。符号付きcountなら局所birth/deathで寄与が $+1-1=0$ になる。
+
+# 計量依存性をcobordismへ変える
+
+二つのgeneric metric $g_0,g_1$ をpath $g_t$ で結び、
+
+$$
+\mathcal W=\bigcup_{t\in[0,1]}\{t\}\times\mathcal M(g_t)
+$$
+
+を考える。universal transversalityが成り立てば $\mathcal W$ は1次元向き付きmanifoldになる。compactで余分な境界がなければ
+
+$$
+\partial\mathcal W=\mathcal M(g_1)\sqcup(-\mathcal M(g_0))
+$$
+
+なので、向き付き境界の総数が0であることから $n(g_1)=n(g_0)$ を得る。
+
+ここでcompactnessを確認せずに「cobordismだから不変」と結論してはいけない。bubbling stratumやreducible locusへ列が逃げれば、compactification後の境界に新成分が加わる。
+
+# $b_2^+>1$ の役割
+
+reducibleが現れる条件は、概略的にはあるcohomology classのself-dual harmonic部分が0になることとして書ける。計量空間内でその条件は $b_2^+$ 個の実条件を課す。1-parameter pathがこの壁を避けるにはcodimensionが2以上、すなわち $b_2^+>1$ が自然な安全条件になる。
+
+$b_2^+=1$ では壁はcodimension 1で、pathが横切る可能性がある。この場合、不変量は計量から完全に独立ではなくchamberに依存し、wall-crossing formulaが差を記述する。「例外」ではなく、仮定を弱めたときに何が境界へ現れるかを示す構造である。
+
+# 正次元moduliではclassを積分する
+
+Donaldson理論ではuniversal bundleから得る $\mu$-map
+
+$$
+\mu:H_i(X)\longrightarrow H^{4-i}(\mathcal B^*)
+$$
+
+を用い、moduliのfundamental classとのpairing
+
+$$
+D_X(z)=\langle \mu(z),[\overline{\mathcal M}_k]\rangle
+$$
+
+を作る。次数の和がmoduliのdimensionと一致しなければ値は0である。幾何的には、cycleに対応する条件をmoduli上で課し、それらの横断交点を数えている。
+
+# 一つの不変量を作る九段階
+
+ここまでの機械は、方程式、対称性、線形化、複体、index、regularity、orientation、compactification、countの順で動く。どれか一段を省くと「有限次元か」「滑らかか」「符号を付けられるか」「逃げないか」のいずれかが未解決になる。
+
+次章ではこの共通機械から得られるDonaldsonの二つの出力を分離する。対角化定理はdefinite intersection formへの制約であり、Donaldson多項式はより精密なsmooth invariantである。同じ解析基盤を使うが、同じ主張ではない。
+
