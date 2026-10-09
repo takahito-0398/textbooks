@@ -44,12 +44,30 @@ $$
 コホモロジーを
 
 $$
-H_A^0=\ker d_A,quad
-H_A^1=\ker d_A^+/\operatorname{im}d_A,quad
+H_A^0=\ker d_A,\quad
+H_A^1=\ker d_A^+/\operatorname{im}d_A,\quad
 H_A^2=\operatorname{coker}d_A^+
 $$
 
 と書く。$H_A^0$ は無限小stabilizer、$H_A^1$ は無限小moduli、$H_A^2$ は非線形方程式を解く際のobstructionである。
+
+# cohomologyは名前ではなく役割で覚える
+
+この三つはde Rham cohomologyの類似物だが、単なる記法の借用ではない。各次数はmoduli問題の失敗の仕方を測る。
+
+まず $H_A^0$ は、$A$ を動かさない無限小gauge変換である。$H_A^0\ne0$ なら、同じ幾何を表す座標が余分に残り、商に特異性が出る。
+
+次に $H_A^1$ は、方程式を一次まで保つ変形を、見かけのgauge変形で割ったものである。従ってregularな点ではmoduliの接空間になる。
+
+最後に $H_A^2$ は、一次解を実際の非線形解へ持ち上げるときのobstructionである。一次近似で $d_A^+a=0$ を満たしても、二次項 $(a\wedge a)^+$ が残る。この残りを消す先が余核方向にあると、implicit function theoremだけでは解けない。
+
+この区別がないと、後で「indexが0だから点が有限個ある」と誤読してしまう。正しくは、indexは
+
+$$
+\dim H_A^1-\dim H_A^0-\dim H_A^2
+$$
+
+という差であり、三つの空間の個別の大きさを決めるものではない。
 
 # 楕円性はsymbolで判定する
 
@@ -64,6 +82,33 @@ $$
 
 局所orthonormal frameで $\xi=e^1$ とすれば、第一写像の像は $e^1$ 成分、第二写像の核も同じ1次元成分になり、第二写像は残る3次元から $\Lambda^2_+$ へ同型になる。Lie代数成分はtensor積されるだけなのでexactnessは保たれる。よってASD変形複体は楕円的である。[@donaldsonKronheimer1990]
 
+# symbol計算を少し開く
+
+上の「$\xi=e^1$ とすれば」という一文を、実際に見える形にしておく。向き付き正規直交基底 $e^1,\dots,e^4$ を取り、自己双対2形式の基底を
+
+$$
+\omega_1=e^{12}+e^{34},\quad
+\omega_2=e^{13}-e^{24},\quad
+\omega_3=e^{14}+e^{23}
+$$
+
+とする。$1$-形式
+
+$$
+\alpha=a_1e^1+a_2e^2+a_3e^3+a_4e^4
+$$
+
+に対し、$e^1\wedge\alpha$ の自己双対部分は
+
+$$
+\pi_+(e^1\wedge\alpha)
+=\frac12(a_2\omega_1+a_3\omega_2+a_4\omega_3)
+$$
+
+である。従って $\pi_+(e^1\wedge\alpha)=0$ なら $a_2=a_3=a_4=0$、つまり $\alpha$ は $e^1$ の倍数である。これはちょうど前の写像 $\mathfrak{su}(2)\to\Lambda^1\otimes\mathfrak{su}(2)$ の像である。
+
+この計算の意味は大きい。楕円性は、方程式が局所的に「足りない方向」を持たないことをsymbolレベルで言っている。無限次元の接続空間から有限次元のmoduliが出る入口は、このexactnessである。
+
 # gauge fixingした一つの作用素
 
 複体を一つの作用素へまとめると
@@ -76,5 +121,23 @@ $$
 
 $d_A^*a=0$ はslice条件、$d_A^+a=0$ は線形化ASD条件である。従って $\ker D_A$ は調和代表として $H_A^1$ と同一視でき、$\operatorname{coker}D_A\cong H_A^0\oplus H_A^2$ となる。
 
-次章では楕円性がなぜ有限次元性を与えるか、indexがどのようにtopological formulaへ変換されるかを追う。ただしindexはまだ実際のmoduli次元ではない。その差を生む $H_A^0,H_A^2$ を忘れてはならない。
+# 変形複体からKuranishi模型への橋
 
+次章以降で使うために、非線形方程式との関係をもう一段だけ準備する。Coulomb slice上のASD写像を
+
+$$
+\Phi(a)=d_A^+a+(a\wedge a)^+
+$$
+
+と書く。線形化は $d_A^+$ であり、slice条件 $d_A^*a=0$ を合わせると $D_Aa=0$ が一次変形を表す。ここで楕円性により、$\Omega^1$ は有限次元の調和部分と無限次元の可解部分へ分解できる。形式的には
+
+$$
+\Omega^1
+=H_A^1\oplus\operatorname{im}d_A\oplus\operatorname{im}d_A^*
+$$
+
+というHodge型の分解を期待する。正確なSobolev次数や閉像性は楕円Fredholm理論で支える。重要なのは、無限次元問題のうち本当に残る自由度が $H_A^1$ と $H_A^2$ に圧縮されることである。
+
+したがって、変形複体は「線形化をきれいに並べたもの」ではなく、非線形moduliの局所形を有限次元へ押し込む設計図である。
+
+次章では楕円性がなぜ有限次元性を与えるか、indexがどのようにtopological formulaへ変換されるかを追う。ただしindexはまだ実際のmoduli次元ではない。その差を生む $H_A^0,H_A^2$ を忘れてはならない。
