@@ -1,58 +1,112 @@
 ---
-title: "第4章　縦スリットからLoewner方程式へ"
-description: "縦スリット写像を計算しchordal Loewner方程式を導く"
+title: "第4章 縦スリットから Loewner 方程式へ"
 sidebar: sle-critical-phenomena
 ---
-<!-- contract: authoring/contracts/04-loewner-equation.json -->
 
-# 一つだけ解ける成長
+# 第4章 縦スリットから Loewner 方程式へ {#ch-04}
 
-$K_t=[0,2i\sqrt t]$ に対し
-$$
-g_t(z)=\sqrt{z^2+4t}
-$$
-を考える。無限遠で $g_t(z)/z\to1$ となる枝を選ぶと、先端 $2i\sqrt t$ は0へ写る。
+## まず縦スリットだけを解く
 
-![縦スリットを標準領域へ戻す写像。](../assets/figures/vertical-slit-map.svg)
+いきなり
+$$
+  \partial_t g_t(z)=\frac{2}{g_t(z)-U_t}
+$$
+と書くと、Loewner 方程式は天下りの定義に見える。最初は、上半平面から縦スリット
+$$
+  K_t=[0,2i\sqrt t]
+$$
+を取り除く場合だけを計算する。
 
+写像
 $$
-\begin{aligned}
-g_t(z)
-&=z\left(1+\frac{4t}{z^2}\right)^{1/2}\\
-&=z\left(1+\frac{2t}{z^2}-\frac{2t^2}{z^4}+O(|z|^{-6})\right)\\
-&=z+\frac{2t}{z}+O(|z|^{-3}).
-\end{aligned}
+  g_t(z)=\sqrt{z^2+4t}
 $$
+を考える。平方根の枝は、無限遠で $g_t(z)\sim z$ となり、正の実軸を正の実軸へ送るように選ぶ。すると $g_t$ は $\mathbb H\setminus K_t$ を $\mathbb H$ へ写す。無限遠では
+$$
+  \sqrt{z^2+4t}
+  =z\sqrt{1+\frac{4t}{z^2}}
+  =z\left(1+\frac{2t}{z^2}+O(|z|^{-4})\right)
+  =z+\frac{2t}{z}+O(|z|^{-3}).
+$$
+したがってこの slit の半平面容量は $2t$ であり、$t$ が容量時間である。
 
-::: {.callout-note title="STATUS: Theorem"}
-この枝の $g_t$ は縦スリット領域を上半平面へ写し、半平面容量は $2t$ である [@lawler2005]。
-:::
+![縦スリットを平方根写像で実軸へ押し戻す。](../assets/figures/vertical-slit-map.svg){#fig-vertical-slit}
 
-恒等式 $g_t(z)^2=z^2+4t$ を飲み込み前に微分すると
+両辺を時間で微分する。
 $$
-2g_t(z)\partial_tg_t(z)=4,\qquad
-\partial_tg_t(z)=\frac2{g_t(z)}.
+  g_t(z)^2=z^2+4t.
 $$
-標準化後の先端を $U_t\in\mathbb R$ とすれば一般形
+したがって
 $$
-\boxed{\partial_tg_t(z)=\frac2{g_t(z)-U_t},\qquad g_0(z)=z}
+  2g_t(z)\,\partial_tg_t(z)=4,
+  \qquad
+  \partial_tg_t(z)=\frac{2}{g_t(z)}.
 $$
-を得る。点 $z$ の最大存在時刻を $\tau_z$ とし、$K_t=\{z:\tau_z\le t\}$ と定める。ODEから最初に得るのはhull族である。
+これが Loewner 方程式の原型である。係数 2 は規約ではなく、半平面容量を $2t$ と測った結果として出ている。
 
-::: {.callout-important title="STATUS: Proposition"}
-連続実関数 $U_t$ はLoewner ODEを通じてhull族を定める。逆向きには適切な曲線成長と境界正則性が要る。
-:::
+この段階で得たのは、まだ一般の Loewner 方程式ではない。得たのは、原点から真上に伸びる縦スリットを容量時間で消す写像の微分方程式である。ここを飛ばすと、後で出てくる $g_t(z)-U_t$ の分母がただの記号に見えてしまう。分母は「標準化後の点 $g_t(z)$ と、標準化後の先端 $U_t$ の距離」である。
 
-$U_t\equiv0$ で縦スリット解へ戻る。さらに
+## 先端像が実数になる理由
+
+縦スリットの先端 $2i\sqrt t$ は $g_t$ により 0 へ送られる。一般の単純曲線でも、$\mathbb H\setminus K_t$ の境界上の先端 prime end は、標準化写像 $g_t$ により実軸上の一点へ送られる。この実数を
 $$
-\widetilde g_t(z)=r^{-1}g_{r^2t}(rz),\qquad
-\widetilde U_t=r^{-1}U_{r^2t}
+  U_t
 $$
-も同じ式を満たし、時間が長さの二乗でscaleすることが分かる。
+と呼び、駆動関数という。
 
-::: {.callout-warning title="STATUS: Limitation"}
-本章で証明していないのは任意の連続駆動関数が連続traceを生成するという主張である。
-:::
+曲線全体を追わず、各時刻に「過去を消したあとの先端が実軸上のどこにあるか」だけを追う。これが二次元曲線を一次元データへ変える核心である。
 
-[前章](03-conformal-erasure.qmd) | [次章](05-schramm-principle.qmd)
+ただし、先端そのものが通常の境界点として扱えるとは限らない。曲線が境界に接したり、細い fjord を作ったりすると、幾何的な先端の近傍は複雑になる。そこで prime end という境界点の概念を使う。初読では、単純曲線なら「先端を境界点として写したもの」と読んでよい。重要なのは、標準化後には先端が実軸上の一点として記録される、という点である。
+
+## 小時間増分から一般形へ
+
+時刻 $t$ までの hull を消したあと、次の短い時間 $[t,t+\Delta t]$ に増える hull は、標準領域 $\mathbb H$ の実軸点 $U_t$ から生える小さな hull と見なせる。短時間では、その主項は縦スリットと同じ核を持つ。先端を $U_t$ から 0 へ平行移動して縦スリット近似を使い、戻すと
+$$
+  g_{t+\Delta t}(z)-g_t(z)
+  \approx
+  \frac{2\Delta t}{g_t(z)-U_t}.
+$$
+極限で
+$$
+  \partial_t g_t(z)=\frac{2}{g_t(z)-U_t},\qquad g_0(z)=z
+$$
+を得る。
+
+もう少し丁寧に合成則を書く。時刻 $t$ までの写像を $g_t$、時刻 $t+\Delta t$ までの写像を $g_{t+\Delta t}$ とする。過去を消した標準領域で、短時間増分だけを消す写像を $\phi_{t,\Delta t}$ と書けば
+$$
+  g_{t+\Delta t}=\phi_{t,\Delta t}\circ g_t.
+$$
+増分 hull は $U_t$ から生える小さな hull なので、容量 $\Delta t$ の主項は
+$$
+  \phi_{t,\Delta t}(w)
+  =
+  w+\frac{2\Delta t}{w-U_t}+o(\Delta t)
+$$
+である。ここへ $w=g_t(z)$ を代入すると
+$$
+  g_{t+\Delta t}(z)
+  =
+  g_t(z)+\frac{2\Delta t}{g_t(z)-U_t}+o(\Delta t).
+$$
+$\Delta t$ で割って極限を取ると一般の chordal Loewner 方程式になる。
+
+この導出で近似の誤差を管理するには、増分 hull の容量を $\Delta t$ に固定し、無限遠展開の $1/w$ 係数だけを比較する。局所的な形が縦スリットと異なっていても、容量が同じなら一次の主項は $2\Delta t/(w-U_t)$ である。形状依存の情報は $o(\Delta t)$ に入り、極限方程式の主項から消える。
+
+また、先端を $U_t$ から 0 へ動かしてから縦スリット近似を使う順番が重要である。平行移動を省くと、分母は $g_t(z)$ と書かれてしまい、現在の先端位置を忘れてしまう。標準化写像の合成は「過去を消す写像」と「新しい増分を消す写像」の順序付き積であり、この合成が時間発展の情報を持つ。
+
+ただし、この形式的な極限は hull を生成する方程式の導出である。連続な駆動関数から実際に連続 trace が存在することは、別の解析定理である。したがって、第4章では「Loewner equation がなぜこの形か」と「その方程式がどのような曲線を生成するか」を明確に分ける。
+
+この議論で厳密化が必要な点は、短時間増分 hull が本当に縦スリットと同じ主項を持つこと、容量が加法的な時間として働くこと、そして曲線の境界正則性である。本教材ではその技術部を分離し、読者が式の出どころを追えることを優先する。
+
+ここで ODE がまず生成するのは curve ではなく hull $K_t$ である。点 $z$ について、解が実軸上の特異点 $U_t$ にぶつかる時刻を $\tau_z$ とし、
+$$
+  K_t=\{z\in\overline{\mathbb H}:\tau_z\le t\}
+$$
+と定める。trace の存在は追加の定理であり、定義に含めてはいけない。
+
+![Loewner 成長と駆動関数の対応。アニメーション版では左の hull と右の U_t が同期する。](../assets/figures/driving-trace.svg){#fig-driving-trace}
+
+## 本章の到達点
+
+本章で解決した問いは、縦スリット写像の計算から chordal Loewner 方程式がどう出るかである。残った問いは、ランダムな臨界曲線では駆動関数 $U_t$ がどの確率過程になるかである。次章では、領域マルコフ性とスケーリングから Brown 運動を強制する分類原理を見る。
 

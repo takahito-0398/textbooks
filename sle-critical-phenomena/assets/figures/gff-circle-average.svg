@@ -14,14 +14,14 @@
     .fillred{fill:#fde2df;stroke:#d24b40;stroke-width:2}
   </style>
   
-  <text x="40" y="55" class="title">左側通過確率</text>
-  <defs>
-    <linearGradient id="heat" x1="0" x2="1"><stop offset="0" stop-color="#1f6feb"/><stop offset="0.5" stop-color="#fef3c7"/><stop offset="1" stop-color="#d24b40"/></linearGradient>
-  </defs>
-  <rect x="90" y="90" width="600" height="260" fill="url(#heat)" stroke="#111827" stroke-width="2"/>
-  <path d="M390 350 C360 285 425 250 380 200 C340 155 410 125 390 90" stroke="#111827" stroke-width="4" fill="none"/>
-  <text x="110" y="385" class="label">確率は 1 に近い</text>
-  <text x="540" y="385" class="label">確率は 0 に近い</text>
-  <text x="720" y="210" class="small">u=x/y</text>
+  <text x="40" y="55" class="title">GFF の円平均</text>
+  <rect x="95" y="85" width="330" height="300" fill="#eef2f7" stroke="#111827"/>
+  <circle cx="260" cy="235" r="115" fill="none" stroke="#1f6feb" stroke-width="4"/>
+  <circle cx="260" cy="235" r="62" fill="none" stroke="#d24b40" stroke-width="4"/>
+  <circle cx="260" cy="235" r="12" fill="#111827"/>
+  <text x="475" y="170" class="label">半径 epsilon の平均</text>
+  <text x="475" y="210" class="small">epsilon ごとに定義される</text>
+  <text x="475" y="245" class="small">epsilon -&gt; 0 で分散が増える</text>
+  <text x="475" y="285" class="small">点値 h(z) は関数値ではない</text>
 
 </svg>

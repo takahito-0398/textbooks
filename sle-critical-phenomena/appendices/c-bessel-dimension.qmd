@@ -1,47 +1,25 @@
 ---
-title: "付録C　Bessel過程とHausdorff次元"
-description: "0への到達判定とfractal次元の測り方を補う"
+title: "付録C 等角写像と Carathéodory 収束"
 sidebar: sle-critical-phenomena
 ---
-<!-- contract: authoring/contracts/c-bessel-dimension.json -->
 
-# Besselのscale function
+# 付録C 等角写像と Carathéodory 収束 {.appendix}
 
-拡散
-$$
-dR_t=dB_t+\frac{\delta-1}{2R_t}dt
-$$
-のgeneratorは
-$$
-L=\frac12\frac{d^2}{dr^2}+\frac{\delta-1}{2r}\frac d{dr}.
-$$
-$Ls=0$ を満たすscale functionは、$\delta\ne2$ で $s(r)=r^{2-\delta}$、$\delta=2$ で $s(r)=\log r$ と取れる。区間 $(a,b)$ から出る時刻を $\tau$ とすれば $s(R_{t\wedge\tau})$ はbounded martingaleで、
-$$
-\mathbb P_r(\tau_a<\tau_b)=\frac{s(b)-s(r)}{s(b)-s(a)}.
-$$
-$a\downarrow0$ の極限により、$\delta<2$ では0へ到達し、$\delta\ge2$ では到達しないという閾値が得られる。
+## Riemann mapping theorem の使い方
 
-::: {.callout-important title="STATUS: Derivation"}
-第7章の$\kappa=4$は $\delta=1+4/\kappa=2$ とscale functionの臨界次元を一致させた結果である。
-:::
+Riemann mapping theorem は、単連結な真部分領域を円板または上半平面へ等角写像できることを保証する。本教材では、この定理を「過去を消した領域を標準領域へ戻す」ために使う。
 
-# 次元の上界と下界は別
+ただし、定理は写像の一意性を与えない。上半平面の自己同型を固定する標準化が必要である。chordal Loewner では、終点を $\infty$ に置き、hydrodynamic normalization を課すことで写像を一意にする。
 
-Hausdorff次元の上界には、scale $\varepsilon$ で必要な被覆数の期待値を評価し、Markov不等式とBorel--Cantelliを用いる方針がある。下界は「多数のboxを訪れる」だけでは足りない。訪問が少数領域へ集中する可能性を除くため、random measure $\nu$ を構成してenergy
-$$
-I_s(\nu)=\iint |x-y|^{-s}\,d\nu(x)d\nu(y)
-$$
-の有限性を示すFrostman型議論が必要になる。
+## Carathéodory 収束が必要になる場所
 
-SLEでは一点Green estimateがfirst moment、二点estimateがsecond momentを支える。二点事象は強く相関するので、独立近似に置き換えると指数を誤る。
+離散曲線の極限では、領域そのものも変化する。曲線が収束しても、補領域の等角写像がうまく収束するとは限らない。そこで Carathéodory 収束の考え方が必要になる。
 
-::: {.callout-note title="STATUS: Proof architecture"}
-Beffara定理の上界は接近確率と被覆、下界は二点相関とrandom measureのenergy制御が担当する。両方向が揃ってHausdorff次元の等号になる。
-:::
+直感的には、基点から見える領域の形がコンパクト集合上で安定することを要求する。Loewner chain では、hull の増大に伴って $\mathbb H\setminus K_t$ が変わるため、標準化写像 $g_t$ の収束を扱うときにこの考え方が現れる。
 
-::: {.callout-warning title="STATUS: Limitation"}
-本付録で証明していないのはSLE Green関数の精密評価である。有限解像度box countは定理の代用にしない。
-:::
+## 曲線収束との違い
 
-[第7章](../chapters/07-bessel-threshold.qmd) | [第11章](../chapters/11-fractal-dimension.qmd)
+曲線収束は、曲線の像と順序の収束を扱う。Carathéodory 収束は、補領域を基点から見た収束を扱う。駆動関数収束は、標準化後の先端像の実数過程の収束を扱う。三つは互いに関係するが、同じではない。
+
+収束証明で収束位相を明示する理由はここにある。どこで曲線を見ているのか、どこで hull を見ているのか、どこで駆動関数を見ているのかを曖昧にすると、証明対象がすり替わる。
 

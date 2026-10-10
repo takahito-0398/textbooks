@@ -1,39 +1,54 @@
 ---
-title: "第13章　critical percolationとSLE6"
-description: "離散正則observableからpercolation探索経路のSLE6収束を理解する"
+title: "第13章 臨界パーコレーションと SLE6"
 sidebar: sle-critical-phenomena
 ---
-<!-- contract: authoring/contracts/13-percolation-sle6.json -->
 
-# 第1章の曲線へ戻る
+# 第13章 臨界パーコレーションと SLE6 {#ch-13}
 
-三角格子site percolationの探索経路は有限格子でDMPを持つ。しかし連続極限の等角不変性と $\kappa$ はDMPだけで決まらない。模型固有の入力は、三つの境界arcへの接続確率を組み合わせた離散正則observableである。
+本章で扱う定理は、三角格子の臨界サイト・パーコレーション（critical site percolation）の探索経路が SLE$_6$ へ収束する、という結果である。三角格子に限定するのは、Smirnov 観測量が離散正則性を持ち、Cardy 公式を証明できるためである [@smirnov2001]。一般格子の percolation 普遍性を同じ強さで主張してはいけない。
 
-離散Cauchy--Riemann型の関係と境界値から、格子幅を0へ送ったobservableは等角共変な正則関数へ収束する。その境界値問題の解がCardy formulaを与える [@smirnov2001]。
+証明の構造は次である。
 
-::: {.callout-note title="STATUS: Black-box theorem"}
-Smirnovの定理の入力は三角格子の臨界site percolationと適切なJordan領域近似、出力はcrossing probabilityのCardy formulaへの収束と等角不変性である。難所は離散正則性、境界近傍の一様制御、領域近似である。
-:::
+| 項目 | 内容 |
+|---|---|
+| 入力 | 三角格子 site percolation、$p=1/2$、Dobrushin 境界条件 |
+| 出力 | 探索経路の SLE$_6$ 収束 |
+| 主要道具 | Smirnov 観測量、Cardy 公式、RSW 型 crossing estimate、Loewner 同定 |
+| 難所 | 離散正則性、境界収束、曲線 tightness |
+| 本教材で証明しない部分 | Smirnov 定理の完全証明 |
+| 下流での使い方 | SLE$_6$ の locality、percolation 臨界指数、普遍性の基準例 |
 
-## なぜ6なのか
+なぜ $\kappa=6$ か。Cardy 公式から得られる横断確率は、SLE のマルチンゲール PDE の解と一致する。その PDE が左側通過確率や局所性と整合する値が $\kappa=6$ である。ここでも、数値実験の曲線が似ているから $\kappa=6$ なのではない。観測量が極限で満たす方程式が、SLE$_6$ の方程式と一致するのである。
 
-探索を少し進めた後もobservableは条件付き期待値なので離散martingaleである。極限へ渡して駆動過程にItô公式を適用すると、drift消失条件がBrown分散を固定し
-$$
-U_t=\sqrt6\,B_t
-$$
-を与える。ここで6は色対称性だけでなく、observableの微分方程式の係数から出る。
+## Smirnov 観測量は何をするか
 
-::: {.callout-important title="STATUS: Theorem"}
-tightness、Cardy observableの収束、DMP、駆動同定、極限の一意性を合わせると、三角格子臨界site percolationの探索経路はchordal SLE$_6$ へ収束する。
-:::
+三角格子 site percolation では、ある境界弧へ接続する確率を組み合わせた観測量が、離散的な意味で正則関数に近い振る舞いをする。格子幅を 0 へ送ると、この観測量は連続領域の正則または調和な関数へ収束し、その境界値問題の解が Cardy 公式を与える。
 
-この定理は「全ての平面格子のpercolationがSLE$_6$」とは述べない。universalityは強く予想され、多くの結果があるが、格子とobservableごとの仮定を外せない。
+Cardy 公式は、四角形型領域で片側から反対側へ crossing が存在する確率を等角不変な量として与える。これは「等角不変性を仮定する」ものではなく、三角格子 percolation について等角不変な極限を証明する入力である。
 
-$\kappa=6$ は第8章の自己接触相、第11章の次元 $7/4$ と整合する。この整合は結論の検算であって、収束証明の代わりではない。
+探索経路との関係は次の通りである。探索経路がある点や境界弧をどちら側に残すかは、percolation の横断事象と結びつく。したがって横断確率の極限を知ると、探索経路の条件付き確率観測量の極限がわかる。その極限が SLE$_6$ のマルチンゲールと一致することで、駆動過程の $\kappa$ が 6 と同定される。
 
-::: {.callout-warning title="STATUS: Limitation"}
-本章で証明していないのはSmirnov定理の技術部と一般格子universalityである。分類と収束を分け、適用対象を三角格子site percolationに固定した。
-:::
+## locality と $\kappa=6$
 
-[前章](12-convergence-blueprint.qmd) | [次章](14-lerw-sle2.qmd)
+SLE$_6$ には locality と呼ばれる性質がある。曲線がまだ触れていない遠くの障害物を領域から取り除いても、曲線がその障害物に到達するまでの法則は変わらない。percolation 探索経路にも、未探索領域の色の独立性から、同じ型の局所性がある。
+
+この対応は $\kappa=6$ の自然さを説明する。ただし locality だけを見て証明が終わるわけではない。実際の収束証明では、Cardy 公式、tightness、境界収束、観測量の極限、Loewner 同定を組み合わせる。locality は、SLE$_6$ が percolation の性質と合うことを示す重要な特徴である。
+
+## 一般格子への注意
+
+正方格子や他の周期格子でも、物理的には同じ SLE$_6$ 極限が期待される。しかし、本教材ではこれを定理として扱わない。三角格子では離散正則観測量が強く働くが、一般格子では同じ道具がそのまま使えるとは限らない。
+
+したがって、percolation の章で証明済みとして扱うのは「三角格子 site percolation」の結果である。一般格子の普遍性は、第15章の予想・発展項目に置く。
+
+## Cardy 公式から駆動係数を読む
+
+四角形領域の四つの境界弧を考え、左側の弧から右側の弧へ黒クラスターが横断する確率を $P$ とする。Smirnov 観測量の極限は、領域を上半平面へ写したときの境界点の配置だけで $P$ を決める。したがって、格子の細部は極限の境界値問題に吸収される。
+
+探索経路を途中まで見た条件付き横断確率も、残り領域を標準化すれば同じ型の関数になる。この条件付き確率が離散マルチンゲールであることを使い、極限の Loewner 座標へ移す。すると、関数が生成作用素の核に入るための係数条件が現れ、その条件が $\kappa=6$ を選ぶ。
+
+ここで Cardy 公式は最終結論ではなく、観測量の極限を与える入力である。曲線収束には、境界の近似と tightness、駆動過程の同定、hull から trace への回復が別に必要である。Cardy 公式だけを引用して「探索経路が SLE$_6$」と書くのは証明の途中を飛ばしている。
+
+## 本章の到達点
+
+本章で解決した問いは、三角格子 site percolation で Smirnov 観測量と Cardy 公式がなぜ $\kappa=6$ を同定するかである。残った問いは、別の模型では同じ入力がどのように置き換わるかである。次章では、LERW の Green 関数と UST との関係を見る。
 

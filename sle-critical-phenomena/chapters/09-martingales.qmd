@@ -1,56 +1,65 @@
 ---
-title: "第9章　martingaleは何を保存するか"
-description: "SLE observableからgenerator PDEを導く"
+title: "第9章 マルチンゲールは何を保存するか"
 sidebar: sle-critical-phenomena
 ---
-<!-- contract: authoring/contracts/09-martingales.json -->
 
-# 未来の確率を現在の座標で表す
+# 第9章 マルチンゲールは何を保存するか {#ch-09}
 
-固定点 $z=x+iy$ について
+曲線に関する事象 $A$ を考える。時刻 $t$ まで見たときの条件付き確率
 $$
-Z_t=g_t(z)-U_t=X_t+iY_t
+  M_t=\mathbb P(A\mid\mathcal F_t)
 $$
-と置く。最終事象 $A$ の条件付き確率
-$$
-M_t=\mathbb P(A\mid\mathcal F_t)=F(X_t,Y_t)
-$$
-はtower propertyからmartingaleである。
+はマルチンゲールである。SLE では、過去を消して標準領域へ戻すことで、この $M_t$ を $g_t(z)-U_t$ の関数として書ける場合がある。
 
-::: {.callout-note title="STATUS: Definition"}
-martingaleは $\mathbb E[M_t\mid\mathcal F_s]=M_s$ を満たす。sample pathごとに一定という意味ではない。
-:::
+たとえば $Z_t=g_t(z)-U_t$ とおくと
+$$
+  dZ_t=\frac{2}{Z_t}\,dt-\sqrt{\kappa}\,dB_t.
+$$
+実部 $X_t$、虚部 $Y_t$ に対する生成作用素は
+$$
+  \mathcal L
+  =
+  \frac{\kappa}{2}\partial_x^2
+  +\frac{2x}{x^2+y^2}\partial_x
+  -\frac{2y}{x^2+y^2}\partial_y.
+$$
+関数 $f$ が $\mathcal L f=0$ を満たすと、伊藤公式により drift が消える。ただし PDE を満たすだけでは十分でない。停止時刻、局所化、一様可積分性、境界条件の確認が必要である。これを省くと、形式的な martingale と真の martingale を混同する。
 
-Loewner式より
-$$
-dX_t=\frac{2X_t}{X_t^2+Y_t^2}dt-\sqrt\kappa\,dB_t,\qquad
-dY_t=-\frac{2Y_t}{X_t^2+Y_t^2}dt.
-$$
-Itô公式を適用すると
-$$
-\begin{aligned}
-dF={}&\left[
-\frac\kappa2F_{xx}
-+\frac{2x}{x^2+y^2}F_x
--\frac{2y}{x^2+y^2}F_y
-\right]dt-\sqrt\kappa F_x\,dB_t.
-\end{aligned}
-$$
-二次変分 $d\langle X\rangle_t=\kappa dt$ が $\kappa F_{xx}/2$ を生む。従ってdrift消失条件は
-$$
-\boxed{\mathcal LF=
-\frac\kappa2F_{xx}+\frac{2x}{x^2+y^2}F_x-\frac{2y}{x^2+y^2}F_y=0}.
-$$
+## 条件付き確率がマルチンゲールになる理由
 
-::: {.callout-important title="STATUS: Proposition"}
-DMPは条件付き確率をmartingaleへ、Itô公式はmartingale条件をPDEへ変える。確率問題が境界値問題へ移るのはこの二段階による。
-:::
+事象 $A$ を固定し、情報量が時間とともに増える filtration $(\mathcal F_t)$ を考える。$M_t=\mathbb P(A\mid\mathcal F_t)$ は、時刻 $t$ まで見たときの $A$ の現在の予測である。さらに未来の情報 $\mathcal F_s$ まで見てから、もう一度時刻 $t$ の情報へ戻して平均すると、
+$$
+  \mathbb E[M_s\mid\mathcal F_t]
+  =
+  \mathbb E[\mathbb P(A\mid\mathcal F_s)\mid\mathcal F_t]
+  =
+  \mathbb P(A\mid\mathcal F_t)
+  =
+  M_t
+$$
+となる。これがマルチンゲール性である。
 
-PDEだけでは真のmartingaleとは限らない。 $Z_t$ が実軸や駆動点へ近づく前に止め、有界性または一様可積分性を確認する。
+SLE で使うマルチンゲールは、この一般原理を Loewner 座標へ書き換えたものである。曲線の過去を見た後、未来の法則は標準領域で再び SLE になる。したがって、通過確率や到達確率を標準座標の関数で表すと、時間が進んでも条件付き期待値が保存される。
 
-::: {.callout-warning title="STATUS: Limitation"}
-本章で証明していないのは無条件のoptional stoppingである。次章では切断領域で計算してから境界極限を取る。
-:::
+## 伊藤補正はどこで出るか
 
-[前章](08-geometric-phases.qmd) | [次章](10-left-passage.qmd)
+$Z_t=X_t+iY_t=g_t(z)-U_t$ とすると、Brown 運動が入るのは実部 $X_t$ である。関数 $f(X_t,Y_t)$ に伊藤公式を使うと、一次の項だけでなく
+$$
+  \frac12(dX_t)^2\,\partial_x^2 f
+$$
+が出る。ここで $(dX_t)^2=\kappa\,dt$ なので、生成作用素に
+$$
+  \frac{\kappa}{2}\partial_x^2
+$$
+が現れる。これは通常の連鎖律にはない項であり、SLE の PDE に $\kappa$ が入る場所である。
+
+PDE $\mathcal L f=0$ は drift を消す条件である。境界値は、曲線がどちら側を通ったか、点を飲み込んだか、ある境界弧へ到達したかなど、事象の意味から決まる。したがって、SLE の計算は「幾何的事象を決める」「Loewner 座標へ移す」「生成作用素の境界値問題を解く」という三段階で進む。
+
+局所マルチンゲールから確率公式へ戻る最後の段階も忘れてはいけない。停止時刻 $\tau$ まで $M_{t\wedge\tau}$ がマルチンゲールであることは、$\tau$ の後まで使える有界な確率公式を直ちに与えない。$\tau$ を増やす極限で一様可積分性、または有界収束・単調収束に使える評価を別に示す必要がある。
+
+この点は、PDE を解いただけで証明が終わらない理由を説明する。PDE は局所的な drift の消去を保証する。境界値と停止時刻の評価は、局所解を実際の hitting probability へ戻す。SLE で計算を再利用するときは、この二つの層を分けて引用する。
+
+## 本章の到達点
+
+本章で解決した問いは、SLE のマルチンゲールが形式的な飾りではなく、条件付き確率を Loewner 座標で保存量として表す道具であることだった。残った問いは、具体的な幾何事象に対して境界条件をどう置くかである。次章では、左側通過確率公式でそれを計算する。
 

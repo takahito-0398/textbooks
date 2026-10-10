@@ -406,6 +406,7 @@ website:
           - sle-critical-phenomena/appendices/b-convergence.qmd
           - sle-critical-phenomena/appendices/c-bessel-dimension.qmd
           - sle-critical-phenomena/appendices/d-numerics.qmd
+          - sle-critical-phenomena/appendices/e-reader-stop-points.qmd
 
 format:
   html:

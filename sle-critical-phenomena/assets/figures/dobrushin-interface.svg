@@ -14,14 +14,15 @@
     .fillred{fill:#fde2df;stroke:#d24b40;stroke-width:2}
   </style>
   
-  <text x="40" y="55" class="title">左側通過確率</text>
-  <defs>
-    <linearGradient id="heat" x1="0" x2="1"><stop offset="0" stop-color="#1f6feb"/><stop offset="0.5" stop-color="#fef3c7"/><stop offset="1" stop-color="#d24b40"/></linearGradient>
-  </defs>
-  <rect x="90" y="90" width="600" height="260" fill="url(#heat)" stroke="#111827" stroke-width="2"/>
-  <path d="M390 350 C360 285 425 250 380 200 C340 155 410 125 390 90" stroke="#111827" stroke-width="4" fill="none"/>
-  <text x="110" y="385" class="label">確率は 1 に近い</text>
-  <text x="540" y="385" class="label">確率は 0 に近い</text>
-  <text x="720" y="210" class="small">u=x/y</text>
+  <text x="40" y="55" class="title">Dobrushin 境界条件</text>
+  <path d="M110 390 C150 90 310 70 430 130 C560 195 710 70 790 330" fill="#eef2f7" stroke="#111827" stroke-width="4"/>
+  <path d="M110 390 C150 90 310 70 430 130" stroke="#222" stroke-width="12" fill="none"/>
+  <path d="M430 130 C560 195 710 70 790 330" stroke="#fff" stroke-width="12" fill="none"/>
+  <path d="M125 375 C205 325 222 255 292 243 C373 229 385 169 430 130 C480 171 495 235 560 248 C650 266 704 302 780 326" class="red"/>
+  <circle cx="110" cy="390" r="9" fill="#111827"/><circle cx="790" cy="330" r="9" fill="#111827"/>
+  <text x="82" y="420" class="label">a</text><text x="805" y="332" class="label">b</text>
+  <text x="205" y="110" class="small">黒境界</text>
+  <text x="590" y="120" class="small">白境界</text>
+  <text x="380" y="300" class="label">探索経路</text>
 
 </svg>

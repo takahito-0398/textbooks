@@ -1,44 +1,71 @@
 ---
-title: "第15章　模型対応表とuniversalityの境界"
-description: "SLE対応の定理と予想を区別し、普遍性の主張範囲を定める"
+title: "第15章 普遍性の境界"
 sidebar: sle-critical-phenomena
 ---
-<!-- contract: authoring/contracts/15-universality.json -->
 
-# 一つの表に同じstatusを置かない
+# 第15章 普遍性の境界 {#ch-15}
 
-$$
-\begin{array}{c|c|c}
-\text{模型・interface}&\text{候補}&\text{status}\\ \hline
-\text{三角格子site percolation探索}&\mathrm{SLE}_6&\text{定理}\\
-\text{planar LERW}&\mathrm{SLE}_2&\text{定理}\\
-\text{critical Ising spin interface}&\mathrm{SLE}_3&\text{定理}\\
-\text{critical FK-Ising interface}&\mathrm{SLE}_{16/3}&\text{定理}\\
-\text{self-avoiding walk}&\mathrm{SLE}_{8/3}&\text{予想}
-\end{array}
-$$
+普遍性という語は一つではない。対象を分ける。
 
-IsingとFK-Isingにはそれぞれfermionic observableを用いる収束結果がある [@chelkakEtAl2014; @smirnov2010]。一方、self-avoiding walkは自然な候補と臨界指数の整合を持つが、同じ意味の曲線収束定理は得られていない。
+| 対象 | 何が一致するか | 状態 |
+|---|---|---|
+| 臨界指数 | べき指数 | 多くの模型で予測・一部証明 |
+| 横断確率 | 境界条件付き横断確率 | 三角格子 percolation で証明 |
+| 界面法則 | 曲線法則そのもの | 模型ごとに証明が必要 |
+| ループ集合 | ループ集合の法則 | CLE 理論へ進む |
+| 場の相関関数 | 場の相関関数 | CFT 辞書と関係 |
 
-::: {.callout-note title="STATUS: Definition"}
-普遍性を述べるときは、臨界指数、crossing function、interface法則、loop ensembleのどれが一致するかを指定する。本章の中心は向き付きinterface法則である。
-:::
+模型対応の証明状態は次のように分ける。
 
-## ミクロ情報はどこで消えるか
+| 模型 | 極限 | 証明状態 |
+|---|---|---|
+| 三角格子 critical site percolation | SLE$_6$ | 定理。三角格子、Dobrushin 境界条件 [@smirnov2001] |
+| planar LERW | SLE$_2$ | 定理。単連結領域の chordal 境界条件 [@lawlerSchrammWerner2004] |
+| UST Peano curve | SLE$_8$ | 定理。wired/free 型の境界条件 [@lawlerSchrammWerner2004] |
+| Ising スピン界面 | SLE$_3$ | 定理。臨界 Ising、Dobrushin 型境界条件 [@chelkakEtAl2014] |
+| FK-Ising 界面 | SLE$_{16/3}$ | 定理。臨界 FK-Ising、Dobrushin 型境界条件 [@smirnov2010] |
+| self-avoiding walk | SLE$_{8/3}$ | 予想 |
+| 一般格子 percolation | SLE$_6$ | 普遍性予想 |
 
-格子固有の情報は、tightness estimateと離散observableの構成に残る。極限へ渡った後は、単連結領域、DMP、等角共変性、少数の境界条件へ圧縮される。その結果をSchramm分類へ入力すると、一つの数 $\kappa$ が曲線法則を整理する。
+UST は単なる表の一行ではない。木そのものは一次元曲線ではないが、平面双対と組み合わせると Peano 曲線が現れ、$\kappa=8$ の空間充填性と対応する。LERW が木の枝、UST Peano が木と双対木の間を走る境界である、という関係を覚えると、$\kappa=2$ と $\kappa=8$ の対応が見える。
 
-これは全ての詳細が無関係という主張ではない。境界条件、interfaceの選び方、bulkとboundaryのobservableは極限を変える。universality classは「何を固定し、何を変えても同じか」という契約である。
+## Ising と FK-Ising の位置づけ
 
-::: {.callout-important title="STATUS: Theorem and conjecture boundary"}
-表の定理行は指定した模型・境界条件・topologyに対する結果であり、予想行へ証明を移植できない。数値次元やCFT値の一致は強い証拠だが曲線法則の収束とは別である。
-:::
+Ising 模型には、スピンの $+$ と $-$ の界面がある。適切な Dobrushin 境界条件のもとで、このスピン界面のスケーリング極限は SLE$_3$ である。一方、FK-Ising は Fortuin-Kasteleyn 表現に基づく random cluster 模型であり、その探索界面の極限は SLE$_{16/3}$ である。
 
-::: {.callout-warning title="STATUS: Limitation"}
-本章で証明していないのは一般universality principleである。表はstatus registryであり、同じ$\kappa$候補を持つ模型を一括して定理化しない。
-:::
+同じ Ising 系という名前が付いていても、見ている界面が違えば $\kappa$ も違う。スピン・クラスターの境界と FK クラスターの境界は同じ対象ではない。普遍性を語るときには、「どの模型の」「どの境界条件の」「どの界面の」法則かを明示する必要がある。
 
-曲線法則の分類は進んだが、平面全体に広がる揺らぎを一本のinterfaceだけで表すことはできない。次はrandom fieldを定義する。
+## SAW と SLE8/3 は予想である
 
-[前章](14-lerw-sle2.qmd) | [次章](16-gff.qmd)
+self-avoiding walk は、自分自身を訪れないランダムな格子路である。物理予想では、二次元の chordal SAW のスケーリング極限は SLE$_{8/3}$ とされる。これは restriction property や臨界指数の予測と美しく整合する。
+
+しかし、一般の二次元 SAW について SLE$_{8/3}$ 収束は定理ではない。LERW はループ消去という Markov 的構造と UST との結びつきを持つが、SAW は自己回避条件が全体に及ぶため、同じ証明設計を直接使えない。したがって本教材では、SAW を「重要な予想」として扱い、証明済み対応表とは分ける。
+
+## 普遍性という語の安全な使い方
+
+普遍性は、証明済みの定理をひとまとめにする言葉ではない。臨界指数の一致、横断確率の一致、界面法則の一致、ループ集合の一致、場の相関関数の一致は、それぞれ違う主張である。
+
+安全な書き方は、たとえば次である。
+
+1. 「三角格子 site percolation の探索経路は SLE$_6$ へ収束する」は定理。
+2. 「多くの二次元 percolation 模型が同じ SLE$_6$ 極限を持つと期待される」は普遍性予想。
+3. 「数値実験で SLE$_6$ と整合する」は数値的証拠。
+
+この三つを混ぜると、SLE 教材は見かけ上は壮大になるが、読者は何を信じてよいのかわからなくなる。
+
+## 証明状態を読むための五つのラベル
+
+本文の主張は、少なくとも五つに分けて読む。定理は、仮定と結論が文献上確立している主張である。外部定理は、本教材では証明せず入力と出力を明示して使う。予想は、強い理論的・数値的根拠があっても未証明の主張である。発見的対応は、物理的辞書や直観を与えるが、数学的含意を単独では持たない。数値的証拠は、有限サイズの計算結果であり、極限定理の代用ではない。
+
+同じ文章の中でこのラベルを切り替えないことも重要である。たとえば「SAW の数値実験は SLE$_{8/3}$ と整合する」は数値的証拠、「SAW は SLE$_{8/3}$ へ収束する」は予想である。前者から後者への飛躍を避けるため、章末で証明状態をもう一度確認する。
+
+## 境界条件が $\kappa$ の一部になる
+
+模型と極限曲線の対応は、模型名と $\kappa$ の表だけでは決まらない。Ising のスピン界面と FK-Ising の探索界面は、同じ臨界温度の近くにあっても別の確率測度を見ている。UST でも、木の枝と Peano 曲線では時間順序と対象の位相が違う。
+
+したがって、収束主張を書くときは、模型、格子、臨界パラメータ、領域、始点と終点、境界条件、曲線の取り方、収束位相を一行で列挙する。この一行が欠けると、証明済みの限定された定理を普遍性全体へ拡張してしまう。
+
+## 本章の到達点
+
+本章で解決した問いは、普遍性という語を、臨界指数、横断確率、界面法則、ループ集合、場の相関に分けて読むことである。残った問いは、SLE がランダム場や場の理論とどう接続するかである。次章からは、本編の証明を補うのではなく、SLE から先へ進む出口として GFF・CLE・CFT・LQG を見る。
 

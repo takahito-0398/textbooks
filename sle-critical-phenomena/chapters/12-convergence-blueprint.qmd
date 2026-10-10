@@ -1,42 +1,78 @@
 ---
-title: "第12章　収束証明の共通設計図"
-description: "tightness・同定・一意性・曲線回収を分離する"
+title: "第12章 収束証明の共通設計図"
 sidebar: sle-critical-phenomena
 ---
-<!-- contract: authoring/contracts/12-convergence-blueprint.json -->
 
-# 候補と収束を分ける
+# 第12章 収束証明の共通設計図 {#ch-12}
 
-分類原理は極限が存在する場合の候補を決めた。収束証明は
-$$
-\text{tightness}\to\text{subsequential limit}\to
-\text{driving identification}\to\text{uniqueness}
-$$
-に分ける。
+SLE が候補であることと、格子曲線が SLE へ収束することは違う。収束証明には次の点検項目が必要である。
 
-annulusを不必要に横切る確率を一様に抑えると曲線のoscillationを制御できる。Kemppainen--Smirnovの枠組みはこのcrossing estimateから曲線・Loewner記述のtightnessを導く [@kemppainenSmirnov2017]。
+![離散曲線から SLE 収束へ進む証明の流れ。](../assets/figures/convergence-pipeline.svg){#fig-convergence-pipeline}
 
-::: {.callout-note title="STATUS: Proof architecture"}
-tightnessは部分列極限の存在、observableはその同定、極限法則の一意性は全列収束を担当する。
-:::
+| 段階 | 目的 | 失敗すると何が起きるか |
+|---|---|---|
+| tightness | 部分列極限の存在を得る | 極限候補すらない |
+| subsequential limit | 極限曲線の性質を調べる | SLE 分類へ入れない |
+| 観測量マルチンゲール | 格子由来の保存量を作る | $\kappa$ を同定できない |
+| driving process identification | 駆動過程を Brown 運動として同定する | 見た目だけの一致になる |
+| uniqueness | 部分列に依らない極限を示す | 複数の極限が残る |
+| curve recovery | 駆動関数から曲線収束へ戻す | hull / driving 収束で止まる |
+| crossing estimate | 曲線の悪い振動を抑える | tightness と復元が壊れる |
+| 収束位相の橋 | 曲線、hull、駆動関数の収束をつなぐ | 証明対象がずれる |
 
-離散observable $F_\delta$ が探索に沿うmartingaleで、境界まで制御され、等角共変な $F$ へ収束すれば
-$$
-\text{discrete martingale}\to
-\text{continuum martingale}\to
-\text{PDE/SDE}\to U_t=\sqrt\kappa B_t.
-$$
-停止時刻での一様可積分性と、領域収束に対するobservableの安定性も要る。
+Kemppainen-Smirnov 型の枠組みは、この橋を体系化する [@kemppainenSmirnov2017]。観測量だけ、または Loewner 方程式だけでは足りない。離散模型固有の入力と、SLE 分類原理をつなぐ中間層が必要である。
 
-::: {.callout-important title="STATUS: Proposition"}
-相対compactな曲線法則族で、全ての部分列極限が同じSLE$_\kappa$ 法則なら、全列がSLE$_\kappa$ へ弱収束する。
-:::
+## tightness は何を防ぐか
 
-駆動収束だけでは境界の細いfjordで曲線収束が壊れ得る。crossing estimateはこの挙動を排除し、curve、hull、drivingのtopologyを接続する。
+格子幅 $\delta\to0$ の曲線族 $\gamma^\delta$ があるとき、まず必要なのは部分列極限の存在である。これが tightness である。tightness がないと、どの部分列を取っても極限曲線が得られない可能性がある。
 
-::: {.callout-warning title="STATUS: Limitation"}
-本章で証明していないのはcrossing estimateからtightnessを導く技術定理である。模型固有の入力は次の二章で確認する。
-:::
+曲線の tightness で危険なのは、細い通路を何度も往復するような悪い振動である。格子幅が小さくなるにつれ、肉眼では同じ場所に見える曲線が、実は極端に長い往復をしているかもしれない。crossing estimate は、このような細長い四角形を無理に何度も横切る確率を抑えるために使う。
 
-[前章](11-fractal-dimension.qmd) | [次章](13-percolation-sle6.qmd)
+percolation では RSW 型評価が、LERW ではランダムウォークと Green 関数の評価が、この制御の入口になる。どちらも「絵がそれらしい」ことの代わりに、曲線族がコンパクト性を持つことを保証する。
+
+## 観測量から駆動過程へ
+
+多くの収束証明では、離散模型に特有の観測量を作る。観測量は、ある到達確率、横断確率、または Green 関数由来の量であり、探索過程に沿ってマルチンゲールになる。
+
+極限でこの観測量が調和関数や SLE martingale PDE の解へ収束すると、部分列極限の駆動過程に制約がかかる。たとえば、その drift と quadratic variation が SLE$_\kappa$ のものと一致することを示せれば、駆動過程が $\sqrt{\kappa}B_t$ であると同定できる。
+
+ここで重要なのは、観測量が直接「曲線が SLE である」と言うのではないことだ。観測量は、標準化後の条件付き確率を通じて駆動過程を同定する。駆動過程の同定後に、曲線回復の議論で曲線収束へ戻る。
+
+## 収束位相の橋
+
+収束証明は、どの収束位相で収束したかを最後まで追跡しなければならない。駆動関数がコンパクト時間区間で一様収束しても、trace が同じ収束位相で収束するとは限らない。逆に、曲線が再パラメータ化同値類として収束しても、容量時間の駆動関数が直ちに収束するとは限らない。
+
+したがって、証明では次のように橋をかける。
+
+1. 離散曲線の tightness から、curve の部分列極限を得る。
+2. 部分列極限が Loewner chain を持つことを示す。
+3. 標準化した駆動過程を取り出す。
+4. 観測量により駆動過程を Brown 運動として同定する。
+5. trace theorem と曲線回復により、元の曲線法則の極限を SLE と一致させる。
+
+この順序を崩すと、「driving convergence は見えたが曲線収束は未解決」「曲線の絵は収束したが駆動過程の同定がない」という穴が残る。
+
+| 入力 | 出力 | 必要な追加条件 |
+|---|---|---|
+| 駆動関数の一様収束 | hull 収束 | 容量時間の整合、kernel / Carathéodory 収束 |
+| hull 収束 | 曲線収束 | trace 生成性、先端の制御、悪い fjord の排除 |
+| 曲線収束 | SLE 同定 | 再パラメータ化と容量時間の整合、駆動過程の同定 |
+
+## 一つの模型で checklist を埋める
+
+三角格子 percolation を例に、表の項目を順番に埋める。まず Dobrushin 境界条件で一本の探索経路を選ぶ。次に RSW 型 crossing estimate で細長い長方形の悪い横断を抑え、曲線族の tightness を得る。部分列極限を取った後、Smirnov 観測量の極限が Cardy 公式を満たすことを使い、極限曲線の境界イベントを決める。
+
+その次に、観測量を探索過程に沿って条件付ける。離散マルチンゲールの極限は、Loewner 標準化後の点に対する PDE の解になる。この PDE の drift 項を調べると、駆動関数の分散係数が $\kappa=6$ と同定される。最後に、hull 収束だけで止まらず、crossing estimate と曲線回復の定理を使って探索経路そのものの収束へ戻る。
+
+LERW では、最初の RSW 型観測量がそのまま出てこない。ランダムウォークの Green 関数と境界到達確率が同じ位置を占める。つまり checklist の項目は共通でも、各項目を埋める補題は模型固有である。これが「SLE が候補である」と「この模型が SLE へ収束する」の間に、長い証明が必要な理由である。
+
+## 部分列極限を取った後の責任
+
+tightness から部分列極限を得たら、その極限が元の模型の望ましい性質を保持しているかを確認する。境界条件が極限で消えていないか、容量時間が退化していないか、曲線が同じ領域の中に留まっているかを調べる。確率の有限次元分布だけを見ていると、これらの幾何的情報を失う。
+
+さらに、すべての部分列極限が同じ SLE 法則を持つことを示して初めて全列の収束になる。ここで uniqueness は単なる論理上の後処理ではない。異なる再パラメータ化や異なる曲線回復が同じ駆動過程を持つ可能性を排除するための幾何的主張でもある。
+
+## 本章の到達点
+
+本章で解決した問いは、SLE が候補であることと、格子曲線が SLE へ収束することの差である。残った問いは、具体的な模型でこの点検項目をどう満たすかである。次章では、三角格子 site percolation から SLE$_6$ への証明構造を見る。
 

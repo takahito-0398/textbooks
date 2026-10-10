@@ -1,37 +1,42 @@
 ---
-title: "第17章　SLE4-GFF coupling"
-description: "local setと条件付き平均から関数でない場のlevel lineを定める"
+title: "第17章 SLE4-GFF 結合"
 sidebar: sle-critical-phenomena
 ---
-<!-- contract: authoring/contracts/17-gff-sle4.json -->
 
-# level setを先に作らない
+# 第17章 SLE4-GFF 結合 {#ch-17}
 
-GFFはpointwise値を持たないため、集合 $\{h=0\}$ から曲線を抜き出せない。代わりに曲線 $\gamma$ を成長させ、初期部分を知ったときの場の条件付き法則でlevel lineを特徴付ける。
+SLE$_4$ と GFF の結合（coupling）は外部定理として扱う [@schrammSheffield2009; @schrammSheffield2013]。以後は「結合」と書く。
 
-曲線まで探索した領域 $D\setminus\gamma[0,t]$ で、
-$$
-h=h_t+\widetilde h_t
-$$
-と分解する。$h_t$ は境界値を調和延長した条件付き平均、$\widetilde h_t$ は残領域の零境界GFFで、探索済み情報と条件付き独立である。この性質を持つrandom closed setをlocal setと呼ぶ。
+| 項目 | 内容 |
+|---|---|
+| 入力 | 適切な境界条件を持つ GFF |
+| 出力 | level line としての SLE$_4$ |
+| 主要道具 | GFF の領域マルコフ性、調和拡張、local set |
+| 難所 | 点ごとの level set がない場から曲線を定義すること |
+| 本教材で証明しない部分 | Schramm-Sheffield の完全な結合構成 |
+| 下流での使い方 | CLE、imaginary geometry、LQG への入口 |
 
-::: {.callout-note title="STATUS: Definition"}
-local setは「場を先にpointwise観測して得る集合」ではない。集合を条件付けた後も、残りの揺らぎが残領域のGFFであるという空間Markov性で定義される。
-:::
+この章の役割は、SLE が単独の曲線理論に閉じていないことを示すことである。ただし、GFF 結合を知っても percolation -> SLE$_6$ や LERW -> SLE$_2$ の証明を代替することはできない。
 
-境界arcに $-\lambda$ と $+\lambda$ を置く特別な高さ差では、0-level lineをこのlocal-set規則で構成できる。正規化により $\lambda=\sqrt{\pi/8}$ と書く規約では、その曲線法則はSLE$_4$ になる [@schrammSheffield2013]。
+## 結合の入力と出力を分ける
 
-::: {.callout-important title="STATUS: Black-box theorem"}
-Schramm--Sheffield couplingは、distributionとしてのGFFから可測な連続曲線を構成し、その法則がSLE$_4$ であることを述べる。入力は単連結領域と指定境界値、出力はlocal setとしてのlevel lineと条件付き場の分解である。
-:::
+GFF-SLE 結合の入力は、境界値を持つ GFF と、境界上の始点・終点である。出力は、場と曲線を同じ確率空間上に構成し、その曲線が SLE$_4$ の法則を持ち、曲線を条件にした残りの場が適切な境界条件を持つ GFF になる、という主張である。
 
-離散GFFでは頂点値があるため0-contourを直接引ける。格子を細かくするとこの曲線がSLE$_4$ 型へ収束する [@schrammSheffield2009]。連続couplingはその極限を「存在する曲線法則」だけでなく、「場から決定される曲線」として強化する。
+この主張は「GFF の等高線を描けば SLE$_4$ になる」という素朴な文ではない。GFF には点ごとの値がないため、等高線は通常の意味では定義できない。local set は、場と同時に定義されたランダム閉集合であり、その集合を見た後の条件付き平均が調和関数として更新される対象である。この性質を使って level line を定義する。
 
-$\kappa=4$ は第7章の境界飲み込み閾値でもあった。ここでは調和関数の境界値jumpとLoewner martingaleの二次変分が釣り合うparameterとして再出現する。
+結合を使うときは、入力と出力を混ぜないことが大切である。入力には、領域、境界値、level line の高さ、始点と終点、適切な正則性が含まれる。出力には、曲線の法則、曲線を条件にした場の条件付き法則、複数の曲線を順に引くときの整合性が含まれる。SLE$_4$ という一つの記号だけを見て、任意の GFF の任意の level line が同じ法則になると一般化してはいけない。
 
-::: {.callout-warning title="STATUS: Limitation"}
-本章で証明していないのはlocal setの存在一意性と曲線のGFF可測性である。また任意の高さ線を通常のpointwise level setとして扱わない。
-:::
+## 何を本教材で証明しないか
 
-[前章](16-gff.qmd) | [次章](18-outlook.qmd)
+本教材では、local set の構成、境界条件の厳密な取り扱い、曲線の一意性、measurability の証明を行わない。これらは Schramm-Sheffield の深い結果として引用する。
+
+代わりに、本教材で持ち帰るべき点は次である。
+
+1. SLE$_4$ は GFF の境界線として自然に現れる。
+2. GFF には点ごとの level set がないため、結合は通常の等高線描画ではない。
+3. この結合は SLE とランダム場をつなぐが、percolation や LERW の収束証明を置き換えない。
+
+## 本章の到達点
+
+本章で解決した問いは、SLE4-GFF 結合の入力、出力、外部定理として借りる部分を分けることである。残った問いは、一本の曲線からループ集合、場の理論、ランダム面へどのように進むかである。次章では、それらを発展項目として短く地図化する。
 

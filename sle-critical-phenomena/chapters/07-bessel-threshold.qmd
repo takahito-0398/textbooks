@@ -1,60 +1,87 @@
 ---
-title: "第7章　実軸点を追うとBessel過程が現れる"
-description: "Bessel次元とkappa=4閾値を導く"
+title: "第7章 実軸点を追うと Bessel 過程が現れる"
 sidebar: sle-critical-phenomena
 ---
-<!-- contract: authoring/contracts/07-bessel-threshold.json -->
 
-# 距離を一次元拡散へ変える
+# 第7章 実軸点を追うと Bessel 過程が現れる {#ch-07}
 
-実軸点 $x>0$ を飲み込み前まで追い、
+実軸上の点 $x>0$ を追う。標準座標で先端から見た距離を
 $$
-X_t=g_t(x)-U_t
+  X_t=g_t(x)-U_t
 $$
-と置く。Loewner式と $dU_t=\sqrt\kappa\,dB_t$ から
-$$
-dX_t=\frac2{X_t}dt-\sqrt\kappa\,dB_t.
-$$
-$-B_t$ もBrown運動なので、$R_t=X_t/\sqrt\kappa$ は
-$$
-dR_t=dW_t+\frac{2/\kappa}{R_t}dt
-$$
-を満たす。次元 $\delta$ のBessel過程
-$$
-dR_t=dW_t+\frac{\delta-1}{2R_t}dt
-$$
-と比較して
-$$
-\boxed{\delta=1+\frac4\kappa}
-$$
-を得る。
+とする。これは元の平面での Euclid 距離ではなく、過去の hull を消した後の標準座標での距離である。
 
-::: {.callout-note title="STATUS: Proposition"}
-追っているのは元のEuclid距離でなく、過去を消した標準座標における実軸距離である。
-:::
+Loewner 方程式と $dU_t=\sqrt{\kappa}\,dB_t$ から
+$$
+  dX_t=\frac{2}{X_t}\,dt-\sqrt{\kappa}\,dB_t.
+$$
+$Y_t=X_t/\sqrt{\kappa}$ とおくと、$dY_t=(1/\sqrt{\kappa})dX_t$ である。Brown 運動の符号は分布を変えないので、$\widetilde B_t=-B_t$ と書けば
+$$
+  dY_t=d\widetilde B_t+\frac{2/\kappa}{Y_t}\,dt.
+$$
+Bessel 過程の標準形
+$$
+  dR_t=dB_t+\frac{\delta-1}{2R_t}\,dt
+$$
+と比べると、次元は
+$$
+  \delta=1+\frac4\kappa
+$$
+である。
 
-generator
+係数比較を一段だけ書くと、Bessel 過程では drift 係数が $(\delta-1)/(2R_t)$ である。ここで $R_t=Y_t$ と見れば
 $$
-Lf=\frac12f''+\frac{\delta-1}{2r}f'
+  \frac{\delta-1}{2}=\frac{2}{\kappa}
+  \quad\Longrightarrow\quad
+  \delta=1+\frac4\kappa.
 $$
-について $Lf=0$ を解くと、$\delta\ne2$ で $f(r)=A+Br^{2-\delta}$。停止区間 $(\varepsilon,R)$ の境界値問題から、Bessel過程は $\delta\ge2$ なら0へ到達せず、$\delta<2$ なら到達する。従って
-$$
-\delta\ge2\Longleftrightarrow\kappa\le4.
-$$
+したがって、$\kappa$ が大きいほど Bessel 次元は小さくなり、0 に到達しやすくなる。
 
-::: {.callout-important title="STATUS: Theorem"}
-境界点swallowingの閾値は $\kappa=4$ である [@lawler2005]。計算にはLoewner式、Bessel generator、停止区間を用いた。
-:::
-
-特異点へ近づく計算では
+Bessel 過程は、$\delta\ge2$ なら 0 に到達せず、$\delta<2$ なら 0 に到達する。したがって
 $$
-\tau_{\varepsilon,R}=\inf\{t:R_t\notin(\varepsilon,R)\}
+  1+\frac4\kappa \ge 2
+  \quad\Longleftrightarrow\quad
+  \kappa\le4
 $$
-で止め、boundedな領域で期待値を扱ってから極限を取る。
+が境界点を飲み込まない側であり、$\kappa>4$ では実軸点が飲み込まれる。
 
-::: {.callout-warning title="STATUS: Limitation"}
-本章で証明していないのは、固定境界点の判定だけからtrace全体の単純性や空間充填性が出るという主張である。
-:::
+停止時刻 $\tau_{\varepsilon,R}=\inf\{t:X_t\le\varepsilon\text{ or }X_t\ge R\}$ を入れるのは、0 と無限遠で係数が特異になるためである。局所化した区間で生成作用素の境界値問題を解き、$\varepsilon\downarrow0$、$R\uparrow\infty$ を取る。これが $\kappa=4$ を境界飲み込みの閾値にする計算の骨格である。
 
-[前章](06-brownian-loewner.qmd) | [次章](08-geometric-phases.qmd)
+![Bessel 型距離 X_t が 0 に到達するかどうかが境界飲み込みを決める。](../assets/figures/bessel-boundary.svg){#fig-bessel}
+
+## $X_t$ は元の距離ではない
+
+$X_t=g_t(x)-U_t$ は、元の上半平面で先端と $x$ の距離を測っているのではない。過去の hull を消し、標準化写像 $g_t$ で残り領域を $\mathbb H$ へ戻したあと、先端像 $U_t$ から実軸点 $g_t(x)$ までの距離を測っている。
+
+この違いは重要である。元の平面では、曲線が点 $x$ に近づいたように見えても、細い通路が残っていればまだ飲み込まれていない。標準座標では、その通路の細さや歪みが $g_t$ に反映される。$X_t$ が 0 に近づくことは、標準領域から見て点 $x$ が先端に吸い寄せられ、最終的に飲み込まれることを表す。
+
+## 生成作用素と境界値問題
+
+到達確率を計算するとき、関数
+$$
+  f(x)=\mathbb P_x(X_t \text{ が } R \text{ より前に } \varepsilon \text{ へ到達する})
+$$
+を考える。局所化した区間 $(\varepsilon,R)$ では、$X_t$ の生成作用素は
+$$
+  \mathcal A f(x)=\frac{\kappa}{2}f''(x)+\frac{2}{x}f'(x)
+$$
+である。到達確率は
+$$
+  \mathcal A f=0,\qquad f(\varepsilon)=1,\quad f(R)=0
+$$
+を満たす。解の形は $1$ と $x^{1-4/\kappa}$ の組み合わせになる。ここから $\varepsilon\downarrow0$、$R\uparrow\infty$ の極限を読むと、$\kappa\le4$ と $\kappa>4$ で境界到達性が変わる。
+
+この計算の教育的な意味は、SLE の幾何相が絵だけでなく、一次元拡散過程の境界分類から読めるという点である。曲線全体の複雑さが、標準座標での一点の距離過程へ落ちる。
+
+## 停止時刻を省略できない理由
+
+生成作用素の係数 $2/x$ は $x=0$ で特異になる。したがって、いきなり全時間の期待値を計算するのではなく、まず $X_t$ が区間 $[\varepsilon,R]$ にいる間だけ議論する。停止時刻 $\tau_{\varepsilon,R}$ の内側では係数が有界で、伊藤公式や optional stopping を安全に適用できる。
+
+その後、$\varepsilon$ と $R$ を動かす極限で境界到達性を読む。順序を逆にすると、0 へ到達する経路と無限遠へ逃げる経路を同じ期待値で扱ってしまう。SLE の飲み込み判定は、図の印象ではなく、この局所化と極限の順序に依存する。
+
+また、$X_t$ の 0 到達は「元の平面で曲線が実軸点を横切る」ことと同じではない。標準座標で点が先端へ吸収されることが、hull に入ることへ翻訳される。Bessel 過程を使う理由は、複雑な写像の効果をこの標準座標の一変数に押し込めるためである。
+
+## 本章の到達点
+
+本章で解決した問いは、標準座標で見た実軸点との距離が Bessel 過程となり、$\kappa=4$ が境界飲み込みの閾値になる理由である。残った問いは、内部の自己接触や空間充填性まで含めた相の全体像である。次章では、$\kappa=4$ と $\kappa=8$ の二つの閾値を幾何として整理する。
 

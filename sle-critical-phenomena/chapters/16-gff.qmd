@@ -1,58 +1,41 @@
 ---
-title: "第16章　Gaussian Free Fieldは関数ではない"
-description: "Dirichlet energyからGFFをdistributionとして構成する"
+title: "第16章 Gaussian Free Field は関数ではない"
 sidebar: sle-critical-phenomena
 ---
-<!-- contract: authoring/contracts/16-gff.json -->
 
-# 各点の高さを選べない場
+# 第16章 Gaussian Free Field は関数ではない {#ch-16}
 
-領域 $D$ 上の滑らかな関数にDirichlet内積
-$$
-(f,g)_\nabla=\frac1{2\pi}\int_D\nabla f\cdot\nabla g\,dA
-$$
-を入れる。零境界条件で完備化した空間を $H_0^1(D)$ とし、正規直交基底 $(e_n)$ と独立標準Gaussian $(\xi_n)$ を使って形式的に
-$$
-h=\sum_{n\ge1}\xi_ne_n
-$$
-と書く。
+この章の目的は、SLE$_4$ をランダム場の等高線として見る入口を作ることである。percolation や LERW の収束証明を置き換える章ではない。
 
-$$
-\mathbb E\|h\|_\nabla^2=\sum_{n\ge1}\mathbb E[\xi_n^2]=\infty
-$$
-なので、この級数は $H_0^1(D)$ 値random variableとして収束しない。二次元ではpointwise値 $h(z)$ も定義できない。そこでtest function $\rho$ に対するpairing $(h,\rho)$ を定義し、random distributionとして扱う。
+GFF はランダム場であり、点ごとの値を持つ通常の関数ではない。滑らかな test function $\phi$ に対する平均 $(h,\phi)$ は定義できるが、$h(z)$ は定義できない。円平均 $h_\varepsilon(z)$ を取ると有限の量になるが、$\varepsilon\downarrow0$ で分散が発散する。
 
-::: {.callout-note title="STATUS: Definition"}
-零境界GFFは中心Gaussian random distributionで、共分散はGreen operatorにより
-$$
-\mathbb E[(h,\rho)(h,\sigma)]
-=\iint_{D\times D}\rho(x)G_D(x,y)\sigma(y)\,dx\,dy
-$$
-と与えられる。
-:::
+![GFF の円平均は半径を変えると揺らぎの大きさが変わる。](../assets/figures/gff-circle-average.svg){#fig-gff-circle-average}
 
-## なぜ対数発散するのか
+GFF を入れる理由は、SLE から話を広げるためではなく、一本の曲線からランダム場へ戻るためである。SLE$_4$ は GFF の level line と結びつく。点ごとの level set がない場から、条件付き平均と境界値問題を通じて曲線を復元する、というのが核心である。
 
-二次元Green関数は対角近くで
+## 円平均で見る GFF
+
+GFF は点ごとの値を持たないが、円周上の平均
 $$
-G_D(x,y)=-\log|x-y|+O(1)
+  h_\epsilon(z)
 $$
-の特異性を持つ。円平均 $h_\varepsilon(z)$ は定義できるが、その分散は
-$$
-\operatorname{Var}(h_\varepsilon(z))
-=\log\varepsilon^{-1}+O(1)
-$$
-と発散する。従って通常の関数のように $\{h=0\}$ をpointwiseに取れない。
+は意味を持つ。半径 $\epsilon$ を小さくすると、平均はより局所的な情報を拾うが、分散は大きくなる。これは、GFF が通常の関数ではなく分布であることの現れである。
 
-::: {.callout-important title="STATUS: Proposition"}
-GFFはtest functionに対するpairingや円平均として観測できるが、点ごとの高さを持つ連続関数ではない。level lineの定義には別のcoupling概念が必要になる。
-:::
+この性質は、SLE との結合で大きな意味を持つ。level line と言っても、通常の関数の等高線のように $h(z)=c$ を点ごとに結ぶわけではない。境界条件、条件付き平均、local set という概念を使い、「曲線を見た後の場の条件付き法則」が再び GFF 型になることを利用して曲線を定義する。local set は「局所集合」と訳されることもあるが、本教材では GFF 文献での用語との対応を優先して local set と呼ぶ。
 
-Dirichlet energyは二次元で等角不変なので、GFFの法則も適切なpullbackの下で等角不変になる。この対称性がSLEとの接点だが、対称性だけでlevel lineは作れない。
+## 一本の曲線から場へ戻る
 
-::: {.callout-warning title="STATUS: Limitation"}
-本章で証明していないのはGaussian measureの関数解析的構成とGreen operatorの全スペクトル論である。pointwise level setは存在すると仮定しない。
-:::
+ここまでの本編は、二次元ランダム曲線を一次元 Brown 運動へ圧縮する話だった。GFF は逆向きの視点を与える。曲線は孤立した対象ではなく、背後にあるランダム場の境界線として現れることがある。
 
-[前章](15-universality.qmd) | [次章](17-gff-sle4.qmd)
+SLE$_4$ はその最も基本的な例である。percolation の SLE$_6$ や LERW の SLE$_2$ は、離散界面の極限として導入した。SLE$_4$ は、GFF という連続ランダム場の等高線として導入できる。これにより、SLE は「格子模型の境界」だけでなく、「ランダム場の幾何」ともつながる。
+
+## GFF の共分散と局所性
+
+平面 GFF の共分散は、形式的には Laplace 作用素の Green 関数である。二点が近いほど対数的に強く相関し、点ごとの分散が発散する。このため、GFF の議論では test function、円平均、または分布としての作用を使う。
+
+SLE と結合するときは、曲線を見た後の場が「曲線の片側で条件付き平均を持つ GFF」と「残った揺らぎを持つ独立な GFF」に分かれるという構造が現れる。これは、曲線の過去を消して未来を標準領域へ戻す Loewner の考えと似ているが、対象は曲線から場へ変わっている。似ているという直観を、同じ定理だと読み替えてはいけない。
+
+## 本章の到達点
+
+本章で解決した問いは、GFF が点ごとの関数ではないにもかかわらず、円平均と条件付き平均を通じて SLE$_4$ の境界線と結びつく理由である。残った問いは、この結びつきをどの定理として借りるかである。次章では、SLE4-GFF 結合を外部定理として位置づける。
 

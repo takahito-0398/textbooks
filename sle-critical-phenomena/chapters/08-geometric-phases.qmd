@@ -1,39 +1,43 @@
 ---
-title: "第8章　三つの幾何相"
-description: "kappaによるsimple・自己接触・space-filling相を区別する"
+title: "第8章 三つの幾何相"
 sidebar: sle-critical-phenomena
 ---
-<!-- contract: authoring/contracts/08-geometric-phases.json -->
 
-# 二つの閾値、三つの相
+# 第8章 三つの幾何相 {#ch-08}
 
-前章の $\kappa=4$ は実軸点の飲み込み閾値だった。trace全体には内部点への接近と写像歪みの評価も要り、結論は三相になる [@rohdeSchramm2005; @lawlerSchrammWerner2004]。
+SLE の見た目は $\kappa$ で変わる。
 
-![SLEの三つの幾何相。](../assets/figures/kappa-phases.svg)
+| 範囲 | trace の幾何 | hull との関係 | 代表例 |
+|---|---|---|---|
+| $0\le\kappa\le4$ | 単純曲線 | trace と hull がほぼ一致 | LERW: $\kappa=2$、GFF level line: $\kappa=4$ |
+| $4<\kappa<8$ | 自己接触し、境界点を飲み込む | trace より filled hull が大きい | percolation: $\kappa=6$ |
+| $\kappa\ge8$ | 空間充填的 | 時間とともに領域を埋める | UST Peano: $\kappa=8$ |
 
-$$
-\begin{array}{c|c|c}
-\kappa&\text{trace}&\text{hull}\\ \hline
-0\le\kappa\le4&\text{単純}&\gamma[0,t]\\
-4<\kappa<8&\text{自己接触し領域を囲む}&\gamma[0,t]\text{より大きい}\\
-\kappa\ge8&\text{空間充填的}&\text{訪問域とともに成長}
-\end{array}
-$$
+![kappa=2,4,6,8 の幾何相の模式比較。これは相の定理の証明ではなく、定理の内容を読むための模式図である。](../assets/figures/kappa-phases.svg){#fig-kappa}
 
-::: {.callout-important title="STATUS: Black-box theorem"}
-Brown駆動chainのtraceは $\kappa\le4$ で単純、$4<\kappa<8$ で自己接触を持ち、$\kappa\ge8$ で空間充填的になる。証明の核は境界・内部点の飲み込み評価とscale不変性である。
-:::
+数値実験の見た目は有用だが、定理ではない。相の主張は Brown 駆動 Loewner chain の深い解析に基づく。特に $\kappa=4$ は境界飲み込みの閾値、$\kappa=8$ は空間充填性の閾値である。この二つの閾値は別の現象を表す。
 
-$\kappa=4$ は境界接触の開始、$\kappa=8$ は空間充填性の開始に答える。percolationの $\kappa=6$ はbubbleを囲むがtrace自体は平面を埋めない。LERWの $\kappa=2$ は単純相、UST Peano curveの $\kappa=8$ は空間充填相に入る。
+## $\kappa=4$ と $\kappa=8$ は何を分けるか
 
-::: {.callout-note title="STATUS: Interpretation"}
-$\kappa$ はBrown運動の分散であると同時に、Loewner変換を通して境界接触・自己接触・空間充填性を制御する幾何parameterである。
-:::
+$\kappa=4$ は、境界点を飲み込むかどうかの閾値である。第7章の Bessel 計算により、実軸上の点が標準座標で先端に到達するかどうかが変わる。したがって $0\le\kappa\le4$ では、trace は単純曲線で、境界に触れても区間を飲み込むことはない。
 
-有限stepの図は離散化誤差を含み、接触の見た目で定理を判定できない。
+$\kappa=8$ は、trace が平面の面積を埋めるかどうかの閾値である。$4<\kappa<8$ では、trace は自己接触し、hull は内部領域を飲み込むが、trace 自身は面積を埋めない。$\kappa\ge8$ では trace が空間充填的になる。
 
-::: {.callout-warning title="STATUS: Numerical evidence"}
-図は固定seedの模式図であり、三相定理を証明していない。traceとfilled hullを区別するために使う。
-:::
+percolation の探索経路は $\kappa=6$ に対応するため、単純ではなく、境界点や領域を飲み込む。しかし $\kappa=8$ 未満なので空間充填ではない。UST Peano curve は $\kappa=8$ に対応し、木と双対木の間を走りながら領域を埋める。LERW は $\kappa=2$ であり、単純曲線の相に入る。
 
-[前章](07-bessel-threshold.qmd) | [次章](09-martingales.qmd)
+## trace と filled hull の見た目を分ける
+
+$\kappa>4$ の図では、曲線が囲んだ領域を塗りつぶして描くことが多い。この塗りつぶされた領域は filled hull であり、trace そのものではない。trace は境界を走る時間付き曲線であり、filled hull はその時刻までに先端から見えなくなった部分を含む集合である。
+
+この区別を失うと、「SLE$_6$ は面を塗りつぶすのか」という誤解が起きる。SLE$_6$ の trace は空間充填ではないが、時間とともに多くの領域を hull として飲み込む。空間充填性は $\kappa=8$ で初めて現れる。
+
+## 相の主張を定理として読む
+
+幾何相の表は、単なる描画アルゴリズムの出力ではない。$\kappa\le4$ の単純性、$4<\kappa<8$ の自己接触と境界の飲み込み、$\kappa\ge8$ の空間充填性は、Brown 駆動 Loewner chain に対する解析定理である。Bessel 過程は境界の閾値を与え、内部の自己接触や空間充填性には別の容量・共形半径の評価が加わる。
+
+したがって、$\kappa=6$ の数値実験で領域が塗られて見えることだけから、空間充填性を主張してはいけない。観測対象が trace か hull か、有限時間の見た目か極限の性質かを記録する必要がある。図の caption にこの区別を書くことは、数値的証拠を定理と取り違えないための最低限の作法である。
+
+## 本章の到達点
+
+本章で解決した問いは、$\kappa$ が変わると simple、自己接触、空間充填という幾何相がなぜ変わるかである。残った問いは、こうした幾何を計算可能な確率へ落とす方法である。次章では、条件付き確率をマルチンゲールとして読む。
+

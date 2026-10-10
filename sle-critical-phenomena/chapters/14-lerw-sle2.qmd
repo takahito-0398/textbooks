@@ -1,35 +1,64 @@
 ---
-title: "第14章　LERWとSLE2"
-description: "loop-erased random walkで同じ収束設計図がどう変わるかを見る"
+title: "第14章 ループ消去ランダムウォークと SLE2"
 sidebar: sle-critical-phenomena
 ---
-<!-- contract: authoring/contracts/14-lerw-sle2.json -->
 
-# loopを消すとMarkov性はどう残るか
+# 第14章 ループ消去ランダムウォークと SLE2 {#ch-14}
 
-単純random walkの軌跡から、loopができるたび時系列順に消去して得る単純路がLERWである。最終経路だけを見ると操作は非局所的だが、初期部分を条件付けた後、残りはその部分を避けるrandom walkのloop-erasureとして記述できる。これがdomain Markov propertyを与える。
-
-::: {.callout-note title="STATUS: Definition"}
-chronological loop-erasureはpathから最初のloopを時系列順に除き、loopがなくなるまで繰り返す。出力は自己交差しない。
-:::
-
-LERWの模型固有observableはrandom walkのhitting probabilityやGreen関数から作られる。平面では離散調和関数が連続調和関数へ収束し、Loewner標準化後のmartingale条件が
+ループ消去ランダムウォーク（loop-erased random walk, LERW）は、ランダムウォークの経路から、ループができるたびにそのループを消して得る単純路である。たとえば
 $$
-U_t=\sqrt2\,B_t
+  0,1,2,1,3
 $$
-を同定する。percolationの離散正則observableとは入力が異なるが、tightnessから駆動同定へ進む論理は第12章と同じである。
+と進んだ場合、$1,2,1$ のループを消し、$0,1,3$ が残る。消去は時間順に行うため、単なる集合操作ではない。
 
-::: {.callout-important title="STATUS: Black-box theorem"}
-Lawler--Schramm--Wernerの定理によりplanar LERWはchordal SLE$_2$ へ収束する [@lawlerSchrammWerner2004]。証明はGreen関数・hitting estimate、Loewner drivingの収束、曲線topologyへの回収を含む。
-:::
+![ランダムウォークからループを時間順に消して LERW を得る。](../assets/figures/loop-erasure.svg){#fig-loop-erasure}
 
-$\kappa=2\le4$ なのでSLE$_2$ は単純であり、次元は $1+2/8=5/4$。loop-erasureの単純性と整合する。またUSTの枝はLERWの法則を持ち、同じ論文の枠組みでUST Peano curveとSLE$_8$ への接続が現れる。
+LERW にも領域マルコフ性が残る。最初の一部を知ったあと、残りは、未訪問領域でのランダムウォークを条件付け、再びループ消去したものとして記述できる。これは Schramm 分類原理に入るための重要な入力である。
 
-::: {.callout-warning title="STATUS: Limitation"}
-本章で証明していないのはGreen関数の精密漸近と駆動収束の誤差評価である。また自己回避歩行のSLE$_{8/3}$ 収束は同じstatusではなく未解決の予想である。
-:::
+証明の構造は次である。
 
-同じ設計図が二模型で働いた。次は対応表の各行について、定理・予想・物理的期待を混同せずuniversalityの意味を区切る。
+| 項目 | 内容 |
+|---|---|
+| 入力 | planar LERW、chordal boundary condition |
+| 出力 | LERW -> SLE$_2$ |
+| 主要道具 | 離散 Green 関数、到達確率、マルチンゲール観測量、UST との Wilson のアルゴリズム |
+| 難所 | 格子 Green 関数の境界漸近、駆動過程の同定、曲線回復 |
+| 本教材で証明しない部分 | Lawler-Schramm-Werner の完全証明 |
+| 下流での使い方 | UST Peano curve -> SLE$_8$、双対性、臨界指数 |
 
-[前章](13-percolation-sle6.qmd) | [次章](15-universality.qmd)
+LERW と UST は Wilson のアルゴリズムで結びつく。LERW の枝を積み上げると uniform spanning tree が得られ、その Peano 曲線の極限は SLE$_8$ である [@lawlerSchrammWerner2004]。一方、self-avoiding walk -> SLE$_{8/3}$ は予想であり、LERW と同じ証明済みの棚に置いてはいけない。
+
+## ループ消去は領域マルコフ性を壊さない
+
+LERW は、ランダムウォーク全体を見てからループを消すため、一見すると Markov 性を失うように見える。しかし、先頭部分を固定した後の残りは、未訪問領域で終点へ到達するランダムウォークを走らせ、そのループ消去を取ることで記述できる。これが LERW の領域マルコフ性である。
+
+この性質は percolation の領域マルコフ性と形が似ているが、入力は違う。percolation では未探索セルの独立性が直接使われる。LERW では、ランダムウォークの Markov 性と loop-erasure の時間順序が使われる。異なる離散模型から同じ Schramm 分類原理へ入れる点が重要である。
+
+## Green 関数と到達確率
+
+LERW の収束証明では、ランダムウォークがどの境界弧へ当たるか、ある点を訪問する確率がどうスケールするかを調べる。これらは離散調和関数や Green 関数で表される。格子幅を小さくすると、離散調和関数は連続調和関数へ近づく。
+
+この調和性が、SLE 側のマルチンゲールとつながる。percolation で Smirnov 観測量が担った役割を、LERW では Green 関数や到達確率に基づく観測量が担う。極限で得られるマルチンゲールが SLE$_2$ の生成作用素と一致するため、$\kappa=2$ が同定される。
+
+## UST Peano と SLE8
+
+Wilson のアルゴリズムは、ループ消去ランダムウォークを使って uniform spanning tree を生成する手続きである。一本の LERW は木の枝に対応する。平面上の UST と双対木を同時に見ると、その間を走る Peano 曲線が現れる。この Peano 曲線は領域を埋めるため、SLE 側では $\kappa=8$ と対応する。
+
+LERW -> SLE$_2$ と UST Peano -> SLE$_8$ は別の曲線の主張だが、同じ UST 構造を通じて結びついている。単純な枝の極限が $\kappa=2$、木と双対木の間を埋める境界の極限が $\kappa=8$ である。
+
+## ループ消去の時間順序を確認する
+
+ループ消去は、歩行の像から単純な部分集合を選ぶ操作ではない。時刻列 $\eta(0),\eta(1),\ldots$ を順に読み、最初に既訪点へ戻った時刻までの閉路を消し、残った路の末尾から再開する。後の時刻に見つかったループが、すでに残した前半の順序を変えることはない。この時間順序が、LERW の領域マルコフ性と単純性を支える。
+
+境界へ到達するランダムウォークを条件付けると、未訪問領域の形状は歩行の過去に依存する。しかし、その過去を固定してから再び loop-erasure を取ると、未来の LERW は「新しい領域で同じ手続き」として表せる。percolation の未探索セル独立性とは異なる仕組みだが、標準化後の未来を再利用できるという点で Schramm 分類と同じ入口に立つ。
+
+## LERW と UST の二つの極限
+
+Wilson のアルゴリズムで一本の木の枝を作るとき、ランダムウォークの軌跡を loop-erasure したものが枝になる。したがって、枝を局所的に見ると LERW と SLE$_2$ が現れる。一方、木と双対木を同時に走査して得られる Peano 曲線は、一本の枝ではなく平面の各領域を順に分ける空間充填曲線である。
+
+同じ UST から二つの異なる曲線法則が出ることは、模型名だけで $\kappa$ を決めてはいけない例である。対象が枝なのか、木と双対木の間の走査曲線なのか、境界条件が wired なのか free なのかを明示して初めて、SLE$_2$ と SLE$_8$ の対応が意味を持つ。
+
+## 本章の到達点
+
+本章で解決した問いは、LERW の領域マルコフ性、Green 関数、UST との関係がどのように SLE$_2$ と SLE$_8$ へつながるかである。残った問いは、どの対応が定理で、どの対応が予想かを模型ごとに整理することである。次章では、普遍性という語の範囲を分ける。
 

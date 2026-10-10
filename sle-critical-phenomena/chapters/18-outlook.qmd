@@ -1,51 +1,58 @@
 ---
-title: "第18章　CLE・CFT・LQGへの三つの出口"
-description: "一本のSLEからloop ensemble、場の辞書、random surfaceへ進む"
+title: "第18章 CLE・CFT・LQG への三つの出口"
 sidebar: sle-critical-phenomena
 ---
-<!-- contract: authoring/contracts/18-outlook.json -->
 
-# 一本の曲線で答えられない問い
+# 第18章 CLE・CFT・LQG への三つの出口 {#ch-18}
 
-本書は離散interfaceをLoewner駆動へ変換し、対称性からSLEを分類し、模型固有observableで収束を同定した。最後にGFFからSLE$_4$ level lineを回収した。それでも三つの情報が残る。
+この章は出口であり、本編の証明を補う章ではない。
 
-## CLE：全てのloopを同時に見る
+CLE は、一本の曲線ではなく、平面内のループ集合を扱う。SLE の局所的な成長と整合するループ ensemble として自然に現れる。
 
-一つの探索経路は一組の境界点を結ぶ。臨界配置の全interfaceを記述するには、互いに整合するrandom loop ensembleが要る。CLEは等角不変性とdomain Markov型の再帰性をloop集合へ拡張する。
-
-::: {.callout-note title="STATUS: Orientation"}
-本書はCLEの必要性とSLEとの関係を示すが、構成・分類・full scaling limitの証明は次教材の範囲とする。
-:::
-
-## CFT：martingale PDEを表現論へ翻訳する
-
-SLE martingaleのPDEとCFTのnull-vector方程式には対応があり、
+CFT との対応は発見的対応表として扱う。SLE の martingale PDE と CFT の null-vector equation が似た形を持つこと、中心電荷
 $$
-c(\kappa)=\frac{(3\kappa-8)(6-\kappa)}{2\kappa}
+  c(\kappa)=\frac{(3\kappa-8)(6-\kappa)}{2\kappa}
 $$
-が中心電荷の辞書になる。これは本書では導出済み定理として使わない。どの相関関数、境界条件、正規化を対応させるかを指定して初めて数学的主張になる。
+が対応表を作ることは重要だが、ここでは CFT formalism を定理として使わない。
 
-::: {.callout-important title="STATUS: Heuristic dictionary"}
-CFT対応は計算を予言しobservable候補を与えるが、formal path integralや表現論の式をそのまま格子模型の収束証明にしない。
-:::
+LQG は、GFF からランダム面を作る方向である。Gaussian multiplicative chaos や KPZ 関係は深い理論だが、本教材では「SLE 本体の証明」ではなく、次に進むための地図として置く。物理的直観を定理の代わりにしてはいけない。
 
-## LQG：場を背景でなくrandom geometryにする
+## CLE は loop の理論である
 
-GFFをEuclid領域上のrandom distributionとして扱うだけでなく、形式的計量
-$$
-e^{\gamma h(z)}|dz|^2
-$$
-が示唆するrandom面積と距離を構成する方向がLiouville quantum gravityである。$h(z)$ はpointwiseにないので指数は正則化とrenormalizationを要る。Gaussian multiplicative chaosとKPZ関係がその入口になる。
+SLE は一本の chordal curve から始まる。CLE は、領域内に無数のループがランダムに配置された対象である。percolation のクラスター境界を全体として見ると、一本の探索経路ではなくループ集合が自然に現れる。SLE が一本の境界の局所法則を与えるのに対し、CLE は領域全体のループ集合の法則を与える。
 
-::: {.callout-warning title="STATUS: Limitation"}
-本章で証明していないのはCLE構成、CFT公理化、LQG計量構成、KPZ定理である。三つをSLEの既証明事項と同じstatusに置かない。
-:::
+この教材では CLE を構成しない。位置づけだけを示す。SLE を理解した後、一本の曲線から多数のループへ拡張するときの出口が CLE である。
 
-# 到達点
+CLE を読むときにも、単純な loop と filled loop、ループの向き、ネスティングの有無を分ける必要がある。一本の SLE の trace を何本も並べれば自動的に CLE になるわけではない。領域マルコフ性と共形不変性を、ループ集合全体の条件付き法則として再定式化する必要がある。
 
-平面曲線の巨大な状態は、等角写像で過去を消すことで実数駆動へ移る。DMPと等角不変性はその駆動をBrown運動へ強制する。格子模型からの収束には別途tightnessとobservableが要り、GFF couplingは曲線をrandom fieldの可測な幾何として戻す。
+## CFT は証明の代用品ではない
 
-次教材で完全な理論として構成すべき問いは、**一本の曲線から平面全体のloopとrandom surfaceへ、どの順序で進むか**である。
+CFT は、臨界模型の相関関数、境界条件変更作用素、中心電荷、null-vector equation などを通じて、SLE と深く対応する。SLE martingale の PDE と CFT の null-vector equation が同じ形を持つことは、強力な辞書である。
 
-[前章](17-gff-sle4.qmd) | [教材入口](../index.qmd)
+しかし、本教材では CFT を厳密な証明装置として使わない。CFT の形式的計算が SLE の $\kappa$ や臨界指数を予測することはあるが、それは格子模型の収束証明そのものではない。percolation -> SLE$_6$ には Smirnov の定理が必要であり、LERW -> SLE$_2$ には Lawler-Schramm-Werner の証明が必要である。
+
+## LQG はランダム面への出口である
+
+LQG は、GFF からランダムな面積測度や距離を作り、ランダム曲面の幾何を調べる理論である。SLE は LQG 上の曲線や切断線として現れることがあり、KPZ 関係は Euclid 幾何とランダム幾何の次元を結びつける。
+
+ただし、この直観は本編の SLE 分類原理とは別である。SLE の基本導入は、Loewner 方程式、領域マルコフ性、等角不変性、Brown 駆動で完結する。LQG はその先にあるランダム幾何への出口として扱う。
+
+KPZ 関係を読むときは、Euclid 平面での次元と LQG 面積測度で測った次元を区別する。SLE の Hausdorff 次元公式は Euclid 幾何の定理であり、KPZ の関係式はランダム面上の指数を結びつける別の枠組みである。本教材ではこの対応を発見的な地図として示し、証明済みの SLE 相分類へ戻ってこられるようにする。
+
+## 出口章の読み方
+
+この章の語彙は、次のように読む。
+
+| 語 | 本教材での扱い |
+|---|---|
+| CLE | SLE からループ集合へ進む出口 |
+| CFT | martingale PDE と null-vector equation の発見的対応表 |
+| LQG | GFF からランダム面へ進む出口 |
+| KPZ | 物理的説明と発展項目 |
+
+どれも重要だが、SLE 本体を薄めるために使ってはいけない。読者がまず説明できるべきことは、なぜ曲線が Loewner chain で記述され、なぜ駆動関数が Brown 運動になるかである。
+
+## 本章の到達点
+
+本章で解決した問いは、CLE、CFT、LQG を本編の証明装置ではなく出口として読む位置づけである。残った問いは発展編の範囲に属する。本教材の中心に戻るなら、Loewner 符号化、Schramm 分類、模型ごとの収束証明の三つを説明できるかを確認すればよい。
 

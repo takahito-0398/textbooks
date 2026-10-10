@@ -1,44 +1,59 @@
 ---
-title: "第11章　fractal geometryと臨界指数"
-description: "接近確率とHausdorff次元を結ぶ"
+title: "第11章 Hausdorff 次元"
 sidebar: sle-critical-phenomena
 ---
-<!-- contract: authoring/contracts/11-fractal-dimension.json -->
 
-# 長さでは測れない曲線
+# 第11章 Hausdorff 次元 {#ch-11}
 
-SLE traceは通常の有限長で測れない。Hausdorff測度
+SLE trace は折れ曲がり続けるため、通常の長さでは測りにくい。Hausdorff 次元は、細かい球で覆うときに必要な個数の増え方を測る。box count と似ているが、覆いの大きさを柔軟に選べるため、より安定した幾何量である。
+
+Beffara の定理は
 $$
-\mathcal H^s(E)=\lim_{\varepsilon\downarrow0}
-\inf\left\{\sum_i(\operatorname{diam}U_i)^s:
-E\subset\bigcup_iU_i,\ \operatorname{diam}U_i<\varepsilon\right\}
+  \dim_H(\gamma)=\min\left(2,1+\frac{\kappa}{8}\right)
 $$
-の臨界値で $\dim_HE$ を定義する。
+を与える。
+これは外部定理として使う結果である [@beffara2008]。
 
-::: {.callout-note title="STATUS: Definition"}
-有限解像度のbox countは直感を与えるが、直径の不均一な被覆も許すHausdorff次元の証明とは異なる。
-:::
+証明の構造は次の通りである。
 
-一点への接近確率が
+| 項目 | 内容 |
+|---|---|
+| 入力 | SLE$_\kappa$ trace、Green estimate |
+| 出力 | Hausdorff 次元公式 |
+| 主要道具 | 一点・二点 hitting estimate、first moment、second moment |
+| 難所 | 二点が同時に近づく確率の精密制御 |
+| 本教材で証明しない部分 | Green estimate の完全証明 |
+| 下流での使い方 | 幾何相の定量化、臨界指数との比較 |
+
+次元が模型の予測と一致しても、それだけで離散模型の SLE 収束を証明したことにはならない。次元一致は強い数値的証拠や検算にはなるが、曲線法則の同定とは別である。
+
+## Green estimate の意味
+
+Hausdorff 次元を求めるには、曲線が小さな円板に近づく確率を知る必要がある。点 $z$ のまわりの半径 $\epsilon$ の円板へ SLE が近づく確率が
 $$
-\mathbb P\{\operatorname{dist}(z,\gamma)<\varepsilon\}
-\asymp C(z)\varepsilon^{2-d}
+  \mathbb P(\operatorname{dist}(z,\gamma)<\epsilon)
+  \asymp
+  \epsilon^{2-d}G(z)
 $$
-なら、面積1の領域にある $\varepsilon$-box約 $\varepsilon^{-2}$ 個のうち訪問される期待数は $\varepsilon^{-d}$。一次momentは上界を導くが、下界には二点同時接近のsecond momentが要る。
+の形を持つとする。ここで $d$ が求めたい次元、$G$ が SLE Green 関数である。
 
-::: {.callout-important title="STATUS: Black-box theorem"}
-Beffaraの定理により
-$$
-\boxed{\dim_H\gamma=\min(2,1+\kappa/8)}\quad\text{a.s.}
-$$
-である [@beffara2008]。証明はGreen estimateと二点相関評価を組み合わせる。
-:::
+直感的には、次元 $d$ の集合が半径 $\epsilon$ の円板を打つ確率は、面積スケール $\epsilon^2$ ではなく $\epsilon^{2-d}$ で減る。したがって hitting estimate の指数を読むことで次元が見える。
 
-$\kappa=2,6,8$ では次元は $5/4,7/4,2$。LERW、percolation探索経路、空間充填閾値と整合する。ただし次元は法則全体を決めない。
+## first moment と second moment
 
-::: {.callout-warning title="STATUS: Limitation"}
-本章で証明していないのはGreen estimateとsecond moment評価である。数値box countからSLE収束も結論しない。
-:::
+上界では、領域を小さな正方形に分け、曲線が各正方形へ近づく確率を足し上げる。これは first moment の議論であり、期待される訪問箱数を抑える。
 
-[前章](10-left-passage.qmd) | [次章](12-convergence-blueprint.qmd)
+下界では、訪問箱数が期待値のまわりで極端に小さくならないことを示す必要がある。そのために二点が同時に訪問される確率を評価し、second moment を使う。ここが Beffara 定理の技術的核心である。
+
+この章で覚えるべきことは、次元公式が単なる見た目の測定ではなく、一点・二点の接近確率の精密評価から出るという点である。
+
+## 次元一致から言えないこと
+
+離散曲線の箱数を測って $1+\kappa/8$ に近い値が出ても、それは SLE 収束の証明ではない。異なる曲線法則が同じ Hausdorff 次元を持つことは十分あり得る。次元は一つの指数であり、曲線の条件付き未来、境界イベント、駆動関数の増分をすべて決める情報ではない。
+
+一方、次元公式は収束証明の設計に役立つ。Green estimate の指数は、どの小さな円板を曲線が訪れるかの確率を予測し、tightness や離散 hitting estimate の目標値を与える。ここでも、定理の使い方は「極限候補の幾何を定量化する」ことであり、「候補への収束を自動で得る」ことではない。
+
+## 本章の到達点
+
+本章で解決した問いは、SLE trace の次元公式がどのような hitting estimate から出るかである。残った問いは、次元一致だけでは格子模型の曲線法則の収束を証明できないという点である。次章では、格子曲線から SLE への収束証明に必要な共通構造を整理する。
 

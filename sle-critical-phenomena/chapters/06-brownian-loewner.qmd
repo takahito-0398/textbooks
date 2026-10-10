@@ -1,41 +1,62 @@
 ---
-title: "第6章　Brown運動を入れたLoewner chain"
-description: "SLEの定義とtrace存在定理の役割を整理する"
+title: "第6章 Brown 運動を入れた Loewner chain"
 sidebar: sle-critical-phenomena
 ---
-<!-- contract: authoring/contracts/06-brownian-loewner.json -->
 
-# ODEは飲み込みまで解く
+# 第6章 Brown 運動を入れた Loewner chain {#ch-06}
 
-$U_t=\sqrt\kappa B_t$ をLoewner方程式へ入れる。Brown pathを固定すれば連続係数のODEなので、各 $z\in\mathbb H$ について分母が0になるまで一意解がある。飲み込み時刻 $\tau_z$ から
+SLE$_\kappa$ は、駆動関数を $U_t=\sqrt{\kappa}B_t$ とした chordal Loewner chain である。Brown 運動は連続だが、どの区間でも有界変動ではなく、非常に粗い。そのため、ODE の解として hull $K_t$ は定義できても、それが連続 trace $\gamma(t)$ で生成されることは自明ではない。
+
+外部定理として Rohde-Schramm trace theorem を使う [@rohdeSchramm2005]。
+
+| 項目 | 内容 |
+|---|---|
+| 入力 | Brown 運動による駆動 $U_t=\sqrt{\kappa}B_t$ |
+| 出力 | ほとんど確実に連続 trace が存在し、hull はその trace から生成される |
+| 難所 | 粗い駆動関数、境界近くの歪み、飲み込みの制御 |
+| 本教材で証明しない部分 | trace 存在の完全証明 |
+| 下流で使う場所 | 幾何相、通過確率、離散曲線との比較 |
+
+$\kappa=0$ では $U_t=0$ であり、第4章の縦スリットが戻る。したがって、SLE は縦スリットの決定論的成長を、Brown 運動で揺らした族と見ることができる。ただし、定義の順序は hull-first である。曲線を先に仮定しないことが、粗い駆動にも対応できる理由である。
+
+本章で借りる外部定理は、Brown 駆動を入力し、ほとんど確実な連続 trace の存在を出力する。任意の連続駆動関数に対して同じ結論を主張するものではない。
+
+## Brown 駆動の粗さはどこに効くか
+
+Loewner ODE は、各固定点 $z\in\mathbb H$ について
 $$
-K_t=\overline{\{z:\tau_z\le t\}}
+  \partial_t g_t(z)=\frac{2}{g_t(z)-U_t}
 $$
-が定まる。
+を解く式である。$U_t$ が連続なら、解は爆発時刻までは通常の ODE として存在する。したがって hull $K_t$ は定義できる。しかし、これはまだ「境界から一本の線が伸びている」と言っていない。
 
-::: {.callout-note title="STATUS: Definition"}
-chordal SLE$_\kappa$ はBrown駆動Loewner chainの法則である。第一段階で定まるのはhullと写像で、trace存在は別の問題である。
-:::
+滑らかな駆動関数なら、先端はよく制御され、hull は曲線で生成されると期待しやすい。Brown 運動は連続だが、どこを拡大しても激しく揺れる。駆動関数が短時間に何度も左右へ揺れると、対応する hull は境界近くで細かい入り江を作る。これが trace 存在定理の難しさである。
 
-滑らかな駆動なら
-$$
-\gamma(t)=\lim_{y\downarrow0}g_t^{-1}(U_t+iy)
-$$
-を期待できる。Brown運動は臨界Hölder指数 $1/2$ で制御できず、逆写像の境界歪みが増幅される。極限の存在と時刻連続性はODEの局所存在から出ない。
+読者が混同しやすい点を分ける。
 
-::: {.callout-important title="STATUS: Black-box theorem"}
-Rohde--Schrammの定理によりBrown駆動chainは連続traceを持つ [@rohdeSchramm2005]。証明はBrown path評価と等角写像の歪曲評価を結ぶ。以後この出力を使う。
-:::
+| 主張 | 難しさ |
+|---|---|
+| ODE 解が各点に対して存在する | 通常の ODE と爆発時刻の議論 |
+| hull $K_t$ が増大する | 解が飲み込まれる点の集合として定義する |
+| hull が連続曲線で生成される | Brown 駆動の粗さと境界歪曲を制御する深い定理 |
+| trace の法則が格子曲線の極限である | さらに離散模型ごとの収束証明が必要 |
 
-Brown scalingとLoewner式から
-$$
-(r^{-1}K_{r^2t})_{t\ge0}\overset d=(K_t)_{t\ge0}.
-$$
-$\kappa=0$ なら縦スリットへ戻る。一般には $K_t$ と $\gamma[0,t]$ を同一視できない。特に曲線が領域を囲めば、その領域はhullへ追加される。
+この章で SLE を定義するとき、最後の二つを定義の中へ入れない。定義は hull-first、trace は外部定理、格子模型との関係はさらに後の定理である。
 
-::: {.callout-warning title="STATUS: Limitation"}
-本章で証明していないのはtrace存在定理の技術部と幾何相の分類である。次章では実軸点を追って $\kappa=4$ の閾値を計算する。
-:::
+## hull-first で定義する意味
 
-[前章](05-schramm-principle.qmd) | [次章](07-bessel-threshold.qmd)
+駆動関数が連続なら、各点 z に対する ODE の最大解と爆発時刻を調べられる。ここで解が存在しなくなった点を集めると増大 hull が得られる。先端が一本の曲線として存在するかを先に仮定しないので、自己接触や領域の飲み込みを含む粗い成長も同じ定義で扱える。
+
+trace theorem の仕事は、この hull-first の対象に対して「ほとんど確実に連続な trace があり、しかもその trace が hull を生成する」と戻すことである。入力は駆動の確率過程、出力は境界の幾何であり、両者を同一視するために境界歪曲の評価が必要になる。
+
+数値実験では、逆 flow で点を動かすと曲線が簡単に描ける。しかし、数値的に描けた一本の線は、ODE が生成した hull の一例にすぎない。曲線の存在、法則の一意性、格子極限との一致はそれぞれ別の検証項目として残る。
+
+## 逆 Loewner の直観
+
+数値実験で SLE の絵を描くときは、しばしば逆 Loewner flow を使う。forward Loewner は成長済み hull を消す向きであり、点を標準領域へ押し戻す。逆 Loewner は、標準領域側から小さな slit を継ぎ足していく向きである。
+
+この直観は有用だが、証明の向きと混同してはいけない。分類原理で使うのは、過去を消した後の未来法則であり、forward Loewner の標準化である。逆 flow の絵は「駆動関数が曲線を作る」ことを可視化するが、「任意の駆動関数が良い曲線を作る」ことの証明ではない。
+
+## 本章の到達点
+
+本章で解決した問いは、SLE をまず hull の成長として定義し、trace の存在を外部定理として切り分ける理由である。残った問いは、$\kappa$ が実際に境界との接触や飲み込みをどう変えるかである。次章では、実軸上の点を追跡して Bessel 過程へ帰着する。
 

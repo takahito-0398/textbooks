@@ -1,43 +1,67 @@
 ---
-title: "付録D　Loewner数値実験の読み方"
-description: "離散化、seed、誤差検証、図版の証拠statusを定める"
+title: "付録D 数値実験仕様"
 sidebar: sle-critical-phenomena
 ---
-<!-- contract: authoring/contracts/d-numerics.json -->
 
-# Brown pathからhullを描く
+# 付録D 数値実験仕様 {.appendix}
 
-時間刻み $\Delta t$ でBrown増分
-$$
-\Delta U_n=\sqrt{\kappa\Delta t}\,Z_n,\qquad Z_n\sim N(0,1)
-$$
-を生成する。区間ごとに駆動を定数近似すれば、短時間写像は縦スリット解
-$$
-g_{\Delta t,U}(z)=U+\sqrt{(z-U)^2+4\Delta t}
-$$
-で計算できる。逆写像を逆順に合成し先端を戻す方法は、ODEを点ごとにforward Eulerで追うより幾何を保ちやすい。
+## 数値実験を定理として扱わない
 
-::: {.callout-note title="STATUS: Algorithm"}
-数値図にはalgorithm、seed、$\kappa$、step size、precision、forward/reverseの別、validation testを記録する。同じseedで刻みを半分にし、巨視的形状と容量係数が安定するかを見る。
-:::
+数値実験は、直観を作り、式を検算し、図版を理解するために使う。定理の証明として扱わない。特に、SLE の見た目が percolation 探索経路に似ていることは、percolation -> SLE$_6$ の証明ではない。
 
-# 何を検算できるか
+## Loewner 成長の数値実験
 
-$U_t\equiv0$ なら縦スリット $2i\sqrt t$ を再現する必要がある。任意の実装で無限遠展開の $1/z$ 係数が $2t$ になることも検算できる。Brown sampleではpathwiseな正解曲線が閉形式でないため、刻み比較、scale law、左右対称な統計量を使う。
+目的: 駆動関数 $U_t$ と hull 成長の対応を見る。
 
-left-passage formulaとの比較では、独立seedのsample比率にbinomial標準誤差
-$$
-\sqrt{\frac{\widehat p(1-\widehat p)}N}
-$$
-を付ける。誤差棒と離散化biasを分けなければならない。
+仕様:
 
-::: {.callout-important title="STATUS: Numerical evidence"}
-simulationは式の符号、係数、予想を検査する。有限stepの一致はtrace存在、幾何相、格子模型収束の証明にならない。
-:::
+| 項目 | 内容 |
+|---|---|
+| algorithm | backward Loewner または slit-map composition |
+| input | $\kappa$、時間刻み $\Delta t$、乱数 seed |
+| output | trace 近似、駆動関数グラフ、容量時間 |
+| validation | $\kappa=0$ で縦スリットに戻ること、刻みを半分にして形が安定すること |
+| warning | forward / backward の違いを図に明記する |
 
-::: {.callout-warning title="STATUS: Limitation"}
-本付録で証明していないのは数値schemeの一様収束率である。Brown駆動の粗さにより、滑らかなODEと同じ誤差次数を仮定しない。
-:::
+## $\kappa=2,4,6,8$ 比較
 
-[第4章](../chapters/04-loewner-equation.qmd) | [第10章](../chapters/10-left-passage.qmd)
+目的: 幾何相の違いを視覚化する。
+
+仕様:
+
+| $\kappa$ | 見る点 |
+|---|---|
+| 2 | 単純曲線に見えること |
+| 4 | 境界飲み込み閾値に近いこと |
+| 6 | 自己接触と hull の飲み込み |
+| 8 | 空間充填的な挙動 |
+
+図の caption には、これは数値的証拠であり、相の定理の証明ではないことを書く。
+
+## Bessel 境界到達実験
+
+目的: $X_t=g_t(x)-U_t$ の 0 到達が $\kappa=4$ を境に変わることを観察する。
+
+仕様:
+
+| 項目 | 内容 |
+|---|---|
+| SDE | $dX_t=2X_t^{-1}dt-\sqrt{\kappa}dB_t$ |
+| stopping | $X_t\le\epsilon$ または $X_t\ge R$ |
+| output | 到達確率の推定、sample path |
+| validation | $\kappa\le4$ と $\kappa>4$ の差を見る |
+| warning | Euler 離散化は 0 近傍で不安定なので停止を明記する |
+
+## ループ消去アニメーション仕様
+
+目的: ランダムウォークから LERW が時間順に作られることを示す。
+
+仕様:
+
+| 項目 | 内容 |
+|---|---|
+| input | 格子領域、始点、終点、seed |
+| process | ランダムウォークを生成し、ループができるたびにその区間を削除 |
+| output | 元の walk、消された loop、残る path |
+| validation | 残った path が自己交差しないこと |
 

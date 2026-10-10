@@ -1,62 +1,43 @@
 ---
-title: "付録A　確率解析の最小装備"
-description: "filtration、Brown運動、二次変分、Itô公式、停止時刻をSLEの式に即して補う"
+title: "付録A Brown 運動と連続なレヴィ過程"
 sidebar: sle-critical-phenomena
 ---
-<!-- contract: authoring/contracts/a-probability.json -->
 
-# 過去を数式にする
+# 付録A Brown 運動と連続なレヴィ過程 {.appendix}
 
-確率空間 $(\Omega,\mathcal F,\mathbb P)$ 上のfiltration $(\mathcal F_t)_{t\ge0}$ は、時刻とともに増える情報である。SLEでは $\mathcal F_t$ を駆動Brown運動、または同値な初期hullから生成する。random variable $X_t$ が $\mathcal F_t$-可測であるとき、時刻 $t$ までの観測だけで値を決められる。
+## Brown 運動の最小限の性質
 
-条件付き期待値は
-$$
-\int_A\mathbb E[X\mid\mathcal G]\,d\mathbb P
-=\int_A X\,d\mathbb P,\qquad A\in\mathcal G
-$$
-で特徴付けられる。$M_t=\mathbb E[X\mid\mathcal F_t]$ と置けばtower propertyによりmartingaleになる。第9章で通過事象の確率が保存量になる根拠はこれである。
+本教材で使う Brown 運動 $B_t$ は、次の性質を持つ実数値確率過程である。
 
-::: {.callout-note title="STATUS: Definition"}
-stopping time $\tau$ は $\{\tau\le t\}\in\mathcal F_t$ を満たすrandom timeである。「点が半径$\varepsilon$へ初めて入る時刻」は未来を見ずに判定できるのでstopping timeになる。
-:::
+1. $B_0=0$。
+2. $B_t$ は連続な軌道を持つ。
+3. $B_t-B_s$ は過去 $\mathcal F_s$ と独立である。
+4. $B_t-B_s$ の分布は時刻差 $t-s$ だけで決まる。
+5. $B_t-B_s$ は平均 0、分散 $t-s$ の正規分布に従う。
 
-# Brown運動と二次変分
+SLE で本当に必要なのは、Brown 運動が「有名なランダム関数」だからではない。連続な定常独立増分過程を分類すると、drift 付き Brown 運動しか残らない、という構造である。
 
-partition $\Pi=\{0=t_0<\cdots<t_n=t\}$ に沿う増分和は
-$$
-\sum_i(B_{t_{i+1}}-B_{t_i})^2.
-$$
-各項の期待値は $t_{i+1}-t_i$ なので和の期待値は $t$。meshを0へ送ると確率収束で $t$ へ行き、$d\langle B\rangle_t=dt$ と書く。一方、一次増分和は符号が相殺され、絶対変分は発散する。通常の微分では二次の項を捨てるが、Brown運動では
-$$
-(dB_t)^2=dt
-$$
-がorder $dt$ として残る。
+## 連続なレヴィ過程の分類をどう使うか
 
-$X_t$ が
-$$
-dX_t=b_tdt+\sigma_tdB_t
-$$
-を満たすとき、Taylor展開をpartitionごとに足して極限を取ると
-$$
-df(X_t)=f'(X_t)dX_t+\frac12f''(X_t)\sigma_t^2dt
-$$
-を得る。これがItô公式である。多変数では共分散行列に対応する二階微分が加わる。
+レヴィ過程（Lévy process）は定常独立増分を持つ過程であるが、一般にはジャンプを含むことがある。Poisson 過程がその典型である。SLE の駆動関数にジャンプがあると、先端像が実軸上で不連続に飛ぶ。格子界面の連続極限として扱う曲線とは合わない。
 
-::: {.callout-important title="STATUS: Derivation"}
-Itô補正は記憶すべき人工的な項ではない。Brown増分が$\sqrt{dt}$の大きさなので、Taylor展開の二次項が$dt$の大きさで残ることから生じる。
-:::
-
-# optional stoppingを安全に使う
-
-bounded stopping time $\tau$ と一様可積分なmartingaleなら
+連続性を仮定すると、Lévy-Khinchine 表現のジャンプ測度は消える。残るのは drift と Gaussian 成分である。したがって
 $$
-\mathbb E[M_\tau]=\mathbb E[M_0].
+  U_t=bt+\sigma B_t
 $$
-SLEでは特異点へ近づくため、まず $\tau_{\varepsilon,R}$ でcompact区間へ止める。そこでboundednessを確保し、$\varepsilon\downarrow0$, $R\uparrow\infty$ の順に極限を正当化する。局所martingaleというだけで期待値保存を宣言すると、strict local martingaleで破綻する。
+となる。さらに容量時間のスケーリング
+$$
+  (r^{-1}U_{r^2t})_{t\ge0}\stackrel{d}{=}(U_t)_{t\ge0}
+$$
+を課すと $b=0$ でなければならない。ここで初めて
+$$
+  U_t=\sqrt{\kappa}B_t
+$$
+が出る。
 
-::: {.callout-warning title="STATUS: Limitation"}
-本付録で証明していないのはItô積分の$L^2$構成とoptional stoppingの最一般形である。本文の計算に必要な停止・有界化・極限の順序だけを固定した。
-:::
+## なぜ正規分布が出るか
 
-[第5章](../chapters/05-schramm-principle.qmd) | [第9章](../chapters/09-martingales.qmd)
+直感的には、定常独立増分は「小さな時間区間の独立な寄与を足す」構造である。連続性により、一つの小区間で大きなジャンプをすることはない。多数の小さな独立寄与の和の極限は中心極限定理により正規分布になる。この直観が、連続なレヴィ過程の Gaussian 成分に対応する。
+
+この説明は完全証明ではないが、SLE の分類原理で Brown 運動が現れる理由を理解するには十分である。Brown 運動は選ばれたのではなく、仮定の組み合わせによって残された。
 

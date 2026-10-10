@@ -14,14 +14,13 @@
     .fillred{fill:#fde2df;stroke:#d24b40;stroke-width:2}
   </style>
   
-  <text x="40" y="55" class="title">左側通過確率</text>
-  <defs>
-    <linearGradient id="heat" x1="0" x2="1"><stop offset="0" stop-color="#1f6feb"/><stop offset="0.5" stop-color="#fef3c7"/><stop offset="1" stop-color="#d24b40"/></linearGradient>
-  </defs>
-  <rect x="90" y="90" width="600" height="260" fill="url(#heat)" stroke="#111827" stroke-width="2"/>
-  <path d="M390 350 C360 285 425 250 380 200 C340 155 410 125 390 90" stroke="#111827" stroke-width="4" fill="none"/>
-  <text x="110" y="385" class="label">確率は 1 に近い</text>
-  <text x="540" y="385" class="label">確率は 0 に近い</text>
-  <text x="720" y="210" class="small">u=x/y</text>
+  <text x="40" y="55" class="title">Bessel 型距離と境界飲み込み</text>
+  <line x1="70" y1="360" x2="820" y2="360" class="axis"/>
+  <line x1="90" y1="390" x2="90" y2="90" class="axis"/>
+  <text x="95" y="110" class="small">X_t</text><text x="805" y="385" class="small">t</text>
+  <path d="M95 165 C180 150 255 140 340 155 C430 172 545 155 760 145" class="green"/>
+  <path d="M95 180 C170 220 235 260 330 285 C430 313 500 352 570 360" class="red"/>
+  <text x="600" y="145" class="label">kappa &lt;= 4: 0 に届かない</text>
+  <text x="585" y="330" class="label">kappa &gt; 4: 0 に届く</text>
 
 </svg>

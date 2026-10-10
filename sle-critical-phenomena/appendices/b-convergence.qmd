@@ -1,47 +1,50 @@
 ---
-title: "付録B　弱収束と等角領域収束"
-description: "曲線法則のtightness、Carathéodory収束、prime endの役割を補う"
+title: "付録B 伊藤計算と停止時刻"
 sidebar: sle-critical-phenomena
 ---
-<!-- contract: authoring/contracts/b-convergence.json -->
 
-# 法則が収束するとは
+# 付録B 伊藤計算と停止時刻 {.appendix}
 
-metric space $(S,d)$ 上の確率測度 $\mu_n$ が $\mu$ へ弱収束するとは、全てのbounded continuous $f:S\to\mathbb R$ について
+## 伊藤公式の使い方
+
+SLE 計算では、確率過程
 $$
-\int f\,d\mu_n\longrightarrow\int f\,d\mu
+  dX_t=a(X_t,Y_t)\,dt+\sqrt{\kappa}\,dB_t,\qquad
+  dY_t=b(X_t,Y_t)\,dt
 $$
-となることである。curve topologyを変えればcontinuous test functionも変わるため、「曲線が収束する」だけでは命題が完成しない。
-
-法則族 $(\mu_n)$ がtightとは、任意の $\varepsilon>0$ に対してcompact $K_\varepsilon\subset S$ があり
+に対して $f(X_t,Y_t)$ を考える。伊藤公式は
 $$
-\sup_n\mu_n(S\setminus K_\varepsilon)<\varepsilon
+  df=f_x\,dX_t+f_y\,dY_t+\frac12 f_{xx}(dX_t)^2
 $$
-となることをいう。Polish spaceではtightnessから弱収束部分列を取れる。これは極限の存在を与えるが、極限が一意とはまだ言えない。
+を与える。ここで $(dB_t)^2=dt$、$dt\,dB_t=0$、$(dt)^2=0$ と計算する。
 
-::: {.callout-note title="STATUS: Definition"}
-再パラメータ化曲線、増大hull、駆動関数は異なるmetric spaceに属する。tightnessは対象ごとに証明し、写像の連続性で移す。
-:::
+この規則により、生成作用素
+$$
+  \mathcal L
+  =
+  \frac{\kappa}{2}\partial_x^2
+  +a(x,y)\partial_x
+  +b(x,y)\partial_y
+$$
+が出る。関数 $f$ が $\mathcal L f=0$ を満たせば、$f(X_t,Y_t)$ の drift は消え、局所マルチンゲールになる。
 
-# 領域の収束を基点から見る
+## 局所マルチンゲールから真のマルチンゲールへ
 
-単連結領域 $D_n$ と共通基点 $z_0$ を考える。$D_n$ がCarathéodory kernelの意味で $D$ へ収束するとは、$z_0$ を含む任意のcompact $K\subset D$ が十分大きい$n$で $D_n$ に入り、$D$より大きな領域がこの性質を持たないことをいう。
+局所マルチンゲールは、停止時刻で止めた範囲ではマルチンゲールである。真のマルチンゲールとして期待値保存を使うには、停止時刻を外す極限で一様可積分性などの条件を確認する必要がある。
 
-正規化Riemann写像 $f_n:\mathbb D\to D_n$ がcompact上で $f$ へ収束することとkernel収束は対応する。ただし境界点のEuclid収束は自動でない。細いfjordの先にある境界は内部から不安定に見えるためである。
+この教材で停止時刻を何度も入れる理由は、計算を厳密にするためである。たとえば $X_t$ が 0 に近づくと $2/X_t$ が発散する。無限遠へ逃げる場合も境界条件が壊れる。そこで
+$$
+  \tau_{\epsilon,R}=\inf\{t:X_t\le\epsilon\text{ or }X_t\ge R\}
+$$
+で止め、区間 $[\epsilon,R]$ の内部で安全に計算し、最後に $\epsilon\downarrow0$、$R\uparrow\infty$ を取る。
 
-prime endは境界への接近方法を同値類として記録する。chordal settingの始点・終点をprime endとして指定すれば、境界が滑らかでない場合も等角写像の下で端点を追える。
+## よくある誤り
 
-::: {.callout-important title="STATUS: Proposition"}
-kernel収束は内部compact上の等角写像収束を制御するが、traceの訪問順序までは制御しない。crossing estimateが境界の病的な往復を排除して初めてcurve convergenceへ戻れる。
-:::
+PDE を解いた時点で確率公式が証明された、と考えるのは誤りである。必要なのは次である。
 
-# 部分列から全列へ
-
-tightnessにより任意の部分列からさらに収束部分列を取れるとする。全ての極限点が同じ法則 $\mu$ なら元の列全体が $\mu$ へ収束する。もし全列収束しなければ、$\mu$ の近傍から離れる部分列があり、そこから取った収束部分列の極限は $\mu$ でないため矛盾する。
-
-::: {.callout-warning title="STATUS: Limitation"}
-本付録で証明していないのはProkhorov定理とCarathéodory kernel theoremの一般形である。第12章で必要な入力と出力を示した。
-:::
-
-[第2章](../chapters/02-curve-space.qmd) | [第12章](../chapters/12-convergence-blueprint.qmd)
+1. 対象の事象を明確にする。
+2. その条件付き確率がどの状態変数の関数になるかを示す。
+3. その関数が生成作用素の方程式を満たすことを示す。
+4. 境界条件を事象の意味から確認する。
+5. 停止と極限により、局所マルチンゲールから真の確率公式へ戻す。
 
