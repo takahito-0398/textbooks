@@ -10,7 +10,7 @@ description: "Hodge star・臨界スケール・交点形式が4次元で一致�
 向き付けられたRiemannian $n$ 多様体では、Hodge starは $p$ 形式を $(n-p)$ 形式へ送る。曲率は2形式なので、$*F_A$ を再び曲率と同じ型として比較できるのは $n=4$ のときである。Riemannian 4次元では $*^2=1$ が成り立ち、
 
 $$
-\Lambda^2=\Lambda^2_+\oplus\Lambda^2_-,\qquad
+\Lambda^2=\Lambda^2_+\oplus\Lambda^2_-,\quad
 \omega^\pm=\frac12(\omega\pm *\omega)
 $$
 
@@ -25,6 +25,56 @@ $$
 したがって $\Lambda^2_+$ と $\Lambda^2_-$ はそれぞれ3次元である。
 
 ![2形式の6次元空間がHodge starの固有値により3次元ずつへ分かれる。](../assets/figures/hodge-split.svg){#fig-hodge-split fig-alt="4次元の2形式が自己双対部分と反自己双対部分へ3次元ずつ分かれる図"}
+
+# 符号を一つ確認する
+
+$*e^{13}=-e^{24}$ の負号は、向きの規約から強制される。Hodge starは
+
+$$
+\alpha\wedge *\alpha=|\alpha|^2d\mathrm{vol}
+$$
+
+を満たすように定義される。ところが
+
+$$
+e^{13}\wedge e^{24}
+=e^1\wedge e^3\wedge e^2\wedge e^4
+=-e^{1234}.
+$$
+
+したがって $*e^{13}=e^{24}$ では符号が合わない。$*e^{13}=-e^{24}$ として初めて
+
+$$
+e^{13}\wedge(-e^{24})=e^{1234}
+$$
+
+となる。この小さな符号確認は、後の自己双対基底の符号、さらにcharge規約へつながる。
+
+# 自己双対基底を実際に作る
+
+上の計算から、自己双対2形式の基底は例えば
+
+$$
+\omega_1^+=e^{12}+e^{34},\quad
+\omega_2^+=e^{13}-e^{24},\quad
+\omega_3^+=e^{14}+e^{23}
+$$
+
+である。反自己双対基底は符号を反対にして
+
+$$
+\omega_1^-=e^{12}-e^{34},\quad
+\omega_2^-=e^{13}+e^{24},\quad
+\omega_3^-=e^{14}-e^{23}.
+$$
+
+例えば
+
+$$
+*(e^{13}-e^{24})=-e^{24}+e^{13}=e^{13}-e^{24}
+$$
+
+なので $\omega_2^+$ は自己双対である。ここで符号が一つでもずれると、ASD方程式の向き規約までずれる。4次元ゲージ理論では、こうした線形代数の符号が後の位相数に直結する。
 
 # wedge積の符号を読む
 
@@ -43,6 +93,41 @@ $$
 
 同じ二成分が「差では位相的な積」「和では解析的なノルム」を与える。これが次章のenergy identityの線形代数的核心である。
 
+この式を一行で済ませず確認する。自己双対なら $*\omega^+=\omega^+$、反自己双対なら $*\omega^-=-\omega^-$ なので
+
+$$
+\omega^+\wedge\omega^+
+=\omega^+\wedge *\omega^+
+=|\omega^+|^2d\mathrm{vol},
+$$
+
+一方
+
+$$
+\omega^-\wedge\omega^-
+=-\omega^-\wedge *\omega^-
+=-|\omega^-|^2d\mathrm{vol}.
+$$
+
+また $\omega^+$ と $\omega^-$ は直交しているので交差項は消える。したがってwedge squareは差になり、norm squareは和になる。この「和と差」が、energyとchargeを同時に扱える理由である。
+
+# 交差項はなぜ消えるか
+
+$\omega^+\wedge\omega^-$ が消える理由も確認しておく。自己双対性と反自己双対性から
+
+$$
+\omega^+\wedge\omega^-
+=\omega^+\wedge(-*\omega^-).
+$$
+
+右辺は内積で書けば
+
+$$
+-\langle \omega^+,\omega^-\rangle d\mathrm{vol}
+$$
+
+である。$\Lambda^2_+$ と $\Lambda^2_-$ はHodge starの異なる固有値の固有空間なので直交し、内積は0になる。したがってcross termは消える。ここで使っているのは、2形式のwedge積とHodge内積が4次元で同じ体積形式に落ちるという事実である。
+
 # conformal invarianceという第二の一致
 
 計量を $g'=e^{2f}g$ と変えると、$p$ 形式上のHodge starは $*_{g'}=e^{(n-2p)f}*_g$ と変わる。$n=4,p=2$ では指数が0となり、$\Lambda^2_\pm$ の分解はconformal classだけに依存する。
@@ -56,6 +141,24 @@ $$
 
 $n=4$ でのみenergyがscale invariantになる。この臨界性は美点だけではない。解列が小さなscaleへenergyを集中させても全energyを失わず、bubblingを起こせることを意味する。
 
+# なぜ3次元や5次元では同じ話にならないか
+
+3次元では曲率は2形式で、Hodge starは1形式へ送る。$F_A=\pm *F_A$ のような同じ型の一次方程式は書けない。5次元では $*F_A$ は3形式であり、やはり曲率と直接比較できない。
+
+もちろん他次元にも重要なゲージ理論はある。しかし本書の筋道、すなわち
+
+$$
+\text{曲率2形式}
+\longrightarrow
+\Lambda^2_+\oplus\Lambda^2_-
+\longrightarrow
+\text{一次方程式}
+\longrightarrow
+\text{4多様体の交点形式}
+$$
+
+という連鎖は4次元に固有である。ここで初めて、解析方程式と中間次元の位相形式が同じ舞台に乗る。
+
 # 三つの4次元性
 
 ここまでに三つの一致が見えた。
@@ -65,4 +168,3 @@ $n=4$ でのみenergyがscale invariantになる。この臨界性は美点だ�
 - $L^2$ 曲率energyがscale invariantになる。
 
 これらは別々の偶然ではない。Chern--Weil積分が曲率の二次式であり、4形式として $X$ 上で積分されるため、代数・解析・位相が同じ次数に集まる。次章ではこの一致を一つの等式へまとめ、ASD方程式を「思いつき」でなくenergy最小化から導く。
-

@@ -12,23 +12,23 @@ format:
 
 > 楕円型ゲージ方程式の解空間は、なぜ4次元多様体の滑らかな構造を検出できるのか。
 
-答えは「Donaldson不変量やSeiberg--Witten不変量を定義できるから」では終わらない。本書は、intersection formという位相的入力が、4次元のHodge分解、Yang--Mills energy、gauge quotient、楕円型変形複体、index、regularity、compactification、符号付きcountを経てsmooth invariantへ変わるまでを一段ずつ組み立てる。
+答えは「Donaldson不変量やSeiberg--Witten不変量を定義できるから」では終わらない。本書は、交点形式という位相的入力が、4次元のHodge分解、Yang--Millsエネルギー、ゲージ商、楕円型変形複体、指数、正則性、コンパクト化、符号付き数え上げを経て滑らかな不変量へ変わるまでを一段ずつ組み立てる。
 
 [第1章から読む](chapters/01-smooth-structures.qmd){.btn .btn-primary}
 [統合PDFをダウンロード](assets/gauge-theory-smooth-topology.pdf){.btn .btn-secondary download="gauge-theory-smooth-topology.pdf"}
 
 ## 構成
 
-- **Part I　分類問題の衝突**: smooth structure、intersection form、FreedmanとDonaldson。
-- **Part II　4次元の方程式**: connection、curvature、Hodge分解、ASD方程式。
-- **Part III　moduli spaceの局所構造**: gauge slice、変形複体、index、transversality。
-- **Part IV　compactificationとDonaldson理論**: bubbling、不変量生成、二つの出力、exotic性。
+- **Part I　分類問題の衝突**: 滑らかな構造、交点形式、FreedmanとDonaldson。
+- **Part II　4次元の方程式**: 接続、曲率、Hodge分解、ASD方程式。
+- **Part III　モジュライ空間の局所構造**: ゲージslice、変形複体、指数、横断性。
+- **Part IV　コンパクト化とDonaldson理論**: bubbling、不変量生成、二つの出力、exotic性。
 - **Part V　Seiberg--Witten理論**: spinor、連成方程式、Donaldson理論との比較。
-- **Part VI　幾何への帰還**: Kähler・symplectic 4-manifold、Taubes、adjunction inequality。
+- **Part VI　幾何への帰還**: Kähler・symplectic 4多様体、Taubes、随伴不等式。
 
 ## 読み方
 
-微分幾何、de Rham cohomology、vector bundle、Hodge理論の基礎を仮定する。関数解析で必要な部分は付録Aにまとめた。本文中の深い結果は、完全証明、本質的証明、証明アーキテクチャ、Black Boxの四段階を区別し、Black Boxでも入力・出力・難所・用途を明示する。
+微分幾何、de Rhamコホモロジー、ベクトル束、Hodge理論の基礎を仮定する。関数解析で必要な部分は付録Aにまとめた。本文中の深い結果は、完全証明、本質的証明、証明の骨格、引用定理の四段階を区別し、引用定理でも仮定・結論・難所・用途を明示する。
 
 式の規約は全章で固定する。特に $F_A^+=0$ をASD、$\mathrm{YM}(A)=\|F_A\|_{L^2}^2$ と呼び、向き反転時にはself-dualとanti-self-dualを交換する。
 
@@ -38,8 +38,7 @@ format:
 
 1. なぜ4次元で曲率2形式・交点形式・臨界scaleが重なるか。
 2. 方程式の本数ではなく楕円複体がmoduliを有限次元化する理由。
-3. indexと実際の次元、局所smoothnessとcompactnessの違い。
+3. 指数と実際の次元、局所的な滑らかさとコンパクト性の違い。
 4. Freedman分類、Donaldson対角化、多項式不変量、exotic pairの論理的役割。
 5. Seiberg--Witten理論がDonaldson理論と共有する機械と異なる解析。
-6. gauge invariantがsymplectic曲線・最小genus・scalar curvatureへ制約を返す仕組み。
-
+6. ゲージ不変量がsymplectic曲線・最小genus・スカラー曲率へ制約を返す仕組み。

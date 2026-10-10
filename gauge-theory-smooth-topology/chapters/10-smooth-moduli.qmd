@@ -10,7 +10,7 @@ description: "Kuranishi模型・regularity・transversalityからmoduliの局所
 ASD接続 $A$ のCoulomb slice上で
 
 $$
-\Phi(a)=d_A^+a+(a\wedge a)^+=0,qquad d_A^*a=0
+\Phi(a)=d_A^+a+(a\wedge a)^+=0,\quad d_A^*a=0
 $$
 
 を解く。$D\Phi_0=d_A^+$ であり、$H_A^2=0$ なら線形化はsliceから $\Omega^2_+$ へ全射である。Banach空間版implicit function theoremにより、$0$ の近くの解集合は $H_A^1$ を接空間とするsmooth manifoldになる。irreducibilityで $H_A^0=0$ も満たせば、商の局所次元はindexに等しい。
@@ -18,8 +18,8 @@ $$
 $H_A^2$ が消えない場合も構造は失われ切らない。Green作用素を使って無限次元方向を解消すると、有限次元写像
 
 $$
-\kappa:H_A^1\longrightarrow H_A^2,qquad
-\kappa(0)=0,quad d\kappa_0=0
+\kappa:H_A^1\longrightarrow H_A^2,\quad
+\kappa(0)=0,\quad d\kappa_0=0
 $$
 
 の零点として局所moduliを表せる。これがKuranishi模型である。obstruction spaceという名前は、$H_A^2$ が非零だと変形が二次以上で妨げられることを正確に表す。
@@ -35,7 +35,7 @@ $$
 を取る。$H_A^2$ に垂直な方向では、線形化 $d_A^+$ が右逆を持つ。そこで $a$ を
 
 $$
-a=h+\eta(h),\qquad h\in H_A^1
+a=h+\eta(h),\quad h\in H_A^1
 $$
 
 の形で探し、$H_A^2$ に垂直な成分
@@ -53,6 +53,26 @@ $$
 である。これがKuranishi mapで、局所moduliは $\kappa^{-1}(0)$ にstabilizer作用を割ったものとして表される。
 
 $d\kappa_0=0$ であることも重要である。一次の障害はすでに $H_A^1$ の定義で消してあるので、obstructionは二次以上で現れる。これが「一次変形は存在するのに、本当の曲線として伸びない」現象の数学的な場所である。
+
+# 有限次元模型：二次の障害
+
+Kuranishi mapの意味は、有限次元の方程式
+
+$$
+f(x,y)=y^2-x^3=0
+$$
+
+を原点近くで見ると分かる。線形化 $df_0$ は0なので、一次近似は何も制限しない。全ての方向が一次変形に見える。しかし実際の零点集合は平面全体ではなく、cuspを持つ曲線である。
+
+もっとmoduli的に書けば、一次変形空間を $H^1=\mathbb R^2$、obstruction空間を $H^2=\mathbb R$ と見て、Kuranishi map
+
+$$
+\kappa(x,y)=y^2-x^3
+$$
+
+の零点を取っている。$d\kappa_0=0$ でも、$\kappa$ そのものが0とは限らない。ASD moduliでも、$H_A^1$ の元が全て実際の解へ伸びるわけではなく、二次以上の方程式が残る。
+
+この模型は、$H_A^2=0$ の仮定がなぜ強いかを示している。値域が消えれば、残るKuranishi方程式そのものが消え、局所moduliは本当に $H_A^1$ によって滑らかに記述される。
 
 # generic metricは何を動かすのか
 
@@ -85,6 +105,8 @@ transversalityは、線形化が全射になるように補助データを選ぶ
 | 大域閉性 | 解列の逃走 | Uhlenbeck compactness |
 | 数え上げ | 符号と境界 | determinant line、cobordism |
 
+この表は実制作上のチェックリストでもある。ある章で「genericにmoduliが滑らか」と言えても、それはcompactnessやorientationを自動的に含まない。逆に、compactificationの定理を引用しても、regularityがなければ境界付き多様体として数えることはできない。Donaldson理論の証明が長くなるのは、これらを一つずつ別の定理で閉じる必要があるからである。
+
 # Sobolev解からsmooth解へ
 
 Banach多様体を作るため接続を $L_k^2$ で完備化したが、最終的なmoduliはsmooth接続で解釈したい。Coulomb gaugeでASD方程式は楕円型系となる。右辺のquadratic termをSobolev乗法で一段ずつ改善し、elliptic bootstrappingを反復すれば、弱解はgauge変換後にsmoothになる。従って完備化は解析の道具であり、新しい粗い解を不変量へ混入させるものではない。
@@ -94,7 +116,7 @@ Banach多様体を作るため接続を $L_k^2$ で完備化したが、最終�
 局所Coulomb gaugeで $A=A_0+a$ と書くと、ASD方程式とgauge条件は概略
 
 $$
-d_{A_0}^+a=-(a\wedge a)^+,\qquad d_{A_0}^*a=\text{lower terms}
+d_{A_0}^+a=-(a\wedge a)^+,\quad d_{A_0}^*a=\text{lower terms}
 $$
 
 という楕円系になる。$a\in L^2_k$ で $k>2$ なら、Sobolev乗法により右辺は一つ低い空間で制御できる。楕円正則性は

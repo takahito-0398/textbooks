@@ -12,7 +12,7 @@ description: "smoothability obstructionとexotic pairを別の証明課題とし
 exotic smooth structuresの主張は別である。smooth manifold $X_0,X_1$ に対し
 
 $$
-X_0\cong_{\mathrm{homeo}}X_1,qquad
+X_0\cong_{\mathrm{homeo}}X_1,\quad
 X_0\not\cong_{\mathrm{diff}}X_1
 $$
 
@@ -21,6 +21,29 @@ $$
 ::: {.callout-warning title="非平滑化可能性はexotic pairではない"}
 topological manifoldが一つもsmooth structureを持たないことと、一つのtopological manifoldが互いに非同値な複数のsmooth structureを持つことは論理的に別である。前者だけから後者は従わない。
 :::
+
+この区別は、4次元特有の議論で特に重要である。Freedman理論はtopological categoryで非常に多くの4多様体を作る。一方Donaldson理論はsmooth categoryで許されるものを強く制限する。両者の差からただちに「exotic pair」が出るように見えるが、論理は一段違う。
+
+非平滑化可能性では、証明すべき文は
+
+```text
+あるtopological manifold X は存在する。
+もし X がsmoothならDonaldson定理に反する。
+従って X はsmoothでない。
+```
+
+である。ここには二つのsmooth structureの比較はない。比較対象は「smooth構造がある」という仮定そのものである。
+
+exotic pairでは、証明すべき文は
+
+```text
+X_0 と X_1 はどちらもsmooth manifoldである。
+X_0 と X_1 はhomeomorphicである。
+しかし smooth invariant が異なる。
+従って X_0 と X_1 はdiffeomorphicでない。
+```
+
+である。ここでは、存在、同相、非微分同相を別々に証明しなければならない。
 
 # 照合の手順
 
@@ -34,6 +57,75 @@ $$
 
 連結和は有用だが危険でもある。intersection formは直和になる一方、多くのゲージ不変量は $b_2^+>0$ の二つの多様体の連結和で消える。従って位相的構成がsmooth情報を見えなくすることがある。どの操作の下で不変量がどう振る舞うかを併記する必要がある。
 
+照合を表にすると、必要な証明の役割が見える。
+
+| 目的 | 使う情報 | 失敗すると何が言えないか |
+|---|---|---|
+| topological存在 | Freedman分類、handle構成 | 比較対象の位相空間が存在しない |
+| homeomorphism | intersection form、Kirby--Siebenmann invariant、向き | 同じ位相空間上のsmooth構造とは言えない |
+| smooth構造の存在 | 明示的構成、代数曲面、handlebody | exotic pairではなく非平滑化可能性になる |
+| non-diffeomorphism | Donaldson/SW不変量、対角化定理 | smooth構造の違いを検出できない |
+
+「intersection formが同じだからhomeomorphic」と言うには、Freedman分類の仮定を満たしているかを確認する必要がある。特に単連結性、閉性、向き、Kirby--Siebenmann invariantの扱いを落としてはいけない。逆に、「Donaldson不変量が違うからhomeomorphicでない」と言うのも誤りである。Donaldson不変量はdiffeomorphism不変量であって、topological invariantではない。
+
+# 例の読み方：$E_8$ とexotic pair
+
+$E_8$ 型の例を思い出す。Freedman理論により、対応するtopological 4-manifoldは存在する。しかし $E_8$ 格子はdefiniteかつ非対角である。もしこの多様体がsmoothで単連結なら、Donaldson対角化定理によりintersection formは整数上で対角化されるはずであり、矛盾する。したがってこれは「smooth構造が存在しない」例である。ここでは $X_0$ と $X_1$ を比較していない。
+
+一方、exotic pairを示すときは、たとえば同じintersection formと同じKirby--Siebenmann dataを持つ二つのsmooth多様体を用意し、Freedman分類でhomeomorphicと判断する。その後、Donaldson polynomialやSeiberg--Witten invariantを比較する。値が違えば、diffeomorphismが存在すると仮定したときの不変量性に反する。実例の構成ではhandlebodyやKirby calculusが重要な役割を持つ。[@donaldson1987; @gompfStipsicz1999]
+
+この二段階の構造が、4次元の面白さである。位相分類が粗すぎるからsmooth構造の違いが残り、smooth不変量が細かすぎるからその違いを検出できる。
+
+# なぜ同じintersection formでも十分でないのか
+
+第2章ではintersection formが中心的な道具だった。しかし、ここまで来るとその限界も明確になる。intersection formは強力なtopological dataだが、smooth構造を完全には記録しない。
+
+同じtopological manifold上に複数のsmooth構造があるなら、当然それらのintersection formは同じである。したがって、intersection formだけを見ている限り、その複数性は見えない。Donaldson polynomialやSeiberg--Witten invariantは、この「同じ交点形式の下に残る差」を測るために導入される。
+
+これは第13章の二出力の違いとも対応する。対角化定理は「許されない交点形式」を排除する。多項式不変量やSW不変量は「交点形式では区別できないsmooth構造」を区別する。
+
+# 照合例：何をどの段階で使うか
+
+抽象的な手順だけでは、Freedman側とDonaldson/SW側の役割が混ざりやすい。そこで、実在の有名例を完全計算する代わりに、証明文の形を模型として書く。
+
+まずtopological側で、二つの候補 $X_0,X_1$ について
+
+$$
+Q_{X_0}\cong Q_{X_1},\quad
+\operatorname{ks}(X_0)=\operatorname{ks}(X_1)
+$$
+
+を確認し、単連結・閉・向き付きというFreedman分類の仮定も確認する。ここで $\operatorname{ks}$ はKirby--Siebenmann invariantである。この段階で得る結論は
+
+$$
+X_0\cong_{\mathrm{homeo}}X_1
+$$
+
+であり、smooth構造についてはまだ何も言っていない。
+
+次にsmooth側で、たとえば
+
+$$
+SW_{X_0}(\mathfrak s)\ne0,\quad
+SW_{X_1}(\mathfrak s')=0
+$$
+
+またはDonaldson polynomialの値の相違を示す。もしdiffeomorphism $f:X_0\to X_1$ があれば、不変量は $f$ によるhomologyやSpin-c構造の対応の下で一致しなければならない。従って、対応をすべて考えても値が一致しないなら
+
+$$
+X_0\not\cong_{\mathrm{diff}}X_1
+$$
+
+が従う。
+
+この模型で重要なのは、第一段階と第二段階が独立した証明課題である点である。Freedman分類だけではdiffeomorphismを否定できない。Donaldson/SW不変量だけではhomeomorphismを保証できない。exotic smooth structureは、この二つを同時に満たしたとき初めて得られる。
+
+# 操作で不変量が消える危険
+
+候補を作るとき、connected sumやblow-upは自然な操作である。しかし、操作は不変量にも作用する。例えばSW不変量は、$b_2^+>0$ の多様体同士のconnected sumで消える典型的な振る舞いを持つ。Donaldson不変量にも、blow-up formulaやconnected sumに関する規則がある。
+
+したがって、候補をtopologicallyに作る操作と、smooth invariantを残す操作は同時に管理しなければならない。位相分類に都合のよい操作が、smooth情報を消してしまうことがある。この点が、実際のexotic pair構成を難しくし、同時に面白くしている。
+
 # $\mathbb R^4$ のexotic性が示す境界
 
 compact単連結4多様体の議論とは別に、$\mathbb R^4$ には標準とはdiffeomorphicでないsmooth structureが存在する。intersection formは自明なので、compact多様体用の形式だけでは検出できない。無限遠の構造と埋め込みが本質になり、閉多様体のDonaldson不変量をそのまま適用する話ではない。
@@ -45,4 +137,3 @@ compact単連結4多様体の議論とは別に、$\mathbb R^4$ には標準と�
 Donaldson理論は強力だが、非可換gauge群、reducible、Uhlenbeck compactification、$\mu$-mapの計算が重い。1994年に現れたSeiberg--Witten方程式は、可換接続とspinorを連成させ、しばしばcompactnessと計算を大幅に扱いやすくした。しかし「可換だから線形」というわけではない。
 
 次章では、spinorがどこから来るかをDirac作用素の型から導く。新理論を結果一覧として追加するのではなく、ASD機械のどの難所を別の未知量で組み替えるのかを見る。
-

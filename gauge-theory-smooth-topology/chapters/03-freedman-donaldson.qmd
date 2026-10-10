@@ -9,7 +9,7 @@ description: "topological分類とsmooth制約の差からゲージ理論の必�
 
 前章で得たintersection formはhomeomorphismでもdiffeomorphismでも保存される。しかし、どの形式が実現可能かは圏によって異なる。ここで一度、結論の強さを混ぜずに分ける。
 
-::: {.callout-important title="Freedman分類（本教材ではBlack Box、深度D）"}
+::: {.callout-important title="Freedman分類（本教材では引用定理、深度D）"}
 閉・単連結・位相的4多様体の分類は、unimodular intersection formに加えてKirby--Siebenmann dataを用いて記述される。特に所定のunimodular formを持つ位相的4多様体の存在が広く得られる。証明の核心はCasson handleとdisk embeddingであり、本教材では入力・出力・smooth categoryとの境界を固定して引用する。[@freedman1982]
 :::
 
@@ -23,6 +23,33 @@ $X$ を閉・滑らか・向き付き・単連結4多様体とし、$Q_X$ が正
 
 実数上で対角化できるという主張ではない。整数基底で $\pm1$ の対角形になる、という強い算術的制約である。例えば $E_8$ 格子はeven・unimodular・正定値だが、対角形式ではない。Freedman側では $E_8$ をintersection formに持つtopological 4-manifoldが現れ、Donaldson側ではその多様体がsmooth structureを持つ可能性が排除される。
 
+# $E_8$ がなぜ対角形式でないか
+
+$E_8$ という名前だけでは、何が衝突しているのかが見えにくい。ここで必要な性質は三つである。
+
+1. $E_8$ はrank 8の正定値unimodular formである。
+2. $E_8$ はevenである。つまり全ての格子ベクトル $x$ について $Q(x,x)$ が偶数である。
+3. 対角形式 $\langle1,\dots,1\rangle$ はoddである。基底ベクトル $e_i$ が $Q(e_i,e_i)=1$ を持つからである。
+
+偶奇は整数合同で保存される。したがって $E_8$ は正定値unimodularであっても、Donaldsonが許す対角形式とは同値になれない。Freedmanはtopological categoryでこの形式を実現する対象を与え、Donaldsonはsmooth categoryでそれを排除する。この一点に、4次元で圏を分ける必要性が凝縮されている。
+
+# 衝突を一つの推論として書く
+
+論理を圏ごとに分けて書くと、$E_8$ の例で何が起きているかが明確になる。
+
+```text
+E8 は unimodular form である
+→ Freedmanにより、対応するtopological 4-manifold X が存在する
+→ E8 は正定値で非対角である
+→ もし X がsmoothなら、Donaldsonにより Q_X は整数上対角化される
+→ 偶奇に反する
+→ X はsmooth構造を持たない
+```
+
+ここで使っている背理法の仮定は「$X$ がsmoothである」だけである。二つのsmooth構造を比較しているわけではない。したがって、この推論の結論は「非平滑化可能性」であり、「exotic pairの存在」ではない。
+
+この細部を早い段階で固定しておく理由は、Donaldson理論の成功を過大に読まないためである。Donaldson対角化定理は非常に強いが、それだけでsmooth分類を完成させるわけではない。後でDonaldson polynomialやSW invariantが必要になるのは、同じ位相型の中に残るsmooth構造の差を測るためである。
+
 # 証明はどこで解析を使うか
 
 対角化定理の論理を先に見渡す。
@@ -34,9 +61,10 @@ $X$ を閉・滑らか・向き付き・単連結4多様体とし、$Q_X$ が正
 
 難所は第2・第3段階である。したがって「PDEの解があるから位相が分かる」のではない。商空間の局所構造、transversality、orientation、compactnessを揃えて初めて、解析的対象が整数格子へ制約を返す。
 
+読者がここで疑うべきことは正しい。「なぜ接続の解空間の端が、intersection formの対角化を強制するのか」はまだ説明されていない。本章で確定したのは、後で作るmoduli空間が解くべき問題である。すなわち、topologicalには存在するがsmoothには存在しない形式を、解析的な矛盾として検出しなければならない。
+
 # 衝突がまだ教えていないこと
 
 $E_8$ の例が示すのは非平滑化可能性であって、同じ位相多様体上に二つのsmooth structureがあることではない。exotic pairには、まずhomeomorphicな二つのsmooth manifoldを作り、次にゲージ不変量で非diffeomorphic性を示す必要がある。この区別は第14章で回収する。
 
 今はDonaldsonの機械そのものを作る。交点形式という大域的整数へ、局所的な接続と曲率がどう到達するのか。次章では、座標に依存する行列値1形式から、gauge変換で整合する曲率を組み立てる。
-

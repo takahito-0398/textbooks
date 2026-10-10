@@ -68,7 +68,8 @@
       {"id":"conv-inner-product","rule":"su(2)内積はtrace conventionと同時に章6で固定する"},
       {"id":"conv-charge","rule":"8π²k=||F_A^-||²-||F_A^+||²となるcharge規約を採用する"},
       {"id":"conv-ym","rule":"YM(A)=||F_A||²とし1/2を付けない"},
-      {"id":"conv-dimension","rule":"特記しない限りmoduliの次元は実次元"}
+      {"id":"conv-dimension","rule":"特記しない限りmoduliの次元は実次元"},
+      {"id":"conv-sw-q","rule":"Clifford作用でiΛ2+≅su(W+)を固定し、ρ(q(Φ))=i(ΦΦ*)0としてSW二次写像を定義する"}
     ],
     "assumptions": [
       {"id":"assump-base","statement":"Xは閉・連結・向き付け可能・smooth","applies_to":["ch-01","ch-18"]},
@@ -82,29 +83,48 @@
       {"id":"src-freedman","citation_key":"freedman1982","kind":"primary","supports":["thm-freedman"]},
       {"id":"src-donaldson","citation_key":"donaldson1983","kind":"primary","supports":["thm-donaldson-diagonalization"]},
       {"id":"src-witten","citation_key":"witten1994","kind":"primary","supports":["thm-sw-framework"]},
-      {"id":"src-taubes","citation_key":"taubes1996","kind":"primary","supports":["thm-taubes"]}
+      {"id":"src-taubes","citation_key":"taubes1996","kind":"primary","supports":["thm-taubes"]},
+      {"id":"src-atiyah-singer","citation_key":"atiyahSinger1968","kind":"primary","supports":["thm-index"]},
+      {"id":"src-smale","citation_key":"smale1965","kind":"primary","supports":["thm-sard-smale"]},
+      {"id":"src-donaldson-poly","citation_key":"donaldson1987","kind":"primary","supports":["thm-donaldson-polynomial"]},
+      {"id":"src-gompf-stipsicz","citation_key":"gompfStipsicz1999","kind":"standard_monograph","supports":["thm-freedman","thm-donaldson-polynomial"]},
+      {"id":"src-morgan-sw","citation_key":"morgan1996","kind":"standard_monograph","supports":["thm-sw-framework"]},
+      {"id":"src-km-adjunction","citation_key":"kronheimerMrowka1994","kind":"primary","supports":["thm-adjunction"]}
     ],
     "theorems": [
       {"id":"thm-energy","title":"Yang–Mills energy identity","proof_depth":"A","assumptions":["assump-base","conv-charge","conv-ym"],"sources":["src-dk"],"used_by":["ch-06","ch-07"]},
       {"id":"thm-slice","title":"局所Coulomb slice","proof_depth":"C","assumptions":["assump-base"],"sources":["src-fu"],"used_by":["ch-07","ch-10"]},
       {"id":"thm-asd-complex","title":"ASD変形複体の楕円性","proof_depth":"B","assumptions":["assump-base"],"sources":["src-dk"],"used_by":["ch-08","ch-09"]},
+      {"id":"thm-index","title":"Atiyah--Singer index theorem for elliptic operators","proof_depth":"D","assumptions":["assump-base"],"sources":["src-atiyah-singer"],"used_by":["ch-09"]},
+      {"id":"thm-sard-smale","title":"Sard--Smale regular value theorem","proof_depth":"D","assumptions":["assump-base"],"sources":["src-smale"],"used_by":["ch-10"]},
       {"id":"thm-uhlenbeck","title":"Uhlenbeck compactness","proof_depth":"C","assumptions":["assump-base"],"sources":["src-fu"],"used_by":["ch-11","ch-12"]},
       {"id":"thm-freedman","title":"Freedman classification","proof_depth":"D","assumptions":["assump-base"],"sources":["src-freedman"],"used_by":["ch-03","ch-14"]},
       {"id":"thm-donaldson-diagonalization","title":"Donaldson diagonalization theorem","proof_depth":"C","assumptions":["assump-donaldson"],"sources":["src-donaldson","src-dk"],"used_by":["ch-03","ch-13","ch-14"]},
-      {"id":"thm-sw-framework","title":"Seiberg–Witten invariant framework","proof_depth":"C","assumptions":["assump-base","assump-invariance"],"sources":["src-witten"],"used_by":["ch-16","ch-17","ch-18"]},
-      {"id":"thm-taubes","title":"Taubes SW implies Gr","proof_depth":"D","assumptions":["assump-base","assump-invariance"],"sources":["src-taubes"],"used_by":["ch-18"]}
+      {"id":"thm-donaldson-polynomial","title":"Donaldson polynomial invariants","proof_depth":"C","assumptions":["assump-base","assump-invariance"],"sources":["src-dk","src-donaldson-poly"],"used_by":["ch-12","ch-13","ch-14"]},
+      {"id":"thm-sw-framework","title":"Seiberg–Witten invariant framework","proof_depth":"C","assumptions":["assump-base","assump-invariance"],"sources":["src-witten","src-morgan-sw"],"used_by":["ch-16","ch-17","ch-18"]},
+      {"id":"thm-taubes","title":"Taubes SW implies Gr","proof_depth":"D","assumptions":["assump-base","assump-invariance"],"sources":["src-taubes"],"used_by":["ch-18"]},
+      {"id":"thm-adjunction","title":"Gauge-theoretic adjunction inequality","proof_depth":"D","assumptions":["assump-base","assump-invariance"],"sources":["src-km-adjunction","src-morgan-sw"],"used_by":["ch-18"]}
     ],
     "black_boxes": [
       {"id":"bb-freedman","theorem":"thm-freedman","why_needed":"topological categoryで許される交点形式を確定する","input":"unimodular formとKirby–Siebenmann data","output":"topological 4-manifoldの存在・分類","difficulty":"Casson handleとdisk embedding","downstream":["ch-14"]},
       {"id":"bb-uhlenbeck","theorem":"thm-uhlenbeck","why_needed":"解列の逃走をideal instantonとして回収する","input":"一様L2曲率 bound","output":"有限個の集中点を除くgauge収束とcharge loss","difficulty":"小エネルギーgauge fixingとremovable singularity","downstream":["ch-12","ch-13"]},
-      {"id":"bb-taubes","theorem":"thm-taubes","why_needed":"SW basic classをsymplectic曲線と幾何的制約へ変換する","input":"閉symplectic 4-manifoldとcanonical Spin-c data","output":"非零SW invariantと擬正則曲線の存在","difficulty":"large perturbation極限と零点集合の測度論的解析","downstream":["ch-18"]}
+      {"id":"bb-taubes","theorem":"thm-taubes","why_needed":"SW basic classをsymplectic曲線と幾何的制約へ変換する","input":"閉symplectic 4-manifoldとcanonical Spin-c data","output":"非零SW invariantと擬正則曲線の存在","difficulty":"large perturbation極限と零点集合の測度論的解析","downstream":["ch-18"]},
+      {"id":"bb-adjunction","theorem":"thm-adjunction","why_needed":"basic classから埋め込み曲面のgenus下界を得る","input":"非零SW/Donaldson basic classと埋め込み曲面","output":"genus・self-intersection・basic class pairingの不等式","difficulty":"moduli空間と曲面挿入の相互作用","downstream":["ch-18"]}
     ],
     "figures": [
       {"id":"fig-hodge-split","chapter":"ch-05","objective":"Λ2の3+3分解を可視化","concept":"Hodge decomposition","type":"svg","asset":"assets/figures/hodge-split.svg","generator":"scripts/generate_gauge_figures.py","license":"CC0 generated in repository","alt":"4次元の2形式が自己双対部分と反自己双対部分へ3次元ずつ分かれる図","mobile":true,"dark_mode":true,"status":"generated"},
       {"id":"fig-category","chapter":"ch-01","objective":"topological/PL/smoothの混同防止","concept":"categories","type":"svg","asset":"assets/figures/category-layers.svg","generator":"scripts/generate_gauge_figures.py","license":"CC0 generated in repository","alt":"三つの圏と障害の関係","mobile":true,"dark_mode":true,"status":"generated"},
+      {"id":"fig-connection-trivialization","chapter":"ch-04","objective":"局所自明化の変更で普通の微分に余分な項が出て接続が補正する理由を可視化","concept":"connection and local trivialization","type":"svg","asset":"assets/figures/connection-trivialization.svg","generator":"scripts/generate_gauge_figures.py","license":"CC0 generated in repository","alt":"局所自明化を変えると普通の微分にdg項が出て接続が補正する図","mobile":true,"dark_mode":true,"status":"generated"},
       {"id":"fig-gauge-slice","chapter":"ch-07","objective":"orbitとsliceの局所像","concept":"gauge quotient","type":"svg","asset":"assets/figures/gauge-slice.svg","generator":"scripts/generate_gauge_figures.py","license":"CC0 generated in repository","alt":"接続空間内のgauge軌道と局所slice","mobile":true,"dark_mode":true,"status":"generated"},
       {"id":"fig-bubbling","chapter":"ch-11","objective":"曲率集中とcharge loss","concept":"bubbling","type":"svg","asset":"assets/figures/bubbling.svg","generator":"scripts/generate_gauge_figures.py","license":"CC0 generated in repository","alt":"曲率密度が一点へ集中する系列","mobile":true,"dark_mode":true,"status":"generated"},
-      {"id":"fig-donaldson-sw","chapter":"ch-17","objective":"共通機械と相違点","concept":"theory comparison","type":"svg","asset":"assets/figures/donaldson-sw.svg","generator":"scripts/generate_gauge_figures.py","license":"CC0 generated in repository","alt":"Donaldson理論とSW理論の入力から出力までの比較","mobile":true,"dark_mode":true,"status":"generated"}
+      {"id":"fig-donaldson-sw","chapter":"ch-17","objective":"共通機械と相違点","concept":"theory comparison","type":"svg","asset":"assets/figures/donaldson-sw.svg","generator":"scripts/generate_gauge_figures.py","license":"CC0 generated in repository","alt":"Donaldson理論とSW理論の入力から出力までの比較","mobile":true,"dark_mode":true,"status":"generated"},
+      {"id":"fig-sw-equations","chapter":"ch-16","objective":"SW方程式の二つの未知量と二つの式の連成を可視化","concept":"Seiberg-Witten equations","type":"svg","asset":"assets/figures/sw-equations.svg","generator":"scripts/generate_gauge_figures.py","license":"CC0 generated in repository","alt":"可換接続とspinorがDirac方程式と曲率方程式で連成する図","mobile":true,"dark_mode":true,"status":"generated"},
+      {"id":"fig-adjunction","chapter":"ch-18","objective":"basic classが埋め込み曲面のgenus下界を与える構造を可視化","concept":"adjunction inequality","type":"svg","asset":"assets/figures/adjunction.svg","generator":"scripts/generate_gauge_figures.py","license":"CC0 generated in repository","alt":"曲面のgenus、自己交点、basic classとのpairingがadjunction inequalityへ入る図","mobile":true,"dark_mode":true,"status":"generated"},
+      {"id":"fig-cutdown-cobordism","chapter":"ch-12","objective":"mu-classで正次元moduliを0次元へ切り下げ、1-parameter cobordismで不変性を示す構造を可視化","concept":"cut-down and cobordism","type":"svg","asset":"assets/figures/cutdown-cobordism.svg","generator":"scripts/generate_gauge_figures.py","license":"CC0 generated in repository","alt":"正次元moduliに条件を課して点を数え、cobordismで二つの計量のcountを比較する図","mobile":true,"dark_mode":true,"status":"generated"},
+      {"id":"fig-kahler-reduction","chapter":"ch-18","objective":"Kähler面でSW方程式が複素幾何の方程式へ還元される構造を可視化","concept":"Kahler reduction","type":"svg","asset":"assets/figures/kahler-reduction.svg","generator":"scripts/generate_gauge_figures.py","license":"CC0 generated in repository","alt":"spinorと曲率の型分解がholomorphic sectionやdivisorへ翻訳される図","mobile":true,"dark_mode":true,"status":"generated"},
+      {"id":"fig-taubes-limit","chapter":"ch-18","objective":"Taubesの大摂動極限でSW解から擬正則曲線が現れる流れを可視化","concept":"Taubes limit","type":"svg","asset":"assets/figures/taubes-limit.svg","generator":"scripts/generate_gauge_figures.py","license":"CC0 generated in repository","alt":"large perturbation SW solutionからspinor zero setとcurvature concentrationを経てpseudo-holomorphic curveへ至る図","mobile":true,"dark_mode":true,"status":"generated"},
+      {"id":"fig-gluing","chapter":"app-analysis","objective":"compactificationの境界データから真の解へ戻すgluingの役割を可視化","concept":"gluing","type":"svg","asset":"assets/figures/gluing.svg","generator":"scripts/generate_gauge_figures.py","license":"CC0 generated in repository","alt":"boundary dataからapproximate solutionを作りright inverseでtrue solutionへ補正する図","mobile":true,"dark_mode":true,"status":"generated"},
+      {"id":"fig-orientation-line","chapter":"app-analysis","objective":"Fredholm determinant lineと符号付きcountの関係を可視化","concept":"orientation","type":"svg","asset":"assets/figures/orientation-line.svg","generator":"scripts/generate_gauge_figures.py","license":"CC0 generated in repository","alt":"kernelとcokernelからdeterminant lineを作りorientationで符号を決める図","mobile":true,"dark_mode":true,"status":"generated"}
     ],
     "reader_questions": [
       {"id":"rq-asd-ym","priority":"P0","question":"ASDはYang–Mills方程式そのものか。","required_resolution":"ASDは絶対最小解でありASD⇒YM、逆は一般に偽と示す","chapter":"ch-06"},

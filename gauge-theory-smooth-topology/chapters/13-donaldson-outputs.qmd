@@ -11,6 +11,54 @@ Donaldson対角化定理は、閉・滑らか・単連結4多様体のdefinite i
 
 入力を整理すると、smoothnessはASD解析を可能にし、単連結性はreducibleと束の分類を単純化し、definitenessはmoduliのdimensionと端を制御する。結論だけをFreedman分類と並べれば短いが、背後には第7--11章の全機械がある。
 
+ここで読者が止まりやすいのは、「解析的なmoduli spaceの端が、なぜ整数格子の対角化を強制するのか」という点である。証明を完全に再現するには長い準備が必要だが、論理の骨格は次のように分解できる。
+
+1. 交点形式 $Q_X$ から、ある $SO(3)$ または $SU(2)$ 束 $P$ を選ぶ。
+2. その束上のASD moduli space $\mathcal M(P)$ を作る。
+3. index公式により、期待次元が低い場合を選ぶ。
+4. Uhlenbeck compactificationで、非compactな逃走を「有限個の点でchargeが落ちる」という境界として管理する。
+5. 境界やlinkの組合せが、$H^2(X;\mathbb Z)$ の格子構造と矛盾する。
+
+つまり、moduli空間が直接「交点形式そのもの」なのではない。交点形式は束の特性類と次元公式に入り、compactificationの端の個数・link・向きの整合性を通じて制約として戻ってくる。この戻り方がDonaldson理論の非自明な点である。
+
+もっと粗い比喩で言えば、Freedman理論は「この格子を交点形式として持つtopological 4-manifoldはあるか」を問う。一方Donaldson対角化定理は、「それがsmoothなら、そこから作ったASD moduliの端が矛盾なく閉じるか」を問う。$E_8$ のようなdefiniteで非対角な格子は前者では許されるが、後者では許されない。
+
+::: {.callout-note title="証明の骨格：Donaldson対角化定理"}
+本書ではDonaldson対角化定理を完全証明しない。使用する深い入力は、ASD moduliのregularity、orientation、Uhlenbeck compactness、低次元moduliの端の解析である。ここで必要な理解は、結論の形と依存関係である。すなわち、対角化定理は「Freedman分類に解析的なsmooth制約を重ねるための引用定理に近い結果」として使う。[@donaldson1983; @donaldsonKronheimer1990]
+:::
+
+# 対角化定理の証明骨格をもう一段具体化する
+
+対角化定理の証明で読者が見失いやすいのは、「どの束を見ているのか」である。標準的な骨格は、負定値の場合に $SO(3)$ 束 $P$ を選び、$w_2(P)$ が交点格子の特定のcharacteristic vectorを表すようにするところから始まる。すると $p_1(\operatorname{ad}P)$ と $Q_X$ がASD moduliの期待次元に入る。束を選ぶ目的は、単に解を作ることではなく、期待次元とreducibleの形を格子から読める状況に置くことである。
+
+次に、generic metricでirreducible部分をregularにし、低次元のmoduliを得る。典型的には、1次元または少し高い次元のmoduliをcompactifyし、その端を見る。Uhlenbeck compactificationにより、非compact性はcharge lossとして記録される。一方、reducible接続が現れると、その近傍のlinkは複素射影空間に似た構造を持ち、向き付き境界やcohomology pairingに具体的な寄与を返す。
+
+ここで格子論が入る。reducibleは、接続がline bundleの和に分裂することに対応し、その第一Chern classが $H^2(X;\mathbb Z)$ のベクトルを与える。分裂の条件、期待次元、linkのcohomologyが組み合わさると、「各格子ベクトルに対して特定のpairingが成り立たなければならない」という条件が出る。負定値で滑らかな場合、この条件を満たす格子は標準対角格子でなければならない、というのが対角化定理の格子論的帰結である。
+
+本書で証明しない難所は三つある。第一に、reducible近傍の局所模型を正確に作ること。第二に、compactificationの端とlinkの向き・cohomologyを整合させること。第三に、その整合条件を整数格子の対角化へ翻訳する格子補題である。これらは長い技術証明を要するが、役割は明確である。解析は「端の符号付き関係」を作り、格子論はその関係を「非対角definite formは不可能」という結論へ変換する。
+
+したがって、対角化定理は単に「ASD moduliを使う」と言うだけでは足りない。証明の骨格は
+
+```text
+definite intersection lattice
+→ 特性類を持つ SO(3) 束
+→ 低次元 ASD moduli
+→ Uhlenbeck端とreducible link
+→ link の cohomology と向きの関係
+→ characteristic vector に関する格子条件
+→ 整数上の対角化
+```
+
+である。この経路を知っておくと、Freedmanの存在定理とDonaldsonの非存在定理がどこで衝突するかを、単なる有名定理の比較ではなく、解析から格子へ戻る論理として読める。
+
+# 低次元moduliは何を数えるのか
+
+第12章では、zero-dimensional moduliなら点を符号付きで数え、positive-dimensional moduliならcohomology classを挿入して数を得る、と説明した。対角化定理の証明で現れる低次元moduliは、この一般機械の極端な使い方である。
+
+例えば1次元のcompactな向き付き多様体なら、境界点の符号付き和は0でなければならない。ところがASD moduliをcompactifyすると、境界に見える点は単なる任意の点ではなく、charge loss、reducible、格子の特定のベクトルに対応する。そこで「境界の符号付き和は0」という解析・位相的事実が、「格子に特定の形のベクトルが存在しなければならない」という整数論的条件へ翻訳される。
+
+この説明だけでは証明には足りない。だが、少なくとも「moduli空間の端を見る」という操作がなぜ交点形式に関係するのかは分かる。端はcompactnessの失敗の記録であり、その失敗は束の特性類、従って $H^2(X;\mathbb Z)$ の格子に記録されるからである。
+
 # 出力B：多項式不変量
 
 一方、Donaldson polynomial invariantは正次元moduliへ $\mu$-classを挿入して得る。概略的には
@@ -19,9 +67,39 @@ $$
 D_X^w:\operatorname{Sym}^*(H_0(X)\oplus H_2(X))\to\mathbb Z
 $$
 
-であり、束の特性類 $w$、homology orientation、dimension congruenceなどを固定して定義される。$b_2^+>1$ ではgenericな補助データに依存しないdiffeomorphism invariantになる。[@donaldsonKronheimer1990]
+であり、束の特性類 $w$、homology orientation、dimension congruenceなどを固定して定義される。$b_2^+>1$ ではgenericな補助データに依存しないdiffeomorphism invariantになる。[@donaldsonKronheimer1990; @donaldson1987]
 
 多項式不変量はintersection formだけからは決まらない。従ってhomeomorphicな多様体を区別できる可能性がある。例えば複素曲面や楕円曲面では、代数幾何的構造と結びついた非自明な値がsmooth structureの情報を保持する。
+
+ここで $\mu$-classは、homology classをmoduli space上のcohomology classへ移す装置である。直感的には、$X$ の中の点・曲面・cycleが、ASD接続の族に対してどう見えるかを測る。moduli spaceの次元が $2d$ なら、合計次数が $2d$ になるように $\mu(\alpha_1),\dots,\mu(\alpha_r)$ を掛けて基本類とpairingする。
+
+$$
+\langle \mu(\alpha_1)\cdots\mu(\alpha_r),[\mathcal M]\rangle
+$$
+
+が、Donaldson不変量の典型的な形である。ここで重要なのは、$\mathcal M$ が単なる集合ではなく、向き付きの幾何学的空間として扱われる点である。orientationがなければ符号付きcountは定義できないし、dimensionが合わなければpairingは数にならない。従ってDonaldson polynomialは「ASD解を数える」という短い説明だけでは足りず、次元、向き、挿入class、compactificationの境界寄与がすべて制御されたときに初めて不変量になる。
+
+小さな模型で言えば、2次元の向き付き曲面 $M$ と2次cohomology class $\eta$ があるとき、$\langle\eta,[M]\rangle$ は数である。しかし1次classを一つだけ挿入しても次数が合わず、3次classはそもそも存在しない。Donaldson polynomialでdimension matchingをうるさく言う理由はこれと同じで、moduliの期待次元と挿入の次数が合って初めて「数える」操作になる。
+
+# $\mu$-class挿入の小さな模型
+
+実際のDonaldson多項式を一つ完全計算するには、moduli空間の向き、compactification、gluingまで必要になる。ここでは計算の代わりに、数え上げの型だけを有限次元模型で確認する。
+
+仮にregularなmoduli space $\mathcal M$ が向き付き4次元多様体で、homology class $\Sigma\in H_2(X)$ から2次class $\mu(\Sigma)\in H^2(\mathcal M)$ が得られているとする。このとき
+
+$$
+\langle \mu(\Sigma)^2,[\mathcal M]\rangle
+$$
+
+は数である。$\mu(\Sigma)$ を一回だけ挿入すると次数2で足りず、三回挿入すると次数6で大きすぎる。したがって、Donaldson polynomialは「好きなclassを入れて値を見る」操作ではなく、moduliの次元と挿入次数が一致する場合だけ数を返す。
+
+この模型は実不変量の計算ではない。しかし、読者が押さえるべき構造はここにある。$X$ のhomology classは $\mu$-mapでmoduli space上のcohomology classへ移され、moduli spaceの基本類とpairingされる。このpairingがdiffeomorphism invariantになるには、前章までのregularity、orientation、compactness、metric-independenceの全てが必要になる。
+
+# 具体例を読むときの注意
+
+文献中のDonaldson polynomial計算では、楕円曲面や代数曲面のように追加の幾何を持つ例が多い。追加構造によりmoduli spaceが代数幾何的対象と対応し、計算が可能になるからである。これは「Donaldson不変量は代数曲面でしか定義できない」という意味ではない。定義はsmooth 4-manifoldに対して行うが、実際に値を求めるには計算を助ける幾何が必要になることが多い、という意味である。
+
+また、Donaldson polynomialが異なると分かっても、それだけで「二つの多様体がhomeomorphic」とは言えない。多項式はsmooth側の識別器であり、topological同一性はFreedman分類や具体的構成で別に確認する。この分担を崩すと、次章のexotic pairの論理が曖昧になる。
 
 # 同じ機械、異なる論理
 
@@ -36,7 +114,32 @@ $$
 
 この区別により、「Donaldson理論が交点形式を分類する」という曖昧な説明を避けられる。対角化定理は強い必要条件を与えるが、全smooth 4-manifoldを分類しない。多項式も完全不変量ではない。
 
+もう一つの混同も避けたい。対角化定理は、あるtopological 4-manifoldがsmooth化できないことを示すのに使える。一方、多項式不変量は、すでにsmooth構造を持つ二つの多様体を比較し、そのsmooth構造が同じではないことを示すのに使うことが多い。
+
+したがって、同じ「Donaldson理論」でも、証明の文は次の二種類に分かれる。
+
+```text
+Freedmanでは存在する
+しかしDonaldson対角化に反する
+したがってsmooth構造は存在しない
+```
+
+と
+
+```text
+Freedmanまたは構成によりhomeomorphic
+しかしDonaldson不変量が異なる
+したがってdiffeomorphicではない
+```
+
+である。前者はsmoothability obstruction、後者はexotic smooth structureの検出である。第14章でこの二つを照合する。
+
+# 計算できる不変量と計算できない不変量
+
+Donaldson polynomialは定義できれば強力だが、実際の計算は重い。ASD方程式は非可換で、moduli spaceのcompactification、orientation、gluing、wall-crossingを同時に扱う必要がある。特に$b_2^+=1$ではchamber依存があり、$b_2^+>1$の場合より不変量性の主張が繊細になる。
+
+この困難は欠点だけではない。Donaldson理論が重いからこそ、smooth構造に対して非常に敏感な情報を持つ。しかし、教材の流れとしてはここで限界も見える。読者が次に自然に問うのは、「同じsmooth情報を、もっと計算しやすい方程式から取り出せないか」である。この問いがSeiberg--Witten理論へ向かう。
+
 # どこまで分かったか
 
 解析的な解空間からsmooth invariantを作れるようになった。だが実例で「位相は同じ、滑らかさは違う」と結論するには二本の証明が要る。homeomorphismはtopological分類から、非diffeomorphismはsmooth invariantから得る。次章でその論理を図式化し、非平滑化可能性との混同を解く。
-

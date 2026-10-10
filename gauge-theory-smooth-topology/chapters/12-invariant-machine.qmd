@@ -15,6 +15,28 @@ $$
 
 と数える。向きを無視した点数は、parameterを動かしたとき点が対生成・対消滅する現象を相殺できない。符号付きcountなら局所birth/deathで寄与が $+1-1=0$ になる。
 
+# 符号付きcountの有限次元模型
+
+写像族
+
+$$
+f_t(x)=x^2-t
+$$
+
+を考える。$t>0$ では零点が二つ、$t<0$ では零点がない。向きを無視した点数は $2$ から $0$ へ変わるので不変ではない。これは1次元の零点問題で、$t=0$ に非正則な零点が現れる。
+
+一方、写像
+
+$$
+g_s(x)=x-s
+$$
+
+では零点は常に一つで、導関数は正なので符号は常に $+1$ である。より一般に、0次元moduliの点の符号は、線形化のdeterminantの向きで決まる。点が対生成するとき、二つの点は反対符号で現れるため、符号付き和は変わらない。
+
+Donaldson理論のorientationは、この有限次元の「導関数の符号」を、楕円作用素のdeterminant lineへ拡張したものである。
+
+付録Aでは、このdeterminant lineをFredholm作用素のkernelとcokernelから定義した。本文で使う符号付きcountは、単に点へ任意に符号を付ける操作ではなく、Fredholm族のorientationから強制される符号である。このため、orientationの選択は不変量の定義の一部であり、後から好みで変える装飾ではない。
+
 # 計量依存性をcobordismへ変える
 
 二つのgeneric metric $g_0,g_1$ をpath $g_t$ で結び、
@@ -32,6 +54,14 @@ $$
 なので、向き付き境界の総数が0であることから $n(g_1)=n(g_0)$ を得る。
 
 ここでcompactnessを確認せずに「cobordismだから不変」と結論してはいけない。bubbling stratumやreducible locusへ列が逃げれば、compactification後の境界に新成分が加わる。
+
+# compactification後にgluingが必要な理由
+
+compactificationで境界stratumを付け加えただけでは、まだ不変量の証明は終わらない。付け加えたstratumが、本当にmoduliの端として現れているかを知る必要がある。ここでgluing解析が使われる。
+
+たとえばbubbleを持つideal instantonがcompactificationの境界に現れたとする。gluing theoremは、bubbleのscaleを小さく選び、背景解と標準instantonを貼り合わせ、誤差を補正して真のASD解を作る。これにより、境界stratumの近くのmoduliがどのような局所形を持つかが分かる。
+
+したがってcompactnessは「逃げた列の極限を記録する」定理であり、gluingは「記録された極限の近くに実際の解が存在する」ことを戻す定理である。境界寄与を数える議論では、この二つが対になって働く。
 
 # parameterized moduliの線形化
 
@@ -98,6 +128,57 @@ $$
 直感的には、点class $\mathrm{pt}\in H_0(X)$ からは次数4の条件、曲面class $\Sigma\in H_2(X)$ からは次数2の条件が出る。moduliの次元と挿入次数が一致したときだけ、有限個の交点を数える形になる。
 
 この説明で重要なのは、Donaldson不変量が「ASD接続の個数」だけではないことである。正次元moduliでは、幾何的条件を何個か課して0次元へ切り下げ、その符号付き交点数を取っている。
+
+# 一つのDonaldson不変量を最後まで追う
+
+ここまでの説明は一般形だったので、定義がまだ宙に浮いて見える。そこで、典型的な状況を一つ固定して、不変量が本当に数になるまでを追う。完全な計算例ではないが、どの入力がどの段階で必要になるかを明確にするための模型である。
+
+閉・向き付き・単連結な滑らかな4多様体 $X$ を取り、$b_2^+(X)>1$ とする。$SO(3)$ 束 $P\to X$ を固定し、$w=w_2(P)$ と $p_1(\operatorname{ad}P)$ により位相型を固定する。irreducible ASD接続のmoduliを $\mathcal M_P$ と書き、generic metricによりregularで実次元 $2r$ になっていると仮定する。
+
+このときDonaldson不変量の一つの値は、homology class
+
+$$
+\alpha_1,\dots,\alpha_m\in H_0(X)\oplus H_2(X)
+$$
+
+を選び、
+
+$$
+\sum_{j=1}^m \deg \mu(\alpha_j)=2r
+$$
+
+が成り立つ場合に
+
+$$
+D_X^w(\alpha_1\cdots\alpha_m)
+=\left\langle
+\mu(\alpha_1)\cdots\mu(\alpha_m),[\overline{\mathcal M}_P]
+\right\rangle
+$$
+
+として定義される。ここで $\overline{\mathcal M}_P$ はUhlenbeck compactificationであり、pairingが境界stratumに邪魔されない次数範囲を選ぶ。$\mathbb P$ は $X\times\mathcal B_P^*$ 上のuniversal $SO(3)$ 束で、$\mathcal B_P^*$ はirreducible接続をgaugeで割った空間である。full gauge群で割ると中心やuniversal bundleの定義に細工が要るため、文献ではbased gauge群を通して作ってから必要な商へ降ろす、またはuniversal adjoint bundleを使う、という処理を行う。本書ではこの構成上の細部を丸ごと引用定理へ送らず、値の定義に必要な入力として明示しておく。
+
+幾何的には、$\mu(\alpha_j)$ を代表するcycleを $\mathcal B_P^*$ 上に選び、それらを $\mathcal M_P$ と横断に交わらせる。交わり
+
+$$
+\mathcal M_P\cap V_{\alpha_1}\cap\cdots\cap V_{\alpha_m}
+$$
+
+が0次元になれば、その点をorientationで符号付きに数える。これが上のcohomology pairingである。
+
+![Donaldson不変量では、正次元moduliにmu-classの条件を課して0次元へ切り下げ、1-parameter cobordismで符号付き数が変わらないことを示す。](../assets/figures/cutdown-cobordism.svg){#fig-cutdown-cobordism fig-alt="正次元moduliに複数の条件面を交差させて有限個の点を得て、二つの計量の間のcobordismで境界の符号付き数が一致する図"}
+
+補助計量を $g_0$ から $g_1$ へ動かしたときは、同じ挿入cycleをparameterized moduliへ引き上げる。regularなら切り下げ後の空間は1次元向き付き多様体になり、その境界は
+
+$$
+\left(\mathcal M_{P,g_1}\cap V_{\alpha_1}\cap\cdots\cap V_{\alpha_m}\right)
+\sqcup
+-\left(\mathcal M_{P,g_0}\cap V_{\alpha_1}\cap\cdots\cap V_{\alpha_m}\right)
+$$
+
+に、もしあればbubbling境界やreducible境界を加えたものになる。$b_2^+>1$ は1-parameter pathでreducibleの壁を避けるための標準仮定であり、次元条件はbubbling stratumが切り下げ後の1次元cobordismへ余分な端として入らないように選ぶ。余分な境界がなければ、向き付き境界の総数が0であることから、$D_X^w$ は計量に依存しない。
+
+この段階で、PDEの解空間がsmooth invariantへ変わる理由を一文で言える。方程式と商はsmooth構造に依存して定義されるが、regularity、orientation、compactification、cobordismにより、補助計量や代表cycleを変えても同じ数を返すからである。したがってdiffeomorphismはこの構成全体を対応させるが、単なるhomeomorphismには同じ対応を期待できない。
 
 # 一つの不変量を作る九段階
 

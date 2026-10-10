@@ -46,6 +46,20 @@ $$
 
 この式は局所の偏微分方程式から、$k,b_1,b_2^+$ という位相的数だけで決まるexpected dimensionが出ることを示す。
 
+# indexはorientation dataも運ぶ
+
+indexは数としてexpected dimensionを与えるだけではない。Fredholm作用素 $D_A$ にはdeterminant line
+
+$$
+\det D_A
+=\Lambda^{\max}\ker D_A\otimes
+\left(\Lambda^{\max}\operatorname{coker}D_A\right)^*
+$$
+
+が付随する。regularな点ではcokernelが消え、このlineの向きがmoduliの接空間の向きを与える。したがって、index計算は「次元を知る」段階であり、determinant lineのorientationは「数える準備をする」段階である。
+
+この二つは別問題である。indexが0でもorientationが選べなければ符号付きcountは定義できない。逆にorientationがあっても、compactnessがなければ数え上げは不変量にならない。第12章で使うorientationの背後には、このFredholm determinant lineがある。
+
 # 具体計算：$\mathbb{CP}^2$ と $S^2\times S^2$
 
 式が抽象的に見えるので、二つの基本例で数を出す。
@@ -71,6 +85,18 @@ $$
 $$
 
 同じchargeでも、自己双対調和2形式の数が多いほどexpected dimensionは小さくなる。これは、ASD方程式が「自己双対方向を消す」方程式であり、背景多様体の自己双対方向の大きさを敏感に見ることの反映である。
+
+# expected dimensionが負なら何を意味するか
+
+例えば $K3$ で $k=1$ とすると
+
+$$
+\operatorname{ind}D_A=8-12=-4
+$$
+
+である。負のexpected dimensionは「負次元の多様体がある」という意味ではない。genericな摂動や計量のもとでは、regularな解が存在しないことを期待する、という意味である。もし実際に解が存在すれば、その点ではregularityが失敗しているか、stabilizerやobstructionの寄与によって単純な次元予想から外れている。
+
+この解釈は以後何度も使う。indexは存在定理ではない。存在する解の局所次元を無条件に与えるものでもない。indexは、regularでirreducibleな解を仮定したときのexpected dimensionである。
 
 # expectedとactualを区別する
 

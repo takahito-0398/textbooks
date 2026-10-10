@@ -69,6 +69,20 @@ $$
 
 という差であり、三つの空間の個別の大きさを決めるものではない。
 
+# de Rham複体との対応
+
+この複体の役割は、de Rham複体と比較すると理解しやすい。閉1形式 $\alpha$ は局所的には関数の微分に似ているが、globalには $H^1_{\mathrm{dR}}(X)$ によって「本当に新しい変形」かどうかが測られる。同様に、$d_A^+a=0$ はASD方程式の一次近似を保つが、$a=d_A\phi$ なら単なるgauge表示の変更である。商を取って初めて $H_A^1$ が現れる。
+
+一方、de Rham複体では $d^2=0$ が恒等的に成り立つ。ASD変形複体では
+
+$$
+d_A^+d_A\phi=[F_A^+,\phi]
+$$
+
+なので、$F_A^+=0$ という方程式を満たす点でだけ複体になる。つまりこの複体は背景接続 $A$ がASD解であることに依存している。解空間の外では同じ列は複体ではない。
+
+この違いは重要である。ASD変形複体は、固定された多様体の普遍的なcohomologyではなく、解 $A$ の近くのmoduliを読むための局所的なcohomologyである。
+
 # 楕円性はsymbolで判定する
 
 非零共変ベクトル $\xi$ に対するprincipal symbolは
@@ -133,10 +147,10 @@ $$
 
 $$
 \Omega^1
-=H_A^1\oplus\operatorname{im}d_A\oplus\operatorname{im}d_A^*
+=H_A^1\oplus\operatorname{im}d_A\oplus\operatorname{im}d_A^{+,*}
 $$
 
-というHodge型の分解を期待する。正確なSobolev次数や閉像性は楕円Fredholm理論で支える。重要なのは、無限次元問題のうち本当に残る自由度が $H_A^1$ と $H_A^2$ に圧縮されることである。
+というHodge型の分解を期待する。ここで $d_A^{+,*}:\Omega^2_+(\operatorname{ad}P)\to\Omega^1(\operatorname{ad}P)$ は $d_A^+$ の随伴であり、slice条件に出る $d_A^*:\Omega^1\to\Omega^0$ とは次数が違う。正確なSobolev次数や閉像性は楕円Fredholm理論で支える。重要なのは、無限次元問題のうち本当に残る自由度が $H_A^1$ と $H_A^2$ に圧縮されることである。
 
 したがって、変形複体は「線形化をきれいに並べたもの」ではなく、非線形moduliの局所形を有限次元へ押し込む設計図である。
 

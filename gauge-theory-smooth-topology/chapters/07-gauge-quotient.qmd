@@ -36,7 +36,7 @@ $$
 $A+a$ に小さなgauge変換 $e^\phi$ を施し、Coulomb条件を満たす $\phi$ を探す。一次近似では
 
 $$
-d_A^*(a-d_A\phi)=0,\qquad
+d_A^*(a-d_A\phi)=0,\quad
 d_A^*d_A\phi=d_A^*a.
 $$
 
@@ -52,7 +52,7 @@ $A$ の近傍で、各gauge orbitは小さなCoulomb sliceと一意に交わる�
 
 $$
 \mathcal A_k=A_0+L^2_k\Omega^1(X;\operatorname{ad}P),
-\qquad
+\quad
 \mathcal G_{k+1}=L^2_{k+1}(X,G)
 $$
 
@@ -85,6 +85,14 @@ $$
 $$
 
 となるからである。Coulomb条件は「orbit方向に直交する」という幾何的条件を微分方程式で書いたものに他ならない。
+
+# 有限次元模型：円周作用をsliceで割る
+
+無限次元の商が見えにくいときは、$\mathbb R^2$ 上の $S^1$ 作用を考えるとよい。$S^1$ は原点を中心に回転し、orbitは円である。点 $p=(r,0)$、$r>0$ の近くでは、orbit方向は縦方向、横方向の直線はorbitに横断するsliceになる。近くの各orbitはこの横線と一度だけ交わる。
+
+しかし原点では事情が変わる。原点は $S^1$ 全体で固定されるのでstabilizerが大きい。どの方向をsliceに選んでも、商 $\mathbb R^2/S^1$ の原点近くは通常の滑らかな1次元多様体というより、半直線の端点である。
+
+接続空間でも同じことが起こる。irreducible接続の近くではCoulomb sliceが横断座標を与えるが、reducible接続ではstabilizerが大きく、商に特異性が出る。有限次元模型の「原点」が、gauge理論ではreducible locusに対応する。
 
 # reducibleが作る特異性
 

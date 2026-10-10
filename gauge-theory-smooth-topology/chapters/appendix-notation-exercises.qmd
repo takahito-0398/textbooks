@@ -7,7 +7,7 @@ description: "記号規約、理解確認問題、証明深度と文献の対応
 
 | 記号 | 意味 |
 |---|---|
-| $X$ | 閉・連結・向き付きsmooth 4-manifold |
+| $X$ | 閉・連結・向き付きの滑らかな4多様体 |
 | $P\to X$ | 主 $SU(2)$ または $SO(3)$ 束 |
 | $A,F_A$ | 接続とその曲率 |
 | $\mathcal G$ | 指定Sobolev classのgauge群 |
@@ -15,11 +15,11 @@ description: "記号規約、理解確認問題、証明深度と文献の対応
 | $H_A^i$ | ASD変形複体のcohomology |
 | $b_2^+$ | intersection formの正指数 |
 | $\mathfrak s$ | $\mathrm{Spin}^c$ 構造 |
-| $W^\pm,L$ | spinor bundlesとdeterminant line |
+| $W^\pm,L$ | spinor束とdeterminant line |
 
 本書では $F_A^+=0$ をASDと呼び、$\mathrm{YM}(A)=\|F_A\|_{L^2}^2$ とする。向き反転では $\Lambda^2_+$ と $\Lambda^2_-$ が交換される。
 
-# 確認問題
+# 確認問題：基本
 
 1. $Q_{S^2\times S^2}$ がhyperbolic form $H$ になるよう、二つのfactorのclassの交点を計算せよ。
 2. $*e^{13}=-e^{24}$ の符号を、$e^{13}\wedge *e^{13}=d\mathrm{vol}$ から確認せよ。
@@ -29,12 +29,63 @@ description: "記号規約、理解確認問題、証明深度と文献の対応
 6. 1-parameter moduliのcompactificationに余分な境界が出る三つの原因を挙げよ。
 7. SW方程式が可換接続を使いながら非線形である項を二つ挙げよ。
 8. Coulomb slice条件 $d_A^*a=0$ がorbit方向への直交条件であることを、$L^2$ 内積で示せ。
-9. $X=\mathbb{CP}^2$、$c_2(P)=1$ のとき、ASD複体のexpected dimensionを計算せよ。
+9. $X=\mathbb{CP}^2$、$c_2(P)=1$ のとき、ASD複体の期待次元を計算せよ。
 10. $H_A^2\ne0$ のとき、Kuranishi mapの値域がなぜ $H_A^2$ になるかを説明せよ。
 11. chargeを一つ落としたbubbling stratumが、主stratumに比べて概略codimension $4$ になる理由を説明せよ。
 12. $b_2^+=1$ でwall-crossingが起こりうる理由を、1-parameter familyとcodimensionの観点から述べよ。
 
-# 解答指針
+# 章別確認問題
+
+## Part I：交点形式とsmooth構造
+
+13. $\mathbb{CP}^2\#\overline{\mathbb{CP}}^2$ のintersection formを、標準基底で行列として書け。
+14. $H=\begin{pmatrix}0&1\\1&0\end{pmatrix}$ がunimodularで indefinite であることを確認せよ。
+15. $E_8$ 格子が偶格子であることと、対角格子 $\langle 1\rangle^{\oplus 8}$ が奇格子であることを比較せよ。
+16. 「homeomorphicでない」と「diffeomorphicでない」の違いを、smooth構造の比較対象を明示して説明せよ。
+
+## Part II：接続・曲率・ASD方程式
+
+17. 局所接続形式 $A$ に対し、曲率 $F_A=dA+A\wedge A$ の二次項がゲージ変換則と両立する理由を一文で説明せよ。
+18. 4次元で $\Lambda^2=\Lambda^2_+\oplus\Lambda^2_-$ が同じrank $3+3$ に分かれることを、$\binom42$ から確認せよ。
+19. Chern--Weil数 $\int_X\operatorname{tr}(F_A\wedge F_A)$ が接続の連続変形で変わらない理由を、exact formという語を使って説明せよ。
+20. ASD方程式がYang--Mills方程式を満たすことを、Bianchi identityから説明せよ。
+
+## Part III：moduli spaceを作る
+
+21. gauge orbitの接空間が $\operatorname{im}d_A$ になることを、無限小gauge変換から導け。
+22. ASD変形複体
+$$
+\Omega^0(\operatorname{ad}P)\xrightarrow{d_A}
+\Omega^1(\operatorname{ad}P)\xrightarrow{d_A^+}
+\Omega^2_+(\operatorname{ad}P)
+$$
+が複体になるために、どこで $F_A^+=0$ を使うかを説明せよ。
+23. $H_A^0,H_A^1,H_A^2$ を、それぞれstabilizer、tangent、obstructionという言葉で説明せよ。
+24. 期待次元が正でも、実際のモジュライ空間が滑らかな多様体とは限らない理由を述べよ。
+25. $X=K3$、$b_1=0$、$b_2^+=3$、$c_2(P)=1$ として、単純なASD index公式 $8k-3(1-b_1+b_2^+)$ に代入せよ。
+26. Kuranishi模型で $d\kappa_0=0$ でも $\kappa^{-1}(0)$ が線形空間にならない例を一つ作れ。
+
+## Part IV：compactificationと不変量
+
+27. bubblingで失われる情報と、Uhlenbeck compactificationが記録する情報を分けて述べよ。
+28. energy密度模型 $e_\rho(r)=C\rho^4/(\rho^2+r^2)^4$ で、$r=\rho s$ と置くと $\rho$ が消える理由を説明せよ。
+29. 0次元モジュライ空間で向きが必要な理由を、符号付き数え上げという言葉で説明せよ。
+30. 正次元モジュライ空間で $\mu$-classを挿入する理由を、次元合わせから説明せよ。
+31. Donaldson対角化定理とDonaldson polynomial invariantの出力の違いを、表を使わずに文章で説明せよ。
+32. smoothability obstructionとexotic pairの証明で、それぞれ何を仮定し、何を否定するのかを比較せよ。
+
+## Part V：Seiberg--Witten理論
+
+33. $\mathrm{Spin}^c$ 構造のdeterminant line $L$ が満たす合同条件を述べよ。
+34. $q(\Phi)$ が二次写像であること、Clifford同一視により $i\Lambda^2_+$ のsectionとして読めること、$S^1$ ゲージ変換に対して不変であることを説明せよ。
+35. Weitzenböck公式がSW compactnessに効く理由を、$|\Phi|$ の上界という観点から説明せよ。
+36. reducible解を避けるためにperturbationやchamberが必要になる理由を述べよ。
+37. Donaldson理論とSW理論で、compactnessの難しさがどのように違うかを比較せよ。
+38. Kähler曲面上でSW方程式が複素幾何の方程式へ分解される、という主張を引用定理として使う場合に明示すべき仮定と結論を挙げよ。
+39. 随伴不等式が、曲面のgenus、自己交点、basic classをどう結びつけるかを言葉で説明せよ。
+40. TaubesのSW=Grを本書で完全証明しない場合、最低限説明すべき証明アーキテクチャを三点挙げよ。
+
+# 解答指針：基本
 
 1. 各factorは自己交点0で、異なるfactorは一点で正に交わる。
 2. $e^{13}\wedge e^{24}=-e^{1234}$ なので負号が必要である。
@@ -48,6 +99,37 @@ description: "記号規約、理解確認問題、証明深度と文献の対応
 10. 無限次元の可解方向は右逆で解けるが、$d_A^+$ の余核方向だけは線形化で消せないため、その有限次元余核へ射影した方程式が残る。
 11. $d(k)-d(k-1)=8$ だけmoduli次元が下がり、bubble位置の4次元が戻るため、差し引きでcodimension $4$ と見積もる。
 12. reducibleの壁が概略codimension $b_2^+$ で、$b_2^+=1$ では1-parameter pathが一般に壁を横切るからである。
+
+# 解答指針：章別問題
+
+13. 基底を $h,e$ とすれば、$h^2=1$、$e^2=-1$、$h\cdot e=0$ なので $\operatorname{diag}(1,-1)$ である。
+14. determinantは $-1$ なのでunimodularであり、固有値は $1,-1$ なのでindefiniteである。
+15. $E_8$ では全てのベクトルの自己交点が偶数である。一方、対角格子には自己交点 $1$ の基底ベクトルがある。
+16. homeomorphismはtopological categoryの同値、diffeomorphismはsmooth categoryの同値である。exotic smooth structureでは前者が成り立ち、後者が成り立たない。
+17. $dA$ だけではgauge変換で余分な二次項が残るため、$A\wedge A$ がそれを補正して曲率を共変に変換させる。
+18. 2形式全体のrankは6で、4次元ではHodge starが2形式上で $*^2=1$ を満たすため、固有空間が $3+3$ に分かれる。
+19. Chern--Weil formの変化はChern--Simons formの外微分、すなわちexact formになる。閉多様体上ではその積分は0である。
+20. ASDなら $F_A=-*F_A$ であり、Bianchi identity $d_AF_A=0$ から $d_A^*F_A=-*d_A*F_A$ も消える。
+21. gauge変換を $u_t=\exp(t\phi)$ と微分すると、接続の変化の一次項は $d_A\phi$ になる。
+22. $d_A^+d_A\phi=(d_A^2\phi)^+=[F_A,\phi]^+$ であり、$F_A^+=0$ なら消える。
+23. $H_A^0$ は無限小stabilizer、$H_A^1$ はgaugeで割った一次変形、$H_A^2$ は一次変形を真の解へ伸ばす障害である。
+24. stabilizerが非自明なら商がorbifold的になり、$H_A^2$ が非零ならKuranishi方程式が残る。
+25. $8-3(1+3)=8-12=-4$ である。genericには空になる方向を示す数である。
+26. 例えば $\kappa(x,y)=y^2-x^3$ は $d\kappa_0=0$ だが、零点集合は原点近くでcuspを持つ。
+27. compactificationはbubbleの位置とchargeを記録するが、縮んだscaleや内部moduliの全情報を常に保持するわけではない。
+28. 分母が $\rho^8$、分子と体積要素が合計 $\rho^8$ を出すため、置換後の積分からscaleが消える。
+29. 各点に符号を付けて足すため、orientationがないと点の寄与を $+1$ と $-1$ に分けられない。
+30. moduliの基本類とpairingして数を得るには、挿入classの合計次数がmoduliの次元に一致する必要がある。
+31. 対角化定理はdefinite intersection formへの制約を与える。Donaldson polynomialはhomology classの挿入を通じてsmooth構造を区別する数や多項式を与える。
+32. smoothability obstructionは「smooth構造がある」と仮定して矛盾を出す。exotic pairは二つのsmooth多様体がhomeomorphicだがdiffeomorphicでないことを示す。
+33. $c_1(L)\equiv w_2(TX)\pmod 2$ である。
+34. $q(\Phi)$ はClifford同一視 $\rho:i\Lambda^2_+\cong\mathfrak{su}(W^+)$ の下で $\rho(q(\Phi))=i(\Phi\Phi^*)_0$ と読める。位相を掛けても $\Phi\Phi^*$ は変わらないため、$S^1$ ゲージ変換に対して不変である。
+35. Weitzenböck公式はDirac方程式をLaplacian、scalar curvature、curvature項の評価へ変え、最大値原理型の上界を与える。
+36. reducibleではspinorが消え、stabilizerが大きくなってmoduliの滑らかさや不変量性が壊れやすい。
+37. Donaldson側は非可換接続のbubblingが中心である。SW側はspinorの評価により、多くの場合compactnessが扱いやすくなる。
+38. 入力はKähler構造、Spin-c構造、perturbationの選択であり、出力はSW解が複素幾何のデータとして記述されるという対応である。
+39. 基本類 $K$ と埋め込まれた曲面 $\Sigma$ について、$2g(\Sigma)-2$ が $\Sigma^2$ と $|K\cdot\Sigma|$ により下から制約される。
+40. 大きな摂動極限、spinorの零点集合から擬正則曲線を取り出す段階、逆に曲線からSW解をgluingする段階を説明する必要がある。
 
 # 文献の読み分け
 

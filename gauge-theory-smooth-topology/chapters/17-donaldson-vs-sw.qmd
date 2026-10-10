@@ -25,17 +25,67 @@ $U(1)$ 曲率は $F_A=dA$ であり、接続単独なら線形である。しか
 
 簡潔になるのは主にcompactnessである。spinorの四次項がa priori estimateを与え、ASD接続のような任意小scaleのnon-abelian instantonを固定 $\mathfrak s$ 内で追跡する必要がない。この差が計算可能性を大きく変える。
 
+# 何が同じで、何が違うか
+
+二つの理論の差を「Donaldsonは難しく、SWは簡単」とだけ言うと、肝心な構造を見失う。同じなのは、どちらも次を必要とすることである。
+
+1. gauge symmetryを割る。
+2. 線形化を楕円Fredholm問題として扱う。
+3. genericな補助データでregularityを得る。
+4. orientationを選び、0次元または正次元moduliを数える。
+5. 1-parameter moduliで補助データへの依存を消す。
+
+違うのは、compactnessの壊れ方と計算可能性である。Donaldson理論では、非可換接続のscaleが0へ落ちるbubblingをcompactificationに入れなければならない。SW理論では、Weitzenböck estimateがspinorを抑え、可換接続のgauge fixingと組み合わせてcompactnessを得る。
+
+つまりSW理論はmoduli機械を捨てた理論ではない。同じ機械の中で、最も重かったcompactness部分を別の解析構造で軽くした理論である。
+
+# 比較は「難易度」ではなく「失敗の形」で見る
+
+二つの理論を比較するとき、方程式の見た目だけを見ると誤解する。Donaldson側では未知量は接続だけだが、構造群が非可換である。曲率には $A\wedge A$ が入り、scaleが縮むinstantonsが現れる。失敗の典型はbubblingであり、compactificationには失われたchargeを記録する層が必要になる。
+
+SW側では構造群は $U(1)$ で可換だが、spinorが加わる。失敗の典型は「方程式が線形になる」ことではなく、reducible、wall、orientation、gluing、そしてSpin-c構造ごとの情報の読み替えである。Weitzenböck estimateによりcompactnessは扱いやすくなるが、moduli問題の全てが自動で滑らかになるわけではない。
+
+したがって、正しい比較は次のようになる。
+
+| 問い | Donaldson側 | SW側 |
+|---|---|---|
+| compactnessの難所 | non-abelian bubbling | spinor評価で大幅に制御 |
+| 計算の入口 | ASD moduliと$\mu$-挿入 | Spin-c構造とexpected dimension |
+| 消滅現象 | connected sumや正次元計算で繊細 | connected sumでbasic classが消えやすい |
+| 幾何への出力 | polynomial、対角化制約 | basic class、adjunction、symplectic制約 |
+
+この表は優劣ではない。どの失敗をどう管理するかの違いである。
+
 # 両不変量は常に同じか
 
 Wittenは物理的双対性から、simple typeなどの条件下でDonaldson seriesをSW basic classesから表す公式を予想した。[@witten1994] これは任意の4多様体について無条件に二つの不変量が同じ、という定理ではない。成立が証明されている範囲、仮定、正規化を区別する必要がある。
 
 本書で厳密に使うのは、それぞれがdiffeomorphism invariantを与える枠組みと、特定の幾何でSW invariantが非消滅するという結果である。両理論の完全な同値を前提にはしない。
 
-# connected sumとbasic class
+# simple typeという言葉の位置
 
-$b_2^+>0$ の二つの多様体のconnected sumではSW invariantが消える。この消滅はsymplectic構造の存在を排除する道具になる一方、smooth structuresを区別する情報も失う。Donaldson側にも類似の消滅・gluing現象がある。操作に対する振る舞いは不変量の能力と盲点を同時に示す。
+Donaldson seriesとSW basic classesを比較する公式では、しばしばsimple typeという仮定が現れる。これはDonaldson不変量の高次成分が特定の形に整理される、という条件である。本書ではこの理論を完全展開しないが、重要なのは「SW不変量が常にDonaldson不変量を置き換える」という雑な主張をしないことである。
+
+実用上は、SW不変量は多くの幾何的問題で計算しやすく、basic classの配置から強い結論を返す。一方、Donaldson理論は歴史的にも論理的にも、smooth構造がintersection formだけでは見えないことを最初に示した深い機械である。二つは競合する要約ではなく、同じ4次元現象を異なる方程式で読む二つの窓である。
+
+# 連結和とbasic class
+
+連結和でSW invariantがどう振る舞うかは、理論の強さと盲点を同時に示す。ここでは使う版を明確にしておく。
+
+::: {.callout-note title="連結和消滅の標準形"}
+$Y,Z$ を閉・連結・向き付きの滑らかな4多様体とし、$b_2^+(Y)>0$ かつ $b_2^+(Z)>0$ とする。$X=Y\# Z$ について、$b_2^+(X)>1$ の通常のSW不変量を考えると、任意の $\mathrm{Spin}^c$ 構造に対してSW不変量は0になる。$b_2^+=1$ の場合はchamberを指定する必要があり、境界例ではstatementが変わるため、本書ではこの標準形を使う。[@morgan1996]
+:::
+
+従って、ある $X$ に非零SW不変量があれば、$X$ は両側が $b_2^+>0$ を持つ連結和には分解できない。この結論は「消えるから役に立たない」のではなく、消滅定理自体が幾何への情報を返すということである。たとえばsymplectic 4多様体でTaubesによりSW不変量が非零になる場合、その非零性は連結和分解への制約を与える。
+
+ただし、同じ消滅は識別能力の限界にもなる。二つの候補をconnected sumで加工した結果、もともと違っていたbasic classが消えてしまえば、SW不変量では区別できない。第14章で述べたように、topologicalに候補を作る操作とsmooth invariantを保持する操作は別々に管理する必要がある。
+
+# basic classをどう読むか
+
+SW不変量が非零になる $\mathrm{Spin}^c$ 構造の $c_1(L)$ をbasic classと呼ぶ。basic classの集合は、単なる数のリストではなく、$H^2(X;\mathbb Z)$ の中の配置である。diffeomorphismはcohomologyに作用するので、比較すべきなのは「同じ名前のclassの値」ではなく、diffeomorphismが誘導しうる格子同型の下でbasic classの配置が一致するかである。
+
+この点はDonaldson polynomialでも同じである。不変量はhomology classの挿入に依存するため、二つの多様体を比較するときは、homeomorphismまたは候補となる格子同型がhomologyをどう対応させるかを追跡する。値が一つ違う、というだけでなく、全ての許される対応の下で一致しないことを示して初めてnon-diffeomorphismの証明になる。
 
 # 幾何へ戻す
 
 ここまで不変量はsmooth structureを区別する観測量だった。最終章では向きを逆転し、非零のSW invariantから埋め込み曲面のgenusやsymplectic structureへ具体的制約を返す。解析的解が、もとの幾何にどの情報を強制するかを見る。
-

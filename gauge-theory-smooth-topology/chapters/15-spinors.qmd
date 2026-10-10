@@ -9,7 +9,7 @@ description: "Spin^c構造とDirac作用素から第二のゲージ方程式の�
 
 Donaldson理論では接続の曲率を自己双対成分へ射影した。第二の理論では、接続に加えて一次微分を受ける場を導入する。その自然な候補がspinorである。
 
-向き付きRiemannian 4多様体上の $\mathrm{Spin}^c$ 構造は、rank 2の複素vector bundle $W^+,W^-$ とClifford multiplication
+向き付きRiemannian 4多様体上の $\mathrm{Spin}^c$ 構造は、階数2の複素ベクトル束 $W^+,W^-$ とClifford multiplication
 
 $$
 \rho:T^*X\otimes\mathbb C\longrightarrow
@@ -26,27 +26,99 @@ $$
 
 が $\mathrm{Spin}^c$ Dirac作用素である。
 
+ここで使う「接続」は、$L$ 上の $U(1)$ 接続を選ぶと $W^\pm$ 上の接続が誘導される、という意味である。従ってSW理論の未知量は、任意のベクトル束接続ではなく、固定した $\mathrm{Spin}^c$ 構造のdeterminant line上の接続 $A$ と、正spinor $\Phi\in\Gamma(W^+)$ である。
+
 # SpinでなくSpin^cなのはなぜか
 
 spin構造の存在には $w_2(TX)=0$ が必要で、全ての向き付き4多様体で満たされるわけではない。$\mathrm{Spin}^c$ 構造ではline bundleの $c_1(L)$ がmod 2で $w_2(TX)$ を持ち上げるため、向き付き4多様体上で広く利用できる。理論の適用範囲を保つための一般化であり、記号の装飾ではない。
 
+# Spin-c構造をどう数えるか
+
+$\mathrm{Spin}^c$ 構造は一つだけではない。固定した向き付き4多様体上で、同型類の集合は $H^2(X;\mathbb Z)$ のtorsorとして振る舞う。直感的には、determinant line $L$ をline bundleでtwistすると別の $\mathrm{Spin}^c$ 構造が得られる。
+
+重要な制約は
+
+$$
+c_1(L)\equiv w_2(TX)\pmod 2
+$$
+
+である。従ってSW不変量は、単に多様体に一つ付く数ではなく、許されるcharacteristic classごとに並ぶ数である。後でbasic classと呼ぶものは、この $c_1(L)$ のうち不変量が非零になる特別なclassである。ただし、$c_1(L)$ だけで $\mathrm{Spin}^c$ 構造が常に一意に決まるわけではない。$H^2(X;\mathbb Z)$ に2-torsionがあると、同じ $c_1(L)$ を持つ異なる $\mathrm{Spin}^c$ 構造がありうる。本書で $c_1(L)$ を添字のように使うときは、torsionのない模型または「構造 $\mathfrak s$ を固定し、そのdeterminant lineの $c_1$ を読む」という意味である。
+
+この時点でDonaldson理論との違いが見え始める。Donaldson側では主に非可換束のchargeを動かしてmoduliを作った。SW側では、$\mathrm{Spin}^c$ 構造そのものが不変量の添字になる。
+
+# 例：$\mathbb{CP}^2$ で特性類を見る
+
+$\mathbb{CP}^2$ では $H^2(\mathbb{CP}^2;\mathbb Z)\cong\mathbb Z h$ で、$h^2=1$ である。接束の第二Stiefel--Whitney classは $w_2(T\mathbb{CP}^2)\equiv h\pmod2$ と表される。したがってdeterminant lineの第一Chern classは
+
+$$
+c_1(L)=(2m+1)h
+$$
+
+の形でなければならない。偶数倍の $h$ は合同条件を満たさないので、$\mathrm{Spin}^c$ 構造の候補にならない。
+
+この例で見えることは二つある。第一に、$\mathrm{Spin}^c$ 構造は「spin構造がないときの代用品」ではあるが、任意のline bundleを自由に選べるわけではない。第二に、SW不変量は $m$ ごとに別のmoduli問題を作る。Donaldson理論でchargeを変えるとmoduliが変わったように、SW理論では特性類を変えると方程式の位相的入力が変わる。
+
+# torsorという言葉の意味
+
+torsorという言葉は、基準点を選ぶと群と同一視できるが、自然なゼロ元はない集合を指す。$\mathrm{Spin}^c$ 構造の集合も同じで、一つの構造 $\mathfrak s_0$ を基準に選べば、line bundle $E$ でtwistして
+
+$$
+\mathfrak s_0\otimes E
+$$
+
+を作れる。しかし、どの $\mathfrak s_0$ を「原点」と呼ぶかは自然ではない。したがって、$\mathrm{Spin}^c$ 構造の集合は $H^2(X;\mathbb Z)$ そのものではなく、$H^2(X;\mathbb Z)$ が推移的に作用する集合として扱うのが正確である。
+
+この区別は不変量の添字で効く。$SW_X(\mathfrak s)$ と書くとき、$\mathfrak s$ は数値ではなく幾何的構造である。基準を選んで $c_1(L)$ でラベル付けしてもよいが、本文では「ラベル」と「構造」そのものを混同しない。
+
 # 曲率とspinorを同じ型で結ぶ
 
-4次元のClifford代数は、自己双対2形式を $W^+$ のtrace-free skew-Hermitian endomorphismと同一視する。spinor $\Phi\in\Gamma(W^+)$ から二次写像
+4次元のClifford代数は、虚数値の自己双対2形式を $W^+$ のtrace-free skew-Hermitian endomorphismと同一視する。本書では次の規約を固定する。
+
+::: {.callout-note title="SW側の型規約"}
+Clifford作用により
 
 $$
-q(\Phi)=(\Phi\otimes\Phi^*)_0
+\rho:i\Lambda^2_+\longrightarrow \mathfrak{su}(W^+)
 $$
 
-を作ると、$q(\Phi)$ を $i\Lambda^2_+$ のsectionとして読める。従って $F_A^+$ と同じ型を持つ。これで
+を同一視として使う。spinor $\Phi\in W^+$ に対し、Hermitian endomorphism $\Phi\Phi^*:v\mapsto \Phi\langle \Phi,v\rangle$ を作り、そのtrace-free部分を $(\Phi\Phi^*)_0$ と書く。二次写像 $q(\Phi)$ は
 
 $$
-D_A\Phi=0,qquad F_A^+=q(\Phi)
+\rho(q(\Phi))=i(\Phi\Phi^*)_0
 $$
 
-という連成が可能になる。
+で定まる虚数値自己双対2形式である。文献により $1/2$ などの係数を $q$ 側へ入れることがあるが、本書ではその係数を $q$ の定義に吸収する。
+:::
+
+この規約なら $q(\Phi)$ は $i\Lambda^2_+$ のsectionであり、$L$ 上のunitary connectionの曲率 $F_A^+$ と同じ型を持つ。従って
+
+$$
+D_A\Phi=0,\quad F_A^+=q(\Phi)+i\eta
+$$
+
+という連成が型の上で意味を持つ。ここで $\eta$ は実自己双対2形式で、$i\eta$ が虚数値2形式である。
+
+局所的に $W^+\cong\mathbb C^2$ と見れば、spinor $\Phi$ から二次写像
+
+$$
+(\Phi\Phi^*)_0
+$$
+
+を作る。これはまずtrace-free Hermitian endomorphismであって、まだ2形式ではない。上のClifford同一視と因子 $i$ を通して初めて、曲率と比較できる虚数値自己双対2形式になる。この一段を省くと、式の両辺の型が合わない。
 
 もし $\Phi$ を入れず $F_A^+=0$ だけを $U(1)$ 接続へ課せば、方程式はほぼ線形で、intersection formを越えるsmooth情報を十分に作れない。spinorの二次項が非線形性を戻し、同時にWeitzenböck formulaを通じて強いa priori boundを与える。
+
+# 二次写像 $q(\Phi)$ は何をしているか
+
+局所的に $W^+\cong\mathbb C^2$ と見れば、spinor $\Phi$ からrank 1 endomorphism $\Phi\Phi^*$ が作れる。そのtrace部分は大きさ $|\Phi|^2$ だけを表すので、曲率の自己双対成分と対応させるにはtrace-free部分を取る。
+
+$$
+\rho(q(\Phi))=i(\Phi\Phi^*)_0.
+$$
+
+この写像は二次であり、$q(e^{i\theta}\Phi)=q(\Phi)$ を満たす。つまり $S^1$ gauge変換でspinorの位相が変わっても、曲率方程式の右辺は不変である。可換gauge理論に非線形性を戻すだけでなく、gauge symmetryと両立するためにも、この形が自然に選ばれる。
+
+読者がここで持つ疑問は「なぜspinorから2形式が出るのか」である。答えは4次元のClifford表現にある。$\Lambda^2_+$ は $W^+$ のtrace-free skew-Hermitian endomorphismと同じ情報を持つので、$q(\Phi)$ を自己双対2形式として読める。
 
 # gauge symmetryは可換でも残る
 
@@ -59,4 +131,3 @@ $$
 と作用する。接続部分は可換なので $A\wedge A$ を持たないが、spinorとの積 $u\Phi$ と $q(\Phi)$ があるため全系は線形ではない。moduliを作るには、Donaldson側と同様にsymmetry、linearization、index、regularity、orientation、compactnessを再確認する必要がある。
 
 次章ではperturbed Seiberg--Witten方程式を正確に置き、expected dimensionとcompactnessがどこから来るかを導く。
-

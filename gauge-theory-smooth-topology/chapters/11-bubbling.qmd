@@ -19,7 +19,7 @@ $$
 
 $$
 \mu_n\rightharpoonup |F_{A_\infty}|^2d\mathrm{vol}
-+8\pi^2\sum_{i=1}^\ell m_i\delta_{x_i},qquad m_i\in\mathbb N.
++8\pi^2\sum_{i=1}^\ell m_i\delta_{x_i},\quad m_i\in\mathbb N.
 $$
 
 整数 $m_i$ は局所的に拡大した極限が $S^4$ 上のinstantonを作ることから現れる。
@@ -39,18 +39,37 @@ $$
 
 これはcompactness失敗の模型である。接続の係数そのものが単に大きくなるのではない。energyが一点へ集まり、極限でscale情報が消える。Uhlenbeck compactificationが記録するのは、失われたinstantonの位置とchargeであり、消えたscaleや向きの全てではない。
 
+# scale不変性を積分で確認する
+
+上の密度模型
+
+$$
+e_\rho(r)=C\frac{\rho^4}{(\rho^2+r^2)^4}
+$$
+
+を4次元極座標で積分すると、体積要素は $r^3dr\,d\Omega_3$ である。$r=\rho s$ と置けば
+
+$$
+\int_0^\infty \frac{\rho^4}{(\rho^2+r^2)^4}r^3\,dr
+=\int_0^\infty
+\frac{\rho^4}{\rho^8(1+s^2)^4}\rho^3s^3\,\rho\,ds
+=\int_0^\infty \frac{s^3}{(1+s^2)^4}\,ds.
+$$
+
+$\rho$ が完全に消える。これが4次元の臨界性である。半径を小さくしても総energyは減らず、ただ集中する。したがってenergy boundだけでは、scaleが0へ落ちる現象を防げない。
+
 # 小energyならgaugeを選べる
 
 compactnessの核心は、曲率が小さいballでは接続をCoulomb gaugeへ入れ、
 
 $$
-d^*a=0,qquad
+d^*a=0,\quad
 \|a\|_{L_1^2(B)}\le C\|F_A\|_{L^2(B)}
 $$
 
 のようなestimateを得ることである。有限個のballでのみsmall-energy thresholdを超えられるため、その中心を除けば一様estimateとRellich compactnessが使える。対角列を取り、gauge変換後に $A_n$ は $X\setminus\{x_1,\dots,x_\ell\}$ 上で $A_\infty$ へ収束する。
 
-::: {.callout-important title="Uhlenbeck compactness（Black Boxを含む証明アーキテクチャ、深度C）"}
+::: {.callout-important title="Uhlenbeckコンパクト性（引用定理を含む証明の骨格、深度C）"}
 一様な $L^2$ 曲率boundを持つ接続列から、有限個の集中点を除いてgauge収束する部分列を取れる。ASD列では極限もASDで、removable singularity theoremにより低いchargeの束へ延長される。失われたchargeは有限個の整数multiplicityとして記録される。難所はsmall-energy gauge fixingとremovable singularityである。[@freedUhlenbeck1991]
 :::
 
