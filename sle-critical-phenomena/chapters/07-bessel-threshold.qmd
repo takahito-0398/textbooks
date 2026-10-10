@@ -3,7 +3,12 @@ title: "第7章 実軸点を追うと Bessel 過程が現れる"
 sidebar: sle-critical-phenomena
 ---
 
+<!-- contract: authoring/contracts/07-bessel-threshold.json -->
+
 # 第7章 実軸点を追うと Bessel 過程が現れる {#ch-07}
+
+> STATUS: この節の主張は、定理・引用定理・発見法・予想を区別して読む。
+> STATUS: スケーリング極限や連続極限のうち本章で証明していない入力は、本文中で外部入力として扱う。
 
 実軸上の点 $x>0$ を追う。標準座標で先端から見た距離を
 $$

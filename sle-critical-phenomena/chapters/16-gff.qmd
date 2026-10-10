@@ -3,7 +3,12 @@ title: "第16章 Gaussian Free Field は関数ではない"
 sidebar: sle-critical-phenomena
 ---
 
+<!-- contract: authoring/contracts/16-gff.json -->
+
 # 第16章 Gaussian Free Field は関数ではない {#ch-16}
+
+> STATUS: この節の主張は、定理・引用定理・発見法・予想を区別して読む。
+> STATUS: スケーリング極限や連続極限のうち本章で証明していない入力は、本文中で外部入力として扱う。
 
 この章の目的は、SLE$_4$ をランダム場の等高線として見る入口を作ることである。percolation や LERW の収束証明を置き換える章ではない。
 

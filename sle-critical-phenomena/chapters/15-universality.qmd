@@ -3,7 +3,12 @@ title: "第15章 普遍性の境界"
 sidebar: sle-critical-phenomena
 ---
 
+<!-- contract: authoring/contracts/15-universality.json -->
+
 # 第15章 普遍性の境界 {#ch-15}
+
+> STATUS: この節の主張は、定理・引用定理・発見法・予想を区別して読む。
+> STATUS: スケーリング極限や連続極限のうち本章で証明していない入力は、本文中で外部入力として扱う。
 
 普遍性という語は一つではない。対象を分ける。
 

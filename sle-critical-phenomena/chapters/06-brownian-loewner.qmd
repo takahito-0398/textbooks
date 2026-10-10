@@ -3,9 +3,14 @@ title: "第6章 Brown 運動を入れた Loewner chain"
 sidebar: sle-critical-phenomena
 ---
 
+<!-- contract: authoring/contracts/06-brownian-loewner.json -->
+
 # 第6章 Brown 運動を入れた Loewner chain {#ch-06}
 
-SLE$_\kappa$ は、駆動関数を $U_t=\sqrt{\kappa}B_t$ とした chordal Loewner chain である。Brown 運動は連続だが、どの区間でも有界変動ではなく、非常に粗い。そのため、ODE の解として hull $K_t$ は定義できても、それが連続 trace $\gamma(t)$ で生成されることは自明ではない。
+> STATUS: この節の主張は、定理・引用定理・発見法・予想を区別して読む。
+> STATUS: スケーリング極限や連続極限のうち本章で証明していない入力は、本文中で外部入力として扱う。
+
+SLE$_\kappa$ は、駆動関数を $U_t=\sqrt{\kappa}B_t$ とした chordal Loewner chain である。Brown 運動は連続だが、どの区間でも有界変動ではなく、非常に粗い。そのため、ODE の解として hull $K_t$ は定義できても、それが連続 trace $\gamma(t)$ で生成されることは本文だけでは直ちには従わない。
 
 外部定理として Rohde-Schramm trace theorem を使う [@rohdeSchramm2005]。
 

@@ -3,7 +3,12 @@ title: "第4章 縦スリットから Loewner 方程式へ"
 sidebar: sle-critical-phenomena
 ---
 
+<!-- contract: authoring/contracts/04-loewner-equation.json -->
+
 # 第4章 縦スリットから Loewner 方程式へ {#ch-04}
+
+> STATUS: この節の主張は、定理・引用定理・発見法・予想を区別して読む。
+> STATUS: スケーリング極限や連続極限のうち本章で証明していない入力は、本文中で外部入力として扱う。
 
 ## まず縦スリットだけを解く
 

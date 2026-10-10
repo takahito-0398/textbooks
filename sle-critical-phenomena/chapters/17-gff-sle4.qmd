@@ -3,7 +3,12 @@ title: "第17章 SLE4-GFF 結合"
 sidebar: sle-critical-phenomena
 ---
 
+<!-- contract: authoring/contracts/17-gff-sle4.json -->
+
 # 第17章 SLE4-GFF 結合 {#ch-17}
+
+> STATUS: この節の主張は、定理・引用定理・発見法・予想を区別して読む。
+> STATUS: スケーリング極限や連続極限のうち本章で証明していない入力は、本文中で外部入力として扱う。
 
 SLE$_4$ と GFF の結合（coupling）は外部定理として扱う [@schrammSheffield2009; @schrammSheffield2013]。以後は「結合」と書く。
 

@@ -3,7 +3,12 @@ title: "第11章 Hausdorff 次元"
 sidebar: sle-critical-phenomena
 ---
 
+<!-- contract: authoring/contracts/11-fractal-dimension.json -->
+
 # 第11章 Hausdorff 次元 {#ch-11}
+
+> STATUS: この節の主張は、定理・引用定理・発見法・予想を区別して読む。
+> STATUS: スケーリング極限や連続極限のうち本章で証明していない入力は、本文中で外部入力として扱う。
 
 SLE trace は折れ曲がり続けるため、通常の長さでは測りにくい。Hausdorff 次元は、細かい球で覆うときに必要な個数の増え方を測る。box count と似ているが、覆いの大きさを柔軟に選べるため、より安定した幾何量である。
 
