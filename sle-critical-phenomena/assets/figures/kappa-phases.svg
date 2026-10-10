@@ -1,23 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 460" role="img">
-  <metadata>{"generator":"scripts/generate_assets.py","deterministic":true}</metadata>
-  <rect width="900" height="460" fill="#fbfaf7"/>
-  <style>
-    .title{font:700 28px sans-serif;fill:#1f2933}
-    .label{font:18px sans-serif;fill:#1f2933}
-    .small{font:14px sans-serif;fill:#4b5563}
-    .axis{stroke:#111827;stroke-width:2;fill:none}
-    .line{stroke:#1f6feb;stroke-width:5;fill:none;stroke-linecap:round;stroke-linejoin:round}
-    .thin{stroke:#5b677a;stroke-width:2;fill:none}
-    .red{stroke:#d24b40;stroke-width:5;fill:none;stroke-linecap:round;stroke-linejoin:round}
-    .green{stroke:#178a5b;stroke-width:5;fill:none;stroke-linecap:round;stroke-linejoin:round}
-    .fillblue{fill:#dceafe;stroke:#1f6feb;stroke-width:2}
-    .fillred{fill:#fde2df;stroke:#d24b40;stroke-width:2}
-  </style>
-  
-  <text x="40" y="55" class="title">kappa による SLE 幾何</text>
-  <g transform="translate(45,95)"><text x="0" y="0" class="label">k=2 単純</text><path d="M45 285 C70 210 40 155 120 110 C175 80 150 35 220 25" class="line"/></g>
-  <g transform="translate(265,95)"><text x="0" y="0" class="label">k=4 閾値</text><path d="M65 285 C90 205 55 145 140 112 C190 92 180 52 220 25" class="green"/></g>
-  <g transform="translate(485,95)"><text x="0" y="0" class="label">k=6 自己接触</text><path d="M55 285 C120 230 40 190 120 150 C190 115 75 78 220 25" class="red"/></g>
-  <g transform="translate(705,95)"><text x="0" y="0" class="label">k=8 充填</text><path d="M45 285 C120 265 60 220 155 205 C230 193 60 160 180 132 C245 118 80 85 220 25" stroke="#7c3aed" stroke-width="5" fill="none" stroke-linecap="round"/></g>
-
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 300" role="img" aria-labelledby="title desc">
+<title id="title">SLEの三つの幾何相</title>
+<desc id="desc">単純曲線、自己接触して領域を囲む曲線、空間充填曲線を三つのパネルで比較する。</desc>
+<metadata>{"animated": false, "deterministic": true, "figure_id": "fig-kappa-phases", "generator": "scripts/generate_sle_figures.py", "license": "repository content", "print_fallback": null, "simulation": false}</metadata>
+<rect width="780" height="300" rx="18" fill="#0b1118"/>
+<g fill="#111f2c" stroke="#324b61"><rect x="20" y="36" width="230" height="224" rx="12"/><rect x="275" y="36" width="230" height="224" rx="12"/><rect x="530" y="36" width="230" height="224" rx="12"/></g>
+<path d="M78 242 C61 205 128 196 91 155 C66 126 145 111 173 63" fill="none" stroke="#68d39b" stroke-width="7" stroke-linecap="round"/>
+<path d="M333 242 C324 203 424 213 403 161 C392 135 329 151 343 104 C354 67 453 70 431 122 C416 160 361 130 373 93" fill="none" stroke="#ffb86b" stroke-width="7" stroke-linecap="round"/>
+<path d="M553 236 H737 V62 H558 V207 H710 V89 H586 V181 H682 V116 H612 V154 H655" fill="none" stroke="#9dccff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M330 242 C320 202 426 214 406 160 C393 126 333 155 340 103 C346 65 456 65 438 126 C428 160 374 143 374 96 L374 242 Z" fill="#ffb86b" opacity=".16"/>
+<g fill="#e7edf4" font-family="system-ui, sans-serif" text-anchor="middle"><text x="135" y="25">0 ≤ κ ≤ 4</text><text x="390" y="25">4 &lt; κ &lt; 8</text><text x="645" y="25">κ ≥ 8</text><text x="135" y="282">simple</text><text x="390" y="282">self-touching / hull</text><text x="645" y="282">space-filling</text></g>
 </svg>
