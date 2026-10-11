@@ -16,7 +16,7 @@
     "central_question": {"type": "string", "minLength": 10},
     "reader_starting_state": {"type": "string", "minLength": 10},
     "prerequisites": {"type": "array", "items": {"type": "string"}},
-    "new_concepts": {"type": "array", "items": {"type": "string"}},
+    "new_concepts": {"type": "array", "items": {"type": "string"}, "minItems": 1},
     "main_derivations": {"type": "array", "items": {"type": "string"}},
     "results": {"type": "array", "items": {"type": "string"}},
     "proof_depth": {"enum": ["A", "B", "C", "D"]},
@@ -43,4 +43,3 @@
   },
   "additionalProperties": false
 }
-

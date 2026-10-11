@@ -1,13 +1,33 @@
 ---
-title: "第11章　compactnessが壊れる仕方：bubbling"
-description: "曲率集中・energy量子化・Uhlenbeck compactificationを説明する"
+title: "第11章　コンパクト性が壊れる仕方：バブリング"
+description: "曲率集中・エネルギー量子化・Uhlenbeck コンパクト化を説明する"
 ---
 
 <!-- contract: contracts/11-bubbling.json -->
 
-# 有界energyだけでは強収束しない
+# まず1変数の集中列を見る
 
-固定charge $k$ のASD接続はenergy $8\pi^2k$ を持つため、一様な $L^2$ boundがある。しかし4次元では $L^2$ 曲率energyがscale invariantなので、BPST instantonを半径 $\rho_n\to0$ へ縮めてもboundは改善しない。曲率は一点へ集中し、接続列はその点を含む通常の位相では収束しない。
+関数
+
+$$
+f_n(x)=n\,\mathbf 1_{[0,1/n]}(x)
+$$
+
+は、各点で素直に収束する関数列ではないが、積分は常に1である。連続関数 $\varphi$ に対して
+
+$$
+\int_0^1 f_n(x)\varphi(x)\,dx
+=n\int_0^{1/n}\varphi(x)\,dx
+\longrightarrow\varphi(0)
+$$
+
+なので、測度としてはDirac測度 $\delta_0$ に弱収束する。総量は消えず、一点へ集中したのである。
+
+バブリングでも追跡する対象は接続係数そのものではなく、非負の曲率エネルギー測度 $|F_A|^2d\mathrm{vol}$ である。違いは、集中量が任意の実数ではなく、インスタントン数によって整数単位に量子化される点にある。
+
+# 有界なエネルギーだけでは強収束しない
+
+固定位相数 $k$ のASD接続はエネルギー $8\pi^2k$ を持つため、一様な $L^2$ boundがある。しかし4次元では $L^2$ 曲率エネルギーが尺度不変なので、BPST instantonを半径 $\rho_n\to0$ へ縮めてもboundは改善しない。曲率は一点へ集中し、接続列はその点を含む通常の位相では収束しない。
 
 曲率測度
 
@@ -24,11 +44,11 @@ $$
 
 整数 $m_i$ は局所的に拡大した極限が $S^4$ 上のinstantonを作ることから現れる。
 
-![同じ総energyを保ったまま曲率密度が一点へ集中し、極限でchargeが原子として残る。](../assets/figures/bubbling.svg){#fig-bubbling fig-alt="幅が狭く高さが増す三つの曲率密度曲線と、極限の集中点を示す図"}
+![同じ総エネルギーを保ったまま曲率密度が一点へ集中し、極限で位相数が原子として残る。](../assets/figures/bubbling.svg){#fig-bubbling fig-alt="幅が狭く高さが増す三つの曲率密度曲線と、極限の集中点を示す図"}
 
-# BPST instantonが示すscaleの消失
+# BPSTインスタントンが示す尺度の消失
 
-$\mathbb R^4$ 上の基本instantonは、中心 $x_0$ とscale $\rho>0$ を持つ。局所式を細部まで使わなくても、曲率密度が
+$\mathbb R^4$ 上の基本instantonは、中心 $x_0$ と尺度 $\rho>0$ を持つ。局所式を細部まで使わなくても、曲率密度が
 
 $$
 |F_{A_{\rho,x_0}}(x)|^2
@@ -37,9 +57,9 @@ $$
 
 の形を持つことを覚えておけばよい。積分は $\rho$ に依存せず一定だが、$\rho\to0$ とすると密度は $x_0$ に集中する。
 
-これはcompactness失敗の模型である。接続の係数そのものが単に大きくなるのではない。energyが一点へ集まり、極限でscale情報が消える。Uhlenbeck compactificationが記録するのは、失われたinstantonの位置とchargeであり、消えたscaleや向きの全てではない。
+これはコンパクト性失敗の模型である。接続の係数そのものが単に大きくなるのではない。エネルギーが一点へ集まり、極限で尺度情報が消える。Uhlenbeck コンパクト化が記録するのは、失われたinstantonの位置と位相数であり、消えた尺度や向きの全てではない。
 
-# scale不変性を積分で確認する
+# 尺度不変性を積分で確認する
 
 上の密度模型
 
@@ -56,38 +76,40 @@ $$
 =\int_0^\infty \frac{s^3}{(1+s^2)^4}\,ds.
 $$
 
-$\rho$ が完全に消える。これが4次元の臨界性である。半径を小さくしても総energyは減らず、ただ集中する。したがってenergy boundだけでは、scaleが0へ落ちる現象を防げない。
+$\rho$ が完全に消える。これが4次元の臨界性である。半径を小さくしても総エネルギーは減らず、ただ集中する。したがってエネルギー boundだけでは、尺度が0へ落ちる現象を防げない。
 
-# 小energyならgaugeを選べる
+次元が4であることも計算に現れている。$n$ 次元なら体積要素は $r^{n-1}dr$ なので、同じ置換で全体に $\rho^{n-4}$ が残る。$n=4$ のときだけ指数が0になり、縮尺を変えてもエネルギーが同じである。この臨界性が、4次元ゲージ理論で尺度が消失する直接の理由である。
 
-compactnessの核心は、曲率が小さいballでは接続をCoulomb gaugeへ入れ、
+# 小エネルギーならゲージを選べる
+
+コンパクト性の核心は、曲率が小さいballでは接続をCoulombゲージへ入れ、
 
 $$
 d^*a=0,\quad
 \|a\|_{L_1^2(B)}\le C\|F_A\|_{L^2(B)}
 $$
 
-のようなestimateを得ることである。有限個のballでのみsmall-energy thresholdを超えられるため、その中心を除けば一様estimateとRellich compactnessが使える。対角列を取り、gauge変換後に $A_n$ は $X\setminus\{x_1,\dots,x_\ell\}$ 上で $A_\infty$ へ収束する。
+のようなestimateを得ることである。有限個のballでのみsmall-エネルギー thresholdを超えられるため、その中心を除けば一様estimateとRellich コンパクト性が使える。対角列を取り、ゲージ変換後に $A_n$ は $X\setminus\{x_1,\dots,x_\ell\}$ 上で $A_\infty$ へ収束する。
 
 ::: {.callout-important title="Uhlenbeckコンパクト性（引用定理を含む証明の骨格、深度C）"}
-一様な $L^2$ 曲率boundを持つ接続列から、有限個の集中点を除いてgauge収束する部分列を取れる。ASD列では極限もASDで、removable singularity theoremにより低いchargeの束へ延長される。失われたchargeは有限個の整数multiplicityとして記録される。難所はsmall-energy gauge fixingとremovable singularityである。[@freedUhlenbeck1991]
+一様な $L^2$ 曲率boundを持つ接続列から、有限個の集中点を除いてゲージ収束する部分列を取れる。ASD列では極限もASDで、removable singularity theoremにより低い位相数の束へ延長される。失われた位相数は有限個の整数multiplicityとして記録される。難所はsmall-エネルギー ゲージ固定とremovable singularityである。[@freedUhlenbeck1991]
 :::
 
-# energy量子化の読み方
+# エネルギー量子化の読み方
 
-なぜ集中するenergyが $8\pi^2$ の整数倍になるのか。ASD接続ではenergy identityにより
+なぜ集中するエネルギーが $8\pi^2$ の整数倍になるのか。ASD接続ではエネルギー identityにより
 
 $$
 \|F_A\|_{L^2}^2=8\pi^2 k
 $$
 
-である。集中点の周りを拡大して見ると、極限は $\mathbb R^4$、一点compactification後には $S^4$ 上の有限energy ASD接続になる。removable singularity theoremにより、それは $S^4$ 上の滑らかなinstantonへ延長される。従って局所的に失われたenergyは、そのinstantonのsecond Chern numberに対応し、$8\pi^2m$ となる。
+である。集中点の周りを拡大して見ると、極限は $\mathbb R^4$、一点コンパクト化後には $S^4$ 上の有限エネルギー ASD接続になる。removable singularity theoremにより、それは $S^4$ 上の滑らかなinstantonへ延長される。従って局所的に失われたエネルギーは、そのinstantonのsecond Chern numberに対応し、$8\pi^2m$ となる。
 
-ここで使っているのは、単なる測度収束ではない。PDE、gauge fixing、除去可能特異点、特性類が連動して、連続的に見えたenergy lossを整数に量子化している。
+ここで使っているのは、単なる測度収束ではない。PDE、ゲージ固定、除去可能特異点、特性類が連動して、連続的に見えたエネルギー lossを整数に量子化している。
 
-# ideal instantonで閉じる
+# 理想インスタントンで閉じる
 
-通常のmoduli $\mathcal M_k$ に、低いchargeのASD接続と点のunordered tupleを加え、
+通常のモジュライ $\mathcal M_k$ に、低い位相数のASD接続と点のunordered tupleを加え、
 
 $$
 \overline{\mathcal M}_k^{U}
@@ -95,28 +117,56 @@ $$
 \mathcal M_{k-\ell}\times\operatorname{Sym}^{\ell}(X)
 $$
 
-というUhlenbeck compactificationを作る。右辺の点は「粒子を追加した」のではなく、接続から消えたscaleと位置のうち、極限で残る位置とchargeだけを記録するideal objectである。
+というUhlenbeck コンパクト化を作る。右辺の点は「粒子を追加した」のではなく、接続から消えた尺度と位置のうち、極限で残る位置と位相数だけを記録するideal objectである。
 
-stratum間のcodimensionが十分大きければ、低次元countはbubbling境界の影響を受けない。一方、1次元parameterized moduliでは端として現れる可能性をdimension countで毎回確認しなければならない。
+$\operatorname{Sym}^{\ell}(X)=X^\ell/S_\ell$ は、順序を忘れた $\ell$ 個の点の空間である。例えば $\ell=2$ では $(x_1,x_2)$ と $(x_2,x_1)$ を同一視する。二つのバブルが同じ点へ集まる場合は対角成分 $(x,x)$ が多重度2を表す。このため、集中点を単なる集合として記録するのではなく、重複を許す対称積が必要になる。
 
-# codimensionを実際に見積もる
+位相数 $k=2$ の場合を展開すると、集合としての層は
 
-$SU(2)$ のASD moduliでchargeを一つ落とすと、expected dimensionは
+$$
+\mathcal M_2
+\;\sqcup\;
+\mathcal M_1\times X
+\;\sqcup\;
+\mathcal M_0\times\operatorname{Sym}^2(X)
+$$
+
+となる。第一層はバブルなし、第二層は位相数 1を接続に残して1個を点へ失った場合、第三層は2単位を点へ失った場合である。層同士をどの位相で貼るかがコンパクト化の本体であり、単なる非交和を取るだけではない。
+
+層間の余次元が十分大きければ、低次元数え上げはバブリング境界の影響を受けない。一方、1次元パラメータ付き モジュライでは端として現れる可能性を次元数え上げで毎回確認しなければならない。
+
+# 余次元を実際に見積もる
+
+$SU(2)$ のASD モジュライで位相数を一つ落とすと、期待次元は
 
 $$
 d(k)-d(k-1)=8
 $$
 
-だけ下がる。一方、bubbleの位置 $x\in X$ を記録することで $4$ 次元が戻る。従って一つのbubbleを持つstratumは、粗く言えば主stratumに比べてcodimension $4$ である。
+だけ下がる。一方、bubbleの位置 $x\in X$ を記録することで $4$ 次元が戻る。従って一つのbubbleを持つ層は、粗く言えば主層に比べて余次元 $4$ である。
 
-この数が重要である。0次元moduliのcompactificationでは、codimension $4$ のstratumは一般には現れない。1次元parameterized moduliでも、dimension count上は端になりにくい。もちろん、これはregularityやreducibleの問題が別途制御されている場合の話である。dimension countだけで全てを証明したことにはならないが、なぜ低次元のDonaldson不変量でbubblingを避けられる場面があるのかを説明する。
+この数が重要である。0次元モジュライのコンパクト化では、余次元 $4$ の層は一般には現れない。1次元パラメータ付き モジュライでも、次元数え上げ上は端になりにくい。もちろん、これは正則性や可約の問題が別途制御されている場合の話である。次元数え上げだけで全てを証明したことにはならないが、なぜ低次元のDonaldson不変量でバブリングを避けられる場面があるのかを説明する。
 
-# removable singularityは何を保証するか
+$\ell$ 個の単純バブルが互いに異なる点へ生じるなら、位相数低下で $8\ell$ 次元を失い、位置で $4\ell$ 次元を戻すため、期待余次元は $4\ell$ である。点が衝突する対角成分では対称積自体が特異な層を持つので、この単純計算だけでは局所形を決められない。そこで実際の境界解析には貼り合わせ定理が必要になる。
 
-集中点を除いた $X\setminus\{x_i\}$ 上で極限接続 $A_\infty$ が得られても、そのままでは元の閉多様体上の接続ではない。除去可能特異点定理は、有限energy ASD接続が孤立特異点を越えて、適切な束上の滑らかな接続へ延長されることを保証する。
+# 除去可能特異点定理は何を保証するか
 
-この結果がなければ、compactificationの境界は「穴の空いた多様体上の解」という扱いにくい対象になってしまう。延長定理により、低いchargeの通常のASD moduliと点の情報だけで境界を記述できる。
+集中点を除いた $X\setminus\{x_i\}$ 上で極限接続 $A_\infty$ が得られても、そのままでは元の閉多様体上の接続ではない。除去可能特異点定理は、有限エネルギー ASD接続が孤立特異点を越えて、適切な束上の滑らかな接続へ延長されることを保証する。
 
-# compactificationは目的でなく次の入力
+この結果がなければ、コンパクト化の境界は「穴の空いた多様体上の解」という扱いにくい対象になってしまう。延長定理により、低い位相数の通常のASD モジュライと点の情報だけで境界を記述できる。
 
-compact spaceを得ただけでは不変量にならない。計量を変えたときのparameterized moduliが向き付きcobordismを作り、その境界が両端のmoduliだけであることを示す必要がある。reducible、bubbling、wall-crossingが余分な境界を作らない条件は何か。次章で「PDE解空間から数を取る」一般機械を組み立てる。
+# コンパクト化は目的でなく次の入力
+
+コンパクト空間を得ただけでは不変量にならない。計量を変えたときのparameterized モジュライが向き付きコボルディズムを作り、その境界が両端のモジュライだけであることを示す必要がある。可約、バブリング、壁越えが余分な境界を作らない条件は何か。次章で「PDE解空間から数を取る」一般機械を組み立てる。
+
+::: {.callout-note title="節内演習：バブリング層の余次元"}
+$SU(2)$ ASDモジュライの期待次元を $d(k)=8k-C$ とする。$\ell$ 個のinstantonsが点へ集中した層は、低い電荷のモジュライ $M_{k-\ell}$ と点配置 $\operatorname{Sym}^{\ell}(X)$ からなる。上位層との差を計算せよ。
+
+**解答。** 4次元多様体上の1点は実4自由度を持つので、下位層の期待次元は
+$$
+d(k-\ell)+4\ell
+=8(k-\ell)-C+4\ell
+=d(k)-4\ell.
+$$
+したがって $\ell$ 点バブリング層の期待余次元は $4\ell$ である。たとえば $\ell=2$ なら余次元は8となる。この次元差が、低次元の切断モジュライでバブリング境界を避ける基本理由である。
+:::

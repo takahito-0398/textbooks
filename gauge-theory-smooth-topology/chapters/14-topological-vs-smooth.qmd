@@ -1,116 +1,120 @@
 ---
 title: "第14章　位相分類と滑らかな分類を照合する"
-description: "smoothability obstructionとexotic pairを別の証明課題として整理する"
+description: "平滑化可能性の障害と異種滑らかな構造の組を別の証明課題として整理する"
 ---
 
 <!-- contract: contracts/14-topological-vs-smooth.json -->
 
 # 二種類の否定を分ける
 
-第3章の $E_8$ 型の例では、topological 4-manifoldは存在するがDonaldson対角化定理に反するためsmooth structureを持たない。これはsmoothability obstructionである。
+第3章の $E_8$ 型の例では、位相的4多様体は存在するがDonaldson対角化定理に反するため滑らかな構造を持たない。これは平滑化可能性の障害である。
 
-exotic smooth structuresの主張は別である。smooth manifold $X_0,X_1$ に対し
+異種滑らかな構造の主張は別である。滑らかな多様体 $X_0,X_1$ に対し
 
 $$
 X_0\cong_{\mathrm{homeo}}X_1,\quad
 X_0\not\cong_{\mathrm{diff}}X_1
 $$
 
-の両方を示す必要がある。第一の矢印はFreedman型のtopological分類や具体的handle操作から、第二の否定はDonaldsonまたはSeiberg--Witten不変量の相違から得る。
+の両方を示す必要がある。第一の矢印はFreedman型の位相的分類や具体的handle操作から、第二の否定はDonaldsonまたはSeiberg--Witten不変量の相違から得る。
 
-::: {.callout-warning title="非平滑化可能性はexotic pairではない"}
-topological manifoldが一つもsmooth structureを持たないことと、一つのtopological manifoldが互いに非同値な複数のsmooth structureを持つことは論理的に別である。前者だけから後者は従わない。
+::: {.callout-warning title="非平滑化可能性は異種滑らかな構造の組ではない"}
+位相的多様体が一つも滑らかな構造を持たないことと、一つの位相的多様体が互いに非同値な複数の滑らかな構造を持つことは論理的に別である。前者だけから後者は従わない。
 :::
 
-この区別は、4次元特有の議論で特に重要である。Freedman理論はtopological categoryで非常に多くの4多様体を作る。一方Donaldson理論はsmooth categoryで許されるものを強く制限する。両者の差からただちに「exotic pair」が出るように見えるが、論理は一段違う。
+この区別は、4次元特有の議論で特に重要である。Freedman理論は位相圏で非常に多くの4多様体を作る。一方Donaldson理論は滑らかな圏で許されるものを強く制限する。両者の差からただちに「異種滑らかな構造の組」が出るように見えるが、論理は一段違う。
 
 非平滑化可能性では、証明すべき文は
 
 ```text
-あるtopological manifold X は存在する。
-もし X がsmoothならDonaldson定理に反する。
-従って X はsmoothでない。
+ある位相的多様体 X は存在する。
+もし X が滑らかな多様体ならDonaldson定理に反する。
+従って X は滑らかな構造を持たない。
 ```
 
-である。ここには二つのsmooth structureの比較はない。比較対象は「smooth構造がある」という仮定そのものである。
+である。ここには二つの滑らかな構造の比較はない。比較対象は「滑らかな構造がある」という仮定そのものである。
 
-exotic pairでは、証明すべき文は
+異種滑らかな構造の組では、証明すべき文は
 
 ```text
-X_0 と X_1 はどちらもsmooth manifoldである。
-X_0 と X_1 はhomeomorphicである。
-しかし smooth invariant が異なる。
-従って X_0 と X_1 はdiffeomorphicでない。
+X_0 と X_1 はどちらも滑らかな多様体である。
+X_0 と X_1 は同相である。
+しかし滑らかな不変量が異なる。
+従って X_0 と X_1 は微分同相ではない。
 ```
 
 である。ここでは、存在、同相、非微分同相を別々に証明しなければならない。
 
 # 照合の手順
 
-単連結な候補では、まずintersection form、Kirby--Siebenmann invariant、向きを照合してhomeomorphismの条件を確認する。次にsmooth invariantを計算する。もし
+単連結な候補では、まず交点形式、Kirby--Siebenmann不変量、向きを照合して同相写像の条件を確認する。次に滑らかな不変量を計算する。もし
 
 $$
 D_{X_0}\ne D_{X_1}
 $$
 
-なら、diffeomorphism不変性に反するため両者はdiffeomorphicでない。ここで「形式が同じ」だけでhomeomorphicと断定してはいけないし、「不変量が違う」だけでhomeomorphicと断定してもいけない。
+なら、微分同相写像不変性に反するため両者は微分同相ではない。ここで「形式が同じ」だけで同相と断定してはいけないし、「不変量が違う」だけで同相でないと断定してもいけない。
 
-連結和は有用だが危険でもある。intersection formは直和になる一方、多くのゲージ不変量は $b_2^+>0$ の二つの多様体の連結和で消える。従って位相的構成がsmooth情報を見えなくすることがある。どの操作の下で不変量がどう振る舞うかを併記する必要がある。
+::: {.callout-note title="本書で使うFreedman分類の版"}
+$X,Y$ を閉・連結・向き付き・単連結な位相的4次元多様体とする。交点形式の向きを保つ整数同型があり、Kirby--Siebenmann不変量が一致すれば、$X$ と $Y$ は向きを保って同相である。存在については、任意のユニモジュラー対称整数形式がこのような多様体の交点形式として実現される。偶形式ではKirby--Siebenmann不変量は $\sigma(Q)/8\pmod2$ に拘束され、奇形式では同じ形式に対してKirby--Siebenmann不変量で区別される二つの位相型がありうる。従って「交点形式だけで常に一意」と短縮してはならない。[@freedman1982]
+:::
+
+連結和は有用だが危険でもある。交点形式は直和になる一方、多くのゲージ不変量は $b_2^+>0$ の二つの多様体の連結和で消える。従って位相的構成が滑らかな情報を見えなくすることがある。どの操作の下で不変量がどう振る舞うかを併記する必要がある。
 
 照合を表にすると、必要な証明の役割が見える。
 
 | 目的 | 使う情報 | 失敗すると何が言えないか |
 |---|---|---|
-| topological存在 | Freedman分類、handle構成 | 比較対象の位相空間が存在しない |
-| homeomorphism | intersection form、Kirby--Siebenmann invariant、向き | 同じ位相空間上のsmooth構造とは言えない |
-| smooth構造の存在 | 明示的構成、代数曲面、handlebody | exotic pairではなく非平滑化可能性になる |
-| non-diffeomorphism | Donaldson/SW不変量、対角化定理 | smooth構造の違いを検出できない |
+| 位相的存在 | Freedman分類、handle構成 | 比較対象の位相空間が存在しない |
+| 同相写像 | 交点形式、Kirby--Siebenmann不変量、向き | 同じ位相空間上の滑らかな構造とは言えない |
+| 滑らかな構造の存在 | 明示的構成、代数曲面、handlebody | 異種滑らかな構造の組ではなく非平滑化可能性になる |
+| 微分同相でないこと | Donaldson/SW不変量、対角化定理 | 滑らかな構造の違いを検出できない |
 
-「intersection formが同じだからhomeomorphic」と言うには、Freedman分類の仮定を満たしているかを確認する必要がある。特に単連結性、閉性、向き、Kirby--Siebenmann invariantの扱いを落としてはいけない。逆に、「Donaldson不変量が違うからhomeomorphicでない」と言うのも誤りである。Donaldson不変量はdiffeomorphism不変量であって、topological invariantではない。
+「交点形式が同じだから同相」と言うには、上の定理の仮定を満たしているかを確認する必要がある。特に単連結性、閉性、向き、Kirby--Siebenmann不変量の扱いを落としてはいけない。逆に、「Donaldson不変量が違うから同相でない」と言うのも誤りである。Donaldson不変量は微分同相不変量であって、位相不変量ではない。
 
-# 例の読み方：$E_8$ とexotic pair
+# 例の読み方：$E_8$ と異種滑らかな構造の組
 
-$E_8$ 型の例を思い出す。Freedman理論により、対応するtopological 4-manifoldは存在する。しかし $E_8$ 格子はdefiniteかつ非対角である。もしこの多様体がsmoothで単連結なら、Donaldson対角化定理によりintersection formは整数上で対角化されるはずであり、矛盾する。したがってこれは「smooth構造が存在しない」例である。ここでは $X_0$ と $X_1$ を比較していない。
+$E_8$ 型の例を思い出す。Freedman理論により、対応する位相的4多様体は存在する。しかし $E_8$ 格子は定値かつ非対角である。もしこの多様体が滑らかで単連結なら、Donaldson対角化定理により交点形式は整数上で対角化されるはずであり、矛盾する。したがってこれは「滑らかな構造が存在しない」例である。ここでは $X_0$ と $X_1$ を比較していない。
 
-一方、exotic pairを示すときは、たとえば同じintersection formと同じKirby--Siebenmann dataを持つ二つのsmooth多様体を用意し、Freedman分類でhomeomorphicと判断する。その後、Donaldson polynomialやSeiberg--Witten invariantを比較する。値が違えば、diffeomorphismが存在すると仮定したときの不変量性に反する。実例の構成ではhandlebodyやKirby calculusが重要な役割を持つ。[@donaldson1987; @gompfStipsicz1999]
+一方、異種滑らかな構造の組を示すときは、たとえば同じ交点形式と同じKirby--Siebenmann不変量を持つ二つの滑らかな多様体を用意し、Freedman分類で同相と判断する。その後、Donaldson多項式やSeiberg--Witten不変量を比較する。値が違えば、微分同相写像が存在すると仮定したときの不変量性に反する。実例の構成ではハンドル体やKirby計算が重要な役割を持つ。[@donaldson1987; @gompfStipsicz1999]
 
-この二段階の構造が、4次元の面白さである。位相分類が粗すぎるからsmooth構造の違いが残り、smooth不変量が細かすぎるからその違いを検出できる。
+この二段階の構造が、4次元の面白さである。位相分類が粗すぎるから滑らかな構造の違いが残り、滑らかな不変量が細かすぎるからその違いを検出できる。
 
-# なぜ同じintersection formでも十分でないのか
+# なぜ同じ交点形式でも十分でないのか
 
-第2章ではintersection formが中心的な道具だった。しかし、ここまで来るとその限界も明確になる。intersection formは強力なtopological dataだが、smooth構造を完全には記録しない。
+第2章では交点形式が中心的な道具だった。しかし、ここまで来るとその限界も明確になる。交点形式は強力な位相的データだが、滑らかな構造を完全には記録しない。
 
-同じtopological manifold上に複数のsmooth構造があるなら、当然それらのintersection formは同じである。したがって、intersection formだけを見ている限り、その複数性は見えない。Donaldson polynomialやSeiberg--Witten invariantは、この「同じ交点形式の下に残る差」を測るために導入される。
+同じ位相的多様体上に複数の滑らかな構造があるなら、当然それらの交点形式は同じである。したがって、交点形式だけを見ている限り、その複数性は見えない。Donaldson多項式やSeiberg--Witten不変量は、この「同じ交点形式の下に残る差」を測るために導入される。
 
-これは第13章の二出力の違いとも対応する。対角化定理は「許されない交点形式」を排除する。多項式不変量やSW不変量は「交点形式では区別できないsmooth構造」を区別する。
+これは第13章の二出力の違いとも対応する。対角化定理は「許されない交点形式」を排除する。多項式不変量やSW不変量は「交点形式では区別できない滑らかな構造」を区別する。
 
 # 照合例：何をどの段階で使うか
 
 抽象的な手順だけでは、Freedman側とDonaldson/SW側の役割が混ざりやすい。そこで、実在の有名例を完全計算する代わりに、証明文の形を模型として書く。
 
-まずtopological側で、二つの候補 $X_0,X_1$ について
+まず位相的側で、二つの候補 $X_0,X_1$ について
 
 $$
 Q_{X_0}\cong Q_{X_1},\quad
 \operatorname{ks}(X_0)=\operatorname{ks}(X_1)
 $$
 
-を確認し、単連結・閉・向き付きというFreedman分類の仮定も確認する。ここで $\operatorname{ks}$ はKirby--Siebenmann invariantである。この段階で得る結論は
+を確認し、単連結・閉・向き付きというFreedman分類の仮定も確認する。ここで $\operatorname{ks}$ はKirby--Siebenmann不変量である。この段階で得る結論は
 
 $$
 X_0\cong_{\mathrm{homeo}}X_1
 $$
 
-であり、smooth構造についてはまだ何も言っていない。
+であり、滑らかな構造についてはまだ何も言っていない。
 
-次にsmooth側で、たとえば
+次に滑らかな側で、たとえば
 
 $$
 SW_{X_0}(\mathfrak s)\ne0,\quad
 SW_{X_1}(\mathfrak s')=0
 $$
 
-またはDonaldson polynomialの値の相違を示す。もしdiffeomorphism $f:X_0\to X_1$ があれば、不変量は $f$ によるhomologyやSpin-c構造の対応の下で一致しなければならない。従って、対応をすべて考えても値が一致しないなら
+またはDonaldson多項式の値の相違を示す。もし微分同相写像 $f:X_0\to X_1$ があれば、不変量は $f$ によるホモロジーやSpin-c構造の対応の下で一致しなければならない。従って、対応をすべて考えても値が一致しないなら
 
 $$
 X_0\not\cong_{\mathrm{diff}}X_1
@@ -118,22 +122,80 @@ $$
 
 が従う。
 
-この模型で重要なのは、第一段階と第二段階が独立した証明課題である点である。Freedman分類だけではdiffeomorphismを否定できない。Donaldson/SW不変量だけではhomeomorphismを保証できない。exotic smooth structureは、この二つを同時に満たしたとき初めて得られる。
+この模型で重要なのは、第一段階と第二段階が独立した証明課題である点である。Freedman分類だけでは微分同相写像を否定できない。Donaldson/SW不変量だけでは同相写像を保証できない。異種滑らかな構造は、この二つを同時に満たしたとき初めて得られる。
+
+# 実在する異種対：K3と三葉結び目手術
+
+$X=E(2)$ を K3 曲面とし、$T\subset X$ を自己交点 $0$ の正則楕円ファイバーとする。このとき $X\setminus \nu T$ は単連結である。結び目 $K\subset S^3$ に対し、Fintushel--Stern の knot surgery を
+
+$$
+X_K=\bigl(X\setminus (T^2\times D^2)\bigr)
+\mathbin{\cup}_{T^3}
+\bigl(S^1\times (S^3\setminus \nu K)\bigr)
+$$
+
+で定める。境界 $T^3$ の貼り合わせは、結び目の meridian と torus の法線方向を対応させる標準的なものを取る [@fintushelStern1998]。
+
+::: {.callout-important title="knot surgery 定理で使う入力と出力"}
+上の K3 ファイバーに対して $X_K$ は閉単連結滑らか4次元多様体であり、K3 と向きを保って同相である。また Seiberg--Witten 級数は
+
+$$
+\mathcal{SW}_{X_K}=\mathcal{SW}_{K3}\,\Delta_K(t),
+\qquad t=e^{2\operatorname{PD}[T]}
+$$
+
+を満たす。ここで $\Delta_K(t)=\Delta_K(t^{-1})$ かつ $\Delta_K(1)=1$ と規格化する。K3 では $\mathcal{SW}_{K3}=1$ である。
+:::
+
+この定理を unknot $U$ と右手 trefoil $3_1$ に適用する。$X_U$ は K3 と微分同相で、$\Delta_U(t)=1$ だから基本類は $0$ の一つである。一方
+
+$$
+\Delta_{3_1}(t)=t-1+t^{-1}
+$$
+
+なので、$X_{3_1}$ の基本類は $0,\ \pm 2\operatorname{PD}[T]$ の三つであり、それぞれの係数は $-1,1,1$（全体符号の選択を除く）となる。したがって基本類の個数が異なる。
+
+証明の流れを分離して書くと、次の四段階になる。
+
+1. **入力**：同じ K3 上の楕円ファイバーに unknot と trefoil の knot surgery を施す。
+2. **位相的同一視**：knot surgery 定理により両者は単連結で K3 と同じ交叉形式 $3H\oplus2(-E_8)$ と Kirby--Siebenmann 不変量 $0$ をもち、Freedman 分類から互いに同相である。
+3. **滑らかな識別**：Seiberg--Witten 級数の積公式により、基本類の個数は $1$ と $3$ で異なる。向きを保つ微分同相は基本類の集合を保つので、両者は微分同相ではない。
+4. **結論**：$(X_U,X_{3_1})$ は同相だが微分同相でない実在する異種対である。
+
+Alexander 多項式の差だけから同相性が従うのではない。同相性には補空間の単連結性と Freedman 分類を、非微分同相性には Seiberg--Witten 不変量を、それぞれ別に使っている。
 
 # 操作で不変量が消える危険
 
-候補を作るとき、connected sumやblow-upは自然な操作である。しかし、操作は不変量にも作用する。例えばSW不変量は、$b_2^+>0$ の多様体同士のconnected sumで消える典型的な振る舞いを持つ。Donaldson不変量にも、blow-up formulaやconnected sumに関する規則がある。
+候補を作るとき、連結和やblow-upは自然な操作である。しかし、操作は不変量にも作用する。例えばSW不変量は、$b_2^+>0$ の多様体同士の連結和で消える典型的な振る舞いを持つ。Donaldson不変量にも、blow-up formulaや連結和に関する規則がある。
 
-したがって、候補をtopologicallyに作る操作と、smooth invariantを残す操作は同時に管理しなければならない。位相分類に都合のよい操作が、smooth情報を消してしまうことがある。この点が、実際のexotic pair構成を難しくし、同時に面白くしている。
+したがって、候補を位相的に作る操作と、滑らかな不変量を残す操作は同時に管理しなければならない。位相分類に都合のよい操作が、滑らかな情報を消してしまうことがある。この点が、実際の異種滑らかな構造の組構成を難しくし、同時に面白くしている。
 
-# $\mathbb R^4$ のexotic性が示す境界
+# $\mathbb R^4$ の異種性が示す境界
 
-compact単連結4多様体の議論とは別に、$\mathbb R^4$ には標準とはdiffeomorphicでないsmooth structureが存在する。intersection formは自明なので、compact多様体用の形式だけでは検出できない。無限遠の構造と埋め込みが本質になり、閉多様体のDonaldson不変量をそのまま適用する話ではない。
+コンパクト単連結4多様体の議論とは別に、$\mathbb R^4$ には標準とは微分同相ではない滑らかな構造が存在する。交点形式は自明なので、コンパクト多様体用の形式だけでは検出できない。無限遠の構造と埋め込みが本質になり、閉多様体のDonaldson不変量をそのまま適用する話ではない。
 
-この例は、どの不変量にも定義域と盲点があることを教える。本書の主線は閉多様体であり、open 4-manifoldの分類を結論に混ぜない。
+この例は、どの不変量にも定義域と盲点があることを教える。本書の主線は閉多様体であり、開4多様体の分類を結論に混ぜない。
 
 # 第二のゲージ理論が必要な理由
 
-Donaldson理論は強力だが、非可換gauge群、reducible、Uhlenbeck compactification、$\mu$-mapの計算が重い。1994年に現れたSeiberg--Witten方程式は、可換接続とspinorを連成させ、しばしばcompactnessと計算を大幅に扱いやすくした。しかし「可換だから線形」というわけではない。
+Donaldson理論は強力だが、非可換ゲージ群、可約、Uhlenbeck コンパクト化、$\mu$-mapの計算が重い。1994年に現れたSeiberg--Witten方程式は、可換接続とスピノルを連成させ、しばしばコンパクト性と計算を大幅に扱いやすくした。しかし「可換だから線形」というわけではない。
 
-次章では、spinorがどこから来るかをDirac作用素の型から導く。新理論を結果一覧として追加するのではなく、ASD機械のどの難所を別の未知量で組み替えるのかを見る。
+次章では、スピノルがどこから来るかをDirac作用素の型から導く。新理論を結果一覧として追加するのではなく、ASD機械のどの難所を別の未知量で組み替えるのかを見る。
+
+::: {.callout-note title="節内演習：異種滑らか構造の論理"}
+閉単連結4多様体 $X,Y$ が同じ交点形式を持ち、Freedman型分類の仮定を満たすとする。また、ある滑らかな不変量が $I(X)\ne I(Y)$ を与えるとする。どの結論にどの入力を使うか整理せよ。
+
+**解答。** 位相側では
+$$
+Q_X\cong Q_Y
+\quad\Longrightarrow\quad
+X\cong_{\mathrm{homeo}}Y.
+$$
+
+ここで矢印には、上で明記した Freedman 型分類の仮定を用いている。
+一方、微分同相写像があれば滑らかな不変量は保存されるので
+$$
+X\cong_{\mathrm{diff}}Y\ \Longrightarrow\ I(X)=I(Y).
+$$
+その対偶から $I(X)\ne I(Y)$ は非微分同相を与える。二つを合わせて初めて「同相だが微分同相でない」と結論でき、非平滑化可能性だけではこの結論にならない。
+:::

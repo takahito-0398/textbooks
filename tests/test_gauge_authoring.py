@@ -40,7 +40,26 @@ class GaugeAuthoringValidationTests(unittest.TestCase):
         errors = validator.validate_contract(broken, self.manifest, Path("00-production-fixture.json"))
         self.assertTrue(any("unknown black-box" in error for error in errors))
 
+    def test_missing_curriculum_contract_is_rejected(self) -> None:
+        errors = validator.validate_all(self.manifest, self.contracts[:-1])
+        self.assertTrue(any("missing contracts" in error for error in errors))
+
+    def test_empty_reader_starting_state_is_rejected(self) -> None:
+        broken = deepcopy(self.contracts[0])
+        broken["reader_starting_state"] = "   "
+        errors = validator.validate_contract(
+            broken, self.manifest, Path("01-smooth-structures.json")
+        )
+        self.assertTrue(any("reader_starting_state" in error for error in errors))
+
+    def test_empty_new_concepts_is_rejected(self) -> None:
+        broken = deepcopy(self.contracts[0])
+        broken["new_concepts"] = []
+        errors = validator.validate_contract(
+            broken, self.manifest, Path("01-smooth-structures.json")
+        )
+        self.assertTrue(any("new_concepts" in error for error in errors))
+
 
 if __name__ == "__main__":
     unittest.main()
-

@@ -61,6 +61,7 @@ def shift_headings(text: str, levels: int) -> str:
 def body_from_qmd(path: Path, *, heading_shift: int = 0) -> str:
     _, text = split_qmd(path)
     text = text.replace("../assets/", "assets/")
+    text = re.sub(r"^\[[^\]]+\]\([^)]+\)\{[^}]*\.btn[^}]*\}\s*$", "", text, flags=re.MULTILINE)
     text = re.sub(r"\[PDF検証版をダウンロード\]\(assets/gauge-theory-smooth-topology\.pdf\)\{[^}]+\}", "", text)
     text = re.sub(r"\[([^\]]+)\]\((?:\.\./)?authoring/README\.md\)", r"\1", text)
     text = re.sub(r"\[([^\]]+)\]\((?:\.\./)?(?:index|chapters/[^)]+)\.qmd\)(\{[^}]+\})?", r"\1", text)

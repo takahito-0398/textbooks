@@ -186,6 +186,11 @@ def validate_contract(contract: dict, manifest: dict, path: Path) -> list[str]:
     if missing:
         return errors
 
+    if not contract["reader_starting_state"].strip():
+        errors.append(f"{path.name}: reader_starting_state must not be empty")
+    if not contract["new_concepts"]:
+        errors.append(f"{path.name}: new_concepts must contain at least one concept")
+
     registries = manifest["registries"]
     concept_ids = ids(registries["notation"]) | ids(registries["conventions"]) | ids(registries["assumptions"])
     theorem_ids = ids(registries["theorems"])
@@ -269,6 +274,25 @@ def validate_all(manifest: dict | None = None, contracts: list[dict] | None = No
     contracts = deepcopy(contracts) if contracts is not None else [load_json(path) for path in contract_paths]
     errors = validate_manifest(manifest)
     if contracts is not None:
+        curriculum_ids = {chapter["id"] for chapter in manifest.get("curriculum", [])}
+        contract_ids = [contract.get("chapter_id") for contract in contracts]
+        duplicate_contract_ids = {
+            chapter_id for chapter_id in contract_ids if contract_ids.count(chapter_id) > 1
+        }
+        missing_contracts = curriculum_ids - set(contract_ids)
+        unexpected_contracts = set(contract_ids) - curriculum_ids
+        if duplicate_contract_ids:
+            errors.append(
+                f"duplicate chapter contracts: {sorted(duplicate_contract_ids)}"
+            )
+        if missing_contracts:
+            errors.append(
+                f"curriculum chapters missing contracts: {sorted(missing_contracts)}"
+            )
+        if unexpected_contracts:
+            errors.append(
+                f"contracts not present in curriculum: {sorted(unexpected_contracts)}"
+            )
         paths = contract_paths if len(contract_paths) == len(contracts) else [Path(f"contract-{index}.json") for index in range(len(contracts))]
         for contract, path in zip(contracts, paths):
             errors.extend(validate_contract(contract, manifest, path))
