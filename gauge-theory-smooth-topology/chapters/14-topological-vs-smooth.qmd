@@ -149,7 +149,7 @@ X_K=\bigl(X\setminus (T^2\times D^2)\bigr)
 \bigl(S^1\times (S^3\setminus \nu K)\bigr)
 $$
 
-で定める。左辺の $T^2\times D^2$ は楕円ファイバー $T$ の近傍で、境界は $T^3=T^2\times S^1$ である。右辺の $S^1\times(S^3\setminus\nu K)$ も境界に $S^1\times\partial\nu K\cong T^3$ を持つ。貼り合わせでは、結び目のメリディアンをファイバーの法線方向 $S^1=\partial D^2$ へ対応させる標準的なものを取る [@fintushelStern1998]。この対応があるため、結び目補空間のAlexander多項式が、ファイバー類 $[T]$ を変数とするSW級数へ現れる。
+で定める。左辺の $T^2\times D^2$ は楕円ファイバー $T$ の近傍で、境界は $T^3=T^2\times S^1$ である。右辺の $S^1\times(S^3\setminus\nu K)$ も境界に $S^1\times\partial\nu K\cong T^3$ を持つ。貼り合わせでは、$T$ の法線円周 $\mu_T=\{\mathrm{pt}\}\times\partial D^2$ を、結び目 $K$ の優先ロンジチュード $\lambda_K$ に対応させる。右辺に新しく付ける余分な $S^1$ と、$\partial\nu K$ 上のメリディアン $\mu_K$ が、境界3トーラスの残る二つの生成元を与える。この同定を取り違えて $\mu_T$ を $\mu_K$ に送ると、標準的なFintushel--Stern結び目手術ではなくなる [@fintushelStern1998]。この対応があるため、結び目補空間のAlexander多項式が、ファイバー類 $[T]$ を変数とするSW級数へ現れる。
 
 ::: {.callout-important title="結び目手術 定理で使う入力と出力"}
 上の K3 ファイバーに対して $X_K$ は閉単連結滑らか4次元多様体であり、K3 と向きを保って同相である。また Seiberg--Witten 級数は

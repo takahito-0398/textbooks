@@ -60,6 +60,12 @@ class GaugeAuthoringValidationTests(unittest.TestCase):
         )
         self.assertTrue(any("new_concepts" in error for error in errors))
 
+    def test_round4_review_regressions_are_rejected(self) -> None:
+        patterns = validator.CORRUPTION_PATTERNS
+        self.assertIn("結び目のメリディアンをファイバーの法線方向", patterns)
+        self.assertIn("インスタントンs", patterns)
+        self.assertIn("ららか", patterns)
+
 
 if __name__ == "__main__":
     unittest.main()

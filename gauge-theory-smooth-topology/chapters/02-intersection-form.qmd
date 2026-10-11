@@ -394,7 +394,7 @@ $$
 
 # ユニモジュラーという制約
 
-torsionを除いた $H_2(X;\mathbb Z)$ は自由Abel群であり、基底を選ぶと $Q_X$ は対称整数行列になる。Poincaré dualityにより随伴写像
+ねじれ部分を除いた $H_2(X;\mathbb Z)$ は自由Abel群であり、基底を選ぶと $Q_X$ は対称整数行列になる。ポアンカレ双対性により随伴写像
 
 $$
 H_2(X;\mathbb Z)/\mathrm{Tor}\longrightarrow

@@ -5,13 +5,14 @@
     "title": "4次元ゲージ理論と滑らかな位相",
     "central_problem": "楕円型ゲージ方程式の解空間は、なぜ4次元多様体の滑らかな構造を検出できるのか。",
     "scope": "閉・連結・向き付け可能な滑らかな4多様体。Donaldson側は原則単連結、計量独立性は原則 b2+ > 1。",
-    "status": "complete_rewrite_final_audit",
+    "status": "round7_95p_review_integrated",
     "formal_authoring_started": true,
     "mainline_allocation": {"donaldson_percent": 65, "seiberg_witten_percent": 25, "introduction_and_synthesis_percent": 10}
   },
   "audit_inputs": [
     {"id": "audit-architecture-2026-10-08", "role": "binding_curriculum_audit", "sha256": "computed_in_audit_bundle", "ingested": true},
-    {"id": "stage-2-5-deep-dive-2026-10-08", "role": "candidate_comparison_context", "sha256": "computed_in_audit_bundle", "ingested": true}
+    {"id": "stage-2-5-deep-dive-2026-10-08", "role": "candidate_comparison_context", "sha256": "computed_in_audit_bundle", "ingested": true},
+    {"id": "round4-95p-review-2026-10-11", "role": "binding_release_blocker_review", "ingested": true}
   ],
   "quality_policy": {
     "conversation_quality_exposition": true,
