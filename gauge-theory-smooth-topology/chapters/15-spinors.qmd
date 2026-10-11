@@ -150,7 +150,7 @@ $$
 
 # 例：$\mathbb{CP}^2$ で特性類を見る
 
-$\mathbb{CP}^2$ では $H^2(\mathbb{CP}^2;\mathbb Z)\cong\mathbb Z h$ で、$h^2=1$ である。接束の第二Stiefel--Whitney 類は $w_2(T\mathbb{CP}^2)\equiv h\pmod2$ と表される。したがって行列式線束の第一Chern 類は
+$\mathbb{CP}^2$ では $H^2(\mathbb{CP}^2;\mathbb Z)\cong\mathbb Z h$ で、$h^2=1$ である。接束の第二Stiefel--Whitney 類は $w_2(T\mathbb{CP}^2)\equiv h\pmod2$ と表される。したがって行列式線束の第一Chern類は
 
 $$
 c_1(L)=(2m+1)h
@@ -208,7 +208,7 @@ $$
 
 を作る。これはまずトレース0のHermitian自己準同型であって、まだ2形式ではない。上のClifford同一視の逆を通して初めて、曲率と比較できる虚数値自己双対2形式になる。この一段を省くと、式の両辺の型もWeitzenböck評価の符号も決まらない。
 
-もし $\Phi$ を入れず $F_A^+=0$ だけを $U(1)$ 接続へ課せば、方程式はほぼ線形で、交点形式を越える滑らかな情報を十分に作れない。スピノルの二次項が非線形性を戻し、同時にWeitzenböck formulaを通じて強いa priori boundを与える。
+もし $\Phi$ を入れず $F_A^+=0$ だけを $U(1)$ 接続へ課せば、方程式はほぼ線形で、交点形式を越える滑らかな情報を十分に作れない。スピノルの二次項が非線形性を戻し、同時にWeitzenböck公式を通じて強い先験的な上界を与える。
 
 # 二次写像 $q(\Phi)$ は何をしているか
 

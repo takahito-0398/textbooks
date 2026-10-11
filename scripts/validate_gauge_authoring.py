@@ -38,6 +38,27 @@ PLACEHOLDERS = re.compile(r"\b(?:TODO|TBD|FIXME)\b|要確認|後で書く", re.I
 CITATION_RE = re.compile(r"@([A-Za-z][A-Za-z0-9_:.+-]*)")
 BIB_KEY_RE = re.compile(r"@[A-Za-z]+\s*\{\s*([^,\s]+)", re.IGNORECASE)
 QUARTO_XREF_PREFIXES = ("fig-", "eq-", "sec-", "tbl-", "lst-", "thm-", "lem-", "prp-", "cor-")
+CORRUPTION_PATTERNS = {
+    "cokee": "coker",
+    "Kueanishi": "Kuranishi",
+    "て射": "全射",
+    "ららかな": "滑らかな",
+    "in 定値": "不定値",
+    "in定値": "不定値",
+    "滑らかなである": "滑らかである",
+    "滑らかな化": "平滑化",
+    "定確": "正確",
+    "stabilizee": "stabilizer",
+    "obsteuction": "obstruction",
+    "eegulae": "regular",
+    "theoeem": "theorem",
+    "peincipal": "principal",
+    "則部分": "自己双対部分",
+    "則しくは": "正しくは",
+    "則規": "正規",
+    "foemula": "formula",
+    "図 図": "図",
+}
 
 
 def load_json(path: Path) -> dict:
@@ -268,6 +289,24 @@ def validate_citations(manifest: dict, contracts: list[dict]) -> list[str]:
     return errors
 
 
+def validate_source_corruption(contracts: list[dict]) -> list[str]:
+    errors: list[str] = []
+    checked_paths = {BOOK / contract["source"] for contract in contracts if contract.get("source")}
+    checked_paths.update((BOOK / "assets" / "figures").glob("*.svg"))
+    checked_paths.add(BOOK / "index.qmd")
+    for path in sorted(checked_paths):
+        if not path.is_file():
+            continue
+        text = path.read_text(encoding="utf-8")
+        relative = path.relative_to(BOOK)
+        for bad, good in CORRUPTION_PATTERNS.items():
+            if bad in text:
+                errors.append(f"{relative}: corrupted text {bad!r}; expected {good!r}")
+        if re.search(r"[A-Za-z]+な(?:4次元|多様体|構造|空間|方程式)", text):
+            errors.append(f"{relative}: mixed English/Japanese adjective pattern remains")
+    return errors
+
+
 def validate_all(manifest: dict | None = None, contracts: list[dict] | None = None) -> list[str]:
     manifest = deepcopy(manifest) if manifest is not None else load_json(MANIFEST_PATH)
     contract_paths = sorted(CONTRACT_DIR.glob("*.json"))
@@ -297,6 +336,7 @@ def validate_all(manifest: dict | None = None, contracts: list[dict] | None = No
         for contract, path in zip(contracts, paths):
             errors.extend(validate_contract(contract, manifest, path))
         errors.extend(validate_citations(manifest, contracts))
+        errors.extend(validate_source_corruption(contracts))
     if not SCHEMA_PATH.is_file():
         errors.append("chapter contract schema is missing")
     if not AUDIT_INGESTION_PATH.is_file():
