@@ -27,5 +27,13 @@ PDFの最終SHA-256は `5202cb3671f2ebd98f080e5f1ceccfe2ce8e10ebabb7f5569b40b74e
 
 この作業では、外部へのpushやデプロイは実行結果で確認できた場合だけ公開済みと記録する。
 
-ローカルのQuarto出力 `_site/gauge-theory-smooth-topology/index.html` はクリーン再生成済み。外部へのpushまたはGitHub Pagesデプロイは、まだ実行結果を確認していないため未公開。
+ローカルのQuarto出力 `_site/gauge-theory-smooth-topology/index.html` はクリーン再生成済み。
+
+2026-10-12に `main` へ commit `903761a19395c3b87adb2dd2991fc18bbbb009fc` をpushし、GitHub Actions run `38184649500` の `Deploy Quarto site to GitHub Pages` が成功したことを確認した。
+
+公開先 `https://textbooks.yohakostudio.com/gauge-theory-smooth-topology/` はHTTP 200を返し、18章版の章リンク `01-smooth-structures.html` と `18-kahler-symplectic.html` を含む一方、旧22章版の `01-sameness-and-smoothness.html` と `22-adjunction-and-synthesis.html` は含まないことを確認した。
+
+公開PDF `https://textbooks.yohakostudio.com/gauge-theory-smooth-topology/assets/gauge-theory-smooth-topology.pdf` はHTTP取得後のSHA-256が `5202cb3671f2ebd98f080e5f1ceccfe2ce8e10ebabb7f5569b40b74ec222d15c`、ページ数が98ページで、ローカル最終PDFと一致した。
+
+旧章URL `https://textbooks.yohakostudio.com/gauge-theory-smooth-topology/chapters/01-sameness-and-smoothness.html` と `https://textbooks.yohakostudio.com/gauge-theory-smooth-topology/chapters/22-adjunction-and-synthesis.html` はHTTP 404、現行章 `https://textbooks.yohakostudio.com/gauge-theory-smooth-topology/chapters/14-topological-vs-smooth.html` はHTTP 200だった。
 
