@@ -58,6 +58,16 @@ CORRUPTION_PATTERNS = {
     "則規": "正規",
     "foemula": "formula",
     "図 図": "図",
+    "りり合わされる": "貼り合わされる",
+    "指数 theorem": "指数定理",
+    "てての方向": "すべての方向",
+    "平面て体": "平面全体",
+    "障害 space": "障害空間",
+    "nonlinear coupling": "非線形な連成",
+    "elliptic コンパクト性": "楕円型コンパクト性",
+    "orthonormal frame": "正規直交枠",
+    "orthonormal coframe": "正規直交余標構",
+    "滑らかな space": "滑らかな空間",
 }
 
 

@@ -81,7 +81,7 @@ $$
 
 と直交分解できる。
 
-正向きorthonormal coframe $(e^1,e^2,e^3,e^4)$ を取り、$e^{ij}=e^i\wedge e^j$ と書くと
+正向き正規直交余標構 $(e^1,e^2,e^3,e^4)$ を取り、$e^{ij}=e^i\wedge e^j$ と書くと
 
 $$
 *e^{12}=e^{34},\quad *e^{13}=-e^{24},\quad *e^{14}=e^{23}.
