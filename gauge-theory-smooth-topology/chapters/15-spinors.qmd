@@ -71,6 +71,22 @@ $$
 
 # $\mathbb R^4$ のClifford作用とDirac作用素
 
+4次元で半スピノル $W^+,W^-$ が二つに分かれる理由は、単なる記法ではない。向き付き4次元Euclid空間では、回転群の二重被覆が
+
+$$
+\mathrm{Spin}(4)\cong SU(2)_+\times SU(2)_-
+$$
+
+と二つの因子へ分かれる。この二つの $SU(2)$ がそれぞれ2次元複素表現を持ち、それが $W^+$ と $W^-$ になる。1形式によるClifford作用は、同じ半スピノルの中に留まらず
+
+$$
+T^*\otimes W^+\longrightarrow W^-,
+\qquad
+T^*\otimes W^-\longrightarrow W^+
+$$
+
+を結ぶ。このため、Dirac作用素は正スピノルから負スピノルへ送る一次作用素として現れる。
+
 $W^+\cong\mathbb C^2$、$W^-\cong\mathbb C^2$ とし、$W^+\oplus W^-$ 上で
 
 $$

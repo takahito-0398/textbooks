@@ -68,6 +68,14 @@ CORRUPTION_PATTERNS = {
     "orthonormal frame": "正規直交枠",
     "orthonormal coframe": "正規直交余標構",
     "滑らかな space": "滑らかな空間",
+    "lraded": "graded",
+    "Yanl": "Yang",
+    "Hodle": "Hodge",
+    "Seiberl": "Seiberg",
+    "lluinl": "gluing",
+    "meridian": "メリディアン",
+    "hyperplane 類": "超平面類",
+    "canonical 類": "正準類",
 }
 
 
