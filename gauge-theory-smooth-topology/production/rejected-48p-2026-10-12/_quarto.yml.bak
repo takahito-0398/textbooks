@@ -1,0 +1,431 @@
+project:
+  type: website
+  output-dir: _site
+  resources:
+    - CNAME
+    - favicon.ico
+    - site.webmanifest
+    - assets/icons/*
+  render:
+    - "*.qmd"
+    - "navier-stokes/**/*.qmd"
+    - "buffer-overflow/**/*.qmd"
+    - "noncommutative-geometry/**/*.qmd"
+    - "complex-geometry/**/*.qmd"
+    - "rg-critical-phenomena/**/*.qmd"
+    - "elliptic-curves-bsd/**/*.qmd"
+    - "inverse-spectral-geometry/**/*.qmd"
+    - "gauge-theory-smooth-topology/**/*.qmd"
+    - "sle-critical-phenomena/**/*.qmd"
+
+website:
+  title: "AI教科書ポータル"
+  site-url: "https://textbooks.yohakostudio.com/"
+  repo-url: "https://github.com/takahito-0398/textbooks"
+  search:
+    location: navbar
+    type: overlay
+  page-navigation: true
+  navbar:
+    background: primary
+    right:
+      - icon: github
+        href: "https://github.com/takahito-0398/textbooks"
+  sidebar:
+  - id: navier-stokes
+    title: "Navier-Stokes方程式を読む"
+    style: docked
+    collapse-level: 1
+    contents:
+      - navier-stokes/index.qmd
+      - text: "第I部　方程式を読む"
+        href: navier-stokes/chapters/01-equation-basics.qmd
+      - text: "第II部　一般形から具体解へ"
+        href: navier-stokes/chapters/02-explicit-solutions.qmd
+      - text: "第III部　非線形急峻化の最小模型"
+        href: navier-stokes/chapters/03-burgers-nonlinearity.qmd
+      - text: "第IV部　Reynolds数・無次元化・スケール"
+        href: navier-stokes/chapters/04-reynolds-scaling.qmd
+      - text: "第V部　エネルギー・Fourier相互作用・圧力"
+        href: navier-stokes/chapters/05-energy-fourier-pressure.qmd
+      - text: "第VI部　渦度と次元"
+        href: navier-stokes/chapters/06-vorticity-dimension.qmd
+      - text: "第VII部　渦を計算して見る"
+        href: navier-stokes/chapters/07-vortex-computation.qmd
+      - text: "第VIII部　解析の物差し"
+        href: navier-stokes/chapters/08-analysis-scales.qmd
+      - text: "第IX部　Navier-Stokes正則性問題"
+        href: navier-stokes/chapters/09-regularity-problem.qmd
+      - text: "第X部　発展トピック"
+        href: navier-stokes/chapters/10-advanced-topics.qmd
+      - text: "付録"
+        href: navier-stokes/chapters/11-appendices.qmd
+  - id: buffer-overflow
+    title: "Buffer Overflow / ROP 入門"
+    style: docked
+    collapse-level: 1
+    contents:
+      - buffer-overflow/index.qmd
+      - text: "0. まず、一つのプログラムと二つの結果を見る"
+        href: buffer-overflow/chapters/01-program-and-results.qmd
+      - text: "1. Cの文字列がCPUへ届くまで"
+        href: buffer-overflow/chapters/02-c-string-to-cpu.qmd
+      - text: "2. プロセスと仮想メモリ"
+        href: buffer-overflow/chapters/03-process-memory.qmd
+      - text: "3. CPUはどの命令を実行するのか"
+        href: buffer-overflow/chapters/04-instruction-execution.qmd
+      - text: "4. 関数呼び出しとスタック"
+        href: buffer-overflow/chapters/05-call-stack.qmd
+      - text: "5. 正常系を機械状態で追う"
+        href: buffer-overflow/chapters/06-normal-state-machine.qmd
+      - text: "6. 境界外書き込みは何を壊すのか"
+        href: buffer-overflow/chapters/07-out-of-bounds-write.qmd
+      - text: "7. 戻り先から`RIP`を取るまで"
+        href: buffer-overflow/chapters/08-return-address-to-rip.qmd
+      - text: "8. `RIP`制御の後に何が選べるのか"
+        href: buffer-overflow/chapters/09-after-rip-control.qmd
+      - text: "9. 現代の防御はどの因果を切るのか"
+        href: buffer-overflow/chapters/10-modern-defenses.qmd
+      - text: "10. まとめ：最初の異常系を自分の言葉で説明する"
+        href: buffer-overflow/chapters/11-summary.qmd
+      - text: "補遺A. 実際の逆アセンブリと呼び出し規約"
+        href: buffer-overflow/chapters/12-appendix-disassembly.qmd
+      - text: "補遺B. 古典的な命令配置の地図"
+        href: buffer-overflow/chapters/13-appendix-code-placement.qmd
+      - text: "補遺C. ROPを次に学ぶための地図"
+        href: buffer-overflow/chapters/14-appendix-rop-map.qmd
+      - text: "補遺D. 実験の安全境界と参考資料"
+        href: buffer-overflow/chapters/15-appendix-safety-references.qmd
+  - id: noncommutative-geometry
+    title: "作用素環論から非可換幾何へ"
+    style: docked
+    collapse-level: 1
+    contents:
+      - noncommutative-geometry/index.qmd
+      - text: "第0章　何を「空間」と呼び直すのか"
+        href: noncommutative-geometry/chapters/00-reading-guide.qmd
+      - text: "第1章　行列から作用素へ：無限次元で何が壊れるか"
+        href: noncommutative-geometry/chapters/01-matrices-to-operators.qmd
+      - text: "第2章　作用素を集める：Banach環からC*-環へ"
+        href: noncommutative-geometry/chapters/02-banach-and-cstar-algebras.qmd
+      - text: "第3章　可換C*-環は空間である：Gelfand双対"
+        href: noncommutative-geometry/chapters/03-commutative-cstar-and-spaces.qmd
+      - text: "第4章　状態からHilbert空間へ：表現とGNS構成"
+        href: noncommutative-geometry/chapters/04-states-representations-gns.qmd
+      - text: "第5章　von Neumann環：観測ごとの極限を閉じる"
+        href: noncommutative-geometry/chapters/05-von-neumann-algebras.qmd
+      - text: "第6章　因子と型：射影の「大きさ」を測り直す"
+        href: noncommutative-geometry/chapters/06-factors-and-modular-theory.qmd
+      - text: "第7章　K理論：変形で壊れない射影とユニタリ"
+        href: noncommutative-geometry/chapters/07-k-theory.qmd
+      - text: "第8章　Fredholm作用素とToeplitz拡大：整数が安定に残る理由"
+        href: noncommutative-geometry/chapters/08-fredholm-toeplitz-index.qmd
+      - text: "第9章　巡回コホモロジー：非可換代数で「微分して積分する」"
+        href: noncommutative-geometry/chapters/09-cyclic-cohomology.qmd
+      - text: "第10章　スペクトル三つ組：Dirac作用素から距離・次元・積分を読む"
+        href: noncommutative-geometry/chapters/10-spectral-triples.qmd
+      - text: "第11章　非可換トーラス：回転から生まれる座標環"
+        href: noncommutative-geometry/chapters/11-noncommutative-torus.qmd
+      - text: "第12章　悪い商、Morita同値、葉層：点集合を越えて軌道を記録する"
+        href: noncommutative-geometry/chapters/12-morita-foliations-quotients.qmd
+      - text: "第13章　指数定理への再接続：三種類の情報が一つの整数になる"
+        href: noncommutative-geometry/chapters/13-index-and-geometry.qmd
+      - text: "第14章　非可換幾何とは何をしている理論なのか"
+        href: noncommutative-geometry/chapters/14-what-noncommutative-geometry-is.qmd
+      - text: "付録A　必要な関数解析"
+        href: noncommutative-geometry/chapters/appendix-a-functional-analysis.qmd
+      - text: "付録B　位相的K理論を作用素環から読み直す"
+        href: noncommutative-geometry/chapters/appendix-b-topological-k-theory.qmd
+      - text: "付録C　Clifford代数・spinor・Dirac作用素"
+        href: noncommutative-geometry/chapters/appendix-c-clifford-spin.qmd
+      - text: "付録D　記号と用語"
+        href: noncommutative-geometry/chapters/appendix-d-notation.qmd
+      - text: "付録E　参考文献"
+        href: noncommutative-geometry/chapters/appendix-e-bibliography.qmd
+  - id: complex-geometry
+    title: "複素多様体・複素幾何"
+    style: docked
+    collapse-level: 1
+    contents:
+      - complex-geometry/index.qmd
+      - text: "第1章　複素数から複素多様体へ"
+        href: complex-geometry/chapters/01-complex-numbers-to-manifolds.qmd
+      - text: "第2章　概複素構造と可積分性"
+        href: complex-geometry/chapters/02-almost-complex-and-integrability.qmd
+      - text: "第3章　接束の複素化と型分解"
+        href: complex-geometry/chapters/03-complexified-tangent-and-types.qmd
+      - text: "第4章　外微分はなぜpartialとdbarに分かれるのか"
+        href: complex-geometry/chapters/04-d-and-dbar.qmd
+      - text: "第5章　Dolbeaultコホモロジー：正則性の大域的障害"
+        href: complex-geometry/chapters/05-dolbeault-cohomology.qmd
+      - text: "第6章　正則ベクトル束：正則性をファイバーへ運ぶ"
+        href: complex-geometry/chapters/06-holomorphic-vector-bundles.qmd
+      - text: "第7章　Hermitian計量からKähler幾何へ"
+        href: complex-geometry/chapters/07-hermitian-to-kahler.qmd
+      - text: "第8章　Hodge理論：コホモロジー類から自然な代表元を選ぶ"
+        href: complex-geometry/chapters/08-hodge-theory.qmd
+      - text: "第9章　Kähler恒等式とHodge分解"
+        href: complex-geometry/chapters/09-kahler-identities-and-hodge-decomposition.qmd
+      - text: "第10章　Chern接続・曲率・Chern類"
+        href: complex-geometry/chapters/10-chern-connection-and-classes.qmd
+      - text: "第11章　複素射影空間とFubini-Study計量"
+        href: complex-geometry/chapters/11-projective-space-and-fubini-study.qmd
+      - text: "第12章　線束の正値性とKodaira埋め込み"
+        href: complex-geometry/chapters/12-positivity-and-kodaira-embedding.qmd
+      - text: "第13章　複素解析的対象と代数的対象"
+        href: complex-geometry/chapters/13-analytic-and-algebraic.qmd
+      - text: "第14章　複素トーラス、アーベル多様体、理論の境界"
+        href: complex-geometry/chapters/14-complex-tori-and-boundaries.qmd
+      - text: "参考文献と確認方針"
+        href: complex-geometry/chapters/references.qmd
+  - id: rg-critical-phenomena
+    title: "繰り込み群・臨界現象"
+    style: docked
+    collapse-level: 1
+    contents:
+      - rg-critical-phenomena/index.qmd
+      - text: '第1部　相転移・臨界現象・普遍性という謎'
+        href: rg-critical-phenomena/chapters/01-phenomena.qmd
+      - text: '第2部　Landau 理論は何を説明し、なぜ破れるのか'
+        href: rg-critical-phenomena/chapters/02-landau-fluctuations.qmd
+      - text: '第3部　相関長、スケール不変性、べき則'
+        href: rg-critical-phenomena/chapters/03-correlation-scaling.qmd
+      - text: '第4部　Ising 模型から最初の繰り込み群へ'
+        href: rg-critical-phenomena/chapters/04-block-spin.qmd
+      - text: '第5部　理論空間、RG 流、固定点、普遍性'
+        href: rg-critical-phenomena/chapters/05-theory-space.qmd
+      - text: '第6部　Landau–Ginzburg–Wilson 場の理論と Fourier 空間'
+        href: rg-critical-phenomena/chapters/06-lgw-fourier.qmd
+      - text: '第7部　momentum-shell RG を一段ずつ計算する'
+        href: rg-critical-phenomena/chapters/07-momentum-shell.qmd
+      - text: '第8部　epsilon 展開、Wilson–Fisher 固定点、臨界指数'
+        href: rg-critical-phenomena/chapters/08-wilson-fisher.qmd
+      - text: '第9部　量子場理論の繰り込み、running coupling、EFT'
+        href: rg-critical-phenomena/chapters/09-qft-eft.qmd
+      - text: '第10部　確率論、力学系、共形場理論'
+        href: rg-critical-phenomena/chapters/10-probability-cft.qmd
+      - text: '第11部　QCD、functional RG、3D Ising、rigorous RG'
+        href: rg-critical-phenomena/chapters/11-modern-rg.qmd
+      - text: '第12部　RG の限界と現在地'
+        href: rg-critical-phenomena/chapters/12-limits-open.qmd
+      - text: '第13部　有限サイズ scaling'
+        href: rg-critical-phenomena/chapters/13-finite-size-scaling.qmd
+      - text: '第14部　1D・2D・3D Ising 模型'
+        href: rg-critical-phenomena/chapters/14-ising-across-dimensions.qmd
+      - text: '第15部　scaling field、crossover、corrections to scaling'
+        href: rg-critical-phenomena/chapters/15-scaling-fields-corrections.qmd
+      - text: '第16部　液体–気体臨界点はなぜ Ising 型なのか'
+        href: rg-critical-phenomena/chapters/16-liquid-gas-universality.qmd
+      - text: '第17部　実空間RG'
+        href: rg-critical-phenomena/chapters/17-real-space-rg.qmd
+      - text: '第18部　Gaussian模型とRG固有演算子'
+        href: rg-critical-phenomena/chapters/18-gaussian-fixed-point.qmd
+      - text: '第19部　O(N) 模型'
+        href: rg-critical-phenomena/chapters/19-on-model.qmd
+      - text: '第20部　O(N)模型のone-loop RG'
+        href: rg-critical-phenomena/chapters/20-on-one-loop.qmd
+      - text: '第21部　scaling relations'
+        href: rg-critical-phenomena/chapters/21-scaling-relations.qmd
+      - text: '第22部　countertermとCallan–Symanzik方程式'
+        href: rg-critical-phenomena/chapters/22-counterterms-cs.qmd
+      - text: '第23部　EFT matching'
+        href: rg-critical-phenomena/chapters/23-eft-matching.qmd
+      - text: '第24部　確率分布のRG'
+        href: rg-critical-phenomena/chapters/24-probability-rg.qmd
+      - text: '第25部　二次元CFT'
+        href: rg-critical-phenomena/chapters/25-two-dimensional-cft.qmd
+      - text: '第26部　三次元conformal bootstrap'
+        href: rg-critical-phenomena/chapters/26-conformal-bootstrap.qmd
+      - text: '第27部　exact functional RG equation'
+        href: rg-critical-phenomena/chapters/27-exact-functional-rg.qmd
+      - text: '第28部　functional RGの近似'
+        href: rg-critical-phenomena/chapters/28-frg-truncations.qmd
+      - text: '第29部　rigorous RG'
+        href: rg-critical-phenomena/chapters/29-rigorous-rg.qmd
+      - text: '第30部　disorderとRG'
+        href: rg-critical-phenomena/chapters/30-disorder-rg.qmd
+      - text: '第31部　動的臨界現象'
+        href: rg-critical-phenomena/chapters/31-dynamic-criticality.qmd
+      - text: '第32部　量子臨界現象'
+        href: rg-critical-phenomena/chapters/32-quantum-criticality.qmd
+      - text: '第33部　固定点に到達しないRG'
+        href: rg-critical-phenomena/chapters/33-beyond-fixed-points.qmd
+      - text: '第34部　非平衡RGと乱流'
+        href: rg-critical-phenomena/chapters/34-nonequilibrium-turbulence.qmd
+      - text: '第35部　統合――RGで問題を解く手順と未解決問題'
+        href: rg-critical-phenomena/chapters/35-synthesis-open-problems.qmd
+      - text: '補遺A　RG計算のための数学道具'
+        href: rg-critical-phenomena/chapters/appendix-mathematical-tools.qmd
+      - text: '補遺B　統計力学の最小復習'
+        href: rg-critical-phenomena/chapters/appendix-stat-mech-review.qmd
+      - text: '補遺C　理解確認問題と解答指針'
+        href: rg-critical-phenomena/chapters/appendix-exercises.qmd
+      - text: '参考文献と主張対応表'
+        href: rg-critical-phenomena/chapters/bibliography.qmd
+      - text: '概念史――何が初めて理解可能になったか'
+        href: rg-critical-phenomena/chapters/history.qmd
+  - id: elliptic-curves-bsd
+    title: "楕円曲線の有理点とBSD予想"
+    style: docked
+    collapse-level: 1
+    contents:
+      - elliptic-curves-bsd/index.qmd
+      - text: "第1章　有理点を探す問いを、作る問いへ変える"
+        href: elliptic-curves-bsd/chapters/01-rational-points.qmd
+      - text: "第2章　無限遠点を加えると、点は群になる"
+        href: elliptic-curves-bsd/chapters/02-group-law.qmd
+      - text: "第3章　Mordell–Weil、rank、height"
+        href: elliptic-curves-bsd/chapters/03-mordell-weil-rank-height.qmd
+      - text: "第4章　有限体への還元とHasse評価"
+        href: elliptic-curves-bsd/chapters/04-reduction-and-hasse.qmd
+      - text: "第5章　Euler積とL関数"
+        href: elliptic-curves-bsd/chapters/05-euler-product-and-l-function.qmd
+      - text: "第6章　モジュラー性と中心点"
+        href: elliptic-curves-bsd/chapters/06-modularity-and-center.qmd
+      - text: "第7章　Birch–Swinnerton-Dyer予想"
+        href: elliptic-curves-bsd/chapters/07-bsd-conjecture.qmd
+      - text: "第8章　最初の問いへ戻る"
+        href: elliptic-curves-bsd/chapters/08-synthesis.qmd
+      - text: "参考文献"
+        href: elliptic-curves-bsd/chapters/references.qmd
+  - id: inverse-spectral-geometry
+    title: "逆スペクトル幾何"
+    style: docked
+    collapse-level: 1
+    contents:
+      - inverse-spectral-geometry/index.qmd
+      - text: "第1章　弦――長さは音から聞こえるか"
+        href: inverse-spectral-geometry/chapters/01-string.qmd
+      - text: "第2章　膜――なぜラプラシアンが現れるか"
+        href: inverse-spectral-geometry/chapters/02-membrane.qmd
+      - text: "第3章　固有値・固有関数・スペクトル"
+        href: inverse-spectral-geometry/chapters/03-spectrum.qmd
+      - text: "第4章　解ける形――区間・長方形・円板"
+        href: inverse-spectral-geometry/chapters/04-solvable-shapes.qmd
+      - text: "第5章　逆問題――何を知れば何が戻るか"
+        href: inverse-spectral-geometry/chapters/05-inverse-problem.qmd
+      - text: "第6章　Weyl則――面積は聞こえる"
+        href: inverse-spectral-geometry/chapters/06-weyl-law.qmd
+      - text: "第7章　熱トレース――境界と位相を聞く"
+        href: inverse-spectral-geometry/chapters/07-heat-trace.qmd
+      - text: "第8章　変分原理と円板の剛性"
+        href: inverse-spectral-geometry/chapters/08-variational-rigidity.qmd
+      - text: "第9章　等スペクトル drum"
+        href: inverse-spectral-geometry/chapters/09-isospectral-drums.qmd
+      - text: "第10章　Transplantation の完全計算"
+        href: inverse-spectral-geometry/chapters/10-transplantation.qmd
+      - text: "第11章　Sunada 法"
+        href: inverse-spectral-geometry/chapters/11-sunada.qmd
+      - text: "第12章　有限データ・一意性・安定性"
+        href: inverse-spectral-geometry/chapters/12-data-and-stability.qmd
+      - text: "第13章　発展――wave trace と条件付き剛性"
+        href: inverse-spectral-geometry/chapters/13-beyond.qmd
+      - text: "付録A　解析的基礎"
+        href: inverse-spectral-geometry/chapters/a-analytic-foundations.qmd
+      - text: "付録B　数値実験"
+        href: inverse-spectral-geometry/chapters/b-numerical-lab.qmd
+  - id: gauge-theory-smooth-topology
+    title: "4次元ゲージ理論と滑らかな位相"
+    style: docked
+    collapse-level: 1
+    contents:
+      - gauge-theory-smooth-topology/index.qmd
+      - text: "Part I　手で作る位相と交点形式"
+        contents:
+          - gauge-theory-smooth-topology/chapters/01-sameness-and-smoothness.qmd
+          - gauge-theory-smooth-topology/chapters/02-cells-boundaries-homology.qmd
+          - gauge-theory-smooth-topology/chapters/03-cohomology-forms-duality.qmd
+          - gauge-theory-smooth-topology/chapters/04-intersection-form-by-hand.qmd
+          - gauge-theory-smooth-topology/chapters/05-freedman-donaldson-collision.qmd
+      - text: "Part II　束・接続・4次元の曲率"
+        contents:
+          - gauge-theory-smooth-topology/chapters/06-bundles-from-moving-frames.qmd
+          - gauge-theory-smooth-topology/chapters/07-connections-curvature-holonomy.qmd
+          - gauge-theory-smooth-topology/chapters/08-four-dimensional-hodge-yang-mills.qmd
+          - gauge-theory-smooth-topology/chapters/09-instantons-scale-bpst.qmd
+      - text: "Part III　ASDモジュライ空間を有限次元へ落とす"
+        contents:
+          - gauge-theory-smooth-topology/chapters/10-quotients-slices-finite-model.qmd
+          - gauge-theory-smooth-topology/chapters/11-linearization-asd-complex.qmd
+          - gauge-theory-smooth-topology/chapters/12-ellipticity-fredholm-index.qmd
+          - gauge-theory-smooth-topology/chapters/13-kuranishi-regularity-orientation.qmd
+      - text: "Part IV　Donaldson理論と滑らかな分類"
+        contents:
+          - gauge-theory-smooth-topology/chapters/14-compactification-and-counting.qmd
+          - gauge-theory-smooth-topology/chapters/15-donaldson-invariants-and-diagonalization.qmd
+          - gauge-theory-smooth-topology/chapters/16-exotic-k3-knot-surgery.qmd
+      - text: "Part V　Seiberg-Witten理論を作る"
+        contents:
+          - gauge-theory-smooth-topology/chapters/17-spinors-clifford-matrices.qmd
+          - gauge-theory-smooth-topology/chapters/18-spinc-dirac-determinant.qmd
+          - gauge-theory-smooth-topology/chapters/19-seiberg-witten-equations.qmd
+          - gauge-theory-smooth-topology/chapters/20-sw-invariants-wall-crossing.qmd
+      - text: "Part VI　幾何への制約と総合"
+        contents:
+          - gauge-theory-smooth-topology/chapters/21-kahler-symplectic-taubes.qmd
+          - gauge-theory-smooth-topology/chapters/22-adjunction-and-synthesis.qmd
+      - text: "付録"
+        contents:
+          - gauge-theory-smooth-topology/chapters/appendix-analysis.qmd
+          - gauge-theory-smooth-topology/chapters/appendix-notation-exercises.qmd
+  - id: sle-critical-phenomena
+    title: "二次元臨界現象とSLE"
+    style: docked
+    collapse-level: 1
+    contents:
+      - sle-critical-phenomena/index.qmd
+      - section: "Part I　離散から曲線へ"
+        contents:
+          - sle-critical-phenomena/chapters/01-lattice-to-interface.qmd
+          - sle-critical-phenomena/chapters/02-curve-space.qmd
+      - section: "Part II　Loewner符号化"
+        contents:
+          - sle-critical-phenomena/chapters/03-conformal-erasure.qmd
+          - sle-critical-phenomena/chapters/04-loewner-equation.qmd
+          - sle-critical-phenomena/chapters/05-schramm-principle.qmd
+      - section: "Part III　SLEの幾何"
+        contents:
+          - sle-critical-phenomena/chapters/06-brownian-loewner.qmd
+          - sle-critical-phenomena/chapters/07-bessel-threshold.qmd
+          - sle-critical-phenomena/chapters/08-geometric-phases.qmd
+      - section: "Part IV　確率を計算する"
+        contents:
+          - sle-critical-phenomena/chapters/09-martingales.qmd
+          - sle-critical-phenomena/chapters/10-left-passage.qmd
+          - sle-critical-phenomena/chapters/11-fractal-dimension.qmd
+      - section: "Part V　離散模型へ戻る"
+        contents:
+          - sle-critical-phenomena/chapters/12-convergence-blueprint.qmd
+          - sle-critical-phenomena/chapters/13-percolation-sle6.qmd
+          - sle-critical-phenomena/chapters/14-lerw-sle2.qmd
+          - sle-critical-phenomena/chapters/15-universality.qmd
+      - section: "Part VI　場と次の幾何"
+        contents:
+          - sle-critical-phenomena/chapters/16-gff.qmd
+          - sle-critical-phenomena/chapters/17-gff-sle4.qmd
+          - sle-critical-phenomena/chapters/18-outlook.qmd
+      - section: "付録"
+        contents:
+          - sle-critical-phenomena/appendices/a-probability.qmd
+          - sle-critical-phenomena/appendices/b-convergence.qmd
+          - sle-critical-phenomena/appendices/c-bessel-dimension.qmd
+          - sle-critical-phenomena/appendices/d-numerics.qmd
+          - sle-critical-phenomena/appendices/e-reader-stop-points.qmd
+
+format:
+  html:
+    theme: [darkly, shared/styles/theme.scss]
+    toc: true
+    toc-depth: 3
+    number-sections: false
+    code-copy: true
+    code-overflow: wrap
+    html-math-method: mathjax
+    link-external-icon: true
+    fig-responsive: true
+    css: shared/styles/custom.css
+    include-in-header: shared/includes/pwa-head.html
+    include-after-body: shared/scripts/reader-ui.html
+
+execute:
+  freeze: auto

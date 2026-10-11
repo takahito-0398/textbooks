@@ -1,0 +1,56 @@
+---
+title: "4次元ゲージ理論と滑らかな位相"
+subtitle: "Donaldson理論からSeiberg-Witten理論へ"
+description: "線形代数と微積分から出発し、交点形式、接続、ASD方程式、Donaldson理論、Seiberg-Witten理論、随伴不等式までを手で追う教科書"
+sidebar: gauge-theory-smooth-topology
+format:
+  html:
+    toc: true
+---
+
+# この本の問い {.unnumbered}
+
+楕円型ゲージ方程式の解空間は、なぜ4次元多様体の滑らかな構造を検出できるのか。
+
+本書は旧95ページ版の章順を保持しない。円周・トーラス・回転基底・有限次元方程式から始め、交点形式、接続、Hodge分解、ASDモジュライ空間、Donaldson不変量、Spin^c構造、Seiberg-Witten理論、Taubesの定理、随伴不等式へ進む。深い定理は完全証明を装わず、仮定・結論・証明の骨格・本文で使う帰結を分けて記録する。
+
+[第1章から読む](chapters/01-sameness-and-smoothness.qmd){.btn .btn-primary}
+[統合PDFをダウンロード](assets/gauge-theory-smooth-topology.pdf){.btn .btn-secondary download="gauge-theory-smooth-topology.pdf"}
+
+## 新しい構成
+
+- **Part I　手で作る位相と交点形式**
+  - [同じ空間を比べる三つの物差し](chapters/01-sameness-and-smoothness.qmd)
+  - [穴を数える前に境界を計算する](chapters/02-cells-boundaries-homology.qmd)
+  - [閉じた量を積分してコホモロジーへ行く](chapters/03-cohomology-forms-duality.qmd)
+  - [曲面を交差させて4次元の行列を作る](chapters/04-intersection-form-by-hand.qmd)
+  - [位相では許され、滑らかさでは禁じられる形式](chapters/05-freedman-donaldson-collision.qmd)
+- **Part II　束・接続・4次元の曲率**
+  - [動く基底から束を作る](chapters/06-bundles-from-moving-frames.qmd)
+  - [接続は微分から基底の動きを差し引く](chapters/07-connections-curvature-holonomy.qmd)
+  - [4次元では曲率が二つに割れる](chapters/08-four-dimensional-hodge-yang-mills.qmd)
+  - [インスタントンは一点へ縮むことがある](chapters/09-instantons-scale-bpst.qmd)
+- **Part III　ASDモジュライ空間を有限次元へ落とす**
+  - [同じ解を何度も数えないために割る](chapters/10-quotients-slices-finite-model.qmd)
+  - [線形化すると複体が現れる](chapters/11-linearization-asd-complex.qmd)
+  - [無限次元から有限個の自由度を取り出す](chapters/12-ellipticity-fredholm-index.qmd)
+  - [期待次元を実際の空間にする](chapters/13-kuranishi-regularity-orientation.qmd)
+- **Part IV　Donaldson理論と滑らかな分類**
+  - [解を数える前に境界を調べる](chapters/14-compactification-and-counting.qmd)
+  - [Donaldson理論の二つの帰結を分ける](chapters/15-donaldson-invariants-and-diagonalization.qmd)
+  - [K3と結び目手術で異種滑らかな構造を見る](chapters/16-exotic-k3-knot-surgery.qmd)
+- **Part V　Seiberg-Witten理論を作る**
+  - [スピノルは回転の平方根として現れる](chapters/17-spinors-clifford-matrices.qmd)
+  - [Spin^c構造は線束でねじれたスピノルを与える](chapters/18-spinc-dirac-determinant.qmd)
+  - [Seiberg-Witten方程式は可換だが線形ではない](chapters/19-seiberg-witten-equations.qmd)
+  - [SW不変量は基本類を通して多様体を見る](chapters/20-sw-invariants-wall-crossing.qmd)
+- **Part VI　幾何への制約と総合**
+  - [SW解から曲線が見える](chapters/21-kahler-symplectic-taubes.qmd)
+  - [随伴不等式から最小種数へ戻る](chapters/22-adjunction-and-synthesis.qmd)
+
+## 読者への約束
+
+- 位相空間、多様体、ホモロジー、微分形式、束、接続、Sobolev空間、Fredholm理論、スピノル、Spin^c構造は既知としない。
+- 定理の深度をAからDに分け、引用定理を証明済みのように扱わない。
+- 演習には本文の範囲で追える解答を付ける。
+- 旧版の文章構造を温存せず、必要な計算経路を章の主線に組み込む。

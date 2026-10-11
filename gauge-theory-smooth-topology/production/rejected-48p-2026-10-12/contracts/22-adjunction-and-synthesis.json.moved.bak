@@ -1,0 +1,51 @@
+{
+  "chapter_id": "ch-22",
+  "source": "chapters/22-adjunction-and-synthesis.qmd",
+  "central_question": "ゲージ理論は、埋め込み曲面の種数へどのような具体的制約を与えるのか。",
+  "reader_starting_state": "線形代数・微積分・基礎的な微分方程式だけを仮定する。",
+  "prerequisites": [
+    "not-sw-basic"
+  ],
+  "new_concepts": [
+    "not-adjunction"
+  ],
+  "main_derivations": [
+    "本文の手計算節と演習で確認する。",
+    "非ねじれの埋め込み曲面 $\\Sigma$ とSW基本類 $K$ に対し、適切な仮定の下で $2g(\\Sigma)-2\\ge \\Sigma^2+|K\\cdot\\S"
+  ],
+  "results": [
+    "thm-adjunction"
+  ],
+  "proof_depth": "D",
+  "black_boxes": [
+    "bb-adjunction"
+  ],
+  "rigor_statuses": [
+    "definition",
+    "lemma",
+    "black_box_theorem"
+  ],
+  "reader_stop_points": [
+    {
+      "question": "ゲージ理論は、埋め込み曲面の種数へどのような具体的制約を与えるのか。",
+      "resolution": "body",
+      "location": "chapters/22-adjunction-and-synthesis.qmd"
+    }
+  ],
+  "required_bridges": [
+    "前章の出口を冒頭で明示する。",
+    "次章で必要になる疑問を末尾で明示する。"
+  ],
+  "figures": [
+    "fig-adjunction",
+    "fig-donaldson-sw"
+  ],
+  "sources": [
+    "src-km-adjunction",
+    "src-morgan-sw",
+    "src-taubes"
+  ],
+  "previous_connection": "前章の主計算をこの章の入口に接続する。",
+  "next_question": "総合章で閉じる。",
+  "unresolved_stop_points": []
+}

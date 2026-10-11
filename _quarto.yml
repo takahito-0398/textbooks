@@ -340,13 +340,13 @@ website:
           - gauge-theory-smooth-topology/chapters/04-connections-curvature.qmd
           - gauge-theory-smooth-topology/chapters/05-why-four-dimensions.qmd
           - gauge-theory-smooth-topology/chapters/06-yang-mills-asd.qmd
-      - text: "Part III　moduliの局所構造"
+      - text: "Part III　モジュライ空間の局所構造"
         contents:
           - gauge-theory-smooth-topology/chapters/07-gauge-quotient.qmd
           - gauge-theory-smooth-topology/chapters/08-deformation-complex.qmd
           - gauge-theory-smooth-topology/chapters/09-ellipticity-index.qmd
           - gauge-theory-smooth-topology/chapters/10-smooth-moduli.qmd
-      - text: "Part IV　compactificationとDonaldson理論"
+      - text: "Part IV　コンパクト化とDonaldson理論"
         contents:
           - gauge-theory-smooth-topology/chapters/11-bubbling.qmd
           - gauge-theory-smooth-topology/chapters/12-invariant-machine.qmd

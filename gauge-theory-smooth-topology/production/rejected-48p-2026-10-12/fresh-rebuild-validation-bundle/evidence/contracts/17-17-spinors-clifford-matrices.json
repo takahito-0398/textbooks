@@ -1,0 +1,43 @@
+{
+  "chapter_id": "ch-17",
+  "source": "chapters/17-17-spinors-clifford-matrices.qmd",
+  "central_question": "なぜSeiberg-Witten理論では、接続だけでなくスピノルが必要になるのか。",
+  "reader_starting_state": "線形代数・微積分・基礎的な微分方程式だけを仮定する。",
+  "prerequisites": [
+    "not-exotic-pair"
+  ],
+  "new_concepts": [
+    "not-spin-c"
+  ],
+  "main_derivations": [
+    "本文の手計算節と演習で確認する。",
+    "Pauli行列 $\\sigma_1,\\sigma_2,\\sigma_3$ は $\\sigma_i\\sigma_j+\\sigma_j\\sigma_i=2\\delt"
+  ],
+  "results": [],
+  "proof_depth": "A",
+  "black_boxes": [],
+  "rigor_statuses": [
+    "definition",
+    "lemma"
+  ],
+  "reader_stop_points": [
+    {
+      "question": "なぜSeiberg-Witten理論では、接続だけでなくスピノルが必要になるのか。",
+      "resolution": "body",
+      "location": "chapters/17-17-spinors-clifford-matrices.qmd"
+    }
+  ],
+  "required_bridges": [
+    "前章の出口を冒頭で明示する。",
+    "次章で必要になる疑問を末尾で明示する。"
+  ],
+  "figures": [
+    "fig-spinor-rotation"
+  ],
+  "sources": [
+    "src-morgan-sw"
+  ],
+  "previous_connection": "前章の主計算をこの章の入口に接続する。",
+  "next_question": "次章でこの章の道具を使う。",
+  "unresolved_stop_points": []
+}

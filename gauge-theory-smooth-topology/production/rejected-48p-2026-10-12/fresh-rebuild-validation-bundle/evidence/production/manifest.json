@@ -1,0 +1,1253 @@
+{
+  "schema_version": 2,
+  "book": {
+    "id": "gauge-theory-smooth-topology",
+    "title": "4次元ゲージ理論と滑らかな位相",
+    "central_problem": "楕円型ゲージ方程式の解空間は、なぜ4次元多様体の滑らかな構造を検出できるのか。",
+    "scope": "閉・連結・向き付け可能な滑らかな4次元多様体。Donaldson側は原則単連結、計量独立性は原則b2+>1。",
+    "status": "fresh_22_chapter_rebuild",
+    "formal_authoring_started": true
+  },
+  "quality_policy": {
+    "fresh_rebuild": true,
+    "missing_explanation_first": true,
+    "completion_rule": "本文、演習、図、契約、PDF/Web検証が揃うまで完成扱いしない。"
+  },
+  "proof_depth_levels": {
+    "A": "教材内で補題・計算を含め完結",
+    "B": "本質を証明し標準技術補題のみ借用",
+    "C": "入力・難所・出力・依存を含む証明アーキテクチャ",
+    "D": "正確なstatementと役割を示して引用"
+  },
+  "curriculum": [
+    {
+      "id": "ch-01",
+      "part": "I",
+      "title": "同じ空間を比べる三つの物差し",
+      "central_question": "位相的に同じ、滑らかに同じ、距離まで同じという三つの同一視は何が違うのか。",
+      "mathematical_dependencies": [],
+      "pedagogical_dependencies": [],
+      "previous": null,
+      "next": "ch-02",
+      "status": "fresh_rebuilt"
+    },
+    {
+      "id": "ch-02",
+      "part": "I",
+      "title": "穴を数える前に境界を計算する",
+      "central_question": "ホモロジーは、なぜ図形の穴を数える道具として使えるのか。",
+      "mathematical_dependencies": [
+        "ch-01"
+      ],
+      "pedagogical_dependencies": [
+        "ch-01"
+      ],
+      "previous": "ch-01",
+      "next": "ch-03",
+      "status": "fresh_rebuilt"
+    },
+    {
+      "id": "ch-03",
+      "part": "I",
+      "title": "閉じた量を積分してコホモロジーへ行く",
+      "central_question": "境界で消えない量を、微分形式と積分でどう測るのか。",
+      "mathematical_dependencies": [
+        "ch-02"
+      ],
+      "pedagogical_dependencies": [
+        "ch-02"
+      ],
+      "previous": "ch-02",
+      "next": "ch-04",
+      "status": "fresh_rebuilt"
+    },
+    {
+      "id": "ch-04",
+      "part": "I",
+      "title": "曲面を交差させて4次元の行列を作る",
+      "central_question": "4次元多様体では、なぜ2次元サイクル同士の交点が分類の中心になるのか。",
+      "mathematical_dependencies": [
+        "ch-03"
+      ],
+      "pedagogical_dependencies": [
+        "ch-03"
+      ],
+      "previous": "ch-03",
+      "next": "ch-05",
+      "status": "fresh_rebuilt"
+    },
+    {
+      "id": "ch-05",
+      "part": "I",
+      "title": "位相では許され、滑らかさでは禁じられる形式",
+      "central_question": "Freedmanの分類定理とDonaldsonの対角化定理は、どこで衝突するのか。",
+      "mathematical_dependencies": [
+        "ch-04"
+      ],
+      "pedagogical_dependencies": [
+        "ch-04"
+      ],
+      "previous": "ch-04",
+      "next": "ch-06",
+      "status": "fresh_rebuilt"
+    },
+    {
+      "id": "ch-06",
+      "part": "II",
+      "title": "動く基底から束を作る",
+      "central_question": "大域的に一つの座標や基底を選べないとき、何を対象として計算するのか。",
+      "mathematical_dependencies": [
+        "ch-05"
+      ],
+      "pedagogical_dependencies": [
+        "ch-05"
+      ],
+      "previous": "ch-05",
+      "next": "ch-07",
+      "status": "fresh_rebuilt"
+    },
+    {
+      "id": "ch-07",
+      "part": "II",
+      "title": "接続は微分から基底の動きを差し引く",
+      "central_question": "局所表示に依存しない微分を、どのように定義するのか。",
+      "mathematical_dependencies": [
+        "ch-06"
+      ],
+      "pedagogical_dependencies": [
+        "ch-06"
+      ],
+      "previous": "ch-06",
+      "next": "ch-08",
+      "status": "fresh_rebuilt"
+    },
+    {
+      "id": "ch-08",
+      "part": "II",
+      "title": "4次元では曲率が二つに割れる",
+      "central_question": "なぜ4次元で自己双対・反自己双対という分解が特別な意味を持つのか。",
+      "mathematical_dependencies": [
+        "ch-07"
+      ],
+      "pedagogical_dependencies": [
+        "ch-07"
+      ],
+      "previous": "ch-07",
+      "next": "ch-09",
+      "status": "fresh_rebuilt"
+    },
+    {
+      "id": "ch-09",
+      "part": "II",
+      "title": "インスタントンは一点へ縮むことがある",
+      "central_question": "ASD解の列が収束しないとき、何が失われ何が保存されるのか。",
+      "mathematical_dependencies": [
+        "ch-08"
+      ],
+      "pedagogical_dependencies": [
+        "ch-08"
+      ],
+      "previous": "ch-08",
+      "next": "ch-10",
+      "status": "fresh_rebuilt"
+    },
+    {
+      "id": "ch-10",
+      "part": "III",
+      "title": "同じ解を何度も数えないために割る",
+      "central_question": "ゲージ対称性を持つ方程式で、解空間をどう局所的に見るのか。",
+      "mathematical_dependencies": [
+        "ch-09"
+      ],
+      "pedagogical_dependencies": [
+        "ch-09"
+      ],
+      "previous": "ch-09",
+      "next": "ch-11",
+      "status": "fresh_rebuilt"
+    },
+    {
+      "id": "ch-11",
+      "part": "III",
+      "title": "線形化すると複体が現れる",
+      "central_question": "ASD方程式とゲージ対称性の無限小構造は、なぜ一つの複体になるのか。",
+      "mathematical_dependencies": [
+        "ch-10"
+      ],
+      "pedagogical_dependencies": [
+        "ch-10"
+      ],
+      "previous": "ch-10",
+      "next": "ch-12",
+      "status": "fresh_rebuilt"
+    },
+    {
+      "id": "ch-12",
+      "part": "III",
+      "title": "無限次元から有限個の自由度を取り出す",
+      "central_question": "ASD変形複体は、なぜ有限次元の期待次元を持つのか。",
+      "mathematical_dependencies": [
+        "ch-11"
+      ],
+      "pedagogical_dependencies": [
+        "ch-11"
+      ],
+      "previous": "ch-11",
+      "next": "ch-13",
+      "status": "fresh_rebuilt"
+    },
+    {
+      "id": "ch-13",
+      "part": "III",
+      "title": "期待次元を実際の空間にする",
+      "central_question": "指数で得た数は、いつ実際のモジュライ空間の次元になるのか。",
+      "mathematical_dependencies": [
+        "ch-12"
+      ],
+      "pedagogical_dependencies": [
+        "ch-12"
+      ],
+      "previous": "ch-12",
+      "next": "ch-14",
+      "status": "fresh_rebuilt"
+    },
+    {
+      "id": "ch-14",
+      "part": "IV",
+      "title": "解を数える前に境界を調べる",
+      "central_question": "PDEの解空間から得た数は、なぜ補助計量に依存しないと言えるのか。",
+      "mathematical_dependencies": [
+        "ch-13"
+      ],
+      "pedagogical_dependencies": [
+        "ch-13"
+      ],
+      "previous": "ch-13",
+      "next": "ch-15",
+      "status": "fresh_rebuilt"
+    },
+    {
+      "id": "ch-15",
+      "part": "IV",
+      "title": "Donaldson理論の二つの帰結を分ける",
+      "central_question": "Donaldsonの対角化定理とDonaldson多項式不変量は、何が同じで何が違うのか。",
+      "mathematical_dependencies": [
+        "ch-14"
+      ],
+      "pedagogical_dependencies": [
+        "ch-14"
+      ],
+      "previous": "ch-14",
+      "next": "ch-16",
+      "status": "fresh_rebuilt"
+    },
+    {
+      "id": "ch-16",
+      "part": "IV",
+      "title": "K3と結び目手術で異種滑らかな構造を見る",
+      "central_question": "同相だが微分同相でない滑らかな4次元多様体を、どう構成し識別するのか。",
+      "mathematical_dependencies": [
+        "ch-15"
+      ],
+      "pedagogical_dependencies": [
+        "ch-15"
+      ],
+      "previous": "ch-15",
+      "next": "ch-17",
+      "status": "fresh_rebuilt"
+    },
+    {
+      "id": "ch-17",
+      "part": "V",
+      "title": "スピノルは回転の平方根として現れる",
+      "central_question": "なぜSeiberg-Witten理論では、接続だけでなくスピノルが必要になるのか。",
+      "mathematical_dependencies": [
+        "ch-16"
+      ],
+      "pedagogical_dependencies": [
+        "ch-16"
+      ],
+      "previous": "ch-16",
+      "next": "ch-18",
+      "status": "fresh_rebuilt"
+    },
+    {
+      "id": "ch-18",
+      "part": "V",
+      "title": "Spin^c構造は線束でねじれたスピノルを与える",
+      "central_question": "Spin^c構造、行列式線束、Dirac作用素はどのように結びつくのか。",
+      "mathematical_dependencies": [
+        "ch-17"
+      ],
+      "pedagogical_dependencies": [
+        "ch-17"
+      ],
+      "previous": "ch-17",
+      "next": "ch-19",
+      "status": "fresh_rebuilt"
+    },
+    {
+      "id": "ch-19",
+      "part": "V",
+      "title": "Seiberg-Witten方程式は可換だが線形ではない",
+      "central_question": "可換接続とスピノルの連成から、どのようなモジュライ問題が生まれるのか。",
+      "mathematical_dependencies": [
+        "ch-18"
+      ],
+      "pedagogical_dependencies": [
+        "ch-18"
+      ],
+      "previous": "ch-18",
+      "next": "ch-20",
+      "status": "fresh_rebuilt"
+    },
+    {
+      "id": "ch-20",
+      "part": "V",
+      "title": "SW不変量は基本類を通して多様体を見る",
+      "central_question": "Seiberg-Witten不変量は、どの条件で微分同相不変量になるのか。",
+      "mathematical_dependencies": [
+        "ch-19"
+      ],
+      "pedagogical_dependencies": [
+        "ch-19"
+      ],
+      "previous": "ch-19",
+      "next": "ch-21",
+      "status": "fresh_rebuilt"
+    },
+    {
+      "id": "ch-21",
+      "part": "VI",
+      "title": "SW解から曲線が見える",
+      "central_question": "Kähler・シンプレクティック4多様体では、SW不変量はどのように幾何へ翻訳されるのか。",
+      "mathematical_dependencies": [
+        "ch-20"
+      ],
+      "pedagogical_dependencies": [
+        "ch-20"
+      ],
+      "previous": "ch-20",
+      "next": "ch-22",
+      "status": "fresh_rebuilt"
+    },
+    {
+      "id": "ch-22",
+      "part": "VI",
+      "title": "随伴不等式から最小種数へ戻る",
+      "central_question": "ゲージ理論は、埋め込み曲面の種数へどのような具体的制約を与えるのか。",
+      "mathematical_dependencies": [
+        "ch-21"
+      ],
+      "pedagogical_dependencies": [
+        "ch-21"
+      ],
+      "previous": "ch-21",
+      "next": null,
+      "status": "fresh_rebuilt"
+    }
+  ],
+  "registries": {
+    "notation": [
+      {
+        "id": "not-X",
+        "symbol": "X",
+        "meaning": "閉・連結・向き付け可能な滑らかな4次元多様体",
+        "introduced": "ch-01"
+      },
+      {
+        "id": "not-Q",
+        "symbol": "Q_X",
+        "meaning": "整数係数交点形式",
+        "introduced": "ch-04"
+      },
+      {
+        "id": "not-bplus",
+        "symbol": "b_2^+",
+        "meaning": "交点形式の正指数",
+        "introduced": "ch-04"
+      },
+      {
+        "id": "not-category-gap",
+        "symbol": "TOP/DIFF",
+        "meaning": "位相圏と滑らかな圏の差",
+        "introduced": "ch-01"
+      },
+      {
+        "id": "not-A",
+        "symbol": "A",
+        "meaning": "束上の接続",
+        "introduced": "ch-06"
+      },
+      {
+        "id": "not-F",
+        "symbol": "F_A",
+        "meaning": "接続の曲率2形式",
+        "introduced": "ch-07"
+      },
+      {
+        "id": "not-split",
+        "symbol": "F_A^\\pm",
+        "meaning": "曲率の自己双対・反自己双対成分",
+        "introduced": "ch-08"
+      },
+      {
+        "id": "not-asd",
+        "symbol": "F_A^+=0",
+        "meaning": "ASD方程式",
+        "introduced": "ch-08"
+      },
+      {
+        "id": "not-G",
+        "symbol": "\\mathcal G",
+        "meaning": "ゲージ群",
+        "introduced": "ch-10"
+      },
+      {
+        "id": "not-M",
+        "symbol": "\\mathcal M_k",
+        "meaning": "ASD接続のモジュライ空間",
+        "introduced": "ch-10"
+      },
+      {
+        "id": "not-H",
+        "symbol": "H_A^i",
+        "meaning": "ASD変形複体のコホモロジー",
+        "introduced": "ch-11"
+      },
+      {
+        "id": "not-index",
+        "symbol": "\\operatorname{ind}D_A",
+        "meaning": "Fredholm指数",
+        "introduced": "ch-12"
+      },
+      {
+        "id": "not-kuranishi",
+        "symbol": "\\kappa_A",
+        "meaning": "Kuranishi障害写像",
+        "introduced": "ch-13"
+      },
+      {
+        "id": "not-uhlenbeck",
+        "symbol": "\\overline M^U_k",
+        "meaning": "Uhlenbeckコンパクト化",
+        "introduced": "ch-14"
+      },
+      {
+        "id": "not-mu",
+        "symbol": "\\mu",
+        "meaning": "Donaldson理論のmu写像",
+        "introduced": "ch-14"
+      },
+      {
+        "id": "not-donaldson-invariant",
+        "symbol": "D_X^w",
+        "meaning": "Donaldson多項式不変量",
+        "introduced": "ch-15"
+      },
+      {
+        "id": "not-exotic-pair",
+        "symbol": "X_0\\approx X_1, X_0\\not\\cong_{diff}X_1",
+        "meaning": "異種滑らかな構造の組",
+        "introduced": "ch-16"
+      },
+      {
+        "id": "not-spin-c",
+        "symbol": "Spin^c, W^\\pm",
+        "meaning": "Spin^c構造とスピノル束",
+        "introduced": "ch-17"
+      },
+      {
+        "id": "not-sw-moduli",
+        "symbol": "M_{SW}(s)",
+        "meaning": "SWモジュライ空間",
+        "introduced": "ch-19"
+      },
+      {
+        "id": "not-sw-basic",
+        "symbol": "K",
+        "meaning": "SW基本類",
+        "introduced": "ch-20"
+      },
+      {
+        "id": "not-adjunction",
+        "symbol": "2g(\\Sigma)-2\\ge\\Sigma^2+|K\\cdot\\Sigma|",
+        "meaning": "随伴不等式",
+        "introduced": "ch-22"
+      }
+    ],
+    "conventions": [
+      {
+        "id": "conv-orientation",
+        "rule": "向きを固定し、向き反転時に自己双対と反自己双対を交換する"
+      },
+      {
+        "id": "conv-asd",
+        "rule": "F_A^+=0をASD方程式と呼ぶ"
+      },
+      {
+        "id": "conv-charge",
+        "rule": "8π²k=||F_A^-||²-||F_A^+||²となる電荷規約を採用する"
+      },
+      {
+        "id": "conv-ym",
+        "rule": "YM(A)=||F_A||²とし係数1/2を付けない"
+      },
+      {
+        "id": "conv-dimension",
+        "rule": "特記しない限りモジュライ空間の次元は実次元"
+      },
+      {
+        "id": "conv-sw-q",
+        "rule": "SW方程式のゲージ作用は(A,Φ)↦(A-2u^{-1}du,uΦ)とする"
+      }
+    ],
+    "assumptions": [
+      {
+        "id": "assump-base",
+        "statement": "Xは閉・連結・向き付け可能・滑らか",
+        "applies_to": [
+          "ch-01",
+          "ch-22"
+        ]
+      },
+      {
+        "id": "assump-donaldson",
+        "statement": "Donaldson主線では原則π1(X)=0",
+        "applies_to": [
+          "ch-05",
+          "ch-16"
+        ]
+      },
+      {
+        "id": "assump-invariance",
+        "statement": "計量独立性の標準議論ではb2+(X)>1",
+        "applies_to": [
+          "ch-14",
+          "ch-22"
+        ]
+      },
+      {
+        "id": "assump-wall",
+        "statement": "b2+=1では部屋を明示する",
+        "applies_to": [
+          "ch-20"
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "src-dk",
+        "citation_key": "donaldsonKronheimer1990",
+        "kind": "primary_or_standard",
+        "supports": []
+      },
+      {
+        "id": "src-fu",
+        "citation_key": "freedUhlenbeck1991",
+        "kind": "primary_or_standard",
+        "supports": []
+      },
+      {
+        "id": "src-freedman",
+        "citation_key": "freedman1982",
+        "kind": "primary_or_standard",
+        "supports": []
+      },
+      {
+        "id": "src-donaldson",
+        "citation_key": "donaldson1983",
+        "kind": "primary_or_standard",
+        "supports": []
+      },
+      {
+        "id": "src-witten",
+        "citation_key": "witten1994",
+        "kind": "primary_or_standard",
+        "supports": []
+      },
+      {
+        "id": "src-taubes",
+        "citation_key": "taubes1996",
+        "kind": "primary_or_standard",
+        "supports": []
+      },
+      {
+        "id": "src-atiyah-singer",
+        "citation_key": "atiyahSinger1968",
+        "kind": "primary_or_standard",
+        "supports": []
+      },
+      {
+        "id": "src-smale",
+        "citation_key": "smale1965",
+        "kind": "primary_or_standard",
+        "supports": []
+      },
+      {
+        "id": "src-donaldson-poly",
+        "citation_key": "donaldson1987",
+        "kind": "primary_or_standard",
+        "supports": []
+      },
+      {
+        "id": "src-gompf-stipsicz",
+        "citation_key": "gompfStipsicz1999",
+        "kind": "primary_or_standard",
+        "supports": []
+      },
+      {
+        "id": "src-morgan-sw",
+        "citation_key": "morgan1996",
+        "kind": "primary_or_standard",
+        "supports": []
+      },
+      {
+        "id": "src-km-adjunction",
+        "citation_key": "kronheimerMrowka1994",
+        "kind": "primary_or_standard",
+        "supports": []
+      },
+      {
+        "id": "src-fintushel-stern",
+        "citation_key": "fintushelStern1998",
+        "kind": "primary_or_standard",
+        "supports": []
+      }
+    ],
+    "theorems": [
+      {
+        "id": "thm-energy",
+        "title": "Yang-Millsエネルギー恒等式",
+        "proof_depth": "A",
+        "assumptions": [
+          "assump-base"
+        ],
+        "sources": [
+          "src-dk"
+        ],
+        "used_by": [
+          "ch-08",
+          "ch-09"
+        ]
+      },
+      {
+        "id": "thm-slice",
+        "title": "局所Coulombスライス",
+        "proof_depth": "C",
+        "assumptions": [
+          "assump-base"
+        ],
+        "sources": [
+          "src-fu"
+        ],
+        "used_by": [
+          "ch-10"
+        ]
+      },
+      {
+        "id": "thm-asd-complex",
+        "title": "ASD変形複体の楕円性",
+        "proof_depth": "B",
+        "assumptions": [
+          "assump-base"
+        ],
+        "sources": [
+          "src-dk"
+        ],
+        "used_by": [
+          "ch-11",
+          "ch-12"
+        ]
+      },
+      {
+        "id": "thm-index",
+        "title": "Atiyah-Singer指数定理",
+        "proof_depth": "D",
+        "assumptions": [
+          "assump-base"
+        ],
+        "sources": [
+          "src-atiyah-singer"
+        ],
+        "used_by": [
+          "ch-12"
+        ]
+      },
+      {
+        "id": "thm-sard-smale",
+        "title": "Sard-Smale正則値定理",
+        "proof_depth": "D",
+        "assumptions": [
+          "assump-base"
+        ],
+        "sources": [
+          "src-smale"
+        ],
+        "used_by": [
+          "ch-13"
+        ]
+      },
+      {
+        "id": "thm-uhlenbeck",
+        "title": "Uhlenbeckコンパクト性",
+        "proof_depth": "C",
+        "assumptions": [
+          "assump-base"
+        ],
+        "sources": [
+          "src-fu"
+        ],
+        "used_by": [
+          "ch-14"
+        ]
+      },
+      {
+        "id": "thm-freedman",
+        "title": "Freedman分類定理",
+        "proof_depth": "D",
+        "assumptions": [
+          "assump-base"
+        ],
+        "sources": [
+          "src-freedman"
+        ],
+        "used_by": [
+          "ch-05",
+          "ch-16"
+        ]
+      },
+      {
+        "id": "thm-donaldson-diagonalization",
+        "title": "Donaldson対角化定理",
+        "proof_depth": "C",
+        "assumptions": [
+          "assump-base"
+        ],
+        "sources": [
+          "src-donaldson",
+          "src-dk"
+        ],
+        "used_by": [
+          "ch-05",
+          "ch-15"
+        ]
+      },
+      {
+        "id": "thm-donaldson-polynomial",
+        "title": "Donaldson多項式不変量",
+        "proof_depth": "C",
+        "assumptions": [
+          "assump-base"
+        ],
+        "sources": [
+          "src-dk",
+          "src-donaldson-poly"
+        ],
+        "used_by": [
+          "ch-15"
+        ]
+      },
+      {
+        "id": "thm-sw-framework",
+        "title": "Seiberg-Witten不変量の枠組み",
+        "proof_depth": "C",
+        "assumptions": [
+          "assump-base"
+        ],
+        "sources": [
+          "src-witten",
+          "src-morgan-sw"
+        ],
+        "used_by": [
+          "ch-18",
+          "ch-19",
+          "ch-20"
+        ]
+      },
+      {
+        "id": "thm-taubes",
+        "title": "TaubesのSWからGromov不変量への定理",
+        "proof_depth": "D",
+        "assumptions": [
+          "assump-base"
+        ],
+        "sources": [
+          "src-taubes"
+        ],
+        "used_by": [
+          "ch-21"
+        ]
+      },
+      {
+        "id": "thm-adjunction",
+        "title": "ゲージ理論による随伴不等式",
+        "proof_depth": "D",
+        "assumptions": [
+          "assump-base"
+        ],
+        "sources": [
+          "src-km-adjunction",
+          "src-morgan-sw"
+        ],
+        "used_by": [
+          "ch-22"
+        ]
+      },
+      {
+        "id": "thm-knot-surgery",
+        "title": "Fintushel-Stern結び目手術公式",
+        "proof_depth": "D",
+        "assumptions": [
+          "assump-base"
+        ],
+        "sources": [
+          "src-fintushel-stern"
+        ],
+        "used_by": [
+          "ch-16"
+        ]
+      }
+    ],
+    "black_boxes": [
+      {
+        "id": "bb-freedman",
+        "theorem": "thm-freedman",
+        "why_needed": "位相圏で許される交点形式を確定する",
+        "input": "本文で明示した仮定と幾何データ",
+        "output": "次章以降で使う有限次元・位相・幾何の結論",
+        "difficulty": "本書の前提を超える解析または4次元位相幾何",
+        "downstream": [
+          "ch-05",
+          "ch-16"
+        ]
+      },
+      {
+        "id": "bb-slice",
+        "theorem": "thm-slice",
+        "why_needed": "無限次元ゲージ軌道を局所的に切る",
+        "input": "本文で明示した仮定と幾何データ",
+        "output": "次章以降で使う有限次元・位相・幾何の結論",
+        "difficulty": "本書の前提を超える解析または4次元位相幾何",
+        "downstream": [
+          "ch-10"
+        ]
+      },
+      {
+        "id": "bb-index",
+        "theorem": "thm-index",
+        "why_needed": "期待次元を位相量で計算する",
+        "input": "本文で明示した仮定と幾何データ",
+        "output": "次章以降で使う有限次元・位相・幾何の結論",
+        "difficulty": "本書の前提を超える解析または4次元位相幾何",
+        "downstream": [
+          "ch-12"
+        ]
+      },
+      {
+        "id": "bb-sard-smale",
+        "theorem": "thm-sard-smale",
+        "why_needed": "補助データの一般性から正則性を得る",
+        "input": "本文で明示した仮定と幾何データ",
+        "output": "次章以降で使う有限次元・位相・幾何の結論",
+        "difficulty": "本書の前提を超える解析または4次元位相幾何",
+        "downstream": [
+          "ch-13"
+        ]
+      },
+      {
+        "id": "bb-uhlenbeck",
+        "theorem": "thm-uhlenbeck",
+        "why_needed": "バブリングを含む極限を記録する",
+        "input": "本文で明示した仮定と幾何データ",
+        "output": "次章以降で使う有限次元・位相・幾何の結論",
+        "difficulty": "本書の前提を超える解析または4次元位相幾何",
+        "downstream": [
+          "ch-14"
+        ]
+      },
+      {
+        "id": "bb-donaldson-poly",
+        "theorem": "thm-donaldson-polynomial",
+        "why_needed": "公刊されたDonaldson不変量計算を正しく引用する",
+        "input": "本文で明示した仮定と幾何データ",
+        "output": "次章以降で使う有限次元・位相・幾何の結論",
+        "difficulty": "本書の前提を超える解析または4次元位相幾何",
+        "downstream": [
+          "ch-15"
+        ]
+      },
+      {
+        "id": "bb-knot-surgery",
+        "theorem": "thm-knot-surgery",
+        "why_needed": "K3の異種滑らかな構造をSW級数で識別する",
+        "input": "本文で明示した仮定と幾何データ",
+        "output": "次章以降で使う有限次元・位相・幾何の結論",
+        "difficulty": "本書の前提を超える解析または4次元位相幾何",
+        "downstream": [
+          "ch-16"
+        ]
+      },
+      {
+        "id": "bb-taubes",
+        "theorem": "thm-taubes",
+        "why_needed": "SW基本類をシンプレクティック曲線へ翻訳する",
+        "input": "本文で明示した仮定と幾何データ",
+        "output": "次章以降で使う有限次元・位相・幾何の結論",
+        "difficulty": "本書の前提を超える解析または4次元位相幾何",
+        "downstream": [
+          "ch-21"
+        ]
+      },
+      {
+        "id": "bb-adjunction",
+        "theorem": "thm-adjunction",
+        "why_needed": "基本類から埋め込み曲面の種数下界を得る",
+        "input": "本文で明示した仮定と幾何データ",
+        "output": "次章以降で使う有限次元・位相・幾何の結論",
+        "difficulty": "本書の前提を超える解析または4次元位相幾何",
+        "downstream": [
+          "ch-22"
+        ]
+      }
+    ],
+    "figures": [
+      {
+        "id": "fig-category",
+        "chapter": "ch-01",
+        "objective": "位相・PL・滑らかな圏の違い",
+        "concept": "位相・PL・滑らかな圏の違い",
+        "type": "svg",
+        "asset": "assets/figures/category-layers.svg",
+        "generator": "scripts/generate_gauge_figures.py",
+        "license": "CC0 generated in repository",
+        "alt": "位相・PL・滑らかな圏の違い",
+        "mobile": true,
+        "dark_mode": true,
+        "status": "generated"
+      },
+      {
+        "id": "fig-coordinate-overlap",
+        "chapter": "ch-01",
+        "objective": "座標近傍と座標変換",
+        "concept": "座標近傍と座標変換",
+        "type": "svg",
+        "asset": "assets/figures/coordinate-overlap.svg",
+        "generator": "scripts/generate_gauge_figures.py",
+        "license": "CC0 generated in repository",
+        "alt": "座標近傍と座標変換",
+        "mobile": true,
+        "dark_mode": true,
+        "status": "generated"
+      },
+      {
+        "id": "fig-chains-cycles",
+        "chapter": "ch-02",
+        "objective": "チェイン、境界、サイクル",
+        "concept": "チェイン、境界、サイクル",
+        "type": "svg",
+        "asset": "assets/figures/chains-cycles.svg",
+        "generator": "scripts/generate_gauge_figures.py",
+        "license": "CC0 generated in repository",
+        "alt": "チェイン、境界、サイクル",
+        "mobile": true,
+        "dark_mode": true,
+        "status": "generated"
+      },
+      {
+        "id": "fig-intersection-sign",
+        "chapter": "ch-04",
+        "objective": "向き付き交点の符号",
+        "concept": "向き付き交点の符号",
+        "type": "svg",
+        "asset": "assets/figures/intersection-sign.svg",
+        "generator": "scripts/generate_gauge_figures.py",
+        "license": "CC0 generated in repository",
+        "alt": "向き付き交点の符号",
+        "mobile": true,
+        "dark_mode": true,
+        "status": "generated"
+      },
+      {
+        "id": "fig-mobius-bundle",
+        "chapter": "ch-06",
+        "objective": "円筒束とメビウス束",
+        "concept": "円筒束とメビウス束",
+        "type": "svg",
+        "asset": "assets/figures/mobius-bundle.svg",
+        "generator": "scripts/generate_gauge_figures.py",
+        "license": "CC0 generated in repository",
+        "alt": "円筒束とメビウス束",
+        "mobile": true,
+        "dark_mode": true,
+        "status": "generated"
+      },
+      {
+        "id": "fig-rotating-frame",
+        "chapter": "ch-06",
+        "objective": "回転基底と接続項",
+        "concept": "回転基底と接続項",
+        "type": "svg",
+        "asset": "assets/figures/rotating-frame.svg",
+        "generator": "scripts/generate_gauge_figures.py",
+        "license": "CC0 generated in repository",
+        "alt": "回転基底と接続項",
+        "mobile": true,
+        "dark_mode": true,
+        "status": "generated"
+      },
+      {
+        "id": "fig-connection-trivialization",
+        "chapter": "ch-07",
+        "objective": "局所自明化と接続",
+        "concept": "局所自明化と接続",
+        "type": "svg",
+        "asset": "assets/figures/connection-trivialization.svg",
+        "generator": "scripts/generate_gauge_figures.py",
+        "license": "CC0 generated in repository",
+        "alt": "局所自明化と接続",
+        "mobile": true,
+        "dark_mode": true,
+        "status": "generated"
+      },
+      {
+        "id": "fig-hodge-split",
+        "chapter": "ch-08",
+        "objective": "4次元2形式の3+3分解",
+        "concept": "4次元2形式の3+3分解",
+        "type": "svg",
+        "asset": "assets/figures/hodge-split.svg",
+        "generator": "scripts/generate_gauge_figures.py",
+        "license": "CC0 generated in repository",
+        "alt": "4次元2形式の3+3分解",
+        "mobile": true,
+        "dark_mode": true,
+        "status": "generated"
+      },
+      {
+        "id": "fig-bubbling",
+        "chapter": "ch-09",
+        "objective": "曲率集中とバブリング",
+        "concept": "曲率集中とバブリング",
+        "type": "svg",
+        "asset": "assets/figures/bubbling.svg",
+        "generator": "scripts/generate_gauge_figures.py",
+        "license": "CC0 generated in repository",
+        "alt": "曲率集中とバブリング",
+        "mobile": true,
+        "dark_mode": true,
+        "status": "generated"
+      },
+      {
+        "id": "fig-gauge-slice",
+        "chapter": "ch-10",
+        "objective": "ゲージ軌道と局所スライス",
+        "concept": "ゲージ軌道と局所スライス",
+        "type": "svg",
+        "asset": "assets/figures/gauge-slice.svg",
+        "generator": "scripts/generate_gauge_figures.py",
+        "license": "CC0 generated in repository",
+        "alt": "ゲージ軌道と局所スライス",
+        "mobile": true,
+        "dark_mode": true,
+        "status": "generated"
+      },
+      {
+        "id": "fig-orientation-line",
+        "chapter": "ch-12",
+        "objective": "Fredholm行列式線と向き",
+        "concept": "Fredholm行列式線と向き",
+        "type": "svg",
+        "asset": "assets/figures/orientation-line.svg",
+        "generator": "scripts/generate_gauge_figures.py",
+        "license": "CC0 generated in repository",
+        "alt": "Fredholm行列式線と向き",
+        "mobile": true,
+        "dark_mode": true,
+        "status": "generated"
+      },
+      {
+        "id": "fig-cutdown-cobordism",
+        "chapter": "ch-14",
+        "objective": "切り下げとコボルディズム",
+        "concept": "切り下げとコボルディズム",
+        "type": "svg",
+        "asset": "assets/figures/cutdown-cobordism.svg",
+        "generator": "scripts/generate_gauge_figures.py",
+        "license": "CC0 generated in repository",
+        "alt": "切り下げとコボルディズム",
+        "mobile": true,
+        "dark_mode": true,
+        "status": "generated"
+      },
+      {
+        "id": "fig-spinor-rotation",
+        "chapter": "ch-17",
+        "objective": "スピノルの二重被覆",
+        "concept": "スピノルの二重被覆",
+        "type": "svg",
+        "asset": "assets/figures/spinor-rotation.svg",
+        "generator": "scripts/generate_gauge_figures.py",
+        "license": "CC0 generated in repository",
+        "alt": "スピノルの二重被覆",
+        "mobile": true,
+        "dark_mode": true,
+        "status": "generated"
+      },
+      {
+        "id": "fig-sw-equations",
+        "chapter": "ch-18",
+        "objective": "SW方程式の連成",
+        "concept": "SW方程式の連成",
+        "type": "svg",
+        "asset": "assets/figures/sw-equations.svg",
+        "generator": "scripts/generate_gauge_figures.py",
+        "license": "CC0 generated in repository",
+        "alt": "SW方程式の連成",
+        "mobile": true,
+        "dark_mode": true,
+        "status": "generated"
+      },
+      {
+        "id": "fig-donaldson-sw",
+        "chapter": "ch-20",
+        "objective": "Donaldson理論とSW理論の比較",
+        "concept": "Donaldson理論とSW理論の比較",
+        "type": "svg",
+        "asset": "assets/figures/donaldson-sw.svg",
+        "generator": "scripts/generate_gauge_figures.py",
+        "license": "CC0 generated in repository",
+        "alt": "Donaldson理論とSW理論の比較",
+        "mobile": true,
+        "dark_mode": true,
+        "status": "generated"
+      },
+      {
+        "id": "fig-kahler-reduction",
+        "chapter": "ch-21",
+        "objective": "Kähler面上のSW方程式",
+        "concept": "Kähler面上のSW方程式",
+        "type": "svg",
+        "asset": "assets/figures/kahler-reduction.svg",
+        "generator": "scripts/generate_gauge_figures.py",
+        "license": "CC0 generated in repository",
+        "alt": "Kähler面上のSW方程式",
+        "mobile": true,
+        "dark_mode": true,
+        "status": "generated"
+      },
+      {
+        "id": "fig-taubes-limit",
+        "chapter": "ch-21",
+        "objective": "Taubesの大摂動極限",
+        "concept": "Taubesの大摂動極限",
+        "type": "svg",
+        "asset": "assets/figures/taubes-limit.svg",
+        "generator": "scripts/generate_gauge_figures.py",
+        "license": "CC0 generated in repository",
+        "alt": "Taubesの大摂動極限",
+        "mobile": true,
+        "dark_mode": true,
+        "status": "generated"
+      },
+      {
+        "id": "fig-adjunction",
+        "chapter": "ch-22",
+        "objective": "随伴不等式の構造",
+        "concept": "随伴不等式の構造",
+        "type": "svg",
+        "asset": "assets/figures/adjunction.svg",
+        "generator": "scripts/generate_gauge_figures.py",
+        "license": "CC0 generated in repository",
+        "alt": "随伴不等式の構造",
+        "mobile": true,
+        "dark_mode": true,
+        "status": "generated"
+      },
+      {
+        "id": "fig-gluing",
+        "chapter": "app-analysis",
+        "objective": "貼り合わせ解析",
+        "concept": "貼り合わせ解析",
+        "type": "svg",
+        "asset": "assets/figures/gluing.svg",
+        "generator": "scripts/generate_gauge_figures.py",
+        "license": "CC0 generated in repository",
+        "alt": "貼り合わせ解析",
+        "mobile": true,
+        "dark_mode": true,
+        "status": "generated"
+      }
+    ],
+    "reader_questions": [
+      {
+        "id": "rq-sameness",
+        "priority": "P0",
+        "question": "同相と微分同相を混同しないか。",
+        "required_resolution": "第1章と第5章で分離",
+        "chapter": "ch-01"
+      },
+      {
+        "id": "rq-finite",
+        "priority": "P0",
+        "question": "無限次元PDEからなぜ有限次元が出るか。",
+        "required_resolution": "第12章で楕円性とFredholm性を説明",
+        "chapter": "ch-12"
+      },
+      {
+        "id": "rq-count",
+        "priority": "P0",
+        "question": "解を数えるだけで不変量になるか。",
+        "required_resolution": "第14章でコンパクト性とコボルディズムを説明",
+        "chapter": "ch-14"
+      },
+      {
+        "id": "rq-sw",
+        "priority": "P0",
+        "question": "SW理論は線形で簡単か。",
+        "required_resolution": "第19章で非線形連成を説明",
+        "chapter": "ch-19"
+      }
+    ],
+    "moduli_lifecycle": [
+      "equation",
+      "symmetry",
+      "linearization",
+      "complex",
+      "index",
+      "regularity",
+      "orientation",
+      "compactification",
+      "count"
+    ],
+    "quality_gates": [
+      "architecture",
+      "mathematics",
+      "explanation",
+      "continuity",
+      "sources",
+      "rendering",
+      "independent_audit"
+    ]
+  },
+  "production_stop_conditions": [
+    {
+      "id": "stop-fresh-plan",
+      "condition": "旧18章構成の保持",
+      "resolved": true,
+      "evidence": "22章構成へ再編"
+    },
+    {
+      "id": "stop-p0-gluing",
+      "condition": "結び目手術の法線円周をメリディアンへ送る誤説明",
+      "resolved": true,
+      "evidence": "ch-16"
+    },
+    {
+      "id": "stop-reader",
+      "condition": "Reader Stop-Point未解決",
+      "resolved": true,
+      "evidence": "contracts"
+    }
+  ]
+}

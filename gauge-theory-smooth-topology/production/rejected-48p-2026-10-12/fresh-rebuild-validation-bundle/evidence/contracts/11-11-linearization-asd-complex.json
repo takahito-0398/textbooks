@@ -1,0 +1,46 @@
+{
+  "chapter_id": "ch-11",
+  "source": "chapters/11-11-linearization-asd-complex.qmd",
+  "central_question": "ASD方程式とゲージ対称性の無限小構造は、なぜ一つの複体になるのか。",
+  "reader_starting_state": "線形代数・微積分・基礎的な微分方程式だけを仮定する。",
+  "prerequisites": [
+    "not-G"
+  ],
+  "new_concepts": [
+    "not-H",
+    "not-asd"
+  ],
+  "main_derivations": [
+    "本文の手計算節と演習で確認する。",
+    "接続を $A+a$ と動かすと、曲率は $F_{A+a}=F_A+d_Aa+a\\wedge a$ である。一次の項だけ取るとASD方程式の線形化は $d_A^+"
+  ],
+  "results": [
+    "thm-asd-complex"
+  ],
+  "proof_depth": "C",
+  "black_boxes": [],
+  "rigor_statuses": [
+    "definition",
+    "lemma"
+  ],
+  "reader_stop_points": [
+    {
+      "question": "ASD方程式とゲージ対称性の無限小構造は、なぜ一つの複体になるのか。",
+      "resolution": "body",
+      "location": "chapters/11-11-linearization-asd-complex.qmd"
+    }
+  ],
+  "required_bridges": [
+    "前章の出口を冒頭で明示する。",
+    "次章で必要になる疑問を末尾で明示する。"
+  ],
+  "figures": [
+    "fig-gauge-slice"
+  ],
+  "sources": [
+    "src-dk"
+  ],
+  "previous_connection": "前章の主計算をこの章の入口に接続する。",
+  "next_question": "次章でこの章の道具を使う。",
+  "unresolved_stop_points": []
+}

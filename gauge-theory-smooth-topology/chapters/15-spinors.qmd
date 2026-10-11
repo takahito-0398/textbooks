@@ -102,7 +102,23 @@ $$
 c(e_\mu)c(e_\nu)+c(e_\nu)c(e_\mu)=-2\delta_{\mu\nu}I
 $$
 
-が従う。これがEuclid計量に対するClifford関係である。平坦な $\mathbb R^4$ の正スピノルに作用するDirac作用素は、この規約では
+が従う。これがEuclid計量に対するClifford関係である。
+
+符号を整理しておく。パウリ行列そのものは
+
+$$
+\sigma_i\sigma_j+\sigma_j\sigma_i=2\delta_{ij}I
+$$
+
+を満たす。一方、Riemann計量に対するClifford作用は通常
+
+$$
+c(v)c(w)+c(w)c(v)=-2g(v,w)I
+$$
+
+を満たすように取る。したがって本書では、空間方向に $-i\sigma_j$ を置くことで符号を合わせている。$\sigma_j$ をそのままClifford作用と呼ぶと、反交換関係の符号が逆になり、Dirac作用素の二乗やWeitzenböck公式の曲率項までずれる。文献の式を移すときは、パウリ行列の代数とClifford作用の代数を分けて読む。
+
+平坦な $\mathbb R^4$ の正スピノルに作用するDirac作用素は、この規約では
 
 $$
 D^+=-\left(\partial_4I+i\sigma_1\partial_1+i\sigma_2\partial_2+i\sigma_3\partial_3\right).

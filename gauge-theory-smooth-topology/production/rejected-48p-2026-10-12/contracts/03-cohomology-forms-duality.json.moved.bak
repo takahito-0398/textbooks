@@ -1,0 +1,43 @@
+{
+  "chapter_id": "ch-03",
+  "source": "chapters/03-cohomology-forms-duality.qmd",
+  "central_question": "境界で消えない量を、微分形式と積分でどう測るのか。",
+  "reader_starting_state": "線形代数・微積分・基礎的な微分方程式だけを仮定する。",
+  "prerequisites": [
+    "not-X"
+  ],
+  "new_concepts": [
+    "not-X"
+  ],
+  "main_derivations": [
+    "本文の手計算節と演習で確認する。",
+    "平面上の1形式 $\\alpha=Pdx+Qdy$ を曲線 $\\gamma(t)=(x(t),y(t))$ に沿って積分すると $\\int_\\gamma P(\\g"
+  ],
+  "results": [],
+  "proof_depth": "A",
+  "black_boxes": [],
+  "rigor_statuses": [
+    "definition",
+    "lemma"
+  ],
+  "reader_stop_points": [
+    {
+      "question": "境界で消えない量を、微分形式と積分でどう測るのか。",
+      "resolution": "body",
+      "location": "chapters/03-cohomology-forms-duality.qmd"
+    }
+  ],
+  "required_bridges": [
+    "前章の出口を冒頭で明示する。",
+    "次章で必要になる疑問を末尾で明示する。"
+  ],
+  "figures": [
+    "fig-chains-cycles"
+  ],
+  "sources": [
+    "src-gompf-stipsicz"
+  ],
+  "previous_connection": "前章の主計算をこの章の入口に接続する。",
+  "next_question": "次章でこの章の道具を使う。",
+  "unresolved_stop_points": []
+}

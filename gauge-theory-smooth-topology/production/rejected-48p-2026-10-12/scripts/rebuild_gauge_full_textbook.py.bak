@@ -1,0 +1,1049 @@
+"""Rebuild the gauge-theory textbook from a fresh chapter plan.
+
+This script is intentionally one-shot: it preserves the old 95-page sources in
+production/legacy-95p-sources, then writes a new 22-chapter manuscript, chapter
+contracts, manifest, index, sidebar entries, and production notes.
+"""
+
+from __future__ import annotations
+
+import json
+import re
+import shutil
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parents[1]
+BOOK = ROOT / "gauge-theory-smooth-topology"
+CHAPTERS_DIR = BOOK / "chapters"
+CONTRACTS_DIR = BOOK / "contracts"
+PRODUCTION = BOOK / "production"
+LEGACY = PRODUCTION / "legacy-95p-sources"
+
+SOURCES = {
+    "src-dk": "donaldsonKronheimer1990",
+    "src-fu": "freedUhlenbeck1991",
+    "src-freedman": "freedman1982",
+    "src-donaldson": "donaldson1983",
+    "src-witten": "witten1994",
+    "src-taubes": "taubes1996",
+    "src-atiyah-singer": "atiyahSinger1968",
+    "src-smale": "smale1965",
+    "src-donaldson-poly": "donaldson1987",
+    "src-gompf-stipsicz": "gompfStipsicz1999",
+    "src-morgan-sw": "morgan1996",
+    "src-km-adjunction": "kronheimerMrowka1994",
+    "src-fintushel-stern": "fintushelStern1998",
+}
+
+PARTS = {
+    "I": "手で作る位相と交点形式",
+    "II": "束・接続・4次元の曲率",
+    "III": "ASDモジュライ空間を有限次元へ落とす",
+    "IV": "Donaldson理論と滑らかな分類",
+    "V": "Seiberg-Witten理論を作る",
+    "VI": "幾何への制約と総合",
+}
+
+
+CHAPTERS: list[dict] = [
+    {
+        "id": "ch-01",
+        "part": "I",
+        "slug": "01-sameness-and-smoothness",
+        "title": "同じ空間を比べる三つの物差し",
+        "question": "位相的に同じ、滑らかに同じ、距離まで同じという三つの同一視は何が違うのか。",
+        "concepts": ["not-X", "not-category-gap"],
+        "sources": ["src-gompf-stipsicz"],
+        "figures": ["fig-category", "fig-coordinate-overlap"],
+        "results": [],
+        "story": "最初に扱う対象は難しい4次元多様体ではなく、円周である。円周を平面内の単位円として見ても、角度を法として見ても、点の集まりとしては同じものを表している。ところが、点の近さだけを保存する写像と、座標で何度でも微分できる写像と、長さまで保存する写像は同じ条件ではない。4次元の問題で後に必要になるのは、この三つの同一視を混ぜないことである。",
+        "calculation": "単位円 $S^1$ を角度 $t$ で表す写像 $t\\mapsto (\\cos t,\\sin t)$ を考える。$t$ と $t+2\\pi$ は同じ点を表すので、局所座標は全体を一枚で覆えない。北極を避けた弧と南極を避けた弧を使うと、重なりでは一方の座標が他方の滑らかな関数になる。ここで要求しているのは、点集合の一致ではなく、座標を替えたときに微分計算が破綻しないことである。",
+        "definition": "本書で多様体というときは、局所的に $\\mathbb R^n$ と見える空間に、互いに滑らかな座標変換を備えたものを指す。位相同相は連続性だけを見る。微分同相は座標で見た写像と逆写像が滑らかであることを見る。等長はさらに計量を固定し、長さや角度を保つ。",
+        "example": "円周上の写像 $z\\mapsto z^3$ は滑らかな写像だが、三対一なので微分同相ではない。反対に、角度を $t\\mapsto t+a$ だけずらす写像は微分同相で、標準計量を入れれば等長でもある。この小さな差が、4次元では「同相だが微分同相ではない」という大きな現象へ変わる。",
+        "pitfall": "滑らかな構造は、図をきれいに描けるという意味ではない。座標を替えても微分が整合する、という計算の規則である。この章で固定した語を、後でFreedmanの位相的分類とDonaldson理論による滑らかな制約を分けるために使う。",
+        "exercise": "円周を二つの開弧で覆い、それぞれ角度座標を入れる。重なり上の座標変換を書き、微分可能であることを確認せよ。",
+        "solution": "北極を避ける座標を $t\\in(-\\pi,\\pi)$、南極を避ける座標を $u\\in(0,2\\pi)$ と取る。重なりの一部では $u=t$、もう一方では $u=t+2\\pi$ であり、どちらも定数だけずれた一次関数である。したがって座標変換も逆変換も滑らかで、二つの局所座標は同じ滑らかな構造を定める。",
+    },
+    {
+        "id": "ch-02",
+        "part": "I",
+        "slug": "02-cells-boundaries-homology",
+        "title": "穴を数える前に境界を計算する",
+        "question": "ホモロジーは、なぜ図形の穴を数える道具として使えるのか。",
+        "concepts": ["not-X"],
+        "sources": ["src-gompf-stipsicz"],
+        "figures": ["fig-chains-cycles"],
+        "results": [],
+        "story": "穴を数えると言うと直感的には分かりやすいが、直感だけでは後で交点形式を作れない。必要なのは、向き付きの辺や面を足し合わせ、境界を取るという計算規則である。境界の境界が消えるという一行の計算が、ホモロジーの出発点になる。",
+        "calculation": "向き付き三角形 $[v_0v_1v_2]$ の境界を $\\partial[v_0v_1v_2]=[v_1v_2]-[v_0v_2]+[v_0v_1]$ と定める。さらに境界を取ると、$[v_2]-[v_1]-[v_2]+[v_0]+[v_1]-[v_0]=0$ となる。符号は飾りではなく、端点が二度現れて相殺するために必要である。",
+        "definition": "$k$次チェインは向き付き $k$次セルの整数係数和である。境界写像 $\\partial_k:C_k\\to C_{k-1}$ が $\\partial_{k-1}\\partial_k=0$ を満たすとき、$\\ker\\partial_k$ の元をサイクル、$\\operatorname{im}\\partial_{k+1}$ の元を境界と呼ぶ。ホモロジー群は $H_k=\\ker\\partial_k/\\operatorname{im}\\partial_{k+1}$ である。",
+        "example": "三角形で作った円周は、三本の辺の和が1サイクルになる。円板を張ればそれは2セルの境界なので消える。円周だけなら張る2セルがないので消えない。この違いを、穴の有無として読む。",
+        "pitfall": "ホモロジーは絵の印象ではなく、境界行列の核と像の商である。後で4次元多様体の2次元サイクルを扱うときも、同じ計算がそのまま残る。",
+        "exercise": "一つの頂点、一つの辺、一つの2セルでトーラスを作るセル分割を考える。境界写像がすべて0になる理由を説明し、$H_1$ と $H_2$ を求めよ。",
+        "solution": "トーラスの標準的な正方形表示では、二組の辺を向きを保って貼り合わせる。1セルの境界は唯一の頂点から同じ頂点へ戻るので0である。2セルの境界語は $aba^{-1}b^{-1}$ で、可換化したチェインでは $a+b-a-b=0$ となる。したがって $H_1\\cong\\mathbb Z^2$、$H_2\\cong\\mathbb Z$ である。",
+    },
+    {
+        "id": "ch-03",
+        "part": "I",
+        "slug": "03-cohomology-forms-duality",
+        "title": "閉じた量を積分してコホモロジーへ行く",
+        "question": "境界で消えない量を、微分形式と積分でどう測るのか。",
+        "concepts": ["not-X"],
+        "sources": ["src-gompf-stipsicz"],
+        "figures": ["fig-chains-cycles"],
+        "results": [],
+        "story": "ホモロジーがサイクルを測るなら、コホモロジーはサイクルに数を返す測定器である。線積分や面積分は、その測定器の具体例になる。ここで微分形式を導入する理由は、後の曲率形式やChern-Weil型の整数を同じ言葉で扱うためである。",
+        "calculation": "平面上の1形式 $\\alpha=Pdx+Qdy$ を曲線 $\\gamma(t)=(x(t),y(t))$ に沿って積分すると $\\int_\\gamma P(\\gamma(t))x'(t)+Q(\\gamma(t))y'(t)\\,dt$ である。$d\\alpha=(\\partial Q/\\partial x-\\partial P/\\partial y)dx\\wedge dy$ が0なら局所的にはポテンシャルの微分で、閉曲線上の積分は局所的に消える。",
+        "definition": "微分形式 $\\omega$ が $d\\omega=0$ を満たすとき閉形式、$\\omega=d\\eta$ と書けるとき完全形式と呼ぶ。de Rhamコホモロジーは、閉形式を完全形式で割ったものである。ポアンカレ双対性は、向き付けられた閉多様体で、$k$次元のサイクルと $(n-k)$次のコホモロジー類が積分で対応するという原理である。",
+        "example": "円周上の角度1形式 $d\\theta$ は局所的には関数の微分に見えるが、円周全体では一価の角度関数がない。したがって $\\int_{S^1}d\\theta=2\\pi$ は消えず、円周の1次ホモロジーを検出する。",
+        "pitfall": "閉形式と完全形式を同一視してはいけない。局所的な計算では差が見えないが、大域的な穴の上で積分すると差が現れる。",
+        "exercise": "トーラス $T^2=\\mathbb R^2/\\mathbb Z^2$ 上の $dx,dy$ を考える。二つの基本閉曲線に沿う積分を計算し、$dx\\wedge dy$ の全体積分を求めよ。",
+        "solution": "$x$方向の閉曲線では $\\int dx=1,\\int dy=0$、$y$方向の閉曲線では $\\int dx=0,\\int dy=1$ である。基本領域 $[0,1]^2$ 上で $\\int dx\\wedge dy=1$ だから、$dx\\wedge dy$ はトーラスの基本類を1に送る。",
+    },
+    {
+        "id": "ch-04",
+        "part": "I",
+        "slug": "04-intersection-form-by-hand",
+        "title": "曲面を交差させて4次元の行列を作る",
+        "question": "4次元多様体では、なぜ2次元サイクル同士の交点が分類の中心になるのか。",
+        "concepts": ["not-Q", "not-bplus"],
+        "sources": ["src-gompf-stipsicz"],
+        "figures": ["fig-intersection-sign"],
+        "results": [],
+        "story": "2次元の面の中では二つの曲線が点で交わる。4次元では、二つの曲面が点で交わる。これが交点形式の直感である。交点は向きにより正負の符号を持ち、基底を選ぶと整数行列になる。",
+        "calculation": "$S^2\\times S^2$ には $A=S^2\\times\\{pt\\}$ と $B=\\{pt\\}\\times S^2$ がある。少し動かした $A$ は元の $A$ と交わらないので $A^2=0$、同様に $B^2=0$。一方、$A$ と $B$ は一点で横断的に交わり、向きを合わせると $A\\cdot B=1$ である。したがって基底 $(A,B)$ で交点行列は $\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$ になる。",
+        "definition": "閉向き付き4次元多様体 $X$ の交点形式は、$H_2(X;\\mathbb Z)$ の自由部分上の対称双線形形式 $Q_X(a,b)=\\langle PD(a)\\smile PD(b),[X]\\rangle$ である。ここで $PD$ はポアンカレ双対である。正の固有値の数を $b_2^+$、負の固有値の数を $b_2^-$ と呼ぶ。",
+        "example": "$\\mathbb CP^2$ の直線 $\\mathbb CP^1$ は、少し動かした別の直線と一点で交わる。したがって生成元 $H$ に対して $H^2=1$ であり、交点形式は $(1)$ である。向きを反転すれば $(-1)$ になる。",
+        "pitfall": "実数上で同じ符号数を持つ形式が、整数上で同じとは限らない。整数基底変換では行列式が $\\pm1$ の変換だけが許される。この差が $E_8$ 形式の重要性につながる。",
+        "exercise": "$S^2\\times S^2$ の基底を $u=A+B$, $v=A-B$ に替えたときの交点行列を計算せよ。",
+        "solution": "$u^2=A^2+2A\\cdot B+B^2=2$、$v^2=A^2-2A\\cdot B+B^2=-2$、$u\\cdot v=A^2-B^2=0$ である。したがって行列は $\\operatorname{diag}(2,-2)$ になる。ただし変換行列の行列式は $-2$ なので、これは整数格子の基底変換ではない。",
+    },
+    {
+        "id": "ch-05",
+        "part": "I",
+        "slug": "05-freedman-donaldson-collision",
+        "title": "位相では許され、滑らかさでは禁じられる形式",
+        "question": "Freedmanの分類定理とDonaldsonの対角化定理は、どこで衝突するのか。",
+        "concepts": ["not-category-gap", "not-Q"],
+        "sources": ["src-freedman", "src-donaldson", "src-dk", "src-gompf-stipsicz"],
+        "figures": ["fig-category"],
+        "results": ["thm-freedman", "thm-donaldson-diagonalization"],
+        "black_boxes": ["bb-freedman"],
+        "story": "4次元の奇妙さは、交点形式を見れば位相的な候補が豊富にあるのに、滑らかな構造を要求すると突然強い制限が現れる点にある。この章では、Freedmanの分類を位相的な存在定理として、Donaldsonの定理を滑らかな制約として読む。",
+        "calculation": "$E_8$ 格子の交点形式は偶でユニモジュラーで、正定値で階数8である。位相的にはこの形式を持つ単連結4次元多様体が存在する。一方、Donaldsonの対角化定理は、閉・滑らか・向き付き・単連結で定値交点形式を持つなら、その形式は整数上で対角化されると述べる。$E_8$ はその条件を満たさない。",
+        "definition": "Freedmanの分類定理は、閉・単連結・向き付き位相4次元多様体を交点形式とKirby-Siebenmann不変量で分類する深い結果である @freedman1982。Donaldsonの対角化定理は、滑らかな4次元多様体の定値交点形式へ強い制限を与える @donaldson1983。",
+        "example": "$E_8$ 形式を持つ位相的4次元多様体は、位相圏では存在する。しかし滑らかな構造があると仮定すると、Donaldsonの定理に反する。この推論は「同相だが微分同相でない二つの滑らかな多様体」を作る話とは別である。",
+        "pitfall": "位相的に存在しない、滑らかに存在しない、同相だが微分同相でない、という三つを混同してはならない。ここで得るのはまず、平滑化不能の例である。",
+        "exercise": "正定値で偶な整数格子が、標準対角形式 $I_n$ と整数同値になれない理由を説明せよ。",
+        "solution": "$I_n$ では基底ベクトル $e_i$ の自己交点が $1$ なので奇形式である。偶形式ではすべての元 $x$ について $Q(x,x)$ が偶数である。偶奇は整数基底変換で保たれるため、偶な $E_8$ 形式は $I_8$ と整数同値になれない。",
+    },
+    {
+        "id": "ch-06",
+        "part": "II",
+        "slug": "06-bundles-from-moving-frames",
+        "title": "動く基底から束を作る",
+        "question": "大域的に一つの座標や基底を選べないとき、何を対象として計算するのか。",
+        "concepts": ["not-A"],
+        "sources": ["src-dk", "src-fu"],
+        "figures": ["fig-mobius-bundle", "fig-rotating-frame"],
+        "results": [],
+        "story": "束は抽象的な箱ではない。円周を一周したとき、線の向きが保たれるか反転するかという、メビウス帯で見える現象から始まる。局所的には積に見えるが、大域的な貼り合わせが違う対象を区別する。",
+        "calculation": "回転する基底 $e_1(t),e_2(t)$ で固定ベクトル $v$ を $v=a_1e_1+a_2e_2$ と書く。$v$ が固定されていても、成分 $a_i$ は基底の回転に合わせて変わる。普通の微分 $a'$ だけを見ると、基底の動きとベクトルの本当の変化が混ざる。",
+        "definition": "束は、各点にベクトル空間や群のコピーを貼り付けたものを、局所的には積として見せる構造である。局所自明化を替える写像を遷移関数と呼ぶ。主束は、構造群そのものを繊維として持ち、その群作用で局所表示を貼り合わせる。",
+        "example": "円筒とメビウス帯はどちらも円周上の実直線束である。局所的には同じ $I\\times\\mathbb R$ に見えるが、一周後の貼り合わせが $+1$ か $-1$ かで違う。",
+        "pitfall": "束は空間の上に別の空間を置くというだけではない。局所表示を替えたときに、同じ幾何をどう書き直すかという規則まで含んでいる。",
+        "exercise": "円周を二つの弧で覆い、重なりの一方で遷移関数を $+1$、もう一方で $-1$ とする実直線束を考える。一周後の非零切断の符号がどうなるか説明せよ。",
+        "solution": "局所的には非零切断を正に選べる。しかし重なりを通過するたびに、$-1$ の遷移で符号が反転する。一周後には最初の値の負になるため、全体で消えない連続切断を一つの向きで選ぶことはできない。これがメビウス帯の非自明性である。",
+    },
+    {
+        "id": "ch-07",
+        "part": "II",
+        "slug": "07-connections-curvature-holonomy",
+        "title": "接続は微分から基底の動きを差し引く",
+        "question": "局所表示に依存しない微分を、どのように定義するのか。",
+        "concepts": ["not-A", "not-F"],
+        "sources": ["src-dk", "src-fu"],
+        "figures": ["fig-connection-trivialization", "fig-rotating-frame"],
+        "results": [],
+        "story": "束の切断を微分したい。しかし局所枠を替えると、普通の微分には枠の変化から来る余分な項が入る。接続は、その余分な項を帳消しにして、幾何学的に意味のある微分を作るための道具である。",
+        "calculation": "U(1)接続を局所的に $d+A$ と書く。ゲージ変換を $u:U\\to U(1)$ とすると、同じ共変微分を新しい表示で書くには $A\\mapsto A-u^{-1}du$ と変わる。曲率は $F_A=dA$ で、$d(u^{-1}du)=0$ によりゲージ変換で不変に対応する。",
+        "definition": "一般の構造群では接続1形式 $A$ はLie代数値で、曲率は $F_A=dA+A\\wedge A$ である。$A\\wedge A$ は非可換性から現れる項で、U(1)では消える。小さな閉曲線に沿う平行移動のずれは、一次近似で曲率により測られる。",
+        "example": "平面上のU(1)接続 $A=\\frac12(-y\\,dx+x\\,dy)$ では $F_A=dx\\wedge dy$ である。小さな面積 $S$ を囲む閉曲線に沿うホロノミーは、おおよそ $\\exp(iS)$ になる。",
+        "pitfall": "接続 $A$ は局所表示に依存する。曲率 $F_A$ も表示は変わるが、共役変換として整合する。したがってChern-Weil型のトレース積分が大域的な量になる。",
+        "exercise": "U(1)接続 $A=f(x,y)dx+g(x,y)dy$ の曲率を計算せよ。",
+        "solution": "$dA=df\\wedge dx+dg\\wedge dy=(f_xdx+f_ydy)\\wedge dx+(g_xdx+g_ydy)\\wedge dy=(g_x-f_y)dx\\wedge dy$ である。U(1)では $A\\wedge A=0$ なので、これが曲率である。",
+    },
+    {
+        "id": "ch-08",
+        "part": "II",
+        "slug": "08-four-dimensional-hodge-yang-mills",
+        "title": "4次元では曲率が二つに割れる",
+        "question": "なぜ4次元で自己双対・反自己双対という分解が特別な意味を持つのか。",
+        "concepts": ["not-split", "not-asd", "conv-asd", "conv-charge", "conv-ym"],
+        "sources": ["src-dk"],
+        "figures": ["fig-hodge-split"],
+        "results": ["thm-energy"],
+        "story": "曲率は2形式である。4次元では2形式にHodgeスターをもう一度作用させると元に戻るので、固有値 $+1$ と $-1$ の二つの部分に分かれる。この偶然が、Yang-Millsエネルギーを位相数とASD方程式へ結びつける。",
+        "calculation": "向き付き正規直交余標構 $e^1,\\dots,e^4$ に対して、$*(e^1\\wedge e^2)=e^3\\wedge e^4$ である。したがって $e^{12}+e^{34}$ は自己双対、$e^{12}-e^{34}$ は反自己双対である。同様に6次元空間 $\\Lambda^2$ は3次元ずつに分かれる。",
+        "definition": "曲率を $F_A=F_A^++F_A^-$ と分ける。規約として $F_A^+=0$ をASD方程式と呼び、$\\operatorname{YM}(A)=\\|F_A\\|_{L^2}^2$ とする。採用する電荷規約では $8\\pi^2k=\\|F_A^-\\|^2-\\|F_A^+\\|^2$ である。",
+        "example": "この規約では $\\operatorname{YM}(A)=8\\pi^2k+2\\|F_A^+\\|^2$ となる。したがって $k$ を固定すると、ASD接続はエネルギー下限を達成する。",
+        "pitfall": "ASD方程式はYang-Mills方程式の全解を表すわけではない。ASDならYang-Mills方程式を満たすが、Yang-Mills方程式の解が常にASDであるとは限らない。",
+        "exercise": "$F_A^+=0$ のとき、上の規約から $\\operatorname{YM}(A)=8\\pi^2k$ を導け。",
+        "solution": "$F_A^+=0$ なら $F_A=F_A^-$ である。電荷規約から $8\\pi^2k=\\|F_A^-\\|^2$ となる。一方、Yang-Millsエネルギーは $\\|F_A\\|^2=\\|F_A^-\\|^2$ なので、結論を得る。",
+    },
+    {
+        "id": "ch-09",
+        "part": "II",
+        "slug": "09-instantons-scale-bpst",
+        "title": "インスタントンは一点へ縮むことがある",
+        "question": "ASD解の列が収束しないとき、何が失われ何が保存されるのか。",
+        "concepts": ["not-asd"],
+        "sources": ["src-dk", "src-fu"],
+        "figures": ["fig-bubbling"],
+        "results": ["thm-energy"],
+        "story": "ASD方程式は一次方程式なので扱いやすく見える。しかし解の列を取ると、曲率が一点へ集中して滑らかな極限が失われることがある。この現象を知らないまま数え上げをすると、不変量は定義できない。",
+        "calculation": "BPSTインスタントンの曲率密度は、尺度 $\\rho$ を小さくすると原点付近に鋭く集中する。密度の山は高く狭くなるが、全積分は $8\\pi^2$ に保たれる。したがってエネルギーは消えず、点に量子化された電荷として残る。",
+        "definition": "このような曲率集中をバブリングと呼ぶ。解析的には、有限個の点を除けばゲージ変換後に収束し、失われたエネルギーは各点で $8\\pi^2$ の整数倍として現れる。",
+        "example": "電荷 $k$ の解列が一点で電荷1を失うと、滑らかな極限は電荷 $k-1$ のASD接続になる。コンパクト化では、極限接続と集中点のデータを合わせて記録する。",
+        "pitfall": "解が発散したから何も残らない、ではない。残る量が量子化されるからこそ、コンパクト化を作れる。ただしその境界が数え上げに影響するかを必ず確認する必要がある。",
+        "exercise": "エネルギー総量が $8\\pi^2k$ で、各バブルが少なくとも $8\\pi^2$ を持つとする。バブル点の数が高々 $k$ である理由を述べよ。",
+        "solution": "バブル点が $m$ 個あれば、それぞれが少なくとも $8\\pi^2$ のエネルギーを持つので、集中部分だけで $8\\pi^2m$ 以上になる。総量は $8\\pi^2k$ だから $m\\le k$ である。",
+    },
+    {
+        "id": "ch-10",
+        "part": "III",
+        "slug": "10-quotients-slices-finite-model",
+        "title": "同じ解を何度も数えないために割る",
+        "question": "ゲージ対称性を持つ方程式で、解空間をどう局所的に見るのか。",
+        "concepts": ["not-G", "not-M"],
+        "sources": ["src-fu"],
+        "figures": ["fig-gauge-slice"],
+        "results": ["thm-slice"],
+        "black_boxes": ["bb-slice"],
+        "story": "接続 $A$ は局所表示を含むため、ゲージ変換で移り合う接続を別の解として数えると過剰になる。有限次元の群作用でまず練習し、その後でCoulombスライスへ進む。",
+        "calculation": "$\\mathbb R^2$ に回転群 $SO(2)$ が作用すると、原点以外の軌道は円である。点 $(r,0)$ の近くでは、$x$軸を横断的なスライスとして選べる。全空間を一度に切る大域的スライスはないが、局所的には軌道とスライスで近傍を表せる。",
+        "definition": "ASD接続のモジュライ空間は、$F_A^+=0$ を満たす接続全体をゲージ群 $\\mathcal G$ で割った空間である。局所Coulombスライスは、基準接続 $A$ の近くで $d_A^*a=0$ を課し、ゲージ軌道方向を取り除く。",
+        "example": "接続を $A+a$ と書くと、ゲージ方向の一次変化は $d_A\\xi$ である。条件 $d_A^*a=0$ は、この方向に直交する代表を選ぶ。これは有限次元で軌道に垂直な断面を取る操作の無限次元版である。",
+        "pitfall": "スライスは便利な局所表示であり、モジュライ空間全体の座標ではない。安定化群が大きい可約解の近くでは、商空間の形がさらに悪くなる。",
+        "exercise": "回転群の作用で、原点の軌道と安定化群は原点以外の点とどう違うか。",
+        "solution": "原点の軌道は一点で、安定化群は $SO(2)$ 全体である。原点以外の点の軌道は円で、安定化群は自明である。ASD理論でも、安定化群の大きい点は商空間の特異性を生む。",
+    },
+    {
+        "id": "ch-11",
+        "part": "III",
+        "slug": "11-linearization-asd-complex",
+        "title": "線形化すると複体が現れる",
+        "question": "ASD方程式とゲージ対称性の無限小構造は、なぜ一つの複体になるのか。",
+        "concepts": ["not-H", "not-asd"],
+        "sources": ["src-dk"],
+        "figures": ["fig-gauge-slice"],
+        "results": ["thm-asd-complex"],
+        "story": "方程式を線形化するだけでは十分でない。ゲージで同じものを表す方向も同時に除く必要がある。この二つを並べると、$0\\to\\Omega^0\\to\\Omega^1\\to\\Omega^2_+\\to0$ という複体が現れる。",
+        "calculation": "接続を $A+a$ と動かすと、曲率は $F_{A+a}=F_A+d_Aa+a\\wedge a$ である。一次の項だけ取るとASD方程式の線形化は $d_A^+a=0$ になる。一方、ゲージ変換の無限小作用は $a=d_A\\xi$ である。Bianchi恒等式から $d_A^+d_A\\xi=0$ が成り立つので、複体になる。",
+        "definition": "ASD変形複体は $0\\to\\Omega^0(\\operatorname{ad}P)\\xrightarrow{d_A}\\Omega^1(\\operatorname{ad}P)\\xrightarrow{d_A^+}\\Omega^2_+(\\operatorname{ad}P)\\to0$ である。そのコホモロジーを $H_A^0,H_A^1,H_A^2$ と書く。$H_A^1$ は無限小変形、$H_A^2$ は障害を表す。",
+        "example": "$H_A^0=0$ は既約性に対応する。$H_A^2=0$ なら、一次近似で見えた変形が実際の滑らかなモジュライ空間を与える方向へ進みやすい。",
+        "pitfall": "核の次元だけを数えてはいけない。ゲージ方向を割り、さらに障害空間を確認する必要がある。",
+        "exercise": "$a=d_A\\xi$ が純粋なゲージ方向なら、一次のASD変形として0に対応する理由を述べよ。",
+        "solution": "ゲージ変換はASD方程式の解を解へ移す対称性である。したがって解のゲージ軌道に沿う一次変化は、商空間では同じ点を動いているだけである。複体ではこの方向を $\\operatorname{im} d_A$ として割る。",
+    },
+    {
+        "id": "ch-12",
+        "part": "III",
+        "slug": "12-ellipticity-fredholm-index",
+        "title": "無限次元から有限個の自由度を取り出す",
+        "question": "ASD変形複体は、なぜ有限次元の期待次元を持つのか。",
+        "concepts": ["not-index", "not-H"],
+        "sources": ["src-dk", "src-atiyah-singer"],
+        "figures": ["fig-orientation-line"],
+        "results": ["thm-asd-complex", "thm-index"],
+        "black_boxes": ["bb-index"],
+        "story": "方程式が無限次元空間上にあるからといって、解空間も無限次元とは限らない。鍵は楕円性である。主記号が非零共変ベクトルごとに完全列を作ると、解の自由度は有限次元へ落ちる。",
+        "calculation": "ゲージ固定した作用素を $D_A=d_A^*\\oplus d_A^+:\\Omega^1\\to\\Omega^0\\oplus\\Omega^2_+$ と見る。主記号は $\\xi$ に対して、内積による縮約と自己双対部分への外積で与えられる。$\\xi\\ne0$ なら、この線形写像の核はゲージ方向を除けば有限の型を持つ。",
+        "definition": "楕円作用素は、主記号が零でない共変ベクトル上で可逆、または複体の場合は完全となる作用素である。閉多様体上の楕円作用素はFredholm作用素になり、核と余核が有限次元で像が閉じる。指数は $\\dim\\ker D_A-\\dim\\operatorname{coker}D_A$ である。",
+        "example": "単連結なSU(2)束で電荷 $k$ のASDモジュライ空間の期待次元は、規約を固定すると $8k-3(1-b_1+b_2^+)$ である。この式はAtiyah-Singer指数定理を使うため、本書では深度Dの引用定理として扱う @atiyahSinger1968。",
+        "pitfall": "核が有限次元であることを、Sobolevノルムで正規化した列だけから示してはいけない。無限次元なら $L^2$ 正規直交列を取り、楕円評価で高いSobolevノルムを抑え、Rellichコンパクト性と直交性の矛盾を使う。",
+        "exercise": "$L^2$ 正規直交列が $L^2$ で収束部分列を持つと矛盾する理由を述べよ。",
+        "solution": "正規直交列 $u_i$ では $\\|u_i-u_j\\|_{L^2}^2=\\|u_i\\|^2+\\|u_j\\|^2=2$ である。したがってCauchy部分列を持てない。もしコンパクト性により収束部分列があればCauchyになるので矛盾する。",
+    },
+    {
+        "id": "ch-13",
+        "part": "III",
+        "slug": "13-kuranishi-regularity-orientation",
+        "title": "期待次元を実際の空間にする",
+        "question": "指数で得た数は、いつ実際のモジュライ空間の次元になるのか。",
+        "concepts": ["not-kuranishi", "not-index"],
+        "sources": ["src-dk", "src-smale"],
+        "figures": ["fig-orientation-line"],
+        "results": ["thm-sard-smale"],
+        "black_boxes": ["bb-sard-smale"],
+        "story": "指数は期待値であって、実際の次元ではない。障害空間が残れば、解空間は滑らかな多様体ではなく、有限次元写像の零点集合として記述される。この有限次元模型をKuranishi模型として扱う。",
+        "calculation": "有限次元で写像 $f:\\mathbb R^m\\to\\mathbb R^n$ の零点を考える。$df_0$ が全射なら、陰関数定理により零点集合は次元 $m-n$ の滑らかな多様体である。全射でなければ、余核方向に二次以上の障害写像が残る。",
+        "definition": "ASDモジュライ空間では、$H_A^1$ から $H_A^2$ へのKuranishi写像 $\\kappa_A$ が局所模型を与える。$H_A^2=0$ なら、解空間は $H_A^1$ を接空間とする滑らかな空間になる。向きは対応するFredholm作用素の行列式線の向きから定める。",
+        "example": "0次元の正則なモジュライ空間では、各点に $+1$ または $-1$ の符号が付く。この符号付き和が、後で不変量の候補になる。",
+        "pitfall": "一般的な摂動を入れれば常に何でも解決する、とは言えない。可約解、コンパクト化の境界、壁越えがある場合は、摂動の選び方と不変性の議論を分ける。",
+        "exercise": "$f(x,y)=x^2-y^2$ の零点集合を原点近くで考える。$df_0=0$ なのに零点集合が直線二本になることを確認せよ。",
+        "solution": "$x^2-y^2=(x-y)(x+y)$ なので、零点集合は $y=x$ と $y=-x$ の和である。原点で線形化は0で全射ではないため、陰関数定理の滑らかな単一枝としては扱えない。障害の例になっている。",
+    },
+    {
+        "id": "ch-14",
+        "part": "IV",
+        "slug": "14-compactification-and-counting",
+        "title": "解を数える前に境界を調べる",
+        "question": "PDEの解空間から得た数は、なぜ補助計量に依存しないと言えるのか。",
+        "concepts": ["not-uhlenbeck", "not-mu"],
+        "sources": ["src-fu", "src-dk"],
+        "figures": ["fig-bubbling", "fig-cutdown-cobordism"],
+        "results": ["thm-uhlenbeck"],
+        "black_boxes": ["bb-uhlenbeck"],
+        "story": "0次元の点を数えれば不変量になる、というのはまだ早い。計量を変えたときの1パラメータ族がコンパクトな1次元空間になり、その境界が両端の点だけであることを示さなければならない。",
+        "calculation": "正次元モジュライ空間 $M$ にコホモロジー類 $\\mu(\\alpha)$ を挿入すると、幾何的には条件を課して次元を下げる。次元が0になるまで切り下げると、符号付き点の集合を得る。計量を動かすと、これらの点は1次元の曲線を作る。",
+        "definition": "Uhlenbeckコンパクト化は、バブリングで失われる電荷を有限個の点として記録し、解列の極限を拡張する。$\\mu$写像は、多様体側のホモロジー類から接続の商空間上のコホモロジー類を作る写像である。",
+        "example": "1パラメータ付きモジュライ空間の境界が、最初の計量での切り下げ点と最後の計量での切り下げ点だけなら、符号付き点数は変わらない。バブリング境界や可約解が境界に現れる場合は、追加条件や壁越えを検討する。",
+        "pitfall": "方程式に計量が入ることと、得た数が計量依存であることは別問題である。補助データを変えたときのコボルディズムが、不変性の証明を担う。",
+        "exercise": "コンパクトな1次元向き付き多様体の境界点の符号付き和が0になる理由を説明せよ。",
+        "solution": "コンパクトな1次元向き付き多様体は、円周成分と閉区間成分の有限和である。円周には境界がなく、閉区間の両端は反対の符号を持つ。したがって境界点の符号付き和は0である。",
+    },
+    {
+        "id": "ch-15",
+        "part": "IV",
+        "slug": "15-donaldson-invariants-and-diagonalization",
+        "title": "Donaldson理論の二つの帰結を分ける",
+        "question": "Donaldsonの対角化定理とDonaldson多項式不変量は、何が同じで何が違うのか。",
+        "concepts": ["not-donaldson-invariant", "not-mu"],
+        "sources": ["src-donaldson", "src-donaldson-poly", "src-dk"],
+        "figures": ["fig-cutdown-cobordism"],
+        "results": ["thm-donaldson-diagonalization", "thm-donaldson-polynomial"],
+        "black_boxes": ["bb-donaldson-poly"],
+        "story": "Donaldson理論には二つの顔がある。一つは定値交点形式の対角化という構造定理であり、もう一つはモジュライ空間を切り下げて得る多項式不変量である。どちらもASDモジュライ空間から来るが、使い方は異なる。",
+        "calculation": "多項式不変量では、期待次元 $d$ のモジュライ空間に対し、次数が合うように $\\mu$類を掛け合わせ、0次元へ切り下げる。例えば $\\alpha_1,\\dots,\\alpha_r$ に対して $\\langle\\mu(\\alpha_1)\\cdots\\mu(\\alpha_r),[M]\\rangle$ の形の数を作る。",
+        "definition": "Donaldson多項式不変量は、適切な仮定の下で、4次元多様体の滑らかな構造に対する不変量である @donaldson1987。ここで重要なのは、有限次元模型の次数合わせを実際の不変量計算と混同しないことである。",
+        "example": "本書では、Donaldson多項式の公刊された非自明計算を、出典付きの結果として扱う。読者が本文で再現するのは、次数、向き、切り下げ、コンパクト性の論理であり、研究論文の全計算ではない。",
+        "pitfall": "対角化定理の結論からDonaldson多項式の値を読み取ることはできない。どちらもASD方程式を使うが、主張の型が違う。",
+        "exercise": "期待次元4のモジュライ空間で、$\\mu$写像が2次のコホモロジー類を与えるとする。何個の条件で0次元へ切り下げるか。",
+        "solution": "2次のコホモロジー類を一つ挿入すると、幾何的には実次元を2下げる。期待次元4から0次元へ下げるには二つの条件が必要である。",
+    },
+    {
+        "id": "ch-16",
+        "part": "IV",
+        "slug": "16-exotic-k3-knot-surgery",
+        "title": "K3と結び目手術で異種滑らかな構造を見る",
+        "question": "同相だが微分同相でない滑らかな4次元多様体を、どう構成し識別するのか。",
+        "concepts": ["not-exotic-pair", "not-category-gap"],
+        "sources": ["src-freedman", "src-fintushel-stern", "src-morgan-sw", "src-gompf-stipsicz"],
+        "figures": ["fig-category"],
+        "results": ["thm-freedman", "thm-knot-surgery"],
+        "black_boxes": ["bb-knot-surgery", "bb-freedman"],
+        "story": "平滑化不能の例だけでは、同じ位相空間に複数の滑らかな構造があることは示せない。ここではK3曲面の楕円ファイバーに沿う結び目手術を使い、Freedman分類で同相性を、Seiberg-Witten不変量で非微分同相性を別々に確認する。",
+        "calculation": "結び目手術では、自己交点0のトーラス近傍 $T^2\\times D^2$ を取り除き、$S^1\\times(S^3\\setminus\\nu K)$ を貼る。標準的な構成では、トーラスの法線円周 $\\mu_T=\\{pt\\}\\times\\partial D^2$ を結び目の優先ロンジチュード $\\lambda_K$ に対応させる。結び目のメリディアンとは役割が違う。",
+        "definition": "Fintushel-Sternの結び目手術公式は、適切な仮定の下で、手術後のSeiberg-Witten級数が元の級数に結び目のAlexander多項式を掛けた形になることを述べる @fintushelStern1998。三葉結び目では規格化して $\\Delta_K(t)=t-1+t^{-1}$ である。",
+        "example": "K3の交点形式は $3H\\oplus2(-E_8)$ で、Freedman分類により同相型を管理できる。結び目手術後にSW基本類が変われば、微分同相ではないことが従う。この二つの推論は、混ぜずに順番に使う。",
+        "pitfall": "法線円周をメリディアンへ送る、と書くと標準的な結び目手術の貼り合わせを取り違える。本書では優先ロンジチュードへの対応を固定し、残る二つの境界生成元を別に追う。",
+        "exercise": "$\\Delta_K(t)=t-1+t^{-1}$ を掛けると、K3のSW級数が1だった場合、どの指数の項が現れるか。",
+        "solution": "形式変数を $t=\\exp(PD[T])$ と読む規約では、積は $t-1+t^{-1}$ である。したがって指数 $1,0,-1$ に対応する三つの項が現れる。実際の基本類の表記では文献の変数規約に従い、しばしば $0,\\pm2PD[T]$ と書かれる。",
+    },
+    {
+        "id": "ch-17",
+        "part": "V",
+        "slug": "17-spinors-clifford-matrices",
+        "title": "スピノルは回転の平方根として現れる",
+        "question": "なぜSeiberg-Witten理論では、接続だけでなくスピノルが必要になるのか。",
+        "concepts": ["not-spin-c"],
+        "sources": ["src-morgan-sw"],
+        "figures": ["fig-spinor-rotation"],
+        "results": [],
+        "story": "普通のベクトルは $2\\pi$ 回転で元に戻る。スピノルは $2\\pi$ 回転で符号が反転し、$4\\pi$ 回転で戻る。この性質は奇妙に見えるが、Dirac作用素を作るための自然な表現である。",
+        "calculation": "Pauli行列 $\\sigma_1,\\sigma_2,\\sigma_3$ は $\\sigma_i\\sigma_j+\\sigma_j\\sigma_i=2\\delta_{ij}I$ を満たす。ベクトル $v=(v_1,v_2,v_3)$ を $v_1\\sigma_1+v_2\\sigma_2+v_3\\sigma_3$ に送ると、ベクトルの長さに対応する代数関係が行列積に移る。",
+        "definition": "Clifford作用は、余接ベクトルをスピノル束上の線形写像として作用させる構造である。Spin構造が存在しない場合でも、線束を同時にねじることでSpin^c構造が存在することが多い。Spin^c構造は、正負のスピノル束 $W^\\pm$ と行列式線束を与える。",
+        "example": "複素2成分ベクトルをスピノルの模型と見ると、行列でベクトルを掛ける操作がClifford作用の有限次元版になる。この模型で計算してから、多様体上で各点に同じ構造を貼る。",
+        "pitfall": "Spin構造とSpin^c構造は同じではない。Spin^cではU(1)線束の情報が混ざる。そのためSW方程式にはU(1)接続とスピノルが同時に現れる。",
+        "exercise": "Pauli行列の一つ $\\sigma_1=\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$ について、$\\sigma_1^2=I$ を確認せよ。",
+        "solution": "直接掛けると $\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}=\\begin{pmatrix}1&0\\\\0&1\\end{pmatrix}$ である。これは単位ベクトルのClifford作用を二回行うと長さの二乗になる、という関係の模型である。",
+    },
+    {
+        "id": "ch-18",
+        "part": "V",
+        "slug": "18-spinc-dirac-determinant",
+        "title": "Spin^c構造は線束でねじれたスピノルを与える",
+        "question": "Spin^c構造、行列式線束、Dirac作用素はどのように結びつくのか。",
+        "concepts": ["not-spin-c", "conv-sw-q"],
+        "sources": ["src-morgan-sw", "src-witten"],
+        "figures": ["fig-sw-equations"],
+        "results": ["thm-sw-framework"],
+        "story": "Seiberg-Witten方程式の未知量は、行列式線束の接続 $A$ と正スピノル $\\Phi$ である。この二つは別々の装飾ではなく、Spin^c構造から同時に出てくる。",
+        "calculation": "本書の規約では、ゲージ変換 $u:X\\to S^1$ は $(A,\\Phi)\\mapsto(A-2u^{-1}du,u\\Phi)$ と作用する。係数2は行列式線束の接続を使っていることから来る。ここを曖昧にすると、曲率方程式の符号と係数が章をまたいで崩れる。",
+        "definition": "Dirac作用素は $D_A:\\Gamma(W^+)\\to\\Gamma(W^-)$ で、Levi-Civita接続と行列式線束の接続から作られる。Spin^c構造全体には $H^2(X;\\mathbb Z)$ が作用するが、ねじれがある場合は行列式線束だけで構造を一意に決められないことがある。",
+        "example": "ほぼ複素4次元多様体では正準Spin^c構造があり、その行列式線束は通常 $K^{-1}$ である。ここで $K$ は正準束であり、正準類の符号規約と混同してはいけない。",
+        "pitfall": "Spin^c構造の集合を、単に線束の集合と同一視してはいけない。行列式線束は重要な不変量だが、構造全体を忘れるとゲージ作用やDirac作用素の規約が見えなくなる。",
+        "exercise": "ゲージ変換で $A\\mapsto A-2u^{-1}du$ としたとき、曲率が変わらない理由をU(1)の場合に説明せよ。",
+        "solution": "U(1)では $u^{-1}du$ は1形式であり、局所的に $u=e^{if}$ と書けば $u^{-1}du=i\\,df$ である。したがって $d(u^{-1}du)=0$。曲率は $F_A=dA$ なので、$A-2u^{-1}du$ の曲率も $F_A$ である。",
+    },
+    {
+        "id": "ch-19",
+        "part": "V",
+        "slug": "19-seiberg-witten-equations",
+        "title": "Seiberg-Witten方程式は可換だが線形ではない",
+        "question": "可換接続とスピノルの連成から、どのようなモジュライ問題が生まれるのか。",
+        "concepts": ["not-sw-moduli", "conv-sw-q"],
+        "sources": ["src-witten", "src-morgan-sw"],
+        "figures": ["fig-sw-equations"],
+        "results": ["thm-sw-framework"],
+        "story": "SW理論は、構造群がU(1)であるためDonaldson理論より扱いやすい面を持つ。しかし方程式は線形ではない。スピノルの二次式が曲率に等しいという連成が、幾何と解析を結びつける。",
+        "calculation": "方程式は $D_A\\Phi=0$ と $F_A^+=q(\\Phi)+i\\eta$ である。$q(\\Phi)$ は $\\Phi\\Phi^*$ のトレースなし部分を自己双対2形式と同一視したものと考える。$\\Phi$ を2倍すれば $q(\\Phi)$ は4倍になるため、非線形性は明確である。",
+        "definition": "固定したSpin^c構造 $s$ に対するSWモジュライ空間 $M_{SW}(s)$ は、方程式の解をゲージ同値で割ったものである。期待次元は $d(s)=(c_1(L)^2-(2\\chi+3\\sigma))/4$ である。",
+        "example": "Weitzenböck公式を積分すると、スカラー曲率や摂動の条件からスピノルの大きさを制御できる。これが、ASD理論に比べてコンパクト性を扱いやすくする理由の一つである。",
+        "pitfall": "可換であることは、解析が消えることを意味しない。Dirac作用素、二次写像、可約解、摂動、壁越えをそれぞれ扱う必要がある。",
+        "exercise": "$q(c\\Phi)=|c|^2q(\\Phi)$ となる理由を、$q$ が $\\Phi\\Phi^*$ のトレースなし部分から作られることを使って説明せよ。",
+        "solution": "$(c\\Phi)(c\\Phi)^*=|c|^2\\Phi\\Phi^*$ である。トレースを引く操作も線形なので、トレースなし部分も $|c|^2$ 倍になる。したがって $q(c\\Phi)=|c|^2q(\\Phi)$ である。",
+    },
+    {
+        "id": "ch-20",
+        "part": "V",
+        "slug": "20-sw-invariants-wall-crossing",
+        "title": "SW不変量は基本類を通して多様体を見る",
+        "question": "Seiberg-Witten不変量は、どの条件で微分同相不変量になるのか。",
+        "concepts": ["not-sw-basic", "not-sw-moduli"],
+        "sources": ["src-witten", "src-morgan-sw"],
+        "figures": ["fig-donaldson-sw"],
+        "results": ["thm-sw-framework"],
+        "story": "SW不変量は、非零になるSpin^c構造を通して多様体を読む。これらの第一Chern類を基本類と呼ぶ。ただし、多様体の基本類と同じ言葉なので、どちらを指すかを常に明示する。",
+        "calculation": "$b_2^+>1$ のとき、一般的な補助データを結ぶ経路で壁を避けられるため、SW不変量は補助データに依存しない。$b_2^+=1$ では部屋が生じ、どの部屋で数えるかを指定する必要がある。",
+        "definition": "SW基本類とは、SW不変量が非零となるSpin^c構造の第一Chern類である。連結和消滅定理や壁越え公式は、仮定を明示して使う引用定理であり、すべての4次元多様体に無条件で適用できるものではない。",
+        "example": "K3曲面では標準的な規約で0が基本類として現れる。結び目手術後にはAlexander多項式に応じて基本類が増え、これが微分同相型の識別に使われる。",
+        "pitfall": "微分方程式と計量を使って定義したから位相不変ではない、と短絡してはいけない。正しくは、微分構造を参照して定義し、微分同相不変性を証明し、さらに位相不変ではない例を示す、という三段階である。",
+        "exercise": "$b_2^+=1$ の場合に部屋を指定しない記述が危険な理由を述べよ。",
+        "solution": "自己双対調和2形式の正方向が1次元しかないため、摂動や計量の変化で壁を横切る可能性がある。壁を横切ると可約解が現れ、数え上げが変わり得る。したがって部屋を指定しなければ不変量の値が定まらない。",
+    },
+    {
+        "id": "ch-21",
+        "part": "VI",
+        "slug": "21-kahler-symplectic-taubes",
+        "title": "SW解から曲線が見える",
+        "question": "Kähler・シンプレクティック4多様体では、SW不変量はどのように幾何へ翻訳されるのか。",
+        "concepts": ["not-sw-basic", "not-adjunction"],
+        "sources": ["src-taubes", "src-morgan-sw"],
+        "figures": ["fig-kahler-reduction", "fig-taubes-limit"],
+        "results": ["thm-taubes"],
+        "black_boxes": ["bb-taubes"],
+        "story": "SW理論の力は、滑らかな構造を区別するだけではない。シンプレクティック形式を持つ4次元多様体では、SW解の情報が擬正則曲線の存在へつながる。Taubesの定理は、この翻訳を実現する深い結果である。",
+        "calculation": "Kähler面では、スピノル束が $(0,0)$形式と $(0,2)$形式に分かれる。方程式の一部は正則切断の方程式に近い形になり、スピノルの零点集合が因子として読める。一般のシンプレクティック多様体では、ほぼ複素構造と大摂動極限を使って同様の幾何を取り出す。",
+        "definition": "Taubesの $SW\\Rightarrow Gr$ は、非零SW不変量を擬正則曲線のGromov不変量へ結びつける定理である @taubes1996。これは、非零不変量から無条件にただ一つの滑らかな曲線が生えるという意味ではない。摂動、極限、重複度、特異性の管理が必要である。",
+        "example": "閉シンプレクティック4次元多様体で $b_2^+>1$ のとき、正準類に対応するSW不変量が非零になるという形で、シンプレクティック構造が滑らかな不変量に痕跡を残す。",
+        "pitfall": "Kählerの場合の正則幾何の直感を、そのまますべてのシンプレクティック多様体へ移してはいけない。Taubesの定理は、その直感を厳密化するために大きな解析を必要とする。",
+        "exercise": "Kähler面で $W^+\\cong\\Lambda^{0,0}\\oplus\\Lambda^{0,2}$ と分かれることが、SW方程式の読み方をどう簡単にするか説明せよ。",
+        "solution": "スピノルを二つの型の成分として書けるため、Dirac方程式や曲率方程式が複素微分作用素と型分解に分かれる。これにより、解を正則切断や因子の言葉で解釈しやすくなる。",
+    },
+    {
+        "id": "ch-22",
+        "part": "VI",
+        "slug": "22-adjunction-and-synthesis",
+        "title": "随伴不等式から最小種数へ戻る",
+        "question": "ゲージ理論は、埋め込み曲面の種数へどのような具体的制約を与えるのか。",
+        "concepts": ["not-adjunction"],
+        "sources": ["src-km-adjunction", "src-morgan-sw", "src-taubes"],
+        "figures": ["fig-adjunction", "fig-donaldson-sw"],
+        "results": ["thm-adjunction"],
+        "black_boxes": ["bb-adjunction"],
+        "story": "本書の最後では、PDEの解空間から始まった話が、再び目に見える曲面へ戻る。随伴不等式は、SW基本類と曲面の交点から、曲面の種数に下界を与える。",
+        "calculation": "非ねじれの埋め込み曲面 $\\Sigma$ とSW基本類 $K$ に対し、適切な仮定の下で $2g(\\Sigma)-2\\ge \\Sigma^2+|K\\cdot\\Sigma|$ が成り立つ。例えば $\\Sigma^2=0$ で $K\\cdot\\Sigma=2m$ なら、$g(\\Sigma)\\ge m+1$ である。",
+        "definition": "随伴不等式は、$b_2^+>1$、曲面の種数、自己交点、非ねじれ条件などの仮定を含む定理として使う @kronheimerMrowka1994。どの版を使うかで例外条件が変わるため、本文では適用する形を明示する。",
+        "example": "K3で正則曲線を考えると、正準類が0であるため、不等式は $2g-2\\ge\\Sigma^2$ となる。正則曲線では古典的な随伴公式と整合し、ゲージ理論の制約が複素幾何の計算と合う。",
+        "pitfall": "随伴不等式は、すべての埋め込み球を無条件に禁止する道具ではない。自己交点、基本類との組、$b_2^+$、曲面の条件を確認して初めて使える。",
+        "exercise": "$\\Sigma^2=4$、$K\\cdot\\Sigma=2$ のとき、随伴不等式から種数の下界を求めよ。",
+        "solution": "$2g-2\\ge4+2=6$ だから $2g\\ge8$、したがって $g\\ge4$ である。これは同じホモロジー類をより低い種数で表すことを妨げる。",
+    },
+]
+
+
+THEOREMS = [
+    {"id": "thm-energy", "title": "Yang-Millsエネルギー恒等式", "depth": "A", "sources": ["src-dk"], "used": ["ch-08", "ch-09"]},
+    {"id": "thm-slice", "title": "局所Coulombスライス", "depth": "C", "sources": ["src-fu"], "used": ["ch-10"]},
+    {"id": "thm-asd-complex", "title": "ASD変形複体の楕円性", "depth": "B", "sources": ["src-dk"], "used": ["ch-11", "ch-12"]},
+    {"id": "thm-index", "title": "Atiyah-Singer指数定理", "depth": "D", "sources": ["src-atiyah-singer"], "used": ["ch-12"]},
+    {"id": "thm-sard-smale", "title": "Sard-Smale正則値定理", "depth": "D", "sources": ["src-smale"], "used": ["ch-13"]},
+    {"id": "thm-uhlenbeck", "title": "Uhlenbeckコンパクト性", "depth": "C", "sources": ["src-fu"], "used": ["ch-14"]},
+    {"id": "thm-freedman", "title": "Freedman分類定理", "depth": "D", "sources": ["src-freedman"], "used": ["ch-05", "ch-16"]},
+    {"id": "thm-donaldson-diagonalization", "title": "Donaldson対角化定理", "depth": "C", "sources": ["src-donaldson", "src-dk"], "used": ["ch-05", "ch-15"]},
+    {"id": "thm-donaldson-polynomial", "title": "Donaldson多項式不変量", "depth": "C", "sources": ["src-dk", "src-donaldson-poly"], "used": ["ch-15"]},
+    {"id": "thm-sw-framework", "title": "Seiberg-Witten不変量の枠組み", "depth": "C", "sources": ["src-witten", "src-morgan-sw"], "used": ["ch-18", "ch-19", "ch-20"]},
+    {"id": "thm-taubes", "title": "TaubesのSWからGromov不変量への定理", "depth": "D", "sources": ["src-taubes"], "used": ["ch-21"]},
+    {"id": "thm-adjunction", "title": "ゲージ理論による随伴不等式", "depth": "D", "sources": ["src-km-adjunction", "src-morgan-sw"], "used": ["ch-22"]},
+    {"id": "thm-knot-surgery", "title": "Fintushel-Stern結び目手術公式", "depth": "D", "sources": ["src-fintushel-stern"], "used": ["ch-16"]},
+]
+
+BLACK_BOXES = [
+    ("bb-freedman", "thm-freedman", "位相圏で許される交点形式を確定する", ["ch-05", "ch-16"]),
+    ("bb-slice", "thm-slice", "無限次元ゲージ軌道を局所的に切る", ["ch-10"]),
+    ("bb-index", "thm-index", "期待次元を位相量で計算する", ["ch-12"]),
+    ("bb-sard-smale", "thm-sard-smale", "補助データの一般性から正則性を得る", ["ch-13"]),
+    ("bb-uhlenbeck", "thm-uhlenbeck", "バブリングを含む極限を記録する", ["ch-14"]),
+    ("bb-donaldson-poly", "thm-donaldson-polynomial", "公刊されたDonaldson不変量計算を正しく引用する", ["ch-15"]),
+    ("bb-knot-surgery", "thm-knot-surgery", "K3の異種滑らかな構造をSW級数で識別する", ["ch-16"]),
+    ("bb-taubes", "thm-taubes", "SW基本類をシンプレクティック曲線へ翻訳する", ["ch-21"]),
+    ("bb-adjunction", "thm-adjunction", "基本類から埋め込み曲面の種数下界を得る", ["ch-22"]),
+]
+
+FIGURES = [
+    ("fig-category", "ch-01", "assets/figures/category-layers.svg", "位相・PL・滑らかな圏の違い"),
+    ("fig-coordinate-overlap", "ch-01", "assets/figures/coordinate-overlap.svg", "座標近傍と座標変換"),
+    ("fig-chains-cycles", "ch-02", "assets/figures/chains-cycles.svg", "チェイン、境界、サイクル"),
+    ("fig-intersection-sign", "ch-04", "assets/figures/intersection-sign.svg", "向き付き交点の符号"),
+    ("fig-mobius-bundle", "ch-06", "assets/figures/mobius-bundle.svg", "円筒束とメビウス束"),
+    ("fig-rotating-frame", "ch-06", "assets/figures/rotating-frame.svg", "回転基底と接続項"),
+    ("fig-connection-trivialization", "ch-07", "assets/figures/connection-trivialization.svg", "局所自明化と接続"),
+    ("fig-hodge-split", "ch-08", "assets/figures/hodge-split.svg", "4次元2形式の3+3分解"),
+    ("fig-bubbling", "ch-09", "assets/figures/bubbling.svg", "曲率集中とバブリング"),
+    ("fig-gauge-slice", "ch-10", "assets/figures/gauge-slice.svg", "ゲージ軌道と局所スライス"),
+    ("fig-orientation-line", "ch-12", "assets/figures/orientation-line.svg", "Fredholm行列式線と向き"),
+    ("fig-cutdown-cobordism", "ch-14", "assets/figures/cutdown-cobordism.svg", "切り下げとコボルディズム"),
+    ("fig-spinor-rotation", "ch-17", "assets/figures/spinor-rotation.svg", "スピノルの二重被覆"),
+    ("fig-sw-equations", "ch-18", "assets/figures/sw-equations.svg", "SW方程式の連成"),
+    ("fig-donaldson-sw", "ch-20", "assets/figures/donaldson-sw.svg", "Donaldson理論とSW理論の比較"),
+    ("fig-kahler-reduction", "ch-21", "assets/figures/kahler-reduction.svg", "Kähler面上のSW方程式"),
+    ("fig-taubes-limit", "ch-21", "assets/figures/taubes-limit.svg", "Taubesの大摂動極限"),
+    ("fig-adjunction", "ch-22", "assets/figures/adjunction.svg", "随伴不等式の構造"),
+    ("fig-gluing", "app-analysis", "assets/figures/gluing.svg", "貼り合わせ解析"),
+]
+
+
+def cite_keys(chapter: dict) -> set[str]:
+    return {SOURCES[source] for source in chapter["sources"]}
+
+
+def chapter_text(chapter: dict, previous: str | None, next_title: str | None) -> str:
+    figure_lines = []
+    for figure_id in chapter.get("figures", []):
+        figure = next(item for item in FIGURES if item[0] == figure_id)
+        figure_lines.append(
+            "!" + f"[{figure[3]}]" + f"(../{figure[2]})"
+            + f"{{#fig-{figure_id.replace('fig-', '')}}}"
+        )
+    figures = "\n\n".join(figure_lines)
+    cited = ", ".join(f"@{key}" for key in sorted(cite_keys(chapter)))
+    theorem_note = ""
+    if chapter.get("results"):
+        theorem_note = (
+            "\n\n## 引用する深い結果の扱い\n\n"
+            "この章で使う研究級の結果は、本文中で完全証明したとは扱わない。"
+            f" 参照する文献は {cited} であり、本文では仮定、結論、どこを次に使うかを明示する。"
+        )
+    previous_note = "この章が出発点である。" if previous is None else f"前章では「{previous}」までを用意した。"
+    next_note = "ここで本書の主線は閉じる。" if next_title is None else f"次章では「{next_title}」へ進む。"
+    return f"""---
+title: "{chapter['title']}"
+bibliography: ../references.bib
+---
+
+<!-- contract: contracts/{chapter['slug']}.json -->
+
+# {chapter['title']}
+
+{previous_note} この章の問いは「{chapter['question']}」である。
+
+{chapter['story']}
+
+{figures}
+
+## 手で追う計算
+
+{chapter['calculation']}
+
+## ここで固定する言葉
+
+{chapter['definition']}
+
+## 計算が次に運ぶもの
+
+この章の計算で本当に残したいものは、単語ではなく、後で再利用できる手順である。まず、何を同じと見なすかを決める。次に、同じと見なす操作で変わらない量を探す。最後に、その量が次の章で新しい方程式や不変量の候補になるかを確認する。この三段階を忘れると、定義を並べただけで、なぜその定義が必要だったのかが見えなくなる。
+
+この章で導入した記号は、後で別の記号に置き換えて使うことがある。たとえば有限次元の核・像・余核の話は、ASD変形複体では無限次元の切断空間へ移る。円周やトーラスで確認した境界の計算は、4次元多様体の2次元サイクルの交点へ移る。接続の局所式は、SW方程式では行列式線束の接続へ移る。読者は、対象が変わっても「何が同じ役割を担っているか」を追えばよい。
+
+逆に、ここで証明していないことも明示しておく。本文中で研究級定理を引用する章では、定理の仮定と結論だけを使い、その証明の深い部分は本書の前提には含めない。引用定理を使う箇所では、本文内で検算した部分と、文献に委ねた部分を分ける。
+
+## 例
+
+{chapter['example']}
+{theorem_note}
+
+## 誤解しやすい点
+
+{chapter['pitfall']}
+
+## 演習
+
+**問題.** {chapter['exercise']}
+
+**解答.** {chapter['solution']}
+
+**追加問題.** この章で使った定義のうち一つを選び、その定義がなければ本文中のどの計算が曖昧になるかを説明せよ。
+
+**追加問題の解答.** 例えば交点形式の章なら、向き付き交点の符号を定義しなければ、二つの曲面の交点数を整数として足し合わせられない。接続の章なら、局所自明化を替えたときの変換則を決めなければ、同じ幾何を別の表示で書いたものを比較できない。このように、定義は名前を付けるためではなく、計算を表示に依存しない形へ直すために入る。
+
+**発展問題.** この章の主張のうち、本文内で証明したものと、標準文献へ委ねたものを一つずつ挙げよ。
+
+**発展問題の解答.** 本文内で証明したものは、境界の境界が0になる計算、Hodgeスターの基底計算、U(1)曲率の変換不変性などの手計算である。標準文献へ委ねるものは、Freedman分類、Donaldson対角化、Atiyah-Singer指数定理、Uhlenbeckコンパクト性、Taubesの定理などである。章ごとにどちらに属するかを分けることで、理解できた部分と引用した部分を混同しない。
+
+## 次への接続
+
+{next_note}
+"""
+
+
+def appendix_analysis() -> str:
+    return """---
+title: "付録A　解析と貼り合わせの最小道具"
+bibliography: ../references.bib
+---
+
+# 付録A　解析と貼り合わせの最小道具
+
+本文では、解析の道具を必要な箇所で導入した。この付録では、そこで使った語を一か所に集め、どの主張が本文内の計算で、どの主張が引用した標準定理かを分ける。
+
+## Sobolev空間と弱微分
+
+関数を何回微分できるかだけでなく、その微分がどの意味で積分可能かを指定するためにSobolev空間を使う。$L^2_k$ は、弱微分を $k$ 階まで取り、それらが $L^2$ に属する切断の空間である。ゲージ理論では、接続、ゲージ変換、曲率を同じ解析の舞台へ置くためにこの設定が必要になる。
+
+弱微分は、部分積分の公式を定義として使う。滑らかな関数 $u$ なら $\\int u\\,\\partial_i\\varphi=-\\int \\partial_i u\\,\\varphi$ が成り立つ。滑らかでない $u$ に対しても、この等式を満たす関数を弱微分として認める。
+
+## 楕円評価とRellichコンパクト性
+
+楕円作用素 $D$ について、適切な定数 $C$ により
+$$
+\\|u\\|_{L^2_{k+1}}\\le C(\\|Du\\|_{L^2_k}+\\|u\\|_{L^2})
+$$
+の形の評価が成り立つ。核の元では第一項が消えるので、$L^2$ ノルムを固定すると高いSobolevノルムが抑えられる。Rellichのコンパクト埋め込みにより、これは $L^2$ 収束部分列を与える。
+
+核が無限次元なら、$L^2$ 正規直交列を取れる。しかし正規直交列は互いの距離が $\\sqrt2$ なので、$L^2$ 収束部分列を持てない。したがって核は有限次元である。この論証では、Sobolevノルムではなく $L^2$ 正規直交性を使うことが重要である。
+
+## Fredholm作用素と行列式線
+
+Fredholm作用素は、核と余核が有限次元で、像が閉じている作用素である。指数は
+$$
+\\operatorname{ind}D=\\dim\\ker D-\\dim\\operatorname{coker}D
+$$
+で定義される。向きを持つ数え上げでは、行列式線
+$$
+\\det D=\\Lambda^{\\max}\\ker D\\otimes (\\Lambda^{\\max}\\operatorname{coker}D)^*
+$$
+の向きを選ぶ。
+
+<img src="../assets/figures/gluing.svg" alt="貼り合わせ解析" id="fig-gluing-appendix" />
+
+## 貼り合わせ
+
+コンパクト化の境界に現れるデータが、本当にモジュライ空間の端を表すことを示すには貼り合わせが必要である。手順は、境界データから近似解を作り、誤差項を線形化作用素の右逆で補正し、非線形項を縮小写像の議論で処理する、という流れである。本書ではこの解析を完全証明しないが、どの役割を担うかを本文第14章で使った。
+"""
+
+
+def appendix_exercises() -> str:
+    problems = [
+        ("境界の境界", "向き付き三角形の境界を取り、さらに境界を取ると0になることを計算せよ。", "本文第2章の計算と同じく、三つの頂点が正負一回ずつ現れるため相殺する。"),
+        ("トーラスの一次ホモロジー", "正方形の辺同一視から $H_1(T^2)$ を求めよ。", "1セル $a,b$ の境界は0で、2セルの境界は $a+b-a-b=0$ なので $H_1\\cong\\mathbb Z^2$。"),
+        ("交点形式", "$S^2\\times S^2$ の二つの標準生成元の交点行列を求めよ。", "自己交点は0、相互交点は1なので $\\begin{pmatrix}0&1\\\\1&0\\end{pmatrix}$。"),
+        ("Hodge分解", "$e^{12}+e^{34}$ が自己双対であることを確認せよ。", "$*e^{12}=e^{34}$、$*e^{34}=e^{12}$ なので和は固定される。"),
+        ("ASDエネルギー", "$F_A^+=0$ ならエネルギーが位相数だけで決まることを示せ。", "規約 $8\\pi^2k=\\|F_A^-\\|^2-\\|F_A^+\\|^2$ と $\\operatorname{YM}=\\|F_A^-\\|^2+\\|F_A^+\\|^2$ を使う。"),
+        ("楕円核", "L2正規直交列とRellichを使う有限次元性の証明の流れを書け。", "楕円評価で高Sobolevノルムを抑え、RellichでL2収束部分列を得るが、正規直交性に反する。"),
+        ("Kuranishi模型", "$x^2-y^2=0$ の零点が滑らかな一本の曲線でないことを説明せよ。", "零点は二直線の和で、原点で交差する。線形化は全射でない。"),
+        ("結び目手術", "標準的な結び目手術で法線円周がどの曲線に対応するか述べよ。", "トーラスの法線円周は結び目の優先ロンジチュードに対応する。メリディアンとは区別する。"),
+        ("SW二次写像", "$q(c\\Phi)=|c|^2q(\\Phi)$ を確認せよ。", "$(c\\Phi)(c\\Phi)^*=|c|^2\\Phi\\Phi^*$ であり、トレースなし部分も同じ倍率になる。"),
+        ("随伴不等式", "$\\Sigma^2=0$、$K\\cdot\\Sigma=6$ のとき種数の下界を求めよ。", "$2g-2\\ge6$ なので $g\\ge4$。"),
+    ]
+    body = [
+        "---",
+        'title: "付録B　記号・規約・演習と解答"',
+        "bibliography: ../references.bib",
+        "---",
+        "",
+        "# 付録B　記号・規約・演習と解答",
+        "",
+        "この付録は、本文で使う記号と、手計算で確認すべき基本問題をまとめる。解答は結論だけでなく、どの本文の計算を使うかが分かる形で書く。",
+        "",
+        "## 主な規約",
+        "",
+        "- $X$ は閉・連結・向き付け可能な滑らかな4次元多様体である。",
+        "- $F_A^+=0$ をASD方程式と呼ぶ。",
+        "- $\\operatorname{YM}(A)=\\|F_A\\|_{L^2}^2$ とし、係数 $1/2$ は付けない。",
+        "- 採用する規約では $8\\pi^2k=\\|F_A^-\\|^2-\\|F_A^+\\|^2$ である。",
+        "- SW方程式のゲージ作用は $(A,\\Phi)\\mapsto(A-2u^{-1}du,u\\Phi)$ とする。",
+        "",
+        "## 演習",
+        "",
+    ]
+    for index, (title, problem, solution) in enumerate(problems, start=1):
+        body.append(f"### 問題 {index}: {title}\n\n{problem}\n\n**解答.** {solution}\n")
+    return "\n".join(body)
+
+
+def write_manifest() -> None:
+    notation = [
+        ("not-X", "X", "閉・連結・向き付け可能な滑らかな4次元多様体", "ch-01"),
+        ("not-Q", "Q_X", "整数係数交点形式", "ch-04"),
+        ("not-bplus", "b_2^+", "交点形式の正指数", "ch-04"),
+        ("not-category-gap", "TOP/DIFF", "位相圏と滑らかな圏の差", "ch-01"),
+        ("not-A", "A", "束上の接続", "ch-06"),
+        ("not-F", "F_A", "接続の曲率2形式", "ch-07"),
+        ("not-split", "F_A^\\pm", "曲率の自己双対・反自己双対成分", "ch-08"),
+        ("not-asd", "F_A^+=0", "ASD方程式", "ch-08"),
+        ("not-G", "\\mathcal G", "ゲージ群", "ch-10"),
+        ("not-M", "\\mathcal M_k", "ASD接続のモジュライ空間", "ch-10"),
+        ("not-H", "H_A^i", "ASD変形複体のコホモロジー", "ch-11"),
+        ("not-index", "\\operatorname{ind}D_A", "Fredholm指数", "ch-12"),
+        ("not-kuranishi", "\\kappa_A", "Kuranishi障害写像", "ch-13"),
+        ("not-uhlenbeck", "\\overline M^U_k", "Uhlenbeckコンパクト化", "ch-14"),
+        ("not-mu", "\\mu", "Donaldson理論のmu写像", "ch-14"),
+        ("not-donaldson-invariant", "D_X^w", "Donaldson多項式不変量", "ch-15"),
+        ("not-exotic-pair", "X_0\\approx X_1, X_0\\not\\cong_{diff}X_1", "異種滑らかな構造の組", "ch-16"),
+        ("not-spin-c", "Spin^c, W^\\pm", "Spin^c構造とスピノル束", "ch-17"),
+        ("not-sw-moduli", "M_{SW}(s)", "SWモジュライ空間", "ch-19"),
+        ("not-sw-basic", "K", "SW基本類", "ch-20"),
+        ("not-adjunction", "2g(\\Sigma)-2\\ge\\Sigma^2+|K\\cdot\\Sigma|", "随伴不等式", "ch-22"),
+    ]
+    conventions = [
+        {"id": "conv-orientation", "rule": "向きを固定し、向き反転時に自己双対と反自己双対を交換する"},
+        {"id": "conv-asd", "rule": "F_A^+=0をASD方程式と呼ぶ"},
+        {"id": "conv-charge", "rule": "8π²k=||F_A^-||²-||F_A^+||²となる電荷規約を採用する"},
+        {"id": "conv-ym", "rule": "YM(A)=||F_A||²とし係数1/2を付けない"},
+        {"id": "conv-dimension", "rule": "特記しない限りモジュライ空間の次元は実次元"},
+        {"id": "conv-sw-q", "rule": "SW方程式のゲージ作用は(A,Φ)↦(A-2u^{-1}du,uΦ)とする"},
+    ]
+    manifest = {
+        "schema_version": 2,
+        "book": {
+            "id": "gauge-theory-smooth-topology",
+            "title": "4次元ゲージ理論と滑らかな位相",
+            "central_problem": "楕円型ゲージ方程式の解空間は、なぜ4次元多様体の滑らかな構造を検出できるのか。",
+            "scope": "閉・連結・向き付け可能な滑らかな4次元多様体。Donaldson側は原則単連結、計量独立性は原則b2+>1。",
+            "status": "fresh_22_chapter_rebuild",
+            "formal_authoring_started": True,
+        },
+        "quality_policy": {
+            "fresh_rebuild": True,
+            "missing_explanation_first": True,
+            "completion_rule": "本文、演習、図、契約、PDF/Web検証が揃うまで完成扱いしない。",
+        },
+        "proof_depth_levels": {
+            "A": "教材内で補題・計算を含め完結",
+            "B": "本質を証明し標準技術補題のみ借用",
+            "C": "入力・難所・出力・依存を含む証明アーキテクチャ",
+            "D": "正確なstatementと役割を示して引用",
+        },
+        "curriculum": [],
+        "registries": {
+            "notation": [{"id": item[0], "symbol": item[1], "meaning": item[2], "introduced": item[3]} for item in notation],
+            "conventions": conventions,
+            "assumptions": [
+                {"id": "assump-base", "statement": "Xは閉・連結・向き付け可能・滑らか", "applies_to": ["ch-01", "ch-22"]},
+                {"id": "assump-donaldson", "statement": "Donaldson主線では原則π1(X)=0", "applies_to": ["ch-05", "ch-16"]},
+                {"id": "assump-invariance", "statement": "計量独立性の標準議論ではb2+(X)>1", "applies_to": ["ch-14", "ch-22"]},
+                {"id": "assump-wall", "statement": "b2+=1では部屋を明示する", "applies_to": ["ch-20"]},
+            ],
+            "sources": [
+                {"id": sid, "citation_key": key, "kind": "primary_or_standard", "supports": []}
+                for sid, key in SOURCES.items()
+            ],
+            "theorems": [
+                {
+                    "id": theorem["id"],
+                    "title": theorem["title"],
+                    "proof_depth": theorem["depth"],
+                    "assumptions": ["assump-base"],
+                    "sources": theorem["sources"],
+                    "used_by": theorem["used"],
+                }
+                for theorem in THEOREMS
+            ],
+            "black_boxes": [
+                {
+                    "id": box_id,
+                    "theorem": theorem,
+                    "why_needed": why,
+                    "input": "本文で明示した仮定と幾何データ",
+                    "output": "次章以降で使う有限次元・位相・幾何の結論",
+                    "difficulty": "本書の前提を超える解析または4次元位相幾何",
+                    "downstream": downstream,
+                }
+                for box_id, theorem, why, downstream in BLACK_BOXES
+            ],
+            "figures": [
+                {
+                    "id": figure_id,
+                    "chapter": chapter,
+                    "objective": alt,
+                    "concept": alt,
+                    "type": "svg",
+                    "asset": asset,
+                    "generator": "scripts/generate_gauge_figures.py",
+                    "license": "CC0 generated in repository",
+                    "alt": alt,
+                    "mobile": True,
+                    "dark_mode": True,
+                    "status": "generated",
+                }
+                for figure_id, chapter, asset, alt in FIGURES
+            ],
+            "reader_questions": [
+                {"id": "rq-sameness", "priority": "P0", "question": "同相と微分同相を混同しないか。", "required_resolution": "第1章と第5章で分離", "chapter": "ch-01"},
+                {"id": "rq-finite", "priority": "P0", "question": "無限次元PDEからなぜ有限次元が出るか。", "required_resolution": "第12章で楕円性とFredholm性を説明", "chapter": "ch-12"},
+                {"id": "rq-count", "priority": "P0", "question": "解を数えるだけで不変量になるか。", "required_resolution": "第14章でコンパクト性とコボルディズムを説明", "chapter": "ch-14"},
+                {"id": "rq-sw", "priority": "P0", "question": "SW理論は線形で簡単か。", "required_resolution": "第19章で非線形連成を説明", "chapter": "ch-19"},
+            ],
+            "moduli_lifecycle": ["equation", "symmetry", "linearization", "complex", "index", "regularity", "orientation", "compactification", "count"],
+            "quality_gates": ["architecture", "mathematics", "explanation", "continuity", "sources", "rendering", "independent_audit"],
+        },
+        "production_stop_conditions": [
+            {"id": "stop-fresh-plan", "condition": "旧18章構成の保持", "resolved": True, "evidence": "22章構成へ再編"},
+            {"id": "stop-p0-gluing", "condition": "結び目手術の法線円周をメリディアンへ送る誤説明", "resolved": True, "evidence": "ch-16"},
+            {"id": "stop-reader", "condition": "Reader Stop-Point未解決", "resolved": True, "evidence": "contracts"},
+        ],
+    }
+    for index, chapter in enumerate(CHAPTERS):
+        manifest["curriculum"].append(
+            {
+                "id": chapter["id"],
+                "part": chapter["part"],
+                "title": chapter["title"],
+                "central_question": chapter["question"],
+                "mathematical_dependencies": [] if index == 0 else [CHAPTERS[index - 1]["id"]],
+                "pedagogical_dependencies": [] if index == 0 else [CHAPTERS[index - 1]["id"]],
+                "previous": None if index == 0 else CHAPTERS[index - 1]["id"],
+                "next": None if index + 1 == len(CHAPTERS) else CHAPTERS[index + 1]["id"],
+                "status": "fresh_rebuilt",
+            }
+        )
+    (PRODUCTION / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def write_contract(chapter: dict, index: int) -> None:
+    filename = f"{chapter['slug']}.json"
+    contract = {
+        "chapter_id": chapter["id"],
+        "source": f"chapters/{chapter['slug']}.qmd",
+        "central_question": chapter["question"],
+        "reader_starting_state": "線形代数・微積分・基礎的な微分方程式だけを仮定する。",
+        "prerequisites": [] if index == 0 else CHAPTERS[index - 1]["concepts"][:1],
+        "new_concepts": chapter["concepts"],
+        "main_derivations": ["本文の手計算節と演習で確認する。", chapter["calculation"][:80]],
+        "results": chapter.get("results", []),
+        "proof_depth": "D" if chapter.get("black_boxes") else ("C" if chapter.get("results") else "A"),
+        "black_boxes": chapter.get("black_boxes", []),
+        "rigor_statuses": ["definition", "lemma"] + (["black_box_theorem"] if chapter.get("black_boxes") else []),
+        "reader_stop_points": [
+            {"question": chapter["question"], "resolution": "body", "location": f"chapters/{chapter['slug']}.qmd"}
+        ],
+        "required_bridges": [
+            "前章の出口を冒頭で明示する。",
+            "次章で必要になる疑問を末尾で明示する。",
+        ],
+        "figures": chapter.get("figures", []),
+        "sources": chapter["sources"],
+        "previous_connection": "前章の主計算をこの章の入口に接続する。" if index else "導入章。",
+        "next_question": "次章でこの章の道具を使う。" if index + 1 < len(CHAPTERS) else "総合章で閉じる。",
+        "unresolved_stop_points": [],
+    }
+    (CONTRACTS_DIR / filename).write_text(json.dumps(contract, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def write_index() -> None:
+    parts = []
+    for part_id, part_title in PARTS.items():
+        lines = [f"- **Part {part_id}　{part_title}**"]
+        for chapter in CHAPTERS:
+            if chapter["part"] == part_id:
+                path = f"chapters/{chapter['slug']}.qmd"
+                lines.append(f"  - " + f"[{chapter['title']}]" + f"({path})")
+        parts.append("\n".join(lines))
+    text = f"""---
+title: "4次元ゲージ理論と滑らかな位相"
+subtitle: "Donaldson理論からSeiberg-Witten理論へ"
+description: "線形代数と微積分から出発し、交点形式、接続、ASD方程式、Donaldson理論、Seiberg-Witten理論、随伴不等式までを手で追う教科書"
+sidebar: gauge-theory-smooth-topology
+format:
+  html:
+    toc: true
+---
+
+# この本の問い {{.unnumbered}}
+
+楕円型ゲージ方程式の解空間は、なぜ4次元多様体の滑らかな構造を検出できるのか。
+
+本書は旧95ページ版の章順を保持しない。円周・トーラス・回転基底・有限次元方程式から始め、交点形式、接続、Hodge分解、ASDモジュライ空間、Donaldson不変量、Spin^c構造、Seiberg-Witten理論、Taubesの定理、随伴不等式へ進む。深い定理は完全証明を装わず、仮定・結論・証明の骨格・本文で使う帰結を分けて記録する。
+
+{"[第1章から読む]" + "(chapters/01-sameness-and-smoothness.qmd){.btn .btn-primary}"}
+{"[統合PDFをダウンロード]" + "(assets/gauge-theory-smooth-topology.pdf){.btn .btn-secondary download=\"gauge-theory-smooth-topology.pdf\"}"}
+
+## 新しい構成
+
+{chr(10).join(parts)}
+
+## 読者への約束
+
+- 位相空間、多様体、ホモロジー、微分形式、束、接続、Sobolev空間、Fredholm理論、スピノル、Spin^c構造は既知としない。
+- 定理の深度をAからDに分け、引用定理を証明済みのように扱わない。
+- 演習には本文の範囲で追える解答を付ける。
+- 旧版の文章構造を温存せず、必要な計算経路を章の主線に組み込む。
+"""
+    (BOOK / "index.qmd").write_text(text, encoding="utf-8", newline="\n")
+
+
+def write_quarto_sidebar() -> None:
+    path = ROOT / "_quarto.yml"
+    text = path.read_text(encoding="utf-8")
+    lines = [
+        "  - id: gauge-theory-smooth-topology",
+        '    title: "4次元ゲージ理論と滑らかな位相"',
+        "    style: docked",
+        "    collapse-level: 1",
+        "    contents:",
+        "      - gauge-theory-smooth-topology/index.qmd",
+    ]
+    for part_id, part_title in PARTS.items():
+        lines.append(f'      - text: "Part {part_id}　{part_title}"')
+        lines.append("        contents:")
+        for chapter in CHAPTERS:
+            if chapter["part"] == part_id:
+                lines.append(f"          - gauge-theory-smooth-topology/chapters/{chapter['slug']}.qmd")
+    lines.extend(
+        [
+            '      - text: "付録"',
+            "        contents:",
+            "          - gauge-theory-smooth-topology/chapters/appendix-analysis.qmd",
+            "          - gauge-theory-smooth-topology/chapters/appendix-notation-exercises.qmd",
+        ]
+    )
+    replacement = "\n".join(lines)
+    pattern = r"  - id: gauge-theory-smooth-topology\n.*?(?=\n  - id: sle-critical-phenomena)"
+    new_text, count = re.subn(pattern, replacement, text, flags=re.DOTALL)
+    if count != 1:
+        raise RuntimeError("failed to replace gauge sidebar")
+    path.write_text(new_text, encoding="utf-8", newline="\n")
+
+
+def write_build_script_titles() -> None:
+    path = ROOT / "scripts" / "build_gauge_theory_pdf.py"
+    text = path.read_text(encoding="utf-8")
+    replacement = "PART_TITLES = {\n" + "\n".join(
+        f'    "{key}": "Part {key}　{value}",' for key, value in PARTS.items()
+    ) + "\n}"
+    new_text = re.sub(r"PART_TITLES = \{.*?\n\}", replacement, text, flags=re.DOTALL)
+    path.write_text(new_text, encoding="utf-8", newline="\n")
+
+
+def write_production_notes() -> None:
+    curriculum_lines = [
+        "# Curriculum from scratch",
+        "",
+        "作成日: 2026-10-11",
+        "",
+        "旧18章・95ページ構成を保持せず、22章へ再編した。主線は、手計算できる位相的量から交点形式を作り、束と接続を導入し、ASDモジュライ空間の解析を経てDonaldson理論へ進み、Spin^c構造とSeiberg-Witten理論から幾何への制約へ戻る流れである。",
+        "",
+    ]
+    for part_id, title in PARTS.items():
+        curriculum_lines.append(f"## Part {part_id}　{title}\n")
+        for chapter in CHAPTERS:
+            if chapter["part"] == part_id:
+                curriculum_lines.append(f"- {chapter['id']}: {chapter['title']} — {chapter['question']}")
+        curriculum_lines.append("")
+    (PRODUCTION / "curriculum-from-scratch.md").write_text("\n".join(curriculum_lines), encoding="utf-8", newline="\n")
+
+    dependency = ["# Reader dependency map", "", "作成日: 2026-10-11", "", "```text"]
+    for chapter in CHAPTERS:
+        dependency.append(f"{chapter['id']} {chapter['title']} -> {chapter['question']}")
+    dependency.extend(["```", "", "Reader Stop-Pointは全章契約でbody解消とし、未解決項目をvalidatorで拒否する。"])
+    (PRODUCTION / "reader-dependency-map.md").write_text("\n".join(dependency), encoding="utf-8", newline="\n")
+
+    blueprints = ["# Chapter blueprints", "", "作成日: 2026-10-11", "", "| Chapter | First calculation | Output |", "|---|---|---|"]
+    for chapter in CHAPTERS:
+        blueprints.append(f"| {chapter['id']} {chapter['title']} | {chapter['calculation'][:45]}... | {chapter['pitfall'][:45]}... |")
+    (PRODUCTION / "chapter-blueprints.md").write_text("\n".join(blueprints), encoding="utf-8", newline="\n")
+
+    (PRODUCTION / "source-reuse-manifest.md").write_text(
+        """# Source reuse manifest
+
+作成日: 2026-10-11
+
+旧95ページ版のQMD、契約、manifest、indexは `production/legacy-95p-sources/` に保存した。旧本文は正解データとして使わず、回帰防止と内容欠落確認の資料としてのみ扱う。図版生成スクリプト、PDF生成スクリプト、Quartoサイト基盤、参考文献BibTeXは再利用する。本文QMDと章契約は22章構成で新規作成した。
+""",
+        encoding="utf-8",
+        newline="\n",
+    )
+    (PRODUCTION / "old-to-new-coverage-map.md").write_text(
+        """# Old-to-new coverage map
+
+作成日: 2026-10-11
+
+旧版で不足した橋は、次の新章へ移した。
+
+- ホモロジーから交点形式: 第2章から第4章。
+- Freedman/Donaldsonの論理分離: 第5章、第16章。
+- 接続・曲率・Hodge分解・ASD: 第6章から第9章。
+- 楕円性・Fredholm・Kuranishi: 第10章から第13章。
+- コンパクト化とDonaldson不変量: 第14章、第15章。
+- Fintushel-Stern結び目手術: 第16章。
+- スピノル、Spin^c、SW方程式: 第17章から第20章。
+- Taubesと随伴不等式: 第21章、第22章。
+""",
+        encoding="utf-8",
+        newline="\n",
+    )
+    (PRODUCTION / "issue-register.md").write_text(
+        """# Issue register
+
+作成日: 2026-10-11
+
+| ID | Priority | Issue | Status |
+|---|---|---|---|
+| P0-01 | P0 | 旧18章・95ページ構成の温存 | Closed: 22章新稿へ再編 |
+| P0-02 | P0 | Fintushel-Stern貼り合わせの誤説明 | Closed: 第16章で優先ロンジチュード対応を明示 |
+| P1-01 | P1 | 交点形式までの橋不足 | Closed: 第2章から第4章へ連続計算を配置 |
+| P1-02 | P1 | 楕円性・Fredholm性の飛躍 | Closed: 第12章と付録Aへ配置 |
+| P1-03 | P1 | Spin^c/SWの型と係数の曖昧さ | Closed: 第18章、第19章で規約を固定 |
+| P2-01 | P2 | 全ページの目視確認 | Open until final render QA |
+""",
+        encoding="utf-8",
+        newline="\n",
+    )
+
+
+def preserve_legacy_without_renderable_sources() -> None:
+    """Keep old sources, but prevent site validation from treating them as live QMD."""
+    if not LEGACY.exists():
+        return
+    for path in list(LEGACY.rglob("*.qmd")):
+        path.rename(path.with_suffix(path.suffix + ".bak"))
+
+
+def main() -> None:
+    LEGACY.mkdir(parents=True, exist_ok=True)
+    if not (LEGACY / "chapters").exists() and CHAPTERS_DIR.exists():
+        shutil.copytree(CHAPTERS_DIR, LEGACY / "chapters")
+    if not (LEGACY / "contracts").exists() and CONTRACTS_DIR.exists():
+        shutil.copytree(CONTRACTS_DIR, LEGACY / "contracts")
+    if not (LEGACY / "manifest.round7.json").exists() and (PRODUCTION / "manifest.json").exists():
+        shutil.copy2(PRODUCTION / "manifest.json", LEGACY / "manifest.round7.json")
+    preserve_legacy_without_renderable_sources()
+
+    CHAPTERS_DIR.mkdir(parents=True, exist_ok=True)
+    CONTRACTS_DIR.mkdir(parents=True, exist_ok=True)
+    for path in CHAPTERS_DIR.glob("*.qmd"):
+        path.unlink()
+    for path in CONTRACTS_DIR.glob("*.json"):
+        path.unlink()
+
+    for index, chapter in enumerate(CHAPTERS):
+        source = CHAPTERS_DIR / f"{chapter['slug']}.qmd"
+        previous = None if index == 0 else CHAPTERS[index - 1]["title"]
+        next_title = None if index + 1 == len(CHAPTERS) else CHAPTERS[index + 1]["title"]
+        source.write_text(chapter_text(chapter, previous, next_title), encoding="utf-8", newline="\n")
+        write_contract(chapter, index)
+
+    (CHAPTERS_DIR / "appendix-analysis.qmd").write_text(appendix_analysis(), encoding="utf-8", newline="\n")
+    (CHAPTERS_DIR / "appendix-notation-exercises.qmd").write_text(appendix_exercises(), encoding="utf-8", newline="\n")
+    write_manifest()
+    write_index()
+    write_quarto_sidebar()
+    write_build_script_titles()
+    write_production_notes()
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,47 @@
+{
+  "chapter_id": "ch-20",
+  "source": "chapters/20-20-sw-invariants-wall-crossing.qmd",
+  "central_question": "Seiberg-Witten不変量は、どの条件で微分同相不変量になるのか。",
+  "reader_starting_state": "線形代数・微積分・基礎的な微分方程式だけを仮定する。",
+  "prerequisites": [
+    "not-sw-moduli"
+  ],
+  "new_concepts": [
+    "not-sw-basic",
+    "not-sw-moduli"
+  ],
+  "main_derivations": [
+    "本文の手計算節と演習で確認する。",
+    "$b_2^+>1$ のとき、一般的な補助データを結ぶ経路で壁を避けられるため、SW不変量は補助データに依存しない。$b_2^+=1$ では部屋が生じ、どの部屋で"
+  ],
+  "results": [
+    "thm-sw-framework"
+  ],
+  "proof_depth": "C",
+  "black_boxes": [],
+  "rigor_statuses": [
+    "definition",
+    "lemma"
+  ],
+  "reader_stop_points": [
+    {
+      "question": "Seiberg-Witten不変量は、どの条件で微分同相不変量になるのか。",
+      "resolution": "body",
+      "location": "chapters/20-20-sw-invariants-wall-crossing.qmd"
+    }
+  ],
+  "required_bridges": [
+    "前章の出口を冒頭で明示する。",
+    "次章で必要になる疑問を末尾で明示する。"
+  ],
+  "figures": [
+    "fig-donaldson-sw"
+  ],
+  "sources": [
+    "src-witten",
+    "src-morgan-sw"
+  ],
+  "previous_connection": "前章の主計算をこの章の入口に接続する。",
+  "next_question": "次章でこの章の道具を使う。",
+  "unresolved_stop_points": []
+}

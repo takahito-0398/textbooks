@@ -20,6 +20,17 @@ CONTRACT_DIR = BOOK / "contracts"
 SCHEMA_PATH = BOOK / "authoring" / "chapter-contract.schema.json"
 AUDIT_INGESTION_PATH = BOOK / "production" / "audit-ingestion.md"
 FINAL_REPORT_PATH = BOOK / "production" / "PRODUCTION_BOOTSTRAP_REPORT.md"
+REQUIRED_PRODUCTION_REPORTS = [
+    BOOK / "production" / "baseline_95_provenance.md",
+    BOOK / "production" / "augmentation_gap_matrix.md",
+    BOOK / "production" / "baseline_preservation_diff.md",
+    BOOK / "production" / "mathematical_audit.md",
+    BOOK / "production" / "math_conventions.md",
+    BOOK / "production" / "japanese_language_audit.md",
+    BOOK / "production" / "figures_exercises_audit.md",
+    BOOK / "production" / "independent_audit.md",
+    BOOK / "production" / "release_verification.md",
+]
 REQUIRED_CONTRACT_FIELDS = {
     "chapter_id", "source", "central_question", "reader_starting_state",
     "prerequisites", "new_concepts", "main_derivations", "results",
@@ -379,6 +390,9 @@ def validate_all(manifest: dict | None = None, contracts: list[dict] | None = No
         errors.append("audit ingestion report is missing")
     if not FINAL_REPORT_PATH.is_file():
         errors.append("production bootstrap final report is missing")
+    for report_path in REQUIRED_PRODUCTION_REPORTS:
+        if not report_path.is_file():
+            errors.append(f"required production report is missing: {report_path.relative_to(BOOK)}")
     return errors
 
 
@@ -390,7 +404,14 @@ def sha256(path: Path) -> str:
 
 def write_audit_bundle(output_dir: Path, errors: list[str]) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
-    evidence_paths = [MANIFEST_PATH, SCHEMA_PATH, AUDIT_INGESTION_PATH, FINAL_REPORT_PATH, *sorted(CONTRACT_DIR.glob("*.json"))]
+    evidence_paths = [
+        MANIFEST_PATH,
+        SCHEMA_PATH,
+        AUDIT_INGESTION_PATH,
+        FINAL_REPORT_PATH,
+        *REQUIRED_PRODUCTION_REPORTS,
+        *sorted(CONTRACT_DIR.glob("*.json")),
+    ]
     evidence = {str(path.relative_to(ROOT)): sha256(path) for path in evidence_paths}
     report = {
         "generated_at": datetime.now(timezone.utc).isoformat(),

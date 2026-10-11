@@ -1,0 +1,54 @@
+{
+  "chapter_id": "ch-16",
+  "source": "chapters/16-16-exotic-k3-knot-surgery.qmd",
+  "central_question": "同相だが微分同相でない滑らかな4次元多様体を、どう構成し識別するのか。",
+  "reader_starting_state": "線形代数・微積分・基礎的な微分方程式だけを仮定する。",
+  "prerequisites": [
+    "not-donaldson-invariant"
+  ],
+  "new_concepts": [
+    "not-exotic-pair",
+    "not-category-gap"
+  ],
+  "main_derivations": [
+    "本文の手計算節と演習で確認する。",
+    "結び目手術では、自己交点0のトーラス近傍 $T^2\\times D^2$ を取り除き、$S^1\\times(S^3\\setminus\\nu K)$ を貼る。標準"
+  ],
+  "results": [
+    "thm-freedman",
+    "thm-knot-surgery"
+  ],
+  "proof_depth": "D",
+  "black_boxes": [
+    "bb-knot-surgery",
+    "bb-freedman"
+  ],
+  "rigor_statuses": [
+    "definition",
+    "lemma",
+    "black_box_theorem"
+  ],
+  "reader_stop_points": [
+    {
+      "question": "同相だが微分同相でない滑らかな4次元多様体を、どう構成し識別するのか。",
+      "resolution": "body",
+      "location": "chapters/16-16-exotic-k3-knot-surgery.qmd"
+    }
+  ],
+  "required_bridges": [
+    "前章の出口を冒頭で明示する。",
+    "次章で必要になる疑問を末尾で明示する。"
+  ],
+  "figures": [
+    "fig-category"
+  ],
+  "sources": [
+    "src-freedman",
+    "src-fintushel-stern",
+    "src-morgan-sw",
+    "src-gompf-stipsicz"
+  ],
+  "previous_connection": "前章の主計算をこの章の入口に接続する。",
+  "next_question": "次章でこの章の道具を使う。",
+  "unresolved_stop_points": []
+}
