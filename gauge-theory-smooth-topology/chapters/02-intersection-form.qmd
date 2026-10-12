@@ -377,7 +377,7 @@ $$
 
 閉じた向き付き $n$ 次元多様体には、多様体全体の向きを表す**基本類** $[X]\in H_n(X;\mathbb Z)$ がある。
 
-::: {.callout-important title="ポアンカレ双対性（引用定理、深度D）"}
+::: {.callout-note title="引用定理｜ポアンカレ双対性（深度D）"}
 $X$ を閉・連結・向き付き $n$ 次元多様体とする。基本類とのキャップ積により、任意の整数 $k$ について
 $$
 H^{n-k}(X;\mathbb Z)\xrightarrow{\ \frown[X]\ }H_k(X;\mathbb Z)

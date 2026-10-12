@@ -118,6 +118,10 @@ $$
 
 この導出は「ASD方程式を思いついた」のではない。Chern--Weil数が曲率の差を固定し、Yang--Mills エネルギーが曲率の和を測る。和と差が固定されると、片側成分を消すことが最小条件になる。
 
+```{=typst}
+#pagebreak(weak: true)
+```
+
 # ASDならYang--Mills、逆は違う
 
 Yang--Mills方程式はエネルギーのEuler--Lagrange方程式である。$A_t=A+ta$ と変分すると $\frac d{dt}F_{A_t}|_{0}=d_Aa$ なので

@@ -1,6 +1,6 @@
 # 演習解答監査
 
-作業日: 2026-10-12
+作業日: 2026-10-13
 
 対象: `gauge-theory-smooth-topology/chapters/appendix-notation-exercises.qmd` および本文中の節内演習
 
@@ -71,7 +71,7 @@
 | 35 | Weitzenbock compactness | `|Phi|` 上界が曲率・ゲージ固定へ進む入口であることを確認 | PASS |
 | 36 | 可約解と部屋 | 摂動・壁越えの必要性を確認 | PASS |
 | 37 | Donaldson/SW compactness比較 | ASDのバブリングとSWの直接評価を区別 | PASS |
-| 38 | Kähler還元の引用仮定 | Kähler面、Spin^c、摂動、結論を確認 | PASS |
+| 38 | Kähler還元の引用仮定 | Kähler面、Spin^c、摂動、結論、`det W^+=(K_J^{line})^{-1}\otimes E^{\otimes2}` と `c_1(det W^+)=-K_X+2c_1(E)` を確認 | PASS |
 | 39 | 随伴不等式 | 種数、自己交点、基本類の関係を確認 | PASS |
 | 40 | Taubes証明構造 | 大摂動、曲率集中、カレント/曲線抽出を確認 | PASS |
 | 41 | `c_2=1` の期待次元 | `8*1-3=5` を確認 | PASS |

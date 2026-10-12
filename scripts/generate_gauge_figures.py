@@ -27,7 +27,7 @@ TRANSLATIONS = {
     "Two-forms split into three-dimensional self-dual and anti-self-dual eigenspaces.": "2形式が3次元の自己双対・反自己双対固有空間へ分かれる。",
     "dim = 6": "次元 6",
     "dim = 3": "次元 3",
-    "Topological and smooth categories": "位相・PL・滑らかな圏",
+    "Topological and smooth categories": "位相的構造と滑らかな構造",
     "Nested layers distinguish smoothability from uniqueness.": "滑らかにできるかという存在問題と、滑らかな構造の一意性を区別する。",
     "Topological 4-manifolds": "位相的4次元多様体",
     "Smoothable": "滑らかにできる",

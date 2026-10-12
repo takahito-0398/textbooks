@@ -3,10 +3,10 @@
 <desc id="desc">Comparison between the CP1 toy link and the CP2 reducible link in the five dimensional ASD moduli space.</desc>
 <style>
 text{font-family:system-ui,"Yu Gothic",sans-serif;fill:#172033}
-.title{font-size:27px;font-weight:700}
-.head{font-size:20px;font-weight:700}
-.label{font-size:17px;font-weight:600}
-.small{font-size:14px}
+.title{font-size:29px;font-weight:700}
+.head{font-size:23px;font-weight:700}
+.label{font-size:20px;font-weight:600}
+.small{font-size:18px}
 .box{fill:#f8fafc;stroke:#334155;stroke-width:2.5}
 .blue{fill:#dbeafe;stroke:#2563eb;stroke-width:2.5}
 .green{fill:#dcfce7;stroke:#16a34a;stroke-width:2.5}
@@ -25,15 +25,15 @@ text{fill:#f1f5f9}.box{fill:#1e293b;stroke:#cbd5e1}.blue{fill:#172554;stroke:#60
 <text class="head" x="285" y="126" text-anchor="middle">練習模型</text>
 <text class="label" x="285" y="166" text-anchor="middle">C^2 / S^1 の原点リンク</text>
 <text class="small" x="285" y="202" text-anchor="middle">S^3 / S^1 = CP^1</text>
-<text class="small" x="285" y="232" text-anchor="middle">実次元 2、評価は ∫CP1 h = 1</text>
-<text class="small" x="285" y="262" text-anchor="middle">局所特異点の読み方だけを練習する</text>
+<text class="small" x="285" y="232" text-anchor="middle">実次元2、∫CP1 h = 1</text>
+<text class="small" x="285" y="262" text-anchor="middle">局所模型の読み方を練習</text>
 
 <rect class="green" x="610" y="86" width="450" height="210" rx="10"/>
 <text class="head" x="835" y="126" text-anchor="middle">Donaldson本論</text>
 <text class="label" x="835" y="166" text-anchor="middle">5次元ASDモジュライの可約点</text>
-<text class="small" x="835" y="202" text-anchor="middle">C^3 / S^1 のリンク S^5 / S^1 = CP^2</text>
-<text class="small" x="835" y="232" text-anchor="middle">実次元 4、評価は ∫CP2 h^2 = 1</text>
-<text class="small" x="835" y="262" text-anchor="middle">c2=1 から c1(L)^2 = -1 が出る</text>
+<text class="small" x="835" y="202" text-anchor="middle">C^3/S^1 のリンク</text>
+<text class="small" x="835" y="232" text-anchor="middle">S^5/S^1=CP^2,  ∫CP2 h^2 = 1</text>
+<text class="small" x="835" y="262" text-anchor="middle">c2=1 から c1(L)^2=-1</text>
 
 <path class="dash" d="M510 191 H610" marker-end="url(#arrow)"/>
 <text class="small" x="560" y="176" text-anchor="middle">次元を上げる</text>
@@ -41,14 +41,14 @@ text{fill:#f1f5f9}.box{fill:#1e293b;stroke:#cbd5e1}.blue{fill:#172554;stroke:#60
 <rect class="amber" x="140" y="370" width="320" height="150" rx="10"/>
 <text class="head" x="300" y="410" text-anchor="middle">バブリング端</text>
 <text class="label" x="300" y="450" text-anchor="middle">X</text>
-<text class="small" x="300" y="486" text-anchor="middle">1単位のエネルギー集中の中心</text>
+<text class="small" x="300" y="486" text-anchor="middle">中心点が X を動く</text>
 
 <rect class="red" x="660" y="370" width="320" height="150" rx="10"/>
 <text class="head" x="820" y="410" text-anchor="middle">可約リンクの和</text>
 <text class="label" x="820" y="450" text-anchor="middle">±CP^2 が N 個</text>
-<text class="small" x="820" y="486" text-anchor="middle">N = #{±c : c^2 = -1}</text>
+<text class="small" x="820" y="486" text-anchor="middle">N=#{±c | c^2=-1}</text>
 
 <path class="line" d="M460 445 C545 350 575 350 660 445" marker-end="url(#arrow)"/>
 <text class="label" x="560" y="360" text-anchor="middle">5次元コボルディズムの境界</text>
-<text class="label" x="560" y="580" text-anchor="middle">σ(X)=Σ εj なので r=|σ(X)|≤N、格子補題で N≤r</text>
+<text class="label" x="560" y="580" text-anchor="middle">σ(X)=Σ εj,  r=|σ(X)|≤N。格子補題で N≤r</text>
 </svg>

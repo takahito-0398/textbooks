@@ -63,6 +63,12 @@ def shift_headings(text: str, levels: int) -> str:
 def body_from_qmd(path: Path, *, heading_shift: int = 0) -> str:
     _, text = split_qmd(path)
     text = text.replace("../assets/", "assets/")
+    if path.name == "appendix-notation-exercises.qmd":
+        text = re.sub(
+            r"\n(?=\*\*(?:[1-9]|[1-6][0-9]|7[0-3])\.\*\*)",
+            "\n\n```{=typst}\n#v(0.28em)\n```\n\n",
+            text,
+        )
     text = re.sub(r"^\[[^\]]+\]\([^)]+\)\{[^}]*\.btn[^}]*\}\s*$", "", text, flags=re.MULTILINE)
     text = re.sub(r"\[PDF検証版をダウンロード\]\(assets/gauge-theory-smooth-topology\.pdf\)\{[^}]+\}", "", text)
     text = re.sub(r"\[([^\]]+)\]\((?:\.\./)?authoring/README\.md\)", r"\1", text)
@@ -81,7 +87,7 @@ def headings_as_paragraph_labels(text: str) -> str:
         if not in_fence:
             match = re.match(r"^#{1,6}\s+(.+?)(?:\s+\{[^}]*\})?\s*$", line)
             if match:
-                line = f"**{match.group(1)}**"
+                line = f"```{{=typst}}\n#v(0.35em)\n```\n\n**{match.group(1)}**"
         labels.append(line)
     return "\n".join(labels)
 
