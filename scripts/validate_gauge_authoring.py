@@ -30,6 +30,7 @@ REQUIRED_PRODUCTION_REPORTS = [
     BOOK / "production" / "figures_exercises_audit.md",
     BOOK / "production" / "independent_audit.md",
     BOOK / "production" / "release_verification.md",
+    BOOK / "production" / "acceptance_audit_revision_log.md",
 ]
 REQUIRED_CONTRACT_FIELDS = {
     "chapter_id", "source", "central_question", "reader_starting_state",

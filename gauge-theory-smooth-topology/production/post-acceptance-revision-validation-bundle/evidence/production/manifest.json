@@ -1,0 +1,173 @@
+{
+  "schema_version": 1,
+  "book": {
+    "id": "gauge-theory-smooth-topology",
+    "title": "4次元ゲージ理論と滑らかな位相",
+    "central_problem": "楕円型ゲージ方程式の解空間は、なぜ4次元多様体の滑らかな構造を検出できるのか。",
+    "scope": "閉・連結・向き付け可能な滑らかな4多様体。Donaldson側は原則単連結、計量独立性は原則 b2+ > 1。",
+    "status": "acceptance_audit_revision_integrated",
+    "formal_authoring_started": true,
+    "mainline_allocation": {"donaldson_percent": 65, "seiberg_witten_percent": 25, "introduction_and_synthesis_percent": 10}
+  },
+  "audit_inputs": [
+    {"id": "audit-architecture-2026-10-08", "role": "binding_curriculum_audit", "sha256": "computed_in_audit_bundle", "ingested": true},
+    {"id": "stage-2-5-deep-dive-2026-10-08", "role": "candidate_comparison_context", "sha256": "computed_in_audit_bundle", "ingested": true},
+    {"id": "round4-95p-review-2026-10-11", "role": "binding_release_blocker_review", "ingested": true},
+    {"id": "independent-acceptance-audit-2026-10-12", "role": "binding_acceptance_reject_audit", "ingested": true},
+    {"id": "codex-revision-instructions-2026-10-12", "role": "binding_revision_instructions", "ingested": true}
+  ],
+  "quality_policy": {
+    "conversation_quality_exposition": true,
+    "missing_explanation_first": true,
+    "reader_stop_point_required": true,
+    "late_chapter_quality_floor": "Parts IV-VI must retain motivation, derivation, bridge, intuition, and proof architecture density.",
+    "forbidden_shortcuts": [
+      "definition_without_need", "theorem_without_problem", "symbol_without_interpretation",
+      "abstraction_before_working_example", "technique_without_reason", "black_box_without_contract"
+    ],
+    "completion_rule": "A chapter with unresolved Reader Stop-Points or failed gates is not complete."
+  },
+  "proof_depth_levels": {
+    "A": "教材内で補題・計算を含め完結",
+    "B": "本質を証明し標準技術補題のみ借用",
+    "C": "入力・難所・出力・依存を含む証明アーキテクチャ",
+    "D": "正確なstatementと役割を示して引用"
+  },
+  "curriculum": [
+    {"id":"ch-01","part":"I","title":"同じ位相、違う滑らかさとは何か","central_question":"smooth構造の違いを何で観測するのか。","mathematical_dependencies":[],"pedagogical_dependencies":[],"previous":null,"next":"ch-02","status":"accepted"},
+    {"id":"ch-02","part":"I","title":"4次元の代数的影：交点形式","central_question":"なぜ4次元ではH2の交点形式が中心になるのか。","mathematical_dependencies":["ch-01"],"pedagogical_dependencies":["ch-01"],"previous":"ch-01","next":"ch-03","status":"accepted"},
+    {"id":"ch-03","part":"I","title":"FreedmanとDonaldsonの衝突","central_question":"位相的に許される交点形式は滑らかにも実現するのか。","mathematical_dependencies":["ch-02"],"pedagogical_dependencies":["ch-02"],"previous":"ch-02","next":"ch-04","status":"accepted"},
+    {"id":"ch-04","part":"II","title":"接続・曲率・gauge変換を作り直す","central_question":"多様体上の補助場から位相数をどう取り出すのか。","mathematical_dependencies":["ch-02"],"pedagogical_dependencies":["ch-03"],"previous":"ch-03","next":"ch-05","status":"accepted"},
+    {"id":"ch-05","part":"II","title":"なぜ4次元なのか","central_question":"曲率2形式、Hodge star、交点形式、臨界スケールはなぜ4次元で重なるのか。","mathematical_dependencies":["ch-02","ch-04"],"pedagogical_dependencies":["ch-04"],"previous":"ch-04","next":"ch-06","status":"accepted"},
+    {"id":"ch-06","part":"II","title":"Yang–Mills energyとASD方程式","central_question":"位相数はどうエネルギー下限と一次方程式を選ぶのか。","mathematical_dependencies":["ch-04","ch-05"],"pedagogical_dependencies":["ch-05"],"previous":"ch-05","next":"ch-07","status":"accepted"},
+    {"id":"ch-07","part":"III","title":"なぜgaugeで割るのか","central_question":"同じ接続の表現を除いた解空間はどう局所化できるのか。","mathematical_dependencies":["ch-06"],"pedagogical_dependencies":["ch-06"],"previous":"ch-06","next":"ch-08","status":"accepted"},
+    {"id":"ch-08","part":"III","title":"線形化すると複体が現れる","central_question":"方程式と対称性の無限小変化はどう一つの複体になるのか。","mathematical_dependencies":["ch-07"],"pedagogical_dependencies":["ch-07"],"previous":"ch-07","next":"ch-09","status":"accepted"},
+    {"id":"ch-09","part":"III","title":"楕円性とindexが次元になるまで","central_question":"無限次元問題から有限の期待次元がなぜ出るのか。","mathematical_dependencies":["ch-08"],"pedagogical_dependencies":["ch-08"],"previous":"ch-08","next":"ch-10","status":"accepted"},
+    {"id":"ch-10","part":"III","title":"滑らかなモジュライ空間を作る","central_question":"期待次元を実際の滑らかな次元へ変える条件は何か。","mathematical_dependencies":["ch-07","ch-08","ch-09"],"pedagogical_dependencies":["ch-09"],"previous":"ch-09","next":"ch-11","status":"accepted"},
+    {"id":"ch-11","part":"IV","title":"compactnessが壊れる仕方：bubbling","central_question":"解列が逃げるとき何が失われ何が量子化されて残るのか。","mathematical_dependencies":["ch-06","ch-10"],"pedagogical_dependencies":["ch-10"],"previous":"ch-10","next":"ch-12","status":"accepted"},
+    {"id":"ch-12","part":"IV","title":"PDE解空間から数を取り出す一般原理","central_question":"補助計量に依存するmoduliから不変な数をどう作るのか。","mathematical_dependencies":["ch-10","ch-11"],"pedagogical_dependencies":["ch-11"],"previous":"ch-11","next":"ch-13","status":"accepted"},
+    {"id":"ch-13","part":"IV","title":"Donaldsonの二つの出力","central_question":"対角化定理と多項式不変量は何が同じで何が違うのか。","mathematical_dependencies":["ch-12"],"pedagogical_dependencies":["ch-12"],"previous":"ch-12","next":"ch-14","status":"accepted"},
+    {"id":"ch-14","part":"IV","title":"位相分類と滑らかな分類を照合する","central_question":"非平滑化可能性と異種滑らかな構造をどう区別するのか。","mathematical_dependencies":["ch-03","ch-13"],"pedagogical_dependencies":["ch-13"],"previous":"ch-13","next":"ch-15","status":"accepted"},
+    {"id":"ch-15","part":"V","title":"なぜspinorが必要になるのか","central_question":"非可換instantonsとは異なる第二のゲージ理論を何が可能にするのか。","mathematical_dependencies":["ch-09"],"pedagogical_dependencies":["ch-14"],"previous":"ch-14","next":"ch-16","status":"accepted"},
+    {"id":"ch-16","part":"V","title":"SW方程式とモジュライ空間","central_question":"可換gauge場とspinorの連成はどのようなmoduli問題を作るのか。","mathematical_dependencies":["ch-10","ch-15"],"pedagogical_dependencies":["ch-15"],"previous":"ch-15","next":"ch-17","status":"accepted"},
+    {"id":"ch-17","part":"V","title":"SW不変量とDonaldson理論の比較","central_question":"二つの異なるmoduli問題はどこで同じ機械を使いどこで違うのか。","mathematical_dependencies":["ch-13","ch-16"],"pedagogical_dependencies":["ch-16"],"previous":"ch-16","next":"ch-18","status":"accepted"},
+    {"id":"ch-18","part":"VI","title":"Kähler・シンプレクティック4多様体","central_question":"SW不変量は幾何学的構造へどのような具体的制約を返すのか。","mathematical_dependencies":["ch-16","ch-17"],"pedagogical_dependencies":["ch-17"],"previous":"ch-17","next":null,"status":"accepted"}
+  ],
+  "registries": {
+    "notation": [
+      {"id":"not-X","symbol":"X","meaning":"閉・連結・向き付け可能な滑らかな4多様体","introduced":"ch-01"},
+      {"id":"not-Q","symbol":"Q_X","meaning":"Xの整数係数交点形式","introduced":"ch-02"},
+      {"id":"not-A","symbol":"A","meaning":"主束上の接続","introduced":"ch-04"},
+      {"id":"not-F","symbol":"F_A","meaning":"接続Aのad(P)値曲率2形式","introduced":"ch-04"},
+      {"id":"not-split","symbol":"F_A^±","meaning":"向きと計量で定まる曲率の自己双対・反自己双対成分","introduced":"ch-05"},
+      {"id":"not-G","symbol":"𝒢","meaning":"明示したSobolevクラスのgauge群","introduced":"ch-07"},
+      {"id":"not-M","symbol":"𝓜_k","meaning":"charge kのASD接続のgauge同値類","introduced":"ch-07"},
+      {"id":"not-H","symbol":"H_A^i","meaning":"ASD変形複体のi次コホモロジー","introduced":"ch-08"},
+      {"id":"not-bplus","symbol":"b_2^+","meaning":"交点形式の正指数","introduced":"ch-02"},
+      {"id":"not-category-gap","symbol":"TOP/DIFF","meaning":"位相的分類と滑らかな分類の差、および平滑化可能性と一意性の区別","introduced":"ch-03"},
+      {"id":"not-asd","symbol":"F_A^+=0","meaning":"反自己双対接続を定める一次の曲率方程式","introduced":"ch-06"},
+      {"id":"not-index","symbol":"ind D_A","meaning":"ゲージ固定した楕円作用素の核と余核の次元差","introduced":"ch-09"},
+      {"id":"not-kuranishi","symbol":"κ_A","meaning":"一次変形から障害空間への有限次元Kuranishi写像","introduced":"ch-10"},
+      {"id":"not-uhlenbeck","symbol":"M̄_k^U","meaning":"理想インスタントンを加えたUhlenbeckコンパクト化","introduced":"ch-11"},
+      {"id":"not-mu","symbol":"μ","meaning":"多様体のホモロジー類を接続の商空間上のコホモロジー類へ送る写像","introduced":"ch-12"},
+      {"id":"not-donaldson-invariant","symbol":"D_X^w","meaning":"切り下げたASDモジュライ空間の符号付き交点数","introduced":"ch-13"},
+      {"id":"not-exotic-pair","symbol":"X_0≈X_1, X_0≄diff X_1","meaning":"同相だが微分同相でない滑らかな4次元多様体の組","introduced":"ch-14"},
+      {"id":"not-spin-c","symbol":"Spin^c, W^±","meaning":"スピノル束と行列式線束を与えるSpin^c構造","introduced":"ch-15"},
+      {"id":"not-sw-moduli","symbol":"M_SW(s)","meaning":"固定したSpin^c構造に対するSeiberg-Witten解のゲージ同値類","introduced":"ch-16"},
+      {"id":"not-sw-basic","symbol":"K","meaning":"Seiberg-Witten不変量が非零となるSpin^c構造の第一Chern類","introduced":"ch-17"},
+      {"id":"not-adjunction","symbol":"2g(Σ)-2 ≥ Σ²+|K·Σ|","meaning":"SW基本類が埋め込み曲面の種数へ与える随伴不等式","introduced":"ch-18"}
+    ],
+    "conventions": [
+      {"id":"conv-orientation","rule":"orientationを固定し反転時にΛ2+とΛ2-を交換する"},
+      {"id":"conv-asd","rule":"F_A^+=0をASDと呼ぶ"},
+      {"id":"conv-inner-product","rule":"su(2)内積はtrace conventionと同時に章6で固定する"},
+      {"id":"conv-charge","rule":"8π²k=||F_A^-||²-||F_A^+||²となるcharge規約を採用する"},
+      {"id":"conv-ym","rule":"YM(A)=||F_A||²とし1/2を付けない"},
+      {"id":"conv-dimension","rule":"特記しない限りmoduliの次元は実次元"},
+      {"id":"conv-sw-q","rule":"行列式線束の接続Aを用い、ゲージ作用は(A,Φ)↦(A-2u^{-1}du,uΦ)とする。Clifford作用でiΛ2+≅Herm_0(W+)を固定し、ρ(q(Φ))=(ΦΦ*)_0としてSW二次写像を定義する"}
+    ],
+    "assumptions": [
+      {"id":"assump-base","statement":"Xは閉・連結・向き付け可能・smooth","applies_to":["ch-01","ch-18"]},
+      {"id":"assump-donaldson","statement":"Donaldson主線では原則π1(X)=0","applies_to":["ch-03","ch-14"]},
+      {"id":"assump-invariance","statement":"計量独立性の標準議論ではb2+(X)>1","applies_to":["ch-12","ch-17"]},
+      {"id":"assump-wall","statement":"b2+=1では部屋を明示する","applies_to":["ch-12","ch-17"]}
+    ],
+    "sources": [
+      {"id":"src-dk","citation_key":"donaldsonKronheimer1990","kind":"standard_monograph","supports":["thm-asd-complex","thm-donaldson-diagonalization"]},
+      {"id":"src-fu","citation_key":"freedUhlenbeck1991","kind":"standard_monograph","supports":["thm-slice","thm-uhlenbeck"]},
+      {"id":"src-freedman","citation_key":"freedman1982","kind":"primary","supports":["thm-freedman"]},
+      {"id":"src-donaldson","citation_key":"donaldson1983","kind":"primary","supports":["thm-donaldson-diagonalization"]},
+      {"id":"src-witten","citation_key":"witten1994","kind":"primary","supports":["thm-sw-framework"]},
+      {"id":"src-taubes","citation_key":"taubes1996","kind":"primary","supports":["thm-taubes"]},
+      {"id":"src-atiyah-singer","citation_key":"atiyahSinger1968","kind":"primary","supports":["thm-index"]},
+      {"id":"src-smale","citation_key":"smale1965","kind":"primary","supports":["thm-sard-smale"]},
+      {"id":"src-donaldson-poly","citation_key":"donaldson1987","kind":"primary","supports":["thm-donaldson-polynomial"]},
+      {"id":"src-gompf-stipsicz","citation_key":"gompfStipsicz1999","kind":"standard_monograph","supports":["thm-freedman","thm-donaldson-polynomial"]},
+      {"id":"src-morgan-sw","citation_key":"morgan1996","kind":"standard_monograph","supports":["thm-sw-framework"]},
+      {"id":"src-km-adjunction","citation_key":"kronheimerMrowka1994","kind":"primary","supports":["thm-adjunction"]},
+      {"id":"src-fintushel-stern","citation_key":"fintushelStern1998","kind":"primary","supports":["thm-knot-surgery"]}
+    ],
+    "theorems": [
+      {"id":"thm-energy","title":"Yang–Mills energy identity","proof_depth":"A","assumptions":["assump-base","conv-charge","conv-ym"],"sources":["src-dk"],"used_by":["ch-06","ch-07"]},
+      {"id":"thm-slice","title":"局所Coulomb slice","proof_depth":"C","assumptions":["assump-base"],"sources":["src-fu"],"used_by":["ch-07","ch-10"]},
+      {"id":"thm-asd-complex","title":"ASD変形複体の楕円性","proof_depth":"B","assumptions":["assump-base"],"sources":["src-dk"],"used_by":["ch-08","ch-09"]},
+      {"id":"thm-index","title":"Atiyah--Singer index theorem for elliptic operators","proof_depth":"D","assumptions":["assump-base"],"sources":["src-atiyah-singer"],"used_by":["ch-09"]},
+      {"id":"thm-sard-smale","title":"Sard--Smale regular value theorem","proof_depth":"D","assumptions":["assump-base"],"sources":["src-smale"],"used_by":["ch-10"]},
+      {"id":"thm-uhlenbeck","title":"Uhlenbeck compactness","proof_depth":"C","assumptions":["assump-base"],"sources":["src-fu"],"used_by":["ch-11","ch-12"]},
+      {"id":"thm-freedman","title":"Freedman classification","proof_depth":"D","assumptions":["assump-base"],"sources":["src-freedman"],"used_by":["ch-03","ch-14"]},
+      {"id":"thm-donaldson-diagonalization","title":"Donaldson diagonalization theorem","proof_depth":"C","assumptions":["assump-donaldson"],"sources":["src-donaldson","src-dk"],"used_by":["ch-03","ch-13","ch-14"]},
+      {"id":"thm-donaldson-polynomial","title":"Donaldson polynomial invariants","proof_depth":"C","assumptions":["assump-base","assump-invariance"],"sources":["src-dk","src-donaldson-poly"],"used_by":["ch-12","ch-13","ch-14"]},
+      {"id":"thm-sw-framework","title":"Seiberg–Witten invariant framework","proof_depth":"C","assumptions":["assump-base","assump-invariance"],"sources":["src-witten","src-morgan-sw"],"used_by":["ch-16","ch-17","ch-18"]},
+      {"id":"thm-taubes","title":"Taubes SW implies Gr","proof_depth":"D","assumptions":["assump-base","assump-invariance"],"sources":["src-taubes"],"used_by":["ch-18"]},
+      {"id":"thm-adjunction","title":"Gauge-theoretic 随伴不等式","proof_depth":"D","assumptions":["assump-base","assump-invariance"],"sources":["src-km-adjunction","src-morgan-sw"],"used_by":["ch-18"]},
+      {"id":"thm-knot-surgery","title":"Fintushel--Stern knot surgery formula","proof_depth":"D","assumptions":["assump-base","assump-invariance"],"sources":["src-fintushel-stern"],"used_by":["ch-12","ch-13","ch-14"]}
+    ],
+    "black_boxes": [
+      {"id":"bb-freedman","theorem":"thm-freedman","why_needed":"位相圏で許される交点形式を確定する","input":"ユニモジュラー形式とKirby–Siebenmannデータ","output":"位相的4多様体の存在・分類","difficulty":"Casson handleとdisk embedding","downstream":["ch-14"]},
+      {"id":"bb-uhlenbeck","theorem":"thm-uhlenbeck","why_needed":"解列の逃走をideal instantonとして回収する","input":"一様L2曲率 bound","output":"有限個の集中点を除くgauge収束とcharge loss","difficulty":"小エネルギーgauge fixingとremovable singularity","downstream":["ch-12","ch-13"]},
+      {"id":"bb-taubes","theorem":"thm-taubes","why_needed":"SW基本類をsymplectic曲線と幾何的制約へ変換する","input":"閉シンプレクティック4多様体と正準Spin-cデータ","output":"非零SW不変量と擬正則曲線の存在","difficulty":"大摂動極限と零点集合の測度論的解析","downstream":["ch-18"]},
+      {"id":"bb-adjunction","theorem":"thm-adjunction","why_needed":"基本類から埋め込み曲面の種数下界を得る","input":"非零SW/Donaldson 基本類と埋め込み曲面","output":"種数・自己交点・基本類 ペアリングの不等式","difficulty":"moduli空間と曲面挿入の相互作用","downstream":["ch-18"]},
+      {"id":"bb-knot-surgery","theorem":"thm-knot-surgery","why_needed":"同じ位相型をもつ実在のexotic K3 pairを構成して識別する","input":"単連結な補空間をもつ自己交点0のtorusと結び目K","output":"homeomorphism typeとSeiberg--Witten級数の積公式","difficulty":"torus surgery後の基本群計算とSeiberg--Witten 貼り合わせ","downstream":["ch-12","ch-13","ch-14"]}
+    ],
+    "figures": [
+      {"id":"fig-hodge-split","chapter":"ch-05","objective":"Λ2の3+3分解を可視化","concept":"Hodge decomposition","type":"svg","asset":"assets/figures/hodge-split.svg","generator":"scripts/generate_gauge_figures.py","license":"CC0 generated in repository","alt":"4次元の2形式が自己双対部分と反自己双対部分へ3次元ずつ分かれる図","mobile":true,"dark_mode":true,"status":"generated"},
+      {"id":"fig-category","chapter":"ch-01","objective":"topological/PL/smoothの混同防止","concept":"categories","type":"svg","asset":"assets/figures/category-layers.svg","generator":"scripts/generate_gauge_figures.py","license":"CC0 generated in repository","alt":"三つの圏と障害の関係","mobile":true,"dark_mode":true,"status":"generated"},
+      {"id":"fig-coordinate-overlap","chapter":"ch-01","objective":"二つの座標近傍の重なりと座標変換の定義域を可視化","concept":"coordinate overlap","type":"svg","asset":"assets/figures/coordinate-overlap.svg","generator":"scripts/generate_gauge_figures.py","license":"CC0 generated in repository","alt":"二つの座標近傍UとW、その重なりと座標変換を示す図","mobile":true,"dark_mode":true,"status":"generated"},
+      {"id":"fig-chains-cycles","chapter":"ch-02","objective":"チェイン、境界、サイクル、境界の境界がゼロという関係を可視化","concept":"chains and cycles","type":"svg","asset":"assets/figures/chains-cycles.svg","generator":"scripts/generate_gauge_figures.py","license":"CC0 generated in repository","alt":"向き付き三角形から境界サイクルを取り出す図","mobile":true,"dark_mode":true,"status":"generated"},
+      {"id":"fig-intersection-sign","chapter":"ch-02","objective":"4次元での曲面の横断交点と符号の決め方を可視化","concept":"intersection sign","type":"svg","asset":"assets/figures/intersection-sign.svg","generator":"scripts/generate_gauge_figures.py","license":"CC0 generated in repository","alt":"二つの向き付き曲面が横断的に交わり交点へ正負の符号を付ける図","mobile":true,"dark_mode":true,"status":"generated"},
+      {"id":"fig-connection-trivialization","chapter":"ch-04","objective":"局所自明化の変更で普通の微分に余分な項が出て接続が補正する理由を可視化","concept":"connection and local trivialization","type":"svg","asset":"assets/figures/connection-trivialization.svg","generator":"scripts/generate_gauge_figures.py","license":"CC0 generated in repository","alt":"局所自明化を変えると普通の微分にdg項が出て接続が補正する図","mobile":true,"dark_mode":true,"status":"generated"},
+      {"id":"fig-mobius-bundle","chapter":"ch-04","objective":"局所的には同じ積束でも大域的な貼り合わせで向きが反転しうることを示す","concept":"Mobius line bundle","type":"svg","asset":"assets/figures/mobius-bundle.svg","generator":"scripts/generate_gauge_figures.py","license":"CC0 generated in repository","alt":"円筒では繊維の向きが保たれメビウス帯では一周後に反転する比較図","mobile":true,"dark_mode":true,"status":"generated"},
+      {"id":"fig-rotating-frame","chapter":"ch-04","objective":"固定ベクトルの成分が回転基底では変化し接続項が補正することを示す","concept":"rotating frame","type":"svg","asset":"assets/figures/rotating-frame.svg","generator":"scripts/generate_gauge_figures.py","license":"CC0 generated in repository","alt":"固定ベクトルと回転する二本の基底ベクトルおよび補正式を示す図","mobile":true,"dark_mode":true,"status":"generated"},
+      {"id":"fig-gauge-slice","chapter":"ch-07","objective":"orbitとsliceの局所像","concept":"gauge quotient","type":"svg","asset":"assets/figures/gauge-slice.svg","generator":"scripts/generate_gauge_figures.py","license":"CC0 generated in repository","alt":"接続空間内のgauge軌道と局所slice","mobile":true,"dark_mode":true,"status":"generated"},
+      {"id":"fig-bubbling","chapter":"ch-11","objective":"曲率集中とcharge loss","concept":"bubbling","type":"svg","asset":"assets/figures/bubbling.svg","generator":"scripts/generate_gauge_figures.py","license":"CC0 generated in repository","alt":"曲率密度が一点へ集中する系列","mobile":true,"dark_mode":true,"status":"generated"},
+      {"id":"fig-donaldson-sw","chapter":"ch-17","objective":"共通機械と相違点","concept":"theory comparison","type":"svg","asset":"assets/figures/donaldson-sw.svg","generator":"scripts/generate_gauge_figures.py","license":"CC0 generated in repository","alt":"Donaldson理論とSW理論の入力から出力までの比較","mobile":true,"dark_mode":true,"status":"generated"},
+      {"id":"fig-sw-equations","chapter":"ch-16","objective":"SW方程式の二つの未知量と二つの式の連成を可視化","concept":"Seiberg-Witten equations","type":"svg","asset":"assets/figures/sw-equations.svg","generator":"scripts/generate_gauge_figures.py","license":"CC0 generated in repository","alt":"可換接続とspinorがDirac方程式と曲率方程式で連成する図","mobile":true,"dark_mode":true,"status":"generated"},
+      {"id":"fig-spinor-rotation","chapter":"ch-15","objective":"ベクトルと異なりスピノルが2π回転で符号反転し4π回転で戻ることを可視化","concept":"spinor double cover","type":"svg","asset":"assets/figures/spinor-rotation.svg","generator":"scripts/generate_gauge_figures.py","license":"CC0 generated in repository","alt":"スピノルが2π回転で負になり4π回転で元へ戻る三段階の図","mobile":true,"dark_mode":true,"status":"generated"},
+      {"id":"fig-adjunction","chapter":"ch-18","objective":"基本類が埋め込み曲面の種数下界を与える構造を可視化","concept":"随伴不等式","type":"svg","asset":"assets/figures/adjunction.svg","generator":"scripts/generate_gauge_figures.py","license":"CC0 generated in repository","alt":"曲面の種数、自己交点、基本類とのペアリングが随伴不等式へ入る図","mobile":true,"dark_mode":true,"status":"generated"},
+      {"id":"fig-cutdown-cobordism","chapter":"ch-12","objective":"mu-classで正次元moduliを0次元へ切り下げ、1-parameter cobordismで不変性を示す構造を可視化","concept":"cut-down and cobordism","type":"svg","asset":"assets/figures/cutdown-cobordism.svg","generator":"scripts/generate_gauge_figures.py","license":"CC0 generated in repository","alt":"正次元moduliに条件を課して点を数え、cobordismで二つの計量のcountを比較する図","mobile":true,"dark_mode":true,"status":"generated"},
+      {"id":"fig-kahler-reduction","chapter":"ch-18","objective":"Kähler面でSW方程式が複素幾何の方程式へ還元される構造を可視化","concept":"Kahler reduction","type":"svg","asset":"assets/figures/kahler-reduction.svg","generator":"scripts/generate_gauge_figures.py","license":"CC0 generated in repository","alt":"spinorと曲率の型分解が正則切断や因子へ翻訳される図","mobile":true,"dark_mode":true,"status":"generated"},
+      {"id":"fig-taubes-limit","chapter":"ch-18","objective":"Taubesの大摂動極限でSW解から擬正則曲線が現れる流れを可視化","concept":"Taubes limit","type":"svg","asset":"assets/figures/taubes-limit.svg","generator":"scripts/generate_gauge_figures.py","license":"CC0 generated in repository","alt":"大摂動 SW solutionからスピノル零点集合と曲率集中を経て擬正則曲線へ至る図","mobile":true,"dark_mode":true,"status":"generated"},
+      {"id":"fig-gluing","chapter":"app-analysis","objective":"コンパクト化の境界データから真の解へ戻す貼り合わせの役割を可視化","concept":"gluing","type":"svg","asset":"assets/figures/gluing.svg","generator":"scripts/generate_gauge_figures.py","license":"CC0 generated in repository","alt":"境界データから近似解を作り右逆で真の解へ補正する図","mobile":true,"dark_mode":true,"status":"generated"},
+      {"id":"fig-orientation-line","chapter":"app-analysis","objective":"Fredholm determinant lineと符号付きcountの関係を可視化","concept":"orientation","type":"svg","asset":"assets/figures/orientation-line.svg","generator":"scripts/generate_gauge_figures.py","license":"CC0 generated in repository","alt":"kernelとcokernelからdeterminant lineを作りorientationで符号を決める図","mobile":true,"dark_mode":true,"status":"generated"}
+    ],
+    "reader_questions": [
+      {"id":"rq-asd-ym","priority":"P0","question":"ASDはYang–Mills方程式そのものか。","required_resolution":"ASDは絶対最小解でありASD⇒YM、逆は一般に偽と示す","chapter":"ch-06"},
+      {"id":"rq-finite","priority":"P0","question":"方程式の本数だけで有限次元と言えるか。","required_resolution":"gauge fixing後の楕円型Fredholm作用素が本体と示す","chapter":"ch-09"},
+      {"id":"rq-index","priority":"P0","question":"indexは実際の次元か。","required_resolution":"H0とH2、正則性を条件として区別する","chapter":"ch-10"},
+      {"id":"rq-compact","priority":"P0","question":"compactnessなしでcountは不変か。","required_resolution":"パラメータ付きモジュライの余分な境界を説明する","chapter":"ch-12"},
+      {"id":"rq-exotic","priority":"P0","question":"非平滑化可能性だけで異種対を得たか。","required_resolution":"平滑化可能性の障害とdiffeomorphism区別を分離する","chapter":"ch-14"},
+      {"id":"rq-sw-easy","priority":"P0","question":"SWは可換だから線形で簡単か。","required_resolution":"spinorとの非線形連成と残る解析課題を示す","chapter":"ch-17"}
+    ],
+    "moduli_lifecycle": ["equation","symmetry","linearization","complex","index","regularity","orientation","compactification","count"],
+    "quality_gates": ["architecture","mathematics","explanation","continuity","sources","rendering","independent_audit"]
+  },
+  "production_stop_conditions": [
+    {"id":"stop-conventions","condition":"energy identityの符号規約が未確定","resolved":true,"evidence":"registries.conventions"},
+    {"id":"stop-structure-group","condition":"主構造群が章ごとに不明","resolved":true,"evidence":"scope and chapter contracts must declare prerequisites"},
+    {"id":"stop-assumptions","condition":"b2+・単連結性等の標準仮定が未定義","resolved":true,"evidence":"registries.assumptions"},
+    {"id":"stop-donaldson-mix","condition":"対角化定理と多項式不変量が同一論理として混在","resolved":true,"evidence":"ch-13 contract must distinguish outputs"},
+    {"id":"stop-freedman","condition":"Freedman statementがKirby–Siebenmannを無視","resolved":true,"evidence":"bb-freedman input"},
+    {"id":"stop-analysis-depth","condition":"Chapter 7–12のproof depth未割当","resolved":true,"evidence":"theorem registry and curriculum policy"},
+    {"id":"stop-taubes","condition":"Taubes到達点が未確定","resolved":true,"evidence":"Level D introduction; proof deferred to advanced volume"}
+  ]
+}

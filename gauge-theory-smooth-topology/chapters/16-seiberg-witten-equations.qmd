@@ -51,10 +51,19 @@ $$
 線形化の0階項も、どこから来るかを見ておく。接続を $A+a$、スピノルを $\Phi+\phi$ と動かすと、Dirac方程式の一次項は
 
 $$
-D_A\phi+\rho(a)\Phi
+D_A\phi+\frac12\rho(a)\Phi
 $$
 
-の形になる。曲率方程式では
+の形になる。係数 $\frac12$ は規約の飾りではない。第15章で $A$ は $L=\det W^+$ の接続とした。$\mathrm{Spin}^c(4)=(\mathrm{Spin}(4)\times U(1))/\{\pm1\}$ では、スピノルには $U(1)$ が重み1で、行列式線束には重み2で作用する。従って行列式接続を $A+a$ に変えると、$W^\pm$ 上のスピノル接続には可換部分として $\frac12a$ が加わる。局所的には
+
+$$
+\nabla^{W}_{A+a}=\nabla^W_A+\frac12a,
+\qquad
+D_{A+a}(\Phi+\phi)
+=D_A\Phi+D_A\phi+\frac12\rho(a)\Phi+O(a\phi).
+$$
+
+監査用に型も書いておく。$a\in\Omega^1(i\mathbb R)$ なので $\rho(a):W^+\to W^-$ であり、$\frac12\rho(a)\Phi$ は $\Gamma(W^-)$ の切断で、Dirac方程式の値域と一致する。曲率方程式では
 
 $$
 d^+a-dq_\Phi(\phi)
