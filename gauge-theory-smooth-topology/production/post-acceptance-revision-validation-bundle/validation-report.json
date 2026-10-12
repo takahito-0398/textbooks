@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-12T00:26:48.098692+00:00",
+  "generated_at": "2026-10-12T00:30:31.170831+00:00",
   "book": "gauge-theory-smooth-topology",
   "validator": "scripts/validate_gauge_authoring.py",
   "status": "PASS",
@@ -17,7 +17,7 @@
     "gauge-theory-smooth-topology\\production\\japanese_language_audit.md": "572631485d02a78c4310bcd1e19c7e7c6a33c1bf595a3251f94008165318ed55",
     "gauge-theory-smooth-topology\\production\\figures_exercises_audit.md": "0bd24a6679faa15bcc824729b4250ec5017f65ddcc3cb5fd506f7b7f7015a2a1",
     "gauge-theory-smooth-topology\\production\\independent_audit.md": "25a06242c843583b1179f2d572546fdd229e8a7c5ddbd0cc245a1813fe7501df",
-    "gauge-theory-smooth-topology\\production\\release_verification.md": "824dafa96645fec429196bb0e9a849609d10dedacb5ba524923517c8c5dfc4f8",
+    "gauge-theory-smooth-topology\\production\\release_verification.md": "27f8ec10fce1f41f0a261491e929b044e411eda062a45e780873324d376002c8",
     "gauge-theory-smooth-topology\\production\\acceptance_audit_revision_log.md": "c61208728b18075050b8d35920690b622d1ca79bc231503ab230953cdcedbc73",
     "gauge-theory-smooth-topology\\contracts\\01-smooth-structures.json": "35d7415d99f3e89e8dfb0d6c045a7d722cfa8294687664ba85c47d1ea2e03476",
     "gauge-theory-smooth-topology\\contracts\\02-intersection-form.json": "5caf09d389399df2a8ba160d3567d25af2fa9fc67671eee748183885c8779b56",
