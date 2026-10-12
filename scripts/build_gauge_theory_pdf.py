@@ -70,6 +70,20 @@ def body_from_qmd(path: Path, *, heading_shift: int = 0) -> str:
     return text.strip()
 
 
+def headings_as_paragraph_labels(text: str) -> str:
+    labels: list[str] = []
+    in_fence = False
+    for line in text.splitlines():
+        if line.startswith("```"):
+            in_fence = not in_fence
+        if not in_fence:
+            match = re.match(r"^#{1,6}\s+(.+?)(?:\s+\{[^}]*\})?\s*$", line)
+            if match:
+                line = f"**{match.group(1)}**"
+        labels.append(line)
+    return "\n".join(labels)
+
+
 def find_quarto() -> str:
     configured = os.environ.get("QUARTO")
     if configured and Path(configured).is_file():
@@ -88,7 +102,7 @@ def contract_sources() -> list[tuple[dict, Path]]:
 
 
 def combined_pdf_body() -> str:
-    sections = [body_from_qmd(BOOK / "index.qmd")]
+    sections = [f"# 序論\n\n{headings_as_paragraph_labels(body_from_qmd(BOOK / 'index.qmd'))}"]
     current_part: str | None = None
     for contract, source in contract_sources():
         part = next(
@@ -101,14 +115,16 @@ def combined_pdf_body() -> str:
             current_part = part
         metadata, _ = split_qmd(source)
         title = metadata.get("title", source.stem)
-        sections.append(f"## {title}\n\n{body_from_qmd(source, heading_shift=2)}")
+        chapter_body = headings_as_paragraph_labels(body_from_qmd(source, heading_shift=2))
+        sections.append(f"## {title}\n\n{chapter_body}")
     for appendix in [
         BOOK / "chapters" / "appendix-analysis.qmd",
         BOOK / "chapters" / "appendix-notation-exercises.qmd",
     ]:
         metadata, _ = split_qmd(appendix)
         title = metadata.get("title", appendix.stem)
-        sections.append(f"# {title}\n\n{body_from_qmd(appendix, heading_shift=1)}")
+        appendix_body = headings_as_paragraph_labels(body_from_qmd(appendix, heading_shift=2))
+        sections.append(f"# {title}\n\n{appendix_body}")
     return "\n\n".join(sections)
 
 
@@ -124,6 +140,9 @@ def main() -> None:
         shutil.copy2(BOOK / "references.bib", build_root / "references.bib")
         page_break = "```{=typst}\n#pagebreak(weak: true)\n```\n\n"
         combined = build_root / "gauge-theory-smooth-topology.qmd"
+        body = combined_pdf_body()
+        body = body.replace("\n\n# ", "\n\n" + page_break + "# ")
+        body = body.replace("\n\n## 第", "\n\n" + page_break + "## 第")
         combined.write_text(
             '''---
 title: "4次元ゲージ理論と滑らかな位相"
@@ -138,7 +157,7 @@ format:
   typst:
     toc: true
     toc-title: "目次"
-    toc-depth: 3
+    toc-depth: 2
     papersize: a4
     margin:
       top: 22mm
@@ -152,7 +171,7 @@ format:
 ---
 
 '''
-            + combined_pdf_body().replace("\n\n# ", "\n\n" + page_break + "# "),
+            + body,
             encoding="utf-8",
             newline="\n",
         )
