@@ -17,6 +17,8 @@ ROOT = Path(__file__).resolve().parents[1]
 BOOK = ROOT / "gauge-theory-smooth-topology"
 MANIFEST_PATH = BOOK / "production" / "manifest.json"
 OUTPUT = BOOK / "assets" / "gauge-theory-smooth-topology.pdf"
+PAGE_BREAK = "```{=typst}\n#pagebreak(weak: true)\n```\n\n"
+CHAPTER_GAP = "```{=typst}\n#v(1.2em)\n```\n\n"
 PART_TITLES = {
     "I": "Part I　分類問題の衝突",
     "II": "Part II　4次元の方程式",
@@ -110,13 +112,17 @@ def combined_pdf_body() -> str:
             for item in json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))["curriculum"]
             if item["id"] == contract["chapter_id"]
         )
+        part_heading = ""
         if part != current_part:
-            sections.append(f"# {PART_TITLES[part]}")
+            part_heading = f"# {PART_TITLES[part]}\n\n"
             current_part = part
         metadata, _ = split_qmd(source)
         title = metadata.get("title", source.stem)
         chapter_body = headings_as_paragraph_labels(body_from_qmd(source, heading_shift=2))
-        sections.append(f"## {title}\n\n{chapter_body}")
+        if part_heading:
+            sections.append(f"{CHAPTER_GAP}{part_heading}## {title}\n\n{chapter_body}")
+        else:
+            sections.append(f"{CHAPTER_GAP}## {title}\n\n{chapter_body}")
     for appendix in [
         BOOK / "chapters" / "appendix-analysis.qmd",
         BOOK / "chapters" / "appendix-notation-exercises.qmd",
@@ -124,7 +130,7 @@ def combined_pdf_body() -> str:
         metadata, _ = split_qmd(appendix)
         title = metadata.get("title", appendix.stem)
         appendix_body = headings_as_paragraph_labels(body_from_qmd(appendix, heading_shift=2))
-        sections.append(f"# {title}\n\n{appendix_body}")
+        sections.append(f"{CHAPTER_GAP}# {title}\n\n{appendix_body}")
     return "\n\n".join(sections)
 
 
@@ -138,11 +144,8 @@ def main() -> None:
         build_root = Path(temporary)
         shutil.copytree(BOOK / "assets" / "figures", build_root / "assets" / "figures")
         shutil.copy2(BOOK / "references.bib", build_root / "references.bib")
-        page_break = "```{=typst}\n#pagebreak(weak: true)\n```\n\n"
         combined = build_root / "gauge-theory-smooth-topology.qmd"
         body = combined_pdf_body()
-        body = body.replace("\n\n# ", "\n\n" + page_break + "# ")
-        body = body.replace("\n\n## 第", "\n\n" + page_break + "## 第")
         combined.write_text(
             '''---
 title: "4次元ゲージ理論と滑らかな位相"
@@ -150,7 +153,7 @@ subtitle: "Donaldson理論からSeiberg-Witten理論へ"
 lang: ja
 bibliography: references.bib
 reference-section-title: "参考文献"
-number-sections: true
+number-sections: false
 execute:
   enabled: false
 format:
