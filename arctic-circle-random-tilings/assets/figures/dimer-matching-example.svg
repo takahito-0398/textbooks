@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 330" role="img" aria-labelledby="title desc">
+<title id="title">二部グラフの二つのマッチング</title><desc id="desc">左図は四つのセルに対応する四頂点と水平重みa、垂直重みbの辺。中央は二本の水平辺、右は二本の垂直辺を選ぶ。</desc>
+<rect width="900" height="330" fill="white"/>
+<g font-family="sans-serif" text-anchor="middle" fill="#172b3a" font-size="20"><text x="150" y="30">隣接グラフ</text><text x="450" y="30">横マッチング</text><text x="750" y="30">縦マッチング</text><text x="150" y="285">水平 a・垂直 b</text><text x="450" y="285">重み a²</text><text x="750" y="285">重み b²</text></g>
+<g stroke="#aab9c0" stroke-width="5" fill="none"><path d="M90 80h120v120H90zM390 80h120v120H390zM690 80h120v120H690z"/></g>
+<g stroke="#be3b2f" stroke-width="10" fill="none"><path d="M390 80h120M390 200h120M690 80v120M810 80v120"/></g>
+<g stroke="#172b3a" stroke-width="3"><circle cx="90" cy="80" r="15" fill="white"/><circle cx="210" cy="80" r="15" fill="#243e50"/><circle cx="90" cy="200" r="15" fill="#243e50"/><circle cx="210" cy="200" r="15" fill="white"/><circle cx="390" cy="80" r="15" fill="white"/><circle cx="510" cy="80" r="15" fill="#243e50"/><circle cx="390" cy="200" r="15" fill="#243e50"/><circle cx="510" cy="200" r="15" fill="white"/><circle cx="690" cy="80" r="15" fill="white"/><circle cx="810" cy="80" r="15" fill="#243e50"/><circle cx="690" cy="200" r="15" fill="#243e50"/><circle cx="810" cy="200" r="15" fill="white"/></g></svg>

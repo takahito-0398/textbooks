@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 410" role="img" aria-labelledby="title desc">
+<title id="title">2×2の二配置と格子点の高さ</title><desc id="desc">左は横ドミノ二枚、右は縦ドミノ二枚。境界高さは同一で、中心高さはそれぞれマイナス2と2。</desc>
+<rect width="840" height="410" fill="white"/><g font-family="sans-serif" text-anchor="middle" fill="#172b3a">
+<text x="210" y="30" font-size="23">横二枚：中心 −2</text><text x="630" y="30" font-size="23">縦二枚：中心 2</text></g>
+<g stroke="#23485d" stroke-width="4"><rect x="110" y="70" width="200" height="100" fill="#9ccce1"/><rect x="110" y="170" width="200" height="100" fill="#f1c890"/><rect x="530" y="70" width="100" height="200" fill="#9ccce1"/><rect x="630" y="70" width="100" height="200" fill="#f1c890"/></g>
+<g stroke="#fff" stroke-opacity=".7" stroke-width="2"><path d="M210 70v200M110 170h200M630 70v200M530 170h200"/></g>
+<g fill="#172b3a" font-family="sans-serif" font-size="23" text-anchor="middle"><text x="110" y="59">0</text><text x="210" y="59">1</text><text x="310" y="59">0</text><text x="85" y="177">−1</text><text x="210" y="177" font-weight="bold">−2</text><text x="335" y="177">−1</text><text x="110" y="299">0</text><text x="210" y="299">1</text><text x="310" y="299">0</text>
+<text x="530" y="59">0</text><text x="630" y="59">1</text><text x="730" y="59">0</text><text x="505" y="177">−1</text><text x="630" y="177" font-weight="bold">2</text><text x="755" y="177">−1</text><text x="530" y="299">0</text><text x="630" y="299">1</text><text x="730" y="299">0</text><text x="420" y="355" font-size="19">表示数字：格子点の高さ　　左下の高さを0とする</text></g></svg>

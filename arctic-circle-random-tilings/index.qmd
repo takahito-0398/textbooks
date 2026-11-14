@@ -1,0 +1,41 @@
+---
+title: "ランダムな配置から、なぜ円が生まれるのか"
+subtitle: "ドミノ、粒子、流れを通して読む北極円定理"
+description: "アステカ・ダイヤモンドの敷き詰めから粒子系を経て円に至る道筋を、有限例とともに学ぶ。"
+lang: ja
+bibliography: references.bib
+format:
+  html:
+    toc: true
+    toc-title: "目次"
+---
+
+同じ大きさのドミノを菱形の領域にすき間なく並べ、一様に選ぶ。配置は偶然で決まるのに、大きな領域では端の整列部分と中央の乱れた部分の境界が、ほぼ円に見える。なぜだろうか。
+
+この本では、完成配置の一様な生成から出発し、境界を階段と粒子の列に読み替え、粒子の流れから円へ戻る。有限の配置を自分で追いながら、確率・組合せ・統計物理の道具が必要になる理由を学ぶ。
+
+北極円定理は既知の数学的結果である。本書の一般次数や無限列に関する議論は、本文と数学編に記した仮定・参照先に依存する。既知の定理があることと、本書の一般証明がすべて独立に確認済みであることは区別する。
+
+## 本文
+
+1. [偶然の配置に、なぜ円が現れるのか](chapters/01-observations.qmd)
+2. [公平に選ぶとはどういうことか](chapters/02-uniformity.qmd)
+3. [偏らず大きな配置を作る](chapters/03-shuffling.qmd)
+4. [配置のすべてを覚えず、境界を読む](chapters/04-encoding.qmd)
+5. [階段の角は、粒子の一歩になる](chapters/05-exclusion.qmd)
+6. [動いても変わらない分布](chapters/06-stationarity.qmd)
+7. [一つの定常法則では、なぜ足りないのか](chapters/07-classification.qmd)
+8. [動く段差に、定常法則を使えるのか](chapters/08-density.qmd)
+9. [密度と流束から、形を絞る](chapters/09-profile.qmd)
+10. [一点の極限から、円全体へ](chapters/10-circle.qmd)
+11. [仮定を変えると、何が変わるか](chapters/11-variations.qmd)
+
+## 発展と数学編
+
+[ダイマー、行列式、高さ関数と変分原理](advanced/dimer-height-variation.qmd)では、粒子の道筋とは別の視点から敷き詰めを見直す。
+
+[数学編の道案内](appendices/t-proof-roadmap.qmd)から、本文で使う境界・結合・極限の議論と、それぞれの前提をたどれる。左側の目次には数学編の各項目を並べている。
+
+## PDF
+
+[本文と数学編を含む二段組PDF](assets/arctic-circle-textbook.pdf)をダウンロードできる。本文・数学編の一般証明には独立確認中の箇所がある。

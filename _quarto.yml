@@ -6,6 +6,10 @@ project:
     - favicon.ico
     - site.webmanifest
     - assets/icons/*
+    - arctic-circle-random-tilings/assets/scripts/*.py
+    - arctic-circle-random-tilings/assets/arctic-circle-textbook.pdf
+    - arctic-circle-random-tilings/production/figure-prototypes/*.png
+    - arctic-circle-random-tilings/production/figure-prototypes/*.svg
   render:
     - "*.qmd"
     - "navier-stokes/**/*.qmd"
@@ -17,6 +21,10 @@ project:
     - "inverse-spectral-geometry/**/*.qmd"
     - "gauge-theory-smooth-topology/**/*.qmd"
     - "sle-critical-phenomena/**/*.qmd"
+    - "arctic-circle-random-tilings/index.qmd"
+    - "arctic-circle-random-tilings/chapters/[0-1][0-9]-*.qmd"
+    - "arctic-circle-random-tilings/appendices/*.qmd"
+    - "arctic-circle-random-tilings/advanced/*.qmd"
 
 website:
   title: "AI教科書ポータル"
@@ -407,6 +415,50 @@ website:
           - sle-critical-phenomena/appendices/c-bessel-dimension.qmd
           - sle-critical-phenomena/appendices/d-numerics.qmd
           - sle-critical-phenomena/appendices/e-reader-stop-points.qmd
+
+  - id: arctic-circle-random-tilings
+    title: "ランダムな配置から、なぜ円が生まれるのか"
+    style: docked
+    collapse-level: 1
+    contents:
+      - arctic-circle-random-tilings/index.qmd
+      - text: "発展：ダイマー・高さ関数・変分原理"
+        href: arctic-circle-random-tilings/advanced/dimer-height-variation.qmd
+      - section: "本文"
+        contents:
+          - arctic-circle-random-tilings/chapters/01-observations.qmd
+          - arctic-circle-random-tilings/chapters/02-uniformity.qmd
+          - arctic-circle-random-tilings/chapters/03-shuffling.qmd
+          - arctic-circle-random-tilings/chapters/04-encoding.qmd
+          - arctic-circle-random-tilings/chapters/05-exclusion.qmd
+          - arctic-circle-random-tilings/chapters/06-stationarity.qmd
+          - arctic-circle-random-tilings/chapters/07-classification.qmd
+          - arctic-circle-random-tilings/chapters/08-density.qmd
+          - arctic-circle-random-tilings/chapters/09-profile.qmd
+          - arctic-circle-random-tilings/chapters/10-circle.qmd
+          - arctic-circle-random-tilings/chapters/11-variations.qmd
+      - section: "数学編"
+        contents:
+          - arctic-circle-random-tilings/appendices/a-stationary-coupling.qmd
+          - arctic-circle-random-tilings/appendices/b-density-limit.qmd
+          - arctic-circle-random-tilings/appendices/c-coordinates-boundary.qmd
+          - arctic-circle-random-tilings/appendices/d-extreme-mixtures.qmd
+          - arctic-circle-random-tilings/appendices/e-stationary-ring.qmd
+          - arctic-circle-random-tilings/appendices/f-discrepancy.qmd
+          - arctic-circle-random-tilings/appendices/g-growth-encoding.qmd
+          - arctic-circle-random-tilings/appendices/h-shuffle-probability.qmd
+          - arctic-circle-random-tilings/appendices/i-deficient-geometry.qmd
+          - arctic-circle-random-tilings/appendices/j-classification-bridge.qmd
+          - arctic-circle-random-tilings/appendices/k-local-hole.qmd
+          - arctic-circle-random-tilings/appendices/l-boundary-balance.qmd
+          - arctic-circle-random-tilings/appendices/m-boundary-hole.qmd
+          - arctic-circle-random-tilings/appendices/n-reverse-shuffle.qmd
+          - arctic-circle-random-tilings/appendices/o-reverse-local.qmd
+          - arctic-circle-random-tilings/appendices/p-hole-obstruction.qmd
+          - arctic-circle-random-tilings/appendices/q-block-graph.qmd
+          - arctic-circle-random-tilings/appendices/r-exterior-extension.qmd
+          - arctic-circle-random-tilings/appendices/s-coordinate-ranges.qmd
+          - arctic-circle-random-tilings/appendices/t-proof-roadmap.qmd
 
 format:
   html:
