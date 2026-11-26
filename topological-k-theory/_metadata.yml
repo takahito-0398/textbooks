@@ -1,0 +1,5 @@
+lang: ja
+sidebar: topological-k-theory
+format:
+  html:
+    css: k-theory.css

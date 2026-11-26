@@ -10,6 +10,7 @@ project:
     - arctic-circle-random-tilings/assets/arctic-circle-textbook.pdf
     - arctic-circle-random-tilings/production/figure-prototypes/*.png
     - arctic-circle-random-tilings/production/figure-prototypes/*.svg
+    - topological-k-theory/assets/topological-k-theory.pdf
   render:
     - "*.qmd"
     - "navier-stokes/**/*.qmd"
@@ -25,6 +26,7 @@ project:
     - "arctic-circle-random-tilings/chapters/[0-1][0-9]-*.qmd"
     - "arctic-circle-random-tilings/appendices/*.qmd"
     - "arctic-circle-random-tilings/advanced/*.qmd"
+    - "topological-k-theory/**/*.qmd"
 
 website:
   title: "AI教科書ポータル"
@@ -36,6 +38,9 @@ website:
   page-navigation: true
   navbar:
     background: primary
+    left:
+      - text: "位相的K理論"
+        href: topological-k-theory/index.qmd
     right:
       - icon: github
         href: "https://github.com/takahito-0398/textbooks"
@@ -459,6 +464,21 @@ website:
           - arctic-circle-random-tilings/appendices/r-exterior-extension.qmd
           - arctic-circle-random-tilings/appendices/s-coordinate-ranges.qmd
           - arctic-circle-random-tilings/appendices/t-proof-roadmap.qmd
+
+  - id: topological-k-theory
+    title: "位相的K理論を読む"
+    style: docked
+    collapse-level: 1
+    contents:
+      - topological-k-theory/index.qmd
+      - topological-k-theory/chapters/00-roadmap.qmd
+      - topological-k-theory/chapters/01-clutching.qmd
+      - topological-k-theory/chapters/02-stable-classes.qmd
+      - topological-k-theory/chapters/03-bott-periodicity.qmd
+      - topological-k-theory/chapters/04-characteristic-classes.qmd
+      - topological-k-theory/chapters/05-thom-and-torsion.qmd
+      - topological-k-theory/chapters/06-index.qmd
+      - topological-k-theory/chapters/07-further-reading.qmd
 
 format:
   html:

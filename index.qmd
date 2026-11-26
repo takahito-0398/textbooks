@@ -109,4 +109,12 @@ ASD方程式・Donaldson理論・Seiberg–Witten不変量が、多様体の微�
 [教材を読む](sle-critical-phenomena/)
 :::
 
+::: {.book-card}
+### 位相的K理論を読む ― 貼り合わせ・特性類・指数
+
+球面の赤道で一回転する貼り方を出発点に、束の差、Bott周期性、特性類、Thom同型を使って、球面上の微分方程式の指数を計算します。
+
+[教科書を開く](topological-k-theory/)
+:::
+
 :::

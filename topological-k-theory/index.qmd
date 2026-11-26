@@ -1,0 +1,18 @@
+---
+title: "位相的K理論を読む ― 貼り合わせ・特性類・指数"
+---
+
+球面の赤道で一回転する貼り方を出発点に、束の差、Bott周期性、特性類、Thom同型を使って、球面上の微分方程式の指数を計算します。
+
+[二段組PDFを開く](assets/topological-k-theory.pdf)
+
+## 章一覧
+
+- [序章　赤道で一回転すると、何が残るか](chapters/00-roadmap.qmd)
+- [第1章　貼り合わせと大域的な障害](chapters/01-clutching.qmd)
+- [第2章　束の差をつくる](chapters/02-stable-classes.qmd)
+- [第3章　一回転から二周期へ](chapters/03-bott-periodicity.qmd)
+- [第4章　特性類で読めるもの](chapters/04-characteristic-classes.qmd)
+- [第5章　繊維方向に同じ計算を置く](chapters/05-thom-and-torsion.qmd)
+- [第6章　最高次の微分から指数へ](chapters/06-index.qmd)
+- [第7章　展望と参照表](chapters/07-further-reading.qmd)

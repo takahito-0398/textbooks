@@ -1,0 +1,13 @@
+.math.display {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.math.display mjx-container {
+  min-width: max-content;
+}
+
+.reader-mobile-status {
+  grid-template-columns: minmax(0, 1fr);
+}
