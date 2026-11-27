@@ -15,7 +15,14 @@ def check_sources():
     used_figures = set()
     for chapter in chapters:
         source = chapter.read_text(encoding='utf-8')
-        labels = re.findall(r'\{#((?:eq|fig|tbl)-[\w-]+)\}', source)
+        sections = len(re.findall(r'^## ', source, re.M))
+        assert source.count('**導入。**') == sections, chapter
+        assert source.count('::: {.ku-summary}') == sections, chapter
+        assert source.count('**章の導入**') == source.count('**章のまとめ**') == 1, chapter
+        assert '::: {.ku-worked}' in source, chapter
+        counts['sections'] += sections
+        counts['worked'] += source.count('::: {.ku-worked}')
+        labels = re.findall(r'\{#((?:eq|fig|tbl)-[\w-]+)(?:[ \t]+[^}\n]*)?\}', source)
         assert len(labels) == len(set(labels)), chapter
         for label in labels:
             assert label not in all_labels, label

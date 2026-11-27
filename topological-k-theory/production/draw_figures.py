@@ -419,6 +419,56 @@ def spectral_flow():
 
 
 
+def reading_paths():
+    im, d = canvas(380)
+    rows = [
+        (75, '境界の貼り目', '巻き数・曲率', '線束の差', BLUE),
+        (190, '円板と円周の対', 'Thom類・完全列', '整数のねじれ', TEAL),
+        (305, '微分方程式', '主シンボル・押し出し', '核と余核の差', RUST),
+    ]
+    for y, start, through, end, color in rows:
+        box(d, (20, y-39, 289, y+39), start, size=33)
+        box(d, (338, y-39, 654, y+39), through, fill='#f2f5f6', size=31)
+        box(d, (706, y-39, 970, y+39), end, size=33)
+        arrow(d, (293, y), (333, y), color)
+        arrow(d, (659, y), (701, y), color)
+    save(im, 'reading-paths')
+
+
+def degree_coordinates():
+    im, d = canvas(345)
+    label(d, (495, 43), '同じK類を次数ごとに測る', 36, BLUE)
+    entries = [
+        (130, '(0次)', '階数'),
+        (372, '(2次)', '一次の根の和'),
+        (618, '(4次)', '平方の和 ÷ 2'),
+        (858, '(6次)', '立方の和 ÷ 6'),
+    ]
+    for x, degree, name in entries:
+        arrow(d, (x, 103), (x, 157), TEAL)
+        box(d, (x-113, 166, x+113, 233), degree, size=32)
+        label(d, (x, 276), name, 31)
+    line(d, [(130, 103), (858, 103)], TEAL, 4)
+    save(im, 'degree-coordinates')
+
+
+def fourier_tracks():
+    im, d = canvas(335)
+    label(d, (492, 43), '添字を2ずつ戻す', 36, BLUE)
+    for y, values, color in [
+        (124, (4, 2, 0, -2, -4), BLUE),
+        (231, (5, 3, 1, -1, -3), TEAL),
+    ]:
+        positions = (220, 381, 542, 703, 864)
+        label(d, (102, y), '偶数列' if y == 124 else '奇数列', 31, color)
+        for x, index in zip(positions, values):
+            box(d, (x-45, y-33, x+45, y+33), str(index), size=36)
+        for left, right in zip(positions, positions[1:]):
+            arrow(d, (left+51, y), (right-51, y), color)
+    label(d, (487, 305), '列の中では最初の一つを決めると全て決まる', 31)
+    save(im, 'fourier-tracks')
+
+
 def main():
     global FONT
     parser = argparse.ArgumentParser(description=__doc__)
@@ -429,7 +479,8 @@ def main():
                  koszul, orbit, laurent, spectral, extension, projective,
                  shift, fixed_chain, index_balance, pushforward, torus_square,
                  cech_subsets, fixed_weights, lens_matrix, mayer_vietoris,
-                 diagonal, grassmann, spectral_flow):
+                 diagonal, grassmann, spectral_flow, reading_paths,
+                 degree_coordinates, fourier_tracks):
         draw()
 
 

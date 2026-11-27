@@ -4,10 +4,50 @@
   overflow-x: auto;
   overflow-y: hidden;
 }
+
 .math.display mjx-container {
   min-width: max-content;
 }
 
 .reader-mobile-status {
   grid-template-columns: minmax(0, 1fr);
+}
+
+main .ku-chapter,
+main .ku-summary,
+main .ku-definition,
+main .ku-theorem,
+main .ku-column,
+main .ku-point,
+main .ku-worked {
+  border-inline-start: 2px solid var(--bs-info);
+  border-radius: 0 .25rem .25rem 0;
+  background: rgba(116, 137, 155, .12);
+  padding: .8rem clamp(.65rem, 3vw, 1.15rem);
+  margin-block: 1.25rem 1.6rem;
+}
+
+main .ku-summary {
+  border-inline-start: 1px solid var(--bs-secondary-color);
+  background: transparent;
+  padding-block: .25rem;
+}
+
+main .ku-definition,
+main .ku-theorem {
+  border-inline-start-width: 3px;
+}
+
+main .ku-column {
+  border-inline-start-color: var(--bs-secondary-color);
+}
+
+main .ku-chapter > :last-child,
+main .ku-summary > :last-child,
+main .ku-definition > :last-child,
+main .ku-theorem > :last-child,
+main .ku-column > :last-child,
+main .ku-point > :last-child,
+main .ku-worked > :last-child {
+  margin-block-end: 0;
 }

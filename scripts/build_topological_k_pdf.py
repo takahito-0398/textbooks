@@ -1,4 +1,4 @@
-"""Render the chapter QMDs as one two-column Typst book."""
+"""Render the chapter QMDs as one single-column Typst book."""
 import argparse
 import hashlib
 import json
@@ -26,14 +26,14 @@ format:
       fig-title: 図
       tbl-title: 表
       tbl-prefix: 表
-    papersize: a5
+    papersize: iso-b5
     margin:
-      top: 13mm
-      bottom: 13mm
-      left: 11mm
-      right: 11mm
+      top: 23mm
+      bottom: 24mm
+      left: 25mm
+      right: 25mm
     mainfont: "Yu Mincho"
-    fontsize: 9.3pt
+    fontsize: 10.7pt
     page-numbering: "1"
 ---
 
@@ -41,6 +41,16 @@ format:
 
 def raw_typst(code):
     return f"\x60\x60\x60{{=typst}}\n{code}\n\x60\x60\x60\n\n"
+
+
+def format_reading_block(match):
+    kind, content = match.groups()
+    opening = raw_typst(f'#reading("{kind}")[')
+    label, separator, body = content.partition("\n\n")
+    if separator and label.startswith("**") and label.endswith("**"):
+        opening += raw_typst("#reading-label[") + label + "\n\n" + raw_typst("]")
+        content = body
+    return opening + content + "\n" + raw_typst("]")
 
 
 def read_chapter(path):
@@ -52,6 +62,12 @@ def read_chapter(path):
         lambda link: f"](#{link[2] or link[1]})", content,
     )
     content = content.replace("](../assets/figures/", "](figures/")
+    content = re.sub(
+        r"^::: \{\.ku-(chapter|summary|definition|theorem|column|worked|point)\}[ \t]*\n(.*?)^:::[ \t]*$",
+        format_reading_block,
+        content,
+        flags=re.M | re.S,
+    )
     return title, content.strip()
 
 
@@ -82,28 +98,39 @@ def main():
     chapters = [(path.stem, *read_chapter(path)) for path in paths]
     styles = raw_typst('''
 #set text(lang: "ja", cjk-latin-spacing: auto)
-#set par(justify: true, leading: 0.38em, spacing: 0.7em)
+#set par(justify: true, leading: 0.68em, spacing: 0.95em)
+#let reading-label(body) = block(sticky: true, below: 0.4em, body)
+#let reading(kind, body) = {
+  let accent = rgb("#294952")
+  let background = if kind == "summary" { none } else { rgb("#f3f5f5") }
+  block(
+    width: 100%,
+    breakable: true,
+    inset: (left: 10pt, right: 10pt, top: 7pt, bottom: 7pt),
+    fill: background,
+    stroke: (left: if kind == "summary" { 0.75pt + luma(160) } else { 1.25pt + accent }),
+    above: 0.9em, below: 0.95em,
+    body,
+  )
+}
 #set page(header: context {
   if counter(page).get().first() > 2 {
-    align(right, text(font: "Yu Gothic", size: 7pt, fill: luma(100))[位相的K理論を読む])
+    align(right, text(font: "Yu Gothic", size: 8pt, fill: luma(100))[位相的K理論を読む])
   }
 })
-#set figure(gap: 3pt)
-#show figure.caption: set text(size: 8pt)
+#set figure(gap: 6pt)
+#show figure.caption: set text(size: 9pt)
 #set table(stroke: 0.35pt + luma(180), inset: (x: 3pt, y: 2pt))
 #set math.equation(number-align: right + bottom)
 #set heading(numbering: none)
 #set document(title: "位相的K理論を読む ― 貼り合わせ・特性類・指数")
-#show math.equation.where(block: true): it => context {
-  let max-width = 59mm
-  let width = measure(it).width
-  if width > max-width {
-    scale(x: max-width / width * 100%, y: max-width / width * 100%, reflow: true, it)
-  } else { it }
-}
-#show heading.where(level: 1): set text(font: "Yu Gothic", size: 16pt, fill: rgb("#173c37"))
-#show heading.where(level: 2): set text(font: "Yu Gothic", size: 11.2pt, fill: rgb("#173c37"))
-#show heading.where(level: 3): set text(font: "Yu Gothic", size: 9.5pt)
+#show math.equation.where(block: true): set block(above: 0.9em, below: 0.9em)
+#show heading.where(level: 1): set text(font: "Yu Gothic", size: 18pt, fill: rgb("#20363d"))
+#show heading.where(level: 2): it => block(above: 1.3em, below: 0.55em)[
+  #text(fill: rgb("#294952"), size: 8pt)[■] #h(0.45em)
+  #text(font: "Yu Gothic", size: 12.1pt, weight: "bold", fill: rgb("#20363d"))[#it.body]
+]
+#show heading.where(level: 3): set text(font: "Yu Gothic", size: 11pt)
 #v(1fr)
 #align(center)[
   #text(font: "Yu Gothic", size: 26pt, weight: "bold", fill: rgb("#173c37"))[位相的K理論を読む]
@@ -113,13 +140,11 @@ def main():
 #v(1fr)
 #pagebreak()
 '''.strip())
-    body = raw_typst('#heading(level: 1, outlined: false)[目次]\n#outline(title: none, depth: 1, indent: 0pt)')
+    body = raw_typst('#heading(level: 1, outlined: false)[目次]\n#text(size: 9pt)[#outline(title: none, depth: 1, indent: 0pt)]')
     for key, title, content in chapters:
         body += raw_typst("#pagebreak(weak: true)")
         body += f"# {title} {{#{key}}}\n\n"
-        body += raw_typst("#columns(2, gutter: 5mm)[")
         body += f"{content}\n\n"
-        body += raw_typst("]")
     output = options.sample.resolve() if options.sample else OUTPUT
     with TemporaryDirectory(prefix="ku-pdf-") as directory:
         stage = Path(directory)
