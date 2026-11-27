@@ -1,0 +1,32 @@
+{
+  "slug": "topological-k-theory",
+  "pdf": "assets/topological-k-theory.pdf",
+  "chapters": [
+    "00-roadmap",
+    "01-clutching",
+    "02-stable-classes",
+    "03-bott-periodicity",
+    "04-characteristic-classes",
+    "05-thom-and-torsion",
+    "06-index",
+    "07-further-reading",
+    "08-filtration",
+    "09-operations",
+    "10-toeplitz",
+    "11-riemann-roch",
+    "12-families",
+    "13-chern-weil",
+    "14-equivariant",
+    "15-lens",
+    "16-real",
+    "17-gluing-spaces",
+    "18-pushforwards",
+    "19-grassmannian",
+    "20-torus-index",
+    "21-index-operators"
+  ],
+  "page_range": [
+    103,
+    170
+  ]
+}

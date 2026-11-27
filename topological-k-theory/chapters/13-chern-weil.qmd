@@ -1,0 +1,353 @@
+---
+title: "第13章　射影・曲率・Chern指標"
+---
+
+## フレームが動くと、普通の微分がずれる
+
+第1章で線束の局所座標を変えると、係数の微分には遷移関数の微分が余計に入った。今回は階数 $r$ の束で同じことを計算し、曲率の行列から第4章のChern指標を表す。
+
+滑らかな多様体上の複素束 $E$ を取る。ある局所フレームで切断を列ベクトル $s$ と書く。**接続**は関数倍に関する積の規則を持つ微分であり、局所では
+
+$$
+\nabla s=ds+A\,s
+$$ {#eq-13-connection}
+
+と書ける。$A$ は行列値1形式である。座標を $s'=g s$ に替え、微分した結果も $\nabla' s'=g\nabla s$ と変換することを要求する。この条件を @eq-13-connection に代入すると
+
+$$
+A'=gAg^{-1}-(dg)g^{-1}.
+$$ {#eq-13-change}
+
+従って $A$ 自体は座標変換で単なる共役にはならない。特に自明束にも曲がった接続を何通りも置ける。一つの $A$ の成分を積分しても、束の同型類から決まる量にはならない。
+
+### 曲率は二度の微分に現れる
+
+接続を束値の微分形式へ拡張する。$d$ は外微分の符号規則を持たせ、$A$ は左から外積する。関数値の切断に二回作用させると、
+
+$$
+\begin{aligned}
+\nabla^2s
+  &=d(ds+A s)+A\wedge(ds+As)\\
+  &=(dA+A\wedge A)s .
+\end{aligned}
+$$ {#eq-13-curvature}
+
+$A\wedge A$ は行列積と外積を組み合わせたもの。階数1では1形式同士が同じなのでゼロになるが、行列の場合は一般にゼロでない。 @eq-13-curvature の $F=dA+A\wedge A$ を曲率と呼ぶ。
+
+@eq-13-change を代入してもよいが、$\nabla^2$ の変換を直接見れば
+
+$$
+F'=g Fg^{-1}
+$$ {#eq-13-curvature-change}
+
+が直ちに分かる。従って $\operatorname{tr} F^m$ は局所座標に依存しない大域的な $2m$ 形式である。線束のとき局所の $dA$ が重なりで一致したことが、この式では共役不変性に置き換わった。
+
+## 閉形式になる理由と接続への非依存性
+
+行列値 $p$ 形式 $\omega$ に対して、共変外微分を
+
+$$
+d_\nabla\omega
+=d\omega+A\wedge\omega-((-1)^p)\omega\wedge A
+$$ {#eq-13-covariant}
+
+とする。外積と行列積をまとめた交換子の項であり、座標変換で @eq-13-curvature-change と同じ共役の法則を持つ。
+
+$F=dA+A\wedge A$ を用いて展開する。$dF=dA\wedge A-A\wedge dA$、また $A\wedge F-F\wedge A=A\wedge dA-dA\wedge A$ である。足すと
+
+$$
+d_\nabla F=0.
+$$ {#eq-13-bianchi}
+
+これがBianchi恒等式である。つまり曲率の微分はゼロとは限らないが、接続の補正を入れた微分がゼロになる。トレースを取ると、符号付き巡回性により共変外微分の補正項は消える。さらに $d_\nabla$ は積の符号付き微分則を持つ。従って
+
+$$
+d\operatorname{tr}(F^m)
+ =\operatorname{tr}(d_\nabla(F^m))
+ =m\,\operatorname{tr}((d_\nabla F)\wedge F^{m-1})
+ =0 .
+$$ {#eq-13-closed}
+
+このため曲率の多項式から得る形式をコホモロジー類にできる。
+
+### 接続を補間する
+
+二つの接続の差は行列値1形式 $B$ として大域的に定まる。$\nabla_t=\nabla_0+tB$、$0\le t\le1$ と置くと、対応する曲率の微分は
+
+$$
+\frac{dF_t}{dt}=d_{\nabla_t}B.
+$$
+
+例えば局所的に $A_t=A_0+tB$ と書けば、右辺は $dB+A_t\wedge B+B\wedge A_t$。これは $d(A_t)+A_t\wedge A_t$ を $t$ で微分した値である。 @eq-13-bianchi とトレースの巡回性から、
+
+$$
+\frac{d}{dt}\operatorname{tr}(F_t^m)
+ =m\,d\,\operatorname{tr}(B\wedge F_t^{m-1}).
+$$ {#eq-13-transgression}
+
+従って $t$ で積分した前後の差は完全形式である。これが、曲率の形を変えてもコホモロジー類が一定である理由である。 @eq-13-transgression は、曲率が点ごとに動かないことを主張しているわけではない。変化した曲率の積分が、閉じたサイクル上で境界項として消えることを主張している。
+
+## 規格化を第一Chern数で固定する
+
+曲率を
+
+$$
+\Omega=\frac{i}{2\pi}F
+$$ {#eq-13-normalization}
+
+と規格化する。ユニタリ接続では $F$ は反Hermite型なので、$\operatorname{tr}\Omega$ は実形式である。係数 $i/(2\pi)$ の符号は、第1章の貼り合わせで検算できる。北から南へ $g$ が係数を移す線束では、 @eq-13-change によれば $A_N-A_S=g^{-1}dg$。そこで各半球にStokesを適用すると
+
+$$
+\int_{S^2}\frac{i}{2\pi}F
+ =\frac{i}{2\pi}\int_{S^1}g^{-1}dg
+ =-w(g).
+$$ {#eq-13-winding-curvature}
+
+南の正の境界が北と逆向きなので、和が $A_N-A_S$ になった。従って @eq-13-normalization は、北から南へ $z$ を掛けるトートロジー線束の第一Chern数を $-1$ とする。本書の向きの採用はここでも一貫している。
+
+## Chern–Weil形式を束の積へ送る
+
+接続からChern指標の形式代表を
+
+$$
+\operatorname{ch}(\nabla)=
+ \operatorname{tr}\exp(\Omega)
+ =\sum_{j\ge0}\frac{1}{j!}\operatorname{tr}(\Omega^j)
+$$ {#eq-13-ch-form}
+
+と定める。高い次数は多様体の次元で打ち切る。 @eq-13-closed で各項は閉形式、 @eq-13-transgression で接続から独立な類を与える。
+
+直和の接続をブロック対角に取れば、 @eq-13-ch-form のトレースは加法的になる。テンソル積では $\nabla^{E\otimes G}=\nabla^E\otimes I+I\otimes\nabla^G$ である。規格化曲率も
+
+$$
+\Omega_{E\otimes G}
+ =\Omega_E\otimes I+I\otimes\Omega_G
+$$ {#eq-13-tensor-curvature}
+
+となる。二つの項は互いに異なる行列因子に作用し、形式次数が偶数なので可換である。従って指数関数は積に分かれ、トレースは二つのトレースの積になる。
+
+全Chern形式は
+
+$$
+c(\nabla)=\det(I+\Omega)
+$$
+
+で与えられる。成分が偶数次数の形式であるため、行列式には通常の対称多項式の式を使える。最初の二項は
+
+$$
+\begin{aligned}
+c_1(\nabla)&=\operatorname{tr}\Omega,\\
+c_2(\nabla)&=\tfrac12
+ \bigl((\operatorname{tr}\Omega)^2-\operatorname{tr}(\Omega^2)\bigr).
+\end{aligned}
+$$ {#eq-13-c2-form}
+
+@eq-13-ch-form の四次項は $\operatorname{tr}(\Omega^2)/2$。これを @eq-13-c2-form に代入すれば、第4章でChern根から求めた $(c_1^2-2c_2)/2$ になる。
+
+線束の場合、曲率代表の類が第一Chern類の実像であるという一般の比較はChern–Weil理論の基本事項である。球面上では @eq-13-winding-curvature で直接確認した。一般の束では旗束上へ引き戻し、接続を線束の直和の接続へ取り替えられる。接続からの独立性と分裂原理の単射性により、 @eq-13-ch-form の類は第4章のChern指標の実像に一致する。
+
+| 入力 | 微分形式での操作 | コホモロジー上で読む量 |
+|---|---|---|
+| 束の局所フレーム変更 $g$ | $F\mapsto gFg^{-1}$ | 同じ $\operatorname{tr}F^j$ |
+| 接続の補間 $\nabla_t$ | 曲率のトレースは全微分だけ変化 | 同じChern指標 |
+| $E\oplus G$ | ブロック対角でトレースを加算 | $\operatorname{ch}(E)+\operatorname{ch}(G)$ |
+| $E\otimes G$ | 可換な二項へ曲率を分解 | $\operatorname{ch}(E)\operatorname{ch}(G)$ |
+
+: 曲率の行列そのものと、不変な情報を得る操作の対応。 {#tbl-13-operations}
+
+@tbl-13-operations の最初の二行は異なる不変性を扱っている。フレーム変更では形式が等しく、接続変更ではコホモロジー類が等しい。
+
+## 直交射影から接続を作る
+
+第2章では自明束内の部分束を、連続な直交射影の像として表した。今度は $P=P^*=P^2$ を滑らかな射影とする。$\operatorname{im}P$ の切断 $s$ は $Ps=s$ を満たす。微分した $ds$ はそのままでは像の束に入るとは限らない。そこで
+
+$$
+\nabla^P s=P\,ds
+$$ {#eq-13-projection-connection}
+
+と射影すれば接続になる。一つの局所フレーム $u$ が列に正規直交ベクトルを持つとき、$P=uu^*$、$s=u a$ と書ける。すると
+
+$$
+P\,ds=u(da+u^*du\,a),\qquad A=u^*du .
+$$
+
+$u^*u=I$ を微分すると $A^*=-A$。従ってこの接続はユニタリである。 @eq-13-projection-connection は、局所フレームを全域で選べない場合でも、滑らかな射影があれば全域で定義できる。
+
+### 曲率の射影表示
+
+$P^2=P$ を微分して両側に $P$ を掛けると
+
+$$
+P(dP)P=0.
+$$ {#eq-13-pdp}
+
+よって $dP$ は、像の成分を像の中へ直に送らない。$Ps=s$ の微分から $ds=dP\,s+P\,ds$。従って $\nabla^P$ を二度適用すると、
+
+$$
+F_Ps=P\,dP\wedge ds=P(dP\wedge dP)P s .
+$$ {#eq-13-projector-curvature}
+
+右から左へ読むと、像から補空間へ一度移り、さらに別の微分方向で像へ戻る。 @eq-13-pdp は「往路と復路を組にする」理由である。
+
+この式は射影 $P$ の行列を大域的に書けるときに有効である。フレームの特異点を座標ごとに避けながら計算する代わりに、全ての情報を $P$ と $dP$ に入れられる。次の二例では同じ球面の整数を、局所フレームと大域射影からそれぞれ計算する。
+
+## トートロジー線束の曲率を積分する
+
+$\mathbb CP^1$ の北チャートで、単位フレームを
+
+$$
+u(z)=\frac{(1,z)^{\mathsf T}}{\sqrt{1+|z|^2}}
+$$
+
+とする。$g=1+|z|^2$ と略記すると、
+
+$$
+\begin{aligned}
+u^*du&=g^{-1}\bar z\,dz-\tfrac12g^{-1}dg\\
+ &=\frac{\bar z\,dz-z\,d\bar z}{2g}.
+\end{aligned}
+$$ {#eq-13-hopf-form}
+
+この1形式は純虚数値である。$z=r e^{i\theta}$ とすれば分子は $2ir^2 d\theta$、従って $A=i r^2/(1+r^2)\,d\theta$。階数1なので $F=dA$。直交座標に戻すと
+
+$$
+F=\frac{2ir}{(1+r^2)^2}\,dr\wedge d\theta
+ =\frac{2i}{(1+|z|^2)^2}\,dx\wedge dy .
+$$ {#eq-13-hopf-curvature}
+
+北のチャートは一点を除いて球面全体を覆う。曲率はその一点でも滑らかに延びるので、積分は $\mathbb C$ で計算してよい。 @eq-13-hopf-curvature から
+
+$$
+\begin{aligned}
+\int_{\mathbb CP^1}\frac{i}{2\pi}F
+ &=-2\int_0^\infty\frac{r}{(1+r^2)^2}\,dr\\
+ &=-1 .
+\end{aligned}
+$$ {#eq-13-hopf-integral}
+
+半径 $R$ までなら値は $-R^2/(1+R^2)$。$R=1$ の北半球だけでは $-1/2$ であり、そこだけでは整数にならない。南を合わせると全体が $-1$ になる。局所の曲率を図で色分けしても、整数が出来るのは向きを揃えた全空間で積分するためである。
+
+## 二準位行列の固有空間から作る
+
+三つのPauli行列を
+
+$$
+\sigma_1=\begin{pmatrix}0&1\\1&0\end{pmatrix},\quad
+\sigma_2=\begin{pmatrix}0&-i\\i&0\end{pmatrix},\quad
+\sigma_3=\begin{pmatrix}1&0\\0&-1\end{pmatrix}
+$$ {#eq-13-pauli}
+
+とする。$\sigma_j\sigma_k=\delta_{jk}I+i\sum_\ell\epsilon_{jk\ell}\sigma_\ell$ を直接確かめられる。$n=(n_1,n_2,n_3)\in S^2$ に対して $H(n)=n\cdot\sigma$ と置けば $H^2=I$、$\operatorname{tr}H=0$。固有値は $+1$ と $-1$ で、それぞれへの射影は
+
+$$
+P_\pm(n)=\tfrac12(I\pm n\cdot\sigma).
+$$ {#eq-13-spectral-projections}
+
+北からの複素座標 $z$ で $n=(2\operatorname{Re}z,2\operatorname{Im}z,1-|z|^2)/(1+|z|^2)$ とすれば、 @eq-13-spectral-projections の $P_+$ は $uu^*$。したがって正の固有空間の線束がトートロジー線束である。
+
+曲率表示 @eq-13-projector-curvature にこれを代入する。$\operatorname{tr}\sigma_j=0$、$\operatorname{tr}\sigma_j\sigma_k=2\delta_{jk}$ なので、$dn_j\wedge dn_j$ の寄与はゼロ。残る三重積は
+
+$$
+\operatorname{tr}(\sigma_\ell\sigma_j\sigma_k)
+       =2i\,\epsilon_{\ell jk}.
+$$
+
+従って
+
+$$
+\begin{aligned}
+\operatorname{tr}(P_+\,dP_+\wedge dP_+)
+ &=\frac{i}{4}\sum_{\ell,j,k}\epsilon_{\ell jk}
+        n_\ell\,dn_j\wedge dn_k\\
+ &=\frac{i}{2}\,\omega_{S^2}.
+\end{aligned}
+$$ {#eq-13-bloch-curvature}
+
+$\omega_{S^2}$ は外向きの向きで面積が $4\pi$ となる球面の面積形式である。第一Chern数は $i/(2\pi)$ を掛けて $-1$。曲率の全積分 @eq-13-hopf-integral と同じ値を、局所フレームの選択なしに得た。
+
+### ギャップを保つ変形と符号
+
+$H_a(n)=v_a(n)\cdot\sigma$ とし、$v_a(n)\in\mathbb R^3$ は全ての点で非零とする。固有値は $\pm|v_a(n)|$。正の固有空間の射影は、 @eq-13-spectral-projections で $n$ を $v_a/|v_a|$ に替えたものになる。従って第一Chern数は規格化写像の次数の負号付きである。
+
+例えば $v_a(n)=n+(0,0,a)$ とする。$|a|<1$ なら $a$ を0へ縮められ、どの途中でもゼロにならない。次数は1、第一Chern数は $-1$。$a>1$ なら北半球方向にだけ値を取り、写像は北極へ縮められる。$a<-1$ の場合も南極へ縮められる。従って両方とも第一Chern数は0。$a=\pm1$ ではある点で正負の固有値が接触し、射影の式が定義できなくなる。ここで初めて、整数が変わる余地が生じる。
+
+この計算を第3章の単位円内の固有空間と比較すると、保つべき条件の形が分かる。第3章では固有値が指定した輪郭に乗らないことが、ここでは固有値がゼロを通らないことが必要である。条件を保つ限り、固有空間の局所基底は動いても束のK類は一定である。
+
+## 相対類では境界の形式も記録する
+
+$(X,A)$ を滑らかな対とし、境界 $A$ 上で $E$ から $G$ への同型 $\alpha$ を持つ三つ組を考える。たとえ $E,G$ が $A$ で同型でも、二つの接続を別々に選ぶと、境界でChern指標の形式代表は一致しないかもしれない。よって $\operatorname{ch}(E)-\operatorname{ch}(G)$ という大域形式だけでは相対情報を表せない。
+
+そこで $\nabla^E|_A$ と $\alpha^*\nabla^G|_A$ の間で、 @eq-13-transgression を積分する。$\alpha^*\nabla^G$ から $\nabla^E$ へ向けて積分した奇形式を $B_{\mathrm{CS}}$ と書けば、
+
+$$
+d B_{\mathrm{CS}}=
+ i_A^*(\operatorname{ch}(\nabla^E)
+       -\operatorname{ch}(\nabla^G)).
+$$ {#eq-13-cs-relative}
+
+この式が、相対de Rham複体での閉じる条件である。具体的に次数 $p$ の相対コチェインを、$X$ の $p$ 形式 $a$ と $A$ の $(p-1)$ 形式 $b$ の対とする。微分を
+
+$$
+D(a,b)=(da,i_A^*a-db)
+$$ {#eq-13-relative-complex}
+
+とすれば $D^2=0$。 @eq-13-cs-relative により $(\operatorname{ch}(\nabla^E)-\operatorname{ch}(\nabla^G),B_{\mathrm{CS}})$ は閉じている。第一成分が局所で一致しない分を、第二成分の微分が受け持った。
+
+### 円板で境界成分だけを計算する
+
+$X=D^2,A=S^1$ で両方の束を自明とし、境界同型を $g(z)=z^m$ とする。二つの接続をともに平坦に取る。両者の曲率はゼロなので大域側の二次形式はゼロ。ただし $g$ を通して $G$ の接続を $E$ のフレームへ運ぶと $d+g^{-1}dg$ になる。そこから $d$ への補間では1形式の差は $-g^{-1}dg$。従って次数1の相対補正は
+
+$$
+B_{\mathrm{CS}}=-\frac{i}{2\pi}g^{-1}dg .
+$$
+
+この相対形式の基本類での評価は $\int_{D^2}a-\int_{S^1}b$。この符号は $D$ の定義からStokesの公式で決まる。従って
+
+$$
+\int_{(D^2,S^1)}(0,B_{\mathrm{CS}})
+ =\frac{i}{2\pi}\int_{S^1} g^{-1}dg
+ =-m .
+$$ {#eq-13-relative-evaluation}
+
+平坦な二つの束の絶対Chern指標からはこの整数は出ない。境界で同一視する行列を通した補正が、第2章で数えた相対類の整数を保持している。
+
+## 演習と解答
+
+### 1　階数1ではトレースが何をするか
+
+線束の接続を $A_0$ から $A_1$ へ替える。第一Chern形式の差を求めよ。
+
+**解答。** 線束では $A_j\wedge A_j=0$。従って差は $(i/(2\pi))d(A_1-A_0)$。二つの $A_j$ の差は座標変換の $g^{-1}dg$ が消去されるため大域1形式である。閉じた曲面で積分すればゼロ。これは @eq-13-transgression の $m=1$ の場合である。
+
+### 2　負の固有空間の第一Chern数
+
+@eq-13-spectral-projections の $P_-$ に対して第一Chern数を求めよ。
+
+**解答。** $P_-=\mathbf1-P_+$ で二つの線束の直和は自明二次元束になる。従って二つの第一Chern数の和はゼロ。$P_+$ の値が $-1$ なので $P_-$ は $+1$。曲率を直接計算するなら $n$ を $-n$ に置き換える。その写像は球面で次数 $-1$ なので @eq-13-bloch-curvature の積分も符号が反転する。
+
+### 3　接続選択と整数情報
+
+実射影空間に引き戻した $L$ はねじれを持つ。 @eq-13-ch-form の微分形式の計算だけで、$[L]-1$ が自明か否かを判定できるか。
+
+**解答。** この線束には有限の遷移を使う平坦接続があり、曲率をゼロに選べる。よってChern指標の微分形式代表は階数だけになる。しかし第5章の整数計算では $\mu$ は非自明で位数4。実de Rhamコホモロジーへ移した時点で有限位数の情報を失うので、非自明性の判定には整数のK群が要る。
+
+## 曲率が零でも平行移動は残る
+
+自明な線束にも曲率が零で、閉曲線に沿った平行移動が恒等写像にならない接続がある。トーラスを $\mathbb R^2/\mathbb Z^2$ とし、実数 $a,b$ に対してユニタリ接続を次のように取る。
+
+$$
+\nabla=d+2\pi i(a\,dx+b\,dy),\qquad F_\nabla=0.
+$$ {#eq-13-flat-connection}
+
+巻き方 $(m,n)$ の閉曲線を $\gamma$ とすると、経路上では一次微分方程式 $s'+2\pi i(a\,x'+b\,y')s=0$ を解けばよい。$\mathbb R^2$ への持ち上げの終点差は $(m,n)$ なので、平行移動は次の定数倍となる。
+
+$$
+\operatorname{Hol}_\gamma(\nabla)
+=\exp[-2\pi i(am+bn)].
+$$ {#eq-13-flat-holonomy}
+
+したがって $F_\nabla$ と階数が同じでも、$a,b$ の整数を法とする値を変えると接続の平行移動が変わる。逆に $a,b$ の整数部分は、周期的なフレーム変更 $\exp(2\pi i(kx+\ell y))$ で動かせる。全ての例で底の束は同じ自明線束だから、K類も同じである。ここではK類、曲率形式、接続の同値類の三つを実際に並べて比べられる。第20章では、これとは対照的に非零曲率を持つ線束上で、境界の貼り合わせからFourier係数の漸化式が生じる。
+
+## 参考
+
+曲率形式からK理論のChern指標を読む規格化と接続による計算は Melrose の講義の Lecture 16 と Lecture 21 にもある。本文では球面のStokes計算および射影行列から符号を検算した。 [Topics in Analysis](https://math.mit.edu/~rbm/Bkly08/Bkly08.html)

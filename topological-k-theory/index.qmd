@@ -2,13 +2,13 @@
 title: "位相的K理論を読む ― 貼り合わせ・特性類・指数"
 ---
 
-球面の赤道で一回転する貼り方を出発点に、束の差、Bott周期性、特性類、Thom同型を使って、球面上の微分方程式の指数を計算します。
+赤道の一回転から始め、束の差とBott周期性を作ります。実射影空間の整数関係と、球面・トーラスの微分作用素の指数を、式と図から計算します。
 
-[二段組PDFを開く](assets/topological-k-theory.pdf)
+[改訂版の二段組PDFを開く](assets/topological-k-theory.pdf)
 
-## 章一覧
+## 本編　束の差から指数まで
 
-- [序章　赤道で一回転すると、何が残るか](chapters/00-roadmap.qmd)
+- [序章　何を貼り、どの差を測るか](chapters/00-roadmap.qmd)
 - [第1章　貼り合わせと大域的な障害](chapters/01-clutching.qmd)
 - [第2章　束の差をつくる](chapters/02-stable-classes.qmd)
 - [第3章　一回転から二周期へ](chapters/03-bott-periodicity.qmd)
@@ -16,3 +16,20 @@ title: "位相的K理論を読む ― 貼り合わせ・特性類・指数"
 - [第5章　繊維方向に同じ計算を置く](chapters/05-thom-and-torsion.qmd)
 - [第6章　最高次の微分から指数へ](chapters/06-index.qmd)
 - [第7章　展望と参照表](chapters/07-further-reading.qmd)
+
+## 展開　同じ道具を別の空間で使う
+
+- [第8章　セル濾過とスペクトル系列](chapters/08-filtration.qmd)
+- [第9章　射影束とK理論の演算](chapters/09-operations.qmd)
+- [第10章　Toeplitz作用素と円周の指数](chapters/10-toeplitz.qmd)
+- [第11章　射影空間のRiemann–Roch計算](chapters/11-riemann-roch.qmd)
+- [第12章　族の指数と射影直線束](chapters/12-families.qmd)
+- [第13章　射影・曲率・Chern指標](chapters/13-chern-weil.qmd)
+- [第14章　対称性を保ったK理論](chapters/14-equivariant.qmd)
+- [第15章　レンズ空間の整数関係を解く](chapters/15-lens.qmd)
+- [第16章　実K理論とSpinᶜの向き](chapters/16-real.qmd)
+- [第17章　空間を貼る完全列とKünneth計算](chapters/17-gluing-spaces.qmd)
+- [第18章　押し出し・交差・対角線](chapters/18-pushforwards.qmd)
+- [第19章　Grassmann多様体の整数環](chapters/19-grassmannian.qmd)
+- [第20章　トーラスの指数をFourier級数で解く](chapters/20-torus-index.qmd)
+- [第21章　同じ微分形式から三つの指数を作る](chapters/21-index-operators.qmd)

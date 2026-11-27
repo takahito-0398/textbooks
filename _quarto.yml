@@ -11,6 +11,7 @@ project:
     - arctic-circle-random-tilings/production/figure-prototypes/*.png
     - arctic-circle-random-tilings/production/figure-prototypes/*.svg
     - topological-k-theory/assets/topological-k-theory.pdf
+    - topological-k-theory/assets/figures/*.png
   render:
     - "*.qmd"
     - "navier-stokes/**/*.qmd"
@@ -471,14 +472,32 @@ website:
     collapse-level: 1
     contents:
       - topological-k-theory/index.qmd
-      - topological-k-theory/chapters/00-roadmap.qmd
-      - topological-k-theory/chapters/01-clutching.qmd
-      - topological-k-theory/chapters/02-stable-classes.qmd
-      - topological-k-theory/chapters/03-bott-periodicity.qmd
-      - topological-k-theory/chapters/04-characteristic-classes.qmd
-      - topological-k-theory/chapters/05-thom-and-torsion.qmd
-      - topological-k-theory/chapters/06-index.qmd
-      - topological-k-theory/chapters/07-further-reading.qmd
+      - section: "本編　束の差から指数まで"
+        contents:
+          - topological-k-theory/chapters/00-roadmap.qmd
+          - topological-k-theory/chapters/01-clutching.qmd
+          - topological-k-theory/chapters/02-stable-classes.qmd
+          - topological-k-theory/chapters/03-bott-periodicity.qmd
+          - topological-k-theory/chapters/04-characteristic-classes.qmd
+          - topological-k-theory/chapters/05-thom-and-torsion.qmd
+          - topological-k-theory/chapters/06-index.qmd
+          - topological-k-theory/chapters/07-further-reading.qmd
+      - section: "展開　同じ道具を別の空間で使う"
+        contents:
+          - topological-k-theory/chapters/08-filtration.qmd
+          - topological-k-theory/chapters/09-operations.qmd
+          - topological-k-theory/chapters/10-toeplitz.qmd
+          - topological-k-theory/chapters/11-riemann-roch.qmd
+          - topological-k-theory/chapters/12-families.qmd
+          - topological-k-theory/chapters/13-chern-weil.qmd
+          - topological-k-theory/chapters/14-equivariant.qmd
+          - topological-k-theory/chapters/15-lens.qmd
+          - topological-k-theory/chapters/16-real.qmd
+          - topological-k-theory/chapters/17-gluing-spaces.qmd
+          - topological-k-theory/chapters/18-pushforwards.qmd
+          - topological-k-theory/chapters/19-grassmannian.qmd
+          - topological-k-theory/chapters/20-torus-index.qmd
+          - topological-k-theory/chapters/21-index-operators.qmd
 
 format:
   html:

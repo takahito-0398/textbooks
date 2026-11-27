@@ -1,0 +1,241 @@
+---
+title: "第12章　族の指数と射影直線束"
+---
+
+## 一点ずつの指数から消える情報
+
+コンパクトなパラメータ空間 $B$ の各点 $b$ にFredholm作用素 $D_b$ がある。全ての $b$ で指数が同じでも、解を選ぶ基底がパラメータの周りでねじれることがある。第10章の射影を使ったToeplitz族がその例だった。
+
+次の有限次元の模型は、核の次元が跳ぶときに何が問題になるかを示す。$B$ を円板として、
+
+$$
+D_b:\mathbb C\to\mathbb C,\qquad
+D_b(v)=b v
+$$ {#eq-12-jump}
+
+とする。中心以外では核と余核がともにゼロ、中心では両方1次元。この族の指数は常にゼロだが、核そのものは階数一定の束にならない。そこで中心で失われた右辺を補う座標を追加し、全域で全射になる写像の核を使う。
+
+## 補助有限次元空間で全射にする
+
+まずHilbert空間 $H_0,H_1$ が固定され、$b\mapsto D_b$ が作用素ノルムで連続とする。各点 $b$ で有限次元の余核を代表する部分空間 $W_b\subset H_1$ を選ぶ。像と $W_b$ の和は $H_1$ 全体になる。写像 $(u,w)\mapsto D_bu+w$ は全射なので、核の直交補で有界な右逆を持つ。Neumann級数によって近傍でも全射性が保たれる。
+
+コンパクト性から有限個の近傍で $B$ を覆い、選んだ全ての $W_b$ の和を $W$ とする。この有限次元部分空間を追加すると
+
+$$
+\widehat D_b:H_0\oplus W\longrightarrow H_1,
+\qquad (u,w)\longmapsto D_bu+w
+$$ {#eq-12-augmentation}
+
+は全ての $b$ で全射になる。$K_b=\ker\widehat D_b$ は有限次元である。しかも $b$ に関して連続な束を成すことを、右逆から直接示せる。
+
+基点 $b_0$ の右逆を $R_0$ とする。近傍で $\widehat D_b R_0$ は恒等に近く可逆なので、
+
+$$
+R_b=R_0(\widehat D_b R_0)^{-1},
+\qquad P_b=I-R_b\widehat D_b
+$$ {#eq-12-projection}
+
+と定める。$P_b^2=P_b$、$\operatorname{im}P_b=K_b$。直交射影とは限らないが、有限階数の連続射影なので、第2章と同様に、基点の像に作用させて近傍のフレームを作れる。
+
+従って $K=\bigsqcup_b K_b$ はベクトル束であり、族の指数を
+
+$$
+\operatorname{Ind}_B(D)=[K]-[B\times W]\in KU^0(B)
+$$ {#eq-12-family-index}
+
+と定める。一点に制限すれば、次の有限次元の完全列が得られる。
+
+$$
+\begin{aligned}
+0&\to\ker D_b\to K_b\to W\\
+ &\to\operatorname{coker}D_b\to0 .
+\end{aligned}
+$$ {#eq-12-finite-exact}
+
+$K_b\to W$ は補助座標を取り出す操作。$w\in W$ が像に入る条件は $-w\in\operatorname{im}D_b$ である。最後の全射は $\widehat D_b$ の全射性による。よって @eq-12-family-index の階数は、 @eq-12-finite-exact の次元の交代和によって普通のFredholm指数に一致する。
+
+### 補助空間の変更を追跡する
+
+$W\subset W'$ とする。$K'=\ker\widehat D'$ から $W'/W$ へ補助座標を射影すると全射になる。任意の $w'\in W'$ に対して、$D_bu+w=-w'$ を満たす旧側の $(u,w)$ があるためである。従って束の短完全列
+
+$$
+0\to K\to K'\to B\times(W'/W)\to0
+$$ {#eq-12-compare-supplement}
+
+を得る。K群で交代和を取ると、追加した空間は核と補助空間に等しく現れ、 @eq-12-family-index が変わらない。二つの補助空間に包含関係が無ければ、両者の和と比較する。
+
+同じ構成を $B\times[0,1]$ 上の連続なFredholm族へ適用すると、両端の指数類が一致する。基底の変更に対する自然性も分かる。$f:B'\to B$ で引き戻すと、 @eq-12-augmentation の核がそのまま $f^*K$ になるからである。
+
+### 次元が跳ぶ最初の例を計算し直す
+
+@eq-12-jump で $W=\mathbb C$ とする。全射は $(u,w)\mapsto bu+w$。核は
+
+$$
+K_b=\{(u,-bu)\mid u\in\mathbb C\}.
+$$
+
+この表示で全域のフレーム $(1,-b)$ が得られ、$K$ は自明線束である。従って $[K]-[W]=0$。中心以外で核がゼロなのに補った核が1次元なのは、補助座標そのものも解の変数に含めたためである。中心の1次元は実際の核、中心以外の1次元は $W$ 側へ写る。これを @eq-12-finite-exact の順に確認できる。
+
+## 行列式線と核の切断
+
+仮想束 $[E]-[F]$ から行列式線を作るときは、
+
+$$
+\det([E]-[F])=\det E\otimes(\det F)^*
+$$ {#eq-12-det-line}
+
+とする。直和の行列式が積になるため、共通の追加分は相殺される。 @eq-12-compare-supplement に対する行列式の同型を使うと、補助空間に依存せず
+
+$$
+\operatorname{Det}D=\det K\otimes\det(B\times W)^*
+$$ {#eq-12-det-index}
+
+を構成できる。ここではこの符号規約を採る。文献ではこの双対を「行列式線」と呼ぶこともあるので、核側か余核側かを確認する。
+
+$D_b$ が指数0の族なら、補助写像 $K_b\to W$ は同じ次元のベクトル空間の間の写像である。その行列式は $\det K^*\otimes\det W$、すなわち @eq-12-det-index の双対の切断になる。 @eq-12-finite-exact によれば、$D_b$ が可逆な点でちょうどこの切断が非零になる。このため行列式線は、可逆性が失われる場所を追うための幾何的な対象を与える。
+
+例えば @eq-12-jump では $K_b\to W$ はフレーム $(1,-b)$ に関して $-b$ 倍。その行列式切断は中心に一つの零点を持つ。円板全体の行列式線は自明だが、境界で $-b$ を使って自明化すると、一回転する相対データになる。絶対類と境界付きの類を分けた第2章の区別がここでも現れている。
+
+## 固定した曲面族に係数束を載せる
+
+$B\times\mathbb CP^1\to B$ の各ファイバーに、第6章で調べた $\mathcal O(k)$ を載せる。ただし $B$ 上の束 $A$ を外積でさらにテンソルする。つまり右辺と解の係数束は
+
+$$
+E=\pi_B^*A\otimes\pi_{\mathbb CP^1}^*\mathcal O(k)
+$$ {#eq-12-product-coeff}
+
+である。正則性を判定する作用素はファイバー方向だけに作用するので、局所的には $I_{A_b}\otimes\bar\partial_{\mathcal O(k)}$ である。従って核・余核は全域で束を成し、第6章の有限次元空間に $A$ を掛けたものになる。
+
+$$
+\operatorname{Ind}_B(\bar\partial_E)=(k+1)[A].
+$$ {#eq-12-product-index}
+
+たとえば $B=\mathbb CP^1$、$A=L$ とする。$k=0$ では各点の指数は1、族の指数は $[L]$。固定の自明線束を使った族との差は $[L]-1$。$k=-2$ では各点の指数は $-1$、族の指数は $-[L]$ となる。これは核の束ではなく余核の束に $L$ が現れるためである。
+
+### ファイバー積分の計算
+
+係数のChern指標は $\pi_B^*\operatorname{ch}(A)e^{kh}$、接束のTodd類は $1+h$。ファイバー方向で $h$ の係数を取れば
+
+$$
+\int_{\mathbb CP^1}
+ \pi_B^*\operatorname{ch}(A)e^{kh}(1+h)
+  =(k+1)\operatorname{ch}(A).
+$$ {#eq-12-product-cohomology}
+
+@eq-12-product-index をChern指標へ送った結果と一致する。ここで $\operatorname{ch}(A)$ の全次数は底に残り、積分で取り出す次数はファイバー方向の二次だけである。もし空間全体の最上次だけを積分してしまえば、族を測っていたのに一つの数に戻ってしまう。
+
+一般の閉ファイバーを持つ滑らかな族について、この位相的な押し出しと @eq-12-family-index が一致するのがAtiyah–Singerの族の指数定理である。次の例では定理を使わず、ファイバーでの多項式の貼り方から指数束を直接決め、Todd計算と比較する。 [The Index of Elliptic Operators IV](https://annals.math.princeton.edu/1971/93-1/p06)
+
+## 射影直線が非自明に動く族
+
+$E$ を $B$ 上の階数2の複素束、$\pi:\mathbb P(E)\to B$ を第9章の射影束とする。各ファイバーは自然な複素曲線である。$\mathcal O_\pi(k)=L^{-k}$ に対するDolbeault作用素を、ファイバー方向だけに取る。
+
+$k\ge0$ のとき、各ファイバーの核はその二次元空間上の斉次次数 $k$ の多項式全部である。底のフレームを変えると、多項式は座標の逆写像を引数に入れて変換される。従って $\operatorname{Sym}^k E^*$ の遷移になる。余核はファイバーごとにゼロである。$k=-1$ では核も余核もゼロ。
+
+$k\le-2$ の場合は正則切断が無く、余核の変換を追う必要がある。第6章で作った留数による双対を、各ファイバーに施す。相対正則余接線束 $K_\pi$ を求めると、
+
+$$
+T_\pi=\operatorname{Hom}(L,\pi^*E/L),\qquad
+K_\pi=L^2\otimes\pi^*(\det E)^* .
+$$ {#eq-12-fibre-canonical}
+
+第一式は第11章と同じ局所グラフの計算。第二式は行列式線の関係 $\pi^*E/L\simeq\pi^*(\det E)\otimes L^*$ から従う。
+
+従って $k=-m$、$m\ge2$ のとき、余核の双対は $K_\pi\otimes L^{-m}$ のファイバーの正則切断となる。 @eq-12-fibre-canonical を代入すれば、これが $\operatorname{Sym}^{m-2}E^*\otimes(\det E)^*$ である。ゆえに
+
+$$
+\operatorname{Ind}_B(\bar\partial_{\mathcal O_\pi(k)})
+ =
+\begin{cases}
+[\operatorname{Sym}^kE^*], & k\ge0,\\[2pt]
+0,& k=-1,\\[2pt]
+-[\operatorname{Sym}^{-k-2}E\otimes\det E],& k\le-2 .
+\end{cases}
+$$ {#eq-12-projective-index}
+
+階数だけを取れば、三つの場合はそれぞれ $k+1,0,k+1$ になる。だが例えば $k=-2$ では指数類は $-[\det E]$ であり、余核1次元という点ごとの情報に、行列式線の貼り合わせが加わっている。
+
+### $E=\mathbf1\oplus M$ の実計算
+
+$B=\mathbb CP^1$ とし、$M=\mathcal O(-1)$、$y=c_1(M)$、$x=c_1(L^*)$ とする。二つの線束の直和からできる射影束では、通常のコホモロジーの関係は $x(x+y)=0$。実際 $L\to\pi^*E$ の包含は $\pi^*E\otimes L^*$ の非零切断を与え、その第二Chern類 $x(x+y)$ が消える。$y^2=0$、$\pi_* x=1$、$\pi_*1=0$ である。最後の二式はファイバーが実二次元で、$x$ がその正規化された生成元であることを表す。
+
+@eq-12-fibre-canonical によって $c_1(T_\pi)=2x+y$。その二乗は $4x^2+4xy+y^2=0$。従ってTodd級数は一次までで足りる。特に
+
+$$
+\begin{aligned}
+e^{kx}\operatorname{Td}(T_\pi)
+ &= (1+kx+\tfrac12 k^2x^2)(1+x+\tfrac12 y),\\
+\pi_*\bigl(e^{kx}\operatorname{Td}(T_\pi)\bigr)
+ &=(k+1)-\tfrac12 k(k+1)y.
+\end{aligned}
+$$ {#eq-12-projective-td}
+
+第二式では $x^2=-xy$ を使って、$x$ を含む項を一つずつ取り出した。$k=2$ では $3-3y$。 @eq-12-projective-index の正の側は $\mathbf1\oplus M^*\oplus(M^*)^2$ であり、そのChern指標も $3-3y$ である。$k=-2$ では @eq-12-projective-td は $-1-y$。 @eq-12-projective-index の指数は $-[M]$ である。
+
+| $k$ | 核の束 | 余核の束 | 指数のChern指標 |
+|---:|---|---|---|
+| $2$ | $\mathbf1\oplus M^*\oplus(M^*)^2$ | $0$ | $3-3y$ |
+| $0$ | $\mathbf1$ | $0$ | $1$ |
+| $-1$ | $0$ | $0$ | $0$ |
+| $-2$ | $0$ | $M$ | $-1-y$ |
+| $-3$ | $0$ | $M\oplus M^2$ | $-2-3y$ |
+
+: 同じ射影直線束のファイバーに異なる係数を載せたときの指数。 {#tbl-12-projective}
+
+@tbl-12-projective では、$M$ のねじれが、正の $k$ では余接側の多項式に、負の $k$ では余核に現れる。ファイバーの作用素の階数だけを追っても、この違いは出ない。
+
+### 射影束の引き戻しと指数の写像
+
+第9章の射影束定理では、$KU^0(\mathbb P(E))$ の全ての元は底の元と $L$ で生成された。ファイバーの指数を取る写像 $\pi_!$ は、$\pi^*A$ でテンソルする操作に対して底の $[A]$ 倍と両立する。そこで階数2の射影束では
+
+$$
+\pi_!(1)=1,\qquad \pi_!([L])=0
+$$ {#eq-12-projective-push}
+
+と分かれば、どの元の指数も計算できる。これを使って $[L]^{-1}$ の像を出そう。$a=[\det E]$、$t=[L]$ とすると第9章の環の関係は $t^2-[E]t+a=0$。単元 $t$ を割ると $a t^{-1}=[E]-t$。従って
+
+$$
+\pi_!(t^{-1})=a^{-1}[E]=[E^*].
+$$
+
+最後の等式は階数2の自然な同型 $E\cong E^*\otimes\det E$ による。 @eq-12-projective-index の $k=1$ の計算を，環の一つの関係だけから再現できた。同様に $\pi_!(t^2)=-a$ となり、負の側の $k=-2$ に一致する。
+
+### 負の次数では余核束が値を運ぶ
+
+$\pi:\mathbb P(E)\to B$ を直線の空間とする。正の次数では $\operatorname{Sym}^k E^*$ が核束に現れた。負の次数 $k=-s$ で $s\ge2$ のときは、各ファイバーで $H^0(\mathcal O(-s))=0$ なので、指数束は余核束の負になる。余核の双対を局所座標ごとに計算して、基底の変換まで追ってみよう。
+
+相対標準束は $K_\pi=\mathcal O(-2)\otimes\pi^*(\det E)^*$ である。各ファイバーでの積と留数による双対性を使うと、$H^1(\mathcal O(-s))^*$ は $H^0(K_\pi\otimes\mathcal O(s))$ と対応する。この対応は座標を変えても留数が保たれるので、底上の束の同型になる。正の次数で得た核束の公式を適用して双対を戻すと、次を得る。
+
+$$
+\operatorname{Ind}_B\bar\partial_{\mathcal O(-s)}
+=-[\operatorname{Sym}^{s-2}E\otimes\det E].
+$$ {#eq-12-negative-index-bundle}
+
+例えば $E=\mathbf1\oplus M$ なら、右辺は $-\sum_{j=1}^{s-1}[M^j]$ になる。底が $\mathbb CP^1$ の場合、$y=c_1(M)$ に対して $y^2=0$ なので、Chern指標の計算は一次までで閉じる。
+
+$$
+\operatorname{ch}(\operatorname{Ind}_B)
+=-(s-1)-\frac{s(s-1)}2\,y.
+$$ {#eq-12-negative-character}
+
+これをファイバー積分の結果 $k+1-\frac{k(k+1)}2y$ に $k=-s$ を入れた式と照合すると、階数も一次成分も一致する。特に $k=-2$ では各点の指数は常に $-1$ であるが、余核線には $\det E$ が現れる。点ごとの指数を集めるだけでは、底上でのその貼り合わせは決まらない。
+
+## 演習と解答
+
+### 1　フレームの自由度と右辺の条件
+
+@eq-12-augmentation の核から $W$ への像が、$W\cap\operatorname{im}D_b$ と一致することを説明せよ。
+
+**解答。** $(u,w)$ が核にあれば $w=-D_bu$ だから交わりに入る。逆に $w=D_bu$ と書けるなら $(-u,w)$ は核にある。この像を割った $W/(W\cap\operatorname{im}D_b)$ は余核を代表する。$D_b(H_0)+W=H_1$ なので、$W$ に含まれない方向の右辺も余核では等価な $W$ の元を持つ。
+
+### 2　底の線束でひねる
+
+$E=\mathbf1\oplus M$ の射影束で、$\mathcal O_\pi(-3)\otimes\pi^*M^*$ の指数を求めよ。
+
+**解答。** @tbl-12-projective の余核 $M\oplus M^2$ に $M^*$ を掛ければ $\mathbf1\oplus M$。核は0なので指数は $-1-[M]$、Chern指標は $-2-y$。 @eq-12-projective-td の $k=-3$ の値 $-2-3y$ に $e^{-y}=1-y$ を掛けても、同じ値になる。
+
+### 3　点に制限すると見えなくなる差
+
+$B=\mathbb CP^1$、$M=L$ とする。$\pi_!(L^2)$ を、別の射影直線束 $B\times\mathbb CP^1$ の対応する指数と比較せよ。
+
+**解答。** 両方とも各点の指数は $-1$。しかし前者は $-[M]$、後者は $-1$。その差は $-\mu$。$c_1(M)$ の積分を取ると差の二次Chern指標は $+1$ になる。第1章の一回転が、ここでは解をパラメータ全域で選んだときの余核束に現れた。

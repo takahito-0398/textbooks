@@ -3,3 +3,9 @@ sidebar: topological-k-theory
 format:
   html:
     css: k-theory.css
+crossref:
+  eq-prefix: 式
+  fig-prefix: 図
+  fig-title: 図
+  tbl-prefix: 表
+  tbl-title: 表

@@ -19,14 +19,21 @@ execute:
   enabled: false
 format:
   typst:
-    papersize: iso-b6
+    crossref:
+      chapters: true
+      eq-prefix: 式
+      fig-prefix: 図
+      fig-title: 図
+      tbl-title: 表
+      tbl-prefix: 表
+    papersize: a5
     margin:
       top: 13mm
-      bottom: 15mm
-      left: 8mm
-      right: 8mm
+      bottom: 13mm
+      left: 11mm
+      right: 11mm
     mainfont: "Yu Mincho"
-    fontsize: 11.5pt
+    fontsize: 9.3pt
     page-numbering: "1"
 ---
 
@@ -44,6 +51,7 @@ def read_chapter(path):
         r"\]\((?:\./)?([\w-]+)\.qmd(?:#([\w-]+))?\)",
         lambda link: f"](#{link[2] or link[1]})", content,
     )
+    content = content.replace("](../assets/figures/", "](figures/")
     return title, content.strip()
 
 
@@ -66,27 +74,36 @@ def main():
     parser.add_argument("--quarto", default=os.environ.get("QUARTO", "quarto"))
     parser.add_argument("--sample", type=Path, help="Render the opening and a dense formula sample.")
     options = parser.parse_args()
-    paths = sorted((BOOK / "chapters").glob("[0-7][0-9]-*.qmd"))
+    paths = sorted((BOOK / "chapters").glob("[0-9][0-9]-*.qmd"))
     if options.sample:
         paths = [path for path in paths if path.name.startswith(("00-", "01-", "06-"))]
-    if len(paths) != (3 if options.sample else 8):
-        raise ValueError("Expected three sample chapters or all eight release chapters")
+    if not paths:
+        raise ValueError("No chapters were found")
     chapters = [(path.stem, *read_chapter(path)) for path in paths]
     styles = raw_typst('''
 #set text(lang: "ja", cjk-latin-spacing: auto)
-#set par(justify: true, leading: 0.83em)
+#set par(justify: true, leading: 0.38em, spacing: 0.7em)
+#set page(header: context {
+  if counter(page).get().first() > 2 {
+    align(right, text(font: "Yu Gothic", size: 7pt, fill: luma(100))[位相的K理論を読む])
+  }
+})
+#set figure(gap: 3pt)
+#show figure.caption: set text(size: 8pt)
+#set table(stroke: 0.35pt + luma(180), inset: (x: 3pt, y: 2pt))
+#set math.equation(number-align: right + bottom)
 #set heading(numbering: none)
 #set document(title: "位相的K理論を読む ― 貼り合わせ・特性類・指数")
 #show math.equation.where(block: true): it => context {
-  let max-width = 49mm
+  let max-width = 59mm
   let width = measure(it).width
   if width > max-width {
     scale(x: max-width / width * 100%, y: max-width / width * 100%, reflow: true, it)
   } else { it }
 }
-#show heading.where(level: 1): set text(font: "Yu Gothic", size: 17pt, fill: rgb("#173c37"))
-#show heading.where(level: 2): set text(font: "Yu Gothic", size: 13pt, fill: rgb("#173c37"))
-#show heading.where(level: 3): set text(font: "Yu Gothic", size: 10pt)
+#show heading.where(level: 1): set text(font: "Yu Gothic", size: 16pt, fill: rgb("#173c37"))
+#show heading.where(level: 2): set text(font: "Yu Gothic", size: 11.2pt, fill: rgb("#173c37"))
+#show heading.where(level: 3): set text(font: "Yu Gothic", size: 9.5pt)
 #v(1fr)
 #align(center)[
   #text(font: "Yu Gothic", size: 26pt, weight: "bold", fill: rgb("#173c37"))[位相的K理論を読む]
@@ -100,12 +117,15 @@ def main():
     for key, title, content in chapters:
         body += raw_typst("#pagebreak(weak: true)")
         body += f"# {title} {{#{key}}}\n\n"
-        body += raw_typst("#columns(2, gutter: 6mm)[")
+        body += raw_typst("#columns(2, gutter: 5mm)[")
         body += f"{content}\n\n"
         body += raw_typst("]")
     output = options.sample.resolve() if options.sample else OUTPUT
     with TemporaryDirectory(prefix="ku-pdf-") as directory:
         stage = Path(directory)
+        source_figures = BOOK / "assets" / "figures"
+        if source_figures.is_dir():
+            shutil.copytree(source_figures, stage / "figures")
         (stage / "book.qmd").write_text(HEADER + styles + body, encoding="utf-8")
         render(options.quarto, stage, output)
     evidence = {"chapters": {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in paths},
