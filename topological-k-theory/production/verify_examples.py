@@ -29,6 +29,20 @@ assert winding(lambda z: z) == 1
 assert winding(lambda z: z.conjugate()) == -1
 print("S^2: w(z)=1; south positive-boundary winding=-1; Koszul clutching w(conj(z))=-1.")
 
+# The equator diagrams vary the base point but keep the northern value fixed.
+equator = (1, 1j, -1, -1j)
+north_value = 1
+assert tuple(z * north_value for z in equator) == equator
+assert tuple(north_value for _ in equator) == (1, 1, 1, 1)
+for z in equator:
+    x, y = z.real, z.imag
+    assert x*x+y*y == 1
+    south_chart = complex(x, -y)
+    assert south_chart == 1/z
+    assert south_chart.conjugate() == z
+assert winding(lambda z: z * z**-2) - winding(lambda z: z**-2) == 1
+print("Equator figures: four coordinate pairs, south chart orientation, and the difference of winding numbers.")
+
 assert finite_quotient_invariants((2, -3), (0, 2)) == (1, 4)
 assert finite_quotient_invariants((2, 1), (0, 2)) == (1, 4)
 assert finite_quotient_invariants((3, 3), (0, 3)) == (3, 3)

@@ -469,6 +469,187 @@ def fourier_tracks():
     save(im, 'fourier-tracks')
 
 
+def sphere_cross_section(draw, cx, cy, radius):
+    bounds = (cx-radius, cy-radius, cx+radius, cy+radius)
+    draw.pieslice(bounds, 180, 360, fill="#d9eaf1")
+    draw.pieslice(bounds, 0, 180, fill="#e0eee5")
+    draw.ellipse(bounds, outline=INK, width=4)
+    draw.ellipse((cx-radius, cy-radius*.22, cx+radius, cy+radius*.22), outline=GRID, width=3)
+    line(draw, [(cx-radius, cy), (cx+radius, cy)], GRID, 2)
+
+
+def complex_axes(draw, cx, cy, horizontal=109, vertical=80, unit=61, point=None):
+    arrow(draw, (cx-horizontal, cy), (cx+horizontal, cy), INK, size=13, width=3)
+    arrow(draw, (cx, cy+vertical), (cx, cy-vertical), INK, size=13, width=3)
+    label(draw, (cx+horizontal, cy+28), "実", 23)
+    label(draw, (cx+29, cy-vertical), "虚", 23)
+    if point is not None:
+        a, b = point
+        dot(draw, (cx+unit*a, cy-unit*b), RUST, radius=8)
+
+
+def dotted_segment(draw, start, end):
+    steps = 36
+    for i in range(0, steps, 3):
+        p = tuple(a + (b-a)*i/steps for a,b in zip(start,end))
+        q = tuple(a + (b-a)*(i+1.5)/steps for a,b in zip(start,end))
+        line(draw, [p, q], BLUE, 3)
+
+
+def base_fibers():
+    im, d = canvas(478)
+    sphere_cross_section(d, 239, 238, 164)
+    label(d, (222, 37), "位置を選ぶ球面", 37)
+    label(d, (756, 37), "選んだ点のファイバー", 35)
+    for px, py, cy, given in [(278, 135, 157, "p"), (296, 304, 364, "q")]:
+        d.rounded_rectangle((545, cy-85, 953, cy+75), radius=12, outline=GRID, fill="#f2f6f7", width=2)
+        dotted_segment(d, (px, py), (540, cy))
+        dot(d, (px, py), BLUE, radius=10)
+        label(d, (px-32, py-15), given, 36, BLUE)
+        label(d, (616, cy-43), f"{given} 専用", 28, BLUE)
+        complex_axes(d, 781, cy+8, 102, 56, unit=53, point=(1, 0))
+        label(d, (838, cy+39), "1", 26, RUST)
+    label(d, (369, 427), "位置 p, q", 31, BLUE)
+    label(d, (749, 457), "選ぶ複素数 u", 32, RUST)
+    save(im, "base-fibers")
+
+
+def equator_disks():
+    im, d = canvas(482)
+    sphere_cross_section(d, 235, 244, 169)
+    label(d, (214, 37), "単位球面", 36)
+    label(d, (235, 167), "北 t > 0", 35, BLUE)
+    label(d, (233, 325), "南 t < 0", 35, TEAL)
+    dot(d, (366, 263), RUST, 11)
+    label(d, (371, 306), "赤道", 28, RUST)
+    for cy, name, color in [(128, "北を投影", BLUE), (354, "南を投影", TEAL)]:
+        arrow(d, (411, 247), (599, cy), color, size=22)
+        circle(d, 735, cy, 84, color=color, fill="#f0f5f5", width=4)
+        line(d, [(653, cy), (816, cy)], GRID, 2)
+        line(d, [(735, cy-83), (735, cy+82)], GRID, 2)
+        dot(d, (735, cy-84), RUST, 9)
+        label(d, (836, cy-56), "z = i", 29, RUST)
+        label(d, (882, cy+22), name, 31, color)
+    label(d, (495, 456), "両方の円板の縁は同じ赤道", 32)
+    save(im, "equator-disks")
+
+
+def fiber_identification():
+    im, d = canvas(491)
+    xs = [340, 512, 682, 852]
+    label(d, (150, 44), "赤道の位置 z", 34)
+    for x, text in zip(xs, ['1', 'i', '−1', '−i']):
+        label(d, (x, 44), text, 34, BLUE)
+    for y, lab in [(138, "北で選んだ値"), (278, "南：同じ数字"), (421, "南：z 倍")]:
+        label(d, (152, y-2), lab, 30)
+    for x, vector in zip(xs, [(1,0), (0,1), (-1,0), (0,-1)]):
+        for y, point in [(138, (1,0)), (278, (1,0)), (421, vector)]:
+            complex_axes(d, x, y, 56, 52, unit=40, point=point)
+    line(d, [(33, 211), (932, 211)], GRID, 2)
+    line(d, [(33, 353), (932, 353)], GRID, 2)
+    save(im, "fiber-identification")
+
+
+def extension_disks():
+    im, d = canvas(384)
+    label(d, (235, 42), "南半球を表す円板", 35, BLUE)
+    label(d, (754, 42), "選んだ値の複素平面", 34, TEAL)
+    circle(d, 234, 211, 109, BLUE, fill="#edf4f7", width=4)
+    circle(d, 234, 211, 67, TEAL, width=4)
+    circle(d, 234, 211, 31, GRID, width=4)
+    dot(d, (234, 211), RUST, 7)
+    label(d, (247, 343), "円の半径 r を下げる", 29)
+    arrow(d, (383, 207), (579, 207), BLUE)
+    label(d, (479, 172), "値を読む", 29, BLUE)
+    complex_axes(d, 762, 212, 143, 115)
+    for radius, color in [(83, BLUE), (50, TEAL), (24, GRID)]:
+        circle(d, 762, 212, radius, color, width=4)
+    dot(d, (762, 212), RUST, 8)
+    label(d, (778, 344), "例：中心の値は 0", 31, RUST)
+    save(im, "extension-disks")
+
+def disk_bundle():
+    im, d = canvas(433)
+    line(d, [(99, 338), (903, 338)], INK, 4)
+    label(d, (123, 386), "底空間 X", 30)
+    for x, point in [(246, "x"), (500, "y"), (753, "z")]:
+        circle(d, x, 157, 95, TEAL, fill="#e7f0ed", width=4)
+        dot(d, (x, 157), RUST, 8)
+        dotted_segment(d, (x, 264), (x, 327))
+        dot(d, (x, 338), BLUE, 8)
+        label(d, (x, 372), point, 31, BLUE)
+    label(d, (488, 36), "各点のファイバーの中で取った円板", 32)
+    arrow(d, (884, 85), (823, 101), TEAL, size=13, width=3)
+    label(d, (900, 60), "円周", 25, TEAL)
+    label(d, (493, 193), "0", 28, RUST)
+    save(im, "disk-bundle")
+
+
+def symbol_layers():
+    im, d = canvas(416)
+    box(d, (23, 124, 266, 208), "底の位置 x", size=32)
+    arrow(d, (269, 166), (321, 166), BLUE)
+    box(d, (324, 103, 653, 231), "(x, ξ) を固定", size=37)
+    label(d, (482, 252), "余接方向まで指定", 29, BLUE)
+    arrow(d, (658, 167), (706, 167), BLUE)
+    box(d, (711, 74, 968, 139), "入力 E(x)", fill="#e8f2f4", size=31)
+    box(d, (711, 214, 968, 279), "出力 F(x)", fill="#e8f2f4", size=31)
+    arrow(d, (813, 144), (813, 210), TEAL)
+    label(d, (892, 175), "行列", 31, TEAL)
+    label(d, (493, 356), "x と ξ を選ぶと、その振幅を動かす行列が決まる", 33)
+    save(im, "symbol-layers")
+
+
+def choices_on_projective_bundle():
+    im, d = canvas(378)
+    for x, top, bottom, color in [
+        (156, "x", "底の位置", BLUE),
+        (497, "(x, ℓ)", "E(x) の中の直線", TEAL),
+        (832, "(x, ℓ, v)", "その直線上の値", RUST),
+    ]:
+        box(d, (x-135, 95, x+135, 197), top, size=42)
+        label(d, (x, 244), bottom, 31, color)
+    arrow(d, (293, 145), (357, 145), BLUE)
+    arrow(d, (635, 145), (692, 145), TEAL)
+    label(d, (495, 330), "左へ戻るときは、最後に加えた選択だけを忘れる", 31)
+    save(im, "projective-choices")
+
+
+def moving_frame():
+    im, d = canvas(371)
+    for x, turn, caption in [(247, 0, "係数は 1"), (740, pi/3, "係数は逆向きに回る")]:
+        complex_axes(d, x, 193, 112, 104, unit=68)
+        if turn:
+            for angle in [turn, turn+pi/2]:
+                arrow(d, (x, 193), (x+83*cos(angle), 193-83*sin(angle)), BLUE, width=5)
+            label(d, (x+128, 104), "新しい基底", 30, BLUE)
+        else:
+            label(d, (x+123, 111), "元の基底", 30, BLUE)
+        arrow(d, (x, 193), (x+67, 193), RUST, width=6)
+        label(d, (x+16, 304), caption, 30)
+    label(d, (493, 48), "赤いベクトルは両方で同じ", 33, RUST)
+    arrow(d, (421, 194), (557, 194), TEAL)
+    save(im, "moving-frame")
+
+
+def smash_square():
+    im, d = canvas(444)
+    bounds = (109, 90, 369, 350)
+    d.rectangle(bounds, fill="#e7f1f5", outline=RUST, width=8)
+    for x,y in [(109, 220), (239, 90), (369, 220), (239, 350)]:
+        dot(d, (x,y), RUST, 9)
+    dot(d, (235, 205), BLUE, 8)
+    label(d, (237, 395), "トーラスを切り開いた正方形", 30)
+    arrow(d, (422, 222), (573, 222), TEAL, size=22)
+    label(d, (495, 180), "四辺を一点へ", 29, TEAL)
+    sphere_cross_section(d, 742, 218, 128)
+    dot(d, (742, 90), RUST, 11)
+    dot(d, (718, 203), BLUE, 8)
+    label(d, (862, 64), "辺の行き先", 31, RUST)
+    label(d, (742, 395), "商でできる球面", 30)
+    save(im, "smash-square")
+
+
 def main():
     global FONT
     parser = argparse.ArgumentParser(description=__doc__)
@@ -480,7 +661,9 @@ def main():
                  shift, fixed_chain, index_balance, pushforward, torus_square,
                  cech_subsets, fixed_weights, lens_matrix, mayer_vietoris,
                  diagonal, grassmann, spectral_flow, reading_paths,
-                 degree_coordinates, fourier_tracks):
+                 degree_coordinates, fourier_tracks, base_fibers, equator_disks,
+                 fiber_identification, extension_disks, disk_bundle, symbol_layers,
+                 choices_on_projective_bundle, moving_frame, smash_square):
         draw()
 
 
